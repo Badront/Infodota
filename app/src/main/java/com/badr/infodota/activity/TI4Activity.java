@@ -23,6 +23,7 @@ import java.text.MessageFormat;
  * Date: 14.05.14
  * Time: 20:17
  */
+@Deprecated
 public class TI4Activity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -172,7 +172,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
                     details = LeaguesGamesList.newInstance(null);
                     break;/*
                 case 9:
-					details=new LeaguesGamesList("&c2=7057&c1=2390");
+					details=new LeaguesGamesList.newInstance("&c2=7057&c1=2390");
                     break;*/
             }
             replaceFragment(details);

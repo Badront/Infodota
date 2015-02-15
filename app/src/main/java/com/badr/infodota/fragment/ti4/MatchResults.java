@@ -43,14 +43,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * todo need to replace pullToRefreshPinnedSection like in Tournament games
  * User: ABadretdinov
  * Date: 15.05.14
  * Time: 15:58
  */
+
 public class MatchResults extends Fragment {
     public static final int MATCH_DETAILS = 123;
     private Long leagueId;
-    private LeagueMatchResultsAdapter adapter;
+    //private LeagueMatchResultsAdapter adapter;
     private PullToRefreshPinnedSectionListView listView;
     private long total = 1;
     private BeanContainer container = BeanContainer.getInstance();
@@ -63,6 +65,7 @@ public class MatchResults extends Fragment {
         fragment.leagueId = leagueId;
         return fragment;
     }
+/*
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -306,5 +309,6 @@ public class MatchResults extends Fragment {
             adapter.setCancel(true);
         }
     }
+*/
 
 }

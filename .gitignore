@@ -12,6 +12,9 @@
 bin/
 gen/
 
+#Idea directories
+.idea/
+
 # Gradle files
 .gradle/
 build/
@@ -24,3 +27,4 @@ proguard/
 
 # Log Files
 *.log
+*.iml
