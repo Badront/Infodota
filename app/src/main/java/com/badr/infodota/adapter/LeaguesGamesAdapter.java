@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.api.joindota.MatchItem;
 import com.badr.infodota.util.DateUtils;
+import com.badr.infodota.view.PinnedSectionListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -23,7 +24,7 @@ import java.util.List;
  * Date: 22.04.14
  * Time: 18:36
  */
-public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionListAdapter {
+public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
     DisplayImageOptions options;
     //todo options with cache and default img
     private LayoutInflater inflater;
