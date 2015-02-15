@@ -35,9 +35,9 @@ import com.badr.infodota.service.match.MatchService;
 import com.badr.infodota.service.team.TeamService;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
-import com.handmark.pulltorefresh.library.PinnedSectionListView;
+/*import com.handmark.pulltorefresh.library.PinnedSectionListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshPinnedSectionListView;
+import com.handmark.pulltorefresh.library.PullToRefreshPinnedSectionListView;*/
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class MatchResults extends Fragment {
     public static final int MATCH_DETAILS = 123;
     private Long leagueId;
     //private LeagueMatchResultsAdapter adapter;
-    private PullToRefreshPinnedSectionListView listView;
+    /*private PullToRefreshPinnedSectionListView listView;*/
     private long total = 1;
     private BeanContainer container = BeanContainer.getInstance();
     private MatchService matchService = container.getMatchService();

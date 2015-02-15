@@ -17,7 +17,7 @@ import com.badr.infodota.api.matchdetails.Result;
 import com.badr.infodota.api.matchdetails.Team;
 import com.badr.infodota.api.matchhistory.Match;
 import com.badr.infodota.service.team.TeamService;
-import com.handmark.pulltorefresh.library.PinnedSectionListView;
+/*import com.handmark.pulltorefresh.library.PinnedSectionListView;*/
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -35,7 +35,7 @@ import java.util.TimeZone;
  * Date: 15.05.14
  * Time: 17:12
  */
-public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
+public class LeagueMatchResultsAdapter /*extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter*/ {
     public SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy, EEE");
     private Context context;
     private LayoutInflater inflater;
@@ -73,7 +73,7 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
             }
         }
     }
-
+/*
     public void addMatches(List<Match> subMatches) {
         if (subMatches != null) {
             matchItems.addAll(subMatches);
@@ -222,5 +222,5 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
         ImageView direLogo;
         TextView direName;
         TextView time;
-    }
+    }*/
 }
