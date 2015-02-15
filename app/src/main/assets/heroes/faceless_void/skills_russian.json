@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">20% / 30% / 40% / 50%</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">700 / 900 / 1100 / 1300</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  90<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  19/17/15/13",
+        "desc": "Совершает рывок к указанной точке, снижая скорость передвижения всех врагов, находящихся на его пути, на 3 секунды.",
+        "dmg": "",
+        "dname": "Time Walk",
+        "hurl": "Faceless_Void",
+        "notes": "Во время действия этой способности Faceless Void неуязвим.",
+        "lore": "Дарктеррор разрывает ткань времени, проходя через Класзурем и мгновенно возвращаясь назад.",
+        "name": "faceless_void_time_walk",
+        "youtube":"S0rGy8SU5wM",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ШАНС УКЛОНЕНИЯ: <b><font color=\"#ffffff\">10% / 15% / 20% / 25%</font></b>",
+        "cmb": "",
+        "desc": "Faceless Void уклоняется от физических и магических атак, прыгая в прошлое.",
+        "dmg": "",
+        "dname": "Backtrack",
+        "hurl": "Faceless_Void",
+        "notes": "Складывается с другими эффектами, дающими шанс уклонения.<br />Способности, дающие эффект True Strike, не сработают против эффекта этой способности.",
+        "lore": "Дарктеррор видит то, что еще только предстоит увидеть.",
+        "name": "faceless_void_backtrack",
+        "youtube":"CUVqXuRDxOc",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">1</font></b><br/>ШАНС: <b><font color=\"#ffffff\">10% / 15% / 20% / 25%</font></b><br/>ДОПОЛНИТЕЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">40 / 50 / 60 / 70</font></b>",
+        "cmb": "",
+        "desc": "При атаке появляется шанс остановить время для вражеского юнита, оглушая его и нанося дополнительный урон.",
+        "dmg": "",
+        "dname": "Time Lock",
+        "hurl": "Faceless_Void",
+        "notes": "Оглушает врагов, невосприимчивых к магии.<br />Не складывается с эффектом от артефакта Skull Basher.<br />Наносит вдвое больше урона, если цель удара находится под действием способности Chronosphere.",
+        "lore": "К удару Faceless Void прибавляется сила сдвига измерения.",
+        "name": "faceless_void_time_lock",
+        "youtube":"xYXHpdTOWLA",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">425</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">4 / 4.5 / 5</font></b><br/><span class=\"scepterVal\">ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">4 / 5 / 6</font></b><br/><span class=\"scepterVal\">КУЛДАУН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">60</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/225/300<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  130/115/100",
+        "desc": "Создает прореху в пространстве и времени, заключая всех врагов в сферу. Только Faceless Void и подконтрольные ему существа остаются нетронутыми ее силой. Раскрывает невидимость внутри сферы. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Chronosphere",
+        "hurl": "Faceless_Void",
+        "notes": "Останавливает действия всех существ и построек за исключением подконтрольных Faceless Void.<br />На Faceless Void не действует ни своя, ни чужая Chronosphere.<br />Раскрывает невидимых существ.<br />В Chronosphere cкорость передвижения Void'а 1000 и он может проходить сквозь существ",
+        "lore": "Когда открывается проход в Класзурем, все бедняги, оказавшиеся в проходе, вряд ли могут выбраться из него.",
+        "name": "faceless_void_chronosphere",
+        "youtube":"vGJ7FLM7uJg",
+        "id": 3
+    }
+]

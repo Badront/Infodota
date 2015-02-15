@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "JUMPS: <b><font color=\"#ffffff\">5 / 7 / 9 / 15</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  65/70/75/80<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  1.75",
+        "desc": "Hurls a bolt of lightning that leaps through nearby enemy units.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">85 / 100 / 115 / 145</font></b>",
+        "dname": "Arc Lightning",
+        "hurl": "Zeus",
+        "notes": "",
+        "lore": "Arc Lightning is Zeus\u0027 favorite spell to use against puny mortals.",
+        "name": "zuus_arc_lightning",
+        "youtube":"uHcb8gCUP3s",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  75/95/115/135<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  6",
+        "desc": "Summons a bolt of lightning to strike an enemy unit, causing damage and a mini-stun. Lightning Bolt also provides True Sight around the target in a radius of 750 for 4.5 seconds.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">100 / 175 / 275 / 350</font></b>",
+        "dname": "Lightning Bolt",
+        "hurl": "Zeus",
+        "notes": "You can interrupt channeling spells and items with this ability. Сan be cast on the ground, affecting the closest enemy hero in a 325 range.",
+        "lore": "A shocking punishment for rebellious heathen.",
+        "name": "zuus_lightning_bolt",
+        "youtube":"S5xDQfHBSw4",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RANGE: <b><font color=\"#ffffff\">1200</font></b><br />HEALTH REDUCTION: <b><font color=\"#ffffff\">5% / 7% / 9% / 11%</font></b>",
+        "cmb": "",
+        "desc": "Zeus shocks all nearby enemy units whenever he casts a spell, causing damage proportional to their current health.",
+        "dmg": "",
+        "dname": "Static Field",
+        "hurl": "Zeus",
+        "notes": "The damage from Static Field is dealt before the damage from the used spell.<br />Using items doesn\u0027t trigger Static Field.<br />Does not require unit visibility to take effect.",
+        "lore": "The air crackles with static when the Thundergod walks the world.",
+        "name": "zuus_static_field",
+        "youtube":"mZm0z2mlPvY",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "TRUE SIGHT RADIUS: <b><font color=\"#ffffff\">900 / 900 / 900</font></b><br />DURATION: <b><font color=\"#ffffff\">3 / 3 / 3 / 3</font></b><br />DAMAGE: <b><font color=\"#ffffff\">225 / 350 / 475</font></b><br /><span class=\"scepterVal\">SCEPTER DAMAGE:</font></b> <b><font color=\"#ffffff\">440 / 540 / 640</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  225/325/450<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  90",
+        "desc": "Strikes all enemy heroes with a bolt of lightning, no matter where they may be.  Thundergod\u0027s Wrath also provides True Sight around each hero struck.  If an enemy hero is invisible, it takes no damage, but the True Sight is still created at that hero\u0027s location.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Thundergod\u0027s Wrath",
+        "hurl": "Zeus",
+        "notes": "",
+        "lore": "The Lord of Heaven smites all who oppose him, near or far.",
+        "name": "zuus_thundergods_wrath",
+        "youtube":"IGhJdGh8CH8",
+        "id": 3
+    }
+]

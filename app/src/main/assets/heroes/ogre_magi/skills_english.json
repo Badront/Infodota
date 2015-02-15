@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "STUN DURATION: <b><font color=\"#ffffff\">1.5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  75/85/95/105<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  12",
+        "desc": "Blasts an enemy unit with a wave of fire, dealing damage and stunning the target.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">55 / 110 / 165 / 220</font></b>",
+        "dname": "Fireblast",
+        "hurl": "Ogre_Magi",
+        "notes": "When Multicast, Fireblast hits the same target each time with a 0.4 seconds interval.<br />Mana cost is increased by 20 / 40 / 60 when learning Multi Cast.",
+        "lore": "The Ogre Magi is easily amused, entertained for hours by playing with fire.",
+        "name": "ogre_magi_fireblast",
+        "youtube":"sEWGzFIZQtU",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">5 / 6 / 7 / 8</font></b><br />BURN DAMAGE: <b><font color=\"#ffffff\">26 / 34 / 42 / 50</font></b><br />SLOW: <b><font color=\"#ffffff\">20% / 22% / 24% / 26%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  95/105/115/125<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  15",
+        "desc": "Drenches a target in volatile chemicals, causing it to burst into flames. The target is in immense pain, taking damage and moving more slowly.",
+        "dmg": "",
+        "dname": "Ignite",
+        "hurl": "Ogre_Magi",
+        "notes": "Multicast makes this spell have an area of effect (150/300/450 based on Multicast level).<br />Multicast makes this spell have 150 additional cast range for every Multicast level.<br />Multicast makes this spell have a chance to cast multiple times at random enemy units with 1400 AoE.",
+        "lore": "Batter up!",
+        "name": "ogre_magi_ignite",
+        "youtube":"Nj6AXWAl2s0",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Auto-Cast, Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Allied Units</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">30</font></b><br />MOVE SPEED: <b><font color=\"#ffffff\">10% / 12% / 14% / 16%</font></b><br />ATTACK SPEED: <b><font color=\"#ffffff\">20 / 30 / 40 / 50</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  75<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  20",
+        "desc": "Incites a frenzy in a friendly unit, increasing its movement speed and attack speed.",
+        "dmg": "",
+        "dname": "Bloodlust",
+        "hurl": "Ogre_Magi",
+        "notes": "When multicast, nearby allies will be selected randomly in an 575 area of effect to receive Bloodlust.<br />Can affect siege units and Magic Immune allies.",
+        "lore": "\u0027Running\u0027s not as fun as hitting... Not one bit fun.\u0027",
+        "name": "ogre_magi_bloodlust",
+        "youtube":"J3py9ylBrjQ",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "STUN DURATION: <b><font color=\"#ffffff\">1.5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  60% of current mana<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  6",
+        "desc": "Blasts an enemy unit with a wave of fire, dealing damage and stunning the target.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">275</font></b>",
+        "dname": "Unrefined Fireblast",
+        "hurl": "Ogre_Magi",
+        "notes": "",
+        "lore": "The \u0027who-casts-spell-first\u0027 argument between himself is solved simply by both casting at once.",
+        "name": "ogre_magi_unrefined_fireblast",
+        "youtube":"tJgO6bPCNBk",
+        "id": 3
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "FIREBLAST MANA INCREASE: <b><font color=\"#ffffff\">30 / 70 / 110</font></b><br />FIREBLAST COOLDOWN REDUCTION: <b><font color=\"#ffffff\">2 / 4 / 6</font></b><br />IGNITE RADIUS: <b><font color=\"#ffffff\">150 / 300 / 450</font></b><br />BLOODLUST RADIUS: <b><font color=\"#ffffff\">575</font></b><br />BLOODLUST COOLDOWN REDUCTION: <b><font color=\"#ffffff\">5 / 10 / 15</font></b><br />2X CHANCE: <b><font color=\"#ffffff\">40% / 50% / 60%</font></b><br />3X CHANCE: <b><font color=\"#ffffff\">0% / 20% / 25%</font></b><br />4X CHANCE: <b><font color=\"#ffffff\">0% / 0% / 12.5%</font></b><br />IGNITE CAST RANGE INCREASE: <b><font color=\"#ffffff\">150 / 300 / 450</font></b>",
+        "cmb": "",
+        "desc": "Enables the Ogre Magi to rapidly cast his spells, giving them greater potency. Gives a chance to cast a spell multiple times in one cast. Increases Fireblast\u0027s mana cost and decreases its cooldown, adds an area of effect to Ignite and reduces Bloodlust\u0027s cooldown and gives it a chance to cast on random allies around Ogre Magi.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Multicast",
+        "hurl": "Ogre_Magi",
+        "notes": "",
+        "lore": "Despite being largely incapacitated by his IQ, the Ogre Magi\u0027s success in battle is attributed to pure skill.",
+        "name": "ogre_magi_multicast",
+        "id": 4
+    }
+]

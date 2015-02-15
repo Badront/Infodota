@@ -1,0 +1,39 @@
+{
+	"author":"Valve",
+	"hero":"npc_dota_hero_slardar",
+	"Title":"Recommended items for Slardar",
+	
+	"Items":
+	{		
+		"startingItems":[
+			"stout_shield",
+			"flask",
+			"tango",
+			"clarity",
+			"branches"
+		],
+		
+		"earlyGame":[
+			"magic_stick",
+			"boots",
+			"ring_of_health"
+		],
+		
+		"coreItems":[
+			"magic_wand",
+			"power_treads",
+			"vanguard",
+			"tpscroll"
+		],
+		
+		"luxury":[
+			"black_king_bar",
+			"blink",
+			"invis_sword",
+			"heart",
+			"armlet",
+			"desolator",
+			"assault"
+		]
+	}
+}

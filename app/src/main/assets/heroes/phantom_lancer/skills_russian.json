@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">3.25</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">10% / 20% / 30% / 40%</font></b><br/>ВРЕМЯ ЖИЗНИ ИЛЛЮЗИИ: <b><font color=\"#ffffff\">2 / 4 / 6 / 8</font></b><br/>ИЛЛЮЗИЯ ПОЛУЧАЮТ ДОП. УРОНА: <b><font color=\"#ffffff\">300% / 300% / 300% / 300%</font></b><br/>ИЛЛЮЗИЯ НАНОСИТ УРОНА: <b><font color=\"#ffffff\">20% / 20% / 20% / 20%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125/130/135/140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  7",
+        "desc": "Создает магическое копье, которое наносит цели урон и замедляет ее, а также создает атакующую ее союзную иллюзию.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">100 / 150 / 200 / 250</font></b>",
+        "dname": "Spirit Lance",
+        "hurl": "Phantom_Lancer",
+        "notes": "Ближайшие иллюзии повторят анимацию броска.",
+        "lore": "Навыки Азрафа в ловле рыбы гарпуном оказались очень полезными на поле боя.",
+        "name": "phantom_lancer_spirit_lance",
+        "youtube":"RVaioCWQeK0",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная в точку</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">325</font></b><br/>РАДИУС ЗАХВАТА ИЛЛЮЗИЙ: <b><font color=\"#ffffff\">900</font></b><br/>ЗАДЕРЖКА ПЕРЕД ПОЯВЛЕНИЕМ: <b><font color=\"#ffffff\">1</font></b><br />ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">8</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  25/20/15/10",
+        "desc": "Phantom Lancer пропадает с поля боя. Через 1 секунду Phantom Lancer и все близкие к нему иллюзии появляются в случайном месте в указанном радиусе, плюс 2 дополнительные иллюзии. У дополнительных иллюзий разные параметры: одна получает обычный урон,но сама не наносит урона, другая получает 600% урона и наносит 20% урона.",
+        "dmg": "",
+        "dname": "Doppelganger",
+        "hurl": "Phantom_Lancer",
+        "notes": "",
+        "lore": "Смерть магуса страха Ворна дала Phantom Lancer возможность смешиваться со всеми цветовыми спектрами.",
+        "name": "phantom_lancer_doppelwalk",
+        "youtube":"ut6pFFo7lcw",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "МИНИМАЛЬНАЯ ДАЛЬНОСТЬ УСКОРЕНИЯ: <b><font color=\"#ffffff\">300</font></b><br/>МАКСИМАЛЬНАЯ ДАЛЬНОСТЬ УСКОРЕНИЯ: <b><font color=\"#ffffff\">600 / 700 / 800 / 900</font></b>",
+        "cmb": "<img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  16/12/8/4",
+        "desc": "Phantom Lancer хватается за возможность нанести удар, быстро ускоряясь по пути к противнику.",
+        "dmg": "",
+        "dname": "Phantom Edge",
+        "hurl": "Phantom_Lancer",
+        "notes": "У иллюзий Phantom Lancer\u0027а тоже есть эта способность.<br />Если атака отменяется, то бонус скорости пропадает",
+        "lore": "Азраф знает, что на поле боя скорость может решить все.",
+        "name": "phantom_lancer_phantom_edge",
+        "youtube":"o6wAimQW5fA",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ШАНС У ГЕРОЯ: <b><font color=\"#ffffff\">40% / 45% / 50%</font></b><br/>ШАНС У ИЛЛЮЗИИ: <b><font color=\"#ffffff\">8%</font></b><br/>МАКСИМУМ ИЛЛЮЗИЙ: <b><font color=\"#ffffff\">5 / 7 / 9</font></b><br/>ВРЕМЯ ЖИЗНИ ИЛЛЮЗИЙ: <b><font color=\"#ffffff\">8</font></b><br/>ВРЕМЯ ЖИЗНИ ИЛЛЮЗИЙ ОТ ИЛЛЮЗИЙ: <b><font color=\"#ffffff\">4</font></b><br/>ИЛЛЮЗИИ ПОЛУЧАЮТ УРОНА: <b><font color=\"#ffffff\">500%</font></b><br/>ИЛЛЮЗИИ НАНОСЯТ УРОНА: <b><font color=\"#ffffff\">16%</font></b>",
+        "cmb": "",
+        "desc": "При каждой атаке Phantom Lancer может создать свою копию, вводящую врага в заблуждение. Сам Phantom Lancer учитывается при подсчете максимально возможного количества копий.",
+        "dmg": "",
+        "dname": "Juxtapose",
+        "hurl": "Phantom_Lancer",
+        "notes": "",
+        "lore": "Каждая атака копья Азрафа как будто проводится двумя воинами… или тремя… или четырьмя…",
+        "name": "phantom_lancer_juxtapose",
+        "youtube":"MqftdGmq-LY",
+        "id": 3
+    }
+]

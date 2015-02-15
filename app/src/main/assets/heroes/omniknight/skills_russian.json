@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "ЛЕЧЕНИЕ/УРОН: <b><font color=\"#ffffff\">90 / 180 / 270 / 360</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">260</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/120/140/160<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  10",
+        "desc": "Мгновенно исцеляет дружеского юнита и наносит урон ближайшим вражеским юнитам.",
+        "dmg": "",
+        "dname": "Purification",
+        "hurl": "Omniknight",
+        "notes": "",
+        "lore": "Жрецы Всезнания сведущи в искусстве исцеления братьев по оружию.",
+        "name": "omniknight_purification",
+        "youtube":"m-oBmTTH_D8",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">героев</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">6 / 8 / 10 / 12</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/50/50/50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  14",
+        "desc": "Создает мощный священный щит, который защищает указанного юнита от большей части магии.",
+        "dmg": "",
+        "dname": "Repel",
+        "hurl": "Omniknight",
+        "notes": "Эта способность снимает с цели большинство эффектов. С союзных героев положительные эффекты не снимаются.<br />Действует как обычный источник сопротивления магии, но может быть снят при помощи очищающих способностей.",
+        "lore": "Устойчивость Ревнителя к магии была выявлена, когда он оказался у ямы жертвоприношений.",
+        "name": "omniknight_repel",
+        "youtube":"4B0U8hgXhRY",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная, аура</font></b><br />Действует на <b><font color=\"#ffffff\">врагов</font></b>",
+        "attrib": "ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ/АТАКИ: <b><font color=\"#ffffff\">10% / 18% / 26% / 34%</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">350</font></b>",
+        "cmb": "",
+        "desc": "Сильно снижает скорости передвижения и атаки врагов, находящихся слишком близко.",
+        "dmg": "",
+        "dname": "Degen Aura",
+        "hurl": "Omniknight",
+        "notes": "",
+        "lore": "Одного священного вида Громобоя достаточно для ослабления всех неверующих.",
+        "name": "omniknight_degen_aura",
+        "youtube":"ZQR5hhwtS0o",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">6 / 7 / 8</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">600 / 600 / 600</font></b>ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ: <b><font color=\"#ffffff\">8 / 9 / 10</font></b><br/>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125/175/250<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  150",
+        "desc": "Omniknight призывает ангела-хранителя, который делает всех ближайших союзных юнитов невосприимчивыми к физическому урону и значительно увеличивает скорость регенерации их здоровья. <br/> <br/>Улучшается с Aghanim\u0027s Scepter",
+        "dmg": "",
+        "dname": "Guardian Angel",
+        "hurl": "Omniknight",
+        "notes": "Воздействует на союзников, невосприимчивых к магии.<br />Может быть рассеяно.",
+        "lore": "Всевышний накладывает заклинание защиты на всех, кого ревнитель называет друзьями.",
+        "name": "omniknight_guardian_angel",
+        "youtube":"LAgsYrdh5zc",
+        "id": 3
+    }
+]

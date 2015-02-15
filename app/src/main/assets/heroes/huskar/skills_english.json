@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Allied Heroes</font></b>",
+        "attrib": "HP REGEN: <b><font color=\"#ffffff\">10</font></b><br />BONUS FROM ATTRIBUTE: <b><font color=\"#ffffff\">5% / 10% / 15% / 20%</font></b><br />BONUS WHEN HURT: <b><font color=\"#ffffff\">20% / 40% / 60% / 80%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  170/170/170/170<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  25/22/19/16",
+        "desc": "Unlocks the regenerative power of a friendly unit, with healing based upon its primary attribute. If the target is below 40% it will heal faster.  Lasts 16 seconds.",
+        "dmg": "",
+        "dname": "Inner Vitality",
+        "hurl": "Huskar",
+        "notes": "The HP percentage is checked every second and the regeneration adjusted accordingly.<br />Can be cast on magic immune units.",
+        "lore": "While Huskar has little use for magic, this minor enchantment was learned from the Dazzle and the Dezun priests, to be used in times of great injury.",
+        "name": "huskar_inner_vitality",
+        "youtube":"Euh9XipSClI",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Auto-Cast, Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "HEALTH COST: <b><font color=\"#ffffff\">15</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  0/0/0/0<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  0",
+        "desc": "Huskar sets his spears aflame, dealing damage over time with his regular attack.  Multiple attacks will stack additional damage.  Each attack drains some of Huskar\u0027s health.  Lasts 8 seconds.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">5 / 10 / 15 / 20</font></b>",
+        "dname": "Burning Spear",
+        "hurl": "Huskar",
+        "notes": "Burning Spears stacks additively when used multiple times on one target.  There is no cap.<br />Huskar cannot kill himself with this skill.",
+        "lore": "The Sacred Warrior ignites his weaponry after marking it with his own blood - causing far greater pain than he himself feels.",
+        "name": "huskar_burning_spear",
+        "youtube":"OqiIX9VUBgk",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "BONUS ATTACK SPEED: <b><font color=\"#ffffff\">14 / 16 / 18 / 20</font></b><br />BONUS RESISTANCE: <b><font color=\"#ffffff\">4% / 5% / 6% / 7%</font></b>",
+        "cmb": "",
+        "desc": "Huskar\u0027s injuries feed his power, giving increased attack speed and magic resistance based on missing health.",
+        "dmg": "",
+        "dname": "Berserker\u0027s Blood",
+        "hurl": "Huskar",
+        "notes": "Maximum bonus (14 stacks) is achieved when Huskar has strictly less than 3% of his maximum HP.",
+        "lore": "After losing his birthright, Huskar gained a lethality in physical combat that is only heightened as his own blood is spilled.",
+        "name": "huskar_berserkers_blood",
+        "youtube":"6Dx9pD12lEI",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "SLOW: <b><font color=\"#ffffff\">40% / 50% / 60%</font></b><br />SLOW DURATION: <b><font color=\"#ffffff\">4 / 5 / 6</font></b><br />DAMAGE TAKEN: <b><font color=\"#ffffff\">35%</font></b><br />DAMAGE DEALT: <b><font color=\"#ffffff\">35%</font></b><br /><span class=\"scepterVal\">SCEPTER  COOLDOWN:</font></b> <b><font color=\"#ffffff\">4</font></b><br /><span class=\"scepterVal\">SCEPTER DAMAGE DEALT:</font></b> <b><font color=\"#ffffff\">65%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  0/0/0<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  12",
+        "desc": "Huskar draws upon his health to break an enemy\u0027s life, leaping at a target within attack range to inflict a percentage of that hero\u0027s current HP, and slow at the cost of his own vitality.  While leaping, Huskar is magic immune.  Slow lasts 5 seconds.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Life Break",
+        "hurl": "Huskar",
+        "notes": "If Huskar is disabled during the charge or the target moves more than 1400 units in 0.015 seconds, the charge stops.<br />Slow works on magic immune units.<br />Life Break cannot be disjointed.",
+        "lore": "No matter the danger, Huskar thrusts himself into melees that only he can survive.",
+        "name": "huskar_life_break",
+        "youtube":"uL4iSDlCveo",
+        "id": 3
+    }
+]

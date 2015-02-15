@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">15 / 15 / 15 / 15</font></b><br/>УРОН ОТ ПОПАДАНИЯ: <b><font color=\"#ffffff\">25 / 50 / 75 / 100</font></b><br/>ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">0 / 30 / 60 / 90</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">50% / 50% / 50% / 50%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  22",
+        "desc": "Выплевывает ядовитый шар, который отравляет врагов, находящихся по прямой, в результате чего они получают как мгновенный, так и периодический урон, а их скорость передвижения и атаки снижается. Периодический урон наносится каждые 3 секунды с начала действия заклинания.",
+        "dmg": "",
+        "dname": "Venomous Gale",
+        "hurl": "Venomancer",
+        "notes": "Враг под воздействием этой способности может быть добит союзниками, если уровень его здоровья опустится ниже 25%.<br />Периодический урон наносится каждые 3 секунды.<br />Замедление начинается с 50% и постепенно уменьшается.",
+        "lore": "Смесь различных жал, ядов и токсинов, найденных в лесах острова Джиди, не позволяет выжить никому.",
+        "name": "venomancer_venomous_gale",
+        "youtube":"NMl5uOEHfCM",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">6 / 9 / 12 / 15</font></b><br/>ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">5 / 10 / 15 / 20</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">11% / 12% / 13% / 14%</font></b>",
+        "cmb": "",
+        "desc": "Добавляет в обычные атаки Venomancer яд, который снижает скорость передвижения.",
+        "dmg": "",
+        "dname": "Poison Sting",
+        "hurl": "Venomancer",
+        "notes": "Урон от этой способности может быть смертельным.",
+        "lore": "Теперь Venomancer владеет парализующим жалом существа, вызвавшего его трансформацию.",
+        "name": "venomancer_poison_sting",
+        "youtube":"wHPx7hm2j8w",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">40 / 40 / 40 / 40</font></b><br/>ЗДОРОВЬЕ ВАРДА: <b><font color=\"#ffffff\">75 / 200 / 325 / 450</font></b><br/>УРОН ВАРДА: <b><font color=\"#ffffff\">10 / 19 / 29 / 38</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  20/20/20/20<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  5",
+        "desc": "Призывает Plague Ward, атакующий вражеских юнитов и сооружения. Вард невосприимчив к магии. Он получает текущий уровень вашей способности Poison Sting.",
+        "dmg": "",
+        "dname": "Plague Ward",
+        "hurl": "Venomancer",
+        "notes": "",
+        "lore": "Смесь давних талантов травника и новообретенных умений в создании ядов создает живое воплощение чумы.",
+        "name": "venomancer_plague_ward",
+        "youtube":"vQ0AFxdBUwk",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">830 / 830 / 830</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">12 / 14 / 15</font></b><br/>УРОН: <b><font color=\"#ffffff\">36 / 58 / 81</font></b><br/><span class=\"scepterVal\">КУЛДАУН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">140 / 120 / 60</font></b><br/><span class=\"scepterVal\">ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">14 / 15 / 16</font></b><br/><span class=\"scepterVal\">УРОН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">58 / 81 / 108</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200/300/400<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  140/120/100",
+        "desc": "Venomancer рассеивает кольцо яда вокруг себя. Яд наносит периодический урон всем отравленным врагам, однако он не способен убить жертв, всегда оставляя им как минимум 1 единицу здоровья. <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Poison Nova",
+        "hurl": "Venomancer",
+        "notes": "Урон от этой способности не смертельный (у цели останется 1 единица здоровья).",
+        "lore": "В кислотных джунглях существа, выпускающие особо опасный яд в своих жертв — обычное дело. Но благодаря Venomancer это бедствие вышло за пределы острова Джиди.",
+        "name": "venomancer_poison_nova",
+        "youtube":"gL3GCUp1Ins",
+        "id": 3
+    }
+]

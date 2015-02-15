@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">385</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">25% / 35% / 45% / 55%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  75/75/75/75<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  6",
+        "desc": "Ursa бьет о землю, нанося урон всем вражеским юнитам неподалеку и замедляя их на 4 секунды.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">90 / 140 / 190 / 240</font></b>",
+        "dname": "Earthshock",
+        "hurl": "Ursa",
+        "notes": "",
+        "lore": "Как земля содрогается под весом его могучих медвежьих шагов, так и противники начинают дрожать при его виде.",
+        "name": "ursa_earthshock",
+        "youtube":"hfR3yMqVxYU",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "АТАК: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>ДОП. СКОРОСТЬ: <b><font color=\"#ffffff\">400 / 400 / 400 / 400</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  45/55/65/75<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  10",
+        "desc": "Используя свой боевой опыт, Ursa увеличивает скорость атаки на несколько следующих атак.",
+        "dmg": "",
+        "dname": "Overpower",
+        "hurl": "Ursa",
+        "notes": "Дает максимальную скорость атаки.<br />Эффект способности не исчезает при использовании артефакта Black King Bar.",
+        "lore": "Внушительный размер Ursa обманчив — он чрезвычайно ловок.",
+        "name": "ursa_overpower",
+        "youtube":"lCatLtA-JFk",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "ВРЕМЯ ДЕЙСТВИЯ: <b><font color=\"#ffffff\">15</font></b><br/>ДЛИТЕЛЬНОСТЬ ЭФФЕКТА (ROSHAN): <b><font color=\"#ffffff\">6</font></b><br/>УРОНА ЗА АТАКУ: <b><font color=\"#ffffff\">15 / 20 / 25 / 30</font></b>",
+        "cmb": "",
+        "desc": "Когти Ursa с каждой атакой все глубже впиваются в плоть врага, нанося увеличенный урон с каждой последующей атакой. Дополнительный урон будет потерян, если цель не будет атакована в течение 15 секунд.",
+        "dmg": "",
+        "dname": "Fury Swipes",
+        "hurl": "Ursa",
+        "notes": "",
+        "lore": "В природе раненые редко выживают после атак голодных хищников.",
+        "name": "ursa_fury_swipes",
+        "youtube":"7VvTKb4Tb7Q",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ЗДОРОВЬЯ В УРОН: <b><font color=\"#ffffff\">5% / 6% / 7%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  0/0/0<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  25",
+        "desc": "Ursa впадает в ярость, приобретая дополнительный урон, зависящий от его текущего здоровья. Длится 15 секунд.",
+        "dmg": "",
+        "dname": "Enrage",
+        "hurl": "Ursa",
+        "notes": "",
+        "lore": "Ульфсаар отдается своему древнему духу, приобретая невиданную свирепость.",
+        "name": "ursa_enrage",
+        "youtube":"TzY-5jQIFmg",
+        "id": 3
+    }
+]

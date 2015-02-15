@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">30 / 30 / 30 / 30</font></b><br />BONUS INCOMING DAMAGE: <b><font color=\"#ffffff\">500% / 400% / 300% / 200%</font></b><br />ILLUSION DAMAGE: <b><font color=\"#ffffff\">20% / 25% / 30% / 35%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  70/80/90/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  40",
+        "desc": "Creates three images of Naga Siren under her control.",
+        "dmg": "",
+        "dname": "Mirror Image",
+        "hurl": "Naga_Siren",
+        "notes": "Naga Siren is invulnerable for 0.3 seconds when casting, allowing her to dodge stuns and damage.<br />Upon casting, most effects are removed from Naga Siren.",
+        "lore": "Slithice, while being strong in her own right, is notoriously hard to track down.",
+        "name": "naga_siren_mirror_image",
+        "youtube":"v70MJ69BXHc",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">2 / 3 / 4 / 5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  90/100/110/120<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  14",
+        "desc": "Interrupts the target and traps them in place, preventing movement or blinking.",
+        "dmg": "",
+        "dname": "Ensnare",
+        "hurl": "Naga_Siren",
+        "notes": "Works on magic immune units.<br />Becoming ethereal removes Ensnare.",
+        "lore": "The only way to escape the onslaught of a Slithereen is to never oppose one in the first place.",
+        "name": "naga_siren_ensnare",
+        "youtube":"EmB60RoN_Do",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "ARMOR REDUCTION: <b><font color=\"#ffffff\">2 / 3 / 4 / 5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  80/90/100/110<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  10",
+        "desc": "The Naga Siren and her images hit all nearby units with a damaging wave of water that lowers armor for 8 seconds.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">130 / 160 / 190 / 220</font></b>",
+        "dname": "Rip Tide",
+        "hurl": "Naga_Siren",
+        "notes": "Naga\u0027s illusions will also cast Riptide, but enemies in multiple areas of effect will only be hit once.",
+        "lore": "A torrent from the Deep Ones crushes the defenses of the Siren\u0027s enemies.",
+        "name": "naga_siren_rip_tide",
+        "youtube":"kOUYkdJzR0E",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">1250 / 1250 / 1250</font></b><br />DURATION: <b><font color=\"#ffffff\">7 / 7 / 7</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/100/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  180/120/60",
+        "desc": "All enemies in range of the Naga Siren are put into a magical stasis where they cannot act or be attacked. Using Song of the Siren again will end the duration early.",
+        "dmg": "",
+        "dname": "Song of the Siren",
+        "hurl": "Naga_Siren",
+        "notes": "Units affected by Song of the Siren are invulnerable and cannot take damage from any source.<br />Doesn\u0027t affect magic immune units.<br />The area of the song follows Naga, so if she moves far enough away from affected units, they will wake up.",
+        "lore": "Slithice\u0027s powerful voice enchants leagues of opponents, while calling her Slithereen kin in a time of need.",
+        "name": "naga_siren_song_of_the_siren",
+        "youtube":"P5Lmhv9mBR4",
+        "id": 3
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  1",
+        "desc": "Release enemy units from your song so they can be targeted again.",
+        "dmg": "",
+        "dname": "Song of the Siren Cancel",
+        "hurl": "Naga_Siren",
+        "notes": "",
+        "lore": "",
+        "name": "naga_siren_song_of_the_siren_cancel",
+        "id": 4
+    }
+]

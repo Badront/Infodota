@@ -1,0 +1,16 @@
+{
+    "id": 242,
+    "img": "crimson_guard_lg.png",
+    "dname": "Crimson Guard",
+    "dotaId": "crimson_guard",
+    "qual": "epic",
+    "cost": 3850,
+    "desc": "Активная: Guard - Дает всем союзникам поблизости бонус к броне и щит, который с вероятностью 100% блокирует урон. Длится 10 секунд.<br/>Пассивная: Damage Block - Дает шанс отразить урон в зависимости от типа вашей атаки.",
+    "notes": "Блокировка урона от нескольких предметов не складывается.",
+    "attrib": "+250 к здоровью<br/>+6 к регенерации здоровья<br/>+2 ко всем атрибутам<br/>+5 к броне<br/>ШАНС БЛОКА: 80%<br/>БЛОК НА ГЕРОЯХ БЛИЖНЕГО БОЯ: 40<br/>БЛОК НА ГЕРОЯХ ДАЛЬНЕГО БОЯ: 20<br/>БРОНЯ GUARD: 2<br/>ДЛИТЕЛЬНОСТЬ GUARD: 9<br/>РАДИУС GUARD: 750",
+    "mc": false,
+    "cd": 70,
+    "lore": "A cuirass originally built to protect against the dreaded Year Beast.",
+    "components": ["vanguard", "buckler"],
+    "created": true
+}

@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b>",
+        "attrib": "ДОП. ЗОЛОТО: <b><font color=\"#ffffff\">25 / 50 / 75 / 100</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  60<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  70/60/50/40",
+        "desc": "Пожирает вражеского или нейтрального крипа, перенимая способности, которыми он обладал.",
+        "dmg": "",
+        "dname": "Devour",
+        "hurl": "Doom",
+        "notes": "За убийство крипа вы получите как обычное, так и дополнительное золото.<br />Время переваривания крипа зависит от уровня его здоровья.<br />Нельзя пожирать катапульты или древних крипов.<br />Если вы используете Devour на крипе без способностей, перенятые ранее способности сохранятся.",
+        "lore": "Аппетит и жадность Люцифера неистощимы.",
+        "name": "doom_bringer_devour",
+        "youtube":"hbJpllULcxo",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН/РЕГЕН: <b><font color=\"#ffffff\">12 / 18 / 24 / 30</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">600 / 600 / 600 / 600</font></b><br/>ДОП. СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">16% / 16% / 16% / 16%</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">10 / 12 / 14 / 16</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  60/65/70/75<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60/55/50/45",
+        "desc": "Поджигает землю вокруг героя, нанося урон всем врагам в области действия, в то время как сам Doom получает бонус к скорости регена здоровья и скорости передвижения.",
+        "dmg": "",
+        "dname": "Scorched Earth",
+        "hurl": "Doom",
+        "notes": "Подожженная область передвигается вместе с вами.<br />Подконтрольные вам существа также получают преимущества от этой способности.",
+        "lore": "Падший оставляет за собой страшные разрушения — пламя, питающее его, не щадит никого.",
+        "name": "doom_bringer_scorched_earth",
+        "youtube":"Cma29C2JmqM",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских героев</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">125 / 175 / 225 / 275</font></b><br/>МНОЖИТЕЛЬ УРОВНЯ: <b><font color=\"#ffffff\">6 / 5 / 4 / 3</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  110/110/110/110<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8",
+        "desc": "Рассеивает часть души вражеского героя, кратковременно оглушая его и нанося дополнительный урон, равный 20% максимального запаса здоровья жертвы, если уровень вражеского героя кратен определенному числу или равен 25.",
+        "dmg": "",
+        "dname": "LVL? Death",
+        "hurl": "Doom",
+        "notes": "Прерывает прочтение заклинаний.",
+        "lore": "Люцифер рад поделиться клеймом, полученным после изгнания.",
+        "name": "doom_bringer_lvl_death",
+        "youtube":"dbLhai2msWU",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">15</font></b><br/>УРОНА В СЕКУНДУ: <b><font color=\"#ffffff\">20 / 35 / 50</font></b><br/><span class=\"scepterVal\">ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">16 / 16 / 16</font></b><br/><span class=\"scepterVal\">УРОНА В СЕКУНДУ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">40 / 60 / 80</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/200/250<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  100",
+        "desc": "Проклинает вражеского героя, в результате чего тот получает периодический урон и теряет возможность использовать способности или предметы. <br/>Улучшается с Aghanim\u0027s Scepter. Со скипетром большинство пассивных способностей и положительных эффектов также блокируется.",
+        "dmg": "",
+        "dname": "Doom",
+        "hurl": "Doom",
+        "notes": "Урон от Doom проходит сквозь иммунитет к магии.<br />Если есть магический щит (например, Pipe of Insight), то урон сперва будет наноситься по нему, а когда он закончится, перейдет к здоровью героя.<br />Юнит под воздействием Doom может быть добит союзниками, если уровень его здоровья опустится ниже 25%.",
+        "lore": "По ком прозвонил колокол Вашундола, за тем последует неминуемый рок.",
+        "name": "doom_bringer_doom",
+        "youtube":"6fFIUnuh1r0",
+        "id": 3
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ ГЕРОЯ: <b><font color=\"#ffffff\">1 / 1 / 1 / 1</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ КРИПОВ: <b><font color=\"#ffffff\">5 / 5 / 5 / 5</font></b><br/>УРОН ГЕРОЮ: <b><font color=\"#ffffff\">50 / 50 / 50 / 50</font></b><br/>ОТСКОКОВ: <b><font color=\"#ffffff\">2 / 4 / 6 / 8</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  110/120/130/140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20/18/16/14",
+        "desc": "Бросает бочонок с парализующим порошком, который отскакивает от противников, оглушая их и нанося им урон.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">75 / 100 / 125 / 150</font></b>",
+        "dname": "Paralyzing Cask",
+        "hurl": "Witch_Doctor",
+        "notes": "Цель может быть оглушена несколько раз, пока рядом есть другой юнит, на которого бочонок перескакивает.",
+        "lore": "Witch Doctor перемалывает кости погибших друзей и противников, используя порошок в качестве части его арсенала чар и алхимии.",
+        "name": "witch_doctor_paralyzing_cask",
+        "youtube":"GcM3eChjrms",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная, переключаемая</font></b>",
+        "attrib": "МАНЫ В СЕК.: <b><font color=\"#ffffff\">8 / 12 / 16 / 20</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">500</font></b><br/>ЛЕЧЕНИЕ: <b><font color=\"#ffffff\">16 / 24 / 32 / 40</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  20/30/40/50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  0",
+        "desc": "Witch Doctor направляет свои магические способности на лечение ближайших союзников.",
+        "dmg": "",
+        "dname": "Voodoo Restoration",
+        "hurl": "Witch_Doctor",
+        "notes": "Лечение происходит каждые 0,33 секунды.<br />Лечит союзников, невосприимчивых к магии.",
+        "lore": "Фокусы Жарвакко не ограничены наложением чар на своих врагов, он также способен излечивать различные болезни.",
+        "name": "witch_doctor_voodoo_restoration",
+        "youtube":"yBY5jmY0iR4",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДОПОЛНИТЕЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">16 / 24 / 32 / 40</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">180</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">12</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/120/120/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20",
+        "desc": "Проклинает всех вражеских героев в зоне действия, нанося им урон каждые 4 секунды и добавляя дополнительный урон за каждые потерянные ими 100 очков здоровья с момента начала действия проклятия.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">5 / 10 / 15 / 20</font></b>",
+        "dname": "Maledict",
+        "hurl": "Witch_Doctor",
+        "notes": "Урон основан на разнице между количеством здоровья в данный момент и в момент прочтения этого заклинания.",
+        "lore": "Некоторые заклятия вуду способны заставить врага жалеть о том, что он повстречался с Witch Doctor.",
+        "name": "witch_doctor_maledict",
+        "youtube":"9upNFFHTnPA",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">прерываемая, направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">60 / 90 / 120</font></b><br/><span class=\"scepterVal\">УРОН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">90 / 120 / 150</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200/200/200<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  80",
+        "desc": "ПРЕРЫВАЕМАЯ — призывает смертельный вард, атакующий вражеских героев. Радиус атаки Death Ward — 700, атакует каждые 0,22 с. Death Ward 3-го уровня атакует одну дополнительную цель. Действует 8 секунд.<br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Death Ward",
+        "hurl": "Witch_Doctor",
+        "notes": "Death Ward невозможно уничтожить, и он исчезнет, только если прервать или закончить заклинание.<br />Для Death Ward можно выбирать цель.",
+        "lore": "Witch Doctor исполняет ритуальный танец, пробуждающий сны тех, кто живет ими.",
+        "name": "witch_doctor_death_ward",
+        "youtube":"tEl6x3-pYuc",
+        "id": 3
+    }
+]

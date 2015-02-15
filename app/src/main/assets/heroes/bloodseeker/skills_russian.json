@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">героев</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">9 / 10 / 11 / 12</font></b><br/>УВЕЛИЧЕНИЕ УРОНА: <b><font color=\"#ffffff\">25% / 30% / 35% / 40%</font></b>",
+        "cmb": "<img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/10/8/6",
+        "desc": "Приводит юнита в кровавую ярость, во время которой он наносит и получает увеличенный урон, а так же лечится на 25% от здоровья убитых юнитов. Тот, кто убьёт героя, находившегося под действием данной способности вылечится на 25% от здоровья жертвы.",
+        "dmg": "",
+        "dname": "Blood Rage",
+        "hurl": "Bloodseeker",
+        "notes": "Bloodrage можно использовать на вражеском или союзом юните и даже на себе. Нельзя рассеять. Увеличение урона распространяется так же и на заклинания.",
+        "lore": "Стригвир делится своей животной жаждой кровопролития.",
+        "name": "bloodseeker_bloodrage",
+        "youtube":"tG_hgU-jbmY",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на область</font></b><br />Действует на <b><font color=\"#ffffff\">врагов</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "ОБЛАСТЬ РИТУАЛА: <b><font color=\"#ffffff\">600</font></b><br/>ДЛИТЕЛЬНОСТЬ БЕЗМОЛВИЯ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>УРОН: <b><font color=\"#ffffff\">120 / 160 / 200 / 240</font></b>",
+        "cmb": "",
+        "desc": "Bloodseeker освящает выбранную область святой кровью. Через 3.0 секунды ритуал завершается, нанося при этом урон и запрещая произносить заклинания.",
+        "dmg": "",
+        "dname": "Blood Rite",
+        "hurl": "Bloodseeker",
+        "notes": "Добитые союзные крипы и герои пополнят здоровье, а иллюзии — нет.",
+        "lore": "Существа с ободранной кожей, купающиеся в свежей крови — ужас на поле боя.",
+        "name": "bloodseeker_blood_bath",
+        "youtube":"0TwYY6Xloio",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ПОРОГ ЗДОРОВЬЯ: <b><font color=\"#ffffff\">30%</font></b><br/>СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">10% / 20% / 30% / 40%</font></b><br/>УРОН: <b><font color=\"#ffffff\">10 / 20 / 30 / 10</font></b>",
+        "cmb": "",
+        "desc": "Позволяет Bloodseeker чувствовать вражеских героев, у которых здоровье меньше определенного процентного уровня, давая ему способность видеть их и увеличивая его скорость и урон. Бонусы от разных противников складываются. Bloodseeker раскрывает невидимость героев, здоровье которых упало ниже половины порога обнаружения.",
+        "dmg": "",
+        "dname": "Thirst",
+        "hurl": "Bloodseeker",
+        "notes": "Не реагирует на иллюзии. Если скорость превышает 522 под этой способностью, то он может пройти сквозь Kinetic Field Disruptor\u0027а",
+        "lore": "Стригвир приходит в ярость при виде крови.",
+        "name": "bloodseeker_thirst",
+        "youtube":"L8zGP8VNG1E",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">12</font></b><br/>УРОН ПРИ ПЕРЕДВИЖЕНИИ: <b><font color=\"#ffffff\">20% / 40% / 60%</font></b><br/>ДАЛЬНОСТЬ ПРИМЕНЕНИЯ: <b><font color=\"#ffffff\">1000</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/200/250<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60",
+        "desc": "Разрывает кожу врага, нанося огромный урон. Двигающийся под действием Rupture враг дополнительно получает урон, пропорциональный пройденному расстоянию.",
+        "dmg": "",
+        "dname": "Rupture",
+        "hurl": "Bloodseeker",
+        "notes": "Под действием этой способности нельзя использовать Blink Dagge",
+        "lore": "Когда Bloodseeker охотится за тобой, любая рана становится смертельной.",
+        "name": "bloodseeker_rupture",
+        "youtube":"qQZtcnvqY68",
+        "id": 3
+    }
+]

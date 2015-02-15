@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">260</font></b><br />DAMAGE: <b><font color=\"#ffffff\">140 / 180 / 220 / 260</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  70/80/90/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  3.50",
+        "desc": "Creates an explosively charged image of Storm Spirit that lasts 12 seconds and will detonate and deal damage if an enemy unit comes near it.",
+        "dmg": "",
+        "dname": "Static Remnant",
+        "hurl": "Storm_Spirit",
+        "notes": "Remnants take 1 second to materialize after the spell is cast.<br />Remnants grant flying vision for their duration.<br />The explosion actually hits units in a 260 radius, but will only be triggered in 235.",
+        "lore": "Raijin Thunderkeg\u0027s duality allows him to admire himself in shocking fashion.",
+        "name": "storm_spirit_static_remnant",
+        "youtube":"MZaI7VTnH4M",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">1 / 1.5 / 2 / 2.5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/110/120/130<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  21/20/19/18",
+        "desc": "A vortex that pulls an enemy unit to Storm Spirit\u0027s location, it also slows the Storm Spirit by 50% for 3 seconds.",
+        "dmg": "",
+        "dname": "Electric Vortex",
+        "hurl": "Storm_Spirit",
+        "notes": "",
+        "lore": "Raijin\u0027s thunderous, boisterous energy often draws others into an electrifying situation.",
+        "name": "storm_spirit_electric_vortex",
+        "youtube":"8oThvhyYgDk",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "MOVEMENT SLOW: <b><font color=\"#ffffff\">80%</font></b><br />ATTACK SLOW: <b><font color=\"#ffffff\">50%</font></b><br />DURATION: <b><font color=\"#ffffff\">0.6 / 0.6 / 0.6 / 0.6</font></b>",
+        "cmb": "",
+        "desc": "Casting a spell creates an electrical charge, which is released in a burst on his next attack, dealing damage and slowing nearby enemies.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">30 / 50 / 70 / 90</font></b>",
+        "dname": "Overload",
+        "hurl": "Storm_Spirit",
+        "notes": "Using items doesn\u0027t trigger Overload.",
+        "lore": "Pow!  Zip!  Zap!",
+        "name": "storm_spirit_overload",
+        "youtube":"og2EaLlgRzI",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "SPEED: <b><font color=\"#ffffff\">1250 / 1875 / 2500</font></b><br />RADIUS: <b><font color=\"#ffffff\">125 / 200 / 275</font></b><br />MANA DRAIN PER UNIT: <b><font color=\"#ffffff\">1%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  15/15/15/15",
+        "desc": "Storm Spirit becomes volatile electricity, charging across the battlefield until he depletes his mana or reaches his target. The mana activation cost is 15+7% of his total mana pool, and the cost per 100 units traveled is 12+0.7% of his total mana pool.  Damage is expressed in damage per 100 units traveled.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">8 / 12 / 16</font></b>",
+        "dname": "Ball Lightning",
+        "hurl": "Storm_Spirit",
+        "notes": "Instant cast abilities can be used while traveling.<br />This ability will destroy trees.<br />Storm Spirit is invulnerable during Ball Lightning.",
+        "lore": "The Storm is coming in.",
+        "name": "storm_spirit_ball_lightning",
+        "youtube":"Km-2rbf6qcs",
+        "id": 3
+    }
+]

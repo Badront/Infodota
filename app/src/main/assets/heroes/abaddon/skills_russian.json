@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">героев</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН ПО СЕБЕ: <b><font color=\"#ffffff\">75 / 100 / 125 / 150</font></b><br/>УРОН/ЛЕЧЕНИЕ: <b><font color=\"#ffffff\">100 / 150 / 200 / 250</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/60/70/80<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  5",
+        "desc": "Ценой собственного здоровья Abaddon выпускает смертельный туман, который наносит урон врагу или лечит союзника.",
+        "dmg": "",
+        "dname": "Mist Coil",
+        "hurl": "Abaddon",
+        "notes": "",
+        "lore": "A mysterious vapor from the Font of Avernus now infuses the breath of Abaddon, who releases it at will.",
+        "name": "abaddon_death_coil",
+        "youtube":"stcWsFoEfag",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">15</font></b><br/>МАКС. ПОГЛОЩЕНИЕ УРОНА: <b><font color=\"#ffffff\">110 / 140 / 170 / 200</font></b><br/>РАДИУС ВЗРЫВА: <b><font color=\"#ffffff\">675</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/105/110/115<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/10/8/6",
+        "desc": "Окружает союзника темной энергией, создавая щит, который поглощает некоторое количество урона перед тем как исчезнуть. При уничтожении щит взрывается и наносит весь поглощенный урон ближайшим врагам. Сбрасывает некоторые негативные эффекты и оглушение при применении.",
+        "dmg": "",
+        "dname": "Aphotic Shield",
+        "hurl": "Abaddon",
+        "notes": "",
+        "lore": "Сила черного тумана поглощает атаки, как он сам поглощает дневной свет.",
+        "name": "abaddon_aphotic_shield",
+        "youtube":"AUZPOPV0FiU",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">2.5</font></b><br/>ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">4.5</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">5% / 10% / 15% / 20%</font></b><br/>ДОП. СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">15%</font></b><br/>ДОП. СКОРОСТЬ АТАКИ: <b><font color=\"#ffffff\">10 / 20 / 30 / 40</font></b>",
+        "cmb": "",
+        "desc": "Атаки Абаддона накладывают замораживающее проклятье. У всех, кто атакует замедленного врага, на некоторое время повышается скорость атаки и передвижения.",
+        "dmg": "",
+        "dname": "Curse of Avernus",
+        "hurl": "Abaddon",
+        "notes": "",
+        "lore": "Проклятье замедляет врага и ускоряет союзника.",
+        "name": "abaddon_frostmourne",
+        "youtube":"83iU74QhxWw",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ПОРОГ ЗДОРОВЬЯ: <b><font color=\"#ffffff\">400</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">4 / 5 / 6</font></b><br/><span class=\"scepterVal\">ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ:</b> <b><font color=\"#ffffff\">5 / 6 / 7</font></b><br/><span class=\"scepterVal\">REDIRECT RANGE СО СКИПЕТРОМ:</b> <b><font color=\"#ffffff\">900</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  0/0/0<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60/50/40",
+        "desc": "При активации снимает большинство негативных эффектов, и любой получаемый урон будет лечить вас. Если способность готова к применению, она будет активирована пассивно как только ваше здоровье упадет ниже определенного порога. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Borrowed Time",
+        "hurl": "Abaddon",
+        "notes": "",
+        "lore": "The most unnatural of all the gifts of the Font of Avernus, this power defies mortal understanding.  What should hurt, instead heals; and what should kill gives strength anew.",
+        "name": "abaddon_borrowed_time",
+        "youtube":"9J7CPbAg9dU",
+        "id": 3
+    }
+]

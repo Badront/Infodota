@@ -1,0 +1,1 @@
+{"attrib": "", "cd": 1.0, "qual": "consumable", "notes": "", "desc": "Use: Places a Sentry Ward to give True Sight of the surrounding area.<br/><br/>Lasts 4 minutes.", "dname": "Sentry Ward", "dotaId": "ward_sentry", "mc": false, "img": "ward_sentry_lg.png", "lore": "", "id": 43, "created": false, "cost": 200}

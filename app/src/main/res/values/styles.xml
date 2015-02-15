@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Infodota" parent="@style/Theme.AppCompat">
+        <item name="clickableItemBackground">@android:drawable/list_selector_background</item>
+    </style>
+
+    <style name="Infodota" parent="@style/Theme.Infodota">
+        <item name="android:overScrollMode">never</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <!--<item name="android:navigationBarColor">@color/primary_dark</item>-->
+        <item name="android:colorForeground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:textColorLink">@color/primaryTextColor</item>
+    </style>
+
+    <style name="Infodota.OverlayActionBar" parent="Infodota">
+        <item name="android:windowActionBarOverlay">true</item>
+
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+</resources>

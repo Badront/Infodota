@@ -1,0 +1,15 @@
+{
+    "attrib": "+ 100 Damage<br/>+ 10 Strength<br/>MELEE CHANCE: 25%<br/>RANGED CHANCE: 10%",
+    "cd": 60.0,
+    "components": ["basher", "relic"],
+    "qual": "epic",
+    "notes": "The stun is melee range.Doesn\u0027t stack with other bashes.",
+    "desc": "Active: Stun a target enemy unit for 2.0 seconds. Goes through Magic Immunity. Passive: Bash - Gives a chance to stun for 1.4 seconds.",
+    "dname": "Abyssal Blade",
+    "dotaId": "abyssal_blade",
+    "mc": 150.0,
+    "img": "abyssal_blade_lg.png",
+    "lore": "The lost blade of the Commander of the Abyss, this edge cuts into an enemy\u0027s soul.",
+    "id": 208,
+    "created": true,
+    "cost": 6750}

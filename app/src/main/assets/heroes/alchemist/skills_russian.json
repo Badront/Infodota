@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">625</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">16</font></b><br/>ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">12 / 16 / 20 / 24</font></b><br/>СНИЖЕНИЕ БРОНИ: <b><font color=\"#ffffff\">4 / 5 / 6 / 7</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  130/140/150/160<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  22",
+        "desc": "Распыляет кислоту по указанной области. Находящиеся в зараженной области враги получают периодический урон; кроме этого, их броня временно снижается.",
+        "dmg": "",
+        "dname": "Acid Spray",
+        "hurl": "Alchemist",
+        "notes": "Наносит урон врагам и нейтралам, невосприимчивым к магии.",
+        "lore": "Используя семейные рецепты рода Темноваров, Разил получает едкую кислоту, которая разрушает даже самые прочные металлы.",
+        "name": "alchemist_acid_spray",
+        "youtube":"MUE1KNbho4Q",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "МАКС. ОГЛУШЕНИЕ: <b><font color=\"#ffffff\">1.75 / 2.5 / 3.25 / 4</font></b><br/>МАКС. УРОН: <b><font color=\"#ffffff\">150 / 220 / 290 / 360</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">175</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  16",
+        "desc": "Alchemist смешивает взрывоопасные компоненты в колбе, которую может бросить во вражеского героя, оглушая его и нанося урон всем врагам в радиусе взрыва. Чем больше времени Alchemist встряхивает смесь, тем больше урона получат враги, и тем дольше будет длиться оглушение. Через 5 секунд с момента смешивания заклинание достигает максимального эффекта. Однако через 5.5 секунд колба разорвется и оглушит самого Alchemist, если ее не выбросить до этого момента.",
+        "dmg": "",
+        "dname": "Unstable Concoction",
+        "hurl": "Alchemist",
+        "notes": "Во время подготовки заклинания Alchemist может передвигаться и действовать как обычно.<br />Таймер над головой Alchemist показывает время, оставшееся до взрыва.<br />Максимальный эффект достигается через 5 секунд.<br />Этой способностью можно совершить самоубийство.<br />Unstable Concoction невозможно отменить.",
+        "lore": "Хоть превращение горы в золото и потерпело провал, благодаря ему была получена летучая микстура с разрушительным потенциалом.",
+        "name": "alchemist_unstable_concoction",
+        "youtube":"12jG2U6LH6s",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ВРЕМЯ МЕЖДУ УБИЙСТВАМИ: <b><font color=\"#ffffff\">30</font></b><br/>НАЧАЛЬНЫЙ БОНУС ЗОЛОТА: <b><font color=\"#ffffff\">6/ 8 / 10 / 12</font></b><br/>ДОП. ЗОЛОТО: <b><font color=\"#ffffff\">3</font></b>",
+        "cmb": "",
+        "desc": "Alchemist получает дополнительное золото, убивая крипов; бонусы складываются, если следующий крип был убит не позже определенного времени со смерти предыдущего. Максимальный бонус — 12/20/28/36 золота.",
+        "dmg": "",
+        "dname": "Greevil\u0027s Greed",
+        "hurl": "Alchemist",
+        "notes": "",
+        "lore": "Пускай эксперимент с горой и не удался, зато превращение в звонкую монету структур поменьше дается Разилу с легкостью.",
+        "name": "alchemist_goblins_greed",
+        "youtube":"uHDQHquQk6E",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">25</font></b><br/>ЗАДЕРЖКА ПЕРЕД АТАКОЙ: <b><font color=\"#ffffff\">1.4 / 1.2 / 1</font></b><br/>ДОП. РЕГЕН ЗДОРОВЬЯ: <b><font color=\"#ffffff\">50 / 75 / 100</font></b><br/>ДОП. РЕГЕН МАНЫ: <b><font color=\"#ffffff\">3 / 7.5 / 12</font></b><br/>ДОП. СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">30 / 40 / 60</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/100/150<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  45",
+        "desc": "Alchemist поит своего огра химической смесью, увеличивая скорость передвижения, атаки и регенерации.",
+        "dmg": "",
+        "dname": "Chemical Rage",
+        "hurl": "Alchemist",
+        "notes": "Трансформация длится 0,35 секунды, которые можно использовать для уклонения от летящих в вас снарядов и оглушений.",
+        "lore": "Варево, которым Разил напоил огра во время их побега из тюрьмы, стало полезным в сражении зельем.",
+        "name": "alchemist_chemical_rage",
+        "youtube":"7SrgzbFp9Rw",
+        "id": 3
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских героев</font></b>",
+        "attrib": "",
+        "cmb": "",
+        "desc": "Бросайте, пока не взорвалось!",
+        "dmg": "",
+        "dname": "Unstable Concoction Throw",
+        "hurl": "Alchemist",
+        "notes": "",
+        "lore": "",
+        "name": "alchemist_unstable_concoction_throw",
+        "id": 4
+    }
+]

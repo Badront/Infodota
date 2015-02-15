@@ -1,0 +1,72 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">325 / 325 / 325 / 325</font></b><br/>ДЛИТЕЛЬНОСТЬ ПОДЪЕМА: <b><font color=\"#ffffff\">1.5 / 1.75 / 2 / 2.25</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">1 / 1.25 / 1.5 / 1.75</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/120/120/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  22",
+        "desc": "Используя телекинез, Rubick ненадолго поднимает противника в воздух, а затем швыряет его обратно на землю. Этого хватает, чтобы оглушить всех окружающих его врагов.",
+        "dmg": "",
+        "dname": "Telekinesis",
+        "hurl": "Rubick",
+        "notes": "Когда цель заклинания находится в воздухе, вы можете применить дополнительную способность, чтобы швырнуть противника в указанном направлении.<br />Поднятый враг не оглушается по приземлении.<br />Цель можно отбросить максимум на 375 единиц.",
+        "lore": "Даже Величайший маг может позволить себе использовать силы в свое удовольствие.",
+        "name": "rubick_telekinesis",
+        "youtube":"SbfekAl6ZBM",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "",
+        "cmb": "",
+        "desc": "Устанавливает место, в которое цель приземлится после окончания действия Telekinesis.",
+        "dmg": "",
+        "dname": "Telekinesis Land",
+        "hurl": "Rubick",
+        "notes": "",
+        "lore": " ",
+        "name": "rubick_telekinesis_land",
+        "youtube":"ZLrd3_57xKw",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">10 / 10 / 10 / 10</font></b><br/>УРОН: <b><font color=\"#ffffff\">70 / 140 / 210 / 280</font></b><br/>СНИЖЕНИЕ УРОНА ЗА СКАЧОК: <b><font color=\"#ffffff\">4% / 4% / 4% / 4%</font></b><br/>УМЕНЬШЕНИЕ УРОНА ГЕРОЕВ: <b><font color=\"#ffffff\">14 / 20 / 26 / 32</font></b><br/>УМЕНЬШЕНИЕ УРОНА КРИПОВ: <b><font color=\"#ffffff\">7 / 10 / 13 / 16</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/130/140/150<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  16/14/12/10",
+        "desc": "Rubick создает мощный поток магической энергии, которая перемещается между противниками, нанося им урон и снижая силу их атак. Каждый последующий скачок наносит меньше урона.",
+        "dmg": "",
+        "dname": "Fade Bolt",
+        "hurl": "Rubick",
+        "notes": "",
+        "lore": "Любимое заклинание Rubick для решения проблемы потенциальных убийц по существу довольно несложно.",
+        "name": "rubick_fade_bolt",
+        "youtube":"eZ6g4fnlkC8",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "СОПРОТИВЛЕНИЕ МАГИИ: <b><font color=\"#ffffff\">5% / 10% / 15% / 20%</font></b>",
+        "cmb": "",
+        "desc": "Знания тайной магии защищают от слабых заклинаний самого Rubick и всех ближайших союзников, увеличивая их сопротивление магии.",
+        "dmg": "",
+        "dname": "Null Field",
+        "hurl": "Rubick",
+        "notes": "Сочетается с другими источниками сопротивления магии.",
+        "lore": "Не каждый маг может стать Величайшим…",
+        "name": "rubick_null_field",
+        "youtube":"rGPFkEHi8QA",
+        "id": 3
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских героев</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">180 / 240 / 300</font></b><br/><span class=\"scepterVal\">КУЛДАУН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">2</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  25/25/25<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20/18/16",
+        "desc": "Rubick изучает остатки магической сущности вражеского героя, обучаясь секретам последнего заклинания, которое произнес этот герой. Маг сможет использовать это заклинание как свое собственное в течение нескольких минут, или пока он не умрет. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Spell Steal",
+        "hurl": "Rubick",
+        "notes": "Невозможно красть способности предметов.",
+        "lore": "…но даже его ограниченная магия может стать очень полезной.",
+        "name": "rubick_spell_steal",
+        "youtube":"RBiGEs77jDQ",
+        "id": 4
+    }
+]

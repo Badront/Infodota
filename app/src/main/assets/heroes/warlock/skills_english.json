@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">HP Removal</font></b>",
+        "attrib": "ENEMIES BOUND: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br />DURATION: <b><font color=\"#ffffff\">25</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  120/120/120/120<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  25",
+        "desc": "Binds several enemy units together, causing 25% of the damage dealt to one of them to be felt by the others.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">0 / 0 / 0 / 0</font></b>",
+        "dname": "Fatal Bonds",
+        "hurl": "Warlock",
+        "notes": "Damage will not disable abilities or items like Blink Dagger which require player based damage.",
+        "lore": "An ancient incantation that links the vital energies of multiple lifeforms into one collective body.",
+        "name": "warlock_fatal_bonds",
+        "youtube":"uRFLMNzJ7Vs",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Heroes</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">11</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  90/110/130/150<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  16",
+        "desc": "Demnok whispers an incantation, healing a friendly unit or damaging an enemy unit over time.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">15 / 25 / 35 / 45</font></b>",
+        "dname": "Shadow Word",
+        "hurl": "Warlock",
+        "notes": "A hero affected by Shadow Word may be denied once it falls below 25% of its maximum health.",
+        "lore": "Warlock arcane arts have a myriad of uses, allowing them to be powerful friendly enchantments or damaging curses.",
+        "name": "warlock_shadow_word",
+        "youtube":"1ExGT5E8-FE",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Channeled, Point Target</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">650 / 650 / 650 / 650</font></b><br />SLOW RATE: <b><font color=\"#ffffff\">7% / 14% / 21% / 28%</font></b><br />MAX DURATION: <b><font color=\"#ffffff\">16</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/110/120/130<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  50/46/42/38",
+        "desc": "CHANNELED - A powerful slowing current that grows stronger as it\u0027s channelled. Lasts up to 12 seconds, slowing enemies up to 84%.  Enemies are slowed for 3 seconds after leaving the area or the spell ends.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">0 / 0 / 0 / 0</font></b>",
+        "dname": "Upheaval",
+        "hurl": "Warlock",
+        "notes": "The slow increase is based on length of the channel, not the duration an enemy was standing in the area.",
+        "lore": "Demnok manipulates space-time, impairing entire armies.",
+        "name": "warlock_upheaval",
+        "youtube":"9VHxyxOkHek",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">600</font></b><br />GOLEM HP: <b><font color=\"#ffffff\">900 / 1200 / 1500</font></b><br />GOLEM DAMAGE: <b><font color=\"#ffffff\">75 / 100 / 125</font></b><br />GOLEM ARMOR: <b><font color=\"#ffffff\">6 / 9 / 12</font></b><br /><span class=\"scepterVal\">SCEPTER NUMBER OF GOLEMS:</font></b> <b><font color=\"#ffffff\">2</font></b><br /><span class=\"scepterVal\">SCEPTER HP/DAMAGE REDUCTION:</font></b> <b><font color=\"#ffffff\">25%</font></b><br /><span class=\"scepterVal\">SCEPTER BOUNTY REDUCTION:</font></b> <b><font color=\"#ffffff\">50%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  200/300/400<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  165",
+        "desc": "Summons a Golem from the depths, stunning enemies for one second. The Golem lives 60 seconds, takes reduced damage from spells, has Permanent Immolation and Flaming Fists on attack.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Chaotic Offering",
+        "hurl": "Warlock",
+        "notes": "Magic immune units will be stunned.<br />This ability destroys trees in its area of effect.",
+        "lore": "Demnok unleashes the captive spirit in his Dreadwood staff, causing destruction in enemy ranks.",
+        "name": "warlock_rain_of_chaos",
+        "youtube":"LlUYOShkrE0",
+        "id": 3
+    }
+]

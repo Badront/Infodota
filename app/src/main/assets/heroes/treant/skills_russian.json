@@ -1,0 +1,72 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">15 / 30 / 45 / 60</font></b><br/>ВРЕМЯ ДО НЕВИДИМОСТИ: <b><font color=\"#ffffff\">2</font></b><br/>РАССТОЯНИЕ ДО ДЕРЕВА: <b><font color=\"#ffffff\">375 / 375 / 375 / 375</font></b><br/>СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">10% / 10% / 10% / 10%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  60<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  10/8/6/4",
+        "desc": "Цель заклинания сливается с лесом, становясь невидимой и приобретая дополнительную скорость передвижения, если рядом с ней есть дерево. Как только цель отойдет от дерева или это заклинание будет применено на юните, рядом с которым нет деревьев, Nature\u0027s Guise рассеется. Treant Protector может применять заклинания и оставаться невидимым под Nature\u0027s Guise.",
+        "dmg": "",
+        "dname": "Nature\u0027s Guise",
+        "hurl": "Treant_Protector",
+        "notes": "Если цель заклинания не будет находиться рядом с деревом, она потеряет невидимость почти мгновенно.<br />Каждую секунду эта способность проверяет наличие деревьев поблизости и снимает невидимость, если их нет.",
+        "lore": "Стражи обычно не появляются в поле зрения. Чаще всего они скрываются среди своих лиственных братьев.",
+        "name": "treant_natures_guise",
+        "youtube":"RrG1oa36SLk",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН ЗА ПУЛЬСАЦИЮ: <b><font color=\"#ffffff\">15 / 30 / 45 / 60</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">28%</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">500</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">4.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  16/14/12/10",
+        "desc": "Treant сажает в тело жертвы истощающее семя, которое замедляет цель и отнимает ее здоровье. Также семя излечивает всех союзников поблизости равноценно нанесенному урону. Пульсирует 6 раз.",
+        "dmg": "",
+        "dname": "Leech Seed",
+        "hurl": "Treant_Protector",
+        "notes": "",
+        "lore": "Руфтреллен питает союзных существ, черпая жизненные силы из нарушителей, ступивших на его священные земли.",
+        "name": "treant_leech_seed",
+        "youtube":"DxUAavLdUNM",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита, направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b>",
+        "attrib": "ВЫДЕРЖИВАЕТ АТАК: <b><font color=\"#ffffff\">4 / 5 / 6 / 7</font></b><br/>РЕГЕН: <b><font color=\"#ffffff\">4 / 7 / 10 / 13</font></b><br/>БЛОКИРУЕТ: <b><font color=\"#ffffff\">20 / 40 / 60 / 80</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">15</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  32/26/20/14",
+        "desc": "Защищает выбранного героя или сооружение аурой, увеличивающей регенерацию здоровья. Также дает защиту от любых атак. Заклинание спадает при получении некоторого количества ударов.",
+        "dmg": "",
+        "dname": "Living Armor",
+        "hurl": "Treant_Protector",
+        "notes": "Способность может быть применена через мини-карту.",
+        "lore": "Корни и усики Treant Protector расстилаются повсюду, стимулируя рост и омоложение всего живого.",
+        "name": "treant_living_armor",
+        "youtube":"DkpjC57bU_g",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 3.75 / 4.5</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">675 / 675 / 675</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/175/200<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  70",
+        "desc": "Вокруг Treant Protector разрастаются корни и лозы, опутывая врагов и не давая им перемещаться, телепортироваться, уходить в невидимость или атаковать.<br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Overgrowth",
+        "hurl": "Treant_Protector",
+        "notes": "Действует на невосприимчивых к магии врагов, но получение иммунитета к магии после начала действия способности прекращает действие эффекта.",
+        "lore": "Руфтреллен взывает к предкам-духам природы, выпуская их мощь через свой род. Со скипетром дает дополнительную способность Eyes in the Forest.",
+        "name": "treant_overgrowth",
+        "youtube":"Sz6oCVgEAIY",
+        "id": 3
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b>",
+        "attrib": "РАДИУС ОБЗОРА ДЕРЕВА: <b><font color=\"#ffffff\">800</font></b><br />РАДИУС OVERGROWTH: <b><font color=\"#ffffff\">800</font></b><br />УРОН В СЕК ОТ OVERGROWTH: <b><font color=\"#ffffff\">175</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  25",
+        "desc": "Treant Protector зачаровывает дерево, что дает ему обзор в этом месте. Если использовать Overgrowth, существа в радиусе 800 от зачарованного дерева будут пойманы и получат урон.",
+        "dmg": "",
+        "dname": "Eyes In The Forest",
+        "hurl": "Treant_Protector",
+        "notes": "",
+        "lore": "Нельзя точно знать, кому или чему нужна будет защита.",
+        "name": "treant_eyes_in_the_forest",
+        "youtube":"",
+        "id": 4
+    }
+]

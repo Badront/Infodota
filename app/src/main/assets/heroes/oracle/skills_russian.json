@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">прерываемая, направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />ТИП УРОНА: <b><font color=\"#ffffff\">магический</font></b><br />СКВОЗЬ ИММУНИТЕТ К МАГИИ: <b><font color=\"#ffffff\">нет</font></b>",
+        "attrib": "МИН. ДЛИТЕЛЬНОСТЬ ОЧИЩЕНИЯ: <b><font color=\"#ffffff\">0.5</font></b><br />МАКС. ДЛИТЕЛЬНОСТЬ ОЧИЩЕНИЯ: <b><font color=\"#ffffff\">2.5</font></b><br />РАДИУС: <b><font color=\"#ffffff\">215</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  130<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12",
+        "desc": "ПРЕРЫВАЕМАЯ — собирает всю мощь героя в снаряд выжигающей энергии, который останавливает врагов в области вокруг цели, наносит им урон и снимает с них положительные эффекты. Максимальное время прочтения: 2.5 секунды. Время действия очищения и обездвиживания врагов равно времени чтения заклинания.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">75 / 150 / 225 / 300</font></b>",
+        "dname": "Fortune\u0027s End",
+        "hurl": "Oracle",
+        "notes": "",
+        "lore": "Звездная сфера трещит от мощности, и чистая энергия вырывается, временно разрывая связь врага с его собственным телом.",
+        "name": "oracle_fortunes_end",
+        "youtube":"",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />СКВОЗЬ ИММУНИТЕТ К МАГИИ: <b><font color=\"#ffffff\">нет</font></b>",
+        "attrib": "УВЕЛИЧЕНИЕ УРОНА: <b><font color=\"#ffffff\">50%</font></b><br />ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12",
+        "desc": "Изгоняет цель в мир духов, лишая ее возможности атаковать, полностью защищая от заклинаний, но повышая урон от других источников. Можно применять как на союзников, так и на врагов.",
+        "dmg": "",
+        "dname": "Fate\u0027s Edict",
+        "hurl": "Oracle",
+        "notes": "Очищается только Fortune\u0027s End.",
+        "lore": "An unbreakable prophecy resounds: a chosen ally shall briefly suffer no magics.  Other kinds of suffering however...",
+        "name": "oracle_fates_edict",
+        "youtube":"",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />ТИП УРОНА: <b><font color=\"#ffffff\">магический</font></b><br />СКВОЗЬ ИММУНИТЕТ К МАГИИ: <b><font color=\"#ffffff\">Нет</font></b>",
+        "attrib": "ЛЕЧИТ В СЕКУНДУ: <b><font color=\"#ffffff\">11 / 22 / 33 / 44</font></b><br />ВСЕГО ЛЕЧЕНИЯ: <b><font color=\"#ffffff\">99 / 198 / 297 / 396</font></b><br />ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">9</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  55/70/85/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  3",
+        "desc": "Сжигает всю скверну цели, нанося ей огромный урон, а затем восстанавливает жизненные силы с каждой секундой. Можно применять как на союзников, так и на врагов.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">90 / 180 / 270 / 360</font></b>",
+        "dname": "Purifying Flames",
+        "hurl": "Oracle",
+        "notes": "Несколько эффектов лечения от Purifying Flames складываются.",
+        "lore": "Like a hall of mirrors might amplify the light of a single candle, the shattered walls of the universe can transform the light of prophecy into a burning torch.",
+        "name": "oracle_purifying_flames",
+        "youtube":"",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных героев</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">7 / 8 / 9</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20",
+        "desc": "Отсрочивает судьбу союзника, делая его невидимым при движении, атаках и использовании способностей, а также откладывает любое лечение и получение урона до конца действия этой способности. При применении снимает с цели все отрицательные эффекты.",
+        "dmg": "",
+        "dname": "False Promise",
+        "hurl": "Oracle",
+        "notes": "Delayed damage and healing will take armor and magic resistance reductions into account when received.<br \/>The delayed damage and healing takes effect as soon as the target becomes vulnerable.<br \/>Heroes hidden by False Promise can still be revealed by True Sight.",
+        "lore": "Лжепророки не видят будущего, а ваши враги не видят ваших союзников.",
+        "name": "oracle_false_promise",
+        "youtube":"",
+        "id": 3
+    }
+]

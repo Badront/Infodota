@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "ATTACK DAMAGE: <b><font color=\"#ffffff\">15 / 20 / 25 / 30</font></b><br />DURATION: <b><font color=\"#ffffff\">14 / 16 / 18 / 20</font></b><br />COUNT: <b><font color=\"#ffffff\">12 / 12 / 12 / 12</font></b><br />ARMOR REDUCTION: <b><font color=\"#ffffff\">1 / 1 / 1 / 1</font></b><br />ATTACKS TO DESTROY: <b><font color=\"#ffffff\">8 / 8 / 8 / 8</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/100/100/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  36/33/30/27",
+        "desc": "Weaver launches a swarm of 12 young Weavers that latch on any enemy unit in their path, attacking and reducing armor until it is killed.",
+        "dmg": "",
+        "dname": "The Swarm",
+        "hurl": "Weaver",
+        "notes": "When a beetle latches on a target, it will remain there until it is killed or the duration expires.<br />Beetles are magic immune, but can be killed in 4 attacks from a hero, or 8 from other units.<br />Every 1.35 seconds, the beetle will attack its target, dealing damage and reducing the target\u0027s armor by 1 until the beetle is killed or the duration expires.<br />Beetles provide 321/321 sight, but will drop off their target if it becomes invisible.",
+        "lore": "Skitskurr opens a gap in the space time fabric, allowing young Weavers to slip through and aid him in combat.",
+        "name": "weaver_the_swarm",
+        "youtube":"YfngG2WLpfc",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "DAMAGE: <b><font color=\"#ffffff\">75 / 100 / 125 / 150</font></b><br />RADIUS: <b><font color=\"#ffffff\">175 / 175 / 175 / 175</font></b><br />FADE TIME: <b><font color=\"#ffffff\">0.25 / 0.25 / 0.25 / 0.25</font></b><br />DURATION: <b><font color=\"#ffffff\">4 / 4 / 4 / 4</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  60/60/60/60<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  12/10/8/6",
+        "desc": "Weaver shifts out of visibility, gaining the ability to move at maximum speed through physical units--doing harm to any enemies it passes through.",
+        "dmg": "",
+        "dname": "Shukuchi",
+        "hurl": "Weaver",
+        "notes": "Can only damage the same unit once per cast.",
+        "lore": "As the Weavers worked in the fabric of creation, small wormholes allowed them to slip through time to better work their craft.",
+        "name": "weaver_shukuchi",
+        "youtube":"d5tRF1b5L5E",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  6/5/4/3",
+        "desc": "Allows Weaver to dispatch two swarms, attacking an enemy twice.",
+        "dmg": "",
+        "dname": "Geminate Attack",
+        "hurl": "Weaver",
+        "notes": "",
+        "lore": "Skitskurr\u0027s relationship with time is somewhat variable, causing his actions to be witnessed - and felt - more than once.",
+        "name": "weaver_geminate_attack",
+        "youtube":"UGW_dID1W5c",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  150/75/0<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  60/50/40",
+        "desc": "Weaver warps backward to whatever position it was in five seconds earlier--regaining the HP and mana from that time. No effect on cooldown, gold or experience.",
+        "dmg": "",
+        "dname": "Time Lapse",
+        "hurl": "Weaver",
+        "notes": "Removes most negative buffs from Weaver.",
+        "lore": "If Skitskurr does not deem the current reality of the world to fit his desires, he simply crawls back in time to right what was wronged.",
+        "name": "weaver_time_lapse",
+        "youtube":"cmgRjaiscEg",
+        "id": 3
+    }
+]

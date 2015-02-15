@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">37.5 / 50 / 62.5 / 75</font></b><br/>РАССТОЯНИЕ РАЗРЫВА: <b><font color=\"#ffffff\">740 / 740 / 740 / 740</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">1.25 / 2 / 2.75 / 3.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/150/150/150<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  15/13/11/9",
+        "desc": "Пытается заморозить врага, в результате чего тот начинает получать периодической урон. Заклятие может быть развеяно, если цель выйдет из зоны действия; в противном случае через 4 секунды враг будет оглушен и приморожен к месту.",
+        "dmg": "",
+        "dname": "Cold Feet",
+        "hurl": "Ancient_Apparition",
+        "notes": "Максимально можно нанести: 150/200/250/300 урона.<br />Наносит урон каждые 0,8 секунд.",
+        "lore": "Присутствие Калдра обращает окружающих его в замерзшую пустоту, угрожая запереть их в ледяной темнице навечно.",
+        "name": "ancient_apparition_cold_feet",
+        "youtube":"wq_I0TQFqG8",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">275 / 275 / 275 / 275</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">15% / 20% / 25% / 30%</font></b><br/>СНИЖЕНИЕ СОПРОТИВЛЕНИЯ: <b><font color=\"#ffffff\">15% / 20% / 25% / 30%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80/90/100/110<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  4",
+        "desc": "Создает вихрь ледяной энергии, который замедляет скорость передвижения и понижает сопротивление магии в зоне действия в течение 12 секунд.",
+        "dmg": "",
+        "dname": "Ice Vortex",
+        "hurl": "Ancient_Apparition",
+        "notes": "Не действует на врагов и нейтралов, невосприимчивых к магии.",
+        "lore": "Ледяные, жгучие ветра подчиняются прихоти Калдра, остужая поле битвы.",
+        "name": "ancient_apparition_ice_vortex",
+        "youtube":"ZK9v1WLg7lc",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">525</font></b><br/>МАКС. АТАК: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>УРОН: <b><font color=\"#ffffff\">50 / 60 / 70 / 80</font></b><br/>СКОРОСТЬ АТАКИ: <b><font color=\"#ffffff\">20%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  110/120/130/140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  50/42/34/26",
+        "desc": "Ледяной ветер зачаровывает оружие союзных героев, добавляя ко всем их атакам дополнительный магический урон, при этом немного снижая скорость атаки. Эффект длится 30 секунд.",
+        "dmg": "",
+        "dname": "Chilling Touch",
+        "hurl": "Ancient_Apparition",
+        "notes": "Дополнительный урон наносится отдельно.<br />Наносит урон только героям и крипам.",
+        "lore": "Используя вечное знание, Ancient Apparition заколдовывает своих союзников холодом.",
+        "name": "ancient_apparition_chilling_touch",
+        "youtube":"vmYw33RAlCE",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ОБМОРОЖЕНИЯ: <b><font color=\"#ffffff\">8 / 9 / 10</font></b><br/>УРОН ОТ ОБМОРОЖЕНИЯ: <b><font color=\"#ffffff\">12.5 / 20 / 32</font></b><br/>ЗДОРОВЬЯ ДЛЯ УБИЙСТВА: <b><font color=\"#ffffff\">10% / 11% / 12%</font></b><br/><span class=\"scepterVal\">ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">17</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/125/150<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  40",
+        "desc": "Калдр запускает взрывной ледяной шар в любую точку карты. При первом использовании маг просто наводит шар. При втором использовании Apparition выпускает шар в указанное место, причем чем дальше пролетел шар, тем больше будет радиус поражения врагов. Шар наносит магический урон врагам и замораживает их кровь, что делает невозможным регенерацию здоровья или исцеление каким-либо способом. Обмороженные цели будут периодически получать небольшой урон, однако если их здоровье упадет ниже определенного уровня, они мгновенно рассыпятся на осколки. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">250 / 350 / 450</font></b>",
+        "dname": "Ice Blast",
+        "hurl": "Ancient_Apparition",
+        "notes": "Область действия — 275 + 50*время полета единиц (макс. 1000). Область заморозки по траектории полета — 275 единиц.<br />Убийство будет зачтено тому, чей урон рассыпал цель на осколки.<br />Иллюзии или клонов Meepo нельзя убить мгновенно.<br />Запрещает восстанавливать здоровье большинством способов (в том числе и возле фонтана).<br />Эффект от этой способности можно снять способностью очищения.",
+        "lore": "Ледяные бури прошлых эпох вырываются из холодных конечностей Калдра, обрушиваясь на мир и превращая его жителей в памятники его вечного могущества.",
+        "name": "ancient_apparition_ice_blast",
+        "youtube":"j97qGajoj1s",
+        "id": 3
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  1",
+        "desc": "Выпускает молниеносный ледяной шар в выбранное местоположение.",
+        "dmg": "",
+        "dname": "Release",
+        "hurl": "Ancient_Apparition",
+        "notes": "",
+        "lore": "",
+        "name": "ancient_apparition_ice_blast_release",
+        "id": 4
+    }
+]

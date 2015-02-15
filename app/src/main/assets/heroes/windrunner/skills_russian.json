@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">1.5 / 2.25 / 3 / 3.75</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  90/100/110/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12",
+        "desc": "Связывает цель с вражеским юнитом или деревом, находящимся позади. Если сзади цели нет дерева или юнита, то время оглушения уменьшается до 0,75 секунды.",
+        "dmg": "",
+        "dname": "Shackleshot",
+        "hurl": "Windranger",
+        "notes": "Эта способность может связать двух противников, оглушая обоих.<br />Связывает с вражеским юнитом или деревом позади цели, если расстояние до них не превышает 525/500 единиц.<br />От этой способности невозможно увернуться.",
+        "lore": "Разнообразие умений владения луком у Windranger включает в себя трюк со стрелой и привязанной к ней веревкой, позволяющий остановить любую убегающую жертву.",
+        "name": "windrunner_shackleshot",
+        "youtube":"NZEnx0l_zJ0",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">прерываемая, направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">2600</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  90/100/110/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  9",
+        "desc": "Windranger заряжает свой лук в течение одной секунды, чтобы произвести один мощный выстрел. Стрела наносит урон вражеским юнитам и разрушает деревья на своем пути. Самый сильный урон наносится первой цели, и затем уменьшается на 10%, проходя сквозь каждую следующую. Если выстрел отменить раньше времени, то он все равно будет произведен, но нанесет меньше урона.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">120 / 200 / 280 / 360</font></b>",
+        "dname": "Powershot",
+        "hurl": "Windranger",
+        "notes": "Начальная скорость стрелы — 3000 единиц в секунду — немного уменьшается каждый раз, когда стрела попадает в противника или дерево.<br />Уничтожает деревья в зоне действия способности.",
+        "lore": "В ранние годы своих тренировок Лиралей научилась стрелять мощными стрелами, которые на пути к своей цели пробивают даже деревья.",
+        "name": "windrunner_powershot",
+        "youtube":"dBHEtbYmask",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ДОП. СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">50% / 50% / 50% / 50%</font></b><br/>ЗАМЕДЛЕНИЕ ВРАГА: <b><font color=\"#ffffff\">8% / 16% / 24% / 30%</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">300 / 300 / 300 / 300</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/100/100/100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  15",
+        "desc": "Увеличивает скорость передвижения и позволяет увернуться от всех физических атак, замедляя скорость передвижения у врагов поблизости.",
+        "dmg": "",
+        "dname": "Windrun",
+        "hurl": "Windranger",
+        "notes": "Замедление будет действовать на врагов, невосприимчивых к магии.<br />С помощью этой способности можно увернуться от снарядов, которые появились до начала ее действия.",
+        "lore": "Лиралей зачаровывает порывы ветра, и они отражают удары.",
+        "name": "windrunner_windrun",
+        "youtube":"XlNv2uF4l_k",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">врагов</font></b>",
+        "attrib": "СНИЖЕНИЕ УРОНА: <b><font color=\"#ffffff\">50% / 40% / 30%</font></b><br/><span class=\"scepterVal\">КУЛДАУН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">15 / 15 / 15</font></b><br />СНИЖЕНИЕ УРОНА СО СКИПЕТРОМ: <b><font color=\"#ffffff\">30% / 15% / 0%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  75 / 100 / 125<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60",
+        "desc": "Windranger направляет ветер, повышая свою скорость атаки по одному вражескому юниту или сооружению на максимум, но с пониженным уроном, включая урон от уникальных модификаторов атаки и предметов. Длится 20 секунд. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Focus Fire",
+        "hurl": "Windranger",
+        "notes": "Можно применять на строения и врагов, невосприимчивых к магии.",
+        "lore": "Способность Лиралей обрушать на оппонентов шквал из стрел просто бесподобна — даже в ущерб точности.",
+        "name": "windrunner_focusfire",
+        "youtube":"jj7cWGyhj2o",
+        "id": 3
+    }
+]

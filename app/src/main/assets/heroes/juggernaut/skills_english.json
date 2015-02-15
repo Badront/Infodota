@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">250</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  110/110/110/110<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  30/26/22/18",
+        "desc": "Causes a bladestorm of destructive force around Juggernaut, rendering him immune to magic and dealing damage to nearby enemy units.  Lasts 5 seconds.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">80 / 100 / 120 / 140</font></b>",
+        "dname": "Blade Fury",
+        "hurl": "Juggernaut",
+        "notes": "This skill doesn\u0027t affect mechanical units.<br />You can use items during Blade Fury.<br />If a unit is not being affected by Blade Fury, Juggernaut can perform normal attacks against this unit.<br />Deals a total of 400/500/600/700 damage.",
+        "lore": "Yurnero\u0027s renowned katana techniques are feared by warriors and sorcerors alike.",
+        "name": "juggernaut_blade_fury",
+        "youtube":"0XijKqh4EJI",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b>",
+        "attrib": "MAX HP PER SECOND: <b><font color=\"#ffffff\">2% / 3% / 4% / 5%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  80/100/120/140<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  60",
+        "desc": "Summons a Healing Ward that heals all nearby allied units, based on their max hit points.  The Healing Ward can move at 450 movement speed after being summoned.  Lasts 25 seconds.",
+        "dmg": "",
+        "dname": "Healing Ward",
+        "hurl": "Juggernaut",
+        "notes": "The healing ward can be controlled.<br />Multiple healing wards don\u0027t stack.",
+        "lore": "Of the rituals learned at the Isle of Masks, tending wounds with a bit of voodoo magic has proven to be quite useful.",
+        "name": "juggernaut_healing_ward",
+        "youtube":"Wvh64L7ndTs",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "CRITICAL DAMAGE: <b><font color=\"#ffffff\">200%</font></b><br />CRITICAL CHANCE: <b><font color=\"#ffffff\">20% / 25% / 30% / 35%</font></b>",
+        "cmb": "",
+        "desc": "Gives Juggernaut a chance to deal double damage on each attack.",
+        "dmg": "",
+        "dname": "Blade Dance",
+        "hurl": "Juggernaut",
+        "notes": "",
+        "lore": "The last remnant of his heritage\u0027s commitment to bladework, Yurnero ensures that the style is remembered.",
+        "name": "juggernaut_blade_dance",
+        "youtube":"J0i1IyxpvB0",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "JUMPS: <b><font color=\"#ffffff\">3 / 6 / 9</font></b><br />JUMP RADIUS: <b><font color=\"#ffffff\">425</font></b><br /><span class=\"scepterVal\">SCEPTER  COOLDOWN:</font></b> <b><font color=\"#ffffff\">70</font></b><br /><span class=\"scepterVal\">SCEPTER JUMPS:</font></b> <b><font color=\"#ffffff\">6 / 9 / 12</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  200/275/350<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  130/120/110",
+        "desc": "Juggernaut leaps towards the target enemy unit with a damaging attack, and then slashes other nearby enemy units, dealing between 200-225 damage per slash.  Juggernaut is invulnerable for the duration.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Omnislash",
+        "hurl": "Juggernaut",
+        "notes": "Interrupts channeling spells of the primary target.<br />Can target magic immune units.<br />Slashes happen on an interval of 0.4 seconds.<br />Creeps are killed in one hit of omnislash.<br />You can use items during Omnislash.",
+        "lore": "\u0027The fruits of discipline; with practice comes strength.\u0027",
+        "name": "juggernaut_omni_slash",
+        "youtube":"T4HOd3lIgyQ",
+        "id": 3
+    }
+]

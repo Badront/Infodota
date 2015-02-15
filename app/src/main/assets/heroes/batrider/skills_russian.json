@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "ДОП. УРОН ПО ГЕРОЯМ: <b><font color=\"#ffffff\">10 / 15 / 20 / 25</font></b><br/>ДОП. УРОН: <b><font color=\"#ffffff\">5 / 7.5 / 10 / 12.5</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">375 / 375 / 375 / 375</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">8 / 8 / 8 / 8</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">3% / 5% / 7% / 9%</font></b><br/>ЗАМЕДЛЕНИЕ СКОРОСТИ ПОВОРОТА: <b><font color=\"#ffffff\">70% / 70% / 70% / 70%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  20/20/20/20<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  3",
+        "desc": "Выплескивает на землю вязкое масло, которое увеличивает урон от всех атак и способностей Batrider. Масло замедляет скорость передвижения и поворота врагов. Эффект от масел складывается до 10 раз, продолжая увеличивать урон.",
+        "dmg": "",
+        "dname": "Sticky Napalm",
+        "hurl": "Batrider",
+        "notes": "Увеличивает весь урон, который вы наносите, за исключением урона от артефактов Radiance и Orb of Venom.",
+        "lore": "Не удивляйтесь, если услышите, как Batrider хихикает, увеличивая горючесть противников.",
+        "name": "batrider_sticky_napalm",
+        "youtube":"jru8juajIig",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">75 / 150 / 225 / 300</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">375 / 375 / 375 / 375</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">0.5 / 0.5 / 0.5 / 0.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  14",
+        "desc": "Кидает бутылку с коктейлем, которая, достигнув указанного места, взрывается, отталкивая всех врагов в области и нанося им урон.",
+        "dmg": "",
+        "dname": "Flamebreak",
+        "hurl": "Batrider",
+        "notes": "",
+        "lore": "Batrider предпочитает использовать коктейль Молотова.",
+        "name": "batrider_flamebreak",
+        "youtube":"uQuU3UPz4lE",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">20 / 40 / 60 / 80</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">200 / 200 / 200 / 200</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">18 / 18 / 18 / 18</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/100/100/100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  40",
+        "desc": "Batrider поднимается в воздух, оставляя за собой огненный след. Во время полета Batrider получает свойства летающего юнита, в то время как след огня уничтожает деревья и наносит урон врагам на нем.",
+        "dmg": "",
+        "dname": "Firefly",
+        "hurl": "Batrider",
+        "notes": "Во время использования этой способности вы можете перелетать через юнитов, деревья и непроходимые территории.<br />Если действие способности закончится, когда вы будете находиться над непроходимой территорией, вы можете застрять там.<br />Эта способность уничтожает деревья.<br />Огненный след остается даже после вашей смерти.",
+        "lore": "Большинство противников, попав в джунгли Йама Раскав, начинают прорубаться сквозь заросли в надежде найти беглеца. Batrider же предпочитает просто уничтожить лес, а заодно и врагов в нем.",
+        "name": "batrider_firefly",
+        "youtube":"X4vRNtSfFwE",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 3.5 / 4</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  225<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  90/75/60",
+        "desc": "Захватывает вражеского героя в огненное лассо, не давая ему атаковать, двигаться и использовать способности. Batrider может перетаскивать жертву по своему усмотрению, однако не может затянуть ее на непроходимую территорию. Телепортация или использование Blink Dagger прервет заклинание.",
+        "dmg": "",
+        "dname": "Flaming Lasso",
+        "hurl": "Batrider",
+        "notes": "Действие способности прекращается, когда вы или цель умираете.<br />Если вы передвинетесь более чем на 400 единиц за 0,05 секунды, лассо порвется.<br />Выводит из строя врагов, невосприимчивых к магии.<br />При использовании этой способности вы не можете атаковать.",
+        "lore": "Немногие осмеливаются прокатиться на летучей мыши, потому что Batrider предлагает сделать это бесплатно.",
+        "name": "batrider_flaming_lasso",
+        "youtube":"Fem29nDrc04",
+        "id": 3
+    }
+]

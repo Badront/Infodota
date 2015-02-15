@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "STUN DURATION: <b><font color=\"#ffffff\">1.27 / 1.77 / 2.27 / 2.77</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  95/115/135/155<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  13",
+        "desc": "Rock spikes burst from the earth along a straight path. Enemy units are hurled into the air, then are stunned and take damage when they fall.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">80 / 140 / 200 / 260</font></b>",
+        "dname": "Impale",
+        "hurl": "Nyx_Assassin",
+        "notes": "The spikes move at 1600 units per second, over 700 range.",
+        "lore": "All zealot scarabs possess intimate knowledge of underground pathways, using them to their advantage.",
+        "name": "nyx_assassin_impale",
+        "youtube":"bi-zUW9TbxU",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Heroes</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "INTELLIGENCE MULTIPLIER: <b><font color=\"#ffffff\">3.5 / 4 / 4.5 / 5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  28/20/12/4",
+        "desc": "Destroys the target hero\u0027s mana equal to a multiplier of its Intelligence, and deals damage equal to the mana burned.",
+        "dmg": "",
+        "dname": "Mana Burn",
+        "hurl": "Nyx_Assassin",
+        "notes": "",
+        "lore": "The tome in Ultimyr describes one scarab with the ability eat away at the mind of lesser beings.",
+        "name": "nyx_assassin_mana_burn",
+        "youtube":"Vdnc20VlniA",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "REFLECT DURATION: <b><font color=\"#ffffff\">2.25</font></b><br />STUN DURATION: <b><font color=\"#ffffff\">0.6 / 1.2 / 1.8 / 2.4</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  40/40/40/40<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  23/20/17/14",
+        "desc": "When activated, Spiked Carapace reflects and negates damage dealt to Nyx Assassin (max once from each source), as well as stunning the source of the damage.",
+        "dmg": "",
+        "dname": "Spiked Carapace",
+        "hurl": "Nyx_Assassin",
+        "notes": "The damage is calculated after all reductions.<br />Spiked Carapace will only trigger on damage from other player controlled units, and the stunned units will always be the controlling hero.",
+        "lore": "While their carapace is relatively thin, it\u0027s guarded by a retractable field of razor-sharp spikes.",
+        "name": "nyx_assassin_spiked_carapace",
+        "youtube":"ItgZ-Dd1Lj0",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">20 / 35 / 50</font></b><br />MOVEMENT SPEED: <b><font color=\"#ffffff\">16% / 18% / 20%</font></b><br />BONUS DAMAGE: <b><font color=\"#ffffff\">250 / 400 / 550</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  160/210/260<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  70/60/50",
+        "desc": "Allows Nyx Assassin to become invisible and gain a speed bonus.  If Nyx Assassin attacks to break the invisibility, massive bonus damage is dealt with the attack.",
+        "dmg": "",
+        "dname": "Vendetta",
+        "hurl": "Nyx_Assassin",
+        "notes": "Has a 0 second fadetime.<br />If a spell is used to break the invisibility, or the invisibility expires, the bonus damage is lost.",
+        "lore": "The scarab kills for the glory of his queen.",
+        "name": "nyx_assassin_vendetta",
+        "youtube":"XLNvigI8GT0",
+        "id": 3
+    }
+]

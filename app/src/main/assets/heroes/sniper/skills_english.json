@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "MOVEMENT SPEED: <b><font color=\"#ffffff\">15% / 20% / 25% / 30%</font></b><br />RADIUS: <b><font color=\"#ffffff\">450</font></b><br />DURATION: <b><font color=\"#ffffff\">10</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  50<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  15",
+        "desc": "Fires a ball of shrapnel that showers the target area in explosive pellets. Enemies are subject to damage and slowed movement. Reveals the targeted area.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">12 / 24 / 36 / 48</font></b>",
+        "dname": "Shrapnel",
+        "hurl": "Sniper",
+        "notes": "Consumes a charge to a ball of shrapnel that showers the target area in explosive pellets. Enemies are subject to damage and slowed movement. Reveals the targeted area. Shrapnel charges restore every 40 seconds. Maximum 3 charges.",
+        "lore": "Kardel\u0027s modular rifle also fires incendiary rounds, useful for assaulting entrenched locations.",
+        "name": "sniper_shrapnel",
+        "youtube":"ZQuwiZ4LErM",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "CHANCE: <b><font color=\"#ffffff\">40%</font></b>",
+        "cmb": "",
+        "desc": "Sniper increases his accuracy, giving a chance to deal extra damage and slow unit. Headshot procs cannot be evaded.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">15 / 40 / 65 / 90</font></b>",
+        "dname": "Headshot",
+        "hurl": "Sniper",
+        "notes": "Causes a 0.5 second 100% MS and AS slow.<br />Works on allied creeps.<br />Slow is blocked by magic immunity.",
+        "lore": "Taking potshots at steepstalkers in his childhood has been thoroughly refined into perfect leads on enemy combatants.",
+        "name": "sniper_headshot",
+        "youtube":"xwArHJFxywE",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "BONUS RANGE: <b><font color=\"#ffffff\">100 / 200 / 300 / 400</font></b>",
+        "cmb": "",
+        "desc": "Extends the attack range of Sniper\u0027s rifle.",
+        "dmg": "",
+        "dname": "Take Aim",
+        "hurl": "Sniper",
+        "notes": "",
+        "lore": "Kardel always takes it upon himself to stay as far from harm as he can while still performing his role - taking perfect aim.",
+        "name": "sniper_take_aim",
+        "youtube":"ZehVtSyXDaE",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RANGE: <b><font color=\"#ffffff\">2000 / 2500 / 3000</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  175/275/375<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  20/15/10",
+        "desc": "Sniper locks onto a target enemy unit, and after 1.7 seconds, fires a devastating shot that deals damage at long range, and mini-stuns the target.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">355 / 505 / 655</font></b>",
+        "dname": "Assassinate",
+        "hurl": "Sniper",
+        "notes": "Crosshair effect is only visible to allies.<br />Invisibility doesn\u0027t disjoint the projectile.<br />Interrupts channeling spell, including on magic immune units.",
+        "lore": "In order to fulfill the prophecy and return to his home town, Kardel must make another shot as perfect as the one on the day of his ancient test.",
+        "name": "sniper_assassinate",
+        "youtube":"Ghp0_Dnk05A",
+        "id": 3
+    }
+]

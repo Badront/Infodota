@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">2</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">20%</font></b><br/>ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">15 / 30 / 40 / 50</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">2</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8",
+        "desc": "Wraith King поджигает врага спектральным огнем, оглушая его и нанося урон. После окончания оглушения жертва продолжает получать урон в течение некоторого времени, а скорость ее передвижения снижается.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">50 / 100 / 150 / 200</font></b>",
+        "dname": "Wraithfire Blast",
+        "hurl": "Wraith_King",
+        "notes": "Всего наносит 80 / 160 / 230 / 300 урона.",
+        "lore": "Остарион призывает своих проклятых предков, уничтожая противников.",
+        "name": "skeleton_king_hellfire_blast",
+        "youtube":"cjBrHQKjxm4",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная, аура</font></b><br />Действует на <b><font color=\"#ffffff\">союзников</font></b>",
+        "attrib": "ВАМПИРИЗМ: <b><font color=\"#ffffff\">15% / 20% / 25% / 30%</font></b>",
+        "cmb": "",
+        "desc": "Ближайшие союзники за каждый удар восстанавливают свое здоровье пропорционально нанесенному урону.",
+        "dmg": "",
+        "dname": "Vampiric Aura",
+        "hurl": "Wraith_King",
+        "notes": "Складывается с другими источниками вампиризма.",
+        "lore": "Клинок Wraith King вытягивает жизненные силы из своих врагов и питает ауру хозяина.",
+        "name": "skeleton_king_vampiric_aura",
+        "youtube":"0ZD6iTDTjcQ",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских героев</font></b>",
+        "attrib": "КРИТИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">150% / 200% / 250% / 300%</font></b><br/>ШАНС КРИТА: <b><font color=\"#ffffff\">15%</font></b>",
+        "cmb": "",
+        "desc": "Wraith King пассивно получает возможность нанести дополнительный урон при атаке.",
+        "dmg": "",
+        "dname": "Mortal Strike",
+        "hurl": "Wraith_King",
+        "notes": "",
+        "lore": "Один удар, чтобы сокрушить врага.",
+        "name": "skeleton_king_mortal_strike",
+        "youtube":"UMPnfE_N0YI",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ВРЕМЯ ПЕРЕРОЖДЕНИЯ: <b><font color=\"#ffffff\">3 / 3 / 3</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  160<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  260/160/60",
+        "desc": "После смерти кости Wraith King становятся на свои места, позволяя ему воскреснуть. При смерти героя все враги поблизости замедляются на 75%.",
+        "dmg": "",
+        "dname": "Reincarnation",
+        "hurl": "Wraith_King",
+        "notes": "Wraith King не возродится, если у него нет достаточного количества маны.<br />Если Wraith King имеет одновременно Aegis of the Immortal и готовую способность, то способность сработает первой.<br />Возвращает к жизни с полным запасом здоровья и маны.",
+        "lore": "Участники заговора против Wraith King удивляются тому, что он никогда не умирает.",
+        "name": "skeleton_king_reincarnation",
+        "youtube":"3yGidbPrewk",
+        "id": 3
+    }
+]

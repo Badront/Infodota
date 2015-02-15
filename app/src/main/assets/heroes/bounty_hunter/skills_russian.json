@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">100 / 200 / 250 / 325</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  90/115/135/155<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  10",
+        "desc": "Кидает смертоносный сюрикен во врага, нанося урон и кратковременно оглушая его.",
+        "dmg": "",
+        "dname": "Shuriken Toss",
+        "hurl": "Bounty_Hunter",
+        "notes": "Прерывает прочтение заклинаний. Сюрикен отскакивает от всех юнитов под помеченных Track в радиусе 900.",
+        "lore": "Сюрикен может быть и мал, но поразительно точные броски Гондара способны нанести огромный урон.",
+        "name": "bounty_hunter_shuriken_toss",
+        "youtube":"THFY7EAD7HY",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ДОПОЛНИТЕЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">150% / 175% / 200% / 225%</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">25% / 25% / 25% / 25%</font></b><br/>ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">25 / 25 / 25 / 25</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 3 / 3 / 3</font></b>",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/10/8/6",
+        "desc": "Bounty Hunter тщательно продумывает следующую атаку, гарантированно делая ее критической и сокрушительной для врага.",
+        "dmg": "",
+        "dname": "Jinada",
+        "hurl": "Bounty_Hunter",
+        "notes": "",
+        "lore": "Нашептывая своим верным клинкам заклинание, поведанное Соруком, Гондар поражает важные сухожилия и суставы врагов, выводя их из строя.",
+        "name": "bounty_hunter_jinada",
+        "youtube":"JVqW1Gyi5FM",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">20 / 25 / 30 / 35</font></b><br/>ВРЕМЯ ДО НЕВИДИМОСТИ: <b><font color=\"#ffffff\">1 / 0.75 / 0.5 / 0.25</font></b><br/>ДОПОЛНИТЕЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">30 / 60 / 90 / 120</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/50/50/50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  15",
+        "desc": "Bounty Hunter становится невидимым и получает возможность проходить сквозь крипов и героев до тех пор, пока он не нанесет удар или не использует способность. Если он выходит из невидимости, атакуя, то эта атака нанесет дополнительный урон.",
+        "dmg": "",
+        "dname": "Shadow Walk",
+        "hurl": "Bounty_Hunter",
+        "notes": "Не прерывает прочтение заклинаний.<br />Дополнительный урон наносится отдельно и не учитывается при подсчете урона от этой способности.",
+        "lore": "Придворные шуты, присутствовавшие при убийстве короля Гоффа, видели только танцующую тень.",
+        "name": "bounty_hunter_wind_walk",
+        "youtube":"A1pTdYaSDo0",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских героев</font></b>",
+        "attrib": "РАДИУС СКОРОСТИ: <b><font color=\"#ffffff\">900 / 900 / 900</font></b><br/>ДОП. СКОРОСТЬ: <b><font color=\"#ffffff\">20% / 20% / 20%</font></b><br/>ДОП. ЗОЛОТО СЕБЕ: <b><font color=\"#ffffff\">200 / 275 / 350</font></b><br/>ДОП. ЗОЛОТА СОЮЗНИКАМ: <b><font color=\"#ffffff\">50 / 100 / 150</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">30 / 30 / 30</font></b><br/>ДАЛЬНОСТЬ ПРИМЕНЕНИЯ: <b><font color=\"#ffffff\">1200</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  4",
+        "desc": "Отслеживает вражеского героя, раскрывая его невидимость, а также увеличивает скорость передвижения союзников около цели. Если цель умирает, Bounty Hunter и ближайшие дружественные герои получают добычу в виде золота.",
+        "dmg": "",
+        "dname": "Track",
+        "hurl": "Bounty_Hunter",
+        "notes": "Вы получите дополнительное золото вне зависимости от того, как цель этого заклинания умерла.<br />Делает цель видимой для всех ваших союзников.<br />Метка этой способности видна только союзникам.<br />Союзники, получающие дополнительную скорость от этой способности, получат дополнительное золото в случае смерти цели.<br />Дополнительное золото идет в надежный запас.",
+        "lore": "Используя свои острые зрение и нюх, Гондар наносит удары более точно.",
+        "name": "bounty_hunter_track",
+        "youtube":"QUR30zbpNDs",
+        "id": 3
+    }
+]

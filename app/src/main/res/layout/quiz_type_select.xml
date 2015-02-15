@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+    <!--  <LinearLayout
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:gravity="center"
+          android:orientation="horizontal">
+
+          <Button
+                  android:layout_height="wrap_content"
+                  android:layout_width="200dp"
+                  android:layout_weight="1"
+                  android:layout_marginTop="5dp"
+                  android:gravity="center"
+                  android:text="@string/leaderboards"
+                  android:id="@+id/leaderboard"/>
+
+          <Button
+                  android:layout_height="wrap_content"
+                  android:layout_width="200dp"
+                  android:layout_weight="1"
+                  android:layout_marginTop="5dp"
+                  android:gravity="center"
+                  android:text="@string/achievements"
+                  android:id="@+id/achievements"/>
+
+          </LinearLayout>-->
+    <CheckBox
+        android:id="@+id/setTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/record_attempt"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/for_record_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/record_attempt_help"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/buttonsHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/by_items"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/by_items" />
+
+            <Button
+                android:id="@+id/by_skills"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/by_abilities" />
+
+            <Button
+                android:id="@+id/by_random"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/by_random" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

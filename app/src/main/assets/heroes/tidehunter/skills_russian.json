@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">40% / 40% / 40% / 40%</font></b><br/>СНИЖЕНИЕ БРОНИ: <b><font color=\"#ffffff\">2 / 3 / 4 / 5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/120/120/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12",
+        "desc": "Призывает водяной поток, наносящий противникам урон и уменьшающий их скорость и броню. Эффект длится 4 секунды.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">110 / 160 / 210 / 260</font></b>",
+        "dname": "Gush",
+        "hurl": "Tidehunter",
+        "notes": "",
+        "lore": "Во время уничтожения Затонувших островов Левиафан получил власть над самим морем.",
+        "name": "tidehunter_gush",
+        "youtube":"68728IYAiok",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "СНИЖАЕТ УРОНА: <b><font color=\"#ffffff\">10 / 20 / 30 / 40</font></b><br/>ГРАНИЦА УРОНА: <b><font color=\"#ffffff\">600 / 550 / 500 / 450</font></b>",
+        "cmb": "",
+        "desc": "Создает защитное покрытие, уменьшающее физический урон и снимающее негативные эффекты каждый раз, когда полученный урон достигает определенного предела. <br/> <br/>Эффект Kraken Shell не сочетается с другими предметами, блокирующими урон.",
+        "dmg": "",
+        "dname": "Kraken Shell",
+        "hurl": "Tidehunter",
+        "notes": "При подсчете полученного урона считается только тот, который был нанесен игроками.<br />Счетчик урона обнулится, если вражеские герои не будут наносить вам урон в течение 6 секунд.<br />Снимает большинство эффектов, не снимаемых очищающими способностями.",
+        "lore": "Истории кладдских моряков повествуют об ужасающем монстре, который топил суда и разрушал флагманы, не обращая внимания на вонзающиеся в него копья и режущие его мечи.",
+        "name": "tidehunter_kraken_shell",
+        "youtube":"mbIfRCkRM6g",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "СНИЖЕНИЕ УРОНА: <b><font color=\"#ffffff\">45% / 50% / 55% / 60%</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">6 / 6 / 6 / 6</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">375</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  30/40/50/60<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  7/6/5/4",
+        "desc": "Tidehunter вращает свой якорь, нанося урон окружающим его противникам и уменьшая наносимый ими урон.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">75 / 125 / 175 / 225</font></b>",
+        "dname": "Anchor Smash",
+        "hurl": "Tidehunter",
+        "notes": "Действует на древних крипов (но не на Рошана).",
+        "lore": "Якорь, украденный у флагмана эскадры, принадлежащей Kunkka, служит великолепным оружием для Левиафана.",
+        "name": "tidehunter_anchor_smash",
+        "youtube":"30uJcLr3ttA",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">1025</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">2.02 / 2.32 / 2.77</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/225/325<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  150",
+        "desc": "Сотрясает землю, выпуская во все стороны щупальца, нанося при этом урон и оглушая рядом стоящих вражеских юнитов.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">200 / 290 / 380</font></b>",
+        "dname": "Ravage",
+        "hurl": "Tidehunter",
+        "notes": "Действует на невидимых врагов.<br />Щупальца от способности расходятся в стороны со скоростью в 775.",
+        "lore": "Взывая к глубоководному богу Мэльруну, Tidehunter способен в одиночку потопить целые эскадры кораблей.",
+        "name": "tidehunter_ravage",
+        "youtube":"BZBsiD9wuWQ",
+        "id": 3
+    }
+]

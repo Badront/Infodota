@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">1.45 / 1.55 / 1.65 / 1.75</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  110/120/130/140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  13/12/11/10",
+        "desc": "Выпускает во врага магический снаряд, который оглушает и наносит урон.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">100 / 175 / 250 / 325</font></b>",
+        "dname": "Magic Missile",
+        "hurl": "Vengeful_Spirit",
+        "notes": "",
+        "lore": "Простейшая скайрасская техника — магический снаряд — основной инструмент мести Шендел.",
+        "name": "vengefulspirit_magic_missile",
+        "youtube":"v0QcCg9lEzU",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "СНИЖЕНИЕ БРОНИ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>ДЛИТЕЛЬНОСТЬ ВИДИМОСТИ: <b><font color=\"#ffffff\">3 / 3 / 3 / 3</font></b><br/>ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">20 / 20 / 20 / 20</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  40/40/40/40<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20",
+        "desc": "Vengeful Spirit издает дьявольский клич, который ослабляет броню врагов и дает обзор.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">30 / 50 / 70 / 90</font></b>",
+        "dname": "Wave of Terror",
+        "hurl": "Vengeful_Spirit",
+        "notes": "",
+        "lore": "Душераздирающий голос Шендел напоминает о ее приближении.",
+        "name": "vengefulspirit_wave_of_terror",
+        "youtube":"M-40xlCUWac",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная, аура</font></b><br />Действует на <b><font color=\"#ffffff\">союзников</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">900</font></b><br/>ДОП. УРОН: <b><font color=\"#ffffff\">12% / 20% / 28% / 36%</font></b>",
+        "cmb": "",
+        "desc": "Присутствие Vengeful Spirit увеличивает урон ближайших союзников. Если Vengeful Spirit умирает, ее убийца получит негативный эффект от Vengeance Aura, уменьшая урон убийцы и его ближайших союзников пока Vengeful Spirit не воскреснет.",
+        "dmg": "",
+        "dname": "Vengeance Aura",
+        "hurl": "Vengeful_Spirit",
+        "notes": "Дополнительный урон от ауры подсчитывается на основе базового урона и основной характеристики.",
+        "lore": "Отнюдь не все разделяют всепоглощающую жажду мести, однако ее чрезмерный фанатизм воодушевляет на подвиги.",
+        "name": "vengefulspirit_command_aura",
+        "youtube":"313ljmCbIiQ",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">700 / 950 / 1200</font></b><br/><span class=\"scepterVal\">КУЛДАУН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">10 / 10 / 10</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/150/200<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  45",
+        "desc": "Мгновенно меняется местами с союзным или вражеским героем. Способность прерывает используемые заклинания. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Nether Swap",
+        "hurl": "Vengeful_Spirit",
+        "notes": "Действует на юнитов, невосприимчивых к магии.<br />После применения заклинания деревья рядом с вами и целью будут уничтожены.",
+        "lore": "Мученичество — совсем не большое воздаяние за месть.",
+        "name": "vengefulspirit_nether_swap",
+        "youtube":"MSS_SNkHVEo",
+        "id": 3
+    }
+]

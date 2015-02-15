@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "ATTACK SLOW: <b><font color=\"#ffffff\">30 / 60 / 90 / 120</font></b>",
+        "cmb": "",
+        "desc": "Enchantress beguiles her enemies, slowing their attacks when she is attacked. Lasts 4 seconds.",
+        "dmg": "",
+        "dname": "Untouchable",
+        "hurl": "Enchantress",
+        "notes": "All units who directly attack or cast spells on Enchantress will get slowed.<br />The slow is applied on the attacking unit when the attack starts, not when damage is applied.",
+        "lore": "After attacking Aiushtha, most opponents are overwhelmed with guilt having attacked such a natural beauty.",
+        "name": "enchantress_untouchable",
+        "youtube":"Bg3FV8n5HjI",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b>",
+        "attrib": "MOVE SLOW: <b><font color=\"#ffffff\">20% / 30% / 40% / 50%</font></b><br />ENCHANT DURATION: <b><font color=\"#ffffff\">80 / 80 / 80 / 80</font></b><br />SLOW DURATION: <b><font color=\"#ffffff\">5.5 / 5.5 / 5.5 / 5.5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  65/65/65/65<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  30/25/20/15",
+        "desc": "Enchantress charms an enemy, bringing it under her control (if a creep) or slowing it (if a hero).",
+        "dmg": "",
+        "dname": "Enchant",
+        "hurl": "Enchantress",
+        "notes": "Illusions can be converted.",
+        "lore": "A true steward of the forest, Aiushtha befriends all within it - from lowly trolls to powerful centaurs.",
+        "name": "enchantress_enchant",
+        "youtube":"FEb9-pLBPXY",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "HEAL PER SECOND: <b><font color=\"#ffffff\">10 / 10 / 10 / 10</font></b><br />RADIUS: <b><font color=\"#ffffff\">275 / 275 / 275 / 275</font></b><br />WISPS: <b><font color=\"#ffffff\">3 / 5 / 7 / 9</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  125/140/155/170<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  45",
+        "desc": "A cloud of wisps heals Enchantress and any friendly units nearby.  Lasts 10 seconds.",
+        "dmg": "",
+        "dname": "Nature\u0027s Attendants",
+        "hurl": "Enchantress",
+        "notes": "Units with full HP will not be seleted for the heal.<br />Can heal units with magic immunity.",
+        "lore": "Whimsical spirits of the woods possess a healing power that is quite subtle, but gains strength in numbers.",
+        "name": "enchantress_natures_attendants",
+        "youtube":"VCRqaqKZ4OY",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Auto-Cast, Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "DISTANCE DAMAGE: <b><font color=\"#ffffff\">15% / 20% / 25%</font></b><br /><span class=\"scepterVal\">SCEPTER BONUS RANGE:</font></b> <b><font color=\"#ffffff\">190 / 190 / 190</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  55/60/65<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  0",
+        "desc": "Places an enchantment on each attack while activated, causing it to deal additional damage based on how far away the target is.  The farther the target, the greater the damage dealt.<br />Impetus is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Impetus",
+        "hurl": "Enchantress",
+        "notes": "The damage is capped at 2500 distance.<br />Distance to target is measured when the projectile hits.",
+        "lore": "While Aiushtha favors peaceful means, she is capable of a magical onslaught from a distance, her spears gaining energy from the natural life around her.",
+        "name": "enchantress_impetus",
+        "youtube":"FUkzdGUG_L8",
+        "id": 3
+    }
+]

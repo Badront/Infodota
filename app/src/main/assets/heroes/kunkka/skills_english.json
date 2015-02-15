@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">225</font></b><br />SLOW: <b><font color=\"#ffffff\">35%</font></b><br />SLOW DURATION: <b><font color=\"#ffffff\">1 / 2 / 3 / 4</font></b><br />STUN DURATION: <b><font color=\"#ffffff\">1.53 / 1.53 / 1.53 / 1.53</font></b><br />DELAY: <b><font color=\"#ffffff\">1.6 / 1.6 / 1.6 / 1.6</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  120/120/120/120<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  12",
+        "desc": "Summons a rising torrent that, after a short delay, hurls enemy units into the sky, stunning, dealing damage and slowing movement speed.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">120 / 180 / 240 / 300</font></b>",
+        "dname": "Torrent",
+        "hurl": "Kunkka",
+        "notes": "The initial bubble effect is only visible to allies.<br />Units tossed in the air will be stunned and still able to be attacked.",
+        "lore": "An ancestral rush of water explodes from the center of the world, called upon by the Admiral.",
+        "name": "kunkka_torrent",
+        "youtube":"2NeN4ToMrfY",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">500 / 500 / 500 / 600</font></b><br />DAMAGE BONUS: <b><font color=\"#ffffff\">15 / 30 / 45 / 60</font></b>",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  13/10/7/4",
+        "desc": "Kunkka\u0027s legendary sword grants increased damage and cleaves a large area of effect in front of him for a single strike.",
+        "dmg": "",
+        "dname": "Tidebringer",
+        "hurl": "Kunkka",
+        "notes": "Cleave damage is reduced by armor type but not by armor value.<br />Cleave damage goes through magic immunity.<br />Cooldown isn\u0027t activated on denies, so the damage bonus is maintained.",
+        "lore": "A lost Claddish soul inhabits Kunkka\u0027s trusty Tidebringer, empowering it to destroy demons of the Cataract.",
+        "name": "kunkka_tidebringer",
+        "youtube":"GrJOoGLZyWg",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Heroes</font></b>",
+        "attrib": "DELAY: <b><font color=\"#ffffff\">4</font></b><br />ALLIED DELAY: <b><font color=\"#ffffff\">8</font></b><br/>RANGE: <b><font color=\"#ffffff\">350 / 550 / 750 / 1000</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  80<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  19/16/13/10",
+        "desc": "Targets a friendly or enemy Hero, marks their position with an X, and returns them to it after several seconds.  Kunkka can trigger the return at any time during the duration.",
+        "dmg": "",
+        "dname": "X Marks the Spot",
+        "hurl": "Kunkka",
+        "notes": "If the target becomes magic immune after the cast, the target will not return to the X after the duration.<br />Interrupts channeling spells.",
+        "lore": "The Admiral\u0027s set of arcane abilities includes some that can be used for battle as well as entertainment.",
+        "name": "kunkka_x_marks_the_spot",
+        "youtube":"uF1OsHjC-tY",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">425 / 425 / 425</font></b><br />TRAVEL DISTANCE: <b><font color=\"#ffffff\">1000 / 1000 / 1000</font></b><br />STUN DURATION: <b><font color=\"#ffffff\">1.4 / 1.4 / 1.4</font></b><br />BONUS SPEED: <b><font color=\"#ffffff\">10% / 10% / 10%</font></b><br />BUFF DURATION: <b><font color=\"#ffffff\">10</font></b><br />IMPACT DELAY: <b><font color=\"#ffffff\">3</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  150/200/250<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  60/50/40",
+        "desc": "Summons a ghostship to cut a swath through battle, causing damage and stuns to enemy units as it crashes through. Allies are doused in Kunkka\u0027s Rum, receiving bonus movement speed and a delayed reaction to damage.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">400 / 500 / 600</font></b>",
+        "dname": "Ghostship",
+        "hurl": "Kunkka",
+        "notes": "Damage dealt after rum wears off is non-lethal and can never kill a hero.",
+        "lore": "The final ship of the Claddish Navy is nothing but a phantom, but it is all too real to the enemies of the Admiral.",
+        "name": "kunkka_ghostship",
+        "youtube":"lfnAIKZ6suE",
+        "id": 3
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  50/50/50/50<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  5",
+        "desc": "Returns the marked hero to the X.",
+        "dmg": "",
+        "dname": "Return",
+        "hurl": "Kunkka",
+        "notes": "",
+        "lore": "",
+        "name": "kunkka_return",
+        "id": 4
+    }
+]

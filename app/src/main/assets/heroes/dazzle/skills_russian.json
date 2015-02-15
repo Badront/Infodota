@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "ВРЕМЯ СРАБАТЫВАНИЯ: <b><font color=\"#ffffff\">3</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">10</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/115/130/145<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  15/13/11/7",
+        "desc": "Накладывает отравляющее заклинание на вражеского юнита, которое замедляет и, со временем, парализует его. С уровнем замедление усиливается.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">14 / 20 / 26 / 32</font></b>",
+        "dname": "Poison Touch",
+        "hurl": "Dazzle",
+        "notes": "Урон не уменьшается способностями, блокирующими урон.<br />Кратковременное оглушение прервет прочтение заклинания.",
+        "lore": "Это одно из немногих заклинаний культа Дезун, направленное непосредственно на нанесение урона врагу. Паралитический яд оказывается очень полезным в бою.",
+        "name": "dazzle_poison_touch",
+        "youtube":"iNu7gMUOovI",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных героев</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">5 / 5 / 5 / 5</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">550 / 700 / 850 / 1000</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  140/130/120/110<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60/45/30/15",
+        "desc": "Союзник, находящийся под защитой Shallow Grave, не может умереть независимо от того, как он близок к смерти.",
+        "dmg": "",
+        "dname": "Shallow Grave",
+        "hurl": "Dazzle",
+        "notes": "Уровень здоровья юнита под действием этой способности не может опуститься ниже единицы, но Axe может убить его заклинанием Culling Blade.",
+        "lore": "Только могущественный послушник культа Теней способен обмануть саму смерть.",
+        "name": "dazzle_shallow_grave",
+        "youtube":"iW-w1R0pcZI",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "РАДИУС УРОНА: <b><font color=\"#ffffff\">185</font></b><br/>ЦЕЛЕЙ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80/90/100/110<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/10/8/6",
+        "desc": "Shadow Wave исцеляет нескольких союзников, при этом нанося такой же урон в небольшой области вокруг них. Dazzle лечится от Shadow Wave всегда вне зависимости от количества пораженных целей.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">80 / 100 / 120 / 140</font></b>",
+        "dname": "Shadow Wave",
+        "hurl": "Dazzle",
+        "notes": "Лечит сначала героев, и уже потом — крипов.<br />Если враг находится рядом с несколькими союзниками под действием этой способности, он может получить урон несколько раз.",
+        "lore": "Shadow Wave — одно из самых простых заклинаний, известных жрецу теней, однако оно же — одно из самых эффективных.",
+        "name": "dazzle_shadow_wave",
+        "youtube":"hiqYtx3MNck",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">575 / 575 / 575</font></b><br/>БРОНИ ЗА СЕКУНДУ: <b><font color=\"#ffffff\">0.75 / 1 / 1.25</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">24</font></b><br/><span class=\"scepterVal\">РАДИУС СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">775 / 775 / 775</font></b><br/><span class=\"scepterVal\">БРОНИ ЗА СЕКУНДУ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">1.25 / 1.5 / 1.75</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/100/100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  40",
+        "desc": "С течением времени увеличивает у дружественных и уменьшает у вражеских героев броню в выбранном радиусе. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Weave",
+        "hurl": "Dazzle",
+        "notes": "Действие заклинания не прекратится, если выйти из области его применения.",
+        "lore": "Познания, приобретенные Dazzle на эфирном плане Нотл, позволяют магу создать заклинание, комбинирующее силы света и тьмы — создавая противоположно направленные волны защиты, маг усиляет союзников и ослабляет врагов.",
+        "name": "dazzle_weave",
+        "youtube":"kobWMCcOQLc",
+        "id": 3
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target, Point Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/115/130/145<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  8.50",
+        "desc": "Lina channels the breath of a dragon, sending out a wave of fire that scorches every enemy in its path.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">110 / 180 / 250 / 320</font></b>",
+        "dname": "Dragon Slave",
+        "hurl": "Lina",
+        "notes": "Dragon Slave can hit units up to 1225 units away.",
+        "lore": "In the scorched barren of Misrule, Lina learned to manipulate the fiery breath of the Desert Wyrm as a form of entertainment.",
+        "name": "lina_dragon_slave",
+        "youtube":"2BShtaRLhhQ",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">225</font></b><br />CAST DELAY: <b><font color=\"#ffffff\">0.5</font></b><br />STUN DURATION: <b><font color=\"#ffffff\">1.6 / 1.9 / 2.2 / 2.5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/110/120/130<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  7",
+        "desc": "Summons a column of flames that damages and stuns enemies.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">120 / 160 / 200 / 240</font></b>",
+        "dname": "Light Strike Array",
+        "hurl": "Lina",
+        "notes": "Light Strike Array will destroy trees in its area of effect.",
+        "lore": "Lina\u0027s essence allows her to focus the sun\u0027s energies, causing air to combust at will.",
+        "name": "lina_light_strike_array",
+        "youtube":"RBxhLSGnDig",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "ATTACK SPEED BONUS: <b><font color=\"#ffffff\">40 / 55 / 70 / 85</font></b><br />MOVE SPEED BONUS: <b><font color=\"#ffffff\">5% / 6% / 7% / 8%</font></b><br />MAX STACKS: <b><font color=\"#ffffff\">3</font></b>",
+        "cmb": "",
+        "desc": "Grants bonus attack and movement speed each time Lina casts a spell. Stacks with itself. Lasts 10 seconds.",
+        "dmg": "",
+        "dname": "Fiery Soul",
+        "hurl": "Lina",
+        "notes": "Duration refreshes each time a new spell is cast.<br />Using items does not trigger Fiery Soul.",
+        "lore": "Dancing flames embody Lina\u0027s playful nature, bringing out her true blazing self.",
+        "name": "lina_fiery_soul",
+        "youtube":"6R6-qq2PkIo",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b><br />SCEPTER DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "DAMAGE: <b><font color=\"#ffffff\">450 / 675 / 950</font></b><br /><span class=\"scepterVal\">SCEPTER RANGE:</font></b> <b><font color=\"#ffffff\">900 / 900 / 900</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  280/420/680<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  70/60/50",
+        "desc": "Fires off a bolt of lightning at a single enemy unit, dealing massive damage.<br />Upgradable with Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Laguna Blade",
+        "hurl": "Lina",
+        "notes": "Laguna Blade has a 0.25 delay before the damage is applied after the spell is cast, allowing certain abilities to avoid the damage.Aghanim\u0027s Scepter Laguna Blade damage goes through magic immunity. Even with Aghanim\u0027s Scepter, damage from Laguna Blade can be reduced by magic resistance.",
+        "lore": "The air around Lina becomes so intensely torrid that it scorches a foe that comes too close with white-hot lightning.",
+        "name": "lina_laguna_blade",
+        "youtube":"HbhoCPFse_c",
+        "id": 3
+    }
+]

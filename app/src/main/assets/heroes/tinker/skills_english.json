@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "MISS RATE: <b><font color=\"#ffffff\">100% / 100% / 100% / 100%</font></b><br/>CAST RANGE: <b><font color=\"#ffffff\">550</font></b><br/>CAST RANGE WITH AGHANIM: <b><font color=\"#ffffff\">1100</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  95/120/145/170<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  14",
+        "desc": "Fires an intense energy beam, dealing damage and blinding the target for 3 seconds, causing it to miss all physical attacks.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">80 / 160 / 240 / 320</font></b>",
+        "dname": "Laser",
+        "hurl": "Tinker",
+        "notes": "The damage is dealt immediately while the miss effect is delayed until the projectile hits.",
+        "lore": "Boush perfected this rock cutting laser in his subterranean laboratory, never considering its combat utility.",
+        "name": "tinker_laser",
+        "youtube":"2tDx6grjLns",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "TARGETS: <b><font color=\"#ffffff\">2 / 2 / 2 / 2</font></b><br/>TARGETS WITH AGHANIM: <b><font color=\"#ffffff\">4 / 4 / 4 / 4</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  120/140/160/180<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  25",
+        "desc": "Launches a pair of rockets at the nearest visible enemy heroes within 2500 range.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">125 / 200 / 275 / 350</font></b>",
+        "dname": "Heat-Seeking Missile",
+        "hurl": "Tinker",
+        "notes": "Does not hit ethereal units.",
+        "lore": "The last contraption Boush was able to save was a retrofitted rocket launcher with a homing mechanism.",
+        "name": "tinker_heat_seeking_missile",
+        "youtube":"jK4Sn_EDBpE",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">900 / 900 / 900 / 900</font></b><br />DURATION: <b><font color=\"#ffffff\">6 / 6 / 6 / 6</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  145/150/165/190<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  35",
+        "desc": "Enlists an army of robotic minions to destroy enemy units in an area around Tinker.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">16 / 24 / 32 / 40</font></b>",
+        "dname": "March of the Machines",
+        "hurl": "Tinker",
+        "notes": "Robots spawn at a rate of 24 per second.",
+        "lore": "Even though the laboratory has since been sealed off, the ability to radio in robotic drones is still in working order.",
+        "name": "tinker_march_of_the_machines",
+        "youtube":"AmXRvkaYhIE",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target, Channeled</font></b>",
+        "attrib": "TIME TO REARM: <b><font color=\"#ffffff\">3 / 2 / 1</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  150/250/350<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  0",
+        "desc": "CHANNELED - Resets the cooldown on most of Tinker\u0027s items and abilities.",
+        "dmg": "",
+        "dname": "Rearm",
+        "hurl": "Tinker",
+        "notes": "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, and Necronomicon.",
+        "lore": "A new battery here, another set of rockets there, Boush continually improves on existing technology.",
+        "name": "tinker_rearm",
+        "youtube":"eHlwkFnGtzs",
+        "id": 3
+    }
+]

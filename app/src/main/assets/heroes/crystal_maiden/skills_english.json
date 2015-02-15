@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">3.5 / 4 / 4.5 / 5</font></b><br />RADIUS: <b><font color=\"#ffffff\">400</font></b><br />ATTACK SLOW: <b><font color=\"#ffffff\">30%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/120/140/160<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  15",
+        "desc": "A burst of damaging frost slows enemy movement and attack rate in the targeted area.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">100 / 150 / 200 / 250</font></b>",
+        "dname": "Crystal Nova",
+        "hurl": "Crystal_Maiden",
+        "notes": "",
+        "lore": "The air temperature around Rylai drops rapidly, chilling all around her to the core.",
+        "name": "crystal_maiden_crystal_nova",
+        "youtube":"hv-wIna71VQ",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">1.5 / 2 / 2.5 / 3</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  115/125/140/150<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  10/9/8/7",
+        "desc": "Encases an enemy unit in ice, prohibiting movement and attack, while dealing damage per 0.5 second.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">50</font></b>",
+        "dname": "Frostbite",
+        "hurl": "Crystal_Maiden",
+        "notes": "Blink abilities cannot be used while under the affects of Frostbite.<br />Lasts 10 seconds on creeps level 5 or lower.",
+        "lore": "Rylai channels winds from the Blueheart Glacier, imprisoning attackers in thick blocks of ice.",
+        "name": "crystal_maiden_frostbite",
+        "youtube":"6FnrLNZxtxQ",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive, Aura</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Allies</font></b>",
+        "attrib": "MANA REGEN BONUS: <b><font color=\"#ffffff\">1 / 1.5 / 2 / 2.5</font></b>",
+        "cmb": "",
+        "desc": "Gives additional mana regeneration to all friendly units on the map. This bonus is doubled on Crystal Maiden.",
+        "dmg": "",
+        "dname": "Arcane Aura",
+        "hurl": "Crystal_Maiden",
+        "notes": "Stacks with other flat mana regeneration bonuses.<br />The flat mana regeneration bonus is not considered for percentage mana regeneration increases.",
+        "lore": "Cold temperatures promote the essence of magic, causing Rylai\u0027s presence to allow spell usage in abundance.",
+        "name": "crystal_maiden_brilliance_aura",
+        "youtube":"JGBd1B3UW38",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target, Channeled</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">835</font></b><br />EXPLOSION RADIUS: <b><font color=\"#ffffff\">300</font></b><br />MOVEMENT SLOW: <b><font color=\"#ffffff\">30%</font></b><br />DAMAGE: <b><font color=\"#ffffff\">105 / 170 / 250</font></b><br /><span class=\"scepterVal\">SCEPTER DAMAGE:</font></b> <b><font color=\"#ffffff\">170 / 250 / 310</font></b><br /><span class=\"scepterVal\">SCEPTER SLOW:</font></b> <b><font color=\"#ffffff\">50%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  200/400/600<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  150/120/90",
+        "desc": "CHANNELED - Surrounds Crystal Maiden with random icy explosions that slow enemies and deal massive damage.  Lasts 7 seconds.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Freezing Field",
+        "hurl": "Crystal_Maiden",
+        "notes": "The slow is applied on all enemies in the radius, even if they aren\u0027t hit by an explosion (lasts 1 second).<br />Every 0.1 second an explosion occurs, for a total of 70 explosions.",
+        "lore": "Once the place of her exile, Icewrack has become an anchor for Rylai\u0027s frigid onslaught.",
+        "name": "crystal_maiden_freezing_field",
+        "youtube":"xesyW_27uJc",
+        "id": 3
+    }
+]

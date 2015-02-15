@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита, направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/115/130/145<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8.50",
+        "desc": "Lina призывает дыхание дракона, сжигающее всех врагов на своем пути.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">110 / 180 / 250 / 320</font></b>",
+        "dname": "Dragon Slave",
+        "hurl": "Lina",
+        "notes": "Задевает врагов на расстоянии до 1225 единиц.",
+        "lore": "Борясь со скукой в выжженных пустошах Мизрула, Lina научилась управлять огненным дыханием дракона пустынь.",
+        "name": "lina_dragon_slave",
+        "youtube":"2BShtaRLhhQ",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">225</font></b><br/>ЗАДЕРЖКА: <b><font color=\"#ffffff\">0.5</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">1.6 / 1.9 / 2.2 / 2.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/110/120/130<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  7",
+        "desc": "Призывает столб пламени, который сокрушает и оглушает врагов.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">120 / 160 / 200 / 240</font></b>",
+        "dname": "Light Strike Array",
+        "hurl": "Lina",
+        "notes": "Уничтожает деревья в зоне действия способности.",
+        "lore": "Lina управляет энергией Солнца, заставляя воздух воспламеняться по ее воле.",
+        "name": "lina_light_strike_array",
+        "youtube":"RBxhLSGnDig",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ДОП. СКОРОСТЬ АТАКИ: <b><font color=\"#ffffff\">40 / 55 / 70 / 85</font></b><br/>ДОП. СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">5% / 6% / 7% / 8%</font></b><br/>МАКС. КОЛ-ВО: <b><font color=\"#ffffff\">3</font></b>",
+        "cmb": "",
+        "desc": "Дает бонус к урону и скорости передвижения всякий раз, когда Lina использует заклинание. Бонусы накапливаются. Действует 10 секунд.",
+        "dmg": "",
+        "dname": "Fiery Soul",
+        "hurl": "Lina",
+        "notes": "Применение любой другой способности обновляет время действия этой.<br />Использование предметов не активирует эту способность.",
+        "lore": "В танцующих языках огня Lina раскрывает присущий ей игривый характер, высвобождая свое внутреннее пламя.",
+        "name": "lina_fiery_soul",
+        "youtube":"6R6-qq2PkIo",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b><br />УРОН СО СКИПЕТРОМ: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">450 / 675 / 950</font></b><br/><span class=\"scepterVal\">РАДИУС СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">900 / 900 / 900</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  280/420/680<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  70/60/50",
+        "desc": "Выпускает разряд молнии в одного врага, нанося сокрушительный урон. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Laguna Blade",
+        "hurl": "Lina",
+        "notes": "Между прочтением заклинания и нанесением урона есть задержка в 0,25 секунды, что позволяет избежать урона с помощью некоторых способностей. С аганимом позволяет поражать неуязвимые к магии цели. Урон можно уменьшить защитой от магии.",
+        "lore": "Воздух вокруг Lina становится таким горячим, что он обжигает молнией любого врага, подошедшего слишком близко.",
+        "name": "lina_laguna_blade",
+        "youtube":"HbhoCPFse_c",
+        "id": 3
+    }
+]

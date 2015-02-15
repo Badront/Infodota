@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">250 / 350 / 450 / 550</font></b><br/>УРОН: <b><font color=\"#ffffff\">40 / 80 / 120 / 160</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/130/160/190<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  28",
+        "desc": "Dark Seer создает вакуум в выбранной области, который втягивает в себя врагов и наносит им повреждения.",
+        "dmg": "",
+        "dname": "Vacuum",
+        "hurl": "Dark_Seer",
+        "notes": "Прерывает прочтение заклинаний.<br />Стягивает юнитов в течение 0,5 секунды, прежде чем нанести урон.<br />Не действует на неуязвимых юнитов.",
+        "lore": "Ишь-Кафэль создает центр притяжения в указанном месте.",
+        "name": "dark_seer_vacuum",
+        "youtube":"X9BW1-PhEY8",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">героев</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">250</font></b><br/>ПЕРИОДИЧЕСКИЙ УРОН: <b><font color=\"#ffffff\">30 / 50 / 70 / 90</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">20</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  70/90/110/130<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  9",
+        "desc": "Окружает выбранную цель колючим щитом, наносящим урон всем врагам вокруг.",
+        "dmg": "",
+        "dname": "Ion Shell",
+        "hurl": "Dark_Seer",
+        "notes": "Наносит небольшой урон каждую 0,1 секунды.<br />Не наносит урона цели заклинания.<br />Если на цели заклинания уже есть щит, то он заменится новым.",
+        "lore": "Dark Seer создает дыры в «Мир за стеной», заставляя призматическую энергию просачиваться наружу.",
+        "name": "dark_seer_ion_shell",
+        "youtube":"ZnXjN2FdNQA",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 4.5 / 6 / 7.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  20/30/40/50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/11/10/9",
+        "desc": "Заряжает дружественного юнита энергией, на короткое время увеличивающей скорость передвижения до максимума.",
+        "dmg": "",
+        "dname": "Surge",
+        "hurl": "Dark_Seer",
+        "notes": "Существа под действием способности не могут быть замедлены, пока ее эффект не спадет.",
+        "lore": "Однажды Ишь-Кафэль использовал скорость своего разума, чтобы преодолеть лабиринт между стенами.",
+        "name": "dark_seer_surge",
+        "youtube":"Vi9f-Bs2KX0",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">15 / 30 / 45</font></b><br/>УРОН: <b><font color=\"#ffffff\">150 / 150 / 150</font></b><br/>ПОЛУЧАЕМЫЙ УРОН: <b><font color=\"#ffffff\">300% / 300% / 300%</font></b><br/>НАНОСИМЫЙ УРОН: <b><font color=\"#ffffff\">70% / 80% / 90%</font></b><br/><span class=\"scepterVal\">НАНОСИМЫЙ УРОН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">100% / 120% / 140%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200/300/400<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  100",
+        "desc": "Создает стену преломленного света, которая наносит урон и создает копии любого вражеского героя, проходящего сквозь нее. Копии врага служат Dark Seer. <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Wall of Replica",
+        "hurl": "Dark_Seer",
+        "notes": "Не создает иллюзии из других иллюзий или клонов Meepo.<br />Создается стена длиной в 1000 единиц, перпендикулярная линии между вами и точкой применения заклинания.",
+        "lore": "Пусть Dark Seer и не в состоянии вернуться домой, силой своего разума он может призвать отрывок призматической стены, вызывая смятение в рядах врагов.",
+        "name": "dark_seer_wall_of_replica",
+        "youtube":"3Z1ndpKQZVg",
+        "id": 3
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">625</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/120/140/160<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  12",
+        "desc": "Calls down a wave of meteors to damage nearby enemy units. One random enemy unit in 175 range will take a second hit for 75% of the damage.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">75 / 150 / 225 / 300</font></b>",
+        "dname": "Starstorm",
+        "hurl": "Mirana",
+        "notes": "Starstorm is not blocked by Linken\u0027s Sphere.<br />Starstorm cannot hit invisible units.<br />Starstorm will choose a new target for the second star if the first died before impact.",
+        "lore": "The Goddess breaks the strata to empower her Princess in the time of need.",
+        "name": "mirana_starfall",
+        "youtube":"d1FZp9axctE",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RANGE: <b><font color=\"#ffffff\">3000</font></b><br />MINIMUM STUN: <b><font color=\"#ffffff\">0.01</font></b><br />MAXIMUM STUN: <b><font color=\"#ffffff\">5</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/100/100/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  17",
+        "desc": "Fires an arrow with deadly precision, dealing large damage and stunning the first enemy unit it strikes. Stun duration increases based on distance to target, ranging from 0.5 to 5 seconds. Bonus damage is applied based on distance to target.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">50-190 / 140-280 / 230-370 / 320-460</font></b>",
+        "dname": "Sacred Arrow",
+        "hurl": "Mirana",
+        "notes": "Maximum duration is 5 seconds growing linearly.<br />Sacred Arrow hits invisible units, but only deals damage; no stun is applied.",
+        "lore": "Lunar energies make the Princess of the Moon\u0027s arrows more deadly than most.",
+        "name": "mirana_arrow",
+        "youtube":"BG-WZoCv3PA",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "DISTANCE: <b><font color=\"#ffffff\">600 / 700 / 800 / 900</font></b><br />MOVEMENT BONUS: <b><font color=\"#ffffff\">4% / 8% / 12% / 16%</font></b><br />ATTACK SPEED BONUS: <b><font color=\"#ffffff\">8 / 16 / 24 / 32</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  40/35/30/20<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  30/26/22/18",
+        "desc": "Mirana leaps forward into battle, empowering allied units with a ferocious roar upon landing, granting attack and movement speed. Speed bonus lasts 10 seconds.",
+        "dmg": "",
+        "dname": "Leap",
+        "hurl": "Mirana",
+        "notes": "You can use Leap to dodge incoming projectiles.",
+        "lore": "Both friend and foe alike recognize Mirana\u0027s iconic white beast in the heat of battle.",
+        "name": "mirana_leap",
+        "youtube":"gB6cL5h6DgI",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "FADE DELAY: <b><font color=\"#ffffff\">2.5 / 2 / 1.5</font></b><br />DURATION: <b><font color=\"#ffffff\">15</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  75<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  140/120/100",
+        "desc": "Turns Mirana and all allied heroes invisible. If Invisibility is broken, it will restore after fade delay if the shadow\u0027s duration has not expired.  Silence will stop Moonlight Shadow.",
+        "dmg": "",
+        "dname": "Moonlight Shadow",
+        "hurl": "Mirana",
+        "notes": "Units affected will not auto attack enemies.<br />Magic immune allies will be affected.",
+        "lore": "Her tenure with Selemene allows Mirana to eclipse the ground, wrapping her allies in a cloak of shadows.",
+        "name": "mirana_invis",
+        "youtube":"FjieOflgUg0",
+        "id": 3
+    }
+]

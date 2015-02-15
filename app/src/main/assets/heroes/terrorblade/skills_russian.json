@@ -1,0 +1,60 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских героев</font></b><br />",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">2.5/3.5/4.5/5.5</font></b><br />УРОН ОТ ИЛЛЮЗИЙ: <b><font color=\"#ffffff\">40% / 50% / 60% / 70%</font></b><br />СНИЖЕНИЕ СКОРОСТИ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">60%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  22/18/14/10",
+        "desc": "Создает двойника врага. Двойник атакует оригинал и замедляет скорость его передвижения.",
+        "dmg": "",
+        "dname": "Reflection",
+        "hurl": "Terrorblade",
+        "notes": "Тени атакуют автоматически, также они неуязвимы.<br />Каждая тень атакует свой оригинал.",
+        "lore": "",
+        "name":"terrorblade_reflection",
+        "youtube":"fuym8gNLAr0",
+        "id":0
+
+    },
+    {
+        "dname": "Conjure Image",
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />",
+        "desc": "Призывает иллюзию Terrorblade, которая помогает ему в бою.",
+        "notes": "Можно создавать несколько иллюзий.<br/>Если Metamorphosis активен, то иллюзия также будет в этом режиме.",
+        "dmg": "",
+        "attrib": "УРОН ИЛЛЮЗИЯМ: <b><font color=\"#ffffff\">425%</font></b><br />УРОН ОТ ИЛЛЮЗИЙ: <b><font color=\"#ffffff\">30% / 40% / 50% / 60%</font></b><br />ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">32</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  16",
+        "lore": "",
+        "hurl": "Terrorblade",
+        "name":"terrorblade_conjure_image",
+        "youtube":"-b0yMS7uu2g",
+        "id":1
+
+    },
+    {
+        "dname": "Metamorphosis",
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />",
+        "desc": "Перерождает Terrorblade в Демона с дальнобойной атакой и тенями.",
+        "notes": "",
+        "dmg": "",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">40 / 44 / 48 / 52</font></b><br />ВРЕМЯ ТРАНСФОРМАЦИИ: <b><font color=\"#ffffff\">0.35</font></b><br />\nБАЗОВОЕ ВРЕМЯ АТАКИ: <b><font color=\"#ffffff\">1.6</font></b><br />ДАЛЬНОСТЬ АТАКИ: <b><font color=\"#ffffff\">550</font></b><br />ДОПОЛНИТЕЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">20 / 40 / 60 / 80</font></b><br />СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">290</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  140",
+        "lore": "",
+        "hurl": "Terrorblade",
+        "name":"terrorblade_metamorphosis",
+        "youtube":"nGq0lqaBngU",
+        "id":2
+    },
+    {
+        "dname": "Sunder",
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">героев</font></b><br />",
+        "desc": "Разрывает душу союзника или врага, меняя местами уровни здоровья вас и вашей цели.",
+        "notes": "Не блокируется невосприимчивостью к магии.<br/>Terrorblade может обмениваться здоровьем с иллюзиями.",
+        "dmg": "",
+        "attrib": "МИНИМАЛЬНОЕ ЗДОРОВЬЕ: <b><font color=\"#ffffff\">20%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200/100/0<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  120/80/40",
+        "lore": "",
+        "hurl": "Terrorblade",
+        "name":"terrorblade_sunder",
+        "youtube":"_r-fKYPSnlw",
+        "id":3
+    }
+]

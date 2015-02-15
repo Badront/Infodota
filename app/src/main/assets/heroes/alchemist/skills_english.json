@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">625</font></b><br />DURATION: <b><font color=\"#ffffff\">16</font></b><br />DAMAGE OVER TIME: <b><font color=\"#ffffff\">12 / 16 / 20 / 24</font></b><br />ARMOR REDUCTION: <b><font color=\"#ffffff\">4 / 5 / 6 / 7</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  130/140/150/160<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  22",
+        "desc": "Sprays high-pressure acid across a target area. Enemy units who step across the contaminated terrain take mixed damage per second and have their armor reduced.",
+        "dmg": "",
+        "dname": "Acid Spray",
+        "hurl": "Alchemist",
+        "notes": "Hits magic immune units.",
+        "lore": "Using traditional Alchemy from the Darkbrew family, Razzil concocts an acid that dissolves even the toughest metals.",
+        "name": "alchemist_acid_spray",
+        "youtube":"MUE1KNbho4Q",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "MAX STUN: <b><font color=\"#ffffff\">1.75 / 2.5 / 3.25 / 4</font></b><br />MAX DAMAGE: <b><font color=\"#ffffff\">150 / 220 / 290 / 360</font></b><br />RADIUS: <b><font color=\"#ffffff\">175</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  120<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  16",
+        "desc": "Alchemist brews up an unstable concoction that he can throw at an enemy hero, to stun and deal damage in an area around the explosion. The longer the concoction brews, the more damage it deals and the longer the stun. After 5 seconds, the brew reaches its maximum damage and stun time. However, after 5.5 seconds, the concoction will explode on Alchemist himself if not thrown.",
+        "dmg": "",
+        "dname": "Unstable Concoction",
+        "hurl": "Alchemist",
+        "notes": "Alchemist can move and act normally while brewing.<br />A timer above Alchemist\u0027s head will indicate the remaining brew time.<br />Maximum effects are achieved after 5 seconds.<br />You can deny yourself with this skill.<br />Unstable Concoction cannot be disjointed.",
+        "lore": "A silver lining to the failure of turning a mountain into gold, this volatile solution has destructive potential.",
+        "name": "alchemist_unstable_concoction",
+        "youtube":"12jG2U6LH6s",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "RECENT KILL WINDOW: <b><font color=\"#ffffff\">30</font></b><br />BASE BONUS GOLD: <b><font color=\"#ffffff\">6 / 8 / 10 / 12</font></b><br />EXTRA BONUS GOLD: <b><font color=\"#ffffff\">3</font></b>",
+        "cmb": "",
+        "desc": "Alchemist gets bonus gold for killing creeps; the bonus stacks if the creeps are killed within a period of time, after which the count is reset.  The bonus gold is capped at 12/20/28/36 gold.",
+        "dmg": "",
+        "dname": "Greevil\u0027s Greed",
+        "hurl": "Alchemist",
+        "notes": "",
+        "lore": "While it is not a mountain, Razzil has mastered the conversion of smaller compounds to line his pockets.",
+        "name": "alchemist_goblins_greed",
+        "youtube":"uHDQHquQk6E",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">25</font></b><br />BASE ATTACK TIME: <b><font color=\"#ffffff\">1.4 / 1.2 / 1</font></b><br />BONUS HEALTH REGEN: <b><font color=\"#ffffff\">50 / 75 / 100</font></b><br />BONUS MANA REGEN: <b><font color=\"#ffffff\">3 / 7.5 / 12</font></b><br />BONUS MOVE SPEED: <b><font color=\"#ffffff\">30 / 40 / 60</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  50/100/150<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  45",
+        "desc": "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration.",
+        "dmg": "",
+        "dname": "Chemical Rage",
+        "hurl": "Alchemist",
+        "notes": "Has a 0.35 second transformation time, which can be used to dodge projectiles and stuns.",
+        "lore": "The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat.",
+        "name": "alchemist_chemical_rage",
+        "youtube":"7SrgzbFp9Rw",
+        "id": 3
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Heroes</font></b>",
+        "attrib": "",
+        "cmb": "",
+        "desc": "Throw it before it blows up!",
+        "dmg": "",
+        "dname": "Unstable Concoction Throw",
+        "hurl": "Alchemist",
+        "notes": "",
+        "lore": "",
+        "name": "alchemist_unstable_concoction_throw",
+        "id": 4
+    }
+]

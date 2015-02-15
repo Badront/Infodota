@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">300</font></b><br/>УРОН: <b><font color=\"#ffffff\">100 / 150 / 200 / 250</font></b><br/>ПОТЕРЯ ХАРАКТЕРИСТИКИ: <b><font color=\"#ffffff\">15%</font></b><br/>ДЛИТЕЛЬНОСТЬ ОСЛАБЛЕНИЯ: <b><font color=\"#ffffff\">7</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  70/80/90/100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8",
+        "desc": "Timbersaw вращает смертельно острые лезвия, нанося врагам урон и разрушая деревья в области вокруг себя. Вражеские герои, получившие урон, дополнительно потеряют определенное значение своей основной характеристики. Способность нанесет чистый урон, если было срублено хоть одно дерево.",
+        "dmg": "",
+        "dname": "Whirling Death",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "На случай, если Риззака, как в его кошмарах, окружат лозы и растения, у него приготовлена экстренная система обороны пилами.",
+        "name": "shredder_whirling_death",
+        "youtube":"Lx4tosarCHM",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "ДАЛЬНОСТЬ ПРИМЕНЕНИЯ: <b><font color=\"#ffffff\">850 / 1050 / 1250 / 1450</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">225 / 225 / 225 / 225</font></b><br/>СКОРОСТЬ: <b><font color=\"#ffffff\">1600 / 2000 / 2400 / 2800</font></b><br/>УРОН: <b><font color=\"#ffffff\">100 / 140 / 180 / 220</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  60/70/80/90<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  4",
+        "desc": "Timbersaw выпускает гарпун, который цепляется за первое попавшееся дерево и притягивает героя к этому дереву. Любой враг, оказавшийся на пути, получит урон.",
+        "dmg": "",
+        "dname": "Timber Chain",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "Никогда не знаешь, когда придется сбегать от злобной растительности.",
+        "name": "shredder_timber_chain",
+        "youtube":"v2G3fSQXZwA",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ДОПОЛНИТЕЛЬНАЯ БРОНЯ: <b><font color=\"#ffffff\">1</font></b><br/>ДОП. РЕГЕН: <b><font color=\"#ffffff\">1</font></b><br/>МАКСИМУМ ЭФФЕКТОВ: <b><font color=\"#ffffff\">4 / 8 / 12 / 16</font></b><br/>ДЛИТЕЛЬНОСТЬ ОДНОГО ЭФФЕКТА: <b><font color=\"#ffffff\">16 / 16 / 16 / 16</font></b>",
+        "cmb": "",
+        "desc": "Каждый раз, когда кто-то атакует Timbersaw, он получает дополнительную броню и ускоренный реген здоровья.",
+        "dmg": "",
+        "dname": "Reactive Armor",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "Пил-костюм был сконструирован так, что он моментально реагирует на малейшее прикосновение, укрепляя защиту.",
+        "name": "shredder_reactive_armor",
+        "youtube":"IU_H0tbuK1Q",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">200</font></b><br/>МОМЕНТАЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">100 / 140 / 180</font></b><br/>УРОН В СЕКУНДУ: <b><font color=\"#ffffff\">50 / 75 / 100</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">5%</font></b><br/>ЗАТРАТЫ МАНЫ В СЕКУНДУ: <b><font color=\"#ffffff\">20 / 25 / 30</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100/150/200<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8",
+        "desc": "Запускает лезвие вашей пилы в указанное место, где оно начинает вращаться, нанося урон врагам вокруг себя. Помимо этого, за каждые 5% потерянного здоровья враги, атакованные пилой, будут медленнее передвигаться. Лезвие наносит чистый урон и срезает деревья на своем пути до цели и при обратном движении. Вы теряете возможность атаковать и теряете ману, пока способность активна.<br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Chakram",
+        "hurl": "Timbersaw",
+        "notes": "Лезвие вернется к вам, если у вас закончится мана или если вы отойдете более чем на 2000 единиц. Со скипетром получает второй Chakram.",
+        "lore": "Универсальное оружие для изничтожения флоры.",
+        "name": "shredder_chakram",
+        "youtube":"a3uWkquhsaE",
+        "id": 3
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  0",
+        "desc": "Возвращает Chakram к герою.",
+        "dmg": "",
+        "dname": "Return Chakram",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "",
+        "name": "shredder_return_chakram",
+        "id": 4
+    }
+]

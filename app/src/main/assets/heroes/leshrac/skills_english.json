@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "STUN DELAY: <b><font color=\"#ffffff\">0.35</font></b><br />RADIUS: <b><font color=\"#ffffff\">150 / 175 / 200 / 225</font></b><br />STUN DURATION: <b><font color=\"#ffffff\">2</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/125/140/160<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  9",
+        "desc": "Splits the earth under enemies. Deals damage and stuns for a short duration.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">120 / 180 / 240 / 300</font></b>",
+        "dname": "Split Earth",
+        "hurl": "Leshrac",
+        "notes": "Split Earth will destroy trees in its area of effect.<br />There is a 0.35 second delay before the effect is applied.",
+        "lore": "Twisting nature to his vile will, the shifting earth consumes those unlucky enough to cross Leshrac\u0027s path.",
+        "name": "leshrac_split_earth",
+        "youtube":"pLGhNjlPRc8",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "EXPLOSIONS: <b><font color=\"#ffffff\">32</font></b><br />RADIUS: <b><font color=\"#ffffff\">500</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  95/120/135/155<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  22",
+        "desc": "Saturates the area around Leshrac with magical explosions that deal mixed damage to enemy units and structures.  The fewer units available to attack, the more damage those units will take.  Lasts 10 seconds.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">9 / 18 / 27 / 36</font></b>",
+        "dname": "Diabolic Edict",
+        "hurl": "Leshrac",
+        "notes": "Damage is not reduced by damage block.<br />The explosions will continue even if Leshrac is killed.<br />Can damage buildings, magic immune units, and invisible units. Deals 40% more damage to tower",
+        "lore": "Chronoptic energy bursts from one plane to the other, evaporating anything it touches.",
+        "name": "leshrac_diabolic_edict",
+        "youtube":"bwzT7xBaEHE",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "JUMPS: <b><font color=\"#ffffff\">4 / 5 / 6 / 7</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  90/100/110/120<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  4",
+        "desc": "Summons a lightning storm that blasts the target enemy unit, then jumps to nearby enemy units.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">80 / 140 / 200 / 260</font></b>",
+        "dname": "Lightning Storm",
+        "hurl": "Leshrac",
+        "notes": "The lightning searches in a 650 area. Slows its targets by 75% for 0.75 seconds.",
+        "lore": "The Tormented Soul\u0027s mastery of the elements is evident in the massive storms that strike down armies before him.",
+        "name": "leshrac_lightning_storm",
+        "youtube":"bssFXEeOe4I",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target, Toggle</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "MANA/SEC: <b><font color=\"#ffffff\">20 / 40 / 60</font></b><br />RADIUS: <b><font color=\"#ffffff\">450</font></b><br />DAMAGE: <b><font color=\"#ffffff\">100 / 130 / 160</font></b><br /><span class=\"scepterVal\">SCEPTER DAMAGE:</font></b> <b><font color=\"#ffffff\">160 / 190 / 220</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  70/90/110<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  1",
+        "desc": "Creates waves of damaging energy around Leshrac, one per second, to damage nearby enemy units.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Pulse Nova",
+        "hurl": "Leshrac",
+        "notes": "Will not deal damage if Leshrac is invisible.",
+        "lore": "If necessary, the Tormented Soul can manipulate space time itself, ravaging lesser beings.",
+        "name": "leshrac_pulse_nova",
+        "youtube":"1IHJO2Tyl_0",
+        "id": 3
+    }
+]

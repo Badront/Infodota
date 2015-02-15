@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ОБЛАСТЬ ВТОРИЧНОГО УРОНА: <b><font color=\"#ffffff\">75 / 100 / 125 / 150</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">200 / 200 / 200 / 200</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">30% / 30% / 30% / 30%</font></b><br/>ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">20% / 20% / 20% / 20%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125/150/170/190<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8",
+        "desc": "Вокруг указанного врага создается ледяной взрыв, который наносит урон и замедляет всех врагов в области действия на 4 секунды. Первичная цель получает наибольший урон.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">50 / 100 / 150 / 200</font></b>",
+        "dname": "Frost Blast",
+        "hurl": "Lich",
+        "notes": "",
+        "lore": "Маг льда Этриан не забыл даже простейших манипуляций со льдом.",
+        "name": "lich_frost_nova",
+        "youtube":"bMuBB9l24ks",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">автоматическая, направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b>",
+        "attrib": "БОНУС БРОНИ: <b><font color=\"#ffffff\">3 / 5 / 7 / 9</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">2 / 2 / 2 / 2</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">30% / 30% / 30% / 30%</font></b><br/>ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">20% / 20% / 20% / 20%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/50/50/50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  5",
+        "desc": "Создает щит вокруг дружественного юнита или строения, который увеличивает броню и замедляет атакующих его воинов. Действует в течение 40 секунд.",
+        "dmg": "",
+        "dname": "Ice Armor",
+        "hurl": "Lich",
+        "notes": "Если включено автоприменение способности, то ваш герой будет автоматически накладывать это заклинание на союзников, которых атакуют.",
+        "lore": "Изначально созданное для самозащиты, теперь это заклинание Lich способно покрывать доспехи союзников мощным ледяным панцирем.",
+        "name": "lich_frost_armor",
+        "youtube":"hfdMe2zPVhs",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзников</font></b>",
+        "attrib": "ОБМЕН ЗДОРОВЬЯ: <b><font color=\"#ffffff\">25% / 40% / 55% / 70%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  25/25/25/25<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  44/36/28/20",
+        "desc": "Lich приносит в жертву дружественного крипа и получает ману пропорционально текущему здоровью убитого. Опыт за крипа получают и союзники, и противники.",
+        "dmg": "",
+        "dname": "Sacrifice",
+        "hurl": "Lich",
+        "notes": "",
+        "lore": "Невозможно даже предположить, что на свете был маг могущественнее Этриана, когда тот еще был живым.",
+        "name": "lich_dark_ritual",
+        "youtube":"_2zg_QNo1HQ",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ПРЫЖКОВ: <b><font color=\"#ffffff\">10 / 10 / 10</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">4 / 4 / 4</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">30% / 30% / 30%</font></b><br/>ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">20% / 20% / 20%</font></b><br/>РАДИУС ПРЫЖКА: <b><font color=\"#ffffff\">575 / 575 / 575</font></b><br/>УРОН: <b><font color=\"#ffffff\">280 / 370 / 460</font></b><br/><span class=\"scepterVal\">УРОН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">370 / 460 / 550</font></b><br/><span class=\"scepterVal\">ДАЛЬНОСТЬ ПРИМЕНЕНИЯ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">850 / 850 / 850</font></b>ПРЫЖКОВ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">не ограничено</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200/325/500<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  120/90/60",
+        "desc": "Создает ледяной шар, который высасывает тепло из врагов, замедляя их и нанося им урон. Шар отскакивает от целей до 10 раз. Первая цель кратковременно оглушается.  <br/> <br/>Улучшается с Aghanim\u0027s Scepter. ",
+        "dmg": "",
+        "dname": "Chain Frost",
+        "hurl": "Lich",
+        "notes": "Первая цель будет мгновенно оглушена. Это оглушение проходит сквозь иммунитет к магии.<br />От этой способности невозможно увернуться.",
+        "lore": "Ледяной шар Этриана почти повсеместно считается вершиной мастерства в магии льда. При умелом применении это заклинание способно уничтожить любых врагов, осмелившихся выступить против мага льда.",
+        "name": "lich_chain_frost",
+        "youtube":"VcWyGy_f5WU",
+        "id": 3
+    }
+]

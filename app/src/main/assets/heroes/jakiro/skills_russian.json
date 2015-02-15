@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита, направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ПЕРВИЧНЫЙ РАДИУС: <b><font color=\"#ffffff\">200</font></b><br/>КОНЕЧНЫЙ РАДИУС: <b><font color=\"#ffffff\">250</font></b><br/>ОГНЕННЫЙ УРОН: <b><font color=\"#ffffff\">16 / 35 / 56 / 76</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ И АТАКИ: <b><font color=\"#ffffff\">28% / 32% / 36% / 40%</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  135/140/155/170<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  10",
+        "desc": "Поток льда, за которым следует волна огня. Лед замедляет врагов, тогда как огонь наносит им урон с течением времени.",
+        "dmg": "",
+        "dname": "Dual Breath",
+        "hurl": "Jakiro",
+        "notes": "Наносит урон врагам в пределах 1000 единиц.<br />Задержка между дыханиями — 0,3 секунды.Наносит урон каждые 0.5 сек",
+        "lore": "Драконы-близнецы крайне опасны своим дыханием, воздействующим на цель разными видами магии; представить разрушительную силу некоторых таких комбинаций просто невозможно.",
+        "name": "jakiro_dual_breath",
+        "youtube":"TF0T7EZuxqU",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "ЗАДЕРЖКА: <b><font color=\"#ffffff\">0.5</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">1 / 1.4 / 1.8 / 2.2</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">150</font></b><br/>УРОН: <b><font color=\"#ffffff\">50</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  90<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/11/10/9",
+        "desc": "Создает ледяную дорожку, которая оглушает и наносит урон врагам, прикоснувшимся к ней.",
+        "dmg": "",
+        "dname": "Ice Path",
+        "hurl": "Jakiro",
+        "notes": "Задержка до заморозки — 0,5 секунды.",
+        "lore": "Правая голова Jakiro, владеющая ледяной магией, покрывает землю наледью, примораживая всякого, кто коснется ее.",
+        "name": "jakiro_ice_path",
+        "youtube":"opuYKyouxJk",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">автоматическая, направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">20% / 30% / 40% / 50%</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">300 / 300 / 300 / 300</font></b><br/>ОГНЕННЫЙ УРОН: <b><font color=\"#ffffff\">12 / 16 / 20 / 24</font></b><br/>DURATION: <b><font color=\"#ffffff\">5 / 5 / 5 / 5</font></b>",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20/15/10/4",
+        "desc": "Jakiro сжигает врагов в радиусе действия, замедляя их атаки.",
+        "dmg": "",
+        "dname": "Liquid Fire",
+        "hurl": "Jakiro",
+        "notes": "Действует как на юнитов, так и на строения.",
+        "lore": "Левая пасть Jakiro открывается, уничтожая любого на своем пути.",
+        "name": "jakiro_liquid_fire",
+        "youtube":"cdBmGuFveks",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита, направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">100 / 140 / 180</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">7</font></b><br/><span class=\"scepterVal\">ДЛИТЕЛЬНОСТЬ СО СКИПЕТРОМ: <b><font color=\"#ffffff\">14</font></b><br/>УРОН СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">125 / 175 / 225</font></b><br/><span class=\"scepterVal\">РАДИУС СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">1800</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  220/330/440<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60",
+        "desc": "Jakiro испускает шесть огненных дорожек, каждая из которых наносит ежесекундный урон вражеским юнитам в широкой области действия. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Macropyre",
+        "hurl": "Jakiro",
+        "notes": "Уничтожает деревья в области действия.",
+        "lore": "При соединении лед и огонь разрывают поле боя в клочья с огромными температурами.",
+        "name": "jakiro_macropyre",
+        "youtube":"RWGgjf-GEy4",
+        "id": 3
+    }
+]

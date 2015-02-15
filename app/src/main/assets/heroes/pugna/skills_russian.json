@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "ЗАДЕРЖКА: <b><font color=\"#ffffff\">0.9 / 0.9 / 0.9 / 0.9</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">400 / 400 / 400 / 400</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  85/105/125/145<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  5.50",
+        "desc": "Pugna создает взрыв астральной энергии, который наносит урон врагам и сооружениям в области действия. Сооружения получают только половину урона.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">100 / 175 / 250 / 325</font></b>",
+        "dname": "Nether Blast",
+        "hurl": "Pugna",
+        "notes": "Задержка перед взрывом — 0,9 секунды.",
+        "lore": "Искусства Забвения включают в себя оглушающий взрыв изумрудного пламени из самого Предела.",
+        "name": "pugna_nether_blast",
+        "youtube":"S-CNAxuxwbU",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b>",
+        "attrib": "УМЕНЬШЕНИЕ СОПРОТИВЛЕНИЯ МАГ. УРОНУ: <b><font color=\"#ffffff\">50%</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">50%</font></b><br/>ЗАМЕДЛЕНИЕ СОЮЗНИКОВ: <b><font color=\"#ffffff\">25%</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">2 / 2.5 / 3 / 3.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  60<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/10/8/6",
+        "desc": "Могущественное заклятие изгнания замедляет выбранного юнита, лишает его возможности атаковать или быть атакованным, а также увеличивает получаемый им урон от заклинаний.",
+        "dmg": "",
+        "dname": "Decrepify",
+        "hurl": "Pugna",
+        "notes": "Юниту под действием этой способности наносится только магический и чистый урон.",
+        "lore": "Pugna много практиковался в перемещении физических тел в астральную реальность. Сейчас он таким образом может спасать союзников, вредить врагам или просто развлекаться.",
+        "name": "pugna_decrepify",
+        "youtube":"vslnhbjQiXw",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">1600</font></b><br/>РЕГЕН МАНЫ: <b><font color=\"#ffffff\">1.5 / 3 / 4.5 / 6</font></b><br/>КОЭФФИЦИЕНТ УРОНА: <b><font color=\"#ffffff\">1 / 1.25 / 1.5 / 1.75</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80/80/80/80<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  35",
+        "desc": "Pugna создает Nether Ward, стреляющий вспышками маны по врагам, которые осмеливаются применять заклинания, в то же время уменьшая их регенерацию маны. Nether Ward наносит урон, равный коэффициенту урона, помноженному на ману, потраченную вражеским героем. Действует 30 секунд.",
+        "dmg": "",
+        "dname": "Nether Ward",
+        "hurl": "Pugna",
+        "notes": "Наносит урон перед произнесением заклинания, так что заклинание убитого им противника не подействует.<br />На Nether Ward можно использовать способность Decrepify.<br />Здоровье варда: 75 / 150 / 225 / 300 единиц.",
+        "lore": "Во время изучения искусств Забвения Pugna научился побеждать своих товарищей простым тотемом, заряженным магией Предела.",
+        "name": "pugna_nether_ward",
+        "youtube":"1GLjEtZRA7M",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">прерываемая, направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских и союзных существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАСХОД В СЕКУНДУ: <b><font color=\"#ffffff\">120 / 160 / 200</font></b><br/><span class=\"scepterVal\">ЗДОРОВЬЯ ПЕРЕДАЕТСЯ В СЕКУНДУ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">180 / 240 / 300</font></b><br/><span class=\"scepterVal\">ДОП. ДАЛЬНОСТЬ ПРИМЕНЕНИЯ СО СКИПЕТРОМ:</font></b> <b><font color=\"#ffffff\">50</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125/175/225<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  22",
+        "desc": "ПРЕРЫВАЕМАЯ — пока Life Drain активен, Pugna поглощает здоровье выбранного вражеского юнита в течение 10 секунд. Если запас здоровья полон, то восстанавливается мана. Если применить на союзника, то Pugna будет выкачивать свое здоровье в него.<br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Life Drain",
+        "hurl": "Pugna",
+        "notes": "Количество полученного здоровья зависит от количества нанесенного урона.<br />Мгновенно уничтожает иллюзии.",
+        "lore": "Pugna становится действительно сильнее повелителя Забвения.",
+        "name": "pugna_life_drain",
+        "youtube":"G9pGWvXj0aE",
+        "id": 3
+    }
+]

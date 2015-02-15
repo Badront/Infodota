@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">200</font></b><br/>УРОН: <b><font color=\"#ffffff\">70 / 140 / 210 / 280</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/120/120/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  18/16/14/12",
+        "desc": "Tusk сжимает осколки льда в шар холодной энергии, который наносит урон всем врагам, которых он коснется. Если шар достигнет максимальной дальности полета, то осколки высвободятся, создавая барьер на 7 секунд.",
+        "dmg": "",
+        "dname": "Ice Shards",
+        "hurl": "Tusk",
+        "notes": "Максимальная дистанция — 1800 единиц.<br />Создает непроходимый барьер.",
+        "lore": "После последнего захода солнца в ледяной тундре у Барьера всё леденеет с ужасной быстротой.",
+        "name": "tusk_ice_shards",
+        "youtube":"b0hv_O6t8PI",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">80 / 180 / 160 / 200</font></b><br/>ДОП. УРОН ЗА СОЮЗНИКА: <b><font color=\"#ffffff\">20 / 30 / 40 / 50</font></b><br/>ДОП. СКОРОСТЬ ЗА СОЮЗНИКА: <b><font color=\"#ffffff\">100</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">0.5 / 0.75 / 1 / 1.25</font></b><br/>ДАЛЬНОСТЬ СБОРА: <b><font color=\"#ffffff\">100</font></b><br/>ВРЕМЯ ЗАПУСКА: <b><font color=\"#ffffff\">4</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  75/75/75/75<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  21 / 20 / 19 / 18",
+        "desc": "Tusk сворачивается в снежный ком, автоматически собирая всех союзных героев в радиусе 100. Союзные герои в радиусе 400 также могут быть добавлены в снежный ком нажатием правой клавиши мыши на них. После запуска все враги, попавшиеся на пути кома, будут оглушены и получат урон. Каждый союзный герой в снежном коме добавит кому скорость и урон.",
+        "dmg": "",
+        "dname": "Snowball",
+        "hurl": "Tusk",
+        "notes": "Снежный ком сносит деревья на своем пути.<br />Снежный шар передвигается со скоростью, равной 175% от скорости Tusk.<br />Иллюзии, в отличие от клонов Meepo и подконтрольных вам существ, в снежный ком не попадут.<br />Каждый клон Meepo добавит свою скорость и урон снежному кому. Союзники могут нажать на Snowball, чтобы запрыгнуть в него.",
+        "lore": "О трюке, завершившем великую потасовку на Белоснежных полях, до сих пор ходят легенды.",
+        "name": "tusk_snowball",
+        "youtube":"ZHvQHTdctGk",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">600</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">30</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">10% / 15% / 20% / 25%</font></b><br/>ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">30% / 40% / 50% / 60%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  75/75/75/75<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  50",
+        "desc": "Tusk призывает печать мороза, взывая к глубочайшему холоду зимы. Печать создает метель, которая замедляет всех вражеских существ в радиусе 600 единиц.",
+        "dmg": "",
+        "dname": "Frozen Sigil",
+        "hurl": "Tusk",
+        "notes": "При отсутствии приказов печать будет следовать за вами.<br />Печать передвигается в воздухе со скоростью в 310 единиц, имеет 220/240/260/280 единиц здоровья, обзор в 400 единиц, а за ее уничтожение враг получает 90/100/110/120 золота.",
+        "lore": "Родимый мороз!",
+        "name": "tusk_frozen_sigil",
+        "youtube":"emCjRsmIMKg",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">10</font></b><br/>МНОЖИТЕЛЬ КРИТА: <b><font color=\"#ffffff\">350%</font></b><br/>ПОРОГОВЫЙ МНОЖИТЕЛЬ КРИТА: <b><font color=\"#ffffff\">400%</font></b><br/>ВРЕМЯ НАХОЖДЕНИЯ В ВОЗДУХЕ: <b><font color=\"#ffffff\">1</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">2 / 3 / 4</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/75/100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20/16/12",
+        "desc": "Tusk готовит свой могущественный Walrus Punch. Его следующая атака нанесет критический урон и подбросит жертву в воздух. После приземления жертва будет замедлена, и ей будет нанесен некоторый урон. Если у цели уровень здоровья ниже определенного процента максимального запаса, она получит дополнительный урон.",
+        "dmg": "",
+        "dname": "Walrus PUNCH!",
+        "hurl": "Tusk",
+        "notes": "От этой способности невозможно увернуться.<br />Выводит из строя врагов, невосприимчивых к магии.",
+        "lore": "Неважно, кто ударил первым. Важно, кто ударил последним.",
+        "name": "tusk_walrus_punch",
+        "youtube":"wOQx_jM-dcE",
+        "id": 3
+    }
+]

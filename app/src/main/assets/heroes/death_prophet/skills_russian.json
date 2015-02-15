@@ -1,0 +1,57 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита, направленная на точку</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">810 / 810 / 810 / 810</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  105/120/140/165<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  8",
+        "desc": "Кробелус посылает вперед стаю крылатых тварей, наносящих урон врагам на своем пути.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">75 / 150 / 225 / 300</font></b>",
+        "dname": "Crypt Swarm",
+        "hurl": "Death_Prophet",
+        "notes": "Наносит урон юнитам на расстоянии до 1100 единиц.",
+        "lore": "Во время своих путешествий в загробный мир Кробелус забирает с собой души проклятых, материализуя их стаей летучих мышей в нашем мире.",
+        "name": "death_prophet_carrion_swarm",
+        "youtube":"z_uGWWazyqg",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">425</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80/80/80/80<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  15",
+        "desc": "Не дает использовать заклинания врагам в указанной области.",
+        "dmg": "",
+        "dname": "Silence",
+        "hurl": "Death_Prophet",
+        "notes": "Не запрещает использовать предметы.",
+        "lore": "Кробелус видит лишь безмолвное будущее, вглядываясь в смертное предначертание своего врага.",
+        "name": "death_prophet_silence",
+        "youtube":"eLBBXHVFYgU",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">5% / 10% / 15% / 20%</font></b><br/>УМЕНЬШЕНИЕ РАСХОДА МАНЫ: <b><font color=\"#ffffff\">10 / 15 / 20 / 25</font></b><br/>УМЕНЬШЕНИЕ КУЛДАУНА: <b><font color=\"#ffffff\">1 / 2 / 3 / 4</font></b><br/>ДОПОЛНИТЕЛЬНО ДУХОВ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "",
+        "desc": "Увеличивает мощь заклинаний Death Prophet и дает дополнительный бонус к скорости передвижения. Уменьшет расход маны и кулдаун Crypt Swarm и Silence, а заклинание Exorcism призывает большее количество духов.",
+        "dmg": "",
+        "dname": "Witchcraft",
+        "hurl": "Death_Prophet",
+        "notes": "",
+        "lore": "Новые души пополняют репертуар Кробелус, усиливая её колдовскую мощь.",
+        "name": "death_prophet_witchcraft",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">700 / 700 / 700</font></b><br/>ДУХОВ: <b><font color=\"#ffffff\">4 / 12 / 21</font></b><br/>ЗДОРОВЬЯ ВОССТ.: <b><font color=\"#ffffff\">25% / 25% / 25%</font></b><br/>УРОН ДУХОВ: <b><font color=\"#ffffff\">55 / 55 / 55</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  200/300/400<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  145",
+        "desc": "Кробелус выпускает злобных духов, высасывающих жизнь из вражеских юнитов и сооружений поблизости. Через 30 секунд они возвращаются к хозяйке, исцеляя ее. Сила исцеления зависит от количества нанесенного духами урона.",
+        "dmg": "",
+        "dname": "Exorcism",
+        "hurl": "Death_Prophet",
+        "notes": "Радиус указывает область вокруг вас, в которой духи будут атаковать.<br />Урон от духов не уменьшается способностями, блокирующими урон.",
+        "lore": "Осколки прошлых жизней баньши на время материализуются, чтобы сеять ужас в настоящем.",
+        "name": "death_prophet_exorcism",
+        "youtube":"UpxNoiCXx1g",
+        "id": 3
+    }
+]

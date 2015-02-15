@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">300</font></b><br />DAMAGE: <b><font color=\"#ffffff\">100 / 150 / 200 / 250</font></b><br />STAT LOSS PERCENT: <b><font color=\"#ffffff\">15%</font></b><br />STAT LOSS DURATION: <b><font color=\"#ffffff\">7</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  70/80/90/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  8",
+        "desc": "Timbersaw whirls extremely sharp edges, damaging enemies and destroying trees around him in an area.  If an enemy hero is affected, it loses some of its primary attribute for a short duration.  Whirling Death will deal Pure damage if a tree is cut down in the process.",
+        "dmg": "",
+        "dname": "Whirling Death",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "In the case that Rizzrack gets surrounded by the the vines and plants of his nightmares, he has an immediate chainsaw defense.",
+        "name": "shredder_whirling_death",
+        "youtube":"Lx4tosarCHM",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "LATCH RANGE: <b><font color=\"#ffffff\">850 / 1050 / 1250 / 1450</font></b><br />RADIUS: <b><font color=\"#ffffff\">225 / 225 / 225 / 225</font></b><br />SPEED: <b><font color=\"#ffffff\">1600 / 2000 / 2400 / 2800</font></b><br />DAMAGE: <b><font color=\"#ffffff\">100 / 140 / 180 / 220</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  60/70/80/90<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  4",
+        "desc": "Timbersaw fires a chain that embeds itself in the first tree it hits, pulling him towards it.  Any enemy in the path takes damage.",
+        "dmg": "",
+        "dname": "Timber Chain",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "You never know when you might need to escape from malevolent saplings.",
+        "name": "shredder_timber_chain",
+        "youtube":"v2G3fSQXZwA",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "BONUS ARMOR: <b><font color=\"#ffffff\">1</font></b><br />BONUS HP REGEN: <b><font color=\"#ffffff\">1</font></b><br />MAX STACKS: <b><font color=\"#ffffff\">4 / 8 / 12 / 16</font></b><br />STACK DURATION: <b><font color=\"#ffffff\">16 / 16 / 16 / 16</font></b>",
+        "cmb": "",
+        "desc": "Each time Timbersaw is attacked, he gains increased health regen and armor.",
+        "dmg": "",
+        "dname": "Reactive Armor",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "The saw-suit is equipped to react to the slightest touch with fortified defenses.",
+        "name": "shredder_reactive_armor",
+        "youtube":"IU_H0tbuK1Q",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">200</font></b><br />PASS DAMAGE: <b><font color=\"#ffffff\">100 / 140 / 180</font></b><br />DAMAGE PER SECOND: <b><font color=\"#ffffff\">50 / 75 / 100</font></b><br />SLOW: <b><font color=\"#ffffff\">5%</font></b><br />MANA COST PER SECOND: <b><font color=\"#ffffff\">20 / 25 / 30</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/150/200<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  8",
+        "desc": "Fires your main saw blade at the target location where it will spin in place, dealing damage in an area around it.  Additionally, for each 5% of health missing, enemies caught in the saw blade move more slowly. The blade deals damage and cuts down trees in its path when fired and retracted.  While active the ability costs mana, and you lose the ability to attack.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Chakram",
+        "hurl": "Timbersaw",
+        "notes": "The Chakram will return if Timbersaw runs out of mana or moves over 2000 distance away. Scepter grants Timbersaw a second Chakram.",
+        "lore": "The ultimate in anti-flora weaponry.",
+        "name": "shredder_chakram",
+        "youtube":"a3uWkquhsaE",
+        "id": 3
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  0",
+        "desc": "Returns the Chakram to Timbersaw.",
+        "dmg": "",
+        "dname": "Return Chakram",
+        "hurl": "Timbersaw",
+        "notes": "",
+        "lore": "",
+        "name": "shredder_return_chakram",
+        "id": 4
+    }
+]

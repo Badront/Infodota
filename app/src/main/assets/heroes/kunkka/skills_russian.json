@@ -1,0 +1,71 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">225</font></b><br/>ЗАМЕДЛЕНИЕ: <b><font color=\"#ffffff\">35%</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">1 / 2 / 3 / 4</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">1.53 / 1.53 / 1.53 / 1.53</font></b><br/>ЗАДЕРЖКА: <b><font color=\"#ffffff\">1.6 / 1.6 / 1.6 / 1.6</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/120/120/120<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12",
+        "desc": "После небольшой задержки создает мощный поток воды, который подбрасывает врагов в небо, оглушает их, а затем наносит урон и снижает скорость их передвижения.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">120 / 180 / 240 / 300</font></b>",
+        "dname": "Torrent",
+        "hurl": "Kunkka",
+        "notes": "Мгновенный эффект на земле виден только союзникам.<br />Юниты, подброшенные в воздух, будут оглушены, и их можно будет атаковать.",
+        "lore": "Адмирал вызывает мощный всплеск воды, который вырывается на поверхность прямо из центра мира.",
+        "name": "kunkka_torrent",
+        "youtube":"2NeN4ToMrfY",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">500 / 500 / 500 / 600</font></b><br/>ДОПОЛНИТЕЛЬНЫЙ УРОН: <b><font color=\"#ffffff\">15 / 30 / 45 / 60</font></b>",
+        "cmb": "<div class=\"cooldown\"><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  13/10/7/4",
+        "desc": "Легендарный меч Kunkka увеличивает урон героя и бьет сразу по нескольким врагам впереди него за один удар.",
+        "dmg": "",
+        "dname": "Tidebringer",
+        "hurl": "Kunkka",
+        "notes": "Урон соседним юнитам снижается в зависимости от типа брони, а не его количества.<br />Урон соседним целям проходит сквозь иммунитет к магии.<br />При добивании союзников способность не активируется.",
+        "lore": "Потерянная душа кладдского офицера поселилась в верном мече Адмирала под названием Tidebringer, придавая ему силу уничтожать демонов Катаракты.",
+        "name": "kunkka_tidebringer",
+        "youtube":"GrJOoGLZyWg",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">героев</font></b>",
+        "attrib": "ЗАДЕРЖКА: <b><font color=\"#ffffff\">4</font></b><br/>ЗАДЕРЖКА НА СОЮЗИНКАХ: <b><font color=\"#ffffff\">8</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">350 / 550 / 750 / 1000</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  19/16/13/10",
+        "desc": "Помечает место расположения дружественного или вражеского героя крестом и через несколько секунд или по нажатию кнопки возвращает его на это самое место.",
+        "dmg": "",
+        "dname": "X Marks the Spot",
+        "hurl": "Kunkka",
+        "notes": "Если после использования заклинания его цель стала невосприимчива к магии, то к кресту она не вернется.<br />Прерывает прочтение заклинаний.",
+        "lore": "Ряд мистических способностей Адмирала можно использовать как для битвы, так и для развлечения.",
+        "name": "kunkka_x_marks_the_spot",
+        "youtube":"uF1OsHjC-tY",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">425 / 425 / 425</font></b><br/>ДИСТАНЦИЯ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">1000 / 1000 / 1000</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">1.4 / 1.4 / 1.4</font></b><br/>ДОПОЛНИТЕЛЬНАЯ СКОРОСТЬ: <b><font color=\"#ffffff\">10% / 10% / 10%</font></b><br/>ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">10</font></b><br/>ЗАДЕРЖКА УДАРА: <b><font color=\"#ffffff\">3</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/200/250<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60/50/40",
+        "desc": "Вызывает корабль-призрак, который прорывается сквозь битву, оглушая вражеских юнитов и нанося им урон. Все союзники оказываются под ливнем рома Kunkka, получая дополнительную скорость передвижения и замедленную реакцию на любой урон.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">400 / 500 / 600</font></b>",
+        "dname": "Ghostship",
+        "hurl": "Kunkka",
+        "notes": "Урон, нанесенный после снятия эффекта с союзников, не может быть смертельным.",
+        "lore": "Последний корабль кладдского флота — не более чем фантом. Однако для врагов Адмирала он весьма реален.",
+        "name": "kunkka_ghostship",
+        "youtube":"lfnAIKZ6suE",
+        "id": 3
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  50/50/50/50<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  5",
+        "desc": "Возвращает выбранного героя к кресту.",
+        "dmg": "",
+        "dname": "Return",
+        "hurl": "Kunkka",
+        "notes": "",
+        "lore": "",
+        "name": "kunkka_return",
+        "id": 4
+    }
+]

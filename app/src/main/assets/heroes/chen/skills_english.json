@@ -1,0 +1,72 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b>",
+        "attrib": "DURATION: <b><font color=\"#ffffff\">5 / 6 / 7 / 8</font></b><br />SLOW: <b><font color=\"#ffffff\">14% / 18% / 22% / 26%</font></b><br />BONUS DAMAGE: <b><font color=\"#ffffff\">14% / 18% / 22% / 26%</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  14/13/12/11",
+        "desc": "Forces an enemy unit to move slower and take more damage from attacks and spells.",
+        "dmg": "",
+        "dname": "Penitence",
+        "hurl": "Chen",
+        "notes": "",
+        "lore": "Although Chen\u0027s brand of animal enthrallment isn\u0027t quite strong enough to control the minds of enemy heroes, it still tests their resolve in combat.",
+        "name": "chen_penitence",
+        "youtube":"Q0lQaxZ2bG8",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
+        "attrib": "DAMAGE MIN: <b><font color=\"#ffffff\">50 / 100 / 150 / 200</font></b><br />DAMAGE MAX: <b><font color=\"#ffffff\">100 / 200 / 300 / 400</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  175/175/175/175<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  24",
+        "desc": "Deals random damage to test an enemy unit\u0027s faith.",
+        "dmg": "",
+        "dname": "Test of Faith",
+        "hurl": "Chen",
+        "notes": "",
+        "lore": "Knights of the Fold possess a fanatical form of magic that is considered quite unwieldy by most other users of arcane arts.",
+        "name": "chen_test_of_faith",
+        "youtube":"NfeyK2IK4mg",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Allied Units</font></b>",
+        "attrib": "HERO TP DELAY: <b><font color=\"#ffffff\">6 / 5 / 4 / 3</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  200/200/200/200<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  24",
+        "desc": "Teleports a friendly unit back to the base.  Creeps are teleported instantly, Heroes have a delay before teleporting. If cast on Chen, all units controlled by Chen through Holy Persuasion will be teleported to him after a delay.",
+        "dmg": "",
+        "dname": "Test of Faith",
+        "hurl": "Chen",
+        "notes": "",
+        "lore": "",
+        "name": "chen_test_of_faith_teleport",
+        "youtube":"TY-WEAij0KM",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Creeps</font></b>",
+        "attrib": "MAX UNITS: <b><font color=\"#ffffff\">1 / 2 / 3 / 4</font></b><br />HEALTH BONUS: <b><font color=\"#ffffff\">75 / 150 / 225 / 300</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  100/100/100/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  30/26/22/18",
+        "desc": "Gives control of an enemy or neutral creep, and gives it bonus hit points. Upgradable by Aghanim\u0027s Scepter, allowing Chen to persuade Ancient Creeps. The number of Ancient Creeps that can be persuaded is based on the level of Hand of God.",
+        "dmg": "",
+        "dname": "Holy Persuasion",
+        "hurl": "Chen",
+        "notes": "When persuading a new creep above your max unit count, a random persuaded unit (which could be the one you just persuaded) will die.",
+        "lore": "Although they may not be knights, Chen incorporates beasts into the Fold in the same way he himself was converted.",
+        "name": "chen_holy_persuasion",
+        "youtube":"Jhk_gA5AeZo",
+        "id": 3
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b>",
+        "attrib": "HEAL: <b><font color=\"#ffffff\">200 / 300 / 400</font></b><br /><span class=\"scepterVal\">SCEPTER  COOLDOWN:</font></b> <b><font color=\"#ffffff\">30 / 30 / 30</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  200/300/400<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  160/140/120",
+        "desc": "Fully regenerates any creeps under Chen\u0027s control and heals all allied heroes on the map.<br />Upgradable by Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Hand of God",
+        "hurl": "Chen",
+        "notes": "Heals magic immune units.",
+        "lore": "Using the mental link with his thralls, Chen calls down restoration and well-being to those who share his fanaticism.",
+        "name": "chen_hand_of_god",
+        "youtube":"BxXGyInKTpQ",
+        "id": 4
+    }
+]

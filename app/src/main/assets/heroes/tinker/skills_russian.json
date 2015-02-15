@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "ШАНС ПРОМАХА: <b><font color=\"#ffffff\">100% / 100% / 100% / 100%</font></b><br/>ДАЛЬНОСТЬ ПРИМЕНЕНИЯ: <b><font color=\"#ffffff\">550</font></b><br/>ДАЛЬНОСТЬ ПРИМЕНЕНИЯ СО СКИПЕТРОМ: <b><font color=\"#ffffff\">1100</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  95/120/145/170<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  14",
+        "desc": "Выпускает сильный энергетический луч, который наносит урон и ослепляет цель на 3 секунды, из-за чего та промахивается всеми физическими атаками.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">80 / 160 / 240 / 320</font></b>",
+        "dname": "Laser",
+        "hurl": "Tinker",
+        "notes": "Урон наносится мгновенно, а эффект промаха срабатывает только после попадания.",
+        "lore": "В подземной лаборатории Фиолетового плато Боуш модифицировал промышленный лазерный резак, даже не задумываясь о его предстоящем боевом применении.",
+        "name": "tinker_laser",
+        "youtube":"2tDx6grjLns",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "КОЛИЧЕСТВО ЦЕЛЕЙ: <b><font color=\"#ffffff\">2 / 2 / 2 / 2</font></b><br/>КОЛИЧЕСТВО ЦЕЛЕЙ СО СКИПЕТРОМ: <b><font color=\"#ffffff\">4 / 4 / 4 / 4</font></b><br/>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/140/160/180<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  25",
+        "desc": "Запускает пару ракет в ближайших видимых вражеских героев в радиусе 2500 единиц.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">125 / 200 / 275 / 350</font></b>",
+        "dname": "Heat-Seeking Missile",
+        "hurl": "Tinker",
+        "notes": "Не наносит урона юнитам под воздействием Ethereal.",
+        "lore": "Последним изобретением, что Боуш смог сохранить, была модифицированная ракетница с механизмом самонаведения.",
+        "name": "tinker_heat_seeking_missile",
+        "youtube":"jK4Sn_EDBpE",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">900 / 900 / 900 / 900</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">6 / 6 / 6 / 6</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  145/150/165/190<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  35",
+        "desc": "Призывает армию механических слуг, атакующих врагов вокруг Tinker.",
+        "dmg": "УРОН: <b><font color=\"#ffffff\">16 / 24 / 32 / 40</font></b>",
+        "dname": "March of the Machines",
+        "hurl": "Tinker",
+        "notes": "За секунду появляется 24 робота.",
+        "lore": "Несмотря на то, что лабораторию уже давно запечатали, радио-вызов роботизированных дронов всё еще работает.",
+        "name": "tinker_march_of_the_machines",
+        "youtube":"AmXRvkaYhIE",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная, прерываемая</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ПРОИЗНЕСЕНИЯ: <b><font color=\"#ffffff\">3 / 2 / 1</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  150/250/350<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  0",
+        "desc": "ПРЕРЫВАЕМАЯ — сбрасывает кулдаун большинства предметов и способностей у Tinker.",
+        "dmg": "",
+        "dname": "Rearm",
+        "hurl": "Tinker",
+        "notes": "Rearm действует на все артефакты за исключением Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb и Necronomicon.",
+        "lore": "Новую батарею сюда, пару ракет туда — Боуш постоянно совершенствует и обновляет свою технику.",
+        "name": "tinker_rearm",
+        "youtube":"eHlwkFnGtzs",
+        "id": 3
+    }
+]

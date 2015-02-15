@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b><br />УРОН: <b><font color=\"#ffffff\">физический</font></b>",
+        "attrib": "МАНЫ ЗА УДАР: <b><font color=\"#ffffff\"><b>28 / 40 / 52 / 64</b></font></b>",
+        "cmb": "",
+        "desc": "Сжигает ману соперника с каждой атакой. Mana Break наносит противнику урон в размере 60% от сожженной маны. <br/> <br/>Mana Break — уникальный модификатор атаки, он не будет сочетаться с другими уникальными модификаторами атаки.",
+        "dmg": "",
+        "dname": "Mana Break",
+        "hurl": "Anti-Mage",
+        "notes": "Блокируется невосприимчивостью к магии.<br />Если на вас действует аура вампиризма, урон, нанесенный этой способностью, будет восстанавливать ваше здоровье.",
+        "lore": "Измененная техника турстаркурийских монахов по обращению волшебной энергии против самого чародея.",
+        "name": "antimage_mana_break",
+        "youtube":"5n9dPC349Lw",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
+        "attrib": "РАДИУС: <b><font color=\"#ffffff\">1000 / 1075 / 1150 / 1150</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  60/60/60/60<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  12/9/7/5",
+        "desc": "Телепортация на короткую дистанцию, позволяющая Anti-Mage врываться в схватку и быстро возвращаться назад.",
+        "dmg": "",
+        "dname": "Blink",
+        "hurl": "Anti-Mage",
+        "notes": "Если вы используете Blink, чтобы телепортироваться дальше, чем это позволяет способность, дистанция перемещения составит 4/5 от максимально возможной.<br />Можно использовать для уклонения от летящих в вас снарядов.",
+        "lore": "В своих схватках с мертвыми богами Anti-Mage познал ценность неуловимости.",
+        "name": "antimage_blink",
+        "youtube":"HCJe7ilCyXo",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "СОПРОТИВЛЕНИЕ: <b><font color=\"#ffffff\">26% / 34% / 42% / 50%</font></b>",
+        "cmb": "",
+        "desc": "Увеличивает сопротивление Anti-Mage магическому урону.",
+        "dmg": "",
+        "dname": "Spell Shield",
+        "hurl": "Anti-Mage",
+        "notes": "Сочетается с другими источниками сопротивления магии.",
+        "lore": "Годы медитации и одержимость местью защищают кожу Anti-Mage от вражеских заклятий.",
+        "name": "antimage_spell_shield",
+        "youtube":"pQ6OlMLiA-A",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">0.6 / 0.85 / 1.1</font></b><br/>ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: <b><font color=\"#ffffff\">0.1 / 0.2 / 0.3</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">500</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125/200/275<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  70",
+        "desc": "За каждую отсутствующую у цели единицу маны ей и окружающим противникам наносится урон. Основная цель кратковременно оглушается.",
+        "dmg": "",
+        "dname": "Mana Void",
+        "hurl": "Anti-Mage",
+        "notes": "Оглушение проходит сквозь иммунитет к магии.<br />Урон основывается на количестве маны у цели, на которую вы собираетесь применить способность, но урон наносится всем противникам в радиусе действия способности.",
+        "lore": "Одолев врагов, Anti-Mage карает их за использование тайных искусств.",
+        "name": "antimage_mana_void",
+        "youtube":"qi1_xFE6nBI",
+        "id": 3
+    }
+]

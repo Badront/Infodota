@@ -1,0 +1,57 @@
+[
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target, Point Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy Units</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Magical</font></b>",
+        "attrib": "RANGE: <b><font color=\"#ffffff\">810 / 810 / 810 / 810</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  105/120/140/165<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  8",
+        "desc": "Sends a swarm of winged beasts to savage enemy units in front of Death Prophet.",
+        "dmg": "DAMAGE: <b><font color=\"#ffffff\">75 / 150 / 225 / 300</font></b>",
+        "dname": "Crypt Swarm",
+        "hurl": "Death_Prophet",
+        "notes": "Can hit units up to 1110 range away.",
+        "lore": "Krobelus\u0027 many trips to the grave gather a flock of the damned.",
+        "name": "death_prophet_carrion_swarm",
+        "youtube":"z_uGWWazyqg",
+        "id": 0
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">425</font></b><br />DURATION: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  80/80/80/80<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  15",
+        "desc": "Prevents enemy units in a target area from casting spells.",
+        "dmg": "",
+        "dname": "Silence",
+        "hurl": "Death_Prophet",
+        "notes": "Doesn\u0027t prevent usage of items.",
+        "lore": "Peering into the veil of her opponent\u0027s demise, Krobelus sees a silent future.",
+        "name": "death_prophet_silence",
+        "youtube":"eLBBXHVFYgU",
+        "id": 1
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Passive</font></b>",
+        "attrib": "MOVEMENT SPEED: <b><font color=\"#ffffff\">5% / 10% / 15% / 20%</font></b><br />MANA COST DECREASE: <b><font color=\"#ffffff\">10 / 15 / 20 / 25</font></b><br />COOLDOWN DECREASE: <b><font color=\"#ffffff\">1 / 2 / 3 / 4</font></b><br />EXORCISM SPIRITS: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b>",
+        "cmb": "",
+        "desc": "Increases the potency of Death Prophet\u0027s spells, while providing a passive movement speed boost.  Reduces mana costs and cooldowns of Crypt Swarm and Silence, and adds additional spirits to Exorcism.",
+        "dmg": "",
+        "dname": "Witchcraft",
+        "hurl": "Death_Prophet",
+        "notes": "",
+        "lore": "With each death, Krobelus adds necromantic power to her repertoire.",
+        "name": "death_prophet_witchcraft",
+        "id": 2
+    },
+    {
+        "affects": "ABILITY: <b><font color=\"#ffffff\">No Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Physical</font></b>",
+        "attrib": "RADIUS: <b><font color=\"#ffffff\">700 / 700 / 700</font></b><br />SPIRITS: <b><font color=\"#ffffff\">4 / 12 / 21</font></b><br />LIFE DRAIN: <b><font color=\"#ffffff\">25% / 25% / 25%</font></b><br />SPIRIT DAMAGE: <b><font color=\"#ffffff\">55 / 55 / 55</font></b>",
+        "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  200/300/400<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  145",
+        "desc": "Unleashes evil spirits to drain the life of nearby enemy units and structures. At the end of the spell\u0027s duration, Death Prophet is healed in proportion to the damage dealt.  Lasts 30 seconds.",
+        "dmg": "",
+        "dname": "Exorcism",
+        "hurl": "Death_Prophet",
+        "notes": "Radius represents the area in which the spirits will acquire targets around Death Prophet.<br />Spirit damage isn\u0027t reduced by damage block abilities.",
+        "lore": "Over time, the banshee remnants of her previous lives return to haunt the present.",
+        "name": "death_prophet_exorcism",
+        "youtube":"UpxNoiCXx1g",
+        "id": 3
+    }
+]

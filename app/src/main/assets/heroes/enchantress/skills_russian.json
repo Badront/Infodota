@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">пассивная</font></b>",
+        "attrib": "ЗАМЕДЛЕНИЕ АТАКИ: <b><font color=\"#ffffff\">30 / 60 / 90 / 120</font></b>",
+        "cmb": "",
+        "desc": "Enchantress зачаровывает противников, атакующих ее, снижая скорость их атаки на 4 секунды.",
+        "dmg": "",
+        "dname": "Untouchable",
+        "hurl": "Enchantress",
+        "notes": "Все враги, которые наносят вам урон, будут замедляться.<br />Замедление срабатывает при начале атаки, а не после ее завершения.",
+        "lore": "После нападения на Аюшту большинство соперников испытывают чувство вины за то, что осмелились поднять руку на такую прекрасную деву.",
+        "name": "enchantress_untouchable",
+        "youtube":"Bg3FV8n5HjI",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">20% / 30% / 40% / 50%</font></b><br/>ПРОДОЛЖИТЕЛЬНОСТЬ ЧАР: <b><font color=\"#ffffff\">80 / 80 / 80 / 80</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">5.5 / 5.5 / 5.5 / 5.5</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  65/65/65/65<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  30/25/20/15",
+        "desc": "Enchantress очаровывает врага, беря его под свой контроль (если это крип) или замедляя его (если это герой).",
+        "dmg": "",
+        "dname": "Enchant",
+        "hurl": "Enchantress",
+        "notes": "Иллюзии тоже можно переманить на свою сторону.",
+        "lore": "Как истинная хранительница леса, Аюшта дружна со всеми в нем — от низших троллей до могучих кентавров.",
+        "name": "enchantress_enchant",
+        "youtube":"FEb9-pLBPXY",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ЛЕЧИТ В СЕКУНДУ: <b><font color=\"#ffffff\">10 / 10 / 10 / 10</font></b><br/>РАДИУС: <b><font color=\"#ffffff\">275 / 275 / 275 / 275</font></b><br/>СВЕТЛЯЧКОВ: <b><font color=\"#ffffff\">3 / 5 / 7 / 9</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  125/140/155/170<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  45",
+        "desc": "Облако духов-целителей лечит Enchantress и всех ближайших союзников в течение 10 секунд.",
+        "dmg": "",
+        "dname": "Nature\u0027s Attendants",
+        "hurl": "Enchantress",
+        "notes": "Лечение не действует на юнитов с полным запасом здоровья.<br />Может лечить юнитов, невосприимчивых к магии.",
+        "lore": "Причудливые духи леса обладают способностью лечения, которая набирает свою силу по мере увеличения количества духов.",
+        "name": "enchantress_natures_attendants",
+        "youtube":"VCRqaqKZ4OY",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">автоматическая, направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
+        "attrib": "УРОН ОТ РАССТОЯНИЯ: <b><font color=\"#ffffff\">15% / 20% / 25%</font></b><br/><span class=\"scepterVal\">БОНУСНЫЙ ДИАПАЗОН СКИПЕТРА:</font></b> <b><font color=\"#ffffff\">190 / 190 / 190</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  55/60/65<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  0",
+        "desc": "Пока способность активна — усиливает каждую атаку, добавляя к ней урон, зависящий от того, как далеко находится цель. Чем она дальше, тем больше урон. <br/> <br/>Impetus — уникальный модификатор атаки, он не будет сочетаться с другими уникальными модификаторами атаки. <br/> <br/>Улучшается с Aghanim\u0027s Scepter.",
+        "dmg": "",
+        "dname": "Impetus",
+        "hurl": "Enchantress",
+        "notes": "Максимальный урон наносится на расстоянии в пределах 2500 единиц.<br />Измеряется расстояние до точки, в которой снаряд достигнет цели.",
+        "lore": "Несмотря на то, что Аюшта преследует мирные цели, она вполне способна нанести магический удар издалека — ее копья черпают энергию из окружающей ее природы.",
+        "name": "enchantress_impetus",
+        "youtube":"FUkzdGUG_L8",
+        "id": 3
+    }
+]
