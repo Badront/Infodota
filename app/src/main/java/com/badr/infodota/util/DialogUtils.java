@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.fragment.LoaderDialogFragment;
+
+import org.jsoup.helper.StringUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +35,13 @@ public class DialogUtils {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.alert_dialog);
             dialog.setCancelable(false);
-            ((TextView)dialog.findViewById(R.id.title)).setText(title);
+            if(TextUtils.isEmpty(title)){
+                dialog.findViewById(R.id.title).setVisibility(View.GONE);
+            }
+            else
+            {
+                ((TextView)dialog.findViewById(R.id.title)).setText(title);
+            }
             ((TextView)dialog.findViewById(R.id.message)).setText(alert);
             dialog.findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
                 @Override
