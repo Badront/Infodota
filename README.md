@@ -1,4 +1,4 @@
-# Infodota
+# Infodota (ex Dota 2 Info)
 <img src="icon.png" width="250" height="250" />
 
 Author: Badretdinov Ayrat<br /><br />
