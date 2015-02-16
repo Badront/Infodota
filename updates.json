@@ -1,4 +1,8 @@
 {
     "versionCode":715,
-    "message":"Now with update reminder!"
+    "message":
+    {
+        "en-us":"Now with update reminder!",
+        "ru":"Доступна новая версия с обновами!"
+    }
 }
