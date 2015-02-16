@@ -1,6 +1,5 @@
 # Infodota
-<img src="icon.png"/>
-<h1>Infodota</h1>
+<img src="icon.png" width="250" height="250" />
 
 Author: Badretdinov Ayrat<br /><br />
 Contact: histlerbar@gmail.com<br />
