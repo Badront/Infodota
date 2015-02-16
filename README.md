@@ -1,6 +1,4 @@
 # Infodota
-Android app for Dota 2 players
-
 <img src="icon.png"/>
 <h1>Infodota</h1>
 
