@@ -16,7 +16,7 @@
     {
         "affects": "Способность: <b><font color=\"#ffffff\">направленная на область</font></b><br />Действует на <b><font color=\"#ffffff\">врагов</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
         "attrib": "ОБЛАСТЬ РИТУАЛА: <b><font color=\"#ffffff\">600</font></b><br/>ДЛИТЕЛЬНОСТЬ БЕЗМОЛВИЯ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>УРОН: <b><font color=\"#ffffff\">120 / 160 / 200 / 240</font></b>",
-        "cmb": "",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  100<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  29/26/23/20",
         "desc": "Bloodseeker освящает выбранную область святой кровью. Через 3.0 секунды ритуал завершается, нанося при этом урон и запрещая произносить заклинания.",
         "dmg": "",
         "dname": "Blood Rite",

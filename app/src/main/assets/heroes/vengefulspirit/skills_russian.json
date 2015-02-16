@@ -15,7 +15,7 @@
     },
     {
         "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b><br />УРОН: <b><font color=\"#ffffff\">чистый</font></b>",
-        "attrib": "СНИЖЕНИЕ БРОНИ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>ДЛИТЕЛЬНОСТЬ ВИДИМОСТИ: <b><font color=\"#ffffff\">3 / 3 / 3 / 3</font></b><br/>ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">20 / 20 / 20 / 20</font></b>",
+        "attrib": "СНИЖЕНИЕ БРОНИ: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br/>ДЛИТЕЛЬНОСТЬ ВИДИМОСТИ: <b><font color=\"#ffffff\">3</font></b><br/>ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: <b><font color=\"#ffffff\">15</font></b>",
         "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  40/40/40/40<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  20",
         "desc": "Vengeful Spirit издает дьявольский клич, который ослабляет броню врагов и дает обзор.",
         "dmg": "УРОН: <b><font color=\"#ffffff\">30 / 50 / 70 / 90</font></b>",

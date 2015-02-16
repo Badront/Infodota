@@ -21,7 +21,7 @@
         "dmg": "",
         "dname": "Hex",
         "hurl": "Lion",
-        "notes": "Instantly destroys illusions.<br />The target will have a base movement speed of 100, but buffs granting maximum movement speed won\u0027t be disabled.<br />Hex disables damage block and evasion.",
+        "notes": "Instantly destroys illusions.<br />The target will have a base movement speed of 140, but buffs granting maximum movement speed won\u0027t be disabled.<br />Hex disables damage block and evasion.",
         "lore": "Lion is compelled to share his transfiguration, twisting the essence of those who oppose him.",
         "name": "lion_voodoo",
         "youtube":"1H8xWP_19Lo",

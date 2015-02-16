@@ -1,0 +1,58 @@
+[
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ПОЛЕТА: <b><font color=\"#ffffff\">6</font></b><br/>ДОП. ДАЛЬНОСТЬ АТАКИ: <b><font color=\"#ffffff\">275 / 375 / 475 / 575</font></b><br/>СЖИГАНИЕ ЗДОРОВЬЯ В СЕКУНДУ: <b><font color=\"#ffffff\">6%</font></b><br/>ДЛИТЕЛЬНОСТЬ МОРОЗА: <b><font color=\"#ffffff\">5</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">25% / 30% / 35% / 40%</font></b><br/>ДОП. РАДИУС ОБЗОРА НОЧЬЮ: <b><font color=\"#ffffff\">400</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/110/100/90<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  50/40/30/20",
+        "desc": "Вы можете атаковать в полете. Ваши атаки будут наносить периодический урон и замедлять противника.",
+        "dmg": "",
+        "dname": "Arctic Burn",
+        "hurl": "Winter Wyvern",
+        "notes": "",
+        "lore": "Из органа, которым драконы извергают пламя, Аурот выдыхает невообразимый холод, который ввергает врагов в жгучую агонию.",
+        "name": "winter_wyvern_arctic_burn",
+        "youtube":"",
+        "id": 0
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "УРОН: <b><font color=\"#ffffff\">100 / 180 / 260 / 340</font></b><br/>РАДИУС ПОЛЕТА ОСКОЛКОВ: <b><font color=\"#ffffff\">500</font></b><br/>ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">25%</font></b><br/>ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ: <b><font color=\"#ffffff\">4</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/130/140/150<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  7",
+        "desc": "Запускает снаряд в цель. При попадании он разобьется, нанося урон находящимся поблизости юнитам и оставляя первоначальную цель нетронутой.",
+        "dmg": "",
+        "dname": "Splinter Blast",
+        "hurl": "Winter Wyvern",
+        "notes": "",
+        "lore": "Виверна запускает во врагов ледяной шар, медленно собирающийся железами ее холодной глотки.",
+        "name": "winter_wyvern_splinter_blast",
+        "youtube":"",
+        "id": 1
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">союзных существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">4</font></b><br/>БАЗОВОЕ ЛЕЧЕНИЕ: <b><font color=\"#ffffff\">20</font></b><br/>ЛЕЧЕНИЕ ОТ МАКС. ЗДОРОВЬЯ: <b><font color=\"#ffffff\">3% / 4% / 5% / 6%</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  75<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  17/16/15/14",
+        "desc": "Заковывает союзника в лед, делая его невосприимчивым к физическому урону и восстанавливая здоровье.",
+        "dmg": "",
+        "dname": "Cold Embrace",
+        "hurl": "Winter Wyvern",
+        "notes": "",
+        "lore": "Сердце зимы заключает героя в холодные целительные объятья. Лед замедляет течение крови и упрощает работу лечебной магии.",
+        "name": "winter_wyvern_cold_embrace",
+        "youtube":"",
+        "id": 2
+    },
+    {
+        "affects": "Способность: <b><font color=\"#ffffff\">направленная на юнита</font></b><br />Действует на <b><font color=\"#ffffff\">вражеских существ</font></b>",
+        "attrib": "ДЛИТЕЛЬНОСТЬ ПРОКЛЯТИЯ: <b><font color=\"#ffffff\">2.5 / 2.75 / 3</font></b><br/>РАДИУС ПРОКЛЯТИЯ: <b><font color=\"#ffffff\">350</font></b>",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  250<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  90/80/70",
+        "desc": "Виверна примораживает противника к земле, приводя окружающих союзников цели в панику. Они начинают атаковать своего товарища по команде, пока не закончится действие проклятья.",
+        "dmg": "",
+        "dname": "Winter\u0027s Curse",
+        "hurl": "Winter Wyvern",
+        "notes": "",
+        "lore": "Старейшее из заклинаний, почитаемых драконами-писателями, открывает глаза на истину: иногда враг моего врага — мой враг.",
+        "name": "winter_wyvern_winters_curse",
+        "youtube":"",
+        "id": 3
+    }
+]

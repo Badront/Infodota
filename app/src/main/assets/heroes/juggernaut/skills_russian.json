@@ -2,7 +2,7 @@
     {
         "affects": "Способность: <b><font color=\"#ffffff\">ненаправленная</font></b><br />УРОН: <b><font color=\"#ffffff\">магический</font></b>",
         "attrib": "РАДИУС: <b><font color=\"#ffffff\">250</font></b>",
-        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  110/110/110/110<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  30/26/22/18",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/110/100/90<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  30/26/22/18",
         "desc": "Вызывает вихрь из сокрушительных ударов клинком вокруг Juggernaut, делая его невосприимчивым к магии и нанося урон врагам поблизости. Действует 5 секунд.",
         "dmg": "УРОН: <b><font color=\"#ffffff\">80 / 100 / 120 / 140</font></b>",
         "dname": "Blade Fury",
@@ -16,7 +16,7 @@
     {
         "affects": "Способность: <b><font color=\"#ffffff\">направленная на точку</font></b>",
         "attrib": "МАКС. ЗДОРОВЬЯ В СЕКУНДУ: <b><font color=\"#ffffff\">2% / 3% / 4% / 5%</font></b>",
-        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  80/100/120/140<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60",
+        "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> РАСХОД МАНЫ:  120/125/130/135<br/><img alt=\"Кулдаун\" title=\"Кулдаун\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> КУЛДАУН:  60",
         "desc": "Призывает Healing Ward, лечащий всех союзников неподалеку в течение 25 секунд и способный передвигаться со скоростью 450. Скорость лечения зависит от максимального здоровья союзника.",
         "dmg": "",
         "dname": "Healing Ward",

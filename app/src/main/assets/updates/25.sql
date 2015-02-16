@@ -431,7 +431,6 @@ UNION ALL SELECT null,null,'phoenix_icarus_dive','5623','110'
 UNION ALL SELECT null,null,'phoenix_fire_spirits','5625','110'
 UNION ALL SELECT null,null,'phoenix_sun_ray','5626','110'
 UNION ALL SELECT null,null,'phoenix_supernova','5630','110'
-UNION ALL SELECT null,null,'attribute_bonus','5002',null
 UNION ALL SELECT null,null,'abyssal_underlord_firestorm','5613',null
 UNION ALL SELECT null,null,'abyssal_underlord_pit_of_malice','5614',null
 UNION ALL SELECT null,null,'abyssal_underlord_atrophy_aura','5615',null
@@ -439,4 +438,9 @@ UNION ALL SELECT null,null,'abyssal_underlord_dark_rift','5616',null
 UNION ALL SELECT null,null,'oracle_fortunes_end','5637',111
 UNION ALL SELECT null,null,'oracle_fates_edict','5638',111
 UNION ALL SELECT null,null,'oracle_purifying_flames','5639',111
-UNION ALL SELECT null,null,'oracle_false_promise','5640',111;
+UNION ALL SELECT null,null,'oracle_false_promise','5640',111
+UNION ALL SELECT null,null,'winter_wyvern_arctic_burn','5651',112
+UNION ALL SELECT null,null,'winter_wyvern_splinter_blast','5652',112
+UNION ALL SELECT null,null,'winter_wyvern_cold_embrace','5653',112
+UNION ALL SELECT null,null,'winter_wyvern_winters_curse','5654',112
+UNION ALL SELECT null,null,'attribute_bonus','5002',null;

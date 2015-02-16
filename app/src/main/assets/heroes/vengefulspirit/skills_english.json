@@ -15,7 +15,7 @@
     },
     {
         "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br />DAMAGE: <b><font color=\"#ffffff\">Pure</font></b>",
-        "attrib": "ARMOR REDUCTION: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br />VISION DURATION: <b><font color=\"#ffffff\">3 / 3 / 3 / 3</font></b><br />DEBUFF DURATION: <b><font color=\"#ffffff\">20 / 20 / 20 / 20</font></b>",
+        "attrib": "ARMOR REDUCTION: <b><font color=\"#ffffff\">3 / 4 / 5 / 6</font></b><br />VISION DURATION: <b><font color=\"#ffffff\">3</font></b><br />DEBUFF DURATION: <b><font color=\"#ffffff\">15</font></b>",
         "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> MANA COST:  40/40/40/40<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> COOLDOWN:  20",
         "desc": "Vengeful Spirit lets loose a wicked cry, weakening the armor of enemies and giving vision of the path. If Vengeful Spirit is slain, her killer will be possessed with a negative Vengeance Aura, reducing the damage of her killer and its nearby allies until Vengeful Spirit revives.",
         "dmg": "DAMAGE: <b><font color=\"#ffffff\">30 / 50 / 70 / 90</font></b>",

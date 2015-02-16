@@ -106,4 +106,5 @@ UNION ALL SELECT '106','Ember Spirit','npc_dota_hero_ember_spirit'
 UNION ALL SELECT '107','Earth Spirit','npc_dota_hero_earth_spirit'
 UNION ALL SELECT '109','Terrorblade','npc_dota_hero_terrorblade'
 UNION ALL SELECT '110','Phoenix','npc_dota_hero_phoenix'
-UNION ALL SELECT '111','Oracle','npc_dota_hero_oracle';
+UNION ALL SELECT '111','Oracle','npc_dota_hero_oracle'
+UNION ALL SELECT '112','Winter Wyvern','npc_dota_hero_winter_wyvern';
