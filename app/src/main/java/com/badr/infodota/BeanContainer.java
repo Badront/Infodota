@@ -18,7 +18,9 @@ import com.badr.infodota.remote.player.PlayerRemoteServiceImpl;
 import com.badr.infodota.remote.team.TeamRemoteServiceImpl;
 import com.badr.infodota.remote.ti4.TI4RemoteServiceImpl;
 import com.badr.infodota.remote.twitch.TwitchRemoteServiceImpl;
-import com.badr.infodota.service.UpdateService;
+import com.badr.infodota.remote.update.UpdateRemoteService;
+import com.badr.infodota.remote.update.UpdateRemoteServiceImpl;
+import com.badr.infodota.service.LocalUpdateService;
 import com.badr.infodota.service.cosmetic.CounterServiceImpl;
 import com.badr.infodota.service.counterpicker.CosmeticService;
 import com.badr.infodota.service.counterpicker.CosmeticServiceImpl;
@@ -32,6 +34,8 @@ import com.badr.infodota.service.player.PlayerServiceImpl;
 import com.badr.infodota.service.team.TeamServiceImpl;
 import com.badr.infodota.service.ti4.TI4ServiceImpl;
 import com.badr.infodota.service.twitch.TwitchServiceImpl;
+import com.badr.infodota.service.update.UpdateService;
+import com.badr.infodota.service.update.UpdateServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +87,9 @@ public class BeanContainer implements InitializingBean {
     private ItemServiceImpl itemService;
     private ItemDao itemDao;
 
+    private LocalUpdateService localUpdateService;
+
+    private UpdateRemoteService updateRemoteService;
     private UpdateService updateService;
 
     private List<CreateTableDao> allDaos;
@@ -108,7 +115,7 @@ public class BeanContainer implements InitializingBean {
         //todo updated_version
         allDaos.add(teamDao);
 
-        updateService = new UpdateService();
+        localUpdateService = new LocalUpdateService();
 
         cosmeticsRemoteEntityService = new CosmeticsRemoteEntityServiceImpl();
         cosmeticService = new CosmeticServiceImpl();
@@ -140,6 +147,9 @@ public class BeanContainer implements InitializingBean {
         heroService = new HeroServiceImpl();
 
         itemService = new ItemServiceImpl();
+
+        updateRemoteService=new UpdateRemoteServiceImpl();
+        updateService=new UpdateServiceImpl();
     }
 
     public static BeanContainer getInstance() {
@@ -168,6 +178,7 @@ public class BeanContainer implements InitializingBean {
         ti4Service.initialize();
         teamService.initialize();
         twitchService.initialize();
+        updateService.initialize();
     }
 
     public CosmeticsRemoteEntityService getCosmeticsRemoteEntityService() {
@@ -178,8 +189,8 @@ public class BeanContainer implements InitializingBean {
         return cosmeticService;
     }
 
-    public UpdateService getUpdateService() {
-        return updateService;
+    public LocalUpdateService getLocalUpdateService() {
+        return localUpdateService;
     }
 
     public CounterRemoteEntityServiceImpl getCounterRemoteEntityService() {
@@ -284,5 +295,13 @@ public class BeanContainer implements InitializingBean {
 
     public TeamDao getTeamDao() {
         return teamDao;
+    }
+
+    public UpdateRemoteService getUpdateRemoteService() {
+        return updateRemoteService;
+    }
+
+    public UpdateService getUpdateService() {
+        return updateService;
     }
 }

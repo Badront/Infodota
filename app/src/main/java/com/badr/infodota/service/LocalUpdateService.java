@@ -11,7 +11,7 @@ import com.badr.infodota.dao.Helper;
 /**
  * Created by Badr on 27.12.2014.
  */
-public class UpdateService {
+public class LocalUpdateService {
     public void update(Context context, String sql, int version) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();

@@ -56,19 +56,6 @@ public class Utils {
         builder.show();
     }
 
-    public static void showErrorDialog(Context context, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.error);
-        builder.setMessage(message);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
-
     public static Bitmap toGrayScale(Bitmap bmpOriginal) {
         int width, height;
         height = bmpOriginal.getHeight();

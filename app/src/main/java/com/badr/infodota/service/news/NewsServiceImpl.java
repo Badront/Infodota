@@ -17,10 +17,11 @@ import java.util.List;
  * Date: 21.04.14
  */
 public class NewsServiceImpl implements NewsService {
-    private NewsRemoteService service;
 
     @Override
     public Pair<List<NewsItem>, String> getNews(Context context, Long fromDate) {
+        BeanContainer container = BeanContainer.getInstance();
+        NewsRemoteService service = container.getNewsRemoteService();
         try {
             Pair<AppNewsResult, String> result = service.getNews(context, fromDate);
             if (result.first == null) {
@@ -42,7 +43,5 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public void initialize() {
-        BeanContainer container = BeanContainer.getInstance();
-        service = container.getNewsRemoteService();
     }
 }

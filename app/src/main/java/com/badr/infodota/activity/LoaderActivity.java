@@ -29,7 +29,7 @@ import com.badr.infodota.api.items.ItemTypes;
 import com.badr.infodota.api.responses.HeroResponse;
 import com.badr.infodota.api.responses.HeroResponsesResult;
 import com.badr.infodota.dao.Helper;
-import com.badr.infodota.service.UpdateService;
+import com.badr.infodota.service.LocalUpdateService;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.FileUtils;
@@ -75,7 +75,7 @@ import java.util.Set;
 public class LoaderActivity extends Activity {
     private static final int PLAY_SERVICES_REQUEST = 1001;
     TextView info;
-    UpdateService updateService = BeanContainer.getInstance().getUpdateService();
+    LocalUpdateService localUpdateService = BeanContainer.getInstance().getLocalUpdateService();
     private boolean showDialog = false;
     private boolean doubleBackToExitPressedOnce = false;
 
@@ -96,7 +96,7 @@ public class LoaderActivity extends Activity {
         //progressBar= (ProgressBar)findViewById(R.id.progressBar);
         info = (TextView) findViewById(R.id.info);
 
-        final int currentVersion = updateService.getVersion(this);
+        final int currentVersion = localUpdateService.getVersion(this);
         if (currentVersion != Helper.DATABASE_VERSION) {
             new LoaderProgressTask<String>(new ProgressTask<String>() {
                 @Override
@@ -109,7 +109,7 @@ public class LoaderActivity extends Activity {
                         int fileVersion = Integer.valueOf(fileName.split("\\.")[0]);
                         /*if (fileVersion > currentVersion) {*///пока что мы все скрипты прогоняем
                             String sql = FileUtils.getTextFromAsset(LoaderActivity.this, "updates" + File.separator + fileName);
-                            updateService.update(LoaderActivity.this, sql, fileVersion);
+                            localUpdateService.update(LoaderActivity.this, sql, fileVersion);
                         /*}*/
                     }
                     return "";
@@ -117,7 +117,7 @@ public class LoaderActivity extends Activity {
 
                 @Override
                 public void doAfterTask(String result) {
-                    updateService.setUpdated(LoaderActivity.this);
+                    localUpdateService.setUpdated(LoaderActivity.this);
                     showDialog = true;
                     checkGooglePlayServicesAndRun();
                 }

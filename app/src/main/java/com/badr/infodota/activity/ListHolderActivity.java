@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.ActionMenuPresenter;
 import android.support.v7.widget.SearchView;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.fragment.SearchableFragment;
 import com.badr.infodota.fragment.cosmetic.CosmeticList;
@@ -33,6 +36,13 @@ import com.badr.infodota.fragment.news.NewsList;
 import com.badr.infodota.fragment.player.groups.PlayerGroupsHolder;
 import com.badr.infodota.fragment.quiz.QuizTypeSelect;
 import com.badr.infodota.fragment.twitch.TwitchHolder;
+import com.badr.infodota.remote.BaseRemoteService;
+import com.badr.infodota.remote.BaseRemoteServiceImpl;
+import com.badr.infodota.service.update.UpdateService;
+import com.badr.infodota.util.DialogUtils;
+import com.badr.infodota.util.LoaderProgressTask;
+import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.UpdateUtils;
 
 /**
  * User: ABadretdinov
@@ -66,6 +76,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
         navSpinner.setOnItemSelectedListener(this);
         navSpinner.setSelection(Math.min(selected, adapter.getCount() - 1));
 
+        UpdateUtils.checkNewVersion(this,false);
         //не нужен AppRater.app_launched(this);
     }
 

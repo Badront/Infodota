@@ -277,4 +277,9 @@
     <string name="upcoming_matches">РАСПИСАНИЕ</string>
     <string name="match_history">ИСТОРИЯ МАТЧЕЙ</string>
     <string name="sure_delete_Guide">Уверены,что хотите удалить гайд?</string>
+    <string name="alert">Внимание!</string>
+    <string name="new_app_available">Доступна новая версия!</string>
+    <string name="no_new_version">Новая версия не обнаружена</string>
+    <string name="new_version">Новая версия</string>
+    <string name="check_new_version">Проверить обновление</string>
 </resources>

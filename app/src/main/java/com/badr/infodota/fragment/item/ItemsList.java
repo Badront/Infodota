@@ -35,6 +35,7 @@ import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
+import com.badr.infodota.util.UpdateUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -98,6 +99,9 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
                 return true;
             case R.id.locale:
                 showLanguageDialog();
+                return true;
+            case R.id.new_version:
+                UpdateUtils.checkNewVersion(getActivity(), true);
                 return true;
         }
         return super.onOptionsItemSelected(item);

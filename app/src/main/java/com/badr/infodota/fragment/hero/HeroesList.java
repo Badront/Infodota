@@ -46,6 +46,7 @@ import com.badr.infodota.util.CarouselPageTransformer;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
+import com.badr.infodota.util.UpdateUtils;
 import com.badr.infodota.view.PagerContainer;
 import com.badr.infodota.view.TransformableViewPager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -141,6 +142,9 @@ public class HeroesList extends Fragment implements SearchableFragment {
                 return true;
             case R.id.locale:
                 showLanguageDialog();
+                return true;
+            case R.id.new_version:
+                UpdateUtils.checkNewVersion(getActivity(),true);
                 return true;
         }
         return super.onOptionsItemSelected(item);

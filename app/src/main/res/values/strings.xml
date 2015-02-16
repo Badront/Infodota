@@ -280,4 +280,9 @@
     <string name="upcoming_matches">SCHEDULE</string>
     <string name="match_history">MATCH HISTORY</string>
     <string name="sure_delete_Guide">Delete guide?</string>
+    <string name="alert">Attention!</string>
+    <string name="new_app_available">New version\'s available!</string>
+    <string name="no_new_version">No new version\'s available</string>
+    <string name="new_version">New version</string>
+    <string name="check_new_version">Check for updates</string>
 </resources>

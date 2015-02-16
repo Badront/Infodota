@@ -17,6 +17,11 @@
         android:orderInCategory="10"
         android:title="@string/locale"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/new_version"
+        android:orderInCategory="11"
+        android:title="@string/check_new_version"
+        app:showAsAction="never" />
     <!--<item
             android:id="@+id/rate"
             android:orderInCategory="10"
