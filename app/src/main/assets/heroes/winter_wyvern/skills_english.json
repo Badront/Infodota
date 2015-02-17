@@ -12,7 +12,7 @@
         "name": "winter_wyvern_arctic_burn",
         "youtube":"",
         "id": 0
-    }
+    },
     {
         "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br />AFFECTS: <b><font color=\"#ffffff\">Enemy units</font></b>",
         "attrib": "DAMAGE: <b><font color=\"#ffffff\">100 / 180 / 260 / 340</font></b><br />SHATTER RADIUS: <b><font color=\"#ffffff\">500</font></b><br />MOVEMENT SLOW: <b><font color=\"#ffffff\">25%</font></b><br />SLOW DURATION: <b><font color=\"#ffffff\">4</font></b>",
