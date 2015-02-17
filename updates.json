@@ -1,8 +1,8 @@
 {
-    "versionCode":715,
+    "versionCode":717,
     "message":
     {
-        "en-us":"Now with update reminder!",
-        "ru":"Доступна новая версия с обновами!"
+        "en-us":"Fixed Winter Wyverns skills",
+        "ru":"Исправлены скилы Winter Wyvern"
     }
 }
