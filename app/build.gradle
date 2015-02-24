@@ -8,8 +8,8 @@ android {
         applicationId "com.badr.infodota"
         minSdkVersion 10
         targetSdkVersion 21
-        versionCode 717
-        versionName "2.25"
+        versionCode 720
+        versionName "2.26"
     }
     buildTypes {
         release {

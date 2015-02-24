@@ -1,8 +1,8 @@
 {
-    "versionCode":717,
+    "versionCode":720,
     "message":
     {
-        "en-us":"Fixed Winter Wyverns skills",
-        "ru":"Исправлены скилы Winter Wyvern"
+        "en-us":"Fixed some complex items recipes",
+        "ru":"Исправлены сборки некоторых предметов"
     }
 }
