@@ -202,7 +202,6 @@ public class ItemDao extends GeneralDaoImpl<Item> {
     //items from this
     public List<Item> getChildItems(SQLiteDatabase database, Item parent) {
         Cursor cursor = database.query(
-                true,
                 ITEMS_FROM_MAPPER_TABLE_NAME,
                 new String[]{COLUMN_NEED_ID},
                 COLUMN_ITEM_ID + "=?",
@@ -227,10 +226,11 @@ public class ItemDao extends GeneralDaoImpl<Item> {
     public List<Item> getParentItems(SQLiteDatabase database, Item child) {
         List<Item> items = new ArrayList<Item>();
         Cursor cursor = database.query(
+                true,
                 ITEMS_FROM_MAPPER_TABLE_NAME,
                 new String[]{COLUMN_ITEM_ID},
                 COLUMN_NEED_ID + "=?",
-                new String[]{String.valueOf(child.getId())}, null, null, null);
+                new String[]{String.valueOf(child.getId())}, null, null, null, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
