@@ -211,9 +211,7 @@ public class ItemDao extends GeneralDaoImpl<Item> {
             if (cursor.moveToFirst()) {
                 do {
                     Item item = getById(database, cursor.getLong(cursor.getColumnIndex(COLUMN_NEED_ID)));
-                    if (!items.contains(item)) {
-                        items.add(item);
-                    }
+                    items.add(item);
                 } while (cursor.moveToNext());
             }
             return items;
@@ -234,7 +232,10 @@ public class ItemDao extends GeneralDaoImpl<Item> {
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    items.add(getById(database, cursor.getLong(cursor.getColumnIndex(COLUMN_ITEM_ID))));
+                    Item item=getById(database, cursor.getLong(cursor.getColumnIndex(COLUMN_ITEM_ID)));
+                    if (!items.contains(item)) {
+                        items.add(item);
+                    }
                 } while (cursor.moveToNext());
             }
             return items;
