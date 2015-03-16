@@ -12,9 +12,9 @@ public interface Constants {
     public static final String GITHUB_LAST_APK_URL="https://github.com/Histler/Infodota/blob/master/infodota.apk?raw=true";
     public static final String GITHUB_UPDATE_URL="https://github.com/Histler/Infodota/blob/master/updates.json?raw=true";
     public interface History {
-        public static final String START_AT_MATCH_ID = "&start_at_match_id=";        public static final String SUBURL = STEAM_API_URL + "GetMatchHistory/V001/?key=";
+        public static final String SUBURL = STEAM_API_URL + "GetMatchHistory/V001/?key=";
+        public static final String START_AT_MATCH_ID = "&start_at_match_id=";
         public static final String LEAGUE_ID = "&league_id=";
-
     }
 
     public interface Team {
@@ -26,7 +26,8 @@ public interface Constants {
     }
 
     public interface Details {
-        public static final String MATCH_ID = "&match_id=";        public static final String SUBURL = STEAM_API_URL + "GetMatchDetails/V001/?key=";
+        public static final String SUBURL = STEAM_API_URL + "GetMatchDetails/V001/?key=";
+        public static final String MATCH_ID = "&match_id=";
         //player_name=<name> # Search matches with a player name, exact match only
         public static final String PLAYER_NAME = "&player_name=";
         //hero_id=<id> # Search for matches with a specific hero being played, hero id's are in dota/scripts/npc/npc_heroes.txt in your Dota install directory

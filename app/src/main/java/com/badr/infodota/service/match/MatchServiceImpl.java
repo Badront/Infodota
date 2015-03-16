@@ -7,8 +7,7 @@ import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.api.matchdetails.MatchDetails;
-import com.badr.infodota.api.matchhistory.ResultResponse;
-import com.badr.infodota.remote.match.MatchRemoteEntityService;
+import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
 import com.badr.infodota.util.FileUtils;
 import com.google.gson.Gson;
 
@@ -20,27 +19,27 @@ import java.io.File;
  * Time: 16:18
  */
 public class MatchServiceImpl implements MatchService {
-    private MatchRemoteEntityService service;
 
     @Override
     public Pair<MatchDetails, String> getMatchDetails(Context context, String matchId) {
         try {
             File externalFilesDir = FileUtils.externalFileDir(context);
             String matchResult = FileUtils.getTextFromFile(externalFilesDir.getAbsolutePath() + File.separator + "matches" + File.separator + matchId + ".json");
-            Pair<MatchDetails, String> result;
+            MatchDetails result;
+            String message=null;
             if (TextUtils.isEmpty(matchResult)) {
-                result = service.getMatchDetails(context, matchId);
-                if (result.first == null) {
-                    String message = "Failed to get match, cause: " + result.second;
+                result = BeanContainer.getInstance().getSteamService().getMatchDetails(matchId);
+                if (result == null) {
+                    message = "Failed to get match id:"+matchId;
                     Log.e(MatchServiceImpl.class.getName(), message);
                 } else {
                     FileUtils.saveJsonFile(externalFilesDir.getAbsolutePath() + File.separator + "matches" + File.separator + matchId + ".json",
-                            result.first);
+                            result);
                 }
             } else {
-                result = Pair.create(new Gson().fromJson(matchResult, MatchDetails.class), "");
+                result = new Gson().fromJson(matchResult, MatchDetails.class);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get match, cause: " + e.getMessage();
             Log.e(MatchServiceImpl.class.getName(), message, e);
@@ -49,42 +48,20 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Pair<ResultResponse, String> getMatches(Context context, long accountId, long fromMatchId,
-                                                   String extraParams) {
+    public Pair<MatchHistoryResultResponse, String> getMatches(Context context, Long accountId, Long fromMatchId,
+                                                   Long heroId) {
         try {
-            Pair<ResultResponse, String> result = service.getMatches(context, accountId, fromMatchId, extraParams);
-            if (result.first == null) {
-                String message = "Failed to get matches ";
+            MatchHistoryResultResponse result = BeanContainer.getInstance().getSteamService().getMatchHistory(accountId, fromMatchId, heroId);
+            String message = null;
+            if (result == null) {
+                message = "Failed to get matches for accountId=" + accountId;
                 Log.e(MatchServiceImpl.class.getName(), message);
             }
-            return result;
+            return Pair.create(result, message);
         } catch (Exception e) {
             String message = "Failed to get matches, cause: " + e.getMessage();
             Log.e(MatchServiceImpl.class.getName(), message, e);
             return Pair.create(null, message);
         }
-    }
-
-    @Override
-    public Pair<ResultResponse, String> getMatches(Context context, long fromMatchId, String extraParams) {
-
-        try {
-            Pair<ResultResponse, String> result = service.getMatches(context, fromMatchId, extraParams);
-            if (result.first == null) {
-                String message = "Failed to get matches ";
-                Log.e(MatchServiceImpl.class.getName(), message);
-            }
-            return result;
-        } catch (Exception e) {
-            String message = "Failed to get matches, cause: " + e.getMessage();
-            Log.e(MatchServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
-        }
-    }
-
-    @Override
-    public void initialize() {
-        BeanContainer container = BeanContainer.getInstance();
-        service = container.getMatchRemoteEntityService();
     }
 }

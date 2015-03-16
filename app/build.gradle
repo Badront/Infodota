@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "22"
 
     defaultConfig {
         applicationId "com.badr.infodota"
         minSdkVersion 10
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 720
         versionName "2.26"
     }
@@ -24,7 +24,7 @@ repositories {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:recyclerview-v7:+'
     compile 'com.nineoldandroids:library:2.4.0+'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
@@ -32,4 +32,5 @@ dependencies {
     compile 'org.jsoup:jsoup:1.7.3'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
     compile 'com.pnikosis:materialish-progress:1.2'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
 }

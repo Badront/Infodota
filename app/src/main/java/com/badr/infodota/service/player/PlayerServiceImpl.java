@@ -32,12 +32,13 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Pair<List<Unit>, String> loadAccounts(Context context, List<Long> ids) {
         try {
-            Pair<List<Unit>, String> result = service.getAccounts(context, ids);
-            if (result.first == null) {
-                String message = "Failed to get players, cause: " + result.second;
+            List<Unit> result = service.getAccounts(context, ids);
+            String message=null;
+            if (result== null) {
+                message = "Failed to get players";
                 Log.e(PlayerServiceImpl.class.getName(), message);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get players, cause: " + e.getMessage();
             Log.e(PlayerServiceImpl.class.getName(), message, e);
@@ -48,12 +49,13 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Pair<List<Unit>, String> loadAccounts(Context context, String name) {
         try {
-            Pair<List<Unit>, String> result = service.getAccounts(context, name);
-            if (result.first == null) {
-                String message = "Failed to get players, cause: " + result.second;
+            List<Unit> result = service.getAccounts(context, name);
+            String message=null;
+            if (result== null) {
+                message = "Failed to get players";
                 Log.e(PlayerServiceImpl.class.getName(), message);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get players, cause: " + e.getMessage();
             Log.e(PlayerServiceImpl.class.getName(), message, e);
@@ -64,12 +66,13 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public Pair<List<Unit>, String> loadFriends(Context context, long id) {
         try {
-            Pair<List<Unit>, String> result = service.getFriends(context, id);
-            if (result.first == null) {
-                String message = "Failed to get friends, cause: " + result.second;
+            List<Unit> result = service.getFriends(context, id);
+            String message=null;
+            if (result== null) {
+                message = "Failed to get friends";
                 Log.e(PlayerServiceImpl.class.getName(), message);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get friends, cause: " + e.getMessage();
             Log.e(PlayerServiceImpl.class.getName(), message, e);

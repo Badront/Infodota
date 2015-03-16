@@ -31,11 +31,10 @@ import java.util.TimeZone;
  * Date: 22.04.14
  * Time: 14:34
  */
-public class JoinDotaRemoteServiceImpl extends BaseRemoteServiceImpl implements JoinDotaRemoteService {
+public class JoinDotaRemoteServiceImpl implements JoinDotaRemoteService {
     private final static SimpleDateFormat COMPLETE_DATE_FORMAT = new SimpleDateFormat("EEE',' dd MMM yyyy HH:mm:ss Z ", Locale.ENGLISH);
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy", Locale.ENGLISH);
     private static SimpleDateFormat CESTDateTimeFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm", Locale.US);
-    private static TimeZone YOUR_TIMEZONE = Calendar.getInstance().getTimeZone();
 
     static {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -203,6 +202,7 @@ public class JoinDotaRemoteServiceImpl extends BaseRemoteServiceImpl implements 
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void getChannelsNames(Context context, List<LiveStream> streams) throws Exception {
         for (LiveStream stream : streams) {
             try {

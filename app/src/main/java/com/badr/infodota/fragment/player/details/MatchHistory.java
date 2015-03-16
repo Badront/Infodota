@@ -25,8 +25,8 @@ import com.badr.infodota.api.Constants;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.matchhistory.Match;
+import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
 import com.badr.infodota.api.matchhistory.Result;
-import com.badr.infodota.api.matchhistory.ResultResponse;
 import com.badr.infodota.fragment.GridFragment;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.match.MatchService;
@@ -44,10 +44,9 @@ import java.util.List;
  */
 public class MatchHistory extends GridFragment {
     HeroService heroService = BeanContainer.getInstance().getHeroService();
-    String extraParams = null;
     private Unit account;
     private long total = 1;
-    private long heroId = 0;
+    private Long heroId = null;
     private AutoCompleteTextView heroView;
     private BeanContainer container = BeanContainer.getInstance();
     private MatchService matchService = container.getMatchService();
@@ -82,22 +81,17 @@ public class MatchHistory extends GridFragment {
                 Hero hero = ((HeroesAutoCompleteAdapter) heroView.getAdapter()).getItem(position);
                 heroId = hero.getId();
                 heroView.setText(hero.getLocalizedName());
-                extraParams = Constants.Details.HERO_ID + heroId;
                 loadHistory(0, true);
             }
         });
         getView().findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                heroId = 0;
+                heroId = null;
                 heroView.setText("");
-                extraParams = null;
                 loadHistory(0, true);
             }
         });
-        if (heroId != 0) {
-            extraParams = Constants.Details.HERO_ID + heroId;
-        }
         loadHistory(0, true);
         getGridView().setOnScrollListener(new EndlessScrollListener() {
             @Override
@@ -107,10 +101,6 @@ public class MatchHistory extends GridFragment {
                 if (adapter.getCount() > 0) {
                     Match last = adapter.getItem(adapter.getCount() - 1);
                     lastMatchId = last.getMatch_id() - 1;
-                }
-                if (heroId != 0) {
-
-                    extraParams = Constants.Details.HERO_ID + heroId;
                 }
                 loadHistory(lastMatchId, false);
             }
@@ -143,14 +133,14 @@ public class MatchHistory extends GridFragment {
             total = 1;
         }
         if (total > getListAdapter().getCount()) {
-            new LoaderProgressTask<Pair<ResultResponse, String>>(new ProgressTask<Pair<ResultResponse, String>>() {
+            new LoaderProgressTask<Pair<MatchHistoryResultResponse, String>>(new ProgressTask<Pair<MatchHistoryResultResponse, String>>() {
                 @Override
-                public Pair<ResultResponse, String> doTask(OnPublishProgressListener listener) {
-                    return matchService.getMatches(activity, account.getAccountId(), fromMatchId, extraParams);
+                public Pair<MatchHistoryResultResponse, String> doTask(OnPublishProgressListener listener) {
+                    return matchService.getMatches(activity, account.getAccountId(), fromMatchId, heroId);
                 }
 
                 @Override
-                public void doAfterTask(Pair<ResultResponse, String> resultResponse) {
+                public void doAfterTask(Pair<MatchHistoryResultResponse, String> resultResponse) {
                     if (resultResponse.first != null) {
                         Result result = resultResponse.first.getResult();
                         total = result.getTotal_results();

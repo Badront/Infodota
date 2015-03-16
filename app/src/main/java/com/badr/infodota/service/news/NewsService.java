@@ -12,6 +12,6 @@ import java.util.List;
  * User: Histler
  * Date: 21.04.14
  */
-public interface NewsService extends InitializingBean {
+public interface NewsService{
     Pair<List<NewsItem>, String> getNews(Context context, Long fromDate);
 }

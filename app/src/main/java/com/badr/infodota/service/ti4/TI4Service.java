@@ -10,6 +10,6 @@ import com.badr.infodota.InitializingBean;
  * Date: 14.05.14
  * Time: 18:55
  */
-public interface TI4Service extends InitializingBean {
+public interface TI4Service{
     Pair<Long, String> getPrizePool(Context context);
 }

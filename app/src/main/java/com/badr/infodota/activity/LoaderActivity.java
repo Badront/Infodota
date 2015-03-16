@@ -229,7 +229,7 @@ public class LoaderActivity extends Activity {
                 //reorganizeGuides();
 
                 String heroesEntity = null;
-                if (Constants.INITIALIZATION) {
+                /*if (Constants.INITIALIZATION) {
                     client = new DefaultHttpClient();
                     HttpGet get = new HttpGet(Constants.Heroes.SUBURL + getString(R.string.api));
                     HttpResponse response = client.execute(get);
@@ -245,8 +245,8 @@ public class LoaderActivity extends Activity {
                     heroesEntity = EntityUtils.toString(response.getEntity());
                     saveStringFile("heroes.json", heroesEntity);
                 } else {
-                    heroesEntity = FileUtils.getTextFromAsset(LoaderActivity.this, "heroes.json");
-                }
+                }*/
+                heroesEntity = FileUtils.getTextFromAsset(LoaderActivity.this, "heroes.json");
                 // publishProgress("грузим список героев");
                 GetHeroes getHeroes = new Gson().fromJson(heroesEntity, GetHeroes.class);
                 List<Hero> heroes = getHeroes.getResult().getHeroes();
@@ -300,7 +300,7 @@ public class LoaderActivity extends Activity {
                 //getSkills("russian");
                 //getSkills("english");
                 return SUCCESS_CODE;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();  //
                 return e.getLocalizedMessage();
             }

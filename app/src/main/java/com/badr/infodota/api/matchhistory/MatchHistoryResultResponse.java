@@ -5,10 +5,10 @@ package com.badr.infodota.api.matchhistory;
  * Date: 20.01.14
  * Time: 18:42
  */
-public class ResultResponse {
+public class MatchHistoryResultResponse {
     Result result;
 
-    public ResultResponse() {
+    public MatchHistoryResultResponse() {
     }
 
     public Result getResult() {
