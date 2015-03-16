@@ -220,8 +220,8 @@ public class HeroDao extends GeneralDaoImpl<Hero> {
         bindTruepickerId(db, 42, 63);//wraith king
         bindTruepickerId(db, 22, 44);//zeus
         bindTruepickerId(db, 105, 109);//techies
-        bindTruepickerId(db, 111, 111);//oracle???
-        bindTruepickerId(db, 112, 112);//wintern wyvern???
+        bindTruepickerId(db, 111, 111);//oracle
+        bindTruepickerId(db, 112, 112);//wintern wyvern
     }
 
     public void bindTruepickerId(SQLiteDatabase database, long heroId, long tpId) {
