@@ -97,3 +97,63 @@ public class LoaderProgressTask<R> extends AsyncTask<Object, String, R> implemen
         void onFinish();
     }
 }
+/*public class LoaderProgressTask<R> implements ProgressTask.OnPublishProgressListener {
+    private final ProgressTask<R> task;
+    private OnProgressUpdateListener listener;
+    private String error = null;
+
+    public LoaderProgressTask(ProgressTask<R> task, OnProgressUpdateListener listener) {
+        this.task = task;
+        this.listener = listener;
+    }
+
+    @Override
+    public void progressUpdated(String... progress) {
+        if (listener != null) {
+            listener.onProgressUpdate(progress);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB) // API 11
+    public final LoaderProgressTask<R> execute() {
+        Observable
+                .create(new Observable.OnSubscribe<R>() {
+                    @Override
+                    public void call(Subscriber<? super R> subscriber) {
+                        subscriber.onNext(task.doTask(LoaderProgressTask.this));
+                        subscriber.onCompleted();
+                    }
+                })
+                .timeout(10, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<R>() {
+                    @Override
+                    public void onCompleted() {
+                        if (listener != null) {
+                            listener.onFinish();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        task.handleError(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onNext(R r) {
+                        task.doAfterTask(r);
+                    }
+                });
+        return this;
+    }
+
+
+    public interface OnProgressUpdateListener {
+        void onStart();
+
+        void onProgressUpdate(String... progress);
+
+        void onFinish();
+    }
+}
+*/
