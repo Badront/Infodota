@@ -268,9 +268,9 @@ public class CounterPickFilter extends Fragment {
                 final BaseActivity activity = (BaseActivity) getActivity();
                 activity.setSupportProgressBarIndeterminateVisibility(true);
                 holder.removeAllViews();
-                DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<Pair<List<Hero>, String>>() {
+                DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<Pair<List<TruepickerHero>, String>>() {
                     @Override
-                    public Pair<List<Hero>, String> doTask(OnPublishProgressListener listener) throws Exception {
+                    public Pair<List<TruepickerHero>, String> doTask(OnPublishProgressListener listener) throws Exception {
                         BeanContainer beanContainer = BeanContainer.getInstance();
                         CounterService service = beanContainer.getCounterService();
                         List<String> rolesToAdd = new ArrayList<String>();
@@ -283,15 +283,15 @@ public class CounterPickFilter extends Fragment {
                     }
 
                     @Override
-                    public void doAfterTask(Pair<List<Hero>, String> result) {
+                    public void doAfterTask(Pair<List<TruepickerHero>, String> result) {
                         if (result != null) {
                             if (result.first != null) {
                                 View root = getView();
                                 if (root != null) {
                                     root.findViewById(R.id.holder_title).setVisibility(View.VISIBLE);
                                     LayoutInflater inflater = activity.getLayoutInflater();
-                                    for (final Hero hero : result.first) {
-                                        View view = inflater.inflate(R.layout.hero_row, null, false);
+                                    for (final TruepickerHero hero : result.first) {
+                                        View view = inflater.inflate(R.layout.hero_row, holder, false);
                                         ((TextView) view.findViewById(R.id.name)).setText(hero.getLocalizedName());
                                         imageLoader
                                                 .displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
@@ -349,13 +349,13 @@ public class CounterPickFilter extends Fragment {
             for (int i = 0; i < 4; i++) //поправка, т.к. союзников не может быть 5, ведь как же мы?
             {
                 if (allies.size() > i) {
-                    TruepickerHero hero = heroService.getTruepickerHeroById(activity, allies.get(i));
+                    TruepickerHero hero = heroService.getTruepickerHero(activity, allies.get(i));
                     imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", allyViews[i], options);
                 } else {
                     imageLoader.displayImage("assets://default_img.png", allyViews[i], options);
                 }
                 if (enemies.size() > i) {
-                    TruepickerHero hero = heroService.getTruepickerHeroById(activity, enemies.get(i));
+                    TruepickerHero hero = heroService.getTruepickerHero(activity, enemies.get(i));
                     imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", enemyViews[i], options);
                 } else {
                     imageLoader.displayImage("assets://default_img.png", enemyViews[i], options);
@@ -363,7 +363,7 @@ public class CounterPickFilter extends Fragment {
             }
             if (enemies.size() == 5)//та же поправка
             {
-                TruepickerHero hero = heroService.getTruepickerHeroById(activity, enemies.get(4));
+                TruepickerHero hero = heroService.getTruepickerHero(activity, enemies.get(4));
                 imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", enemyViews[4], options);
             } else {
                 imageLoader.displayImage("assets://default_img.png", enemyViews[4], options);

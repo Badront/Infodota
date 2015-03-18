@@ -27,7 +27,7 @@ public interface HeroService extends InitializingBean {
 
     List<CarouselHero> getCarouselHeroes(Context context, String filter,String name);
 
-    List<TruepickerHero> getTruepickerHeroes(Context context, String filter);
+    TruepickerHero.List getTruepickerHeroes(Context context, String filter);
 
     Hero getHeroById(Context context, long id);
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Pair;
 
 import com.badr.infodota.InitializingBean;
+import com.badr.infodota.api.news.AppNews;
 import com.badr.infodota.api.news.NewsItem;
 
 import java.util.List;
@@ -13,5 +14,5 @@ import java.util.List;
  * Date: 21.04.14
  */
 public interface NewsService{
-    Pair<List<NewsItem>, String> getNews(Context context, Long fromDate);
+    AppNews getNews(Context context, Long fromDate);
 }

@@ -236,9 +236,9 @@ public class HeroDao extends GeneralDaoImpl<Hero> {
         database.delete(TRUEPICKER_MAPPER_TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(heroId)});
     }
 
-    public List<TruepickerHero> getTruepickerEntities(SQLiteDatabase database) {
+    public TruepickerHero.List getTruepickerEntities(SQLiteDatabase database) {
         Cursor cursor = database.query(true, TRUEPICKER_MAPPER_TABLE_NAME, new String[]{COLUMN_ID, COLUMN_TRUEPICKER_ID}, null, null, null, null, null, null);
-        List<TruepickerHero> heroes = new ArrayList<TruepickerHero>();
+        TruepickerHero.List heroes = new TruepickerHero.List();
         try {
             if (cursor.moveToFirst()) {
                 do {

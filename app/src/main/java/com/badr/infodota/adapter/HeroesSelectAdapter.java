@@ -60,12 +60,12 @@ public class HeroesSelectAdapter extends BaseAdapter implements Filterable {
         return mHeroes.size();
     }
 
-    public Hero getItem(int position) {
+    public TruepickerHero getItem(int position) {
         return mHeroes.get(position);
     }
 
     public long getItemId(int position) {
-        return mHeroes.get(position).getId();
+        return mHeroes.get(position).getTpId();
     }
 
     public void setSelectedHero(int selectedHero) {
@@ -99,11 +99,11 @@ public class HeroesSelectAdapter extends BaseAdapter implements Filterable {
         } else {
             holder = (HeroHolder) vi.getTag();
         }
-        Hero hero = getItem(position);
+        TruepickerHero hero = getItem(position);
         holder.name.setText(hero.getLocalizedName());
-        if (allies.contains((int) hero.getId())) {
+        if (allies.contains((int) hero.getTpId())) {
             vi.setBackgroundColor(alliesColor);
-        } else if (enemies.contains((int) hero.getId())) {
+        } else if (enemies.contains((int) hero.getTpId())) {
             vi.setBackgroundColor(enemiesColor);
         } else {
             vi.setBackgroundResource(0);

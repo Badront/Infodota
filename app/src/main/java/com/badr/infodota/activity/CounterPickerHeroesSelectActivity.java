@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Filter;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
@@ -23,6 +25,12 @@ import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -33,7 +41,7 @@ import java.util.List;
  * Date: 21.02.14
  * Time: 18:17
  */
-public class CounterPickerHeroesSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener {
+public class CounterPickerHeroesSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener,RequestListener<TruepickerHero.List> {
     public static final int ENEMY = 0;
     public static final int ALLY = 1;
     HeroesSelectAdapter adapter;
@@ -44,6 +52,21 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     private ArrayList<Integer> enemies;
     private ArrayList<Integer> allies;
     private int mode;
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
@@ -169,30 +192,35 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     }
 
     private void loadHeroesForGridView() {
-        new LoaderProgressTask<List<TruepickerHero>>(new ProgressTask<List<TruepickerHero>>() {
-            @Override
-            public List<TruepickerHero> doTask(OnPublishProgressListener listener) throws Exception {
-                HeroService heroService = BeanContainer.getInstance().getHeroService();
-                return heroService.getTruepickerHeroes(CounterPickerHeroesSelectActivity.this, selectedFilter);
-            }
+        spiceManager.execute(new TruepickerHeroLoadRequest(CounterPickerHeroesSelectActivity.this,selectedFilter), this);
+    }
 
-            @Override
-            public void doAfterTask(List<TruepickerHero> result) {
-                adapter = new HeroesSelectAdapter(CounterPickerHeroesSelectActivity.this, result, allies, enemies, mode);
-                filter = adapter.getFilter();
-                filter.filter(search);
-                gridView.setAdapter(adapter);
-            }
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+    }
 
-            @Override
-            public void handleError(String error) {
+    @Override
+    public void onRequestSuccess(TruepickerHero.List truepickerHeros) {
+        adapter = new HeroesSelectAdapter(CounterPickerHeroesSelectActivity.this, truepickerHeros, allies, enemies, mode);
+        filter = adapter.getFilter();
+        filter.filter(search);
+        gridView.setAdapter(adapter);
+    }
 
-            }
+    public static class TruepickerHeroLoadRequest extends TaskRequest<TruepickerHero.List>{
+        private String filter;
+        private Context context;
+        public TruepickerHeroLoadRequest(Context context,String filter) {
+            super(TruepickerHero.List.class);
+            this.filter=filter;
+            this.context=context;
+        }
 
-            @Override
-            public String getName() {
-                return null;
-            }
-        }, null).execute();
+        @Override
+        public TruepickerHero.List loadData() throws Exception {
+            HeroService heroService = BeanContainer.getInstance().getHeroService();
+            return heroService.getTruepickerHeroes(context, filter);
+        }
     }
 }
