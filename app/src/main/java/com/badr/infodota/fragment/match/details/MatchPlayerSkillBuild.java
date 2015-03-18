@@ -60,7 +60,7 @@ public class MatchPlayerSkillBuild extends Fragment {
     private void initAbilities() {
         View root = getView();
         ViewGroup abilityHolder = (ViewGroup) root.findViewById(R.id.ability_holder);
-        List<AbilityUpgrade> abilityUpgrades = player.getAbility_upgrades();
+        List<AbilityUpgrade> abilityUpgrades = player.getAbilityUpgrades();
         Activity activity = getActivity();
         if (abilityUpgrades != null && abilityUpgrades.size() > 0 && activity != null) {
             HeroService heroService = BeanContainer.getInstance().getHeroService();

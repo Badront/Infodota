@@ -16,10 +16,14 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.MatchInfoPagerAdapter;
 import com.badr.infodota.api.dotabuff.Unit;
+import com.badr.infodota.api.items.Item;
+import com.badr.infodota.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.api.matchdetails.MatchDetails;
 import com.badr.infodota.api.matchdetails.Player;
 import com.badr.infodota.api.matchdetails.Result;
 import com.badr.infodota.api.matchdetails.Team;
+import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.service.match.MatchService;
 import com.badr.infodota.service.player.PlayerService;
 import com.badr.infodota.service.team.TeamService;
@@ -50,7 +54,7 @@ public class MatchInfoActivity extends BaseActivity {
         setContentView(R.layout.match_info);
         setSupportProgressBarIndeterminateVisibility(false);
 
-        Bundle intent = getIntent().getExtras();
+        final Bundle intent = getIntent().getExtras();
         if (intent != null && (intent.containsKey("matchId") || intent.containsKey("match"))) {
             //accountId=intent.getLong("accountId");
             if (intent.containsKey("matchId")) {
@@ -62,12 +66,14 @@ public class MatchInfoActivity extends BaseActivity {
             new LoaderProgressTask<Pair<MatchDetails, String>>(new ProgressTask<Pair<MatchDetails, String>>() {
                 BeanContainer container = BeanContainer.getInstance();
                 TeamService teamService = container.getTeamService();
+                ItemService itemService=container.getItemService();
                 ImageLoader imageLoader = ImageLoader.getInstance();
 
                 @Override
                 public Pair<MatchDetails, String> doTask(OnPublishProgressListener listener) throws Exception {
                     MatchService matchService = container.getMatchService();
                     PlayerService playerService = container.getPlayerService();
+                    HeroService heroService=container.getHeroService();
 
                     Pair<MatchDetails, String> result;
                     if (simpleMatchId != null) {
@@ -94,6 +100,13 @@ public class MatchInfoActivity extends BaseActivity {
                                         if (units != null && units.size() > 0) {
                                             for (Unit unit : units) {
                                                 playerService.saveAccount(MatchInfoActivity.this, unit);
+                                            }
+                                            for(Player player:players){
+                                                if(player.getAccount_id()!=Player.HIDDEN_ID){
+                                                    player.setAccount(playerService.getAccountById(MatchInfoActivity.this,player.getAccount_id()));
+                                                }
+                                                player.setHero(heroService.getHeroById(MatchInfoActivity.this,player.getHero_id()));
+                                                loadPlayerItems(player);
                                             }
                                         }
                                     }
@@ -312,6 +325,61 @@ public class MatchInfoActivity extends BaseActivity {
                                         : R.string.dire_win));
                     } else if (!TextUtils.isEmpty(result.second)) {
                         handleError(result.second);
+                    }
+                }
+
+                private void loadPlayerItems(Player player) {
+                    Item current=itemService.getItemById(MatchInfoActivity.this,player.getItem0());
+                    if(current!=null){
+                        player.setItem0dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem1());
+                    if(current!=null){
+                        player.setItem1dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem2());
+                    if(current!=null){
+                        player.setItem2dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem3());
+                    if(current!=null){
+                        player.setItem3dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem4());
+                    if(current!=null){
+                        player.setItem4dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem5());
+                    if(current!=null){
+                        player.setItem5dotaId(current.getDotaId());
+                    }
+                    if(player.getAdditionalUnits()!=null){
+                        for(AdditionalUnit unit:player.getAdditionalUnits()){
+                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem0());
+                            if(current!=null){
+                                unit.setItem0dotaId(current.getDotaId());
+                            }
+                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem1());
+                            if(current!=null){
+                                unit.setItem1dotaId(current.getDotaId());
+                            }
+                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem2());
+                            if(current!=null){
+                                unit.setItem2dotaId(current.getDotaId());
+                            }
+                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem3());
+                            if(current!=null){
+                                unit.setItem3dotaId(current.getDotaId());
+                            }
+                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem4());
+                            if(current!=null){
+                                unit.setItem4dotaId(current.getDotaId());
+                            }
+                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem5());
+                            if(current!=null){
+                                unit.setItem5dotaId(current.getDotaId());
+                            }
+                        }
                     }
                 }
 
