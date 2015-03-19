@@ -135,7 +135,7 @@ public class PlayersList extends Fragment implements TextView.OnEditorActionList
         DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<Pair<List<Unit>, String>>() {
             @Override
             public Pair<List<Unit>, String> doTask(OnPublishProgressListener listener) throws Exception {
-                Pair<List<Unit>, String> result = playerService.loadAccounts(activity, searchRequest.getText().toString());
+                Pair<List<Unit>, String> result = playerService.loadAccounts(searchRequest.getText().toString());
                 if (result.first == null) {
                     throw new Exception(result.second);
                 } else {

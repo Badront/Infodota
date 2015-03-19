@@ -30,9 +30,9 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Pair<List<Unit>, String> loadAccounts(Context context, List<Long> ids) {
+    public Pair<List<Unit>, String> loadAccounts(List<Long> ids) {
         try {
-            List<Unit> result = service.getAccounts(context, ids);
+            List<Unit> result = service.getAccounts(ids);
             String message=null;
             if (result== null) {
                 message = "Failed to get players";
@@ -47,9 +47,9 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Pair<List<Unit>, String> loadAccounts(Context context, String name) {
+    public Pair<List<Unit>, String> loadAccounts(String name) {
         try {
-            List<Unit> result = service.getAccounts(context, name);
+            List<Unit> result = service.getAccounts(name);
             String message=null;
             if (result== null) {
                 message = "Failed to get players";
@@ -64,19 +64,13 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Pair<List<Unit>, String> loadFriends(Context context, long id) {
+    public List<Unit> loadFriends(long id) {
         try {
-            List<Unit> result = service.getFriends(context, id);
-            String message=null;
-            if (result== null) {
-                message = "Failed to get friends";
-                Log.e(PlayerServiceImpl.class.getName(), message);
-            }
-            return Pair.create(result,message);
+            return service.getFriends(id);
         } catch (Exception e) {
             String message = "Failed to get friends, cause: " + e.getMessage();
             Log.e(PlayerServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
+            return null;
         }
     }
 

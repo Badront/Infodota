@@ -260,7 +260,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     }
                     if (ids.size() > 0) {
-                        Pair<List<Unit>, String> unitsResult = playerService.loadAccounts(context, ids);
+                        Pair<List<Unit>, String> unitsResult = playerService.loadAccounts(ids);
                         if (unitsResult != null) {
                             List<Unit> units = unitsResult.first;
                             if (units != null && units.size() > 0) {

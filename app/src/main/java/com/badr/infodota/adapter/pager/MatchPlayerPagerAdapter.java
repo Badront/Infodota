@@ -17,7 +17,7 @@ import com.badr.infodota.fragment.match.details.MatchPlayerSummary;
 public class MatchPlayerPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     private Player player;
-    //workaround для random ability draft
+    //workaround for random ability draft
     private boolean randomSkills;
 
     public MatchPlayerPagerAdapter(FragmentManager fm, Context context, boolean isRandomSkills, Player player) {

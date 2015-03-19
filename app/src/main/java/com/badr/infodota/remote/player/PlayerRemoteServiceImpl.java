@@ -35,7 +35,7 @@ import java.util.List;
 public class PlayerRemoteServiceImpl implements PlayerRemoteService {
 
     @Override
-    public List<Unit> getAccounts(Context context, List<Long> ids) throws Exception {
+    public List<Unit> getAccounts(List<Long> ids) throws Exception {
         StringBuilder steamIds = new StringBuilder("");
         for (int i = 0; i < ids.size(); i++) {
             if (i != 0) {
@@ -65,14 +65,14 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
     }
 
     @Override
-    public List<Unit> getAccounts(Context context, String name) throws Exception {
+    public List<Unit> getAccounts(String name) throws Exception {
         String url = Constants.DotaBuff.SEARCH_URL + URLEncoder.encode(name, "UTF-8");
         Document document = Jsoup.connect(url).get();    //document.location()
         String location = document.location();
         if (!url.equals(location)) {
             String[] parts = location.split("/");
             Long accountId = Long.valueOf(parts[parts.length - 1]);
-            return getAccounts(context, Arrays.asList(accountId));
+            return getAccounts(Arrays.asList(accountId));
         } else {
             Elements elements = document.select("div[class=record player]");
             List<Unit> units = new ArrayList<Unit>();
@@ -93,7 +93,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
     }
 
     @Override
-    public List<Unit> getFriends(Context context, long id) throws Exception {
+    public List<Unit> getFriends(long id) throws Exception {
         long steam64id = Utils.steam32to64(id);
         FriendsResult result=BeanContainer.getInstance().getSteamService().getFriends(String.valueOf(steam64id));
         if (result != null && result.getFriendslist() != null) {
@@ -104,7 +104,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
                 for (Friend friend : friends) {
                     ids.add(Utils.steam64to32(Long.valueOf(friend.getSteamid())));
                 }
-                return getAccounts(context, ids);
+                return getAccounts(ids);
             }
         }
         return null;

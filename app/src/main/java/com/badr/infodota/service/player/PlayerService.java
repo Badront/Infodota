@@ -14,11 +14,11 @@ import java.util.List;
  * Time: 16:01
  */
 public interface PlayerService extends InitializingBean {
-    Pair<List<Unit>, String> loadAccounts(Context context, List<Long> ids);
+    Pair<List<Unit>, String> loadAccounts(List<Long> ids);
 
-    Pair<List<Unit>, String> loadAccounts(Context context, String name);
+    Pair<List<Unit>, String> loadAccounts(String name);
 
-    Pair<List<Unit>, String> loadFriends(Context context, long id);
+    List<Unit> loadFriends(long id);
 
     void saveAccount(Context context, Unit unit);
 
