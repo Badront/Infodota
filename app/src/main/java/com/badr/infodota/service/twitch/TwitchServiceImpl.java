@@ -25,18 +25,12 @@ public class TwitchServiceImpl implements TwitchService {
     private StreamDao streamDao;
 
     @Override
-    public Pair<AccessToken, String> getAccessToken(Context context, String channelName) {
+    public AccessToken getAccessToken(Context context, String channelName) {
         try {
-            Pair<AccessToken, String> result = service.getAccessToken(context, channelName);
-            if (result.first == null) {
-                String message = "Failed to get twitch access token, cause: " + result.second;
-                Log.e(TwitchServiceImpl.class.getName(), message);
-            }
-            return result;
-        } catch (Exception e) {
-            String message = "Failed to get twitch access token, cause: " + e.getMessage();
-            Log.e(TwitchServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
+            return service.getAccessToken(context, channelName);
+        }
+        catch (Exception e){
+            return null;
         }
     }
 

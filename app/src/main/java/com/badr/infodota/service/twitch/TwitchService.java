@@ -16,7 +16,7 @@ import java.util.List;
  * Time: 17:55
  */
 public interface TwitchService extends InitializingBean {
-    Pair<AccessToken, String> getAccessToken(Context context, String channelName);
+    AccessToken getAccessToken(Context context, String channelName);
 
     Pair<Playlist, String> getPlaylist(Context context, String channelName, AccessToken accessToken);
 

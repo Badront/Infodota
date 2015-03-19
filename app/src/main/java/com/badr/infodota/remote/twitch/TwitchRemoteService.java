@@ -13,7 +13,7 @@ import com.parser.Playlist;
  * Time: 17:37
  */
 public interface TwitchRemoteService extends BaseRemoteService {
-    Pair<AccessToken, String> getAccessToken(Context context, String channelName) throws Exception;
+    AccessToken getAccessToken(Context context, String channelName) throws Exception;
 
     Pair<Playlist, String> getPlaylist(Context context, String channelName, AccessToken accessToken) throws Exception;
 

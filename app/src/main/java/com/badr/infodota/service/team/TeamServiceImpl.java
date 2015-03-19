@@ -20,22 +20,12 @@ public class TeamServiceImpl implements TeamService {
     private TeamDao teamDao;
 
     @Override
-    public Pair<String, String> getTeamLogo(Context context, long id) {
-        try {
-            LogoDataHolder result = BeanContainer.getInstance().getSteamService().getTeamLogo(id);
-            if (result == null) {
-                String message= "Failed to get team logo";
-                Log.e(TeamServiceImpl.class.getName(), message);
-                return Pair.create(null,message);
-            }
-            else {
-                return Pair.create(result.getUrl(),null);
-            }
-        } catch (Exception e) {
-            String message = "Failed to get team logo, cause: " + e.getMessage();
-            Log.e(TeamServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
+    public String getTeamLogo(Context context, long id) {
+        LogoDataHolder result = BeanContainer.getInstance().getSteamService().getTeamLogo(id);
+        if(result!=null) {
+            return result.getUrl();
         }
+        return null;
     }
 
     @Override

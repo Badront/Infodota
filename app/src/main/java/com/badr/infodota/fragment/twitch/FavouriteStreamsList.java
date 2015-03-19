@@ -151,9 +151,9 @@ public class FavouriteStreamsList extends TwitchMatchListHolder {
 
                         @Override
                         public String doTask(OnPublishProgressListener listener) throws Exception {
-                            Pair<AccessToken, String> atResult = service.getAccessToken(activity, channelName);
-                            if (atResult.first != null) {
-                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult.first);
+                            AccessToken atResult = service.getAccessToken(activity, channelName);
+                            if (atResult!= null) {
+                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
                                 Playlist playlist = playlistResult.first;
                                 List<Element> elements = playlist.getElements();
                                 if (elements != null && elements.size() > 0) {

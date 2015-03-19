@@ -11,5 +11,5 @@ import com.badr.infodota.InitializingBean;
  * Time: 18:55
  */
 public interface TI4Service{
-    Pair<Long, String> getPrizePool(Context context);
+    Long getPrizePool(Context context);
 }

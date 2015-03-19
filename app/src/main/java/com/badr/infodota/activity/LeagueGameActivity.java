@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -32,11 +33,16 @@ import com.badr.infodota.util.DateUtils;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.Utils;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.List;
 
@@ -45,7 +51,7 @@ import java.util.List;
  * Date: 22.04.14
  * Time: 18:58
  */
-public class LeagueGameActivity extends BaseActivity {
+public class LeagueGameActivity extends BaseActivity implements RequestListener<String> {
     public static final int ADD_CALENDAR_EVENT_ID = 4321;
     DisplayImageOptions options;
     View progressBar;
@@ -56,6 +62,21 @@ public class LeagueGameActivity extends BaseActivity {
     private Menu menu;
     private Button showStreams;
     private LinearLayout streamsHolder;
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -151,90 +172,7 @@ public class LeagueGameActivity extends BaseActivity {
 
     private void loadStreams() {
         progressBar.setVisibility(View.VISIBLE);
-        new LoaderProgressTask<String>(new ProgressTask<String>() {
-            @Override
-            public String doTask(OnPublishProgressListener listener) throws Exception {
-                return service.fillChannelName(LeagueGameActivity.this, matchItem.getStreams());
-            }
-
-            @Override
-            public void doAfterTask(String result) {
-                progressBar.setVisibility(View.GONE);
-                if (!TextUtils.isEmpty(result)) {
-                    handleError(result);
-                } else if (matchItem.getStreams() != null && matchItem.getStreams().size() > 0) {
-                    showStreams.setVisibility(View.VISIBLE);
-                    showStreams.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (streamsHolder.getVisibility() == View.VISIBLE) {
-                                streamsHolder.setVisibility(View.GONE);
-                            } else {
-                                streamsHolder.setVisibility(View.VISIBLE);
-                                streamsHolder.removeAllViews();
-                                if (matchItem.getStreams() != null) {
-                                    LayoutInflater inflater = getLayoutInflater();
-                                    for (final LiveStream stream : matchItem.getStreams()) {
-                                        View streamRow = inflater.inflate(R.layout.league_game_stream_row, null, false);
-                                        TextView name = (TextView) streamRow.findViewById(R.id.name);
-                                        name.setText(stream.getName());
-                                        TextView language = (TextView) streamRow.findViewById(R.id.language);
-                                        language.setText(stream.getLanguage());
-                                        TextView viewersStatus = (TextView) streamRow.findViewById(R.id.viewers);
-                                        if (TextUtils.isEmpty(stream.getViewers())) {
-                                            viewersStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                                            viewersStatus.setText(stream.getStatus());
-                                        } else {
-                                            viewersStatus.setText(stream.getViewers());
-                                            streamRow.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    if (TextUtils.isEmpty(stream.getChannelName())) {
-                                                        Intent inBrowser = new Intent(Intent.ACTION_VIEW);
-                                                        inBrowser.setData(Uri.parse(stream.getUrl()));
-                                                        startActivity(inBrowser);
-                                                    } else {
-                                                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LeagueGameActivity.this);
-                                                        Intent intent;
-                                                        switch (preferences.getInt("player_type", 0)) {
-                                                            case 0:
-                                                                intent = new Intent(LeagueGameActivity.this, TwitchPlayActivity.class);
-                                                                intent.putExtra("channelName", stream.getChannelName());
-                                                                intent.putExtra("channelTitle", matchItem.getTitle());
-                                                                break;
-                                                            default:
-                                                                String url = "http://www.twitch.tv/" + stream.getChannelName();
-                                                                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                                                                break;
-                                                        }
-                                                        startActivity(intent);
-                                                    }
-                                                }
-                                            });
-                                        }
-                                        streamsHolder.addView(streamRow);
-                                    }
-                                }
-                            }
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void handleError(String error) {
-                progressBar.setVisibility(View.GONE);
-                if (!TextUtils.isEmpty(error)) {
-                    Toast.makeText(LeagueGameActivity.this, error, Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public String getName() {
-                return null;
-            }
-        }, null).execute();
+        spiceManager.execute(new ChannelLoadLoadRequest(this, matchItem.getStreams()), this);
     }
 
     private void fillGameInfo() {
@@ -398,5 +336,93 @@ public class LeagueGameActivity extends BaseActivity {
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, matchItem.getDetailedDate())
                 .putExtra(CalendarContract.Events.TITLE, matchItem.getTitle() + ", " + matchItem.getTeam1name() + " vs " + matchItem.getTeam2name());
         startActivity(intent);
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        progressBar.setVisibility(View.GONE);
+        Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestSuccess(String result) {
+        progressBar.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(result)) {
+            onRequestFailure(new SpiceException(result));
+        } else if (matchItem.getStreams() != null && matchItem.getStreams().size() > 0) {
+            showStreams.setVisibility(View.VISIBLE);
+            showStreams.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (streamsHolder.getVisibility() == View.VISIBLE) {
+                        streamsHolder.setVisibility(View.GONE);
+                    } else {
+                        streamsHolder.setVisibility(View.VISIBLE);
+                        streamsHolder.removeAllViews();
+                        if (matchItem.getStreams() != null) {
+                            LayoutInflater inflater = getLayoutInflater();
+                            for (final LiveStream stream : matchItem.getStreams()) {
+                                View streamRow = inflater.inflate(R.layout.league_game_stream_row, null, false);
+                                TextView name = (TextView) streamRow.findViewById(R.id.name);
+                                name.setText(stream.getName());
+                                TextView language = (TextView) streamRow.findViewById(R.id.language);
+                                language.setText(stream.getLanguage());
+                                TextView viewersStatus = (TextView) streamRow.findViewById(R.id.viewers);
+                                if (TextUtils.isEmpty(stream.getViewers())) {
+                                    viewersStatus.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                                    viewersStatus.setText(stream.getStatus());
+                                } else {
+                                    viewersStatus.setText(stream.getViewers());
+                                    streamRow.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            if (TextUtils.isEmpty(stream.getChannelName())) {
+                                                Intent inBrowser = new Intent(Intent.ACTION_VIEW);
+                                                inBrowser.setData(Uri.parse(stream.getUrl()));
+                                                startActivity(inBrowser);
+                                            } else {
+                                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LeagueGameActivity.this);
+                                                Intent intent;
+                                                switch (preferences.getInt("player_type", 0)) {
+                                                    case 0:
+                                                        intent = new Intent(LeagueGameActivity.this, TwitchPlayActivity.class);
+                                                        intent.putExtra("channelName", stream.getChannelName());
+                                                        intent.putExtra("channelTitle", matchItem.getTitle());
+                                                        break;
+                                                    default:
+                                                        String url = "http://www.twitch.tv/" + stream.getChannelName();
+                                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                                        break;
+                                                }
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    });
+                                }
+                                streamsHolder.addView(streamRow);
+                            }
+                        }
+                    }
+                }
+            });
+
+        }
+    }
+
+    public static class ChannelLoadLoadRequest extends TaskRequest<String>{
+        private Context context;
+        private List<LiveStream> liveStreams;
+        private BeanContainer container = BeanContainer.getInstance();
+        private JoinDotaService service = container.getJoinDotaService();
+        public ChannelLoadLoadRequest(Context context, List<LiveStream> liveStreams) {
+            super(String.class);
+            this.context=context;
+            this.liveStreams=liveStreams;
+        }
+
+        @Override
+        public String loadData() throws Exception {
+            return service.fillChannelName(context, liveStreams);
+        }
     }
 }

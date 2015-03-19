@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,7 +15,13 @@ import com.badr.infodota.adapter.pager.TI4PagerAdapter;
 import com.badr.infodota.service.ti4.TI4Service;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.text.MessageFormat;
 
@@ -24,7 +31,22 @@ import java.text.MessageFormat;
  * Time: 20:17
  */
 @Deprecated
-public class TI4Activity extends BaseActivity {
+public class TI4Activity extends BaseActivity implements RequestListener<Long> {
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,34 +54,7 @@ public class TI4Activity extends BaseActivity {
         setContentView(R.layout.ti4_holder);
         setSupportProgressBarIndeterminateVisibility(false);
         getSupportActionBar().setTitle("The International 2014");
-        new LoaderProgressTask<Pair<Long, String>>(new ProgressTask<Pair<Long, String>>() {
-            @Override
-            public Pair<Long, String> doTask(OnPublishProgressListener listener) throws Exception {
-                BeanContainer container = BeanContainer.getInstance();
-                TI4Service service = container.getTi4Service();
-                return service.getPrizePool(TI4Activity.this);
-            }
-
-            @Override
-            public void doAfterTask(Pair<Long, String> result) {
-                if (result.first != null) {
-                    ActionBar actionBar = getSupportActionBar();
-                    actionBar.setTitle(MessageFormat.format(getString(R.string.current_prizepool), String.valueOf(result.first)));
-                } else {
-                    handleError(result.second);
-                }
-            }
-
-            @Override
-            public void handleError(String error) {
-                Toast.makeText(TI4Activity.this, error, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public String getName() {
-                return "TI4PrizePool";
-            }
-        }, null).execute();
+        spiceManager.execute(new PrizePoolLoadRequest(getApplicationContext()),this);
         initPager();
     }
 
@@ -70,5 +65,32 @@ public class TI4Activity extends BaseActivity {
         pager.setOffscreenPageLimit(4);
         SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
         indicator.setViewPager(pager);
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onRequestSuccess(Long result) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(MessageFormat.format(getString(R.string.current_prizepool), String.valueOf(result)));
+    }
+    public static class PrizePoolLoadRequest extends TaskRequest<Long>{
+        private Context context;
+        public PrizePoolLoadRequest(Context context) {
+            super(Long.class);
+            this.context=context;
+
+        }
+
+        @Override
+        public Long loadData() throws Exception {
+            BeanContainer container = BeanContainer.getInstance();
+            TI4Service service = container.getTi4Service();
+            return service.getPrizePool(context);
+        }
     }
 }

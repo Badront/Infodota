@@ -13,8 +13,8 @@ import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
  * Time: 16:18
  */
 public interface MatchService{
-    Pair<MatchDetails, String> getMatchDetails(Context context, String matchId);
+    MatchDetails getMatchDetails(Context context, String matchId);
 
-    Pair<MatchHistoryResultResponse, String> getMatches(Context context, Long accountId, Long fromMatchId, Long heroId);
+    Pair<MatchHistoryResultResponse, String> getMatches(Long accountId, Long fromMatchId, Long heroId);
 
 }

@@ -32,9 +32,7 @@ public class PlayerCommonStatsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.common_stats_result);
-        setSupportProgressBarIndeterminateVisibility(false);
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565).build();
         ImageLoader imageLoader = ImageLoader.getInstance();

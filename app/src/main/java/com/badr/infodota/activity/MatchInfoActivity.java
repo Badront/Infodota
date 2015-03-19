@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,7 +10,6 @@ import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
@@ -27,13 +27,16 @@ import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.service.match.MatchService;
 import com.badr.infodota.service.player.PlayerService;
 import com.badr.infodota.service.team.TeamService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.Utils;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,16 +46,34 @@ import java.util.List;
  * Date: 21.01.14
  * Time: 13:41
  */
-public class MatchInfoActivity extends BaseActivity {
+public class MatchInfoActivity extends BaseActivity implements RequestListener {
     private String simpleMatchId;
     private MatchInfoPagerAdapter adapter;
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    BeanContainer container = BeanContainer.getInstance();
+    TeamService teamService = container.getTeamService();
+    ImageLoader imageLoader = ImageLoader.getInstance();
+
+    private Result matchResult;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.match_info);
-        setSupportProgressBarIndeterminateVisibility(false);
 
         final Bundle intent = getIntent().getExtras();
         if (intent != null && (intent.containsKey("matchId") || intent.containsKey("match"))) {
@@ -60,349 +81,290 @@ public class MatchInfoActivity extends BaseActivity {
             if (intent.containsKey("matchId")) {
                 simpleMatchId = intent.getString("matchId");
             }
+            if(intent.containsKey("match")){
+                matchResult = (Result) intent.getSerializable("match");
+            }
 
             initPager();
-            setSupportProgressBarIndeterminateVisibility(true);
-            new LoaderProgressTask<Pair<MatchDetails, String>>(new ProgressTask<Pair<MatchDetails, String>>() {
-                BeanContainer container = BeanContainer.getInstance();
-                TeamService teamService = container.getTeamService();
-                ItemService itemService=container.getItemService();
-                ImageLoader imageLoader = ImageLoader.getInstance();
-
-                @Override
-                public Pair<MatchDetails, String> doTask(OnPublishProgressListener listener) throws Exception {
-                    MatchService matchService = container.getMatchService();
-                    PlayerService playerService = container.getPlayerService();
-                    HeroService heroService=container.getHeroService();
-
-                    Pair<MatchDetails, String> result;
-                    if (simpleMatchId != null) {
-                        result = matchService.getMatchDetails(MatchInfoActivity.this, simpleMatchId);
-                    } else {
-                        Bundle intent = getIntent().getExtras();
-                        result = Pair.create(new MatchDetails((Result) intent.getSerializable("match")), "");
-                    }
-                    if (result.first != null) {
-                        Result matchResult = result.first.getResult();
-                        if (matchResult != null) {
-                            List<Player> players = matchResult.getPlayers();
-                            if (players != null && players.size() > 0) {
-                                List<Long> ids = new ArrayList<Long>();
-                                for (Player player : players) {
-                                    if (player.getAccount_id() != Player.HIDDEN_ID) {
-                                        ids.add(player.getAccount_id());
-                                    }
-                                }
-                                if (ids.size() > 0) {
-                                    Pair<List<Unit>, String> unitsResult = playerService.loadAccounts(MatchInfoActivity.this, ids);
-                                    if (unitsResult != null) {
-                                        List<Unit> units = unitsResult.first;
-                                        if (units != null && units.size() > 0) {
-                                            for (Unit unit : units) {
-                                                playerService.saveAccount(MatchInfoActivity.this, unit);
-                                            }
-                                            for(Player player:players){
-                                                if(player.getAccount_id()!=Player.HIDDEN_ID){
-                                                    player.setAccount(playerService.getAccountById(MatchInfoActivity.this,player.getAccount_id()));
-                                                }
-                                                player.setHero(heroService.getHeroById(MatchInfoActivity.this,player.getHero_id()));
-                                                loadPlayerItems(player);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    return result;
-                }
-
-                @Override
-                public void doAfterTask(Pair<MatchDetails, String> result) {
-                    setSupportProgressBarIndeterminateVisibility(false);
-                    if (result.first != null && result.first.getResult() != null) {
-                        final Result resultsResult = result.first.getResult();
-                        adapter.updateMatchDetails(resultsResult);
-                        ActionBar actionBar = getSupportActionBar();
-
-                        /*SlidingTabLayout indicator = (SlidingTabLayout)findViewById(R.id.indicator);
-                        View radiant=indicator.getChildAt(0);
-						if(!TextUtils.isEmpty(resultsResult.getRadiant_name())){
-							radiant.setText(resultsResult.getRadiant_name());
-						}*/
-                        if (resultsResult.getRadiant_logo() != null) {
-                            Team radiant = teamService.getTeamById(MatchInfoActivity.this, resultsResult.getRadiant_team_id());
-
-                            if (!TextUtils.isEmpty(radiant.getLogo())) {
-                                imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
-                                    @Override
-                                    public void onLoadingStarted(String s, View view) {
-
-                                    }
-
-                                    @Override
-                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                    }
-
-                                    @Override
-                                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-                                        drawable.setBounds(
-                                                0,
-                                                0,
-                                                Utils.dpSize(MatchInfoActivity.this, 40),
-                                                Utils.dpSize(MatchInfoActivity.this, 40));
-                                        /*radiant.setIcon(drawable);
-                                        radiant.setText("");*/
-                                    }
-
-                                    @Override
-                                    public void onLoadingCancelled(String s, View view) {
-
-                                    }
-                                });
-                            } else {
-                                new LoaderProgressTask<Pair<String, String>>(new ProgressTask<Pair<String, String>>() {
-                                    @Override
-                                    public Pair<String, String> doTask(OnPublishProgressListener listener) throws Exception {
-                                        return teamService.getTeamLogo(MatchInfoActivity.this, resultsResult.getRadiant_logo());
-                                    }
-
-                                    @Override
-                                    public void doAfterTask(Pair<String, String> result) {
-                                        if (result.first != null) {
-
-                                            Team team = new Team();
-                                            team.setId(resultsResult.getRadiant_team_id());
-                                            team.setTeamLogoId(resultsResult.getRadiant_logo());
-                                            team.setLogo(result.first);
-                                            teamService.saveTeam(MatchInfoActivity.this, team);
-                                            imageLoader.loadImage(result.first, new ImageLoadingListener() {
-                                                @Override
-                                                public void onLoadingStarted(String s, View view) {
-
-                                                }
-
-                                                @Override
-                                                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                                }
-
-                                                @Override
-                                                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                                    Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-                                                    drawable.setBounds(
-                                                            0,
-                                                            0,
-                                                            Utils.dpSize(MatchInfoActivity.this, 40),
-                                                            Utils.dpSize(MatchInfoActivity.this, 40));
-													/*radiant.setIcon(drawable);
-													radiant.setText("");*/
-                                                }
-
-                                                @Override
-                                                public void onLoadingCancelled(String s, View view) {
-
-                                                }
-                                            });
-                                        } else {
-                                            handleError(result.second);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void handleError(String error) {
-                                        //ignore
-                                    }
-
-                                    @Override
-                                    public String getName() {
-                                        return null;
-                                    }
-                                }, null).execute();
-                            }
-                        }
-						/*final ActionBar.Tab dire=actionBar.getTabAt(1);
-						if(!TextUtils.isEmpty(resultsResult.getDire_name())){
-							dire.setText(resultsResult.getDire_name());
-						}*/
-                        if (resultsResult.getDire_logo() != null) {
-                            Team dire = teamService.getTeamById(MatchInfoActivity.this, resultsResult.getDire_team_id());
-                            if (!TextUtils.isEmpty(dire.getLogo())) {
-                                imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
-                                    @Override
-                                    public void onLoadingStarted(String s, View view) {
-
-                                    }
-
-                                    @Override
-                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                    }
-
-                                    @Override
-                                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-                                        drawable.setBounds(
-                                                0,
-                                                0,
-                                                Utils.dpSize(MatchInfoActivity.this, 40),
-                                                Utils.dpSize(MatchInfoActivity.this, 40));
-										/*dire.setIcon(drawable);
-										dire.setText("");*/
-                                    }
-
-                                    @Override
-                                    public void onLoadingCancelled(String s, View view) {
-
-                                    }
-                                });
-                            } else {
-                                new LoaderProgressTask<Pair<String, String>>(new ProgressTask<Pair<String, String>>() {
-                                    @Override
-                                    public Pair<String, String> doTask(OnPublishProgressListener listener) throws Exception {
-                                        TeamService service = container.getTeamService();
-                                        return service.getTeamLogo(MatchInfoActivity.this, resultsResult.getDire_logo());
-                                    }
-
-                                    @Override
-                                    public void doAfterTask(Pair<String, String> result) {
-                                        if (result.first != null) {
-                                            Team team = new Team();
-                                            team.setId(resultsResult.getDire_team_id());
-                                            team.setTeamLogoId(resultsResult.getDire_logo());
-                                            team.setLogo(result.first);
-                                            teamService.saveTeam(MatchInfoActivity.this, team);
-                                            imageLoader.loadImage(result.first, new ImageLoadingListener() {
-                                                @Override
-                                                public void onLoadingStarted(String s, View view) {
-
-                                                }
-
-                                                @Override
-                                                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                                }
-
-                                                @Override
-                                                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                                    Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-                                                    drawable.setBounds(
-                                                            0,
-                                                            0,
-                                                            Utils.dpSize(MatchInfoActivity.this, 40),
-                                                            Utils.dpSize(MatchInfoActivity.this, 40));
-													/*dire.setIcon(drawable);
-													dire.setText("");*/
-                                                }
-
-                                                @Override
-                                                public void onLoadingCancelled(String s, View view) {
-
-                                                }
-                                            });
-                                        } else {
-                                            handleError(result.second);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void handleError(String error) {
-                                        //ignore
-                                    }
-
-                                    @Override
-                                    public String getName() {
-                                        return null;
-                                    }
-                                }, null).execute();
-                            }
-                        }
-                        actionBar.setTitle(getString(
-                                resultsResult.isRadiant_win() ?
-                                        R.string.radiant_win
-                                        : R.string.dire_win));
-                    } else if (!TextUtils.isEmpty(result.second)) {
-                        handleError(result.second);
-                    }
-                }
-
-                private void loadPlayerItems(Player player) {
-                    Item current=itemService.getItemById(MatchInfoActivity.this,player.getItem0());
-                    if(current!=null){
-                        player.setItem0dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem1());
-                    if(current!=null){
-                        player.setItem1dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem2());
-                    if(current!=null){
-                        player.setItem2dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem3());
-                    if(current!=null){
-                        player.setItem3dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem4());
-                    if(current!=null){
-                        player.setItem4dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(MatchInfoActivity.this,player.getItem5());
-                    if(current!=null){
-                        player.setItem5dotaId(current.getDotaId());
-                    }
-                    if(player.getAdditionalUnits()!=null){
-                        for(AdditionalUnit unit:player.getAdditionalUnits()){
-                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem0());
-                            if(current!=null){
-                                unit.setItem0dotaId(current.getDotaId());
-                            }
-                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem1());
-                            if(current!=null){
-                                unit.setItem1dotaId(current.getDotaId());
-                            }
-                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem2());
-                            if(current!=null){
-                                unit.setItem2dotaId(current.getDotaId());
-                            }
-                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem3());
-                            if(current!=null){
-                                unit.setItem3dotaId(current.getDotaId());
-                            }
-                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem4());
-                            if(current!=null){
-                                unit.setItem4dotaId(current.getDotaId());
-                            }
-                            current=itemService.getItemById(MatchInfoActivity.this,unit.getItem5());
-                            if(current!=null){
-                                unit.setItem5dotaId(current.getDotaId());
-                            }
-                        }
-                    }
-                }
-
-                @Override
-                public void handleError(String error) {
-                    Toast.makeText(MatchInfoActivity.this, error, Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public String getName() {
-                    return null;
-                }
-            }, null).execute();
+            spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
         }
     }
 
     private void initPager() {
-        adapter = new MatchInfoPagerAdapter(getSupportFragmentManager(), this/*,simpleMatch*/);
+        adapter = new MatchInfoPagerAdapter(getSupportFragmentManager(), this);
 
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(3);
         SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
         indicator.setViewPager(pager);
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestSuccess(Object o) {
+        if(o instanceof LongPair){
+            LongPair pair= (LongPair) o;
+            Team team = new Team();
+            if(pair.first.equals(matchResult.getRadiant_logo())) {
+                team.setId(matchResult.getRadiant_team_id());
+                team.setTeamLogoId(matchResult.getRadiant_logo());
+            }
+            else {
+                team.setId(matchResult.getDire_team_id());
+                team.setTeamLogoId(matchResult.getDire_logo());
+            }
+            team.setLogo(pair.second);
+            teamService.saveTeam(MatchInfoActivity.this, team);
+            imageLoader.loadImage(pair.second, new ImageLoadingListener() {
+                @Override
+                public void onLoadingStarted(String s, View view) {
+
+                }
+
+                @Override
+                public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+                }
+
+                @Override
+                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                    Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+                    drawable.setBounds(
+                            0,
+                            0,
+                            Utils.dpSize(MatchInfoActivity.this, 40),
+                            Utils.dpSize(MatchInfoActivity.this, 40));
+                }
+
+                @Override
+                public void onLoadingCancelled(String s, View view) {
+
+                }
+            });
+        }
+        else if(o instanceof Result){
+            matchResult = (Result) o;
+            adapter.updateMatchDetails(matchResult);
+            ActionBar actionBar = getSupportActionBar();
+            if (matchResult.getRadiant_logo() != null) {
+                Team radiant = teamService.getTeamById(MatchInfoActivity.this, matchResult.getRadiant_team_id());
+
+                if (!TextUtils.isEmpty(radiant.getLogo())) {
+                    imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String s, View view) {
+
+                        }
+
+                        @Override
+                        public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+                        }
+
+                        @Override
+                        public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                            Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+                            drawable.setBounds(
+                                    0,
+                                    0,
+                                    Utils.dpSize(MatchInfoActivity.this, 40),
+                                    Utils.dpSize(MatchInfoActivity.this, 40));
+                        }
+
+                        @Override
+                        public void onLoadingCancelled(String s, View view) {
+                        }
+                    });
+                } else {
+                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getRadiant_logo()), this);
+                }
+            }
+            if (matchResult.getDire_logo() != null) {
+                Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDire_team_id());
+                if (!TextUtils.isEmpty(dire.getLogo())) {
+                    imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
+                        @Override
+                        public void onLoadingStarted(String s, View view) {
+
+                        }
+
+                        @Override
+                        public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+                        }
+
+                        @Override
+                        public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                            Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+                            drawable.setBounds(
+                                    0,
+                                    0,
+                                    Utils.dpSize(MatchInfoActivity.this, 40),
+                                    Utils.dpSize(MatchInfoActivity.this, 40));
+										/*dire.setIcon(drawable);
+										dire.setText("");*/
+                        }
+
+                        @Override
+                        public void onLoadingCancelled(String s, View view) {
+
+                        }
+                    });
+                } else {
+                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDire_logo()), this);
+                }
+            }
+            actionBar.setTitle(getString(
+                    matchResult.isRadiant_win() ?
+                            R.string.radiant_win
+                            : R.string.dire_win));
+        }
+    }
+    public static class MatchDetailsLoadRequest extends TaskRequest<Result>{
+
+        private Result matchResult;
+        private String matchId;
+        private Context context;
+        BeanContainer container=BeanContainer.getInstance();
+        MatchService matchService = container.getMatchService();
+        PlayerService playerService = container.getPlayerService();
+        HeroService heroService=container.getHeroService();
+        ItemService itemService=container.getItemService();
+        public MatchDetailsLoadRequest(Context context,Result matchResult,String matchId) {
+            super(Result.class);
+            this.context=context;
+            this.matchResult = matchResult;
+            this.matchId=matchId;
+        }
+
+        @Override
+        public Result loadData() throws Exception {
+            if (matchId != null) {
+                MatchDetails result = matchService.getMatchDetails(context, matchId);
+                if (result != null) {
+                    matchResult = result.getResult();
+                }
+            }
+            if (matchResult != null) {
+                List<Player> players = matchResult.getPlayers();
+                if (players != null && players.size() > 0) {
+                    List<Long> ids = new ArrayList<Long>();
+                    for (Player player : players) {
+                        if (player.getAccount_id() != Player.HIDDEN_ID) {
+                            ids.add(player.getAccount_id());
+                        }
+                    }
+                    if (ids.size() > 0) {
+                        Pair<List<Unit>, String> unitsResult = playerService.loadAccounts(context, ids);
+                        if (unitsResult != null) {
+                            List<Unit> units = unitsResult.first;
+                            if (units != null && units.size() > 0) {
+                                for (Unit unit : units) {
+                                    playerService.saveAccount(context, unit);
+                                }
+                                for (Player player : players) {
+                                    if (player.getAccount_id() != Player.HIDDEN_ID) {
+                                        player.setAccount(playerService.getAccountById(context, player.getAccount_id()));
+                                    }
+                                    player.setHero(heroService.getHeroById(context, player.getHero_id()));
+                                    loadPlayerItems(player);
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            return matchResult;
+        }
+
+        private void loadPlayerItems(Player player) {
+            Item current=itemService.getItemById(context,player.getItem0());
+            if(current!=null){
+                player.setItem0dotaId(current.getDotaId());
+            }
+            current=itemService.getItemById(context,player.getItem1());
+            if(current!=null){
+                player.setItem1dotaId(current.getDotaId());
+            }
+            current=itemService.getItemById(context,player.getItem2());
+            if(current!=null){
+                player.setItem2dotaId(current.getDotaId());
+            }
+            current=itemService.getItemById(context,player.getItem3());
+            if(current!=null){
+                player.setItem3dotaId(current.getDotaId());
+            }
+            current=itemService.getItemById(context,player.getItem4());
+            if(current!=null){
+                player.setItem4dotaId(current.getDotaId());
+            }
+            current=itemService.getItemById(context,player.getItem5());
+            if(current!=null){
+                player.setItem5dotaId(current.getDotaId());
+            }
+            if(player.getAdditionalUnits()!=null){
+                for(AdditionalUnit unit:player.getAdditionalUnits()){
+                    current=itemService.getItemById(context,unit.getItem0());
+                    if(current!=null){
+                        unit.setItem0dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(context,unit.getItem1());
+                    if(current!=null){
+                        unit.setItem1dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(context,unit.getItem2());
+                    if(current!=null){
+                        unit.setItem2dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(context,unit.getItem3());
+                    if(current!=null){
+                        unit.setItem3dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(context,unit.getItem4());
+                    if(current!=null){
+                        unit.setItem4dotaId(current.getDotaId());
+                    }
+                    current=itemService.getItemById(context,unit.getItem5());
+                    if(current!=null){
+                        unit.setItem5dotaId(current.getDotaId());
+                    }
+                }
+            }
+        }
+    }
+    public static class TeamLogoLoadRequest extends TaskRequest<LongPair>{
+
+        TeamService service = BeanContainer.getInstance().getTeamService();
+        private Context context;
+        private long teamId;
+        public TeamLogoLoadRequest(Context context,long teamId) {
+            super(LongPair.class);
+            this.context=context;
+            this.teamId=teamId;
+        }
+
+        @Override
+        public LongPair loadData() throws Exception {
+            String result= service.getTeamLogo(context, teamId);
+            return new LongPair(teamId,result);
+        }
+    }
+    public static class LongPair extends Pair<Long,String>{
+
+        /**
+         * Constructor for a Pair.
+         *
+         * @param first  the first object in the Pair
+         * @param second the second object in the pair
+         */
+        public LongPair(Long first, String second) {
+            super(first, second);
+        }
     }
 }

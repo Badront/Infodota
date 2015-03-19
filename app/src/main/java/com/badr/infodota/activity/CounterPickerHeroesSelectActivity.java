@@ -192,7 +192,7 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     }
 
     private void loadHeroesForGridView() {
-        spiceManager.execute(new TruepickerHeroLoadRequest(CounterPickerHeroesSelectActivity.this,selectedFilter), this);
+        spiceManager.execute(new TruepickerHeroLoadRequest(getApplicationContext(),selectedFilter), this);
     }
 
     @Override

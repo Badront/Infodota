@@ -205,7 +205,7 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
     }
 
     private void updateGuides() {
-        spiceManager.execute(new GuidesLoadRequest(this,hero.getDotaId(),guideNameMap),this);
+        spiceManager.execute(new GuidesLoadRequest(getApplicationContext(),hero.getDotaId(),guideNameMap),this);
     }
 
     private String getFileName(String guideTitle) {
@@ -282,6 +282,7 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
             }
         });
     }
+
     public static class GuidesLoadRequest extends TaskRequest<List>{
         private Context context;
         private String heroDotaId;
@@ -291,7 +292,6 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
             this.context=context;
             this.heroDotaId=heroDotaId;
             this.guideNameMap=guideNameMap;
-
         }
 
         @Override

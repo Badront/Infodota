@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.GridView;
@@ -136,7 +137,7 @@ public class MatchHistory extends GridFragment {
             new LoaderProgressTask<Pair<MatchHistoryResultResponse, String>>(new ProgressTask<Pair<MatchHistoryResultResponse, String>>() {
                 @Override
                 public Pair<MatchHistoryResultResponse, String> doTask(OnPublishProgressListener listener) {
-                    return matchService.getMatches(activity, account.getAccountId(), fromMatchId, heroId);
+                    return matchService.getMatches(account.getAccountId(), fromMatchId, heroId);
                 }
 
                 @Override

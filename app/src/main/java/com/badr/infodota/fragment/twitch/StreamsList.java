@@ -150,13 +150,12 @@ public class StreamsList extends TwitchMatchListHolder {
                     DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<String>() {
                         BeanContainer container = BeanContainer.getInstance();
                         TwitchService service = container.getTwitchService();
-                        TwitchRemoteService remoteService = container.getTwitchRemoteService();
 
                         @Override
                         public String doTask(OnPublishProgressListener listener) throws Exception {
-                            Pair<AccessToken, String> atResult = service.getAccessToken(activity, channelName);
-                            if (atResult.first != null) {
-                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult.first);
+                            AccessToken atResult = service.getAccessToken(activity, channelName);
+                            if (atResult!= null) {
+                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
                                 Playlist playlist = playlistResult.first;
                                 List<Element> elements = playlist.getElements();
                                 if (elements != null && elements.size() > 0) {
