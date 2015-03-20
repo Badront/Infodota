@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ItemService extends InitializingBean {
 
-    List<Item> getItems(Context context, String filter);
+    Item.List getItems(Context context, String filter);
 
     List<Item> getAllItems(Context context);
 

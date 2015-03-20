@@ -1,5 +1,6 @@
 package com.badr.infodota.fragment.leagues;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.ActionMenuView;
@@ -25,6 +26,11 @@ import com.badr.infodota.service.joindota.JoinDotaService;
 import com.badr.infodota.util.EndlessScrollListener;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.List;
 
@@ -33,10 +39,9 @@ import java.util.List;
  * Date: 22.04.14
  * Time: 18:30
  */
-public class LeaguesGamesList extends ListFragment {
+public class LeaguesGamesList extends ListFragment implements RequestListener<MatchItem.List>{
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
     private String extraParams;
-    private BeanContainer container = BeanContainer.getInstance();
-    private JoinDotaService joinDotaService = container.getJoinDotaService();
 
     public LeaguesGamesList() {
     }
@@ -45,6 +50,20 @@ public class LeaguesGamesList extends ListFragment {
         LeaguesGamesList fragment = new LeaguesGamesList();
         fragment.extraParams = extraParams;
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
     }
 
     @Override
@@ -66,13 +85,14 @@ public class LeaguesGamesList extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
+        setListAdapter(new LeaguesGamesAdapter(getActivity(), null));
         getListView().setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                loadGames(page, totalItemsCount);
+                loadGames(page);
             }
         });
-        loadGames(1, 0);
+        loadGames(1);
     }
 
     @Override
@@ -85,53 +105,46 @@ public class LeaguesGamesList extends ListFragment {
         }
     }
 
-    private void loadGames(final int page, final int totalItemsCount) {
-
-        final BaseActivity activity = (BaseActivity) getActivity();
+    private void loadGames(final int page) {
         setRefreshing(true);
-        if (getListAdapter() == null) {
-            setListAdapter(new LeaguesGamesAdapter(activity, null));
-        }
-        new LoaderProgressTask<Pair<List<MatchItem>, String>>(new ProgressTask<Pair<List<MatchItem>, String>>() {
-
-            @Override
-            public Pair<List<MatchItem>, String> doTask(OnPublishProgressListener listener) throws Exception {
-                return joinDotaService.getMatchItems(activity, page, extraParams);
-            }
-
-            @Override
-            public void doAfterTask(Pair<List<MatchItem>, String> result) {
-                if (result.first != null) {
-                    if (page == 1) {
-                        setListAdapter(new LeaguesGamesAdapter(activity, result.first));
-                    } else {
-                        ((LeaguesGamesAdapter) getListAdapter()).addMatchItems(result.first);
-                    }
-                } else if (!TextUtils.isEmpty(result.second)) {
-                    handleError(result.second);
-                } else {
-                    handleError(activity.getString(R.string.no_more_games));
-                }
-                setRefreshing(false);
-            }
-
-            @Override
-            public void handleError(String error) {
-                if (!TextUtils.isEmpty(error)) {
-                    Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
-                }
-                setRefreshing(false);
-            }
-
-            @Override
-            public String getName() {
-                return null;
-            }
-        }, null).execute();
+        spiceManager.execute(new MatchItemsLoadRequest(page),this);
     }
 
     @Override
     public void onRefresh() {
-        loadGames(1, getListAdapter().getCount());
+        loadGames(1);
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        setRefreshing(false);
+        Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestSuccess(MatchItem.List matchItems) {
+        setRefreshing(false);
+        ((LeaguesGamesAdapter) getListAdapter()).addMatchItems(matchItems);
+    }
+
+    public class MatchItemsLoadRequest extends TaskRequest<MatchItem.List>{
+
+        private BeanContainer container = BeanContainer.getInstance();
+        private JoinDotaService joinDotaService = container.getJoinDotaService();
+        private int page;
+        public MatchItemsLoadRequest(int page) {
+            super(MatchItem.List.class);
+            this.page=page;
+        }
+
+        @Override
+        public MatchItem.List loadData() throws Exception {
+            Activity activity=getActivity();
+            if(activity!=null)
+            {
+                return joinDotaService.getMatchItems(activity, page, extraParams);
+            }
+            return null;
+        }
     }
 }

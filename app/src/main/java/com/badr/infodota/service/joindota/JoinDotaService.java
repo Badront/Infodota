@@ -15,7 +15,7 @@ import java.util.List;
  * Time: 18:12
  */
 public interface JoinDotaService extends InitializingBean {
-    Pair<List<MatchItem>, String> getMatchItems(Context context, int page, String extraParams);
+    MatchItem.List getMatchItems(Context context, int page, String extraParams);
 
     Pair<MatchItem, String> updateMatchItem(Context context, MatchItem item);
 

@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 14:33
  */
 public interface JoinDotaRemoteService{
-    List<MatchItem> getMatchItems(Context context, int page, String extraParams) throws Exception;
+    MatchItem.List getMatchItems(Context context, int page, String extraParams) throws Exception;
 
     MatchItem updateMatchItem(Context context, MatchItem item) throws Exception;
 

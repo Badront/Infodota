@@ -42,13 +42,13 @@ public class JoinDotaRemoteServiceImpl implements JoinDotaRemoteService {
     }
 
     @Override
-    public List<MatchItem> getMatchItems(Context context, int page, String extraParams) throws Exception {
+    public MatchItem.List getMatchItems(Context context, int page, String extraParams) throws Exception {
         StringBuilder url = new StringBuilder("http://www.joindota.com/en/matches");
         url.append("/").append(extraParams != null ? extraParams : "");
         if (page > 0) {
             url.append("&archiv_page=").append(page);
         }
-        List<MatchItem> matchItems = new ArrayList<MatchItem>();
+        MatchItem.List matchItems = new MatchItem.List();
         Elements matchElements = Jsoup.connect(url.toString()).get().select("div.item");
         for (Element matchElement : matchElements) {
             MatchItem matchItem = new MatchItem();

@@ -2,6 +2,9 @@ package com.badr.infodota.api.items;
 
 import com.badr.infodota.util.HasId;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * User: Histler
  * Date: 18.01.14
@@ -181,5 +184,10 @@ public class Item implements Comparable, HasId {
         result = 31 * result + dotaId.hashCode();
         result = 31 * result + (dname != null ? dname.hashCode() : 0);
         return result;
+    }
+    public static class List extends ArrayList<Item>{
+        public List(Collection<? extends Item> collection) {
+            super(collection);
+        }
     }
 }
