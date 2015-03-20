@@ -52,45 +52,47 @@ public class AbilityBuildPart extends Fragment implements GuideHolder {
     @SuppressWarnings("deprecation")
     private void initAbilities() {
         View root = getView();
-        ViewGroup abilityHolder = (ViewGroup) root.findViewById(R.id.ability_holder);
-        abilityHolder.removeAllViews();
-        Activity activity = getActivity();
-        if (abilityBuild != null && activity != null) {
-            Map<String, String> abilityUpgrades = abilityBuild.getAbilityOrder();
-            if (abilityUpgrades != null && abilityUpgrades.size() > 0) {
+        if(root!=null) {
+            ViewGroup abilityHolder = (ViewGroup) root.findViewById(R.id.ability_holder);
+            abilityHolder.removeAllViews();
+            Activity activity = getActivity();
+            if (abilityBuild != null && activity != null) {
+                Map<String, String> abilityUpgrades = abilityBuild.getAbilityOrder();
+                if (abilityUpgrades != null && abilityUpgrades.size() > 0) {
 
-                HeroService heroService = BeanContainer.getInstance().getHeroService();
-                long heroId = getArguments().getLong("id");
-                List<Ability> abilities = heroService.getHeroAbilities(activity, heroId);
-                Map<Ability, String> tags = new HashMap<Ability, String>();
+                    HeroService heroService = BeanContainer.getInstance().getHeroService();
+                    long heroId = getArguments().getLong("id");
+                    List<Ability> abilities = heroService.getHeroAbilities(activity, heroId);
+                    Map<Ability, String> tags = new HashMap<Ability, String>();
 
-                for (int i = 0; i < abilities.size(); i++) {
-                    Ability ability = abilities.get(i);
-                    ImageView currentAbilityHeader = (ImageView) root.findViewWithTag(String.valueOf(i));
-                    currentAbilityHeader.setImageBitmap(FileUtils
-                            .getBitmapFromAsset(getActivity(), heroService.getAbilityPath(activity, ability.getId())));
-                    tags.put(ability, String.valueOf(i));
-                }
-                LayoutInflater inflater = getActivity().getLayoutInflater();
-                for (String level : abilityUpgrades.keySet()) {
-                    View row = inflater.inflate(R.layout.skillbuild_attribute_table_row, null, false);
-                    String abilityName = abilityUpgrades.get(level);
-                    Ability tekAbility = new Ability();
-                    tekAbility.setName(abilityName);
-                    String tag = tags.get(tekAbility);
-
-                    TextView upgraded = (TextView) row.findViewWithTag(tag);
-                    // System.out.println("dota2 info on ability:" + abilityUpgrade.getAbility() + " on level:" + abilityUpgrade.getLevel());
-                    if (upgraded == null) {
-                        System.out.println(level);
-                    } else {
-                        upgraded.setText(level);
-                        upgraded.setBackgroundDrawable(getResources().getDrawable(R.drawable.attribute_selected_bkg));
+                    for (int i = 0; i < abilities.size(); i++) {
+                        Ability ability = abilities.get(i);
+                        ImageView currentAbilityHeader = (ImageView) root.findViewWithTag(String.valueOf(i));
+                        currentAbilityHeader.setImageBitmap(FileUtils
+                                .getBitmapFromAsset(getActivity(), heroService.getAbilityPath(activity, ability.getId())));
+                        tags.put(ability, String.valueOf(i));
                     }
-                    abilityHolder.addView(row);
+                    LayoutInflater inflater = getActivity().getLayoutInflater();
+                    for (String level : abilityUpgrades.keySet()) {
+                        View row = inflater.inflate(R.layout.skillbuild_attribute_table_row, null, false);
+                        String abilityName = abilityUpgrades.get(level);
+                        Ability tekAbility = new Ability();
+                        tekAbility.setName(abilityName);
+                        String tag = tags.get(tekAbility);
+
+                        TextView upgraded = (TextView) row.findViewWithTag(tag);
+                        // System.out.println("dota2 info on ability:" + abilityUpgrade.getAbility() + " on level:" + abilityUpgrade.getLevel());
+                        if (upgraded == null) {
+                            System.out.println(level);
+                        } else {
+                            upgraded.setText(level);
+                            upgraded.setBackgroundDrawable(getResources().getDrawable(R.drawable.attribute_selected_bkg));
+                        }
+                        abilityHolder.addView(row);
+                    }
+                } else {
+                    abilityHolder.setVisibility(View.GONE);
                 }
-            } else {
-                abilityHolder.setVisibility(View.GONE);
             }
         }
     }

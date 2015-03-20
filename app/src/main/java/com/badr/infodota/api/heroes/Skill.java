@@ -1,5 +1,7 @@
 package com.badr.infodota.api.heroes;
 
+import java.util.ArrayList;
+
 /**
  * User: Histler
  * Date: 16.01.14
@@ -121,5 +123,9 @@ public class Skill {
     @Override
     public String toString() {
         return name;
+    }
+
+    public static class List extends ArrayList<Skill>{
+
     }
 }

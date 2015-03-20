@@ -4,6 +4,8 @@ import com.badr.infodota.util.HasId;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * User: ABadretdinov
@@ -91,5 +93,10 @@ public class Hero implements HasId, Comparable,Serializable {
             return getLocalizedName().compareTo(hero.getLocalizedName());
         }
         return -1;
+    }
+    public static class List extends ArrayList<Hero>{
+        public List(Collection<? extends Hero> collection) {
+            super(collection);
+        }
     }
 }

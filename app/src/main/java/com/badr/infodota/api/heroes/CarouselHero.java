@@ -1,5 +1,7 @@
 package com.badr.infodota.api.heroes;
 
+import java.util.ArrayList;
+
 /**
  * User: ABadretdinov
  * Date: 15.04.14
@@ -63,5 +65,8 @@ public class CarouselHero extends Hero {
         int result = dotaId != null ? dotaId.hashCode() : 0;
         result = 31 * result + (int) getId();
         return result;
+    }
+    public static class List extends ArrayList<CarouselHero>{
+
     }
 }

@@ -152,7 +152,7 @@ public class ItemPartEdit extends Fragment implements GuideHolder, OnAfterEditLi
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case 0:
-                                        //todo пздц говнокод
+                                        //todo change this shit
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                                         builder1.setTitle(getActivity().getString(R.string.add_tooltip));
                                         final EditText editText1 = new EditText(getActivity());
@@ -227,7 +227,7 @@ public class ItemPartEdit extends Fragment implements GuideHolder, OnAfterEditLi
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case 0:
-                                    //todo пздц говнокод
+                                    //todo change this shit
                                     AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
                                     builder1.setTitle(getActivity().getString(R.string.add_tooltip));
                                     final EditText editText1 = new EditText(getActivity());

@@ -53,7 +53,7 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public List<Hero> getFilteredHeroes(Context context, String filter) {
+    public Hero.List getFilteredHeroes(Context context, String filter) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
@@ -81,7 +81,7 @@ public class HeroServiceImpl implements HeroService {
                     }
                 }
             }
-            return heroes;
+            return new Hero.List(heroes);
         } finally {
             manager.closeDatabase();
         }
@@ -144,11 +144,11 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public List<CarouselHero> getCarouselHeroes(Context context, String filter, String name) {
+    public CarouselHero.List getCarouselHeroes(Context context, String filter, String name) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            List<CarouselHero> carouselHeroes = new ArrayList<CarouselHero>();
+            CarouselHero.List carouselHeroes = new CarouselHero.List();
             List<Hero> heroes = heroDao.getEntities(database,name);
             for (Hero hero : heroes) {
                 CarouselHero carouselHero = new CarouselHero(hero);

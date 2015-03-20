@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 14:53
  */
 public interface CounterService {
-    Pair<List<TruepickerHero>, String> getCounters(
+    TruepickerHero.List getCounters(
             Context context,
             List<Integer> allies,
             List<Integer> enemies,

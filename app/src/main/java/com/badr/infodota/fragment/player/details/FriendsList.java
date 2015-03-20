@@ -5,23 +5,17 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.text.TextUtils;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.PlayerInfoActivity;
 import com.badr.infodota.adapter.PlayersAdapter;
 import com.badr.infodota.adapter.holder.PlayerHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.player.PlayerService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
@@ -115,7 +109,6 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
     public void onRequestFailure(SpiceException spiceException) {
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-
     }
 
     @Override

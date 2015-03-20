@@ -1,6 +1,7 @@
 package com.badr.infodota.api.responses;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * User: ABadretdinov
@@ -11,7 +12,7 @@ public class HeroResponse {
     private String title;
     private String url;
     private String localUrl;
-    private List<String> others;
+    private java.util.List<String> others;
 
     public HeroResponse() {
     }
@@ -40,11 +41,17 @@ public class HeroResponse {
         this.localUrl = localUrl;
     }
 
-    public List<String> getOthers() {
+    public java.util.List<String> getOthers() {
         return others;
     }
 
-    public void setOthers(List<String> others) {
+    public void setOthers(java.util.List<String> others) {
         this.others = others;
+    }
+
+    public static class List extends ArrayList<HeroResponse>{
+        public List(Collection<? extends HeroResponse> collection) {
+            super(collection);
+        }
     }
 }
