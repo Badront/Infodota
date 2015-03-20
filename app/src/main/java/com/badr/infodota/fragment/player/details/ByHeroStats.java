@@ -57,8 +57,10 @@ public class ByHeroStats extends Fragment {
     private Unit account;
     private Intent intent;
 
-    public ByHeroStats(Unit account) {
-        this.account = account;
+    public static ByHeroStats newInstance(Unit account){
+        ByHeroStats fragment=new ByHeroStats();
+        fragment.account=account;
+        return fragment;
     }
 
     @Override

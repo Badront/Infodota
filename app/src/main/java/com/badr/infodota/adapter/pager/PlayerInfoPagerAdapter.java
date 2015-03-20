@@ -38,9 +38,9 @@ public class PlayerInfoPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return MatchHistory.newInstance(account);
             case 3:
-                return new CommonStatsFilter(account);
+                return CommonStatsFilter.newInstance(account);
             default:
-                return new ByHeroStats(account);
+                return ByHeroStats.newInstance(account);
         }
     }
 

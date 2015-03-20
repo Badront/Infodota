@@ -59,57 +59,58 @@ public class MatchPlayerSkillBuild extends Fragment {
     @SuppressWarnings("deprecation")
     private void initAbilities() {
         View root = getView();
-        ViewGroup abilityHolder = (ViewGroup) root.findViewById(R.id.ability_holder);
-        List<AbilityUpgrade> abilityUpgrades = player.getAbilityUpgrades();
-        Activity activity = getActivity();
-        if (abilityUpgrades != null && abilityUpgrades.size() > 0 && activity != null) {
-            HeroService heroService = BeanContainer.getInstance().getHeroService();
-            List<Long> inGameAbilities = new ArrayList<Long>();
-            for (AbilityUpgrade abilityUpgrade : abilityUpgrades) {
-                if (!inGameAbilities.contains(abilityUpgrade.getAbility())) {
-                    inGameAbilities.add(abilityUpgrade.getAbility());
+        if(root!=null) {
+            ViewGroup abilityHolder = (ViewGroup) root.findViewById(R.id.ability_holder);
+            List<AbilityUpgrade> abilityUpgrades = player.getAbilityUpgrades();
+            Activity activity = getActivity();
+            if (abilityUpgrades != null && abilityUpgrades.size() > 0 && activity != null) {
+                HeroService heroService = BeanContainer.getInstance().getHeroService();
+                List<Long> inGameAbilities = new ArrayList<Long>();
+                for (AbilityUpgrade abilityUpgrade : abilityUpgrades) {
+                    if (!inGameAbilities.contains(abilityUpgrade.getAbility())) {
+                        inGameAbilities.add(abilityUpgrade.getAbility());
+                    }
                 }
-            }
-            List<Ability> abilities;
-            if (!randomSkills) {
+                List<Ability> abilities;
+                if (!randomSkills) {
 
-                abilities = heroService.getHeroAbilities(activity, player.getHero_id());
-            } else {
-                abilities = heroService.getAbilitiesByList(activity, inGameAbilities);
-            }
-            Map<Ability, String> tags = new HashMap<Ability, String>();
-            for (int i = 0; i < abilities.size(); i++) {
-                Ability ability = abilities.get(i);
-                ImageView currentAbilityHeader = (ImageView) root.findViewWithTag(String.valueOf(i));
-                currentAbilityHeader.setImageBitmap(
-                        FileUtils.getBitmapFromAsset(getActivity(), heroService.getAbilityPath(activity, ability.getId())));
-                tags.put(ability, String.valueOf(i));
+                    abilities = heroService.getHeroAbilities(activity, player.getHero_id());
+                } else {
+                    abilities = heroService.getAbilitiesByList(activity, inGameAbilities);
+                }
+                Map<Ability, String> tags = new HashMap<Ability, String>();
+                for (int i = 0; i < abilities.size(); i++) {
+                    Ability ability = abilities.get(i);
+                    ImageView currentAbilityHeader = (ImageView) root.findViewWithTag(String.valueOf(i));
+                    currentAbilityHeader.setImageBitmap(
+                            FileUtils.getBitmapFromAsset(getActivity(), heroService.getAbilityPath(activity, ability.getId())));
+                    tags.put(ability, String.valueOf(i));
 
-            }
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            for (AbilityUpgrade abilityUpgrade : abilityUpgrades) {
-                View row = inflater.inflate(R.layout.skillbuild_attribute_table_row, null, false);
-                long tekability = abilityUpgrade.getAbility();
-                Ability ability = new Ability();
-                ability.setId(tekability);
-                String tag = tags.get(ability);
-                while (tag == null && tekability > 5002) {
-                    tekability--;
+                }
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                for (AbilityUpgrade abilityUpgrade : abilityUpgrades) {
+                    View row = inflater.inflate(R.layout.skillbuild_attribute_table_row, null, false);
+                    long tekability = abilityUpgrade.getAbility();
+                    Ability ability = new Ability();
                     ability.setId(tekability);
-                    tag = tags.get(ability);
+                    String tag = tags.get(ability);
+                    while (tag == null && tekability > 5002) {
+                        tekability--;
+                        ability.setId(tekability);
+                        tag = tags.get(ability);
+                    }
+                    if (tag == null) {
+                        continue;
+                    }
+                    TextView upgraded = (TextView) row.findViewWithTag(tag);
+                    // System.out.println("dota2 info on ability:" + abilityUpgrade.getAbility() + " on level:" + abilityUpgrade.getLevel());
+                    upgraded.setText(String.valueOf(abilityUpgrade.getLevel()));
+                    upgraded.setBackgroundDrawable(getResources().getDrawable(R.drawable.attribute_selected_bkg));
+                    abilityHolder.addView(row);
                 }
-                if (tag == null) {
-                    continue;
-                }
-                TextView upgraded = (TextView) row.findViewWithTag(tag);
-                // System.out.println("dota2 info on ability:" + abilityUpgrade.getAbility() + " on level:" + abilityUpgrade.getLevel());
-                upgraded.setText(String.valueOf(abilityUpgrade.getLevel()));
-                upgraded.setBackgroundDrawable(getResources().getDrawable(R.drawable.attribute_selected_bkg));
-                abilityHolder.addView(row);
+            } else {
+                abilityHolder.setVisibility(View.GONE);
             }
-        } else {
-            abilityHolder.setVisibility(View.GONE);
         }
-
     }
 }
