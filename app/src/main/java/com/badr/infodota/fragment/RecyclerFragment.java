@@ -81,7 +81,7 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.recycler_content, container, false);
+        return inflater.inflate(layoutId, container, false);
     }
 
     @Override

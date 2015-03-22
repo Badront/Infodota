@@ -36,11 +36,12 @@
         android:layout_height="match_parent"
         android:layout_below="@id/search_holder">
 
-        <GridView
+        <android.support.v7.widget.RecyclerView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:drawSelectorOnTop="false"
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/internalEmpty"
@@ -58,5 +59,4 @@
         android:layout_centerVertical="true"
         wheel:barColor="@color/primary"
         wheel:progressIndeterminate="true" />
-
 </RelativeLayout>

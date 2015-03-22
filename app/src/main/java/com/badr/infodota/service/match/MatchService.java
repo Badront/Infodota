@@ -6,6 +6,10 @@ import android.util.Pair;
 import com.badr.infodota.InitializingBean;
 import com.badr.infodota.api.matchdetails.MatchDetails;
 import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
+import com.badr.infodota.api.matchhistory.PlayerMatch;
+import com.badr.infodota.api.matchhistory.PlayerMatchResult;
+
+import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -15,6 +19,5 @@ import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
 public interface MatchService{
     MatchDetails getMatchDetails(Context context, String matchId);
 
-    Pair<MatchHistoryResultResponse, String> getMatches(Long accountId, Long fromMatchId, Long heroId);
-
+    PlayerMatchResult getMatches(Context context, Long accountId, Long fromMatchId, Long heroId);
 }
