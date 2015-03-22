@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Filter;
+import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
@@ -22,6 +24,11 @@ import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
+import com.badr.infodota.util.retrofit.TaskRequest;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.List;
 
@@ -29,12 +36,27 @@ import java.util.List;
  * User: Histler
  * Date: 17.02.14
  */
-public class ItemSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener, OnItemClickListener {
+public class ItemSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener, OnItemClickListener, RequestListener<Item.List> {
     private RecyclerView gridView;
     private ItemsAdapter mAdapter;
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
@@ -116,32 +138,7 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
     }
 
     private void loadItems() {
-        new LoaderProgressTask<List<Item>>(new ProgressTask<List<Item>>() {
-            @Override
-            public List<Item> doTask(OnPublishProgressListener listener) throws Exception {
-                ItemService itemService = BeanContainer.getInstance().getItemService();
-                return itemService.getItems(ItemSelectActivity.this, selectedFilter);
-            }
-
-            @Override
-            public void doAfterTask(List<Item> result) {
-                mAdapter = new ItemsAdapter(result);
-                filter = mAdapter.getFilter();
-                filter.filter(search);
-                gridView.setAdapter(mAdapter);
-                mAdapter.setOnItemClickListener(ItemSelectActivity.this);
-            }
-
-            @Override
-            public void handleError(String error) {
-
-            }
-
-            @Override
-            public String getName() {
-                return null;
-            }
-        }, null).execute();
+        spiceManager.execute(new ItemLoadRequest(this,selectedFilter),this);
     }
 
     @Override
@@ -175,5 +172,34 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
             finish();
         }
 
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestSuccess(Item.List items) {
+        mAdapter = new ItemsAdapter(items);
+        filter = mAdapter.getFilter();
+        filter.filter(search);
+        gridView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
+    }
+    public static class ItemLoadRequest extends TaskRequest<Item.List>{
+        private String filter;
+        private Context context;
+        public ItemLoadRequest(Context context,String filter) {
+            super(Item.List.class);
+            this.context=context;
+            this.filter=filter;
+        }
+
+        @Override
+        public Item.List loadData() throws Exception {
+            ItemService itemService = BeanContainer.getInstance().getItemService();
+            return itemService.getItems(context, filter);
+        }
     }
 }

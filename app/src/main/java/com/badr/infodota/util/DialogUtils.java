@@ -73,7 +73,9 @@ public class DialogUtils {
             ft.remove(prev);//todo вызывать dismiss мб сперва?
         }
         //ft.addToBackStack(null);
-        LoaderDialogFragment<T> fragment = new LoaderDialogFragment<T>(progressTask, loadingMessage);
+        LoaderDialogFragment<T> fragment = new LoaderDialogFragment<T>();
+        fragment.setTask(progressTask);
+        fragment.setLoadingMessage(loadingMessage);
         fragment.show(ft, "dialog");
     }
 

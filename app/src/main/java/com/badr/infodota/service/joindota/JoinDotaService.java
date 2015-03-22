@@ -17,7 +17,7 @@ import java.util.List;
 public interface JoinDotaService extends InitializingBean {
     MatchItem.List getMatchItems(Context context, int page, String extraParams);
 
-    Pair<MatchItem, String> updateMatchItem(Context context, MatchItem item);
+    MatchItem updateMatchItem(MatchItem item);
 
-    String fillChannelName(Context context, List<LiveStream> streams);
+    String fillChannelName(List<LiveStream> streams);
 }

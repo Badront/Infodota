@@ -137,7 +137,7 @@ public class JoinDotaRemoteServiceImpl implements JoinDotaRemoteService {
     }
 
     @Override
-    public MatchItem updateMatchItem(Context context, MatchItem item) throws Exception {
+    public MatchItem updateMatchItem(MatchItem item) throws Exception {
         MatchItem resultItem = item.clone();
         Document document = Jsoup.connect(resultItem.getLink()).get();
         Element localElement1 = document.select("div.pad").get(1);
@@ -203,7 +203,7 @@ public class JoinDotaRemoteServiceImpl implements JoinDotaRemoteService {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void getChannelsNames(Context context, List<LiveStream> streams) throws Exception {
+    public void getChannelsNames(List<LiveStream> streams) throws Exception {
         for (LiveStream stream : streams) {
             try {
                 Document document = Jsoup.connect(stream.getUrl()).get();
