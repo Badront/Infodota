@@ -30,41 +30,43 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Pair<List<Unit>, String> loadAccounts(List<Long> ids) {
+    public Unit.List loadAccounts(List<Long> ids) {
         try {
-            List<Unit> result = service.getAccounts(ids);
-            String message=null;
-            if (result== null) {
-                message = "Failed to get players";
+            Unit.List result = service.getAccounts(ids);
+            if (result!= null) {
+                return result;
+            }
+            else{
+                String message = "Failed to get players";
                 Log.e(PlayerServiceImpl.class.getName(), message);
             }
-            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get players, cause: " + e.getMessage();
             Log.e(PlayerServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
         }
+        return null;
     }
 
     @Override
-    public Pair<List<Unit>, String> loadAccounts(String name) {
+    public Unit.List loadAccounts(String name) {
         try {
-            List<Unit> result = service.getAccounts(name);
-            String message=null;
-            if (result== null) {
-                message = "Failed to get players";
+            Unit.List result = service.getAccounts(name);
+            if (result != null) {
+                return result;
+            }
+            else{
+                String message= "Failed to get players";
                 Log.e(PlayerServiceImpl.class.getName(), message);
             }
-            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get players, cause: " + e.getMessage();
             Log.e(PlayerServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
         }
+        return null;
     }
 
     @Override
-    public List<Unit> loadFriends(long id) {
+    public Unit.List loadFriends(long id) {
         try {
             return service.getFriends(id);
         } catch (Exception e) {
@@ -108,22 +110,22 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public List<Unit> getSearchedAccounts(Context context) {
+    public Unit.List getSearchedAccounts(Context context) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return accountDao.getSearchedEntities(database);
+            return new Unit.List(accountDao.getSearchedEntities(database));
         } finally {
             manager.closeDatabase();
         }
     }
 
     @Override
-    public List<Unit> getAccountsByGroup(Context context, Unit.Groups group) {
+    public Unit.List getAccountsByGroup(Context context, Unit.Groups group) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return accountDao.getEntitiesByGroup(database, group);
+            return new Unit.List(accountDao.getEntitiesByGroup(database, group));
         } finally {
             manager.closeDatabase();
         }

@@ -71,7 +71,7 @@ public class MatchHistoryPagerAdapter extends FragmentPagerAdapter {
     public void update() {
         Set<Integer> keySet = groupMap.keySet();
         for (Integer key : keySet) {
-            groupMap.get(key).updateList();
+            groupMap.get(key).onRefresh();
         }
     }
 }

@@ -35,7 +35,7 @@ import java.util.List;
 public class PlayerRemoteServiceImpl implements PlayerRemoteService {
 
     @Override
-    public List<Unit> getAccounts(List<Long> ids) throws Exception {
+    public Unit.List getAccounts(List<Long> ids) throws Exception {
         StringBuilder steamIds = new StringBuilder("");
         for (int i = 0; i < ids.size(); i++) {
             if (i != 0) {
@@ -48,7 +48,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
         if (result!= null && result.getResponse() != null) {
             PlayerResponse response = result.getResponse();
             List<Player> players = response.getPlayers();
-            List<Unit> units = new ArrayList<Unit>();
+            Unit.List units = new Unit.List();
             if (players != null && players.size() > 0) {
                 for (Player player : players) {
                     Unit unit = new Unit();
@@ -65,7 +65,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
     }
 
     @Override
-    public List<Unit> getAccounts(String name) throws Exception {
+    public Unit.List getAccounts(String name) throws Exception {
         String url = Constants.DotaBuff.SEARCH_URL + URLEncoder.encode(name, "UTF-8");
         Document document = Jsoup.connect(url).get();    //document.location()
         String location = document.location();
@@ -75,7 +75,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
             return getAccounts(Arrays.asList(accountId));
         } else {
             Elements elements = document.select("div[class=record player]");
-            List<Unit> units = new ArrayList<Unit>();
+            Unit.List units = new Unit.List();
             for (Element element : elements) {
                 Element img = element.select("img").first();
                 Unit unit = new Unit();
@@ -93,7 +93,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
     }
 
     @Override
-    public List<Unit> getFriends(long id) throws Exception {
+    public Unit.List getFriends(long id) throws Exception {
         long steam64id = Utils.steam32to64(id);
         FriendsResult result=BeanContainer.getInstance().getSteamService().getFriends(String.valueOf(steam64id));
         if (result != null && result.getFriendslist() != null) {

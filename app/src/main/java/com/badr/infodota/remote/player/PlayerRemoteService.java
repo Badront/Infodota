@@ -18,9 +18,9 @@ import retrofit.http.Query;
  */
 public interface PlayerRemoteService{
 
-    List<Unit> getAccounts(List<Long> ids) throws Exception;
+    Unit.List getAccounts(List<Long> ids) throws Exception;
 
-    List<Unit> getAccounts(String name) throws Exception;
+    Unit.List getAccounts(String name) throws Exception;
 
-    List<Unit> getFriends(long id) throws Exception;
+    Unit.List getFriends(long id) throws Exception;
 }

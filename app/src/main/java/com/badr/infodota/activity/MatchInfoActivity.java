@@ -260,20 +260,17 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     }
                     if (ids.size() > 0) {
-                        Pair<List<Unit>, String> unitsResult = playerService.loadAccounts(ids);
-                        if (unitsResult != null) {
-                            List<Unit> units = unitsResult.first;
-                            if (units != null && units.size() > 0) {
-                                for (Unit unit : units) {
-                                    playerService.saveAccount(context, unit);
+                        Unit.List unitsResult = playerService.loadAccounts(ids);
+                        if (unitsResult != null &&unitsResult.size()>0) {
+                            for (Unit unit : unitsResult) {
+                                playerService.saveAccount(context, unit);
+                            }
+                            for (Player player : players) {
+                                if (player.getAccount_id() != Player.HIDDEN_ID) {
+                                    player.setAccount(playerService.getAccountById(context, player.getAccount_id()));
                                 }
-                                for (Player player : players) {
-                                    if (player.getAccount_id() != Player.HIDDEN_ID) {
-                                        player.setAccount(playerService.getAccountById(context, player.getAccount_id()));
-                                    }
-                                    player.setHero(heroService.getHeroById(context, player.getHero_id()));
-                                    loadPlayerItems(player);
-                                }
+                                player.setHero(heroService.getHeroById(context, player.getHero_id()));
+                                loadPlayerItems(player);
                             }
                         }
                     }

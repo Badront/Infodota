@@ -136,6 +136,9 @@ public class Unit implements Serializable, HasId {
         PRO
     }
     public static class List extends ArrayList<Unit> {
+        public List() {
+        }
+
         public List(Collection<? extends Unit> collection) {
             super(collection);
         }

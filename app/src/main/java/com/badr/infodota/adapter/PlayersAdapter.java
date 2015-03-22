@@ -105,9 +105,7 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
                         ViewPager viewPager = (ViewPager) ((BaseActivity) context).findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
                             MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
-                            if (adapter != null) {
-                                adapter.update();
-                            }
+                            adapter.update();
                         }
                         dialog.dismiss();
                     }

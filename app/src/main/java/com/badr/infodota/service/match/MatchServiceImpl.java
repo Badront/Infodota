@@ -59,23 +59,25 @@ public class MatchServiceImpl implements MatchService {
                 playerMatchResult.setStatus(result.getResult().getStatus());
                 playerMatchResult.setStatusDetails(result.getResult().getStatusDetail());
                 PlayerMatch.List list=new PlayerMatch.List();
-                for(Match match:matches){
-                    PlayerMatch playerMatch=new PlayerMatch();
-                    playerMatch.setMatchId(match.getMatch_id());
-                    playerMatch.setLobbyType(match.getLobby_type());
-                    long timestamp = match.getStart_time();
-                    playerMatch.setGameTime(new Date(timestamp * 1000));
-                    List<Player> players = match.getPlayers();
-                    boolean found = false;
-                    for (int i = 0; i < players.size() && !found; i++) {
-                        Player player = players.get(i);
-                        if (player.getAccount_id() == accountId) {
-                            found = true;
-                            Hero hero = heroService.getHeroById(context, player.getHero_id());
-                            if (hero != null) {
-                                player.setHero(hero);
-                                playerMatch.setPlayer(player);
-                                list.add(playerMatch);
+                if(matches!=null) {
+                    for (Match match : matches) {
+                        PlayerMatch playerMatch = new PlayerMatch();
+                        playerMatch.setMatchId(match.getMatch_id());
+                        playerMatch.setLobbyType(match.getLobby_type());
+                        long timestamp = match.getStart_time();
+                        playerMatch.setGameTime(new Date(timestamp * 1000));
+                        List<Player> players = match.getPlayers();
+                        boolean found = false;
+                        for (int i = 0; i < players.size() && !found; i++) {
+                            Player player = players.get(i);
+                            if (player.getAccount_id() == accountId) {
+                                found = true;
+                                Hero hero = heroService.getHeroById(context, player.getHero_id());
+                                if (hero != null) {
+                                    player.setHero(hero);
+                                    playerMatch.setPlayer(player);
+                                    list.add(playerMatch);
+                                }
                             }
                         }
                     }
