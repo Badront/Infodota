@@ -6,6 +6,8 @@ import android.util.Pair;
 import com.badr.infodota.InitializingBean;
 import com.badr.infodota.api.twitch.AccessToken;
 import com.badr.infodota.api.twitch.Channel;
+import com.badr.infodota.api.twitch.GameStreams;
+import com.badr.infodota.api.twitch.StreamTV;
 import com.parser.Playlist;
 
 import java.util.List;
@@ -16,7 +18,11 @@ import java.util.List;
  * Time: 17:55
  */
 public interface TwitchService extends InitializingBean {
-    Pair<AccessToken, String> getAccessToken(Context context, String channelName);
+    AccessToken getAccessToken(String channelName);
+
+    GameStreams getGameStreams();
+
+    StreamTV getStream(String channelName);
 
     Pair<Playlist, String> getPlaylist(Context context, String channelName, AccessToken accessToken);
 

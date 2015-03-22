@@ -8,6 +8,7 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.InitializingBean;
 import com.badr.infodota.R;
 import com.badr.infodota.api.heroes.Hero;
+import com.badr.infodota.api.heroes.TruepickerHero;
 import com.badr.infodota.api.truepicker.Counter;
 import com.badr.infodota.remote.counterpicker.CounterRemoteEntityService;
 import com.badr.infodota.service.hero.HeroService;
@@ -25,11 +26,10 @@ public class CounterServiceImpl implements CounterService, InitializingBean {
     private HeroService heroService;
 
     @Override
-    public Pair<List<Hero>, String> getCounters(Context context, List<Integer> allies, List<Integer> enemies,
+    public TruepickerHero.List getCounters(Context context, List<Integer> allies, List<Integer> enemies,
                                                 int roleCodes) {
         try {
             Pair<List<Counter>, String> serviceResult = service.getCounters(context, allies, enemies, roleCodes);
-            Pair<List<Hero>, String> result;
             if (serviceResult.first == null) {
                 String message;
                 if (serviceResult.second.contains("\"controller\":\"pick\"")) {
@@ -38,22 +38,21 @@ public class CounterServiceImpl implements CounterService, InitializingBean {
                     message = serviceResult.second;
                 }
                 Log.e(CounterServiceImpl.class.getName(), message);
-                result = Pair.create(null, message);
+                return null;
             } else {
-                List<Hero> heroes = new ArrayList<Hero>();
+                TruepickerHero.List heroes = new TruepickerHero.List();
                 for (Counter counter : serviceResult.first) {
-                    Hero hero = heroService.getTruepickerHero(context, Integer.valueOf(counter.getHero()));
+                    TruepickerHero hero = heroService.getTruepickerHero(context, Integer.valueOf(counter.getHero()));
                     if (hero != null) {
                         heroes.add(hero);
                     }
                 }
-                result = Pair.create(heroes, null);
+                return heroes;
             }
-            return result;
         } catch (Exception e) {
             String message = "Failed to get counters, cause: " + e.getMessage();
             Log.e(CounterServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
+            return null;
         }
     }
 

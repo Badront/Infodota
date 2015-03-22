@@ -14,17 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.ItemInfoActivity;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.api.items.Item;
 import com.badr.infodota.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.api.matchdetails.Player;
-import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.service.item.ItemService;
-import com.badr.infodota.service.player.PlayerService;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -161,15 +156,14 @@ public class MatchDetailsAdapter extends BaseAdapter {
         }
         Player player = getItem(position);
 
-        PlayerService playerService = BeanContainer.getInstance().getPlayerService();
-        Unit account = playerService.getAccountById(context, player.getAccount_id());
+        Unit account = player.getAccount();
         if (account != null) {
             holder.nick.setText(account.getName());
             holder.nick.setVisibility(View.VISIBLE);
         } else {
             holder.nick.setVisibility(View.INVISIBLE);
         }
-        Integer leaver = player.getLeaver_status();
+        Integer leaver = player.getLeaverStatus();
         if (leaver == null) {
             holder.leaver.setText(context.getString(R.string.bot));
             holder.leaver.setVisibility(View.VISIBLE);
@@ -208,9 +202,8 @@ public class MatchDetailsAdapter extends BaseAdapter {
                 holder.leaver.setVisibility(View.INVISIBLE);
             }
         }
-        HeroService heroService = BeanContainer.getInstance().getHeroService();
 
-        final Hero hero = heroService.getHeroById(context, player.getHero_id());
+        final Hero hero = player.getHero();
         if (hero != null) {
             imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", holder.heroImg, options);
            /* holder.heroImg.setOnClickListener(new View.OnClickListener() {
@@ -226,184 +219,181 @@ public class MatchDetailsAdapter extends BaseAdapter {
             holder.heroImg.setImageResource(R.drawable.default_img);
             holder.heroName.setText("");
         }
-        ItemService itemService = BeanContainer.getInstance().getItemService();
-        Item current = itemService.getItemById(context, player.getItem_0());
-        if (current != null) {
-            imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.item0, options);
-            final Item finalCurrent = current;
+        if (player.getItem0dotaId()!= null) {
+            imageLoader.displayImage("assets://items/" + player.getItem0dotaId() + ".png", holder.item0, options);
+            final long itemId=player.getItem0();
             holder.item0.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemInfoActivity.class);
-                    intent.putExtra("id", (long) finalCurrent.getId());
+                    intent.putExtra("id", itemId);
                     context.startActivity(intent);
                 }
             });
         } else {
             holder.item0.setImageResource(R.drawable.emptyitembg);
         }
-        current = itemService.getItemById(context, player.getItem_1());
-        if (current != null) {
-            imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.item1, options);
-            final Item finalCurrent = current;
+        if (player.getItem1dotaId()!= null) {
+            imageLoader.displayImage("assets://items/" + player.getItem1dotaId() + ".png", holder.item1, options);
+            final long itemId=player.getItem1();
             holder.item1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemInfoActivity.class);
-                    intent.putExtra("id", (long) finalCurrent.getId());
+                    intent.putExtra("id", itemId);
                     context.startActivity(intent);
                 }
             });
         } else {
             holder.item1.setImageResource(R.drawable.emptyitembg);
         }
-        current = itemService.getItemById(context, player.getItem_2());
-        if (current != null) {
-            imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.item2, options);
-            final Item finalCurrent = current;
+
+        if (player.getItem2dotaId()!= null) {
+            imageLoader.displayImage("assets://items/" + player.getItem2dotaId() + ".png", holder.item2, options);
+            final long itemId=player.getItem2();
             holder.item2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemInfoActivity.class);
-                    intent.putExtra("id", (long) finalCurrent.getId());
+                    intent.putExtra("id", itemId);
                     context.startActivity(intent);
                 }
             });
         } else {
             holder.item2.setImageResource(R.drawable.emptyitembg);
         }
-        current = itemService.getItemById(context, player.getItem_3());
-        if (current != null) {
-            imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.item3, options);
-            final Item finalCurrent = current;
+
+        if (player.getItem3dotaId()!= null) {
+            imageLoader.displayImage("assets://items/" + player.getItem3dotaId() + ".png", holder.item3, options);
+            final long itemId=player.getItem3();
             holder.item3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemInfoActivity.class);
-                    intent.putExtra("id", (long) finalCurrent.getId());
+                    intent.putExtra("id", itemId);
                     context.startActivity(intent);
                 }
             });
         } else {
             holder.item3.setImageResource(R.drawable.emptyitembg);
         }
-        current = itemService.getItemById(context, player.getItem_4());
-        if (current != null) {
-            imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.item4, options);
-            final Item finalCurrent = current;
+
+        if (player.getItem4dotaId()!= null) {
+            imageLoader.displayImage("assets://items/" + player.getItem4dotaId() + ".png", holder.item4, options);
+            final long itemId=player.getItem4();
             holder.item4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemInfoActivity.class);
-                    intent.putExtra("id", (long) finalCurrent.getId());
+                    intent.putExtra("id", itemId);
                     context.startActivity(intent);
                 }
             });
         } else {
             holder.item4.setImageResource(R.drawable.emptyitembg);
         }
-        current = itemService.getItemById(context, player.getItem_5());
-        if (current != null) {
-            imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.item5, options);
-            final Item finalCurrent = current;
+
+        if (player.getItem5dotaId()!= null) {
+            imageLoader.displayImage("assets://items/" + player.getItem5dotaId() + ".png", holder.item5, options);
+            final long itemId=player.getItem5();
             holder.item5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ItemInfoActivity.class);
-                    intent.putExtra("id", (long) finalCurrent.getId());
+                    intent.putExtra("id", itemId);
                     context.startActivity(intent);
                 }
             });
         } else {
             holder.item5.setImageResource(R.drawable.emptyitembg);
         }
-        if (player.getAdditional_units() != null && player.getAdditional_units().size() > 0) {
-            AdditionalUnit unit = player.getAdditional_units().get(0);
+        if (player.getAdditionalUnits() != null && player.getAdditionalUnits().size() > 0) {
+            AdditionalUnit unit = player.getAdditionalUnits().get(0);
             holder.additionalUnitHolder.setVisibility(View.VISIBLE);
-            current = itemService.getItemById(context, unit.getItem_0());
-            if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.additionalUnitItem0, options);
-                final Item finalCurrent = current;
+
+            if (unit.getItem0dotaId()!= null) {
+                imageLoader.displayImage("assets://items/" + unit.getItem0dotaId() + ".png", holder.additionalUnitItem0, options);
+                final long itemId=unit.getItem0();
                 holder.additionalUnitItem0.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
+                        intent.putExtra("id", itemId);
                         context.startActivity(intent);
                     }
                 });
             } else {
                 holder.additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
             }
-            current = itemService.getItemById(context, unit.getItem_1());
-            if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.additionalUnitItem1, options);
-                final Item finalCurrent = current;
+
+            if (unit.getItem1dotaId()!= null) {
+                imageLoader.displayImage("assets://items/" + unit.getItem1dotaId() + ".png", holder.additionalUnitItem1, options);
+                final long itemId=unit.getItem1();
                 holder.additionalUnitItem1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
+                        intent.putExtra("id", itemId);
                         context.startActivity(intent);
                     }
                 });
             } else {
                 holder.additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
             }
-            current = itemService.getItemById(context, unit.getItem_2());
-            if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.additionalUnitItem2, options);
-                final Item finalCurrent = current;
+
+            if (unit.getItem2dotaId()!= null) {
+                imageLoader.displayImage("assets://items/" + unit.getItem2dotaId() + ".png", holder.additionalUnitItem2, options);
+                final long itemId=unit.getItem2();
                 holder.additionalUnitItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
+                        intent.putExtra("id", itemId);
                         context.startActivity(intent);
                     }
                 });
             } else {
                 holder.additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
             }
-            current = itemService.getItemById(context, unit.getItem_3());
-            if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.additionalUnitItem3, options);
-                final Item finalCurrent = current;
+
+            if (unit.getItem3dotaId()!= null) {
+                imageLoader.displayImage("assets://items/" + unit.getItem3dotaId() + ".png", holder.additionalUnitItem3, options);
+                final long itemId=unit.getItem3();
                 holder.additionalUnitItem3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
+                        intent.putExtra("id", itemId);
                         context.startActivity(intent);
                     }
                 });
             } else {
                 holder.additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
             }
-            current = itemService.getItemById(context, unit.getItem_4());
-            if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.additionalUnitItem4, options);
-                final Item finalCurrent = current;
+
+            if (unit.getItem4dotaId()!= null) {
+                imageLoader.displayImage("assets://items/" + unit.getItem4dotaId() + ".png", holder.additionalUnitItem4, options);
+                final long itemId=unit.getItem4();
                 holder.additionalUnitItem4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
+                        intent.putExtra("id", itemId);
                         context.startActivity(intent);
                     }
                 });
             } else {
                 holder.additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
             }
-            current = itemService.getItemById(context, unit.getItem_5());
-            if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", holder.additionalUnitItem5, options);
-                final Item finalCurrent = current;
+
+            if (unit.getItem5dotaId()!= null) {
+                imageLoader.displayImage("assets://items/" + unit.getItem5dotaId() + ".png", holder.additionalUnitItem5, options);
+                final long itemId=unit.getItem5();
                 holder.additionalUnitItem5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
+                        intent.putExtra("id", itemId);
                         context.startActivity(intent);
                     }
                 });
@@ -419,10 +409,10 @@ public class MatchDetailsAdapter extends BaseAdapter {
         holder.deaths.setText(Html.fromHtml(context.getString(R.string.deaths) + " " + player.getDeaths()));
         holder.assists.setText(Html.fromHtml(context.getString(R.string.assists) + " " + player.getAssists()));
         holder.gold.setText(Html.fromHtml(context.getString(R.string.gold) + " " + player.getGold()));
-        holder.lastHits.setText(Html.fromHtml(context.getString(R.string.last_hits) + " " + player.getLast_hits()));
+        holder.lastHits.setText(Html.fromHtml(context.getString(R.string.last_hits) + " " + player.getLastHits()));
         holder.denies.setText(Html.fromHtml(context.getString(R.string.denies) + " " + player.getDenies()));
-        holder.gpm.setText(Html.fromHtml(context.getString(R.string.gpm) + " " + player.getGold_per_min()));
-        holder.xpm.setText(Html.fromHtml(context.getString(R.string.xpm) + " " + player.getXp_per_min()));
+        holder.gpm.setText(Html.fromHtml(context.getString(R.string.gpm) + " " + player.getGoldPerMin()));
+        holder.xpm.setText(Html.fromHtml(context.getString(R.string.xpm) + " " + player.getXpPerMin()));
         return vi;
     }
 

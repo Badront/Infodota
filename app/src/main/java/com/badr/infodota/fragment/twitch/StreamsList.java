@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.activity.TwitchPlayActivity;
@@ -23,7 +24,12 @@ import com.badr.infodota.remote.twitch.TwitchRemoteService;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.badr.infodota.util.DialogUtils;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
 import com.parser.Playlist;
 
@@ -39,15 +45,30 @@ import java.util.List;
  * User: Histler
  * Date: 25.02.14
  */
-public class StreamsList extends TwitchMatchListHolder {
+public class StreamsList extends TwitchMatchListHolder implements RequestListener<Stream.List> {
     private TwitchGamesAdapter holderAdapter;
     private List<Channel> channels;
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
 
     public static StreamsList newInstance(TwitchGamesAdapter holderAdapter, List<Channel> channels) {
         StreamsList fragment = new StreamsList();
         fragment.setHolderAdapter(holderAdapter);
         fragment.setChannels(channels);
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
     }
 
     public void setHolderAdapter(TwitchGamesAdapter holderAdapter) {
@@ -61,64 +82,19 @@ public class StreamsList extends TwitchMatchListHolder {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loadSteams();
-    }
-
-    private void loadSteams() {
-        final ActionBarActivity activity = (ActionBarActivity) getActivity();
-        setRefreshing(true);
-        if (activity != null) {
-            activity.setSupportProgressBarIndeterminateVisibility(true);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    DefaultHttpClient client = new DefaultHttpClient();
-                    String url = Constants.TwitchTV.DOTA_GAMES;
-                    try {
-                        HttpResponse response = client.execute(new HttpGet(url));
-                        if (response.getStatusLine().getStatusCode() == 200) {
-                            String entity = EntityUtils.toString(response.getEntity());
-                            GameStreams streams = new Gson().fromJson(entity, GameStreams.class);
-                            List<Stream> streamsList = streams.getStreams();
-                            final TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, streamsList, channels);
-                            activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    setAdapter(adapter);
-                                    setRefreshing(false);
-                                }
-                            });
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                activity.setSupportProgressBarIndeterminateVisibility(false);
-                            }
-                        });
-                    }
-                }
-            }).start();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        ((ActionBarActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
-        super.onDestroy();
+        onRefresh();
     }
 
     @Override
     public void updateList(List<Channel> channels) {
         this.channels = channels;
-        loadSteams();
+        onRefresh();
     }
 
     @Override
     public void onRefresh() {
-        loadSteams();
+        setRefreshing(true);
+        spiceManager.execute(new StreamsLoadRequest(),this);
     }
 
     @Override
@@ -147,16 +123,16 @@ public class StreamsList extends TwitchMatchListHolder {
                 final String channelName = channel.getName();
                 final Activity activity = getActivity();
                 if (activity != null) {
+                    //won't change it, since this's good place for dialog
                     DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<String>() {
                         BeanContainer container = BeanContainer.getInstance();
                         TwitchService service = container.getTwitchService();
-                        TwitchRemoteService remoteService = container.getTwitchRemoteService();
 
                         @Override
                         public String doTask(OnPublishProgressListener listener) throws Exception {
-                            Pair<AccessToken, String> atResult = service.getAccessToken(activity, channelName);
-                            if (atResult.first != null) {
-                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult.first);
+                            AccessToken atResult = service.getAccessToken(channelName);
+                            if (atResult!= null) {
+                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
                                 Playlist playlist = playlistResult.first;
                                 List<Element> elements = playlist.getElements();
                                 if (elements != null && elements.size() > 0) {
@@ -187,6 +163,36 @@ public class StreamsList extends TwitchMatchListHolder {
                     });
                 }
             }
+        }
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        setRefreshing(false);
+        Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onRequestSuccess(Stream.List streams) {
+        setRefreshing(false);
+        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, streams, channels);
+        setAdapter(adapter);
+    }
+
+    public class StreamsLoadRequest extends TaskRequest<Stream.List>{
+        private TwitchService twitchService=BeanContainer.getInstance().getTwitchService();
+        public StreamsLoadRequest() {
+            super(Stream.List.class);
+        }
+
+        @Override
+        public Stream.List loadData() throws Exception {
+            GameStreams gameStreams=twitchService.getGameStreams();
+            if(gameStreams!=null){
+                return gameStreams.getStreams();
+            }
+            return null;
         }
     }
 }

@@ -19,10 +19,10 @@ import java.text.MessageFormat;
  */
 public class TwitchRemoteServiceImpl extends BaseRemoteServiceImpl implements TwitchRemoteService {
     @Override
-    public Pair<AccessToken, String> getAccessToken(Context context, String channelName) throws Exception {
+    public AccessToken getAccessToken(Context context, String channelName) throws Exception {
         String url = MessageFormat.format(Constants.TwitchTV.ACCESS_TOKEN_URL, channelName);
         Pair<AccessToken, String> result = basicRequestSend(context, url, AccessToken.class);
-        return result;
+        return result.first;
     }
 
     @Override

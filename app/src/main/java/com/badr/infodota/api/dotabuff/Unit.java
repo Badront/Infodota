@@ -3,6 +3,8 @@ package com.badr.infodota.api.dotabuff;
 import com.badr.infodota.util.HasId;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * User: Histler
@@ -132,5 +134,13 @@ public class Unit implements Serializable, HasId {
         NONE,
         FRIEND,
         PRO
+    }
+    public static class List extends ArrayList<Unit> {
+        public List() {
+        }
+
+        public List(Collection<? extends Unit> collection) {
+            super(collection);
+        }
     }
 }

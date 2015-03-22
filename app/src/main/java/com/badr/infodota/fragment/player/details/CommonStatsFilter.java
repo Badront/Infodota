@@ -62,8 +62,10 @@ public class CommonStatsFilter extends Fragment {
     private Unit account;
     private Bundle args;
 
-    public CommonStatsFilter(Unit account) {
-        this.account = account;
+    public static CommonStatsFilter newInstance(Unit account){
+        CommonStatsFilter fragment=new CommonStatsFilter();
+        fragment.account=account;
+        return fragment;
     }
 
     @Override

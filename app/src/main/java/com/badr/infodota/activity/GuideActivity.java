@@ -1,6 +1,7 @@
 package com.badr.infodota.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,11 +31,17 @@ import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.google.gson.Gson;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +52,7 @@ import java.util.Set;
  * Date: 28.01.14
  * Time: 12:31
  */
-public class GuideActivity extends BaseActivity {
+public class GuideActivity extends BaseActivity implements RequestListener<List> {
     public static final int ADD = 1001;
     public static final int EDIT = 1002;
     public static final int REMOVE = 1003;
@@ -53,10 +60,26 @@ public class GuideActivity extends BaseActivity {
     GuidePagerAdapter pagerAdapter;
     private Hero hero;
     private Spinner spinner;
-    private Map<String, String> guideNameMap;
+    private Map<String, String> guideNameMap = new LinkedHashMap<String, String>();
     private Guide guide;
     private Menu menu;
     private int selected;
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -154,7 +177,6 @@ public class GuideActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guide_holder);
         Bundle bundle = getIntent().getExtras();
-        guideNameMap = new LinkedHashMap<String, String>();
         spinner = (Spinner) findViewById(R.id.guide_spinner);
         if (bundle != null && bundle.containsKey("id")) {
             HeroService heroService = BeanContainer.getInstance().getHeroService();
@@ -183,84 +205,7 @@ public class GuideActivity extends BaseActivity {
     }
 
     private void updateGuides() {
-        new LoaderProgressTask<List<String>>(new ProgressTask<List<String>>() {
-            @Override
-            public List<String> doTask(OnPublishProgressListener listener) throws Exception {
-                String[] guideList = FileUtils.childrenFileNamesFromAssets(GuideActivity.this, "guides/" + hero.getDotaId());
-                File externalFilesDir = FileUtils.externalFileDir(GuideActivity.this);
-                File heroGuidesFolder = new File(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + hero.getDotaId() + File.separator);
-                String[] creatorsGuideList;
-                if (heroGuidesFolder.exists() && heroGuidesFolder.isDirectory()) {
-                    creatorsGuideList = heroGuidesFolder.list();
-                } else {
-                    creatorsGuideList = new String[0];
-                }
-                guideNameMap = new LinkedHashMap<String, String>();
-                String dir = externalFilesDir.getAbsolutePath();
-                for (String guideFileName : creatorsGuideList) {
-                    String entity = FileUtils.getTextFromFile(dir + File.separator + "guides" + File.separator + hero.getDotaId() + File.separator + guideFileName);
-                    if (entity != null) {
-                        TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
-                        guideNameMap.put(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + hero.getDotaId() + File.separator + guideFileName, titleOnly.getTitle());
-                    }
-                }
-                for (String guideFileName : guideList) {
-                    String entity = FileUtils.getTextFromAsset(GuideActivity.this, "guides" + File.separator + hero.getDotaId() + File.separator + guideFileName);
-                    TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
-                    guideNameMap.put("guides" + File.separator + hero.getDotaId() + File.separator + guideFileName, titleOnly.getTitle());
-                }
-                List<String> guideNames = new ArrayList<String>();
-                for (String guidePath : guideNameMap.keySet()) {
-                    guideNames.add(guideNameMap.get(guidePath));
-                }
-                return guideNames;
-            }
-
-            @Override
-            public void doAfterTask(List<String> result) {
-                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(GuideActivity.this, android.R.layout.simple_spinner_item, result);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
-                final SharedPreferences prefs = getSharedPreferences("last_watched_guide", MODE_PRIVATE);
-                spinner.setSelection(Math.min(adapter.getCount() - 1, prefs.getInt(hero.getDotaId(), 0)));
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                        selected = position;
-                        String guideTitle = adapter.getItem(position);
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putInt(hero.getDotaId(), position);
-                        editor.commit();
-                        String fileName = getFileName(guideTitle);
-                        String entity;
-                        if (fileName.startsWith("guides")) {
-                            entity = FileUtils.getTextFromAsset(GuideActivity.this, fileName);
-                            addGuideMenuItem();
-                        } else {
-                            entity = FileUtils.getTextFromFile(fileName);
-                            addEditMenuItem();
-                        }
-                        guide = new Gson().fromJson(entity, Guide.class);
-                        updatePager();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                    }
-                });
-            }
-
-            @Override
-            public void handleError(String error) {
-
-            }
-
-            @Override
-            public String getName() {
-                return null;
-            }
-        }, null).execute();
+        spiceManager.execute(new GuidesLoadRequest(getApplicationContext(),hero.getDotaId(),guideNameMap),this);
     }
 
     private String getFileName(String guideTitle) {
@@ -295,6 +240,90 @@ public class GuideActivity extends BaseActivity {
             updateGuides();
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRequestSuccess(List list) {
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(GuideActivity.this, android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        final SharedPreferences prefs = getSharedPreferences("last_watched_guide", MODE_PRIVATE);
+        spinner.setSelection(Math.min(adapter.getCount() - 1, prefs.getInt(hero.getDotaId(), 0)));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                selected = position;
+                String guideTitle = adapter.getItem(position);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt(hero.getDotaId(), position);
+                editor.commit();
+                String fileName = getFileName(guideTitle);
+                String entity;
+                if (fileName.startsWith("guides")) {
+                    entity = FileUtils.getTextFromAsset(GuideActivity.this, fileName);
+                    addGuideMenuItem();
+                } else {
+                    entity = FileUtils.getTextFromFile(fileName);
+                    addEditMenuItem();
+                }
+                guide = new Gson().fromJson(entity, Guide.class);
+                updatePager();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public static class GuidesLoadRequest extends TaskRequest<List>{
+        private Context context;
+        private String heroDotaId;
+        private Map<String,String> guideNameMap;
+        public GuidesLoadRequest(Context context,String heroDotaId,Map<String,String> guideNameMap) {
+            super(List.class);
+            this.context=context;
+            this.heroDotaId=heroDotaId;
+            this.guideNameMap=guideNameMap;
+        }
+
+        @Override
+        public List loadData() throws Exception {
+            String[] guideList = FileUtils.childrenFileNamesFromAssets(context, "guides/" + heroDotaId);
+            File externalFilesDir = FileUtils.externalFileDir(context);
+            File heroGuidesFolder = new File(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + heroDotaId + File.separator);
+            String[] creatorsGuideList;
+            if (heroGuidesFolder.exists() && heroGuidesFolder.isDirectory()) {
+                creatorsGuideList = heroGuidesFolder.list();
+            } else {
+                creatorsGuideList = new String[0];
+            }
+            guideNameMap.clear();
+            String dir = externalFilesDir.getAbsolutePath();
+            for (String guideFileName : creatorsGuideList) {
+                String entity = FileUtils.getTextFromFile(dir + File.separator + "guides" + File.separator + heroDotaId+ File.separator + guideFileName);
+                if (entity != null) {
+                    TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
+                    guideNameMap.put(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + heroDotaId + File.separator + guideFileName, titleOnly.getTitle());
+                }
+            }
+            for (String guideFileName : guideList) {
+                String entity = FileUtils.getTextFromAsset(context, "guides" + File.separator +heroDotaId + File.separator + guideFileName);
+                TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
+                guideNameMap.put("guides" + File.separator + heroDotaId + File.separator + guideFileName, titleOnly.getTitle());
+            }
+            List<String> guideNames = new ArrayList<String>();
+            for (String guidePath : guideNameMap.keySet()) {
+                guideNames.add(guideNameMap.get(guidePath));
+            }
+            return guideNames;
         }
     }
 }

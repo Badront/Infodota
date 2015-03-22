@@ -3,8 +3,8 @@ package com.badr.infodota.api.joindota;
 import com.badr.infodota.util.DateUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -18,7 +18,7 @@ public class MatchItem implements Cloneable, Serializable {
     private String link;
     private MatchType matchType;
     private String middleText;
-    private List<SubmatchItem> submatches;
+    private java.util.List<SubmatchItem> submatches;
     private String team1detailsLink;
     private String team1flagLink;
     private String team1logoLink;
@@ -28,7 +28,7 @@ public class MatchItem implements Cloneable, Serializable {
     private String team2logoLink;
     private String team2name;
     private String title;
-    private List<LiveStream> streams;
+    private java.util.List<LiveStream> streams;
     private boolean isSection;
 
     public MatchItem() {
@@ -74,11 +74,11 @@ public class MatchItem implements Cloneable, Serializable {
         this.middleText = middleText;
     }
 
-    public List<SubmatchItem> getSubmatches() {
+    public java.util.List<SubmatchItem> getSubmatches() {
         return submatches;
     }
 
-    public void setSubmatches(List<SubmatchItem> submatches) {
+    public void setSubmatches(java.util.List<SubmatchItem> submatches) {
         this.submatches = submatches;
     }
 
@@ -154,11 +154,11 @@ public class MatchItem implements Cloneable, Serializable {
         this.title = title;
     }
 
-    public List<LiveStream> getStreams() {
+    public java.util.List<LiveStream> getStreams() {
         return streams;
     }
 
-    public void setStreams(List<LiveStream> streams) {
+    public void setStreams(java.util.List<LiveStream> streams) {
         this.streams = streams;
     }
 
@@ -207,5 +207,8 @@ public class MatchItem implements Cloneable, Serializable {
         FUTURE,
         LIVE,
         POSTPONED,
+    }
+    public static class List extends ArrayList<MatchItem>{
+
     }
 }

@@ -27,13 +27,12 @@ public class LoaderDialogFragment<T> extends DialogFragment {
     private ProgressBar progress;
     private TextView progressStatus;
 
-    public LoaderDialogFragment(ProgressTask<T> task) {
-        this.task = task;
+    public void setLoadingMessage(String loadingMessage) {
+        this.loadingMessage = loadingMessage;
     }
 
-    public LoaderDialogFragment(ProgressTask<T> task, String loadingMessage) {
+    public void setTask(ProgressTask<T> task) {
         this.task = task;
-        this.loadingMessage = loadingMessage;
     }
 
     @Override
@@ -92,7 +91,6 @@ public class LoaderDialogFragment<T> extends DialogFragment {
                     try {
                         dismissAllowingStateLoss();
                     } catch (Exception e) {
-                        //TODO why am I always having Exception here?
                         //  java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState
                         Log.e(getClass().getName(), e.getMessage(), e);
                     }

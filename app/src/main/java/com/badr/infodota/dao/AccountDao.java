@@ -150,6 +150,10 @@ public class AccountDao extends GeneralDaoImpl<Unit> {
         addPros(database);
     }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+    }
+
     private void addPros(SQLiteDatabase db) {
         int group = Unit.Groups.PRO.ordinal();
         String insertPro = "insert into " + getTableName() + " (" +

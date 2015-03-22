@@ -195,7 +195,6 @@ public class CosmeticItems extends Fragment implements SearchableFragment {
 
     private void loadAllCosmeticItems() {
         final BaseActivity activity = (BaseActivity) getActivity();
-        activity.setSupportProgressBarIndeterminateVisibility(true);
         DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<List<CosmeticItem>>() {
             @Override
             public List<CosmeticItem> doTask(OnPublishProgressListener listener) throws Exception {
@@ -232,12 +231,10 @@ public class CosmeticItems extends Fragment implements SearchableFragment {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
                 prefs.edit().putLong("last_store_update_time", new Date().getTime()).commit();
                 setItemsToAdapter(result, activity);
-                activity.setSupportProgressBarIndeterminateVisibility(false);
             }
 
             @Override
             public void handleError(String error) {
-                activity.setSupportProgressBarIndeterminateVisibility(false);
                 Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
             }
 

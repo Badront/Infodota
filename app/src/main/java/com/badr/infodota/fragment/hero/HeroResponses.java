@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,12 @@ import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.responses.HeroResponse;
 import com.badr.infodota.api.responses.HeroResponsesResult;
 import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
 import java.util.List;
@@ -38,18 +40,33 @@ import java.util.List;
  * Date: 05.02.14
  * Time: 17:53
  */
-public class HeroResponses extends Fragment {
+public class HeroResponses extends Fragment implements RequestListener<HeroResponse.List> {
     private MediaPlayer mediaPlayer;
     private HeroResponsesAdapter adapter;
     private Filter mFilter;
     private EditText searchView;
     private ListView listView;
     private Hero hero;
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
 
     public static HeroResponses newInstance(Hero hero) {
         HeroResponses fragment = new HeroResponses();
         fragment.hero = hero;
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
     }
 
     @Override
@@ -117,47 +134,7 @@ public class HeroResponses extends Fragment {
                 searchView.setText("");
             }
         });
-        final Activity activity = getActivity();
-        if (activity != null) {
-            new LoaderProgressTask<Pair<List<HeroResponse>, String>>(new ProgressTask<Pair<List<HeroResponse>, String>>() {
-                @Override
-                public Pair<List<HeroResponse>, String> doTask(OnPublishProgressListener listener) throws Exception {
-                    String responsesEntity = FileUtils.getTextFromAsset(getActivity(),
-                            "heroes" + File.separator + hero.getDotaId() + File.separator + "responses.json");
-                    HeroResponsesResult heroResponsesResult = new Gson().fromJson(responsesEntity, HeroResponsesResult.class);
-
-                    List<HeroResponse> heroResponses = heroResponsesResult.getResponses();
-                    File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
-                    if (musicFolder.exists()) {
-                        for (HeroResponse heroResponse : heroResponses) {
-                            String[] urlParts = heroResponse.getUrl().split(File.separator);
-                            String fileName = musicFolder + File.separator + urlParts[urlParts.length - 1];
-                            if (new File(fileName).exists()) {
-                                heroResponse.setLocalUrl(fileName);
-                            }
-                        }
-                    }
-                    return Pair.create(heroResponses, musicFolder.getAbsolutePath());
-                }
-
-                @Override
-                public void doAfterTask(Pair<List<HeroResponse>, String> result) {
-                    adapter = new HeroResponsesAdapter(getActivity(), result.first, result.second);
-                    mFilter = adapter.getFilter();
-                    listView.setAdapter(adapter);
-                }
-
-                @Override
-                public void handleError(String error) {
-
-                }
-
-                @Override
-                public String getName() {
-                    return null;
-                }
-            }, null).execute();
-        }
+        spiceManager.execute(new HeroResponseLoadRequest(),this);
         setOnClickListener();
     }
 
@@ -189,6 +166,51 @@ public class HeroResponses extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         killMediaPlayer();
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+
+    }
+
+    @Override
+    public void onRequestSuccess(HeroResponse.List heroResponses) {
+        File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
+        String musicPath=musicFolder.getAbsolutePath();
+        adapter = new HeroResponsesAdapter(getActivity(), heroResponses, musicPath);
+        mFilter = adapter.getFilter();
+        listView.setAdapter(adapter);
+    }
+
+    public class HeroResponseLoadRequest extends TaskRequest<HeroResponse.List>{
+
+        public HeroResponseLoadRequest() {
+            super(HeroResponse.List.class);
+        }
+
+        @Override
+        public HeroResponse.List loadData() throws Exception {
+            Activity activity=getActivity();
+            if(activity!=null) {
+                String responsesEntity = FileUtils.getTextFromAsset(activity,
+                        "heroes" + File.separator + hero.getDotaId() + File.separator + "responses.json");
+                HeroResponsesResult heroResponsesResult = new Gson().fromJson(responsesEntity, HeroResponsesResult.class);
+
+                List<HeroResponse> heroResponses = heroResponsesResult.getResponses();
+                File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
+                if (musicFolder.exists()) {
+                    for (HeroResponse heroResponse : heroResponses) {
+                        String[] urlParts = heroResponse.getUrl().split(File.separator);
+                        String fileName = musicFolder + File.separator + urlParts[urlParts.length - 1];
+                        if (new File(fileName).exists()) {
+                            heroResponse.setLocalUrl(fileName);
+                        }
+                    }
+                }
+                return new HeroResponse.List(heroResponses);
+            }
+            return null;
+        }
     }
 
     public class MusicLoader extends AsyncTask<HeroResponse, Object, String> {

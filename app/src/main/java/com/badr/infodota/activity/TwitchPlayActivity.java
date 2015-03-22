@@ -1,6 +1,7 @@
 package com.badr.infodota.activity;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
@@ -26,7 +27,13 @@ import com.badr.infodota.api.twitch.AccessToken;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.TappableSurfaceView;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
 import com.parser.Playlist;
 
@@ -36,19 +43,31 @@ import java.util.List;
  * User: Histler
  * Date: 25.02.14
  */
-public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Callback {//}  implements MediaPlayer.OnInfoListener, MediaPlayer.OnBufferingUpdateListener {
+public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Callback, RequestListener<Element.List> {//}  implements MediaPlayer.OnInfoListener, MediaPlayer.OnBufferingUpdateListener {
     TappableSurfaceView videoView;
     MediaPlayer mediaPlayer;
     SurfaceHolder surfaceHolder;
-    String channelName;
-    LoaderProgressTask accessTokenThread;
+    //LoaderProgressTask accessTokenThread;
     private Menu menu;
     private ImageView pause;
     private View progressBar;
     private int qualityPosition;
-    private List<Element> qualities;
-    private BeanContainer container = BeanContainer.getInstance();
-    private TwitchService twitchService = container.getTwitchService();
+    private Element.List qualities;
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -168,9 +187,9 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
         });
         //http://video12.fra01.hls.twitch.tv/hls4/starladder1_8686670976_68409999/mobile/index.m3u8?token=id=2186420592380609324,bid=8686670976,exp=1393625278,node=video12-1.fra01.hls.justin.tv,nname=video12.fra01,fmt=mobile&sig=c522f7bacc493511b053c6c32301b0ef6ae863f1
         //String url="http://usher.twitch.tv/api/channel/hls/gsstudio_dota.m3u8?token={\"user_id\":null,\"channel\":\"gsstudio_dota\",\"expires\":1393530360,\"chansub\":{\"view_until\":1924905600,\"restricted_bitrates\":[]},\"private\":{\"allowed_to_view\":true},\"privileged\":false}&sig=61458b8929e15eb6508dc44484bc32ef091abec4";
-        channelName = getIntent().getExtras().getString("channelName");
+        String channelName = getIntent().getExtras().getString("channelName");
         getSupportActionBar().setTitle(getIntent().getExtras().getString("channelTitle"));
-        getAccessToken();
+        getAccessToken(channelName);
     }
 
     @Override
@@ -182,46 +201,8 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
         }
     }
 
-    private void getAccessToken() {
-        accessTokenThread = new LoaderProgressTask<String>(new ProgressTask<String>() {
-            @Override
-            public String doTask(OnPublishProgressListener listener) throws Exception {
-                Pair<AccessToken, String> atResult = twitchService.getAccessToken(TwitchPlayActivity.this, channelName);
-
-                if (atResult.first != null) {
-                    AccessToken accessToken = atResult.first;
-                    Pair<Playlist, String> playlistResult = twitchService.getPlaylist(TwitchPlayActivity.this, channelName, accessToken);
-                    if (playlistResult.first != null) {
-                        Playlist playList = playlistResult.first;
-                        qualities = playList.getElements();
-                        if (qualities != null) {
-                            return "";
-                        }
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            public void doAfterTask(String result) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(TwitchPlayActivity.this);
-                qualityPosition = preferences.getInt("player_default_quality", qualities.size() - 1);
-                qualityPosition = Math.min(qualityPosition, qualities.size() - 1);
-                setStreamQuality();
-            }
-
-            @Override
-            public void handleError(String error) {
-                finish();
-            }
-
-            @Override
-            public String getName() {
-                return null;
-            }
-        }, null);
-        accessTokenThread.execute();
-
+    private void getAccessToken(String channelName) {
+        spiceManager.execute(new QualitiesLoadRequest(getApplicationContext(),channelName),this);
     }
 
     private void setStreamQuality() {
@@ -261,11 +242,11 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy() {/*
         if (accessTokenThread != null && !accessTokenThread.isCancelled()) {
             accessTokenThread.cancel(true);
             accessTokenThread = null;
-        }
+        }*/
         if (mediaPlayer != null) {
             try {
                 mediaPlayer.release();
@@ -321,5 +302,45 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
         }
         getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
         //END_INCLUDE (set_ui_flags)
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        finish();
+    }
+
+    @Override
+    public void onRequestSuccess(Element.List elements) {
+        qualities=elements;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(TwitchPlayActivity.this);
+        qualityPosition = preferences.getInt("player_default_quality", qualities.size() - 1);
+        qualityPosition = Math.min(qualityPosition, qualities.size() - 1);
+        setStreamQuality();
+    }
+    public static class  QualitiesLoadRequest extends TaskRequest<Element.List>{
+
+        private BeanContainer container = BeanContainer.getInstance();
+        private TwitchService twitchService = container.getTwitchService();
+        private String channelName;
+        private Context context;
+        public QualitiesLoadRequest(Context context,String channelName) {
+            super(Element.List.class);
+            this.channelName=channelName;
+            this.context=context;
+        }
+
+        @Override
+        public Element.List loadData() throws Exception {
+            AccessToken result = twitchService.getAccessToken(channelName);
+
+            if (result!= null) {
+                Pair<Playlist, String> playlistResult = twitchService.getPlaylist(context, channelName, result);
+                if (playlistResult.first != null) {
+                    Playlist playList = playlistResult.first;
+                    return new Element.List(playList.getElements());
+                }
+            }
+            return null;
+        }
     }
 }

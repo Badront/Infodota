@@ -20,44 +20,42 @@ public class JoinDotaServiceImpl implements JoinDotaService {
     private JoinDotaRemoteService service;
 
     @Override
-    public Pair<List<MatchItem>, String> getMatchItems(Context context, int page, String extraParams) {
+    public MatchItem.List getMatchItems(Context context, int page, String extraParams) {
         try {
-            String errorMsg = null;
-            List<MatchItem> result = service.getMatchItems(context, page, extraParams);
+            MatchItem.List result = service.getMatchItems(context, page, extraParams);
             if (result == null) {
-                errorMsg = "Failed to get joinDota match list";
-                Log.e(JoinDotaServiceImpl.class.getName(), errorMsg);
+                Log.e(JoinDotaServiceImpl.class.getName(), "Failed to get joinDota match list");
             }
-            return Pair.create(result, errorMsg);
+            return result;
         } catch (Exception e) {
             String message = "Failed to get joinDota match list, cause: " + e.getMessage();
             Log.e(JoinDotaServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
+            return null;
         }
     }
 
     @Override
-    public Pair<MatchItem, String> updateMatchItem(Context context, MatchItem item) {
+    public MatchItem updateMatchItem(MatchItem item) {
         try {
-            String errorMsg = null;
-            MatchItem result = service.updateMatchItem(context, item);
-            if (result == null) {
-                errorMsg = "Failed to get joinDota match item";
+            MatchItem result = service.updateMatchItem(item);
+            if (result != null) {
+                return result;
+            }else {
+                String errorMsg = "Failed to get joinDota match item";
                 Log.e(JoinDotaServiceImpl.class.getName(), errorMsg);
             }
-            return Pair.create(result, errorMsg);
         } catch (Exception e) {
             String message = "Failed to get joinDota match item, cause: " + e.getMessage();
             Log.e(JoinDotaServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
         }
+        return null;
     }
 
     @Override
-    public String fillChannelName(Context context, List<LiveStream> streams) {
+    public String fillChannelName(List<LiveStream> streams) {
         String message = "";
         try {
-            service.getChannelsNames(context, streams);
+            service.getChannelsNames(streams);
         } catch (Exception e) {
             message = "Failed to get live streams, cause: " + e.getMessage();
             Log.e(JoinDotaServiceImpl.class.getName(), message, e);

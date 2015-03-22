@@ -31,11 +31,10 @@ import java.util.TimeZone;
  * Date: 22.04.14
  * Time: 14:34
  */
-public class JoinDotaRemoteServiceImpl extends BaseRemoteServiceImpl implements JoinDotaRemoteService {
+public class JoinDotaRemoteServiceImpl implements JoinDotaRemoteService {
     private final static SimpleDateFormat COMPLETE_DATE_FORMAT = new SimpleDateFormat("EEE',' dd MMM yyyy HH:mm:ss Z ", Locale.ENGLISH);
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy", Locale.ENGLISH);
     private static SimpleDateFormat CESTDateTimeFormat = new SimpleDateFormat("dd.MM.yyyy, HH:mm", Locale.US);
-    private static TimeZone YOUR_TIMEZONE = Calendar.getInstance().getTimeZone();
 
     static {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+2"));
@@ -43,13 +42,13 @@ public class JoinDotaRemoteServiceImpl extends BaseRemoteServiceImpl implements 
     }
 
     @Override
-    public List<MatchItem> getMatchItems(Context context, int page, String extraParams) throws Exception {
+    public MatchItem.List getMatchItems(Context context, int page, String extraParams) throws Exception {
         StringBuilder url = new StringBuilder("http://www.joindota.com/en/matches");
         url.append("/").append(extraParams != null ? extraParams : "");
         if (page > 0) {
             url.append("&archiv_page=").append(page);
         }
-        List<MatchItem> matchItems = new ArrayList<MatchItem>();
+        MatchItem.List matchItems = new MatchItem.List();
         Elements matchElements = Jsoup.connect(url.toString()).get().select("div.item");
         for (Element matchElement : matchElements) {
             MatchItem matchItem = new MatchItem();
@@ -138,7 +137,7 @@ public class JoinDotaRemoteServiceImpl extends BaseRemoteServiceImpl implements 
     }
 
     @Override
-    public MatchItem updateMatchItem(Context context, MatchItem item) throws Exception {
+    public MatchItem updateMatchItem(MatchItem item) throws Exception {
         MatchItem resultItem = item.clone();
         Document document = Jsoup.connect(resultItem.getLink()).get();
         Element localElement1 = document.select("div.pad").get(1);
@@ -203,7 +202,8 @@ public class JoinDotaRemoteServiceImpl extends BaseRemoteServiceImpl implements 
     }
 
     @Override
-    public void getChannelsNames(Context context, List<LiveStream> streams) throws Exception {
+    @SuppressWarnings("deprecation")
+    public void getChannelsNames(List<LiveStream> streams) throws Exception {
         for (LiveStream stream : streams) {
             try {
                 Document document = Jsoup.connect(stream.getUrl()).get();

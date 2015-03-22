@@ -21,6 +21,14 @@ import java.util.Arrays;
  * Date: 16.01.14
  */
 public class Utils {
+    private static final long STEAM64ID=76561197960265728L;
+    public static long steam32to64(long steam32){
+        return STEAM64ID + steam32;
+    }
+
+    public static long steam64to32(long steam64){
+        return steam64-STEAM64ID;
+    }
 
     public static int dpSize(Context context, int px) {
         final float scale = context.getResources().getDisplayMetrics().density;

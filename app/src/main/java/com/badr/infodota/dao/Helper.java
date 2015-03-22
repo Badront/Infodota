@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Helper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "dota2.db";
-    public static final int DATABASE_VERSION = 46;
+    public static final int DATABASE_VERSION = 47;
 
     /*public static final String CREATE_ITEMS_FROM="create table if not exists "+
             " items_from ( _id integer PRIMARY KEY AUTOINCREMENT, item_id integer not null, need_id integer not null);";*/
@@ -42,43 +42,8 @@ public class Helper extends SQLiteOpenHelper {
         List<CreateTableDao> allDaos = BeanContainer.getInstance().getAllDaos();
         for (CreateTableDao dao : allDaos) {
             dao.onUpgrade(db, oldVersion, newVersion);
-        }/*
-        switch (oldVersion){
-            case 30:
-            case 31:
-            case 32:
-            case 33:
-            case 34:
-            case 35:
-            case 36:
-			case 37:
-			case 38:
-			case 39:
-            case 40:
-                reinitHeroesAndItems(db);
-                db.execSQL("delete from truepicker");
-                initTruePickerIds(db);
-                break;
-            default:
-                db.execSQL("drop table if exists abilities");
-				db.execSQL("drop table if exists "+Unit.TABLE_NAME);
-                db.execSQL("drop table if exists items_from");
-                db.execSQL("drop table if exists "+Item.TABLE_NAME);
-            case 2:
-                db.execSQL("drop table if exists "+Hero.TABLE_NAME);
-                db.execSQL("drop table if exists "+HeroStats.TABLE_NAME);
-				onCreate(db);
-		}*/
-    }/*
-
-    private void reinitHeroesAndItems(SQLiteDatabase db) {
-        db.execSQL("delete from "+ Item.TABLE_NAME);
-        db.execSQL("delete from items_from");
-        db.execSQL("delete from "+ Hero.TABLE_NAME);
-        db.execSQL("delete from "+ HeroStats.TABLE_NAME);
-        db.execSQL("delete from abilities");
-        db.execSQL("update updated_version set version=0;");
-    }*/
+        }
+    }
 
     private void reinitHeroesAndItems(SQLiteDatabase db) {
         db.execSQL("drop table " + ItemDao.TABLE_NAME);

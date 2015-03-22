@@ -1,5 +1,7 @@
 package com.badr.infodota.api.heroes;
 
+import java.util.ArrayList;
+
 /**
  * Created by ABadretdinov
  * 26.12.2014
@@ -23,5 +25,9 @@ public class TruepickerHero extends Hero {
 
     public void setTpId(long tpId) {
         this.tpId = tpId;
+    }
+
+    public static class List extends ArrayList<TruepickerHero>{
+
     }
 }

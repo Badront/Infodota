@@ -2,6 +2,7 @@ package com.badr.infodota.api.matchdetails;
 
 import com.badr.infodota.api.AbilityUpgrade;
 import com.badr.infodota.api.matchhistory.ShortPlayer;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,17 +15,29 @@ import java.util.List;
 public class Player extends ShortPlayer implements Serializable {
     public static final long HIDDEN_ID = 4294967295L;
     //the numeric ID of the item that player finished with in their top-left slot.
-    private int item_0;
+    @SerializedName("item_0")
+    private int item0;
+    private String item0dotaId;
     //top-center
-    private int item_1;
+    @SerializedName("item_1")
+    private int item1;
+    private String item1dotaId;
     //top-right
-    private int item_2;
+    @SerializedName("item_2")
+    private int item2;
+    private String item2dotaId;
     //bottom-left
-    private int item_3;
+    @SerializedName("item_3")
+    private int item3;
+    private String item3dotaId;
     //bottom-center
-    private int item_4;
+    @SerializedName("item_4")
+    private int item4;
+    private String item4dotaId;
     //bottom-right
-    private int item_5;
+    @SerializedName("item_5")
+    private int item5;
+    private String item5dotaId;
     private int kills;
     private int deaths;
     private int assists;
@@ -35,74 +48,84 @@ public class Player extends ShortPlayer implements Serializable {
     * 1 - player left game after the game has become safe to leave.
     * 0 - Player stayed for the entire match.
     * */
-    private Integer leaver_status;
+    @SerializedName("leaver_status")
+    private Integer leaverStatus;
     //the amount of gold the player had left at the end of the match
     private long gold;
-    private int last_hits;
+    @SerializedName("last_hits")
+    private int lastHits;
     private int denies;
-    private int gold_per_min;
-    private int xp_per_min;
-    private long gold_spent;
-    private long hero_damage;
-    private long tower_damage;
-    private long hero_healing;
+    @SerializedName("xp_per_min")
+    private int xpPerMin;
+    @SerializedName("gold_per_min")
+    private int goldPerMin;
+    @SerializedName("gold_spent")
+    private long goldSpent;
+    @SerializedName("hero_damage")
+    private long heroDamage;
+    @SerializedName("tower_damage")
+    private long towerDamage;
+    @SerializedName("hero_healing")
+    private long heroHealing;
     // the player's final level
     private long level;
     //an array detailing the order in which a player's ability points were spent.
-    private List<AbilityUpgrade> ability_upgrades;
+    @SerializedName("ability_upgrades")
+    private List<AbilityUpgrade> abilityUpgrades;
 
-    private List<AdditionalUnit> additional_units;
+    @SerializedName("additional_units")
+    private List<AdditionalUnit> additionalUnits;
 
     public Player() {
         super();
     }
 
-    public int getItem_0() {
-        return item_0;
+    public int getItem0() {
+        return item0;
     }
 
-    public void setItem_0(int item_0) {
-        this.item_0 = item_0;
+    public void setItem0(int item0) {
+        this.item0 = item0;
     }
 
-    public int getItem_1() {
-        return item_1;
+    public int getItem1() {
+        return item1;
     }
 
-    public void setItem_1(int item_1) {
-        this.item_1 = item_1;
+    public void setItem1(int item1) {
+        this.item1 = item1;
     }
 
-    public int getItem_2() {
-        return item_2;
+    public int getItem2() {
+        return item2;
     }
 
-    public void setItem_2(int item_2) {
-        this.item_2 = item_2;
+    public void setItem2(int item2) {
+        this.item2 = item2;
     }
 
-    public int getItem_3() {
-        return item_3;
+    public int getItem3() {
+        return item3;
     }
 
-    public void setItem_3(int item_3) {
-        this.item_3 = item_3;
+    public void setItem3(int item3) {
+        this.item3 = item3;
     }
 
-    public int getItem_4() {
-        return item_4;
+    public int getItem4() {
+        return item4;
     }
 
-    public void setItem_4(int item_4) {
-        this.item_4 = item_4;
+    public void setItem4(int item4) {
+        this.item4 = item4;
     }
 
-    public int getItem_5() {
-        return item_5;
+    public int getItem5() {
+        return item5;
     }
 
-    public void setItem_5(int item_5) {
-        this.item_5 = item_5;
+    public void setItem5(int item5) {
+        this.item5 = item5;
     }
 
     public int getKills() {
@@ -129,12 +152,12 @@ public class Player extends ShortPlayer implements Serializable {
         this.assists = assists;
     }
 
-    public Integer getLeaver_status() {
-        return leaver_status;
+    public Integer getLeaverStatus() {
+        return leaverStatus;
     }
 
-    public void setLeaver_status(Integer leaver_status) {
-        this.leaver_status = leaver_status;
+    public void setLeaverStatus(Integer leaverStatus) {
+        this.leaverStatus = leaverStatus;
     }
 
     public long getGold() {
@@ -145,12 +168,12 @@ public class Player extends ShortPlayer implements Serializable {
         this.gold = gold;
     }
 
-    public int getLast_hits() {
-        return last_hits;
+    public int getLastHits() {
+        return lastHits;
     }
 
-    public void setLast_hits(int last_hits) {
-        this.last_hits = last_hits;
+    public void setLastHits(int lastHits) {
+        this.lastHits = lastHits;
     }
 
     public int getDenies() {
@@ -161,52 +184,52 @@ public class Player extends ShortPlayer implements Serializable {
         this.denies = denies;
     }
 
-    public int getGold_per_min() {
-        return gold_per_min;
+    public int getGoldPerMin() {
+        return goldPerMin;
     }
 
-    public void setGold_per_min(int gold_per_min) {
-        this.gold_per_min = gold_per_min;
+    public void setGoldPerMin(int goldPerMin) {
+        this.goldPerMin = goldPerMin;
     }
 
-    public int getXp_per_min() {
-        return xp_per_min;
+    public int getXpPerMin() {
+        return xpPerMin;
     }
 
-    public void setXp_per_min(int xp_per_min) {
-        this.xp_per_min = xp_per_min;
+    public void setXpPerMin(int xpPerMin) {
+        this.xpPerMin = xpPerMin;
     }
 
-    public long getGold_spent() {
-        return gold_spent;
+    public long getGoldSpent() {
+        return goldSpent;
     }
 
-    public void setGold_spent(long gold_spent) {
-        this.gold_spent = gold_spent;
+    public void setGoldSpent(long goldSpent) {
+        this.goldSpent = goldSpent;
     }
 
-    public long getHero_damage() {
-        return hero_damage;
+    public long getHeroDamage() {
+        return heroDamage;
     }
 
-    public void setHero_damage(long hero_damage) {
-        this.hero_damage = hero_damage;
+    public void setHeroDamage(long heroDamage) {
+        this.heroDamage = heroDamage;
     }
 
-    public long getTower_damage() {
-        return tower_damage;
+    public long getTowerDamage() {
+        return towerDamage;
     }
 
-    public void setTower_damage(long tower_damage) {
-        this.tower_damage = tower_damage;
+    public void setTowerDamage(long towerDamage) {
+        this.towerDamage = towerDamage;
     }
 
-    public long getHero_healing() {
-        return hero_healing;
+    public long getHeroHealing() {
+        return heroHealing;
     }
 
-    public void setHero_healing(long hero_healing) {
-        this.hero_healing = hero_healing;
+    public void setHeroHealing(long heroHealing) {
+        this.heroHealing = heroHealing;
     }
 
     public long getLevel() {
@@ -217,19 +240,67 @@ public class Player extends ShortPlayer implements Serializable {
         this.level = level;
     }
 
-    public List<AbilityUpgrade> getAbility_upgrades() {
-        return ability_upgrades;
+    public List<AbilityUpgrade> getAbilityUpgrades() {
+        return abilityUpgrades;
     }
 
-    public void setAbility_upgrades(List<AbilityUpgrade> ability_upgrades) {
-        this.ability_upgrades = ability_upgrades;
+    public void setAbilityUpgrades(List<AbilityUpgrade> abilityUpgrades) {
+        this.abilityUpgrades = abilityUpgrades;
     }
 
-    public List<AdditionalUnit> getAdditional_units() {
-        return additional_units;
+    public List<AdditionalUnit> getAdditionalUnits() {
+        return additionalUnits;
     }
 
-    public void setAdditional_units(List<AdditionalUnit> additional_units) {
-        this.additional_units = additional_units;
+    public void setAdditionalUnits(List<AdditionalUnit> additionalUnits) {
+        this.additionalUnits = additionalUnits;
+    }
+
+    public String getItem0dotaId() {
+        return item0dotaId;
+    }
+
+    public void setItem0dotaId(String item0dotaId) {
+        this.item0dotaId = item0dotaId;
+    }
+
+    public String getItem1dotaId() {
+        return item1dotaId;
+    }
+
+    public void setItem1dotaId(String item1dotaId) {
+        this.item1dotaId = item1dotaId;
+    }
+
+    public String getItem2dotaId() {
+        return item2dotaId;
+    }
+
+    public void setItem2dotaId(String item2dotaId) {
+        this.item2dotaId = item2dotaId;
+    }
+
+    public String getItem3dotaId() {
+        return item3dotaId;
+    }
+
+    public void setItem3dotaId(String item3dotaId) {
+        this.item3dotaId = item3dotaId;
+    }
+
+    public String getItem4dotaId() {
+        return item4dotaId;
+    }
+
+    public void setItem4dotaId(String item4dotaId) {
+        this.item4dotaId = item4dotaId;
+    }
+
+    public String getItem5dotaId() {
+        return item5dotaId;
+    }
+
+    public void setItem5dotaId(String item5dotaId) {
+        this.item5dotaId = item5dotaId;
     }
 }

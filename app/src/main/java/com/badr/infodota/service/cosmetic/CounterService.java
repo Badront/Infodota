@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Pair;
 
 import com.badr.infodota.api.heroes.Hero;
+import com.badr.infodota.api.heroes.TruepickerHero;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Time: 14:53
  */
 public interface CounterService {
-    Pair<List<Hero>, String> getCounters(
+    TruepickerHero.List getCounters(
             Context context,
             List<Integer> allies,
             List<Integer> enemies,

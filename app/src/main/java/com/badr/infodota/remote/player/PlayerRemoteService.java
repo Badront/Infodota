@@ -8,17 +8,19 @@ import com.badr.infodota.remote.BaseRemoteService;
 
 import java.util.List;
 
+import retrofit.http.GET;
+import retrofit.http.Query;
+
 /**
  * User: ABadretdinov
  * Date: 02.04.14
  * Time: 15:49
  */
-public interface PlayerRemoteService extends BaseRemoteService {
-    Pair<List<Unit>, String> getAccounts(Context context, List<Long> ids) throws Exception;
+public interface PlayerRemoteService{
 
-    Pair<Unit, String> getAccount(Context context, long id) throws Exception;
+    Unit.List getAccounts(List<Long> ids) throws Exception;
 
-    Pair<List<Unit>, String> getAccounts(Context context, String name) throws Exception;
+    Unit.List getAccounts(String name) throws Exception;
 
-    Pair<List<Unit>, String> getFriends(Context context, long id) throws Exception;
+    Unit.List getFriends(long id) throws Exception;
 }

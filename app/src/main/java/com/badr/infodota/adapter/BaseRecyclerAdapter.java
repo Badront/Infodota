@@ -32,4 +32,8 @@ public abstract class BaseRecyclerAdapter<T, R extends BaseViewHolder> extends R
     public T getItem(int position) {
         return mData.get(position);
     }
+
+    public List<T> getItems(){
+        return mData;
+    }
 }

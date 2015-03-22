@@ -8,6 +8,8 @@ import android.util.Pair;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.api.twitch.AccessToken;
 import com.badr.infodota.api.twitch.Channel;
+import com.badr.infodota.api.twitch.GameStreams;
+import com.badr.infodota.api.twitch.StreamTV;
 import com.badr.infodota.dao.DatabaseManager;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.remote.twitch.TwitchRemoteService;
@@ -25,19 +27,18 @@ public class TwitchServiceImpl implements TwitchService {
     private StreamDao streamDao;
 
     @Override
-    public Pair<AccessToken, String> getAccessToken(Context context, String channelName) {
-        try {
-            Pair<AccessToken, String> result = service.getAccessToken(context, channelName);
-            if (result.first == null) {
-                String message = "Failed to get twitch access token, cause: " + result.second;
-                Log.e(TwitchServiceImpl.class.getName(), message);
-            }
-            return result;
-        } catch (Exception e) {
-            String message = "Failed to get twitch access token, cause: " + e.getMessage();
-            Log.e(TwitchServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
-        }
+    public AccessToken getAccessToken(String channelName) {
+        return BeanContainer.getInstance().getTwitchRestService().getAccessToken(channelName);
+    }
+
+    @Override
+    public GameStreams getGameStreams() {
+        return BeanContainer.getInstance().getTwitchRestService().getGameStreams();
+    }
+
+    @Override
+    public StreamTV getStream(String channelName) {
+        return BeanContainer.getInstance().getTwitchRestService().getStream(channelName);
     }
 
     @Override

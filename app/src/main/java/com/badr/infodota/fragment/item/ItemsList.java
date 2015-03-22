@@ -36,6 +36,11 @@ import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.List;
 import java.util.Locale;
@@ -45,12 +50,27 @@ import java.util.Locale;
  * Date: 17.01.14
  * Time: 18:28
  */
-public class ItemsList extends Fragment implements SearchableFragment, OnItemClickListener {
+public class ItemsList extends Fragment implements SearchableFragment, OnItemClickListener,RequestListener<Item.List> {
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
     private RecyclerView gridView;
     private ItemsAdapter mAdapter;
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -155,45 +175,20 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        gridView = (RecyclerView) getView().findViewById(R.id.gridView);
-        gridView.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
-        //layoutManager.setReverseLayout(true);
-        gridView.setLayoutManager(layoutManager);
-        setColumnSize();
-        loadItems();
+        View root=getView();
+        if(root!=null) {
+            gridView = (RecyclerView) root.findViewById(R.id.gridView);
+            gridView.setHasFixedSize(true);
+            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
+            //layoutManager.setReverseLayout(true);
+            gridView.setLayoutManager(layoutManager);
+            setColumnSize();
+            loadItems();
+        }
     }
 
     private void loadItems() {
-        final Activity activity = getActivity();
-        if (activity != null) {
-            new LoaderProgressTask<List<Item>>(new ProgressTask<List<Item>>() {
-                @Override
-                public List<Item> doTask(OnPublishProgressListener listener) throws Exception {
-                    ItemService itemService = BeanContainer.getInstance().getItemService();
-                    return itemService.getItems(activity, selectedFilter);
-                }
-
-                @Override
-                public void doAfterTask(List<Item> result) {
-                    mAdapter = new ItemsAdapter(result);
-                    filter = mAdapter.getFilter();
-                    filter.filter(search);
-                    gridView.setAdapter(mAdapter);
-                    mAdapter.setOnItemClickListener(ItemsList.this);
-                }
-
-                @Override
-                public void handleError(String error) {
-
-                }
-
-                @Override
-                public String getName() {
-                    return null;
-                }
-            }, null).execute();
-        }
+        spiceManager.execute(new ItemsLoadRequest(),this);
     }
 
     @Override
@@ -241,6 +236,36 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
         if (item != null) {
             intent.putExtra("id", item.getId());
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+
+    }
+
+    @Override
+    public void onRequestSuccess(Item.List items) {
+        mAdapter = new ItemsAdapter(items);
+        filter = mAdapter.getFilter();
+        filter.filter(search);
+        gridView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(ItemsList.this);
+    }
+    public class ItemsLoadRequest extends TaskRequest<Item.List>{
+
+        public ItemsLoadRequest() {
+            super(Item.List.class);
+        }
+
+        @Override
+        public Item.List loadData() throws Exception {
+            Activity activity=getActivity();
+            if(activity!=null){
+                ItemService itemService = BeanContainer.getInstance().getItemService();
+                return itemService.getItems(activity, selectedFilter);
+            }
+            return null;
         }
     }
 }

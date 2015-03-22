@@ -25,11 +25,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> getItems(Context context, String filter) {
+    public Item.List getItems(Context context, String filter) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return itemDao.getEntities(database, filter);
+            return new Item.List(itemDao.getEntities(database, filter));
         } finally {
             manager.closeDatabase();
         }

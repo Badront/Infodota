@@ -13,10 +13,10 @@ import java.util.List;
  * Date: 22.04.14
  * Time: 14:33
  */
-public interface JoinDotaRemoteService extends BaseRemoteService {
-    List<MatchItem> getMatchItems(Context context, int page, String extraParams) throws Exception;
+public interface JoinDotaRemoteService{
+    MatchItem.List getMatchItems(Context context, int page, String extraParams) throws Exception;
 
-    MatchItem updateMatchItem(Context context, MatchItem item) throws Exception;
+    MatchItem updateMatchItem(MatchItem item) throws Exception;
 
-    void getChannelsNames(Context context, List<LiveStream> streams) throws Exception;
+    void getChannelsNames(List<LiveStream> streams) throws Exception;
 }

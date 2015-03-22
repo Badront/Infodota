@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.activity.TwitchPlayActivity;
@@ -22,7 +23,12 @@ import com.badr.infodota.remote.twitch.TwitchRemoteService;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.badr.infodota.util.DialogUtils;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
 import com.parser.Playlist;
 
@@ -41,16 +47,30 @@ import java.util.List;
  * Date: 07.03.14
  * Time: 15:22
  */
-public class FavouriteStreamsList extends TwitchMatchListHolder {
-    Thread favsThread;
+public class FavouriteStreamsList extends TwitchMatchListHolder implements RequestListener<Stream.List> {
     private List<Channel> channels;
     private TwitchGamesAdapter holderAdapter;
+    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
 
     public static FavouriteStreamsList newInstance(TwitchGamesAdapter holderAdapter, List<Channel> channels) {
         FavouriteStreamsList fragment = new FavouriteStreamsList();
         fragment.setHolderAdapter(holderAdapter);
         fragment.setChannels(channels);
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
     }
 
     public void setHolderAdapter(TwitchGamesAdapter holderAdapter) {
@@ -64,57 +84,13 @@ public class FavouriteStreamsList extends TwitchMatchListHolder {
     @Override
     public void updateList(List<Channel> channels) {
         this.channels = channels;
-        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, null, channels);
-        setAdapter(adapter);
-        getFavourites();
+        onRefresh();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, null, channels);
-        setAdapter(adapter);
-        getFavourites();
-    }
-
-    public void getFavourites() {
-        setRefreshing(true);
-        final Activity activity = getActivity();
-        if (favsThread != null) {
-            favsThread.interrupt();
-        }
-        favsThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (channels != null) {
-                    for (Channel channel : channels) {
-                        DefaultHttpClient client = new DefaultHttpClient();
-                        try {
-                            HttpGet get = new HttpGet(Constants.TwitchTV.STREAM_SUBURL + URLEncoder.encode(channel.getName(), "UTF-8"));
-                            HttpResponse response = client.execute(get);
-                            if (response.getStatusLine().getStatusCode() == 200) {
-                                String entity = EntityUtils.toString(response.getEntity());
-                                StreamTV streamTV = new Gson().fromJson(entity, StreamTV.class);
-                                if (streamTV.getStream() != null) {
-                                    final Stream stream = streamTV.getStream();
-                                    activity.runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            setRefreshing(false);
-                                            ((TwitchStreamsAdapter) getAdapter()).addStream(stream);
-                                        }
-                                    });
-                                }
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-            }
-        });
-        favsThread.start();
+        onRefresh();
     }
 
     @Override
@@ -147,13 +123,12 @@ public class FavouriteStreamsList extends TwitchMatchListHolder {
                     DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<String>() {
                         BeanContainer container = BeanContainer.getInstance();
                         TwitchService service = container.getTwitchService();
-                        TwitchRemoteService remoteService = container.getTwitchRemoteService();
 
                         @Override
                         public String doTask(OnPublishProgressListener listener) throws Exception {
-                            Pair<AccessToken, String> atResult = service.getAccessToken(activity, channelName);
-                            if (atResult.first != null) {
-                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult.first);
+                            AccessToken atResult = service.getAccessToken(channelName);
+                            if (atResult!= null) {
+                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
                                 Playlist playlist = playlistResult.first;
                                 List<Element> elements = playlist.getElements();
                                 if (elements != null && elements.size() > 0) {
@@ -186,9 +161,52 @@ public class FavouriteStreamsList extends TwitchMatchListHolder {
             }
         }
     }
+    FavStreamsLoadRequest request;
 
     @Override
     public void onRefresh() {
-        updateList(channels);
+        setRefreshing(true);
+        if(request!=null)
+        {
+            spiceManager.cancel(request);
+        }
+        request=new FavStreamsLoadRequest(channels);
+        spiceManager.execute(request,this);
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        setRefreshing(false);
+        Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestSuccess(Stream.List streams) {
+        setRefreshing(false);
+        setAdapter(new TwitchStreamsAdapter(holderAdapter,streams,channels));
+    }
+    public class FavStreamsLoadRequest extends TaskRequest<Stream.List>{
+
+        List<Channel> channels;
+        TwitchService twitchService=BeanContainer.getInstance().getTwitchService();
+        public FavStreamsLoadRequest(List<Channel> channels) {
+            super(Stream.List.class);
+            this.channels=channels;
+        }
+
+        @Override
+        public Stream.List loadData() throws Exception {
+            if(channels!=null){
+                Stream.List list=new Stream.List();
+                for (Channel channel : channels) {
+                    StreamTV streamTV=twitchService.getStream(channel.getName());
+                    if(streamTV.getStream()!=null){
+                        list.add(streamTV.getStream());
+                    }
+                }
+                return list;
+            }
+            return null;
+        }
     }
 }

@@ -181,7 +181,7 @@ public class MatchPlayerInfoActivity extends BaseActivity {
             } else {
                 getSupportActionBar().setTitle(getString(R.string.unknown_nickname));
             }
-            Integer leaver = player.getLeaver_status();
+            Integer leaver = player.getLeaverStatus();
             TextView leaverTV = (TextView) findViewById(R.id.leaver);
             if (leaver == null) {
                 leaverTV.setText(getString(R.string.bot));

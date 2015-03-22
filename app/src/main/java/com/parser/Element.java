@@ -1,6 +1,8 @@
 package com.parser;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A playlist element.
@@ -65,4 +67,9 @@ public interface Element {
 
     public String getQuality();
 
+    public static class List extends ArrayList<Element>{
+        public List(Collection<? extends Element> collection) {
+            super(collection);
+        }
+    }
 }

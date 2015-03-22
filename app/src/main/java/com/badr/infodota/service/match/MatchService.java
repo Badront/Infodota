@@ -5,17 +5,19 @@ import android.util.Pair;
 
 import com.badr.infodota.InitializingBean;
 import com.badr.infodota.api.matchdetails.MatchDetails;
-import com.badr.infodota.api.matchhistory.ResultResponse;
+import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
+import com.badr.infodota.api.matchhistory.PlayerMatch;
+import com.badr.infodota.api.matchhistory.PlayerMatchResult;
+
+import java.util.List;
 
 /**
  * User: ABadretdinov
  * Date: 02.04.14
  * Time: 16:18
  */
-public interface MatchService extends InitializingBean {
-    Pair<MatchDetails, String> getMatchDetails(Context context, String matchId);
+public interface MatchService{
+    MatchDetails getMatchDetails(Context context, String matchId);
 
-    Pair<ResultResponse, String> getMatches(Context context, long accountId, long fromMatchId, String extraParams);
-
-    Pair<ResultResponse, String> getMatches(Context context, long fromMatchId, String extraParams);
+    PlayerMatchResult getMatches(Context context, Long accountId, Long fromMatchId, Long heroId);
 }

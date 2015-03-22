@@ -196,7 +196,6 @@ public class CosmeticList extends Fragment implements SearchableFragment {
 
     private void loadSavedItems() {
         final BaseActivity activity = (BaseActivity) getActivity();
-        activity.setSupportProgressBarIndeterminateVisibility(true);
         DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<List<CosmeticItem>>() {
             @Override
             public List<CosmeticItem> doTask(OnPublishProgressListener listener) throws Exception {
@@ -233,7 +232,6 @@ public class CosmeticList extends Fragment implements SearchableFragment {
             public void doAfterTask(List<CosmeticItem> result) {
                 if (result != null && result.size() > 0) {
                     setItemsToAdapter(activity, result);
-                    activity.setSupportProgressBarIndeterminateVisibility(false);
                 } else {
                     loadCosmeticItemsFromWeb();
                 }
@@ -241,7 +239,6 @@ public class CosmeticList extends Fragment implements SearchableFragment {
 
             @Override
             public void handleError(String error) {
-                activity.setSupportProgressBarIndeterminateVisibility(false);
                 Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
             }
 
@@ -270,7 +267,6 @@ public class CosmeticList extends Fragment implements SearchableFragment {
     private void loadCosmeticItemsFromWeb() {
         final BaseActivity activity = (BaseActivity) getActivity();
         if (activity != null) {
-            activity.setSupportProgressBarIndeterminateVisibility(true);
             DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<List<CosmeticItem>>() {
                 @Override
                 public List<CosmeticItem> doTask(OnPublishProgressListener listener) throws Exception {
@@ -308,12 +304,10 @@ public class CosmeticList extends Fragment implements SearchableFragment {
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
                     prefs.edit().putLong("last_store_update_time", new Date().getTime()).commit();
                     setItemsToAdapter(activity, result);
-                    activity.setSupportProgressBarIndeterminateVisibility(false);
                 }
 
                 @Override
                 public void handleError(String error) {
-                    activity.setSupportProgressBarIndeterminateVisibility(false);
                     Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
                 }
 

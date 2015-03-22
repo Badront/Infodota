@@ -5,12 +5,12 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.InitializingBean;
+import com.badr.infodota.R;
 import com.badr.infodota.api.cosmetics.player.PlayerCosmeticItem;
 import com.badr.infodota.api.cosmetics.price.PricesResult;
 import com.badr.infodota.api.cosmetics.store.StoreResult;
-import com.badr.infodota.remote.cosmetic.CosmeticsRemoteEntityService;
 import com.badr.infodota.util.FileUtils;
+import com.badr.infodota.util.Utils;
 
 import java.io.File;
 import java.util.List;
@@ -20,23 +20,24 @@ import java.util.List;
  * Date: 02.04.14
  * Time: 13:11
  */
-public class CosmeticServiceImpl implements CosmeticService, InitializingBean {
-    private CosmeticsRemoteEntityService service;
+public class CosmeticServiceImpl implements CosmeticService{
 
     @Override
     public Pair<StoreResult, String> getUpdatedCosmeticItems(Context context) {
         try {
-            Pair<StoreResult, String> result = service.getCosmeticItems(context);
-            if (result.first == null) {
-                String message = "Failed to get cosmetic items, cause: " + result.second;
+            String language = context.getString(R.string.language);
+            language = language.substring(0, 2);
+            StoreResult result = BeanContainer.getInstance().getSteamService().getCosmeticItems(language);
+            String message=null;
+            if (result== null) {
+                message = "Failed to get cosmetic items";
                 Log.e(CosmeticServiceImpl.class.getName(), message);
             } else {
-                //String storeResults=new Gson().toJson(result.first);
                 File externalFilesDir = FileUtils.externalFileDir(context);
                 FileUtils.saveJsonFile(externalFilesDir.getAbsolutePath() + File.separator + "store" + File.separator + "storeItems.json",
-                        result.first);
+                        result);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get cosmetic items, cause: " + e.getMessage();
             Log.e(CosmeticServiceImpl.class.getName(), message, e);
@@ -85,17 +86,17 @@ public class CosmeticServiceImpl implements CosmeticService, InitializingBean {
     @Override
     public Pair<PricesResult, String> getUpdatedCosmeticItemsPrices(Context context) {
         try {
-            Pair<PricesResult, String> result = service.getCosmeticItemsPrices(context);
-            if (result.first == null) {
-                String message = "Failed to get cosmetic item prices, cause: " + result.second;
+            PricesResult result = BeanContainer.getInstance().getSteamService().getCosmeticItemsPrices();
+            String message=null;
+            if (result == null) {
+                message = "Failed to get cosmetic item prices";
                 Log.e(CosmeticServiceImpl.class.getName(), message);
             } else {
-                //String pricesResults=new Gson().toJson(result.first);
                 File externalFilesDir = FileUtils.externalFileDir(context);
                 FileUtils.saveJsonFile(externalFilesDir.getAbsolutePath() + File.separator + "store" + File.separator + "storePrices.json",
-                        result.first);
+                        result);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get cosmetic item prices, cause: " + e.getMessage();
             Log.e(CosmeticServiceImpl.class.getName(), message, e);
@@ -106,22 +107,17 @@ public class CosmeticServiceImpl implements CosmeticService, InitializingBean {
     @Override
     public Pair<List<PlayerCosmeticItem>, String> getPlayersCosmeticItems(Context context, long steam32Id) {
         try {
-            Pair<List<PlayerCosmeticItem>, String> result = service.getPlayersCosmeticItems(context, steam32Id);
-            if (result.first == null) {
-                String message = "Failed to get cosmetic items for player, cause: " + result.second;
+            List<PlayerCosmeticItem> result =BeanContainer.getInstance().getSteamService().getPlayerCosmeticItems(Utils.steam32to64(steam32Id));
+            String message=null;
+            if (result == null) {
+                message = "Failed to get cosmetic items for player";
                 Log.e(CosmeticServiceImpl.class.getName(), message);
             }
-            return result;
+            return Pair.create(result,message);
         } catch (Exception e) {
             String message = "Failed to get cosmetic items for player, cause: " + e.getMessage();
             Log.e(CosmeticServiceImpl.class.getName(), message, e);
             return Pair.create(null, message);
         }
-    }
-
-    @Override
-    public void initialize() {
-        BeanContainer container = BeanContainer.getInstance();
-        service = container.getCosmeticsRemoteEntityService();
     }
 }

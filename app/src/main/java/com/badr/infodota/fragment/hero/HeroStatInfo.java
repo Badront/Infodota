@@ -112,118 +112,120 @@ public class HeroStatInfo extends Fragment {
     @SuppressWarnings("deprecation")
     private void showHeroInfo() {
         HeroStats stats = hero.getStats();
-        View fragmentView = getView();
-        //((TextView)fragmentView.findViewById(R.id.title)).setText(hero.getLocalizedName());
-        ((TextView) fragmentView.findViewById(R.id.txtFaction)).setText(stats.getAlignment() == 0 ? "Radiant" : "Dire");
-        addHeroRoles(fragmentView);
+        View root = getView();
+        if(root!=null) {
+            //((TextView)fragmentView.findViewById(R.id.title)).setText(hero.getLocalizedName());
+            ((TextView) root.findViewById(R.id.txtFaction)).setText(stats.getAlignment() == 0 ? "Radiant" : "Dire");
+            addHeroRoles(root);
 
-        int bkgId;
-        int redTextId;
-        int level1baseAttr;
-        int level16baseAttr;
-        int level25baseAttr;
-        switch (stats.getPrimaryStat()) {
-            case 0:
-                bkgId = R.id.str_bkg;
-                redTextId = R.id.txtStrength;
-                level1baseAttr = stats.getBaseStr();
-                level16baseAttr = Math.round(stats.getBaseStr() + 15 * stats.getStrGain() + 2);
-                level25baseAttr = Math.round(stats.getBaseStr() + 24 * stats.getStrGain() + 2 * 10);
-                break;
-            case 1:
-                bkgId = R.id.agi_bkg;
-                redTextId = R.id.txtAgility;
-                level1baseAttr = stats.getBaseAgi();
-                level16baseAttr = Math.round(stats.getBaseAgi() + 15 * stats.getAgiGain() + 2);
-                level25baseAttr = Math.round(stats.getBaseAgi() + 24 * stats.getAgiGain() + 2 * 10);
-                break;
-            case 2:
-            default:
-                bkgId = R.id.int_bkg;
-                redTextId = R.id.txtIntelligence;
-                level1baseAttr = stats.getBaseInt();
-                level16baseAttr = Math.round(stats.getBaseInt() + 15 * stats.getIntGain() + 2);
-                level25baseAttr = Math.round(stats.getBaseInt() + 24 * stats.getIntGain() + 2 * 10);
-        }
+            int bkgId;
+            int redTextId;
+            int level1baseAttr;
+            int level16baseAttr;
+            int level25baseAttr;
+            switch (stats.getPrimaryStat()) {
+                case 0:
+                    bkgId = R.id.str_bkg;
+                    redTextId = R.id.txtStrength;
+                    level1baseAttr = stats.getBaseStr();
+                    level16baseAttr = Math.round(stats.getBaseStr() + 15 * stats.getStrGain() + 2);
+                    level25baseAttr = Math.round(stats.getBaseStr() + 24 * stats.getStrGain() + 2 * 10);
+                    break;
+                case 1:
+                    bkgId = R.id.agi_bkg;
+                    redTextId = R.id.txtAgility;
+                    level1baseAttr = stats.getBaseAgi();
+                    level16baseAttr = Math.round(stats.getBaseAgi() + 15 * stats.getAgiGain() + 2);
+                    level25baseAttr = Math.round(stats.getBaseAgi() + 24 * stats.getAgiGain() + 2 * 10);
+                    break;
+                case 2:
+                default:
+                    bkgId = R.id.int_bkg;
+                    redTextId = R.id.txtIntelligence;
+                    level1baseAttr = stats.getBaseInt();
+                    level16baseAttr = Math.round(stats.getBaseInt() + 15 * stats.getIntGain() + 2);
+                    level25baseAttr = Math.round(stats.getBaseInt() + 24 * stats.getIntGain() + 2 * 10);
+            }
         /*Primal attribute*/
-        fragmentView.findViewById(bkgId)
-                .setBackgroundDrawable(getResources().getDrawable(R.drawable.overviewicon_primary));
-        ((TextView) fragmentView.findViewById(redTextId)).setTextColor(Color.RED);
+            root.findViewById(bkgId)
+                    .setBackgroundDrawable(getResources().getDrawable(R.drawable.overviewicon_primary));
+            ((TextView) root.findViewById(redTextId)).setTextColor(Color.RED);
         /*Base Attributes*/
-        ((TextView) fragmentView.findViewById(R.id.txtStrength))
-                .setText(String.valueOf(stats.getBaseStr()) + "+" + String.valueOf(stats.getStrGain()));
-        ((TextView) fragmentView.findViewById(R.id.txtAgility))
-                .setText(String.valueOf(stats.getBaseAgi()) + "+" + String.valueOf(stats.getAgiGain()));
-        ((TextView) fragmentView.findViewById(R.id.txtIntelligence))
-                .setText(String.valueOf(stats.getBaseInt()) + "+" + String.valueOf(stats.getIntGain()));
+            ((TextView) root.findViewById(R.id.txtStrength))
+                    .setText(String.valueOf(stats.getBaseStr()) + "+" + String.valueOf(stats.getStrGain()));
+            ((TextView) root.findViewById(R.id.txtAgility))
+                    .setText(String.valueOf(stats.getBaseAgi()) + "+" + String.valueOf(stats.getAgiGain()));
+            ((TextView) root.findViewById(R.id.txtIntelligence))
+                    .setText(String.valueOf(stats.getBaseInt()) + "+" + String.valueOf(stats.getIntGain()));
 		/*Hit points*/
-        ((TextView) fragmentView.findViewById(R.id.health1))
-                .setText(String.valueOf(Math.round(150 + 19/*hp per str*/ * stats.getBaseStr())));
-        ((TextView) fragmentView.findViewById(R.id.health16)).setText(
-                String.valueOf(Math.round(150 + 19 * ((float) stats.getBaseStr() + 2f + 15 * stats.getStrGain()))));
-        ((TextView) fragmentView.findViewById(R.id.health25)).setText(
-                String.valueOf(Math.round(150 + 19 * ((float) stats.getBaseStr() + 2f * 10 + 24 * stats.getStrGain()))));
+            ((TextView) root.findViewById(R.id.health1))
+                    .setText(String.valueOf(Math.round(150 + 19/*hp per str*/ * stats.getBaseStr())));
+            ((TextView) root.findViewById(R.id.health16)).setText(
+                    String.valueOf(Math.round(150 + 19 * ((float) stats.getBaseStr() + 2f + 15 * stats.getStrGain()))));
+            ((TextView) root.findViewById(R.id.health25)).setText(
+                    String.valueOf(Math.round(150 + 19 * ((float) stats.getBaseStr() + 2f * 10 + 24 * stats.getStrGain()))));
 		/*Mana points*/
-        ((TextView) fragmentView.findViewById(R.id.mana1))
-                .setText(String.valueOf(13/*mp per int*/ * stats.getBaseInt()));
-        ((TextView) fragmentView.findViewById(R.id.mana16))
-                .setText(String.valueOf(Math.round(13 * ((float) stats.getBaseInt() + 2f + 15 * stats.getIntGain()))));
-        ((TextView) fragmentView.findViewById(R.id.mana25)).setText(
-                String.valueOf(Math.round(13 * ((float) stats.getBaseInt() + 2f * 10 + 24 * stats.getIntGain()))));
+            ((TextView) root.findViewById(R.id.mana1))
+                    .setText(String.valueOf(13/*mp per int*/ * stats.getBaseInt()));
+            ((TextView) root.findViewById(R.id.mana16))
+                    .setText(String.valueOf(Math.round(13 * ((float) stats.getBaseInt() + 2f + 15 * stats.getIntGain()))));
+            ((TextView) root.findViewById(R.id.mana25)).setText(
+                    String.valueOf(Math.round(13 * ((float) stats.getBaseInt() + 2f * 10 + 24 * stats.getIntGain()))));
 		/*Damage*/
-        //base attribute gives +1 to damage
-        ((TextView) fragmentView.findViewById(R.id.damage1)).setText(stats.getMinDmg() + "-" + stats.getMaxDmg());
-        ((TextView) fragmentView.findViewById(R.id.damage16)).setText(
-                (stats.getMinDmg() + level16baseAttr - level1baseAttr) + "-" + (stats
-                        .getMaxDmg() + level16baseAttr - level1baseAttr));
-        ((TextView) fragmentView.findViewById(R.id.damage25)).setText(
-                (stats.getMinDmg() + level25baseAttr - level1baseAttr) + "-" + (stats
-                        .getMaxDmg() + level25baseAttr - level1baseAttr));
+            //base attribute gives +1 to damage
+            ((TextView) root.findViewById(R.id.damage1)).setText(stats.getMinDmg() + "-" + stats.getMaxDmg());
+            ((TextView) root.findViewById(R.id.damage16)).setText(
+                    (stats.getMinDmg() + level16baseAttr - level1baseAttr) + "-" + (stats
+                            .getMaxDmg() + level16baseAttr - level1baseAttr));
+            ((TextView) root.findViewById(R.id.damage25)).setText(
+                    (stats.getMinDmg() + level25baseAttr - level1baseAttr) + "-" + (stats
+                            .getMaxDmg() + level25baseAttr - level1baseAttr));
 		/*Armor*/
-        //each agi increase armor by 0.14. base agi doesn't count
-        ((TextView) fragmentView.findViewById(R.id.armor1)).setText(String.valueOf(Math.round(stats.getArmor())));
-        ((TextView) fragmentView.findViewById(R.id.armor16))
-                .setText(String.valueOf(Math.round(stats.getArmor() + 0.14f * (stats.getAgiGain() * 15 + 2f))));
-        ((TextView) fragmentView.findViewById(R.id.armor25))
-                .setText(String.valueOf(Math.round(stats.getArmor() + 0.14f * (stats.getAgiGain() * 24 + 2f * 10))));
+            //each agi increase armor by 0.14. base agi doesn't count
+            ((TextView) root.findViewById(R.id.armor1)).setText(String.valueOf(Math.round(stats.getArmor())));
+            ((TextView) root.findViewById(R.id.armor16))
+                    .setText(String.valueOf(Math.round(stats.getArmor() + 0.14f * (stats.getAgiGain() * 15 + 2f))));
+            ((TextView) root.findViewById(R.id.armor25))
+                    .setText(String.valueOf(Math.round(stats.getArmor() + 0.14f * (stats.getAgiGain() * 24 + 2f * 10))));
 		/*Attacks per second=(1+ias)/base attack time..  -80<=ias<=400*/
-        //each agi increase ias by 1
-        int as = (int) ((100f + Math.min(Math.max(-80f, (float) stats.getBaseAgi()), 400f)) / stats.getBaseAttackTime());
-        ((TextView) fragmentView.findViewById(R.id.attack_speed1)).setText(String.valueOf((float) as / 100));
-        as = (int) ((100f + Math
-                .min(Math.max(-80f, (float) stats.getBaseAgi() + (stats.getAgiGain() * 15 + 2f)), 400f)) / stats
-                .getBaseAttackTime());
-        ((TextView) fragmentView.findViewById(R.id.attack_speed16)).setText(String.valueOf((float) as / 100));
-        as = (int) ((100f + Math
-                .min(Math.max(-80f, (float) stats.getBaseAgi() + (stats.getAgiGain() * 24 + 2f * 10)), 400f)) / stats
-                .getBaseAttackTime());
-        ((TextView) fragmentView.findViewById(R.id.attack_speed25)).setText(String.valueOf((float) as / 100));
+            //each agi increase ias by 1
+            int as = (int) ((100f + Math.min(Math.max(-80f, (float) stats.getBaseAgi()), 400f)) / stats.getBaseAttackTime());
+            ((TextView) root.findViewById(R.id.attack_speed1)).setText(String.valueOf((float) as / 100));
+            as = (int) ((100f + Math
+                    .min(Math.max(-80f, (float) stats.getBaseAgi() + (stats.getAgiGain() * 15 + 2f)), 400f)) / stats
+                    .getBaseAttackTime());
+            ((TextView) root.findViewById(R.id.attack_speed16)).setText(String.valueOf((float) as / 100));
+            as = (int) ((100f + Math
+                    .min(Math.max(-80f, (float) stats.getBaseAgi() + (stats.getAgiGain() * 24 + 2f * 10)), 400f)) / stats
+                    .getBaseAttackTime());
+            ((TextView) root.findViewById(R.id.attack_speed25)).setText(String.valueOf((float) as / 100));
 		/*Movement Speed*/
-        ((TextView) fragmentView.findViewById(R.id.movement_speed1)).setText(String.valueOf(stats.getMovespeed()));
+            ((TextView) root.findViewById(R.id.movement_speed1)).setText(String.valueOf(stats.getMovespeed()));
 		/*Attack Range*/
-        int range = stats.getRange();
-        ((TextView) fragmentView.findViewById(R.id.attack_range1)).setText(
-                range == 128 ? MessageFormat.format(getActivity().getString(R.string.melee), range) : String
-                        .valueOf(range));
+            int range = stats.getRange();
+            ((TextView) root.findViewById(R.id.attack_range1)).setText(
+                    range == 128 ? MessageFormat.format(getActivity().getString(R.string.melee), range) : String
+                            .valueOf(range));
 		/*Turn rate*/
-        ((TextView) fragmentView.findViewById(R.id.turn_rate1)).setText(String.valueOf(stats.getTurnrate()));
+            ((TextView) root.findViewById(R.id.turn_rate1)).setText(String.valueOf(stats.getTurnrate()));
 		/*Sight range*/
-        ((TextView) fragmentView.findViewById(R.id.sight_range1))
-                .setText(stats.getDayVision() + "/" + stats.getNightVision());
+            ((TextView) root.findViewById(R.id.sight_range1))
+                    .setText(stats.getDayVision() + "/" + stats.getNightVision());
 		/*Attack duration*/
-        ((TextView) fragmentView.findViewById(R.id.attack_duration1))
-                .setText(stats.getAttackPoint() + "+" + stats.getAttackSwing());
+            ((TextView) root.findViewById(R.id.attack_duration1))
+                    .setText(stats.getAttackPoint() + "+" + stats.getAttackSwing());
 		/*Cast duration*/
-        ((TextView) fragmentView.findViewById(R.id.cast_duration1))
-                .setText(stats.getCastPoint() + "+" + stats.getCastSwing());
+            ((TextView) root.findViewById(R.id.cast_duration1))
+                    .setText(stats.getCastPoint() + "+" + stats.getCastSwing());
 		/*Missile sped*/
-        ((TextView) fragmentView.findViewById(R.id.missile_speed1)).setText(
-                stats.getProjectileSpeed() != 0 ? String.valueOf(stats.getProjectileSpeed()) : getActivity()
-                        .getString(R.string.instant));
-        String locale = getString(R.string.language);
-        String path = "heroes/" + hero.getDotaId() + "/lore_" + locale + ".txt";
-        ((TextView) fragmentView.findViewById(R.id.txtLore)).setText(Html.fromHtml(FileUtils.getTextFromAsset(getActivity(), path)));
-        //http://www.playdota.com/mechanics/damagearmor
+            ((TextView) root.findViewById(R.id.missile_speed1)).setText(
+                    stats.getProjectileSpeed() != 0 ? String.valueOf(stats.getProjectileSpeed()) : getActivity()
+                            .getString(R.string.instant));
+            String locale = getString(R.string.language);
+            String path = "heroes/" + hero.getDotaId() + "/lore_" + locale + ".txt";
+            ((TextView) root.findViewById(R.id.txtLore)).setText(Html.fromHtml(FileUtils.getTextFromAsset(getActivity(), path)));
+            //http://www.playdota.com/mechanics/damagearmor
+        }
     }
 
     private void addHeroRoles(View root) {

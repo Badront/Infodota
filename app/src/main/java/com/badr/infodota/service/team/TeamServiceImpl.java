@@ -7,9 +7,9 @@ import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.api.matchdetails.Team;
+import com.badr.infodota.api.team.LogoDataHolder;
 import com.badr.infodota.dao.DatabaseManager;
 import com.badr.infodota.dao.TeamDao;
-import com.badr.infodota.remote.team.TeamRemoteService;
 
 /**
  * User: ABadretdinov
@@ -17,23 +17,15 @@ import com.badr.infodota.remote.team.TeamRemoteService;
  * Time: 17:06
  */
 public class TeamServiceImpl implements TeamService {
-    private TeamRemoteService service;
     private TeamDao teamDao;
 
     @Override
-    public Pair<String, String> getTeamLogo(Context context, long id) {
-        try {
-            Pair<String, String> result = service.getTeamLogo(context, id);
-            if (result.first == null) {
-                String message = "Failed to get team logo, cause: " + result.second;
-                Log.e(TeamServiceImpl.class.getName(), message);
-            }
-            return result;
-        } catch (Exception e) {
-            String message = "Failed to get team logo, cause: " + e.getMessage();
-            Log.e(TeamServiceImpl.class.getName(), message, e);
-            return Pair.create(null, message);
+    public String getTeamLogo(Context context, long id) {
+        LogoDataHolder result = BeanContainer.getInstance().getSteamService().getTeamLogo(id);
+        if(result!=null) {
+            return result.getUrl();
         }
+        return null;
     }
 
     @Override
@@ -61,7 +53,6 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public void initialize() {
         BeanContainer container = BeanContainer.getInstance();
-        service = container.getTeamRemoteService();
         teamDao = container.getTeamDao();
     }
 }

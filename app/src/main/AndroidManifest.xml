@@ -44,6 +44,7 @@
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
             android:name=".activity.PlayerInfoActivity"
+            android:windowSoftInputMode="stateHidden"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
             android:name=".activity.MatchPlayerInfoActivity"
@@ -97,6 +98,10 @@
         <!--<activity
                 android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
                 android:name="com.google.ads.AdActivity" />-->
+        <service android:name="com.octo.android.robospice.UncachedSpiceService"
+            android:exported="false"/>
+        <service android:name=".util.retrofit.LocalSpiceService"
+            android:exported="false"/>
 
     </application>
 </manifest>

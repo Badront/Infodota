@@ -63,7 +63,7 @@ public class TooltipPart extends Fragment implements GuideHolder {
 
     private void initTooltips() {
         View root = getView();
-        if (guide != null) {
+        if (guide != null&&root!=null) {
             /*DotaDAO dao=new DotaDAO(getActivity());
             dao.openReadable();
 			Hero hero=dao.getHero(getArguments().getInt("id"));

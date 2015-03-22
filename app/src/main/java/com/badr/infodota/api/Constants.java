@@ -12,9 +12,9 @@ public interface Constants {
     public static final String GITHUB_LAST_APK_URL="https://github.com/Histler/Infodota/blob/master/infodota.apk?raw=true";
     public static final String GITHUB_UPDATE_URL="https://github.com/Histler/Infodota/blob/master/updates.json?raw=true";
     public interface History {
-        public static final String START_AT_MATCH_ID = "&start_at_match_id=";        public static final String SUBURL = STEAM_API_URL + "GetMatchHistory/V001/?key=";
+        public static final String SUBURL = STEAM_API_URL + "GetMatchHistory/V001/?key=";
+        public static final String START_AT_MATCH_ID = "&start_at_match_id=";
         public static final String LEAGUE_ID = "&league_id=";
-
     }
 
     public interface Team {
@@ -26,7 +26,8 @@ public interface Constants {
     }
 
     public interface Details {
-        public static final String MATCH_ID = "&match_id=";        public static final String SUBURL = STEAM_API_URL + "GetMatchDetails/V001/?key=";
+        public static final String SUBURL = STEAM_API_URL + "GetMatchDetails/V001/?key=";
+        public static final String MATCH_ID = "&match_id=";
         //player_name=<name> # Search matches with a player name, exact match only
         public static final String PLAYER_NAME = "&player_name=";
         //hero_id=<id> # Search for matches with a specific hero being played, hero id's are in dota/scripts/npc/npc_heroes.txt in your Dota install directory
@@ -67,7 +68,7 @@ public interface Constants {
         public static final String SUBURL = "https://api.twitch.tv/kraken/";
         public static final String DOTA_GAMES = SUBURL + "streams?game=Dota%202&hls=true";
         public static final String STREAM_SUBURL = SUBURL + "streams/";
-        public static final String ACCESS_TOKEN_URL = "http://api.twitch.tv/api/channels/{0}/access_token";
+        public static final String ACCESS_TOKEN_URL = "https://api.twitch.tv/api/channels/{0}/access_token";
         public static final String M3U8_URL = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?token={1}&sig={2}";
         public static final String PREVIEW_URL = "http://static-cdn.jtvnw.net/previews-ttv/live_user_{0}-200x100.jpg";
     }

@@ -1,46 +1,14 @@
 package com.badr.infodota.fragment.ti4;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
-import com.badr.infodota.activity.MatchInfoActivity;
-import com.badr.infodota.adapter.LeagueMatchResultsAdapter;
-import com.badr.infodota.api.Constants;
-import com.badr.infodota.api.matchdetails.MatchDetails;
-import com.badr.infodota.api.matchdetails.Result;
-import com.badr.infodota.api.matchdetails.Team;
-import com.badr.infodota.api.matchhistory.Match;
-import com.badr.infodota.api.matchhistory.ResultResponse;
 import com.badr.infodota.service.match.MatchService;
 import com.badr.infodota.service.team.TeamService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 /*import com.handmark.pulltorefresh.library.PinnedSectionListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshPinnedSectionListView;*/
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * todo need to replace pullToRefreshPinnedSection like in Tournament games

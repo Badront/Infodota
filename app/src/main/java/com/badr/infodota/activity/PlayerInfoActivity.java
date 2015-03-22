@@ -116,11 +116,8 @@ public class PlayerInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.player_info);
-        setSupportProgressBarIndeterminateVisibility(false);
         options = new DisplayImageOptions.Builder()
-                //.showImageOnLoading(R.drawable.antimage_vert)
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)

@@ -3,12 +3,16 @@ package com.badr.infodota.api.heroes;
 import com.badr.infodota.util.HasId;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * User: ABadretdinov
  * Date: 28.08.13
  * Time: 16:31
  */
-public class Hero implements HasId, Comparable {
+public class Hero implements HasId, Comparable,Serializable {
     //the hero's in-game "code name"
     private String name;
     //the hero's numeric ID
@@ -89,5 +93,10 @@ public class Hero implements HasId, Comparable {
             return getLocalizedName().compareTo(hero.getLocalizedName());
         }
         return -1;
+    }
+    public static class List extends ArrayList<Hero>{
+        public List(Collection<? extends Hero> collection) {
+            super(collection);
+        }
     }
 }

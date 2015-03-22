@@ -14,11 +14,11 @@ import java.util.List;
  * Time: 16:01
  */
 public interface PlayerService extends InitializingBean {
-    Pair<List<Unit>, String> loadAccounts(Context context, List<Long> ids);
+    Unit.List loadAccounts(List<Long> ids);
 
-    Pair<List<Unit>, String> loadAccounts(Context context, String name);
+    Unit.List loadAccounts(String name);
 
-    Pair<List<Unit>, String> loadFriends(Context context, long id);
+    Unit.List loadFriends(long id);
 
     void saveAccount(Context context, Unit unit);
 
@@ -26,8 +26,8 @@ public interface PlayerService extends InitializingBean {
 
     void deleteAccount(Context context, Unit unit);
 
-    List<Unit> getSearchedAccounts(Context context);
+    Unit.List getSearchedAccounts(Context context);
 
-    List<Unit> getAccountsByGroup(Context context, Unit.Groups group);
+    Unit.List getAccountsByGroup(Context context, Unit.Groups group);
 
 }

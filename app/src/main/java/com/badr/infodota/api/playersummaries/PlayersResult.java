@@ -4,10 +4,10 @@ package com.badr.infodota.api.playersummaries;
  * User: Histler
  * Date: 16.04.14
  */
-public class PlayerResults {
+public class PlayersResult {
     private PlayerResponse response;
 
-    public PlayerResults() {
+    public PlayersResult() {
     }
 
     public PlayerResponse getResponse() {

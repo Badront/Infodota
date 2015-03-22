@@ -31,7 +31,7 @@ public class CounterRemoteEntityServiceImpl extends BaseRemoteServiceImpl implem
         int alliesSize = allies.size();
         url.append("&CaptainV4[tm_a_h1_id]=");
         url.append("&CaptainV4[tm_a_h1_rl]=");
-        url.append(roleCode);
+        //url.append(roleCode);
         int i;
         for (i = 1; i <= alliesSize; i++) {
             url.append("&CaptainV4[tm_a_h");

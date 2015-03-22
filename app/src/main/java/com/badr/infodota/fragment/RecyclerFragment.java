@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.BaseRecyclerAdapter;
@@ -21,6 +22,7 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
     protected SwipeRefreshLayout mListContainer;
     protected RecyclerView mRecyclerView;
     protected View mProgressBar;
+    protected View mEmptyView;
     protected int layoutId = R.layout.recycler_content;
     protected BaseRecyclerAdapter<T, VIEW_HOLDER> mAdapter;
 
@@ -58,6 +60,7 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
             mListContainer.setOnRefreshListener(this);
 
         }
+        mEmptyView = root.findViewById(R.id.internalEmpty);
         mProgressBar = root.findViewById(R.id.progressBar);
         if (mAdapter != null) {
             setAdapter(mAdapter);
@@ -77,11 +80,18 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.setOnItemClickListener(this);
         }
+        if(mEmptyView!=null) {
+            if (mAdapter.getItemCount() == 0) {
+                mEmptyView.setVisibility(View.VISIBLE);
+            } else {
+                mEmptyView.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.recycler_content, container, false);
+        return inflater.inflate(layoutId, container, false);
     }
 
     @Override

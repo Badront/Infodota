@@ -12,7 +12,7 @@ import com.badr.infodota.api.matchdetails.Team;
  * Time: 17:06
  */
 public interface TeamService extends InitializingBean {
-    Pair<String, String> getTeamLogo(Context context, long id);
+    String getTeamLogo(Context context, long id);
 
     void saveTeam(Context context, Team team);
 

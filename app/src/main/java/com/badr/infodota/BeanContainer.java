@@ -8,15 +8,11 @@ import com.badr.infodota.dao.HeroStatsDao;
 import com.badr.infodota.dao.ItemDao;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.dao.TeamDao;
-import com.badr.infodota.remote.cosmetic.CosmeticsRemoteEntityService;
-import com.badr.infodota.remote.cosmetic.CosmeticsRemoteEntityServiceImpl;
+import com.badr.infodota.remote.SteamService;
+import com.badr.infodota.remote.TwitchRestService;
 import com.badr.infodota.remote.counterpicker.CounterRemoteEntityServiceImpl;
 import com.badr.infodota.remote.joindota.JoinDotaRemoteServiceImpl;
-import com.badr.infodota.remote.match.MatchRemoteEntityServiceImpl;
-import com.badr.infodota.remote.news.NewsRemoteServiceImpl;
 import com.badr.infodota.remote.player.PlayerRemoteServiceImpl;
-import com.badr.infodota.remote.team.TeamRemoteServiceImpl;
-import com.badr.infodota.remote.ti4.TI4RemoteServiceImpl;
 import com.badr.infodota.remote.twitch.TwitchRemoteServiceImpl;
 import com.badr.infodota.remote.update.UpdateRemoteService;
 import com.badr.infodota.remote.update.UpdateRemoteServiceImpl;
@@ -40,6 +36,9 @@ import com.badr.infodota.service.update.UpdateServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit.RequestInterceptor;
+import retrofit.RestAdapter;
+
 /**
  * User: ABadretdinov
  * Date: 02.04.14
@@ -49,7 +48,12 @@ public class BeanContainer implements InitializingBean {
     private static final Object MONITOR = new Object();
     private static BeanContainer instance = null;
 
-    private CosmeticsRemoteEntityServiceImpl cosmeticsRemoteEntityService;
+    private RestAdapter steamRestAdapter;
+    private SteamService steamService;
+
+    private RestAdapter twitchRestAdapter;
+    private TwitchRestService twitchRestService;
+
     private CosmeticServiceImpl cosmeticService;
 
     private CounterRemoteEntityServiceImpl counterRemoteEntityService;
@@ -59,19 +63,15 @@ public class BeanContainer implements InitializingBean {
     private PlayerServiceImpl playerService;
     private AccountDao accountDao;
 
-    private MatchRemoteEntityServiceImpl matchRemoteEntityService;
     private MatchServiceImpl matchService;
 
-    private NewsRemoteServiceImpl newsRemoteService;
     private NewsServiceImpl newsService;
 
     private JoinDotaRemoteServiceImpl joinDotaRemoteService;
     private JoinDotaServiceImpl joinDotaService;
 
-    private TI4RemoteServiceImpl ti4RemoteService;
     private TI4ServiceImpl ti4Service;
 
-    private TeamRemoteServiceImpl teamRemoteService;
     private TeamServiceImpl teamService;
     private TeamDao teamDao;
 
@@ -117,7 +117,6 @@ public class BeanContainer implements InitializingBean {
 
         localUpdateService = new LocalUpdateService();
 
-        cosmeticsRemoteEntityService = new CosmeticsRemoteEntityServiceImpl();
         cosmeticService = new CosmeticServiceImpl();
 
         counterRemoteEntityService = new CounterRemoteEntityServiceImpl();
@@ -126,19 +125,15 @@ public class BeanContainer implements InitializingBean {
         playerRemoteService = new PlayerRemoteServiceImpl();
         playerService = new PlayerServiceImpl();
 
-        matchRemoteEntityService = new MatchRemoteEntityServiceImpl();
         matchService = new MatchServiceImpl();
 
-        newsRemoteService = new NewsRemoteServiceImpl();
         newsService = new NewsServiceImpl();
 
         joinDotaRemoteService = new JoinDotaRemoteServiceImpl();
         joinDotaService = new JoinDotaServiceImpl();
 
-        ti4RemoteService = new TI4RemoteServiceImpl();
         ti4Service = new TI4ServiceImpl();
 
-        teamRemoteService = new TeamRemoteServiceImpl();
         teamService = new TeamServiceImpl();
 
         twitchRemoteService = new TwitchRemoteServiceImpl();
@@ -169,20 +164,12 @@ public class BeanContainer implements InitializingBean {
     public void initialize() {
         heroService.initialize();
         itemService.initialize();
-        cosmeticService.initialize();
         counterService.initialize();
         playerService.initialize();
-        matchService.initialize();
-        newsService.initialize();
         joinDotaService.initialize();
-        ti4Service.initialize();
         teamService.initialize();
         twitchService.initialize();
         updateService.initialize();
-    }
-
-    public CosmeticsRemoteEntityService getCosmeticsRemoteEntityService() {
-        return cosmeticsRemoteEntityService;
     }
 
     public CosmeticService getCosmeticService() {
@@ -209,16 +196,8 @@ public class BeanContainer implements InitializingBean {
         return playerRemoteService;
     }
 
-    public MatchRemoteEntityServiceImpl getMatchRemoteEntityService() {
-        return matchRemoteEntityService;
-    }
-
     public MatchServiceImpl getMatchService() {
         return matchService;
-    }
-
-    public NewsRemoteServiceImpl getNewsRemoteService() {
-        return newsRemoteService;
     }
 
     public NewsService getNewsService() {
@@ -233,20 +212,12 @@ public class BeanContainer implements InitializingBean {
         return joinDotaService;
     }
 
-    public TI4RemoteServiceImpl getTi4RemoteService() {
-        return ti4RemoteService;
-    }
-
     public TI4ServiceImpl getTi4Service() {
         return ti4Service;
     }
 
     public TeamServiceImpl getTeamService() {
         return teamService;
-    }
-
-    public TeamRemoteServiceImpl getTeamRemoteService() {
-        return teamRemoteService;
     }
 
     public TwitchRemoteServiceImpl getTwitchRemoteService() {
@@ -303,5 +274,45 @@ public class BeanContainer implements InitializingBean {
 
     public UpdateService getUpdateService() {
         return updateService;
+    }
+
+    public TwitchRestService getTwitchRestService(){
+        if(twitchRestService==null){
+            twitchRestService=getTwitchRestAdapter().create(TwitchRestService.class);
+        }
+        return twitchRestService;
+    }
+
+    public RestAdapter getTwitchRestAdapter() {
+        if(twitchRestAdapter == null){
+            twitchRestAdapter =new RestAdapter.Builder()
+                    .setEndpoint("https://api.twitch.tv")
+                    .build();
+        }
+        return twitchRestAdapter;
+    }
+
+    public RestAdapter getSteamRestAdapter(){
+        if(steamRestAdapter == null){
+            steamRestAdapter =new RestAdapter.Builder()
+                    .setEndpoint("http://api.steampowered.com/")
+                    .setRequestInterceptor(new SteamRequestInterceptor())
+                    .build();
+        }
+        return steamRestAdapter;
+    }
+
+    public SteamService getSteamService(){
+        if(steamService==null){
+            steamService=getSteamRestAdapter().create(SteamService.class);
+        }
+        return steamService;
+    }
+
+    private class SteamRequestInterceptor implements RequestInterceptor{
+        @Override
+        public void intercept(RequestFacade request) {
+            request.addQueryParam("key","54E61DBFB0A2D4A1B24B4C7EC5C5EFFD");
+        }
     }
 }

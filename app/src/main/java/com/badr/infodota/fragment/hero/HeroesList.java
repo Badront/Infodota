@@ -47,10 +47,15 @@ import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.PagerContainer;
 import com.badr.infodota.view.TransformableViewPager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,7 +71,8 @@ import pl.droidsonroids.gif.GifImageView;
  * Date: 15.01.14
  * Time: 14:14
  */
-public class HeroesList extends Fragment implements SearchableFragment {
+public class HeroesList extends Fragment implements SearchableFragment,RequestListener {
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
     protected ImageLoader imageLoader;
     RecyclerView gridView;
     PagerContainer mContainer;
@@ -77,6 +83,20 @@ public class HeroesList extends Fragment implements SearchableFragment {
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -274,44 +294,9 @@ public class HeroesList extends Fragment implements SearchableFragment {
         startActivity(intent);
     }
 
+    @SuppressWarnings("unchecked")
     private void loadHeroesForGridView() {
-        final BaseActivity activity = (BaseActivity) getActivity();
-        if (activity != null) {
-            new LoaderProgressTask<List<Hero>>(new ProgressTask<List<Hero>>() {
-                @Override
-                public List<Hero> doTask(OnPublishProgressListener listener) throws Exception {
-                    HeroService heroService = BeanContainer.getInstance().getHeroService();
-                    return heroService.getFilteredHeroes(activity, selectedFilter);
-                }
-
-                @Override
-                public void doAfterTask(List<Hero> result) {
-                    final HeroesAdapter adapter = new HeroesAdapter(result);
-                    filter = adapter.getFilter();
-                    filter.filter(search);
-                    gridView.setAdapter(adapter);
-                    adapter.setOnItemClickListener(/*this*/new OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            Hero hero = adapter.getItem(position);
-                            if (hero != null) {
-                                openHeroInfo(hero.getId());
-                            }
-                        }
-                    });
-                }
-
-                @Override
-                public void handleError(String error) {
-
-                }
-
-                @Override
-                public String getName() {
-                    return null;
-                }
-            }, null).execute();
-        }
+        spiceManager.execute(new HeroLoadRequest(),this);
     }
 
     @Override
@@ -327,32 +312,38 @@ public class HeroesList extends Fragment implements SearchableFragment {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void loadHeroesForCarousel() {
-        final BaseActivity activity = (BaseActivity) getActivity();
-        if (activity != null) {
-            new LoaderProgressTask<List<CarouselHero>>(new ProgressTask<List<CarouselHero>>() {
-                @Override
-                public List<CarouselHero> doTask(OnPublishProgressListener listener) throws Exception {
-                    HeroService heroService = BeanContainer.getInstance().getHeroService();
-                    return heroService.getCarouselHeroes(activity, selectedFilter,search);
-                }
+        spiceManager.execute(new CarouselHeroesLoadRequest(),this);
+    }
 
-                @Override
-                public void doAfterTask(List<CarouselHero> result) {
-                    HeroCarouselPagerAdapter adapter = new HeroCarouselPagerAdapter(result);
-                    pager.setAdapter(adapter);
-                }
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
 
-                @Override
-                public void handleError(String error) {
+    }
 
-                }
-
+    @Override
+    public void onRequestSuccess(Object o) {
+        if(o instanceof CarouselHero.List){
+            CarouselHero.List result= (CarouselHero.List) o;
+            HeroCarouselPagerAdapter adapter = new HeroCarouselPagerAdapter(result);
+            pager.setAdapter(adapter);
+        }
+        else if(o instanceof Hero.List){
+            Hero.List result= (Hero.List) o;
+            final HeroesAdapter adapter = new HeroesAdapter(result);
+            filter = adapter.getFilter();
+            filter.filter(search);
+            gridView.setAdapter(adapter);
+            adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
-                public String getName() {
-                    return null;
+                public void onItemClick(View view, int position) {
+                    Hero hero = adapter.getItem(position);
+                    if (hero != null) {
+                        openHeroInfo(hero.getId());
+                    }
                 }
-            }, null).execute();
+            });
         }
     }
 
@@ -374,9 +365,6 @@ public class HeroesList extends Fragment implements SearchableFragment {
             }
             dir = externalFilesDir.getAbsolutePath();
             dir += File.separator + "anim" + File.separator;
-        }
-        public int getPositionOf(Hero hero){
-            return mData.indexOf(hero);
         }
 
         public CarouselHero getItem(int position) {
@@ -460,6 +448,39 @@ public class HeroesList extends Fragment implements SearchableFragment {
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return (view == object);
+        }
+    }
+    public class CarouselHeroesLoadRequest extends TaskRequest<CarouselHero.List>{
+
+        public CarouselHeroesLoadRequest() {
+            super(CarouselHero.List.class);
+        }
+
+        @Override
+        public CarouselHero.List loadData() throws Exception {
+            Activity activity=getActivity();
+            if(activity!=null) {
+                HeroService heroService = BeanContainer.getInstance().getHeroService();
+                return heroService.getCarouselHeroes(activity, selectedFilter, search);
+            }
+            return null;
+        }
+    }
+
+    public class HeroLoadRequest extends TaskRequest<Hero.List>{
+
+        public HeroLoadRequest() {
+            super(Hero.List.class);
+        }
+
+        @Override
+        public Hero.List loadData() throws Exception {
+            Activity activity=getActivity();
+            if(activity!=null) {
+                HeroService heroService = BeanContainer.getInstance().getHeroService();
+                return heroService.getFilteredHeroes(activity, selectedFilter);
+            }
+            return null;
         }
     }
 }

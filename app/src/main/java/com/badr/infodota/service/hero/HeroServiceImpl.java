@@ -15,6 +15,9 @@ import com.badr.infodota.dao.DatabaseManager;
 import com.badr.infodota.dao.HeroDao;
 import com.badr.infodota.dao.HeroStatsDao;
 
+import org.apache.commons.lang3.StringUtils;
+import org.jsoup.helper.StringUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -50,29 +53,35 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public List<Hero> getFilteredHeroes(Context context, String filter) {
+    public Hero.List getFilteredHeroes(Context context, String filter) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
             List<Hero> heroes = heroDao.getAllEntities(database);
             Iterator<Hero> iterator = heroes.iterator();
-            while (iterator.hasNext()) {
-                Hero hero = iterator.next();
-                HeroStats heroStats = heroStatsDao.getShortHeroStats(database, hero.getId());
-                if (heroStats.getRoles() != null) {
-                    boolean found = filter == null;
-                    for (int i = 0, size = heroStats.getRoles().length; !found && i < size; i++) {
-                        String role = heroStats.getRoles()[i];
-                        if (role.equals(filter)) {
-                            found = true;
+            if(!StringUtils.isEmpty(filter))
+            {
+                while (iterator.hasNext()) {
+                    Hero hero = iterator.next();
+                    HeroStats heroStats = heroStatsDao.getShortHeroStats(database, hero.getId());
+                    if (heroStats.getRoles() != null) {
+                        boolean found = false;
+                        for (int i = 0, size = heroStats.getRoles().length; !found && i < size; i++) {
+                            String role = heroStats.getRoles()[i];
+                            if (role.equals(filter)) {
+                                found = true;
+                            }
+                        }
+                        if (!found) {
+                            iterator.remove();
                         }
                     }
-                    if (!found) {
+                    else {
                         iterator.remove();
                     }
                 }
             }
-            return heroes;
+            return new Hero.List(heroes);
         } finally {
             manager.closeDatabase();
         }
@@ -135,11 +144,11 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public List<CarouselHero> getCarouselHeroes(Context context, String filter, String name) {
+    public CarouselHero.List getCarouselHeroes(Context context, String filter, String name) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            List<CarouselHero> carouselHeroes = new ArrayList<CarouselHero>();
+            CarouselHero.List carouselHeroes = new CarouselHero.List();
             List<Hero> heroes = heroDao.getEntities(database,name);
             for (Hero hero : heroes) {
                 CarouselHero carouselHero = new CarouselHero(hero);
@@ -180,11 +189,11 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public List<TruepickerHero> getTruepickerHeroes(Context context, String filter) {
+    public TruepickerHero.List getTruepickerHeroes(Context context, String filter) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            List<TruepickerHero> heroes = heroDao.getTruepickerEntities(database);
+            TruepickerHero.List heroes = heroDao.getTruepickerEntities(database);
             Iterator<TruepickerHero> iterator = heroes.iterator();
             while (iterator.hasNext()) {
                 TruepickerHero hero = iterator.next();
