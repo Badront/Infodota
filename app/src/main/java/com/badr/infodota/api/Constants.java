@@ -68,7 +68,7 @@ public interface Constants {
         public static final String SUBURL = "https://api.twitch.tv/kraken/";
         public static final String DOTA_GAMES = SUBURL + "streams?game=Dota%202&hls=true";
         public static final String STREAM_SUBURL = SUBURL + "streams/";
-        public static final String ACCESS_TOKEN_URL = "http://api.twitch.tv/api/channels/{0}/access_token";
+        public static final String ACCESS_TOKEN_URL = "https://api.twitch.tv/api/channels/{0}/access_token";
         public static final String M3U8_URL = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?token={1}&sig={2}";
         public static final String PREVIEW_URL = "http://static-cdn.jtvnw.net/previews-ttv/live_user_{0}-200x100.jpg";
     }

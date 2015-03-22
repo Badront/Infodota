@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class GameStreams {
     private Map<String, String> _links;
-    private List<Stream> streams;
+    private Stream.List streams;
 
     public GameStreams() {
     }
@@ -22,11 +22,11 @@ public class GameStreams {
         this._links = _links;
     }
 
-    public List<Stream> getStreams() {
+    public Stream.List getStreams() {
         return streams;
     }
 
-    public void setStreams(List<Stream> streams) {
+    public void setStreams(Stream.List streams) {
         this.streams = streams;
     }
 }

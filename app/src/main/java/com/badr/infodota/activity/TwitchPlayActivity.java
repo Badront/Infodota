@@ -331,7 +331,7 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
 
         @Override
         public Element.List loadData() throws Exception {
-            AccessToken result = twitchService.getAccessToken(context, channelName);
+            AccessToken result = twitchService.getAccessToken(channelName);
 
             if (result!= null) {
                 Pair<Playlist, String> playlistResult = twitchService.getPlaylist(context, channelName, result);

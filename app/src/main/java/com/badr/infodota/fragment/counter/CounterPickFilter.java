@@ -322,12 +322,6 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
     }
 
     @Override
-    public void onDestroy() {
-        ((ActionBarActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
-        super.onDestroy();
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == CounterPickerHeroesSelectActivity.ALLY || requestCode == CounterPickerHeroesSelectActivity.ENEMY) {

@@ -112,7 +112,7 @@ public class HeroSkillsQuiz extends QuizFragment {
     @Override
     public void showLoosed() {
         Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-        intent.putExtra("id", (long) hero.getId());
+        intent.putExtra("id", hero.getId());
         startActivity(intent);
         getActivity().finish();
     }

@@ -47,9 +47,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main_fragment_holder);
-        setSupportProgressBarIndeterminateVisibility(false);
 
         mActionMenuView.setPresenter(new ActionMenuPresenter(this));
 

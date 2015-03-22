@@ -9,6 +9,7 @@ import com.badr.infodota.dao.ItemDao;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.dao.TeamDao;
 import com.badr.infodota.remote.SteamService;
+import com.badr.infodota.remote.TwitchRestService;
 import com.badr.infodota.remote.counterpicker.CounterRemoteEntityServiceImpl;
 import com.badr.infodota.remote.joindota.JoinDotaRemoteServiceImpl;
 import com.badr.infodota.remote.player.PlayerRemoteServiceImpl;
@@ -49,6 +50,9 @@ public class BeanContainer implements InitializingBean {
 
     private RestAdapter steamRestAdapter;
     private SteamService steamService;
+
+    private RestAdapter twitchRestAdapter;
+    private TwitchRestService twitchRestService;
 
     private CosmeticServiceImpl cosmeticService;
 
@@ -270,6 +274,22 @@ public class BeanContainer implements InitializingBean {
 
     public UpdateService getUpdateService() {
         return updateService;
+    }
+
+    public TwitchRestService getTwitchRestService(){
+        if(twitchRestService==null){
+            twitchRestService=getTwitchRestAdapter().create(TwitchRestService.class);
+        }
+        return twitchRestService;
+    }
+
+    public RestAdapter getTwitchRestAdapter() {
+        if(twitchRestAdapter == null){
+            twitchRestAdapter =new RestAdapter.Builder()
+                    .setEndpoint("https://api.twitch.tv")
+                    .build();
+        }
+        return twitchRestAdapter;
     }
 
     public RestAdapter getSteamRestAdapter(){

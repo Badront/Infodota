@@ -50,9 +50,7 @@ public class TI4Activity extends BaseActivity implements RequestListener<Long> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.ti4_holder);
-        setSupportProgressBarIndeterminateVisibility(false);
         getSupportActionBar().setTitle("The International 2014");
         spiceManager.execute(new PrizePoolLoadRequest(getApplicationContext()),this);
         initPager();

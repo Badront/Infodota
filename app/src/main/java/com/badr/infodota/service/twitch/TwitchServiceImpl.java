@@ -8,6 +8,8 @@ import android.util.Pair;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.api.twitch.AccessToken;
 import com.badr.infodota.api.twitch.Channel;
+import com.badr.infodota.api.twitch.GameStreams;
+import com.badr.infodota.api.twitch.StreamTV;
 import com.badr.infodota.dao.DatabaseManager;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.remote.twitch.TwitchRemoteService;
@@ -25,13 +27,18 @@ public class TwitchServiceImpl implements TwitchService {
     private StreamDao streamDao;
 
     @Override
-    public AccessToken getAccessToken(Context context, String channelName) {
-        try {
-            return service.getAccessToken(context, channelName);
-        }
-        catch (Exception e){
-            return null;
-        }
+    public AccessToken getAccessToken(String channelName) {
+        return BeanContainer.getInstance().getTwitchRestService().getAccessToken(channelName);
+    }
+
+    @Override
+    public GameStreams getGameStreams() {
+        return BeanContainer.getInstance().getTwitchRestService().getGameStreams();
+    }
+
+    @Override
+    public StreamTV getStream(String channelName) {
+        return BeanContainer.getInstance().getTwitchRestService().getStream(channelName);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.badr.infodota.api.twitch;
 import com.badr.infodota.util.HasId;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -97,5 +98,7 @@ public class Stream implements HasId {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + channel.hashCode();
         return result;
+    }
+    public static class List extends ArrayList<Stream>{
     }
 }
