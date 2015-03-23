@@ -23,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
+import com.badr.infodota.api.Constants;
 import com.badr.infodota.fragment.SearchableFragment;
 import com.badr.infodota.fragment.cosmetic.CosmeticList;
 import com.badr.infodota.fragment.counter.CounterPickFilter;
@@ -94,7 +95,6 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
 
         return true;
     }
-    public static final int MILLIS_FOR_EXIT =2000;
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -109,7 +109,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
             public void run() {
                 doubleBackToExitPressedOnce = false;
             }
-        }, MILLIS_FOR_EXIT);
+        }, Constants.MILLIS_FOR_EXIT);
     }
 
     @Override

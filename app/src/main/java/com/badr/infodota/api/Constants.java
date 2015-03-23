@@ -7,6 +7,7 @@ package com.badr.infodota.api;
  */
 public interface Constants {
     public static final boolean INITIALIZATION = false;
+    public static final int MILLIS_FOR_EXIT =2000;
     public static final String STEAM_API_URL = "https://api.steampowered.com/IDOTA2Match_570/";
 
     public static final String GITHUB_LAST_APK_URL="https://github.com/Histler/Infodota/blob/master/infodota.apk?raw=true";

@@ -2,6 +2,7 @@ package com.badr.infodota.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,16 +36,21 @@ import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.LoaderProgressTask;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.utils.L;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -72,12 +78,27 @@ import java.util.Set;
  * Date: 15.01.14
  * Time: 11:58
  */
-public class LoaderActivity extends Activity {
+public class LoaderActivity extends Activity implements RequestListener<String>{
     private static final int PLAY_SERVICES_REQUEST = 1001;
     TextView info;
     LocalUpdateService localUpdateService = BeanContainer.getInstance().getLocalUpdateService();
     private boolean showDialog = false;
     private boolean doubleBackToExitPressedOnce = false;
+    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spiceManager.start(this);
+    }
+
+    @Override
+    protected void onStop() {
+        if(spiceManager.isStarted()){
+            spiceManager.shouldStop();
+        }
+        super.onStop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,56 +114,11 @@ public class LoaderActivity extends Activity {
             config.locale = locale;
             getApplicationContext().getResources().updateConfiguration(config, null);
         }
-        //progressBar= (ProgressBar)findViewById(R.id.progressBar);
         info = (TextView) findViewById(R.id.info);
 
         final int currentVersion = localUpdateService.getVersion(this);
         if (currentVersion != Helper.DATABASE_VERSION) {
-            new LoaderProgressTask<String>(new ProgressTask<String>() {
-                @Override
-                public String doTask(OnPublishProgressListener listener) throws Exception {
-                    ImageLoader.getInstance().clearDiskCache();
-                    ImageLoader.getInstance().clearMemoryCache();
-                    AssetManager assetManager = LoaderActivity.this.getAssets();
-                    String[] files = assetManager.list("updates");
-                    for (String fileName : files) {
-                        int fileVersion = Integer.valueOf(fileName.split("\\.")[0]);
-                        /*if (fileVersion > currentVersion) {*///пока что мы все скрипты прогоняем
-                            String sql = FileUtils.getTextFromAsset(LoaderActivity.this, "updates" + File.separator + fileName);
-                            localUpdateService.update(LoaderActivity.this, sql, fileVersion);
-                        /*}*/
-                    }
-                    return "";
-                }
-
-                @Override
-                public void doAfterTask(String result) {
-                    localUpdateService.setUpdated(LoaderActivity.this);
-                    showDialog = true;
-                    checkGooglePlayServicesAndRun();
-                }
-
-                @Override
-                public void handleError(String error) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(LoaderActivity.this);
-                    dialog.setTitle(getString(R.string.error_during_load));
-                    dialog.setMessage(error);
-                    dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            finish();
-                        }
-                    });
-                    dialog.show();
-                }
-
-                @Override
-                public String getName() {
-                    return null;
-                }
-            }, null).execute();
-            //todo это на инициализацию полностью перевесить new HeroesLoader().execute();
+            spiceManager.execute(new UpdateLoadRequest(this),this);
         } else {
             showDialog = true;
             checkGooglePlayServicesAndRun();
@@ -208,10 +184,55 @@ public class LoaderActivity extends Activity {
                 doubleBackToExitPressedOnce = false;
 
             }
-        }, 2000);
+        }, Constants.MILLIS_FOR_EXIT);
     }
 
-    public class HeroesLoader extends AsyncTask<String, String, String> {
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(LoaderActivity.this);
+        dialog.setTitle(getString(R.string.error_during_load));
+        dialog.setMessage(spiceException.getLocalizedMessage());
+        dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                finish();
+            }
+        });
+        dialog.show();
+    }
+
+    @Override
+    public void onRequestSuccess(String s) {
+        localUpdateService.setUpdated(LoaderActivity.this);
+        showDialog = true;
+        checkGooglePlayServicesAndRun();
+    }
+
+    public static class UpdateLoadRequest extends TaskRequest<String>{
+        LocalUpdateService localUpdateService = BeanContainer.getInstance().getLocalUpdateService();
+        private Context context;
+        public UpdateLoadRequest(Context context) {
+            super(String.class);
+            this.context=context;
+        }
+
+        @Override
+        public String loadData() throws Exception {
+            ImageLoader.getInstance().clearDiskCache();
+            ImageLoader.getInstance().clearMemoryCache();
+            AssetManager assetManager = context.getAssets();
+            String[] files = assetManager.list("updates");
+            for (String fileName : files) {
+                int fileVersion = Integer.valueOf(fileName.split("\\.")[0]);
+                String sql = FileUtils.getTextFromAsset(context, "updates" + File.separator + fileName);
+                localUpdateService.update(context, sql, fileVersion);
+            }
+            return "";
+        }
+    }
+
+    /*public class HeroesLoader extends AsyncTask<String, String, String> {
         public static final String SUCCESS_CODE = "success";
         private DefaultHttpClient client;
 
@@ -229,7 +250,7 @@ public class LoaderActivity extends Activity {
                 //reorganizeGuides();
 
                 String heroesEntity = null;
-                /*if (Constants.INITIALIZATION) {
+                *//*if (Constants.INITIALIZATION) {
                     client = new DefaultHttpClient();
                     HttpGet get = new HttpGet(Constants.Heroes.SUBURL + getString(R.string.api));
                     HttpResponse response = client.execute(get);
@@ -245,7 +266,7 @@ public class LoaderActivity extends Activity {
                     heroesEntity = EntityUtils.toString(response.getEntity());
                     saveStringFile("heroes.json", heroesEntity);
                 } else {
-                }*/
+                }*//*
                 heroesEntity = FileUtils.getTextFromAsset(LoaderActivity.this, "heroes.json");
                 // publishProgress("грузим список героев");
                 GetHeroes getHeroes = new Gson().fromJson(heroesEntity, GetHeroes.class);
@@ -255,11 +276,11 @@ public class LoaderActivity extends Activity {
                 // publishProgress("грузим скилы");
                 String abilitiesJson = FileUtils.getTextFromAsset(LoaderActivity.this, "npc_abilities.json");
                 AbilityResult abilityResult = new Gson().fromJson(abilitiesJson, AbilityResult.class);
-                /*List<Ability> abilitiesList=abilityResult.getAbilities();
+                *//*List<Ability> abilitiesList=abilityResult.getAbilities();
                 Collections.sort(abilitiesList);
 				abilityResult.setAbilities(abilitiesList);
 				saveStringFile("npc_abilities.json",new Gson().toJson(abilityResult));
-				*/
+				*//*
                 HeroService heroService = BeanContainer.getInstance().getHeroService();
                 for (int heroesLoaded = 0; heroesLoaded < heroes.size(); heroesLoaded++) {
                     Hero hero = heroes.get(heroesLoaded);
@@ -282,9 +303,9 @@ public class LoaderActivity extends Activity {
                     //reorganizeHeroGuides(hero);
                 }
                 //todo сперва необходимо создать всех героев, чтобы responses были нормальными
-				/*for(Hero hero:heroes){
+                *//*for(Hero hero:heroes){
 					loadHeroResponses(hero);
-				}*/
+				}*//*
 
                 List<Ability> abilities = abilityResult.getAbilities();
                 if (abilities.size() > 0) {
@@ -319,17 +340,16 @@ public class LoaderActivity extends Activity {
                             saveStringFile(heroGuidesFile.getName() + "/" + build.getName().replace(hero.getDotaId() + "_", ""), buildString);
                             build.delete();
                         }
-                       /* else {
+                       *//* else {
                             String buildString=Utils.getTextFromFile(build.getPath());
                             if(buildString.contains("\"Hero\"\t\""+hero.getDotaId()+"\"")){
                                 saveStringFile(heroGuidesFile.getName()+"/"+build.getName(),buildString);
                                 build.delete();
                             }
-                        }*/
+                        }*//*
                     }
                 }
             }
-
         }
 
         private void reorganizeGuides() {
@@ -501,7 +521,7 @@ public class LoaderActivity extends Activity {
                 itemService.saveFromToItems(LoaderActivity.this, itemList);
             }
         }
-/*
+*//*
         private void loadHeroStats(Hero hero) throws IOException
 		{
 			String entity=null;
@@ -532,7 +552,7 @@ public class LoaderActivity extends Activity {
 				HeroStats stats=new Gson().fromJson(entity,HeroStats.class);
 				dao.createHeroStats(hero.getId(),stats);
 			}
-		}*/
+		}*//*
 
         private void saveStringFile(String fileName, String data) {
             //todo
@@ -620,7 +640,7 @@ public class LoaderActivity extends Activity {
             }
         }
 
-        /*
+        *//*
         *
         * heroes/
         *   abbadon/
@@ -633,7 +653,7 @@ public class LoaderActivity extends Activity {
         *       skills/
         *           1.antimage_blink_hp1.png
         *           1.antimage_blink.txt
-         */
+         *//*
         public void getSkills(String fileName) {
             String allSkills = FileUtils.getTextFromAsset(LoaderActivity.this, fileName + ".json");
             GetHeroesSkills result = new Gson().fromJson(allSkills, GetHeroesSkills.class);
@@ -806,5 +826,5 @@ public class LoaderActivity extends Activity {
             }
             info.setText(getString(R.string.loading_heroes_completed_and_stoped));
         }
-    }
+    }*/
 }
