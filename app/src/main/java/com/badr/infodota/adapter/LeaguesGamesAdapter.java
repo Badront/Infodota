@@ -26,7 +26,6 @@ import java.util.List;
  */
 public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
     DisplayImageOptions options;
-    //todo options with cache and default img
     private LayoutInflater inflater;
     private List<MatchItem> matchItems;
     private ImageLoader imageLoader;
