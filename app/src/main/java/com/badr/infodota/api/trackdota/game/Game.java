@@ -19,6 +19,7 @@ public class Game implements Serializable {
     private long streams;
     @Expose
     private League league;
+    /*in seconds*/
     @Expose
     private long duration;
     @Expose

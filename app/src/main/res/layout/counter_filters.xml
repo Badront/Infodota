@@ -154,7 +154,8 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <com.pnikosis.materialishprogress.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+            <com.pnikosis.materialishprogress.ProgressWheel
+                xmlns:wheel="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/progressBar"
                 android:visibility="gone"
                 android:layout_width="80dp"

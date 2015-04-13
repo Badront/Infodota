@@ -15,9 +15,19 @@ public class EnhancedGame extends Game {
     @Expose
     @SerializedName("dire_series_wins")
     private int direWins;
+    /*
+    * 0 - bo1
+    * 1 - bo3
+    *
+    * */
     @Expose
     @SerializedName("series_type")
     private int seriesType;
+    /*
+    * 1- currently in pick&ban
+    * 2 - waiting for creep spawn
+    * 3 - live
+    * */
     @Expose
     private int status;
     @Expose

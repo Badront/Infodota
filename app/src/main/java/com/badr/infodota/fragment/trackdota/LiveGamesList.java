@@ -15,6 +15,7 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.LeaguesGamesAdapter;
+import com.badr.infodota.adapter.LiveGamesAdapter;
 import com.badr.infodota.api.trackdota.game.GamesResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.ListFragment;
@@ -66,7 +67,7 @@ public class LiveGamesList extends ListFragment implements RequestListener<Games
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
-        setListAdapter(new LeaguesGamesAdapter(getActivity(), null));
+        setListAdapter(new LiveGamesAdapter(getActivity(), null));
         onRefresh();
     }
 
@@ -90,7 +91,10 @@ public class LiveGamesList extends ListFragment implements RequestListener<Games
     @Override
     public void onRequestSuccess(GamesResult gamesResult) {
         setRefreshing(false);
-        setListAdapter(new );
+        if(gamesResult!=null)
+        {
+            setListAdapter(new LiveGamesAdapter(getActivity(),gamesResult.getEnhancedMatches()));
+        }
     }
 
     public class GamesResultLoadRequest extends TaskRequest<GamesResult>{

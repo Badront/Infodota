@@ -35,7 +35,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'org.jsoup:jsoup:1.7.3'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
-    compile 'com.pnikosis:materialish-progress:1.2'
+    compile 'com.pnikosis:materialish-progress:1.5'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.octo.android.robospice:robospice:1.4.14'
 }
