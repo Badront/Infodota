@@ -160,8 +160,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
-                wheel:barColor="@color/primary"
-                wheel:progressIndeterminate="true" />
+                wheel:matProg_barColor="@color/primary"
+                wheel:matProg_progressIndeterminate="true" />
             <TextView
                 android:id="@+id/holder_title"
                 android:layout_width="wrap_content"

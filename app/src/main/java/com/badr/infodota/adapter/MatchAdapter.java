@@ -52,8 +52,9 @@ public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch,PlayerMatchHol
 
     public void addMatches(List<PlayerMatch> subMatches) {
         if (subMatches != null) {
+            int was=getItemCount();
             getItems().addAll(subMatches);
-            notifyDataSetChanged();
+            notifyItemRangeChanged(was,subMatches.size());
         }
     }
 

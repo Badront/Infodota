@@ -90,6 +90,11 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
     }
 
     @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new GridLayoutManager(getActivity(),1);
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         options = new DisplayImageOptions.Builder()
@@ -97,10 +102,6 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565).build();
         imageLoader = ImageLoader.getInstance();
-        RecyclerView recyclerView=getRecyclerView();
-        recyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),1);
-        recyclerView.setLayoutManager(layoutManager);
         setColumnSize();
         onRefresh();
     }

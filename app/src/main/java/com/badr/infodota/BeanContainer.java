@@ -9,6 +9,7 @@ import com.badr.infodota.dao.ItemDao;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.dao.TeamDao;
 import com.badr.infodota.remote.SteamService;
+import com.badr.infodota.remote.TrackdotaRestService;
 import com.badr.infodota.remote.TwitchRestService;
 import com.badr.infodota.remote.counterpicker.CounterRemoteEntityServiceImpl;
 import com.badr.infodota.remote.joindota.JoinDotaRemoteServiceImpl;
@@ -29,6 +30,8 @@ import com.badr.infodota.service.news.NewsServiceImpl;
 import com.badr.infodota.service.player.PlayerServiceImpl;
 import com.badr.infodota.service.team.TeamServiceImpl;
 import com.badr.infodota.service.ti4.TI4ServiceImpl;
+import com.badr.infodota.service.trackdota.TrackdotaService;
+import com.badr.infodota.service.trackdota.TrackdotaServiceImpl;
 import com.badr.infodota.service.twitch.TwitchServiceImpl;
 import com.badr.infodota.service.update.UpdateService;
 import com.badr.infodota.service.update.UpdateServiceImpl;
@@ -53,6 +56,10 @@ public class BeanContainer implements InitializingBean {
 
     private RestAdapter twitchRestAdapter;
     private TwitchRestService twitchRestService;
+
+    private RestAdapter trackdotaRestAdapter;
+    private TrackdotaRestService trackdotaRestService;
+    private TrackdotaServiceImpl trackdotaService;
 
     private CosmeticServiceImpl cosmeticService;
 
@@ -143,6 +150,8 @@ public class BeanContainer implements InitializingBean {
 
         itemService = new ItemServiceImpl();
 
+        trackdotaService=new TrackdotaServiceImpl();
+
         updateRemoteService=new UpdateRemoteServiceImpl();
         updateService=new UpdateServiceImpl();
     }
@@ -169,6 +178,7 @@ public class BeanContainer implements InitializingBean {
         joinDotaService.initialize();
         teamService.initialize();
         twitchService.initialize();
+        trackdotaService.initialize();
         updateService.initialize();
     }
 
@@ -268,6 +278,10 @@ public class BeanContainer implements InitializingBean {
         return teamDao;
     }
 
+    public TrackdotaServiceImpl getTrackdotaService() {
+        return trackdotaService;
+    }
+
     public UpdateRemoteService getUpdateRemoteService() {
         return updateRemoteService;
     }
@@ -282,11 +296,16 @@ public class BeanContainer implements InitializingBean {
         }
         return twitchRestService;
     }
-
+    public TrackdotaRestService getTrackdotaRestService(){
+        if(trackdotaRestService==null){
+            trackdotaRestService=getTrackdotaRestAdapter().create(TrackdotaRestService.class);
+        }
+        return trackdotaRestService;
+    }
     public RestAdapter getTwitchRestAdapter() {
         if(twitchRestAdapter == null){
             twitchRestAdapter =new RestAdapter.Builder()
-                    .setEndpoint("https://api.twitch.tv")
+                    .setEndpoint("https://api.twitch.tv/")
                     .build();
         }
         return twitchRestAdapter;
@@ -308,6 +327,16 @@ public class BeanContainer implements InitializingBean {
         }
         return steamService;
     }
+
+    public RestAdapter getTrackdotaRestAdapter(){
+        if(trackdotaRestAdapter==null){
+            trackdotaRestAdapter=new RestAdapter.Builder()
+                    .setEndpoint("http://www.trackdota.com/data/")
+                    .build();
+        }
+        return trackdotaRestAdapter;
+    }
+
 
     private class SteamRequestInterceptor implements RequestInterceptor{
         @Override

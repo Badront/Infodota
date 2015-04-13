@@ -10,6 +10,7 @@
         <item>TWITCH.TV</item>
         <item>НОВОСТИ</item>
         <item>ТУРНИРНЫЕ ИГРЫ</item>
+        <item>TRACKDOTA</item>
         <!--<item>THE INTERNATIONAL</item>-->
     </string-array>
     <string-array name="lobby_types">

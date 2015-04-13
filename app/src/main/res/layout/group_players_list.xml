@@ -49,10 +49,11 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@android:id/list"
+            android:overScrollMode="ifContentScrolls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.pnikosis.materialishprogress.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
@@ -61,6 +62,6 @@
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        wheel:barColor="@color/primary"
-        wheel:progressIndeterminate="true" />
+        wheel:matProg_barColor="@color/primary"
+        wheel:matProg_progressIndeterminate="true" />
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,11 +66,12 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
     }
 
     @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new GridLayoutManager(getActivity(),1);
+    }
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getRecyclerView().setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
-        getRecyclerView().setLayoutManager(layoutManager);
         setColumnSize();
         onRefresh();
     }

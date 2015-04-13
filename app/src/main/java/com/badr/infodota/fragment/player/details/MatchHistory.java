@@ -86,19 +86,18 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
         setLayoutId(R.layout.match_history);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new GridLayoutManager(getActivity(),1);
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View root=getView();
-        if (root != null) {
-            RecyclerView recyclerView = getRecyclerView();
-            recyclerView.setHasFixedSize(true);
-            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
-            layoutManager.setSmoothScrollbarEnabled(true);
-            recyclerView.setLayoutManager(layoutManager);
+        Activity activity = getActivity();
+        if (root != null&&activity!=null) {
             setColumnSize();
-            Activity activity = getActivity();
             heroView = (AutoCompleteTextView) root.findViewById(R.id.hero_search);
             List<Hero> heroes = heroService.getAllHeroes(activity);
             heroView.setAdapter(new HeroesAutoCompleteAdapter(activity, heroes));

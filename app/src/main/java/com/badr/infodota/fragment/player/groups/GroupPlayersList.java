@@ -78,13 +78,14 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
     }
 
     @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new GridLayoutManager(getActivity(),1);
+    }
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View root = getView();
         if(root!=null){
-            getRecyclerView().setHasFixedSize(true);
-            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
-            getRecyclerView().setLayoutManager(layoutManager);
             setColumnSize();
             search = (EditText) root.findViewById(R.id.search);
 

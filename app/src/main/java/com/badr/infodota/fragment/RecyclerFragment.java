@@ -3,6 +3,7 @@ package com.badr.infodota.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -53,12 +54,14 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
             mRecyclerView = (RecyclerView) root.findViewById(android.R.id.list);
         }
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setVerticalScrollBarEnabled(true);
         mRecyclerView.setLayoutManager(getLayoutManager());
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        mRecyclerView.setItemAnimator(itemAnimator);
         mListContainer = (SwipeRefreshLayout) root.findViewById(R.id.listContainer);
         if (mListContainer != null) {
             mListContainer.setColorSchemeResources(R.color.primary);
             mListContainer.setOnRefreshListener(this);
-
         }
         mEmptyView = root.findViewById(R.id.internalEmpty);
         mProgressBar = root.findViewById(R.id.progressBar);

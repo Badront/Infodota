@@ -111,7 +111,7 @@ public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionLis
             sectionHeader.setText(DateUtils.DATE_FORMAT.format(item.getDate()));
         } else {
             MatchItemHolder holder;
-            if (vi == null) {
+            if (vi == null||vi.getTag()==null) {
                 vi = inflater.inflate(R.layout.leagues_games_row, parent, false);
                 holder = new MatchItemHolder();
                 holder.flag1 = (ImageView) vi.findViewById(R.id.flag1);

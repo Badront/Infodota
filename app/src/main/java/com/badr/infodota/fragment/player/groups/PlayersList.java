@@ -72,15 +72,16 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
         setLayoutId(R.layout.players_list);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new GridLayoutManager(getActivity(),1);
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View root = getView();
         if(root!=null) {
-            getRecyclerView().setHasFixedSize(true);
-            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
-            getRecyclerView().setLayoutManager(layoutManager);
             setColumnSize();
             searchRequest = (TextView) root.findViewById(R.id.player_name);
             searchRequest.setOnEditorActionListener(this);
@@ -167,8 +168,11 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
         if(adapter.getItemCount()==0){
             listHeader.setVisibility(View.GONE);
         }
-        else if(TextUtils.isEmpty(searchRequest.getText().toString())){
-            listHeader.setVisibility(View.VISIBLE);
+        else {
+            mEmptyView.setVisibility(View.GONE);
+            if(TextUtils.isEmpty(searchRequest.getText().toString())){
+                listHeader.setVisibility(View.VISIBLE);
+            }
         }
     }
 
