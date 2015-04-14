@@ -43,9 +43,8 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
                 groupMap.put(0,liveGames);
                 return liveGames;
             default:
-            case 1:
                 FeaturedGamesList featuredGames=FeaturedGamesList.newInstance(refresher);
-                groupMap.put(1,featuredGames);
+                groupMap.put(position,featuredGames);
                 return featuredGames;
         }
     }
@@ -58,7 +57,7 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
-        return 2;//titles.length;
+        return titles.length;
     }
     @Override
     public CharSequence getPageTitle(int position) {

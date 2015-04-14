@@ -185,6 +185,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
         }
         return itemView;
     }
+
     public class FeaturedGameHolder{
         ImageView radiantLogo;
         ImageView direLogo;
