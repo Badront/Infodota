@@ -82,6 +82,8 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         } else if (object instanceof LiveGame) {
             liveGame = (LiveGame) object;
             adapter.update(coreResult, liveGame);
+        } else if(object==null){
+            adapter.update(coreResult,liveGame);
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Pair;
 
 import com.badr.infodota.R;
 import com.badr.infodota.api.trackdota.core.CoreResult;
@@ -42,7 +43,7 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
         switch (position){
             default:
             case 0:
-                CommonInfo commonInfo=CommonInfo.newInstance(refresher,coreResult);
+                CommonInfo commonInfo=CommonInfo.newInstance(refresher,coreResult,liveGame);
                 fragmentsMap.put(position,commonInfo);
                 return commonInfo;
         }
@@ -65,11 +66,9 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
         for(Integer key:keySet){
             Updatable updatable=fragmentsMap.get(key);
             switch (key){
-                case 0:
-                    updatable.onUpdate(coreResult);
-                    break;
                 default:
-                    //updatable.onUpdate(Pair.create(coreResult,liveGame));
+                case 0:
+                    updatable.onUpdate(Pair.create(coreResult, liveGame));
                     break;
             }
         }

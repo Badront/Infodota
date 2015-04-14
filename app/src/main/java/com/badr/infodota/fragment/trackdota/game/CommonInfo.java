@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
+import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -28,15 +30,17 @@ import java.util.Date;
  * 14.04.2015
  * 16:44
  */
-public class CommonInfo extends Fragment implements Updatable<CoreResult> {
+public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,LiveGame>> {
     private Refresher refresher;
     private CoreResult coreResult;
+    private LiveGame liveGame;
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
-    public static CommonInfo newInstance(Refresher refresher,CoreResult coreResult){
+    public static CommonInfo newInstance(Refresher refresher,CoreResult coreResult, LiveGame liveGame){
         CommonInfo fragment=new CommonInfo();
         fragment.refresher=refresher;
         fragment.coreResult=coreResult;
+        fragment.liveGame=liveGame;
         return fragment;
     }
     @Override
@@ -58,8 +62,9 @@ public class CommonInfo extends Fragment implements Updatable<CoreResult> {
     }
 
     @Override
-    public void onUpdate(CoreResult entity) {
-        this.coreResult=entity;
+    public void onUpdate(Pair<CoreResult,LiveGame> entity) {
+        this.coreResult=entity.first;
+        this.liveGame=entity.second;
         initView();
     }
 
