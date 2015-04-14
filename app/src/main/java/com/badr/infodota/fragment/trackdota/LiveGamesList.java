@@ -16,36 +16,32 @@ import com.badr.infodota.R;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.LeaguesGamesAdapter;
 import com.badr.infodota.adapter.LiveGamesAdapter;
+import com.badr.infodota.api.trackdota.game.EnhancedMatch;
 import com.badr.infodota.api.trackdota.game.GamesResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.ListFragment;
 import com.badr.infodota.service.trackdota.TrackdotaService;
+import com.badr.infodota.util.Refresher;
+import com.badr.infodota.util.Updatable;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
+import java.util.List;
+
 /**
  * Created by ABadretdinov
  * 13.04.2015
  * 18:40
  */
-public class LiveGamesList extends ListFragment implements RequestListener<GamesResult>{
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        spiceManager.start(getActivity());
-    }
-
-    @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
+public class LiveGamesList extends ListFragment implements Updatable<List<EnhancedMatch>> {
+    private Refresher refresher;
+    public static LiveGamesList newInstance(Refresher refresher){
+        LiveGamesList fragment=new LiveGamesList();
+        fragment.refresher=refresher;
+        return fragment;
     }
 
     @Override
@@ -55,20 +51,10 @@ public class LiveGamesList extends ListFragment implements RequestListener<Games
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        ActionMenuView actionMenuView = ((ListHolderActivity) getActivity()).getActionMenuView();
-        Menu actionMenu = actionMenuView.getMenu();
-        actionMenu.clear();
-        actionMenuView.setVisibility(View.GONE);
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         setListAdapter(new LiveGamesAdapter(getActivity(), null));
-        onRefresh();
     }
 
     @Override
@@ -78,35 +64,15 @@ public class LiveGamesList extends ListFragment implements RequestListener<Games
 
     @Override
     public void onRefresh() {
-        setRefreshing(true);
-        spiceManager.execute(new GamesResultLoadRequest(),this);
-    }
+        if(refresher!=null) {
+            setRefreshing(true);
+            refresher.onRefresh();
+        }
 
+    }
     @Override
-    public void onRequestFailure(SpiceException spiceException) {
+    public void onUpdate(List<EnhancedMatch> entity) {
         setRefreshing(false);
-        Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onRequestSuccess(GamesResult gamesResult) {
-        setRefreshing(false);
-        if(gamesResult!=null)
-        {
-            setListAdapter(new LiveGamesAdapter(getActivity(),gamesResult.getEnhancedMatches()));
-        }
-    }
-
-    public class GamesResultLoadRequest extends TaskRequest<GamesResult>{
-        private BeanContainer container=BeanContainer.getInstance();
-        private TrackdotaService trackdotaService=container.getTrackdotaService();
-        public GamesResultLoadRequest() {
-            super(GamesResult.class);
-        }
-
-        @Override
-        public GamesResult loadData() throws Exception {
-            return trackdotaService.getGames();
-        }
+        setListAdapter(new LiveGamesAdapter(getActivity(),entity));
     }
 }

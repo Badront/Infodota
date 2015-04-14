@@ -11,27 +11,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.api.trackdota.game.EnhancedGame;
-import com.badr.infodota.api.trackdota.game.EnhancedMatch;
+import com.badr.infodota.api.trackdota.game.Game;
+import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
 import com.badr.infodota.view.PinnedSectionListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by ABadretdinov
- * 13.04.2015
- * 18:54
+ * 14.04.2015
+ * 12:34
  */
-public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter{
+public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
     DisplayImageOptions options;
     private LayoutInflater inflater;
-    private List<Object> games=new ArrayList<Object>();
+    private List<Object> mGames=new ArrayList<Object>();
     private ImageLoader imageLoader;
-    public LiveGamesAdapter(Context context,List<EnhancedMatch> matches){
+    private SimpleDateFormat dateTimeFormat=new SimpleDateFormat("HH:mm  dd.MM.yyyy");
+    public FeaturedGamesAdapter(Context context,List<Game> games){
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         options = new DisplayImageOptions.Builder()
@@ -41,15 +44,19 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
         imageLoader = ImageLoader.getInstance();
-        if(matches!=null){
-            for (EnhancedMatch match:matches) {
-                GameHeader header=new GameHeader();
-                header.url=match.getUrl();
-                header.id=match.getId();
-                header.hasImage=match.isHasImage();
-                header.name=match.getName();
-                games.add(header);
-                games.addAll(match.getGames());
+        if(games!=null){
+            for (Game game:games) {
+                int size=mGames.size();
+                if(size==0||!((Game)mGames.get(size-1)).getLeague().equals(game.getLeague())){
+                    GameHeader header=new GameHeader();
+                    League league=game.getLeague();
+                    header.url=league.getUrl();
+                    header.id=league.getId();
+                    header.hasImage=league.isHasImage();
+                    header.name=league.getName();
+                    mGames.add(header);
+                }
+                mGames.add(game);
             }
         }
     }
@@ -59,6 +66,7 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
         boolean hasImage;
         String name;
     }
+
     @Override
     public boolean isItemViewTypePinned(int viewType) {
         return viewType==1;
@@ -75,12 +83,12 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
 
     @Override
     public int getCount() {
-        return games.size();
+        return mGames.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return games.get(position);
+        return mGames.get(position);
     }
 
     @Override
@@ -113,10 +121,10 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             }
         }
         else {
-            LiveGameHolder holder;
+            FeaturedGameHolder holder;
             if(itemView==null||itemView.getTag()==null){
-                itemView=inflater.inflate(R.layout.trackdota_live_game_row,parent,false);
-                holder=new LiveGameHolder();
+                itemView=inflater.inflate(R.layout.trackdota_featured_game_row,parent,false);
+                holder=new FeaturedGameHolder();
                 holder.radiantTag= (TextView) itemView.findViewById(R.id.radiant_tag);
                 holder.direTag= (TextView) itemView.findViewById(R.id.dire_tag);
                 holder.radiantScore= (TextView) itemView.findViewById(R.id.radiant_score);
@@ -124,81 +132,62 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
                 holder.scoreHolder=itemView.findViewById(R.id.score_holder);
                 holder.radiantName= (TextView) itemView.findViewById(R.id.radiant_name);
                 holder.direName= (TextView) itemView.findViewById(R.id.dire_name);
-                holder.gameState= (TextView) itemView.findViewById(R.id.game_state);
-                holder.streams= (TextView) itemView.findViewById(R.id.streams);
-                holder.gameTime= (TextView) itemView.findViewById(R.id.game_time);
+                holder.radiantLogo= (ImageView) itemView.findViewById(R.id.radiant_logo);
+                holder.direLogo= (ImageView) itemView.findViewById(R.id.dire_logo);
+                holder.gameStartTime= (TextView) itemView.findViewById(R.id.game_start_time);
+                holder.viewers= (TextView) itemView.findViewById(R.id.viewers);
+                holder.gameDuration= (TextView) itemView.findViewById(R.id.game_duration);
                 itemView.setTag(holder);
             }
             else {
-                holder= (LiveGameHolder) itemView.getTag();
+                holder= (FeaturedGameHolder) itemView.getTag();
             }
-            EnhancedGame game= (EnhancedGame) object;
+            Game game= (Game) object;
             Team radiant=game.getRadiant();
             if(radiant!=null){
                 holder.radiantTag.setText(!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant");
                 holder.radiantName.setText(!TextUtils.isEmpty(radiant.getName())?radiant.getName():"Radiant");
+                if(radiant.isHasLogo()) {
+                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/" + radiant.getId() + ".png", holder.radiantLogo, options);
+                }
+                else {
+                    holder.radiantLogo.setImageResource(R.drawable.default_img);
+                }
+
             }
             else {
                 holder.radiantTag.setText("Radiant");
                 holder.radiantName.setText("Radiant");
+                holder.radiantLogo.setImageResource(R.drawable.default_img);
             }
             holder.radiantScore.setText(String.valueOf(game.getRadiantKills()));
             Team dire=game.getDire();
             if(dire!=null){
                 holder.direTag.setText(!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire");
                 holder.direName.setText(!TextUtils.isEmpty(dire.getName())?dire.getName():"Dire");
+                if(dire.isHasLogo()) {
+                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/" + dire.getId() + ".png", holder.direLogo, options);
+                }else {
+                    holder.direLogo.setImageResource(R.drawable.default_img);
+                }
+
             }
             else {
                 holder.direTag.setText("Dire");
                 holder.direName.setText("Dire");
+                holder.direLogo.setImageResource(R.drawable.default_img);
             }
             holder.direScore.setText(String.valueOf(game.getDireKills()));
-            StringBuilder gameState=new StringBuilder("Game ");
-            gameState.append(game.getDireWins()+game.getRadiantWins()+1);
-            gameState.append(" / BO");
-            switch (game.getSeriesType()){
-                case 0:
-                    gameState.append(1);
-                    break;
-                case 1:
-                    gameState.append(3);
-                    gameState.append(" (");
-                    gameState.append(game.getRadiantWins());
-                    gameState.append(" - ");
-                    gameState.append(game.getDireWins());
-                    gameState.append(")");
-                    break;
-                default:
-                    gameState.append("{").append(game.getSeriesType()).append("}");
-            }
-            holder.gameState.setText(gameState.toString());
-            if(game.getStreams()>0)
-            {
-                holder.streams.setText(game.getStreams()+" streams");
-                holder.streams.setVisibility(View.VISIBLE);
-            }
-            else {
-                holder.streams.setVisibility(View.INVISIBLE);
-            }
-            holder.scoreHolder.setVisibility(View.VISIBLE);
-            switch (game.getStatus()){
-                case 1:
-                    holder.gameTime.setText("In hero selection");
-                    holder.scoreHolder.setVisibility(View.GONE);
-                    break;
-                case 2:
-                    holder.gameTime.setText("Waiting for horn");
-                    break;
-                case 3:
-                    holder.gameTime.setText(game.getDuration()/60+" minutes");
-                    break;
-                default:
-            }
 
+            holder.gameStartTime.setText(dateTimeFormat.format(new Date(game.getStartTime()*1000)));
+            holder.viewers.setText(game.getSpectators()+" viewers");
+            holder.gameDuration.setText(game.getDuration()/60+" minutes");
         }
         return itemView;
     }
-    public class LiveGameHolder{
+    public class FeaturedGameHolder{
+        ImageView radiantLogo;
+        ImageView direLogo;
         TextView radiantTag;
         TextView direTag;
         TextView radiantScore;
@@ -206,8 +195,8 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
         View scoreHolder;
         TextView radiantName;
         TextView direName;
-        TextView gameState;
-        TextView streams;
-        TextView gameTime;
+        TextView gameStartTime;
+        TextView viewers;
+        TextView gameDuration;
     }
 }

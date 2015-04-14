@@ -16,6 +16,7 @@
 
     <com.badr.infodota.view.SlidingTabLayout
         android:id="@+id/indicator"
+        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

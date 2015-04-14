@@ -13,18 +13,26 @@
         support:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         support:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <EditText
-        android:id="@+id/guide_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/guide_name"
-        android:singleLine="true" />
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/guide_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/guide_name"
+            android:singleLine="true" />
+    </LinearLayout>
 
     <com.badr.infodota.view.SlidingTabLayout
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:background="?attr/colorPrimary" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

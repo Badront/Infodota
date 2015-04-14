@@ -21,12 +21,12 @@ import java.util.Set;
  * Time: 19:56
  */
 public class MatchHistoryPagerAdapter extends FragmentPagerAdapter {
-    private Context context;
+    private String[] titles;
     private Map<Integer, GroupPlayersList> groupMap = new HashMap<Integer, GroupPlayersList>();
 
     public MatchHistoryPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-        this.context = context;
+        titles=context.getResources().getStringArray(R.array.match_history_title);
     }
 
     @Override
@@ -60,12 +60,12 @@ public class MatchHistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return titles.length;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return context.getResources().getStringArray(R.array.match_history_title)[position];
+        return titles[position];
     }
 
     public void update() {

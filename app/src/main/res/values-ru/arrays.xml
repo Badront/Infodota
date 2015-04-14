@@ -188,4 +188,9 @@
         <item>Наборы</item>
         <item>Сундуки</item>
     </string-array>
+    <string-array name="trackdota">
+        <item>LIVE</item>
+        <item>ПОПУЛЯРНЫЕ</item>
+        <item>НЕДАВНИЕ</item>
+    </string-array>
 </resources>

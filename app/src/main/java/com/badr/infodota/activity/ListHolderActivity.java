@@ -34,6 +34,7 @@ import com.badr.infodota.fragment.news.NewsList;
 import com.badr.infodota.fragment.player.groups.PlayerGroupsHolder;
 import com.badr.infodota.fragment.quiz.QuizTypeSelect;
 import com.badr.infodota.fragment.trackdota.LiveGamesList;
+import com.badr.infodota.fragment.trackdota.TrackdotaMain;
 import com.badr.infodota.fragment.twitch.TwitchHolder;
 import com.badr.infodota.util.UpdateUtils;
 
@@ -173,7 +174,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
                     details = LeaguesGamesList.newInstance(null);
                     break;
                 case 9:
-                    details= new LiveGamesList();
+                    details= new TrackdotaMain();
                     break;
                     /*
                 case 9:

@@ -62,4 +62,21 @@ public class League implements Serializable {
     public void setTier(long tier) {
         this.tier = tier;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        League league = (League) o;
+
+        if (id != league.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
 }

@@ -211,4 +211,9 @@
         <item>Bundles</item>
         <item>Crates</item>
     </string-array>
+    <string-array name="trackdota">
+        <item>LIVE</item>
+        <item>POPULAR</item>
+        <item>RECENT</item>
+        </string-array>
 </resources>
