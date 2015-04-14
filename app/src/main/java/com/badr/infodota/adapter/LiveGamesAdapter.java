@@ -117,6 +117,8 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             if(itemView==null||itemView.getTag()==null){
                 itemView=inflater.inflate(R.layout.trackdota_live_game_row,parent,false);
                 holder=new LiveGameHolder();
+                holder.radiantLogo= (ImageView) itemView.findViewById(R.id.radiant_logo);
+                holder.direLogo= (ImageView) itemView.findViewById(R.id.dire_logo);
                 holder.radiantTag= (TextView) itemView.findViewById(R.id.radiant_tag);
                 holder.direTag= (TextView) itemView.findViewById(R.id.dire_tag);
                 holder.radiantScore= (TextView) itemView.findViewById(R.id.radiant_score);
@@ -137,20 +139,33 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             if(radiant!=null){
                 holder.radiantTag.setText(!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant");
                 holder.radiantName.setText(!TextUtils.isEmpty(radiant.getName())?radiant.getName():"Radiant");
+                if(radiant.isHasLogo()) {
+                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/" + radiant.getId() + ".png", holder.radiantLogo, options);
+                }
+                else {
+                    holder.radiantLogo.setImageResource(R.drawable.default_img);
+                }
             }
             else {
                 holder.radiantTag.setText("Radiant");
                 holder.radiantName.setText("Radiant");
+                holder.radiantLogo.setImageResource(R.drawable.default_img);
             }
             holder.radiantScore.setText(String.valueOf(game.getRadiantKills()));
             Team dire=game.getDire();
             if(dire!=null){
                 holder.direTag.setText(!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire");
                 holder.direName.setText(!TextUtils.isEmpty(dire.getName())?dire.getName():"Dire");
+                if(dire.isHasLogo()) {
+                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/" + dire.getId() + ".png", holder.direLogo, options);
+                }else {
+                    holder.direLogo.setImageResource(R.drawable.default_img);
+                }
             }
             else {
                 holder.direTag.setText("Dire");
                 holder.direName.setText("Dire");
+                holder.direLogo.setImageResource(R.drawable.default_img);
             }
             holder.direScore.setText(String.valueOf(game.getDireKills()));
             StringBuilder gameState=new StringBuilder("Game ");
@@ -184,7 +199,7 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             switch (game.getStatus()){
                 case 1:
                     holder.gameTime.setText("In hero selection");
-                    holder.scoreHolder.setVisibility(View.GONE);
+                    holder.scoreHolder.setVisibility(View.INVISIBLE);
                     break;
                 case 2:
                     holder.gameTime.setText("Waiting for horn");
@@ -199,6 +214,8 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
         return itemView;
     }
     public class LiveGameHolder{
+        ImageView radiantLogo;
+        ImageView direLogo;
         TextView radiantTag;
         TextView direTag;
         TextView radiantScore;

@@ -18,46 +18,58 @@ public class CoreResult implements Serializable {
     @SerializedName("api_downtime")
     private long apiDowntime;
     @Expose
-    private long id;
-    @Expose
-    @SerializedName("time_started")
-    private long startTime;
-    @Expose
-    private long duration;
-    @Expose
-    @SerializedName("radiant_team")
-    private Team radiant;
-    @Expose
-    @SerializedName("dire_team")
-    private Team dire;
-    @Expose
-    @SerializedName("radiant_bans")
-    private List<BanPick> radiantBans;
-    @Expose
-    @SerializedName("radiant_picks")
-    private List<BanPick> radiantPicks;
-    @Expose
-    @SerializedName("dire_bans")
-    private List<BanPick> direBans;
-    @Expose
-    @SerializedName("dire_picks")
-    private List<BanPick> direPicks;
-    @Expose
-    @SerializedName("radiant_series_wins")
-    private int radiantWins;
-    @Expose
-    @SerializedName("dire_series_wins")
-    private int direWins;
-    @Expose
-    private League league;
-    @Expose
     private long spectators;
+    @Expose
+    private int status;
 
     @Expose
     @SerializedName("series_type")
     private int seriesType;
+
     @Expose
-    private int status;
+    @SerializedName("time_started")
+    private long startTime;
+
+    @Expose
+    private long duration;
+
+    @Expose
+    private long id;
+
+    @Expose
+    @SerializedName("radiant_team")
+    private Team radiant;
+
+    @Expose
+    @SerializedName("dire_team")
+    private Team dire;
+
+    @Expose
+    @SerializedName("radiant_bans")
+    private List<BanPick> radiantBans;
+
+    @Expose
+    @SerializedName("radiant_picks")
+    private List<BanPick> radiantPicks;
+
+    @Expose
+    @SerializedName("dire_bans")
+    private List<BanPick> direBans;
+
+    @Expose
+    @SerializedName("dire_picks")
+    private List<BanPick> direPicks;
+
+    @Expose
+    @SerializedName("radiant_series_wins")
+    private int radiantWins;
+
+    @Expose
+    @SerializedName("dire_series_wins")
+    private int direWins;
+
+    @Expose
+    private League league;
 
     @Expose
     private List<Player> players;

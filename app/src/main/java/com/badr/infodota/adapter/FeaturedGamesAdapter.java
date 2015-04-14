@@ -125,6 +125,8 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
             if(itemView==null||itemView.getTag()==null){
                 itemView=inflater.inflate(R.layout.trackdota_featured_game_row,parent,false);
                 holder=new FeaturedGameHolder();
+                holder.radiantLogo= (ImageView) itemView.findViewById(R.id.radiant_logo);
+                holder.direLogo= (ImageView) itemView.findViewById(R.id.dire_logo);
                 holder.radiantTag= (TextView) itemView.findViewById(R.id.radiant_tag);
                 holder.direTag= (TextView) itemView.findViewById(R.id.dire_tag);
                 holder.radiantScore= (TextView) itemView.findViewById(R.id.radiant_score);
@@ -132,8 +134,6 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 holder.scoreHolder=itemView.findViewById(R.id.score_holder);
                 holder.radiantName= (TextView) itemView.findViewById(R.id.radiant_name);
                 holder.direName= (TextView) itemView.findViewById(R.id.dire_name);
-                holder.radiantLogo= (ImageView) itemView.findViewById(R.id.radiant_logo);
-                holder.direLogo= (ImageView) itemView.findViewById(R.id.dire_logo);
                 holder.gameStartTime= (TextView) itemView.findViewById(R.id.game_start_time);
                 holder.viewers= (TextView) itemView.findViewById(R.id.viewers);
                 holder.gameDuration= (TextView) itemView.findViewById(R.id.game_duration);
@@ -170,7 +170,6 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 }else {
                     holder.direLogo.setImageResource(R.drawable.default_img);
                 }
-
             }
             else {
                 holder.direTag.setText("Dire");

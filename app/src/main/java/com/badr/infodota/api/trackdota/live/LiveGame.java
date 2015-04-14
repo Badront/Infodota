@@ -22,14 +22,17 @@ public class LiveGame implements Serializable {
     private long apiDowntime;
 
     @Expose
-    private long spectators;
-
-    @Expose
     @SerializedName("v")
     private long version;
 
     @Expose
+    private long spectators;
+
+    @Expose
     private int status;
+
+    @Expose
+    private long duration;
 
     @Expose
     @SerializedName("tower_state")
@@ -41,9 +44,6 @@ public class LiveGame implements Serializable {
 
     @Expose
     private long updated;
-
-    @Expose
-    private long duration;
 
     @Expose
     @SerializedName("roshan_respawn_timer")

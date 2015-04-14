@@ -19,6 +19,10 @@ public class Player implements Serializable {
     @Expose
     @SerializedName("ultimate_cooldown")
     private int ultCooldown;
+    /*
+    * 1 - has ult (mb on cooldown)
+    * 3 - no mana
+    * */
     @Expose
     @SerializedName("ultimate_state")
     private int ultState;

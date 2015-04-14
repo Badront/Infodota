@@ -193,4 +193,12 @@
         <item>ПОПУЛЯРНЫЕ</item>
         <item>НЕДАВНИЕ</item>
     </string-array>
+    <string-array name="trackdota_game">
+        <item>ОСНОВНОЕ</item>
+        <item>КАРТА&amp;ГЕРОИ</item>
+        <item>ГРАФИКИ</item>
+        <item>СТАТИСТИКА</item>
+        <item>ЛОГИ</item>
+        <item>СТРИМЫ</item>
+    </string-array>
 </resources>

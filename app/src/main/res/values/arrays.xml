@@ -216,4 +216,12 @@
         <item>POPULAR</item>
         <item>RECENT</item>
         </string-array>
+    <string-array name="trackdota_game">
+        <item>COMMON</item>
+        <item>MAP&amp;HEROES</item>
+        <item>GRAPHS</item>
+        <item>STATISTICS</item>
+        <item>LOG</item>
+        <item>STREAMS</item>
+    </string-array>
 </resources>

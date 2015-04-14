@@ -18,11 +18,11 @@ public class Stats implements Serializable {
     @SerializedName("net_xp")
     private long[] netExp;
     @Expose
-    private long kills;
+    private long[] kills;
     @Expose
-    private long gpm;
+    private long[] gpm;
     @Expose
-    private long xpm;
+    private long[] xpm;
 
     public long[] getNetGold() {
         return netGold;
@@ -40,27 +40,27 @@ public class Stats implements Serializable {
         this.netExp = netExp;
     }
 
-    public long getKills() {
+    public long[] getKills() {
         return kills;
     }
 
-    public void setKills(long kills) {
+    public void setKills(long[] kills) {
         this.kills = kills;
     }
 
-    public long getGpm() {
+    public long[] getGpm() {
         return gpm;
     }
 
-    public void setGpm(long gpm) {
+    public void setGpm(long[] gpm) {
         this.gpm = gpm;
     }
 
-    public long getXpm() {
+    public long[] getXpm() {
         return xpm;
     }
 
-    public void setXpm(long xpm) {
+    public void setXpm(long[] xpm) {
         this.xpm = xpm;
     }
 }

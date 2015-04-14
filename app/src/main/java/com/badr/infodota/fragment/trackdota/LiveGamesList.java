@@ -1,33 +1,20 @@
 package com.badr.infodota.fragment.trackdota;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.ActionMenuView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.ListHolderActivity;
-import com.badr.infodota.adapter.LeaguesGamesAdapter;
+import com.badr.infodota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.adapter.LiveGamesAdapter;
+import com.badr.infodota.api.trackdota.game.EnhancedGame;
 import com.badr.infodota.api.trackdota.game.EnhancedMatch;
-import com.badr.infodota.api.trackdota.game.GamesResult;
-import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.ListFragment;
-import com.badr.infodota.service.trackdota.TrackdotaService;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
-import com.badr.infodota.util.retrofit.TaskRequest;
-import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.UncachedSpiceService;
-import com.octo.android.robospice.persistence.exception.SpiceException;
-import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.List;
 
@@ -59,7 +46,13 @@ public class LiveGamesList extends ListFragment implements Updatable<List<Enhanc
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+        Object object=getListAdapter().getItem(position);
+        if(object instanceof EnhancedGame){
+            EnhancedGame game= (EnhancedGame) object;
+            Intent intent = new Intent(getActivity(), TrackdotaGameInfoActivity.class);
+            intent.putExtra("id", game.getId());
+            startActivity(intent);
+        }
     }
 
     @Override

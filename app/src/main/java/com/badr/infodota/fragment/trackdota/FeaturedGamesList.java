@@ -1,5 +1,6 @@
 package com.badr.infodota.fragment.trackdota;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.badr.infodota.R;
+import com.badr.infodota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.adapter.FeaturedGamesAdapter;
 import com.badr.infodota.api.trackdota.game.Game;
 import com.badr.infodota.fragment.ListFragment;
@@ -43,7 +45,13 @@ public class FeaturedGamesList extends ListFragment implements Updatable<List<Ga
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+        Object object=getListAdapter().getItem(position);
+        if(object instanceof Game){
+            Game game= (Game) object;
+            Intent intent = new Intent(getActivity(), TrackdotaGameInfoActivity.class);
+            intent.putExtra("id", game.getId());
+            startActivity(intent);
+        }
     }
 
     @Override

@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
     private String[] titles;
-    private Map<Integer,Updatable> groupMap=new HashMap<Integer,Updatable>();
+    private Map<Integer,Updatable> fragmentsMap =new HashMap<Integer,Updatable>();
     private Refresher refresher;
     public TrackdotaPagerAdapter(Context context,FragmentManager fm, Refresher refresher) {
         super(fm);
@@ -34,24 +34,24 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        if(groupMap.get(position)!=null){
-            return (Fragment)groupMap.get(position);
+        if(fragmentsMap.containsKey(position)){
+            return (Fragment) fragmentsMap.get(position);
         }
         switch (position){
             case 0:
                 LiveGamesList liveGames=LiveGamesList.newInstance(refresher);
-                groupMap.put(0,liveGames);
+                fragmentsMap.put(0, liveGames);
                 return liveGames;
             default:
                 FeaturedGamesList featuredGames=FeaturedGamesList.newInstance(refresher);
-                groupMap.put(position,featuredGames);
+                fragmentsMap.put(position, featuredGames);
                 return featuredGames;
         }
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        groupMap.remove(position);
+        fragmentsMap.remove(position);
         super.destroyItem(container, position, object);
     }
 
@@ -65,7 +65,7 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
     }
 
     public void update(GamesResult gamesResult){
-        Set<Integer> keySet = groupMap.keySet();
+        Set<Integer> keySet = fragmentsMap.keySet();
         for (Integer key : keySet) {
             Object entity;
             if(gamesResult==null){
@@ -85,7 +85,7 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
                         break;
                 }
             }
-            groupMap.get(key).onUpdate(entity);
+            fragmentsMap.get(key).onUpdate(entity);
         }
     }
 }
