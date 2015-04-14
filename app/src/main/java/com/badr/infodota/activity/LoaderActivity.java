@@ -89,7 +89,16 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+            final int currentVersion = localUpdateService.getVersion(this);
+            if (currentVersion != Helper.DATABASE_VERSION) {
+                spiceManager.execute(new UpdateLoadRequest(this),this);
+            } else {
+                showDialog = true;
+                checkGooglePlayServicesAndRun();
+            }
+        }
     }
 
     @Override
@@ -115,14 +124,6 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
             getApplicationContext().getResources().updateConfiguration(config, null);
         }
         info = (TextView) findViewById(R.id.info);
-
-        final int currentVersion = localUpdateService.getVersion(this);
-        if (currentVersion != Helper.DATABASE_VERSION) {
-            spiceManager.execute(new UpdateLoadRequest(this),this);
-        } else {
-            showDialog = true;
-            checkGooglePlayServicesAndRun();
-        }
     }
 
     @Override

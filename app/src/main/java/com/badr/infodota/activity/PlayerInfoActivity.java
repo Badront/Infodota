@@ -80,9 +80,7 @@ public class PlayerInfoActivity extends BaseActivity {
                         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
                             MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
-                            if (adapter != null) {
-                                adapter.update();
-                            }
+                            adapter.update();
                         }
                         menu.removeItem(R.id.add_btn);
                         menuForSaved();
@@ -98,9 +96,7 @@ public class PlayerInfoActivity extends BaseActivity {
                         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
                             MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
-                            if (adapter != null) {
-                                adapter.update();
-                            }
+                            adapter.update();
                         }
                         menu.removeItem(R.id.delete_btn);
                         menu.removeItem(R.id.group_id);

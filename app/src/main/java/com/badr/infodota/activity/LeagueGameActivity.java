@@ -58,7 +58,6 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     private MatchItem matchItem;
     private ImageLoader imageLoader;
     private BeanContainer container = BeanContainer.getInstance();
-    private JoinDotaService service = container.getJoinDotaService();
     private Menu menu;
     private Button showStreams;
     private LinearLayout streamsHolder;
@@ -67,7 +66,10 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(spiceManager.isStarted()) {
+            spiceManager.start(this);
+            initMatch();
+        }
     }
 
     @Override
@@ -116,7 +118,6 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey("matchItem")) {
             matchItem = (MatchItem) bundle.get("matchItem");
-            initMatch();
         } else {
             finish();
         }

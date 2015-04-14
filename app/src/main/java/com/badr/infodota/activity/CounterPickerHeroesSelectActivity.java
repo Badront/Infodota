@@ -57,7 +57,10 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()){
+            spiceManager.start(this);
+            loadHeroesForGridView();
+        }
     }
 
     @Override
@@ -131,7 +134,6 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
         } else {
             actionBar.setTitle(MessageFormat.format(getString(R.string.enemies_selected), enemies.size()));
         }
-        loadHeroesForGridView();
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

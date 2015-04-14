@@ -47,7 +47,10 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(spiceManager.isStarted()) {
+            spiceManager.start(this);
+            loadItems();
+        }
     }
 
     @Override
@@ -110,7 +113,6 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
         //layoutManager.setReverseLayout(true);
         gridView.setLayoutManager(layoutManager);
         setColumnSize();
-        loadItems();
     }
 
     private void setColumnSize() {

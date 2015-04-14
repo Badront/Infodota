@@ -65,7 +65,24 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+
+            Bundle bundle = getIntent().getExtras();
+            StringBuilder urlBuilder = new StringBuilder("http://dotabuff.com/players/");
+            urlBuilder.append(account.getAccountId());
+            urlBuilder.append("/heroes?");
+            urlBuilder.append("date=");
+            urlBuilder.append(bundle.getString("date"));
+            urlBuilder.append("&game_mode=");
+            urlBuilder.append(bundle.getString("game_mode"));
+            urlBuilder.append("&match_type=");
+            urlBuilder.append(bundle.getString("match_type"));
+            urlBuilder.append("&metric=");
+            urlBuilder.append(bundle.getString("metric"));
+
+            spiceManager.execute(new PlayerHeroesStatsLoadRequest(this,urlBuilder.toString()),this);
+        }
     }
 
     @Override
@@ -75,7 +92,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
         }
         super.onStop();
     }
-
+    private Unit account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +115,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
         imageLoader = ImageLoader.getInstance();
 
         Bundle bundle = getIntent().getExtras();
-        Unit account = (Unit) bundle.get("account");
+        account = (Unit) bundle.get("account");
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(account.getName());
         imageLoader.loadImage(account.getIcon(), options, new ImageLoadingListener() {
@@ -133,24 +150,9 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
             }
         });
 
-        StringBuilder urlBuilder = new StringBuilder("http://dotabuff.com/players/");
-        urlBuilder.append(account.getAccountId());
-        urlBuilder.append("/heroes?");
-        urlBuilder.append("date=");
-        urlBuilder.append(bundle.getString("date"));
-        urlBuilder.append("&game_mode=");
-        urlBuilder.append(bundle.getString("game_mode"));
-        urlBuilder.append("&match_type=");
-        urlBuilder.append(bundle.getString("match_type"));
-        urlBuilder.append("&metric=");
-        urlBuilder.append(bundle.getString("metric"));
-        final String url = urlBuilder.toString();
-
         horizontalHeader.removeAllViews();
         verticalHeader.removeAllViews();
         content.removeAllViews();
-
-        spiceManager.execute(new PlayerHeroesStatsLoadRequest(this,url),this);
     }
 
     @Override

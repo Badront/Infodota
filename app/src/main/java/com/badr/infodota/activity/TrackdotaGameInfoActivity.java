@@ -34,7 +34,10 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+            onRefresh();
+        }
     }
 
     @Override
@@ -60,7 +63,6 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             pager.setOffscreenPageLimit(2);
             SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
             indicator.setViewPager(pager);
-            onRefresh();
         }
     }
 

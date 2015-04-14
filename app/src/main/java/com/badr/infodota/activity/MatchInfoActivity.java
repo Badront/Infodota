@@ -59,7 +59,10 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+            spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
+        }
     }
 
     @Override
@@ -86,7 +89,6 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             }
 
             initPager();
-            spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
         }
     }
 
