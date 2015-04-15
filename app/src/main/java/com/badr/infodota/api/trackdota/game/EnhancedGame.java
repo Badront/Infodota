@@ -18,6 +18,9 @@ public class EnhancedGame extends Game {
     /*
     * 0 - bo1
     * 1 - bo3
+    * 2 - bo5
+    * 3 - bo7?
+    * where is bo2?
     *
     * */
     @Expose
@@ -26,7 +29,8 @@ public class EnhancedGame extends Game {
     /*
     * 1- currently in pick&ban
     * 2 - waiting for creep spawn
-    * 3 - live
+    * 3 - in progress
+    * 4 - finished
     * */
     @Expose
     private int status;

@@ -108,58 +108,67 @@ public class MatchSummary extends Fragment {
             if (match.getPicks_bans() != null && match.getPicks_bans().size() > 0) {
                 TableLayout cmModeTable = (TableLayout) root.findViewById(R.id.cm_mode_table);
                 List<PickBan> pickBans = match.getPicks_bans();
-                final Activity activity = getActivity();
+                Activity activity = getActivity();
                 if (activity != null) {
-                    LayoutInflater inflater = getActivity().getLayoutInflater();
+                    LayoutInflater inflater = activity.getLayoutInflater();
                     BeanContainer container = BeanContainer.getInstance();
                     HeroService heroService = container.getHeroService();
                     ImageLoader imageLoader = ImageLoader.getInstance();
-                    for (final PickBan pickBan : pickBans) {
-                        ViewGroup row = (ViewGroup) inflater.inflate(R.layout.pick_ban, null, false);
-                        final ImageView currentImage;
+                    for (PickBan pickBan : pickBans) {
+                        ViewGroup row = (ViewGroup) inflater.inflate(R.layout.pick_ban, cmModeTable, false);
+                        ImageView currentImage;
                         if (pickBan.getTeam() == 0) {
                             currentImage = (ImageView) row.findViewById(R.id.radiant_hero);
                         } else {
                             currentImage = (ImageView) row.findViewById(R.id.dire_hero);
                         }
-                        final Hero hero = heroService.getHeroById(activity, pickBan.getHero_id());
+                        Hero hero = heroService.getHeroById(activity, pickBan.getHero_id());
                         if (hero != null) {
-                            imageLoader.loadImage("assets://heroes/" + hero.getDotaId() + "/full.png",
-                                    new ImageLoadingListener() {
-                                        @Override
-                                        public void onLoadingStarted(String s, View view) {
+                            if(pickBan.isIs_pick()){
+                                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", currentImage);
+                            }
+                            else {
+                                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", currentImage,
+                                        new ImageLoadingListener() {
+                                            @Override
+                                            public void onLoadingStarted(String s, View view) {
 
-                                        }
+                                            }
 
-                                        @Override
-                                        public void onLoadingFailed(String s, View view, FailReason failReason) {
+                                            @Override
+                                            public void onLoadingFailed(String s, View view, FailReason failReason) {
 
-                                        }
+                                            }
 
-                                        @Override
-                                        @SuppressWarnings("deprecation")
-                                        public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                                            @Override
+                                            @SuppressWarnings("deprecation")
+                                            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
                                             /*Drawable drawable = new BitmapDrawable(getResources(), bitmap);
                                             *//*drawable.setBounds(0, 0, Utils.dpSize(activity, 40),
 													Utils.dpSize(activity, 40));*/
-                                            if (pickBan.isIs_pick()) {
+                                            /*if (pickBan.isIs_pick()) {
                                                 currentImage.setImageBitmap(bitmap);
                                             } else {
-                                                currentImage.setImageBitmap(Utils.toGrayScale(bitmap));
+                                            }*/
+                                                ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
                                             }
-                                        }
 
-                                        @Override
-                                        public void onLoadingCancelled(String s, View view) {
+                                            @Override
+                                            public void onLoadingCancelled(String s, View view) {
 
-                                        }
-                                    });
+                                            }
+                                        });
+                            }
+                            final long heroId=hero.getId();
                             currentImage.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(activity, HeroInfoActivity.class);
-                                    intent.putExtra("id", hero.getId());
-                                    startActivity(intent);
+                                    Activity activity=getActivity();
+                                    if(activity!=null) {
+                                        Intent intent = new Intent(activity, HeroInfoActivity.class);
+                                        intent.putExtra("id", heroId);
+                                        startActivity(intent);
+                                    }
                                 }
                             });
                         }

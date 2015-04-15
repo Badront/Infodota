@@ -27,7 +27,12 @@ public class LiveGame implements Serializable {
 
     @Expose
     private long spectators;
-
+    /*
+        * 1- currently in pick&ban
+        * 2 - waiting for creep spawn
+        * 3 - in progress
+        * 4 - finished
+        * */
     @Expose
     private int status;
 
