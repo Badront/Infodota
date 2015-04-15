@@ -1,6 +1,7 @@
 package com.badr.infodota.api.trackdota.live;
 
 import com.badr.infodota.api.heroes.Hero;
+import com.badr.infodota.api.items.Item;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -52,7 +53,10 @@ public class Player implements Serializable {
     @SerializedName("account_id")
     private long accountId;
     @Expose
-    private long[] items;
+    @SerializedName("items")
+    private long[] itemIds;
+
+    private Item[] items;
 
     @Expose
     @SerializedName("last_hits")
@@ -75,6 +79,14 @@ public class Player implements Serializable {
     @Expose
     @SerializedName("respawn_timer")
     private long respawnTimer;
+
+    public Item[] getItems() {
+        return items;
+    }
+
+    public void setItems(Item[] items) {
+        this.items = items;
+    }
 
     public Hero getHero() {
         return hero;
@@ -180,12 +192,12 @@ public class Player implements Serializable {
         this.accountId = accountId;
     }
 
-    public long[] getItems() {
-        return items;
+    public long[] getItemIds() {
+        return itemIds;
     }
 
-    public void setItems(long[] items) {
-        this.items = items;
+    public void setItemIds(long[] itemIds) {
+        this.itemIds = itemIds;
     }
 
     public int getLastHits() {
