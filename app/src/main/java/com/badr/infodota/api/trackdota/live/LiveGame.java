@@ -41,11 +41,11 @@ public class LiveGame implements Serializable {
 
     @Expose
     @SerializedName("tower_state")
-    private long towerState;
+    private int towerState;
 
     @Expose
     @SerializedName("barracks_state")
-    private long barracksState;
+    private int barracksState;
 
     @Expose
     private long updated;
@@ -104,19 +104,19 @@ public class LiveGame implements Serializable {
         this.status = status;
     }
 
-    public long getTowerState() {
+    public int getTowerState() {
         return towerState;
     }
 
-    public void setTowerState(long towerState) {
+    public void setTowerState(int towerState) {
         this.towerState = towerState;
     }
 
-    public long getBarracksState() {
+    public int getBarracksState() {
         return barracksState;
     }
 
-    public void setBarracksState(long barracksState) {
+    public void setBarracksState(int barracksState) {
         this.barracksState = barracksState;
     }
 
