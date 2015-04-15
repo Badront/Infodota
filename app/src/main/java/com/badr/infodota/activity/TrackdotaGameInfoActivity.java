@@ -2,7 +2,9 @@ package com.badr.infodota.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
@@ -26,19 +28,29 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher, RequestListener {
 
+    private static final long DELAY_20_SEC = 20000;
     private CoreResult coreResult;
     private LiveGame liveGame;
     private long matchId;
     private TrackdotaGamePagerAdapter adapter;
+    private View progressBar;
     private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
+    private Handler updateHandler=new Handler();
+    private Runnable updateTask;
+
 
     @Override
     protected void onStart() {
         super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
-            onRefresh();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
     }
 
     @Override
@@ -46,14 +58,21 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         if (spiceManager.isStarted()) {
             spiceManager.shouldStop();
         }
+        cancelDelayedUpdate();
         super.onStop();
+    }
+
+    private void cancelDelayedUpdate() {
+        if(updateTask!=null) {
+            updateHandler.removeCallbacks(updateTask);
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trackdota_game_info);
-
+        progressBar=findViewById(R.id.progressBar);
         Bundle intent = getIntent().getExtras();
         if (intent != null && intent.containsKey("id")) {
             matchId = intent.getLong("id");
@@ -69,11 +88,14 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
 
     @Override
     public void onRefresh() {
+        cancelDelayedUpdate();
+        progressBar.setVisibility(View.VISIBLE);
         spiceManager.execute(new CoreGameLoadRequest(matchId), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        progressBar.setVisibility(View.GONE);
         Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
@@ -84,10 +106,24 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             spiceManager.execute(new LiveGameLoadRequest(this,matchId), this);
         } else if (object instanceof LiveGame) {
             liveGame = (LiveGame) object;
+            progressBar.setVisibility(View.GONE);
             adapter.update(coreResult, liveGame);
+            startDelayedUpdate();
         } else if(object==null){
+            progressBar.setVisibility(View.GONE);
             adapter.update(coreResult,liveGame);
         }
+    }
+
+    private void startDelayedUpdate() {
+        cancelDelayedUpdate();
+        updateTask=new Runnable() {
+            @Override
+            public void run() {
+                onRefresh();
+            }
+        };
+        updateHandler.postDelayed(updateTask,DELAY_20_SEC);
     }
 
     public static class CoreGameLoadRequest extends TaskRequest<CoreResult> {

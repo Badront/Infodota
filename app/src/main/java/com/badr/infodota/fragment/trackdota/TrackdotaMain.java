@@ -2,6 +2,7 @@ package com.badr.infodota.fragment.trackdota;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -33,6 +34,10 @@ import com.octo.android.robospice.request.listener.RequestListener;
 public class TrackdotaMain extends Fragment implements RequestListener<GamesResult>,Refresher {
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
     private TrackdotaPagerAdapter adapter;
+    private View progressBar;
+    private Handler updateHandler=new Handler();
+    private Runnable updateTask;
+    private static final long DELAY_20_SEC = 20000;
     @Override
     public void onStart() {
         super.onStart();
@@ -40,16 +45,31 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
+    }
+
+    @Override
     public void onStop() {
         if(spiceManager.isStarted()){
             spiceManager.shouldStop();
         }
+        cancelDelayedUpdate();
         super.onStop();
+    }
+
+    private void cancelDelayedUpdate() {
+        if(updateTask!=null) {
+            updateHandler.removeCallbacks(updateTask);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.trackdota,container,false);
+        View view=inflater.inflate(R.layout.trackdota,container,false);
+        progressBar=view.findViewById(R.id.progressBar);
+        return view;
     }
 
     @Override
@@ -63,7 +83,6 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         initPager();
-        onRefresh();
     }
 
     private void initPager() {
@@ -83,18 +102,34 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
 
     @Override
     public void onRefresh(){
+        cancelDelayedUpdate();
+        progressBar.setVisibility(View.VISIBLE);
         spiceManager.execute(new GamesResultLoadRequest(),this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        progressBar.setVisibility(View.GONE);
         adapter.update(null);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(GamesResult gamesResult) {
+        progressBar.setVisibility(View.GONE);
         adapter.update(gamesResult);
+        startDelayedUpdate();
+    }
+
+    private void startDelayedUpdate() {
+        cancelDelayedUpdate();
+        updateTask=new Runnable() {
+            @Override
+            public void run() {
+                onRefresh();
+            }
+        };
+        updateHandler.postDelayed(updateTask,DELAY_20_SEC);
     }
 
     public class GamesResultLoadRequest extends TaskRequest<GamesResult> {

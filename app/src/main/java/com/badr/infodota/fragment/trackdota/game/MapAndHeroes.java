@@ -128,10 +128,10 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                     mapObjectsHolder.removeAllViews();
                     drawBuildings(mapObjectsHolder,liveGame.getTowerState(),liveGame.getBarracksState());
                     if(liveGame.getRadiant()!=null) {
-                        initTeam(mapObjectsHolder,liveGame.getRadiant(),0);
+                        drawTeam(mapObjectsHolder, liveGame.getRadiant(), 0);
                     }
                     if(liveGame.getDire()!=null){
-                        initTeam(mapObjectsHolder,liveGame.getDire(),1);
+                        drawTeam(mapObjectsHolder, liveGame.getDire(), 1);
                     }
                 }
             });
@@ -139,7 +139,7 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
     }
     /*align - Radiant=0, Dire=1*/
     @SuppressWarnings("deprecation")
-    private void initTeam(RelativeLayout holder, Team team, int align){
+    private void drawTeam(RelativeLayout holder, Team team, int align){
         Activity activity=getActivity();
         LayoutInflater inflater=activity.getLayoutInflater();
         if(team.getPlayers()!=null){

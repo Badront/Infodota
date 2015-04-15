@@ -10,9 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="0px"
+        android:layout_weight="1">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.pnikosis.materialishprogress.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progressBar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            wheel:matProg_barColor="?attr/colorPrimary"
+            wheel:matProg_progressIndeterminate="true" />
+
+    </FrameLayout>
 </LinearLayout>
