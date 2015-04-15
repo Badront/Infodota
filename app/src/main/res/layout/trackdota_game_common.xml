@@ -14,48 +14,56 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/league_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
             <LinearLayout
+                android:id="@+id/league_holder"
+                android:background="?attr/clickableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/league_logo"
-                    android:layout_width="93dp"
-                    android:layout_height="57dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/default_img" />
+                <TextView
+                    android:id="@+id/league_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/game_state"
+                    <ImageView
+                        android:id="@+id/league_logo"
+                        android:layout_width="93dp"
+                        android:layout_height="57dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/default_img" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/game_start_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/game_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/viewers"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/game_start_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/viewers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -211,83 +219,93 @@
                     android:text="Roshan status:" />
 
                 <TextView
-                    android:layout_marginLeft="5dp"
                     android:id="@+id/roshan_status"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" />
             </LinearLayout>
 
             <TextView
-                android:layout_marginTop="5dp"
-                android:text="Picks and bans"
-                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="Picks and bans"
+                android:textColor="@android:color/white" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:gravity="center_horizontal" >
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
                 <TextView
-                    android:text="Radiant picks"
                     android:id="@+id/radiant_picks_header"
-                    android:textColor="@color/ally_team"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="Radiant picks"
+                    android:textColor="@color/ally_team" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
                     android:id="@+id/radiant_picks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal" />
+
                 <TextView
-                    android:layout_marginTop="5dp"
                     android:id="@+id/radiant_bans_header"
-                    android:text="Radiant bans"
-                    android:textColor="@color/ally_team"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:text="Radiant bans"
+                    android:textColor="@color/ally_team" />
+
+                <LinearLayout
                     android:id="@+id/radiant_bans"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal" />
-                </LinearLayout>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
                 <TextView
-                    android:text="Dire picks"
                     android:id="@+id/dire_picks_header"
-                    android:textColor="@color/enemy_team"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="Dire picks"
+                    android:textColor="@color/enemy_team" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
                     android:id="@+id/dire_picks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal" />
+
                 <TextView
+                    android:id="@+id/dire_bans_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Dire bans"
-                    android:id="@+id/dire_bans_header"
-                    android:textColor="@color/enemy_team"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textColor="@color/enemy_team" />
+
                 <LinearLayout
-                    android:layout_marginTop="5dp"
                     android:id="@+id/dire_bans"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal" />
             </LinearLayout>
         </LinearLayout>

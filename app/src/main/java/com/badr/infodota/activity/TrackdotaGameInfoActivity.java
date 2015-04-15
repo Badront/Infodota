@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
@@ -80,7 +81,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRequestSuccess(Object object) {
         if (object instanceof CoreResult) {
             coreResult = (CoreResult) object;
-            spiceManager.execute(new LiveGameLoadRequest(matchId), this);
+            spiceManager.execute(new LiveGameLoadRequest(this,matchId), this);
         } else if (object instanceof LiveGame) {
             liveGame = (LiveGame) object;
             adapter.update(coreResult, liveGame);
@@ -109,15 +110,17 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         private BeanContainer container = BeanContainer.getInstance();
         private TrackdotaService trackdotaService = container.getTrackdotaService();
         private long matchId;
+        private Context context;
 
-        public LiveGameLoadRequest(long matchId) {
+        public LiveGameLoadRequest(Context context,long matchId) {
             super(LiveGame.class);
+            this.context=context;
             this.matchId = matchId;
         }
 
         @Override
         public LiveGame loadData() throws Exception {
-            return trackdotaService.getLiveGame(matchId);
+            return trackdotaService.getLiveGame(context,matchId);
         }
     }
 }

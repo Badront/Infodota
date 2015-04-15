@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -107,6 +108,17 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     imageLoader.displayImage("http://www.trackdota.com/data/images/leagues/" + league.getId() + ".jpg", (ImageView) root.findViewById(R.id.league_logo), options);
                 }
                 ((TextView) root.findViewById(R.id.league_name)).setText(league.getName());
+                final String leagueUrl=league.getUrl();
+                if(!TextUtils.isEmpty(leagueUrl)) {
+                    root.findViewById(R.id.league_holder).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent inBrowser = new Intent(Intent.ACTION_VIEW);
+                            inBrowser.setData(Uri.parse(leagueUrl));
+                            startActivity(inBrowser);
+                        }
+                    });
+                }
             }
             TextView gameRdWins=(TextView)root.findViewById(R.id.game_rd_wins);
             gameRdWins.setText(coreResult.getRadiantWins()+" - "+coreResult.getDireWins());
@@ -187,9 +199,10 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             if(coreResult.getRadiantPicks()!=null){
                 for(int i=0,size=coreResult.getRadiantPicks().size();i<size;i++){
                     BanPick pick=coreResult.getRadiantPicks().get(i);
-                    View row=inflater.inflate(R.layout.hero_trackdota_pickban,radiantPicks,false);
+                    View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
                     Hero hero=heroService.getHeroById(activity,pick.getHeroId());
+                    //todo вынести в отдельный поток
                     imageLoader.displayImage(
                             "assets://heroes/" + hero.getDotaId() + "/full.png",
                             (ImageView) row.findViewById(R.id.image),
@@ -213,7 +226,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             if(coreResult.getRadiantBans()!=null){
                 for(int i=0,size=coreResult.getRadiantBans().size();i<size;i++){
                     BanPick ban=coreResult.getRadiantBans().get(i);
-                    View row=inflater.inflate(R.layout.hero_trackdota_pickban,radiantPicks,false);
+                    View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
                     Hero hero=heroService.getHeroById(activity, ban.getHeroId());
                     imageLoader.displayImage(
@@ -261,7 +274,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             if(coreResult.getDirePicks()!=null){
                 for(int i=0,size=coreResult.getDirePicks().size();i<size;i++){
                     BanPick pick=coreResult.getDirePicks().get(i);
-                    View row=inflater.inflate(R.layout.hero_trackdota_pickban,radiantPicks,false);
+                    View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
                     Hero hero=heroService.getHeroById(activity,pick.getHeroId());
                     imageLoader.displayImage(
@@ -287,7 +300,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             if(coreResult.getDireBans()!=null){
                 for(int i=0,size=coreResult.getDireBans().size();i<size;i++){
                     BanPick ban=coreResult.getDireBans().get(i);
-                    View row=inflater.inflate(R.layout.hero_trackdota_pickban,radiantPicks,false);
+                    View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
                     Hero hero=heroService.getHeroById(activity, ban.getHeroId());
                     imageLoader.displayImage(

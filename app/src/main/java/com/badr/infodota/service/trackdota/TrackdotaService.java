@@ -1,5 +1,7 @@
 package com.badr.infodota.service.trackdota;
 
+import android.content.Context;
+
 import com.badr.infodota.InitializingBean;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.GamesResult;
@@ -12,7 +14,7 @@ import com.badr.infodota.api.trackdota.live.LiveGame;
  */
 public interface TrackdotaService extends InitializingBean {
 
-    LiveGame getLiveGame(long gameId);
+    LiveGame getLiveGame(Context context, long gameId);
 
     CoreResult getGameCoreData(long gameId);
 

@@ -10,6 +10,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.trackdota.game.CommonInfo;
+import com.badr.infodota.fragment.trackdota.game.MapAndHeroes;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 
@@ -46,6 +47,10 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
                 CommonInfo commonInfo=CommonInfo.newInstance(refresher,coreResult,liveGame);
                 fragmentsMap.put(position,commonInfo);
                 return commonInfo;
+            case 1:
+                MapAndHeroes mapAndHeroes=MapAndHeroes.newInstance(refresher,coreResult,liveGame);
+                fragmentsMap.put(position,mapAndHeroes);
+                return mapAndHeroes;
         }
     }
 

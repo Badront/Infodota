@@ -1,5 +1,6 @@
 package com.badr.infodota.api.trackdota.live;
 
+import com.badr.infodota.api.heroes.Hero;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,6 +16,8 @@ public class Player implements Serializable {
     @Expose
     @SerializedName("hero_id")
     private long heroId;
+
+    private Hero hero;
 
     @Expose
     @SerializedName("ultimate_cooldown")
@@ -72,6 +75,14 @@ public class Player implements Serializable {
     @Expose
     @SerializedName("respawn_timer")
     private long respawnTimer;
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
 
     public long getHeroId() {
         return heroId;
