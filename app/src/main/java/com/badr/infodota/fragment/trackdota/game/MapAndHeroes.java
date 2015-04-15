@@ -2,6 +2,7 @@ package com.badr.infodota.fragment.trackdota.game;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,17 +16,16 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.api.trackdota.live.Player;
 import com.badr.infodota.api.trackdota.live.Team;
-import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 import com.badr.infodota.util.Utils;
@@ -43,7 +43,8 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
     private LiveGame liveGame;
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
-    private HeroService heroService= BeanContainer.getInstance().getHeroService();
+    private int mMapWidth;
+    private int mMapHeight;
     private Point[] towers = new Point[]{
             new Point(13, 39), new Point(13, 55), new Point(9, 71), new Point(40, 59),
             new Point(28, 68), new Point(22, 74), new Point(82, 86), new Point(46, 88),
@@ -86,6 +87,12 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initView();
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         options = new DisplayImageOptions.Builder()
@@ -105,25 +112,29 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
         this.liveGame=entity.second;
         initView();
     }
-    private int mMapWidth;
-    private int mMapHeight;
     private void initView(){
         View root=getView();
         Activity activity=getActivity();
         if(liveGame!=null&&root!=null&&activity!=null){
-            RelativeLayout mapObjectsHolder= (RelativeLayout) root.findViewById(R.id.map_objects_holder);
-            mapObjectsHolder.removeAllViews();
-            View map=root.findViewById(R.id.dota_map);
-            mMapHeight=map.getHeight();
-            mMapWidth=map.getWidth();
-            drawBuildings(mapObjectsHolder,liveGame.getTowerState(),liveGame.getBarracksState());
-            if(liveGame.getRadiant()!=null) {
-                initTeam(mapObjectsHolder,liveGame.getRadiant(),0);
-            }
-            if(liveGame.getDire()!=null){
-                initTeam(mapObjectsHolder,liveGame.getDire(),1);
-            }
-
+            final View map=root.findViewById(R.id.dota_map);
+            map.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                @SuppressWarnings("deprecation")
+                public void onGlobalLayout() {
+                    mMapHeight=map.getHeight();
+                    mMapWidth=map.getWidth();
+                    map.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    RelativeLayout mapObjectsHolder= (RelativeLayout) getView().findViewById(R.id.map_objects_holder);
+                    mapObjectsHolder.removeAllViews();
+                    drawBuildings(mapObjectsHolder,liveGame.getTowerState(),liveGame.getBarracksState());
+                    if(liveGame.getRadiant()!=null) {
+                        initTeam(mapObjectsHolder,liveGame.getRadiant(),0);
+                    }
+                    if(liveGame.getDire()!=null){
+                        initTeam(mapObjectsHolder,liveGame.getDire(),1);
+                    }
+                }
+            });
         }
     }
     /*align - Radiant=0, Dire=1*/
@@ -137,7 +148,7 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
             int direColor=getResources().getColor(R.color.dire_transparent);
             int direDeadColor=getResources().getColor(R.color.dire_transparent_dead);
             for(Player player:team.getPlayers()){
-                View row=inflater.inflate(R.layout.trackdota_map_minihero,holder,false);
+                RelativeLayout row= (RelativeLayout) inflater.inflate(R.layout.trackdota_map_minihero,holder,false);
                 imageLoader.displayImage("assets://heroes/" + player.getHero().getDotaId() + "/mini.png",
                         (ImageView) row.findViewById(R.id.image),
                         options);
@@ -181,7 +192,14 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                 }
                 canvas.drawCircle(circleSize/2,circleSize/2,circleSize/2,paint);
                 BitmapDrawable drawable=new BitmapDrawable(activity.getResources(),bitmap);
-                row.setBackgroundDrawable(drawable);
+                if(player.getRespawnTimer()>0){
+                    row.removeView(row.findViewById(R.id.alive));
+                    row.findViewById(R.id.dead).setBackgroundDrawable(drawable);
+                }
+                else {
+                    row.removeView(row.findViewById(R.id.dead));
+                    row.findViewById(R.id.alive).setBackgroundDrawable(drawable);
+                }
                 holder.addView(row);
             }
         }
@@ -249,8 +267,8 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
             canvas.drawRect(
                     left,
                     top,
-                    left+barrackSize,
-                    top+barrackSize,
+                    left + barrackSize,
+                    top + barrackSize,
                     paint);
 
             if(alive==0){
@@ -263,10 +281,10 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                 paint.setColor(direInnerColor);
             }
             canvas.drawRect(
-                    left+barrackInnerMargin,
-                    top+barrackInnerMargin,
-                    left+barrackInnerSize,
-                    top+barrackInnerSize,
+                    left + barrackInnerMargin,
+                    top + barrackInnerMargin,
+                    left + barrackInnerSize,
+                    top + barrackInnerSize,
                     paint);
         }
         buildingsImage.setAdjustViewBounds(true);
