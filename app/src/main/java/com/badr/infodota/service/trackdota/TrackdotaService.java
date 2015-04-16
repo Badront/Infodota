@@ -16,7 +16,7 @@ public interface TrackdotaService extends InitializingBean {
 
     LiveGame getLiveGame(Context context, long gameId);
 
-    CoreResult getGameCoreData(long gameId);
+    CoreResult getGameCoreData(Context context,long gameId);
 
     GamesResult getGames();
 }

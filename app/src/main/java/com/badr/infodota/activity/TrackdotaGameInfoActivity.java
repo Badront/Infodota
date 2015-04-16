@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.TrackdotaGamePagerAdapter;
+import com.badr.infodota.api.trackdota.GameManager;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.service.trackdota.TrackdotaService;
@@ -37,7 +38,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
     private Handler updateHandler=new Handler();
     private Runnable updateTask;
-
+    private GameManager mGameManager=GameManager.getInstance();
 
     @Override
     protected void onStart() {
@@ -90,7 +91,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRefresh() {
         cancelDelayedUpdate();
         progressBar.setVisibility(View.VISIBLE);
-        spiceManager.execute(new CoreGameLoadRequest(matchId), this);
+        spiceManager.execute(new CoreGameLoadRequest(this,matchId), this);
     }
 
     @Override
@@ -130,15 +131,17 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         private BeanContainer container = BeanContainer.getInstance();
         private TrackdotaService trackdotaService = container.getTrackdotaService();
         private long matchId;
+        private Context context;
 
-        public CoreGameLoadRequest(long matchId) {
+        public CoreGameLoadRequest(Context context,long matchId) {
             super(CoreResult.class);
             this.matchId = matchId;
+            this.context=context;
         }
 
         @Override
         public CoreResult loadData() throws Exception {
-            return trackdotaService.getGameCoreData(matchId);
+            return trackdotaService.getGameCoreData(context,matchId);
         }
     }
 

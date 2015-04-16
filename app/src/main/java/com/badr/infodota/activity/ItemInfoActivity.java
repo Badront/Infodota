@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -200,5 +201,20 @@ public class ItemInfoActivity extends BaseActivity {
             }
         }
 
+    }
+
+    public static class OnDotaItemClickListener implements View.OnClickListener {
+        private Context context;
+        private long itemId;
+        public OnDotaItemClickListener(Context context,long itemId){
+            this.context=context;
+            this.itemId=itemId;
+        }
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, ItemInfoActivity.class);
+            intent.putExtra("id", itemId);
+            context.startActivity(intent);
+        }
     }
 }

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
+import com.badr.infodota.api.trackdota.TrackdotaUtils;
 import com.badr.infodota.api.trackdota.game.Game;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
@@ -148,7 +149,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 holder.radiantTag.setText(!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant");
                 holder.radiantName.setText(!TextUtils.isEmpty(radiant.getName())?radiant.getName():"Radiant");
                 if(radiant.isHasLogo()) {
-                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/" + radiant.getId() + ".png", holder.radiantLogo, options);
+                    imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), holder.radiantLogo, options);
                 }
                 else {
                     holder.radiantLogo.setImageResource(R.drawable.default_img);
@@ -166,7 +167,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 holder.direTag.setText(!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire");
                 holder.direName.setText(!TextUtils.isEmpty(dire.getName())?dire.getName():"Dire");
                 if(dire.isHasLogo()) {
-                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/" + dire.getId() + ".png", holder.direLogo, options);
+                    imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), holder.direLogo, options);
                 }else {
                     holder.direLogo.setImageResource(R.drawable.default_img);
                 }

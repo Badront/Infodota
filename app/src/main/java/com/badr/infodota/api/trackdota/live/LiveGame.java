@@ -55,9 +55,9 @@ public class LiveGame implements Serializable {
     private long roshanRespawnTimer;
 
     @Expose
-    private Team dire;
+    private LiveTeam dire;
     @Expose
-    private Team radiant;
+    private LiveTeam radiant;
     @Expose
     private List<LogEvent> log;
 
@@ -144,19 +144,19 @@ public class LiveGame implements Serializable {
         this.roshanRespawnTimer = roshanRespawnTimer;
     }
 
-    public Team getDire() {
+    public LiveTeam getDire() {
         return dire;
     }
 
-    public void setDire(Team dire) {
+    public void setDire(LiveTeam dire) {
         this.dire = dire;
     }
 
-    public Team getRadiant() {
+    public LiveTeam getRadiant() {
         return radiant;
     }
 
-    public void setRadiant(Team radiant) {
+    public void setRadiant(LiveTeam radiant) {
         this.radiant = radiant;
     }
 

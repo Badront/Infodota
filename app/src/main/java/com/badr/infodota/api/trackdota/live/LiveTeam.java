@@ -10,19 +10,19 @@ import java.util.List;
  * 13.04.2015
  * 15:19
  */
-public class Team implements Serializable {
+public class LiveTeam implements Serializable {
     @Expose
-    private List<Player> players;
+    private List<LivePlayer> players;
     @Expose
     private int score;
     @Expose
     private Stats stats;
 
-    public List<Player> getPlayers() {
+    public List<LivePlayer> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(List<LivePlayer> players) {
         this.players = players;
     }
 

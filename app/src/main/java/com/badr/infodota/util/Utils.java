@@ -3,6 +3,8 @@ package com.badr.infodota.util;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
@@ -21,6 +23,9 @@ import java.util.Arrays;
  * Date: 16.01.14
  */
 public class Utils {
+    public static final int PHONE = 0;
+    public static final int TABLET_PORTRAIT = 1;
+    public static final int TABLET_LANDSCAPE = 2;
     private static final long STEAM64ID=76561197960265728L;
     public static long steam32to64(long steam32){
         return STEAM64ID + steam32;
@@ -33,6 +38,25 @@ public class Utils {
     public static int dpSize(Context context, int px) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (px * scale + 0.5f);
+    }
+
+    public static int getDeviceState(Context context){
+        Resources resources=context.getResources();
+        int state;
+        if (!resources.getBoolean(R.bool.is_tablet)) {
+            if (resources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                state = Utils.TABLET_PORTRAIT;
+            } else {
+                state = Utils.PHONE;
+            }
+        } else {
+            if (resources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                state = Utils.TABLET_LANDSCAPE;
+            } else {
+                state = Utils.TABLET_PORTRAIT;
+            }
+        }
+        return state;
     }
 
     public static void addPlayerToListDialog(final Context context, DialogInterface.OnClickListener listener) {

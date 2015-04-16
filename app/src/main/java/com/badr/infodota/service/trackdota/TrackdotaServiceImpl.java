@@ -4,14 +4,20 @@ import android.content.Context;
 import android.util.Log;
 
 import com.badr.infodota.BeanContainer;
+import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.items.Item;
+import com.badr.infodota.api.trackdota.GameManager;
+import com.badr.infodota.api.trackdota.core.BanPick;
 import com.badr.infodota.api.trackdota.core.CoreResult;
+import com.badr.infodota.api.trackdota.core.Player;
 import com.badr.infodota.api.trackdota.game.GamesResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
-import com.badr.infodota.api.trackdota.live.Player;
+import com.badr.infodota.api.trackdota.live.LivePlayer;
 import com.badr.infodota.remote.TrackdotaRestService;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.item.ItemService;
+
+import java.util.List;
 
 /**
  * Created by ABadretdinov
@@ -28,14 +34,15 @@ public class TrackdotaServiceImpl implements TrackdotaService {
         try {
             LiveGame liveGame= restService.getLiveGame(gameId);
             if(liveGame!=null){
+                GameManager gameManager=GameManager.getInstance();
                 if(liveGame.getRadiant()!=null&&liveGame.getRadiant().getPlayers()!=null){
-                    for(Player player:liveGame.getRadiant().getPlayers()){
-                        initPlayer(context, player);
+                    for(LivePlayer player:liveGame.getRadiant().getPlayers()){
+                        initPlayer(context, gameManager, player);
                     }
                 }
                 if(liveGame.getDire()!=null&&liveGame.getDire().getPlayers()!=null){
-                    for(Player player:liveGame.getDire().getPlayers()){
-                        initPlayer(context, player);
+                    for(LivePlayer player:liveGame.getDire().getPlayers()){
+                        initPlayer(context, gameManager, player);
                     }
                 }
             }
@@ -47,27 +54,68 @@ public class TrackdotaServiceImpl implements TrackdotaService {
         return null;
     }
 
-    private void initPlayer(Context context, Player player) {
-        player.setHero(heroService.getHeroById(context,player.getHeroId()));
-        if(player.getItemIds()!=null){
-            Item[] items=new Item[player.getItemIds().length];
-            for(int i=0,size=player.getItemIds().length;i<size;i++){
-                Item item=itemService.getItemById(context,player.getItemIds()[i]);
-                items[i]=item;
+    private void initPlayer(Context context,GameManager gameManager, LivePlayer player) {
+        if(!gameManager.containsItem(player.getHeroId())){
+            Hero hero=heroService.getHeroById(context,player.getHeroId());
+            if(hero!=null){
+                gameManager.addHero(hero);
             }
-            player.setItems(items);
+        }
+        if(player.getItemIds()!=null){
+            for(long itemId:player.getItemIds()){
+                if(!gameManager.containsItem(itemId)){
+                    Item item=itemService.getItemById(context,itemId);
+                    if(item!=null){
+                        gameManager.addItem(item);
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public CoreResult getGameCoreData(long gameId) {
+    public CoreResult getGameCoreData(Context context,long gameId) {
         try {
-            return restService.getGameCoreData(gameId);
+            CoreResult coreResult=restService.getGameCoreData(gameId);
+            if(coreResult!=null) {
+                GameManager gameManager = GameManager.getInstance();
+                if (coreResult.getPlayers() != null) {
+                    for (Player player : coreResult.getPlayers()) {
+                        if (!gameManager.containsPlayer(player.getAccountId())) {
+                            gameManager.addPlayer(player);
+                        }
+                        if (!gameManager.containsHero(player.getHeroId())) {
+                            Hero hero = heroService.getHeroById(context, player.getHeroId());
+                            if (hero != null) {
+                                gameManager.addHero(hero);
+                            }
+                        }
+                    }
+                }
+                addHeroesList(context, gameManager, coreResult.getRadiantPicks());
+                addHeroesList(context, gameManager, coreResult.getRadiantBans());
+                addHeroesList(context, gameManager, coreResult.getDirePicks());
+                addHeroesList(context, gameManager, coreResult.getDireBans());
+            }
+            return coreResult;
         } catch (Exception e) {
             String message = "Failed to get trackdota core data, cause:" + e.getMessage();
             Log.e(getClass().getName(), message);
         }
         return null;
+    }
+
+    private void addHeroesList(Context context, GameManager gameManager, List<BanPick> list) {
+        if(list!=null) {
+            for (BanPick banPick : list) {
+                if (!gameManager.containsHero(banPick.getHeroId())) {
+                    Hero hero = heroService.getHeroById(context, banPick.getHeroId());
+                    if (hero != null) {
+                        gameManager.addHero(hero);
+                    }
+                }
+            }
+        }
     }
 
     @Override

@@ -21,6 +21,8 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.api.heroes.Hero;
+import com.badr.infodota.api.trackdota.GameManager;
+import com.badr.infodota.api.trackdota.TrackdotaUtils;
 import com.badr.infodota.api.trackdota.core.BanPick;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.League;
@@ -101,6 +103,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
     private void initView() {
         View root=getView();
         Activity activity=getActivity();
+        GameManager gameManager=GameManager.getInstance();
         if(coreResult!=null&&root!=null&&activity!=null){
             League league=coreResult.getLeague();
             if(league!=null) {
@@ -143,23 +146,23 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
 
             Team radiant=coreResult.getRadiant();
             if(radiant!=null){
-                ((TextView)root.findViewById(R.id.radiant_tag)).setText(!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant");
-                ((TextView)root.findViewById(R.id.radiant_name)).setText(!TextUtils.isEmpty(radiant.getName())?radiant.getName():"Radiant");
+                ((TextView)root.findViewById(R.id.radiant_tag)).setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT));
+                ((TextView)root.findViewById(R.id.radiant_name)).setText(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT));
                 if(radiant.isHasLogo()){
-                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/"+radiant.getId()+".png", (ImageView) root.findViewById(R.id.radiant_logo), options);
+                    imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), (ImageView) root.findViewById(R.id.radiant_logo), options);
                 }
-                ((TextView)root.findViewById(R.id.radiant_picks_header)).setText((!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant")+" picks");
-                ((TextView)root.findViewById(R.id.radiant_bans_header)).setText((!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant")+" bans");
+                ((TextView)root.findViewById(R.id.radiant_picks_header)).setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT)+" picks");
+                ((TextView)root.findViewById(R.id.radiant_bans_header)).setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT)+" bans");
             }
             Team dire=coreResult.getDire();
             if(dire!=null){
-                ((TextView)root.findViewById(R.id.dire_tag)).setText(!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire");
-                ((TextView)root.findViewById(R.id.dire_name)).setText(!TextUtils.isEmpty(dire.getName())?dire.getName():"Dire");
+                ((TextView)root.findViewById(R.id.dire_tag)).setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE));
+                ((TextView)root.findViewById(R.id.dire_name)).setText(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE));
                 if(dire.isHasLogo()){
-                    imageLoader.displayImage("http://www.trackdota.com/data/images/teams/"+dire.getId()+".png", (ImageView) root.findViewById(R.id.dire_logo), options);
+                    imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), (ImageView) root.findViewById(R.id.dire_logo), options);
                 }
-                ((TextView)root.findViewById(R.id.dire_picks_header)).setText((!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire")+" picks");
-                ((TextView)root.findViewById(R.id.dire_bans_header)).setText((!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire")+" bans");
+                ((TextView)root.findViewById(R.id.dire_picks_header)).setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE)+" picks");
+                ((TextView)root.findViewById(R.id.dire_bans_header)).setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE)+" bans");
             }
             long minutes=coreResult.getDuration()/60;
             long seconds=coreResult.getDuration()-minutes*60;
@@ -201,21 +204,22 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     BanPick pick=coreResult.getRadiantPicks().get(i);
                     View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
-                    Hero hero=heroService.getHeroById(activity,pick.getHeroId());
-                    //todo вынести в отдельный поток
-                    imageLoader.displayImage(
-                            "assets://heroes/" + hero.getDotaId() + "/full.png",
-                            (ImageView) row.findViewById(R.id.image),
-                            options);
-                    final long heroId=pick.getHeroId();
-                    row.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    Hero hero=gameManager.getHero(pick.getHeroId());
+                    if(hero!=null) {
+                        imageLoader.displayImage(
+                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                (ImageView) row.findViewById(R.id.image),
+                                options);
+                        final long heroId = pick.getHeroId();
+                        row.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
+                                intent.putExtra("id", heroId);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     radiantPicks.addView(row);
                     //((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
                 }
@@ -228,41 +232,43 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     BanPick ban=coreResult.getRadiantBans().get(i);
                     View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
-                    Hero hero=heroService.getHeroById(activity, ban.getHeroId());
-                    imageLoader.displayImage(
-                            "assets://heroes/" + hero.getDotaId() + "/full.png",
-                            (ImageView) row.findViewById(R.id.image),
-                            options,new ImageLoadingListener() {
-                                @Override
-                                public void onLoadingStarted(String s, View view) {
+                    Hero hero=gameManager.getHero(ban.getHeroId());
+                    if(hero!=null) {
+                        imageLoader.displayImage(
+                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                (ImageView) row.findViewById(R.id.image),
+                                options, new ImageLoadingListener() {
+                                    @Override
+                                    public void onLoadingStarted(String s, View view) {
 
-                                }
+                                    }
 
-                                @Override
-                                public void onLoadingFailed(String s, View view, FailReason failReason) {
+                                    @Override
+                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
 
-                                }
+                                    }
 
-                                @Override
-                                @SuppressWarnings("deprecation")
-                                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                    ((ImageView)view).setImageBitmap(Utils.toGrayScale(bitmap));
-                                }
+                                    @Override
+                                    @SuppressWarnings("deprecation")
+                                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                                        ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
+                                    }
 
-                                @Override
-                                public void onLoadingCancelled(String s, View view) {
+                                    @Override
+                                    public void onLoadingCancelled(String s, View view) {
 
-                                }
-                            });
-                    final long heroId=ban.getHeroId();
-                    row.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                                    }
+                                });
+                        final long heroId = ban.getHeroId();
+                        row.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
+                                intent.putExtra("id", heroId);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     radiantBans.addView(row);
                    // ((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
                 }
@@ -276,20 +282,22 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     BanPick pick=coreResult.getDirePicks().get(i);
                     View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
-                    Hero hero=heroService.getHeroById(activity,pick.getHeroId());
-                    imageLoader.displayImage(
-                            "assets://heroes/" + hero.getDotaId() + "/full.png",
-                            (ImageView) row.findViewById(R.id.image),
-                            options);
-                    final long heroId=pick.getHeroId();
-                    row.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    Hero hero=gameManager.getHero(pick.getHeroId());
+                    if(hero!=null) {
+                        imageLoader.displayImage(
+                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                (ImageView) row.findViewById(R.id.image),
+                                options);
+                        final long heroId = pick.getHeroId();
+                        row.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
+                                intent.putExtra("id", heroId);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     direPicks.addView(row);
                     //((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
                 }
@@ -302,41 +310,43 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     BanPick ban=coreResult.getDireBans().get(i);
                     View row=inflater.inflate(R.layout.trackdota_hero_pickban,radiantPicks,false);
                     ((TextView)row.findViewById(R.id.number)).setText(String.valueOf(i+1));
-                    Hero hero=heroService.getHeroById(activity, ban.getHeroId());
-                    imageLoader.displayImage(
-                            "assets://heroes/" + hero.getDotaId() + "/full.png",
-                            (ImageView) row.findViewById(R.id.image),
-                            options,new ImageLoadingListener() {
-                                @Override
-                                public void onLoadingStarted(String s, View view) {
+                    Hero hero=gameManager.getHero(ban.getHeroId());
+                    if(hero!=null) {
+                        imageLoader.displayImage(
+                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                (ImageView) row.findViewById(R.id.image),
+                                options, new ImageLoadingListener() {
+                                    @Override
+                                    public void onLoadingStarted(String s, View view) {
 
-                                }
+                                    }
 
-                                @Override
-                                public void onLoadingFailed(String s, View view, FailReason failReason) {
+                                    @Override
+                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
 
-                                }
+                                    }
 
-                                @Override
-                                @SuppressWarnings("deprecation")
-                                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                    ((ImageView)view).setImageBitmap(Utils.toGrayScale(bitmap));
-                                }
+                                    @Override
+                                    @SuppressWarnings("deprecation")
+                                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                                        ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
+                                    }
 
-                                @Override
-                                public void onLoadingCancelled(String s, View view) {
+                                    @Override
+                                    public void onLoadingCancelled(String s, View view) {
 
-                                }
-                            });
-                    final long heroId=ban.getHeroId();
-                    row.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                                    }
+                                });
+                        final long heroId = ban.getHeroId();
+                        row.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
+                                intent.putExtra("id", heroId);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                     direBans.addView(row);
                     //((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
                 }
