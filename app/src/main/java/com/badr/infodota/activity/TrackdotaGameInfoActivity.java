@@ -46,12 +46,9 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
         }
-        onRefresh();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
+        if(liveGame==null||liveGame.getStatus()<4) {
+            onRefresh();
+        }
     }
 
     @Override
@@ -91,7 +88,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRefresh() {
         cancelDelayedUpdate();
         progressBar.setVisibility(View.VISIBLE);
-        spiceManager.execute(new CoreGameLoadRequest(this,matchId), this);
+        spiceManager.execute(new CoreGameLoadRequest(this, matchId), this);
     }
 
     @Override
@@ -109,7 +106,10 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             liveGame = (LiveGame) object;
             progressBar.setVisibility(View.GONE);
             adapter.update(coreResult, liveGame);
-            startDelayedUpdate();
+            if(liveGame.getStatus()<4)
+            {
+                startDelayedUpdate();
+            }
         } else if(object==null){
             progressBar.setVisibility(View.GONE);
             adapter.update(coreResult,liveGame);
