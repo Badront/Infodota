@@ -129,7 +129,8 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
         else {
             mHeroesHolder.setOrientation(LinearLayout.VERTICAL);
         }
-        initView();
+        /*проверить*/
+        //initView();
     }
 
     @Override
