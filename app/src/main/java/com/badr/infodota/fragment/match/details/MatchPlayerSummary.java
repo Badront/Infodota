@@ -284,12 +284,22 @@ public class MatchPlayerSummary extends Fragment {
                     Html.fromHtml(getString(R.string.gpm) + " " + player.getGoldPerMin()));
             ((TextView) root.findViewById(R.id.xpm)).setText(
                     Html.fromHtml(getString(R.string.xpm) + " " + player.getXpPerMin()));
-            ((TextView) root.findViewById(R.id.hero_damage)).setText(
-                    Html.fromHtml(getString(R.string.hero_damage) + " " + player.getHeroDamage()));
-            ((TextView) root.findViewById(R.id.hero_healing)).setText(
-                    Html.fromHtml(getString(R.string.hero_healing) + " " + player.getHeroHealing()));
-            ((TextView) root.findViewById(R.id.tower_damage)).setText(
-                    Html.fromHtml(getString(R.string.tower_damage) + " " + player.getTowerDamage()));
+            if(player.getNetWorth()==null) {
+                ((TextView) root.findViewById(R.id.hero_damage)).setText(
+                        Html.fromHtml(getString(R.string.hero_damage) + " " + player.getHeroDamage()));
+                ((TextView) root.findViewById(R.id.hero_healing)).setText(
+                        Html.fromHtml(getString(R.string.hero_healing) + " " + player.getHeroHealing()));
+                ((TextView) root.findViewById(R.id.tower_damage)).setText(
+                        Html.fromHtml(getString(R.string.tower_damage) + " " + player.getTowerDamage()));
+            }
+            else {
+                TextView netWorth= (TextView) root.findViewById(R.id.net_worth);
+                netWorth.setVisibility(View.VISIBLE);
+                netWorth.setText(Html.fromHtml(getString(R.string.net_worth) + " " + player.getNetWorth()));
+                root.findViewById(R.id.hero_damage).setVisibility(View.GONE);
+                root.findViewById(R.id.hero_healing).setVisibility(View.GONE);
+                root.findViewById(R.id.tower_damage).setVisibility(View.GONE);
+            }
         }
     }
 

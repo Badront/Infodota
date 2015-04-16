@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -353,20 +352,13 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
                 progressBar.setVisibility(View.GONE);
                 recommendsTitle.setVisibility(View.VISIBLE);
                 LayoutInflater inflater = activity.getLayoutInflater();
-                for (final TruepickerHero hero : truepickerHeros) {
+                for (TruepickerHero hero : truepickerHeros) {
                     View view = inflater.inflate(R.layout.hero_row, recommendationsView, false);
                     ((TextView) view.findViewById(R.id.name)).setText(hero.getLocalizedName());
                     imageLoader
                             .displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
                                     (ImageView) view.findViewById(R.id.img), options);
-                    view.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(v.getContext(), HeroInfoActivity.class);
-                            intent.putExtra("id", hero.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    view.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     recommendationsView.addView(view);
                 }
                 scroll.post(new Runnable() {

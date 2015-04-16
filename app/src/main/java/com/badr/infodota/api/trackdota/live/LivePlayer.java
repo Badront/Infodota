@@ -20,6 +20,7 @@ public class LivePlayer implements Serializable {
     @SerializedName("ultimate_cooldown")
     private int ultCooldown;
     /*
+    * 0 - not levelled
     * 1 - has ult (mb on cooldown)
     * 3 - no mana
     * */
@@ -66,10 +67,10 @@ public class LivePlayer implements Serializable {
     private long gold;
     @Expose
     @SerializedName("xp_per_min")
-    private long xpm;
+    private int xpm;
     @Expose
     @SerializedName("gold_per_min")
-    private long gpm;
+    private int gpm;
     @Expose
     @SerializedName("respawn_timer")
     private long respawnTimer;
@@ -210,19 +211,19 @@ public class LivePlayer implements Serializable {
         this.gold = gold;
     }
 
-    public long getXpm() {
+    public int getXpm() {
         return xpm;
     }
 
-    public void setXpm(long xpm) {
+    public void setXpm(int xpm) {
         this.xpm = xpm;
     }
 
-    public long getGpm() {
+    public int getGpm() {
         return gpm;
     }
 
-    public void setGpm(long gpm) {
+    public void setGpm(int gpm) {
         this.gpm = gpm;
     }
 

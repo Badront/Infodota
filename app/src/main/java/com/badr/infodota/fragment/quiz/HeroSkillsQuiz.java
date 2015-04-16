@@ -66,12 +66,15 @@ public class HeroSkillsQuiz extends QuizFragment {
             fakeAbilities.add(nonHeroAbilities.get(idRandom.nextInt(nonHeroAbilities.size())));
         }
         Collections.shuffle(fakeAbilities, idRandom);
-        initCoreHero();
-        initFakeFlow();
+        View root=getView();
+        if(root!=null) {
+            initCoreHero(root);
+            initFakeFlow(root);
+        }
     }
 
-    private void initFakeFlow() {
-        LinearLayout fakeFlow = (LinearLayout) getView().findViewById(R.id.ability_fake_holder);
+    private void initFakeFlow(View root) {
+        LinearLayout fakeFlow = (LinearLayout) root.findViewById(R.id.ability_fake_holder);
         LinearLayout fake1 = (LinearLayout) fakeFlow.findViewById(R.id.ability_fake_holder1);
         LinearLayout fake2 = (LinearLayout) fakeFlow.findViewById(R.id.ability_fake_holder2);
         fake1.removeAllViews();
@@ -104,9 +107,9 @@ public class HeroSkillsQuiz extends QuizFragment {
         }
     }
 
-    private void initCoreHero() {
+    private void initCoreHero(View root) {
         imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/vert.jpg",
-                (ImageView) getView().findViewById(R.id.hero_img));
+                (ImageView) root.findViewById(R.id.hero_img));
     }
 
     @Override

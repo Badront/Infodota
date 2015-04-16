@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.match;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -143,13 +142,6 @@ public class MatchSummary extends Fragment {
                                             @Override
                                             @SuppressWarnings("deprecation")
                                             public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                            /*Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-                                            *//*drawable.setBounds(0, 0, Utils.dpSize(activity, 40),
-													Utils.dpSize(activity, 40));*/
-                                            /*if (pickBan.isIs_pick()) {
-                                                currentImage.setImageBitmap(bitmap);
-                                            } else {
-                                            }*/
                                                 ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
                                             }
 
@@ -159,18 +151,7 @@ public class MatchSummary extends Fragment {
                                             }
                                         });
                             }
-                            final long heroId=hero.getId();
-                            currentImage.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Activity activity=getActivity();
-                                    if(activity!=null) {
-                                        Intent intent = new Intent(activity, HeroInfoActivity.class);
-                                        intent.putExtra("id", heroId);
-                                        startActivity(intent);
-                                    }
-                                }
-                            });
+                            currentImage.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                         }
                         cmModeTable.addView(row);
                     }

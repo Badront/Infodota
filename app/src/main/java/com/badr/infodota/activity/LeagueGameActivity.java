@@ -1,6 +1,5 @@
 package com.badr.infodota.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.support.v4.view.MenuItemCompat;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,8 +28,6 @@ import com.badr.infodota.api.joindota.SubmatchItem;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.joindota.JoinDotaService;
 import com.badr.infodota.util.DateUtils;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
@@ -178,15 +174,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, null, false);
-                    final long heroId = hero.getId();
-                    imageLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(LeagueGameActivity.this, HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team1bans.addView(imageLayout);
                     final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
                     imageLoader.loadImage("assets://heroes/" + hero.getDotaId() + "/full.png", options,
@@ -219,15 +207,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, null, false);
-                    final long heroId = hero.getId();
-                    imageLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(LeagueGameActivity.this, HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team2bans.addView(imageLayout);
                     final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
                     imageLoader.loadImage("assets://heroes/" + hero.getDotaId() + "/full.png", options,
@@ -267,30 +247,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team1HeroHolder.findViewById(R.id.img);
                     imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", imageView, options);
-                    final long heroId = hero.getId();
-                    imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(LeagueGameActivity.this, HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 heroes = heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i));
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team2HeroHolder.findViewById(R.id.img);
                     imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", imageView, options);
-                    final long heroId = hero.getId();
-                    imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(LeagueGameActivity.this, HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 team1.addView(team1HeroHolder);
                 team2.addView(team2HeroHolder);

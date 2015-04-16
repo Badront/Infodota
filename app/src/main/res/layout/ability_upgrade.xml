@@ -26,6 +26,7 @@
             android:id="@+id/hero_img"
             android:layout_width="132dp"
             android:layout_height="76dp"
+            android:src="@drawable/default_img"
             android:background="?attr/selectableItemBackground"
             android:padding="2dp" />
 
@@ -62,7 +63,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="14sp"
-                    android:visibility="invisible" />
+                    android:visibility="invisible"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:id="@+id/alive_status">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hero_status"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/alive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/ally_team"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:id="@+id/ult_status">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ult_status"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/ultimate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/ally_team"
+                    android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

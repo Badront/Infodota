@@ -1,7 +1,6 @@
 package com.badr.infodota.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -199,16 +198,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                     imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
                             (ImageView) verticalHeaderRow.findViewById(R.id.image), options);
                     verticalHeader.addView(verticalHeaderRow);
-                    final long heroId=hero.getId();
-                    verticalHeaderRow.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(PlayerByHeroStatsActivity.this,
-                                    HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    verticalHeaderRow.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     LinearLayout row = (LinearLayout) inflater.inflate(R.layout.player_by_hero_stats_row, content, false);
                     for (String verticalResult : results) {
                         LinearLayout cell = (LinearLayout) inflater.inflate(R.layout.player_by_hero_stats_cell, row, false);

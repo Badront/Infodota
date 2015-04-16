@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.badr.infodota.BeanContainer;
+import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.api.trackdota.GameManager;
@@ -16,7 +17,9 @@ import com.badr.infodota.api.trackdota.live.LivePlayer;
 import com.badr.infodota.remote.TrackdotaRestService;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.item.ItemService;
+import com.badr.infodota.service.player.PlayerService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +31,7 @@ public class TrackdotaServiceImpl implements TrackdotaService {
     private TrackdotaRestService restService;
     private HeroService heroService;
     private ItemService itemService;
+    private PlayerService playerService;
 
     @Override
     public LiveGame getLiveGame(Context context,long gameId) {
@@ -80,15 +84,27 @@ public class TrackdotaServiceImpl implements TrackdotaService {
             if(coreResult!=null) {
                 GameManager gameManager = GameManager.getInstance();
                 if (coreResult.getPlayers() != null) {
+                    List<Long> accountIds=new ArrayList<>();
                     for (Player player : coreResult.getPlayers()) {
                         if (!gameManager.containsPlayer(player.getAccountId())) {
                             gameManager.addPlayer(player);
+                            Unit unit=playerService.getAccountById(context,player.getAccountId());
+                            if(unit==null){
+                                accountIds.add(player.getAccountId());
+                            }
                         }
                         if (!gameManager.containsHero(player.getHeroId())) {
                             Hero hero = heroService.getHeroById(context, player.getHeroId());
                             if (hero != null) {
                                 gameManager.addHero(hero);
                             }
+                        }
+                    }
+                    if(accountIds.size()>0){
+                        Unit.List accounts=playerService.loadAccounts(accountIds);
+                        for(Unit account:accounts){
+                            account.setGroup(Unit.Groups.PRO);
+                            playerService.saveAccount(context,account);
                         }
                     }
                 }
@@ -135,5 +151,6 @@ public class TrackdotaServiceImpl implements TrackdotaService {
         restService = container.getTrackdotaRestService();
         heroService = container.getHeroService();
         itemService=container.getItemService();
+        playerService=container.getPlayerService();
     }
 }

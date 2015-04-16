@@ -282,4 +282,14 @@
     <string name="no_new_version">Новая версия не обнаружена</string>
     <string name="new_version">Новая версия</string>
     <string name="check_new_version">Проверить обновление</string>
+    <string name="hero_status">Статус героя:</string>
+    <string name="ult_status">Статус ульта:</string>
+    <string name="alive">Живой</string>
+    <string name="dead">Мертв</string>
+    <string name="not_levelled">Не изучен</string>
+    <string name="on_cooldown">Кулдаун {0} с.</string>
+    <string name="is_ready">Готов</string>
+    <string name="net_worth"><b>Net worth:</b></string>
+    <string name="respawn_in">Возродится через {0} с.</string>
+    <string name="no_mana">Не хватает маны</string>
 </resources>

@@ -210,15 +210,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                                 "assets://heroes/" + hero.getDotaId() + "/full.png",
                                 (ImageView) row.findViewById(R.id.image),
                                 options);
-                        final long heroId = pick.getHeroId();
-                        row.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                                intent.putExtra("id", heroId);
-                                startActivity(intent);
-                            }
-                        });
+                        row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(pick.getHeroId()));
                     }
                     radiantPicks.addView(row);
                     //((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
@@ -259,15 +251,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
 
                                     }
                                 });
-                        final long heroId = ban.getHeroId();
-                        row.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                                intent.putExtra("id", heroId);
-                                startActivity(intent);
-                            }
-                        });
+                        row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(ban.getHeroId()));
                     }
                     radiantBans.addView(row);
                    // ((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
@@ -288,15 +272,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                                 "assets://heroes/" + hero.getDotaId() + "/full.png",
                                 (ImageView) row.findViewById(R.id.image),
                                 options);
-                        final long heroId = pick.getHeroId();
-                        row.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                                intent.putExtra("id", heroId);
-                                startActivity(intent);
-                            }
-                        });
+                        row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(pick.getHeroId()));
                     }
                     direPicks.addView(row);
                     //((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;
@@ -337,15 +313,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
 
                                     }
                                 });
-                        final long heroId = ban.getHeroId();
-                        row.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), HeroInfoActivity.class);
-                                intent.putExtra("id", heroId);
-                                startActivity(intent);
-                            }
-                        });
+                        row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(ban.getHeroId()));
                     }
                     direBans.addView(row);
                     //((LinearLayout.LayoutParams)row.getLayoutParams()).weight=1;

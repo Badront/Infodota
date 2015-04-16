@@ -285,4 +285,14 @@
     <string name="no_new_version">No new version\'s available</string>
     <string name="new_version">New version</string>
     <string name="check_new_version">Check for updates</string>
+    <string name="hero_status">Hero status:</string>
+    <string name="ult_status">Ultimate status:</string>
+    <string name="alive">Alive</string>
+    <string name="dead">Dead</string>
+    <string name="not_levelled">Not levelled</string>
+    <string name="on_cooldown">On cooldown {0} sec.</string>
+    <string name="is_ready">Ready</string>
+    <string name="net_worth"><b>Net worth:</b></string>
+    <string name="respawn_in">Respawn in {0} sec.</string>
+    <string name="no_mana">Not enough mana</string>
 </resources>

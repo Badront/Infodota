@@ -46,12 +46,12 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
         }
+        onRefresh();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        onRefresh();
     }
 
     @Override
