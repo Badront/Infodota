@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.guide;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -97,15 +96,7 @@ public class ItemPart extends Fragment implements GuideHolder {
                             //().setImageDrawable(Utils.getDrawableFromAsset(getActivity(), ));
                             ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
                             ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                            final long id = item.getId();
-                            row.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                                    intent.putExtra("id", id);
-                                    startActivityForResult(intent, 1);
-                                }
-                            });
+                            row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
                             flowLayout.addView(row);
                         }
                     }

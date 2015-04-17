@@ -202,42 +202,42 @@ public class MatchDetailsAdapter extends BaseAdapter {
             holder.heroName.setText("");
         }
         if (player.getItem0dotaId()!= null) {
-            imageLoader.displayImage("assets://items/" + player.getItem0dotaId() + ".png", holder.item0, options);
-            holder.item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,player.getItem0()));
+            imageLoader.displayImage(Utils.getItemImage(player.getItem0dotaId()), holder.item0, options);
+            holder.item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem0()));
         } else {
             holder.item0.setImageResource(R.drawable.emptyitembg);
         }
         if (player.getItem1dotaId()!= null) {
-            imageLoader.displayImage("assets://items/" + player.getItem1dotaId() + ".png", holder.item1, options);
-            holder.item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,player.getItem1()));
+            imageLoader.displayImage(Utils.getItemImage(player.getItem1dotaId()), holder.item1, options);
+            holder.item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem1()));
         } else {
             holder.item1.setImageResource(R.drawable.emptyitembg);
         }
 
         if (player.getItem2dotaId()!= null) {
-            imageLoader.displayImage("assets://items/" + player.getItem2dotaId() + ".png", holder.item2, options);
-            holder.item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,player.getItem2()));
+            imageLoader.displayImage(Utils.getItemImage(player.getItem2dotaId()), holder.item2, options);
+            holder.item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem2()));
         } else {
             holder.item2.setImageResource(R.drawable.emptyitembg);
         }
 
         if (player.getItem3dotaId()!= null) {
-            imageLoader.displayImage("assets://items/" + player.getItem3dotaId() + ".png", holder.item3, options);
-            holder.item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,player.getItem3()));
+            imageLoader.displayImage(Utils.getItemImage(player.getItem3dotaId()), holder.item3, options);
+            holder.item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem3()));
         } else {
             holder.item3.setImageResource(R.drawable.emptyitembg);
         }
 
         if (player.getItem4dotaId()!= null) {
-            imageLoader.displayImage("assets://items/" + player.getItem4dotaId() + ".png", holder.item4, options);
-            holder.item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,player.getItem4()));
+            imageLoader.displayImage(Utils.getItemImage(player.getItem4dotaId()), holder.item4, options);
+            holder.item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem4()));
         } else {
             holder.item4.setImageResource(R.drawable.emptyitembg);
         }
 
         if (player.getItem5dotaId()!= null) {
-            imageLoader.displayImage("assets://items/" + player.getItem5dotaId() + ".png", holder.item5, options);
-            holder.item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,player.getItem5()));
+            imageLoader.displayImage(Utils.getItemImage(player.getItem5dotaId()), holder.item5, options);
+            holder.item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem5()));
         } else {
             holder.item5.setImageResource(R.drawable.emptyitembg);
         }
@@ -246,43 +246,43 @@ public class MatchDetailsAdapter extends BaseAdapter {
             holder.additionalUnitHolder.setVisibility(View.VISIBLE);
 
             if (unit.getItem0dotaId()!= null) {
-                imageLoader.displayImage("assets://items/" + unit.getItem0dotaId() + ".png", holder.additionalUnitItem0, options);
-                holder.additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,unit.getItem0()));
+                imageLoader.displayImage(Utils.getItemImage(unit.getItem0dotaId()), holder.additionalUnitItem0, options);
+                holder.additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem0()));
             } else {
                 holder.additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
             }
 
             if (unit.getItem1dotaId()!= null) {
-                imageLoader.displayImage("assets://items/" + unit.getItem1dotaId() + ".png", holder.additionalUnitItem1, options);
-                holder.additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,unit.getItem1()));
+                imageLoader.displayImage(Utils.getItemImage(unit.getItem1dotaId()), holder.additionalUnitItem1, options);
+                holder.additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem1()));
             } else {
                 holder.additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
             }
 
             if (unit.getItem2dotaId()!= null) {
-                imageLoader.displayImage("assets://items/" + unit.getItem2dotaId() + ".png", holder.additionalUnitItem2, options);
-                holder.additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,unit.getItem2()));
+                imageLoader.displayImage(Utils.getItemImage(unit.getItem2dotaId()), holder.additionalUnitItem2, options);
+                holder.additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem2()));
             } else {
                 holder.additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
             }
 
             if (unit.getItem3dotaId()!= null) {
-                imageLoader.displayImage("assets://items/" + unit.getItem3dotaId() + ".png", holder.additionalUnitItem3, options);
-                holder.additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,unit.getItem3()));
+                imageLoader.displayImage(Utils.getItemImage(unit.getItem3dotaId()), holder.additionalUnitItem3, options);
+                holder.additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem3()));
             } else {
                 holder.additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
             }
 
             if (unit.getItem4dotaId()!= null) {
-                imageLoader.displayImage("assets://items/" + unit.getItem4dotaId() + ".png", holder.additionalUnitItem4, options);
-                holder.additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,unit.getItem4()));
+                imageLoader.displayImage(Utils.getItemImage(unit.getItem4dotaId()), holder.additionalUnitItem4, options);
+                holder.additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem4()));
             } else {
                 holder.additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
             }
 
             if (unit.getItem5dotaId()!= null) {
-                imageLoader.displayImage("assets://items/" + unit.getItem5dotaId() + ".png", holder.additionalUnitItem5, options);
-                holder.additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(context,unit.getItem5()));
+                imageLoader.displayImage(Utils.getItemImage(unit.getItem5dotaId()), holder.additionalUnitItem5, options);
+                holder.additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem5()));
             } else {
                 holder.additionalUnitItem5.setImageResource(R.drawable.emptyitembg);
             }

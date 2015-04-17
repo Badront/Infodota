@@ -104,6 +104,10 @@ public class Utils {
         return bmpGrayscale;
     }
 
+    public static String getItemImage(String itemDotaId){
+        return "assets://items/" + itemDotaId + ".png";
+    }
+
     public static String getHeroFullImage(String heroDotaId){
         return "assets://heroes/" + heroDotaId + "/full.png";
     }
@@ -114,5 +118,8 @@ public class Utils {
 
     public static String getHeroMiniImage(String heroDotaId){
         return "assets://heroes/" + heroDotaId + "/mini.png";
+    }
+    public static String getSkillImage(String skillName){
+        return "assets://skills/"+skillName+".png";
     }
 }

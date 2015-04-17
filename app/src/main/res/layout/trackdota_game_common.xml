@@ -216,7 +216,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Roshan status:" />
+                    android:text="@string/roshan_status" />
 
                 <TextView
                     android:id="@+id/roshan_status"
@@ -230,7 +230,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:text="Picks and bans"
+                android:text="@string/picks_and_bans"
                 android:textColor="@android:color/white" />
 
             <LinearLayout
@@ -245,7 +245,6 @@
                     android:id="@+id/radiant_picks_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Radiant picks"
                     android:textColor="@color/ally_team" />
 
                 <LinearLayout
@@ -260,7 +259,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Radiant bans"
                     android:textColor="@color/ally_team" />
 
                 <LinearLayout
@@ -283,7 +281,6 @@
                     android:id="@+id/dire_picks_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dire picks"
                     android:textColor="@color/enemy_team" />
 
                 <LinearLayout
@@ -298,7 +295,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Dire bans"
                     android:textColor="@color/enemy_team" />
 
                 <LinearLayout

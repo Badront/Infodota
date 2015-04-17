@@ -404,7 +404,10 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
                 for (String skill : skills) {
                     ViewGroup skillView = (ViewGroup) layoutInflater.inflate(R.layout.skill_carousel_holder, skillsHolder, false);
                     skillView.setLayoutParams(layoutParams);
-                    imageLoader.displayImage("assets://skills/" + skill + ".png", (ImageView) skillView.findViewById(R.id.skill_img), options);
+                    imageLoader.displayImage(
+                            Utils.getSkillImage(skill),
+                            (ImageView) skillView.findViewById(R.id.skill_img),
+                            options);
                     skillsHolder.addView(skillView);
                 }
             }

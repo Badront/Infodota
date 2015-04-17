@@ -300,11 +300,15 @@
     <string name="in_hero_selection">In hero selection</string>
     <string name="waiting_for_horn">Waiting for horn</string>
     <string name="minutes_">{0} minutes</string>
-    <string name="viewers_">" viewers"</string>
+    <string name="viewers_">{0} viewers</string>
     <string name="in_progress">Match in progress</string>
     <string name="finished">Match has finished</string>
     <string name="match_status_unknown">Unknown Status</string>
     <string name="game">Game</string>
     <string name="bo">BO</string>
     <string name="paused">Paused</string>
+    <string name="roshan_status">Roshan status:</string>
+    <string name="picks_and_bans">Picks and bans</string>
+    <string name="picks_">{0} picks</string>
+    <string name="bans_">{0} bans</string>
 </resources>

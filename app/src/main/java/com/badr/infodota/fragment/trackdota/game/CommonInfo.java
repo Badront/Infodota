@@ -155,8 +155,8 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                 if(radiant.isHasLogo()){
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), (ImageView) root.findViewById(R.id.radiant_logo), options);
                 }
-                ((TextView)root.findViewById(R.id.radiant_picks_header)).setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT)+" picks");
-                ((TextView)root.findViewById(R.id.radiant_bans_header)).setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT)+" bans");
+                ((TextView)root.findViewById(R.id.radiant_picks_header)).setText(MessageFormat.format(getString(R.string.picks_),TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT)));
+                ((TextView)root.findViewById(R.id.radiant_bans_header)).setText(MessageFormat.format(getString(R.string.bans_),TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT)));
             }
             Team dire=coreResult.getDire();
             if(dire!=null){
@@ -165,8 +165,8 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                 if(dire.isHasLogo()){
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), (ImageView) root.findViewById(R.id.dire_logo), options);
                 }
-                ((TextView)root.findViewById(R.id.dire_picks_header)).setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE)+" picks");
-                ((TextView)root.findViewById(R.id.dire_bans_header)).setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE)+" bans");
+                ((TextView)root.findViewById(R.id.dire_picks_header)).setText(MessageFormat.format(getString(R.string.picks_),TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE)));
+                ((TextView)root.findViewById(R.id.dire_bans_header)).setText(MessageFormat.format(getString(R.string.bans_),TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE)));
             }
             long minutes=coreResult.getDuration()/60;
             long seconds=coreResult.getDuration()-minutes*60;

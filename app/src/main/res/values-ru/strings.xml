@@ -297,11 +297,15 @@
     <string name="in_hero_selection">Процесс банопика</string>
     <string name="waiting_for_horn">Ожидание начала</string>
     <string name="minutes_">{0} минут</string>
-    <string name="viewers_">" viewers"</string>
+    <string name="viewers_">{0} смотрящих</string>
     <string name="in_progress">Матч идет</string>
     <string name="finished">Матч окончен</string>
     <string name="match_status_unknown">Неизвестный статус</string>
     <string name="game">Игра</string>
     <string name="bo">БО</string>
     <string name="paused">Пауза</string>
+    <string name="roshan_status">Статус Рошана:</string>
+    <string name="picks_and_bans">Пики и Баны</string>
+    <string name="picks_">Пики {0}</string>
+    <string name="bans_">Баны {0}</string>
 </resources>

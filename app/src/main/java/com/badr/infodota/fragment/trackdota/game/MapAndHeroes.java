@@ -416,10 +416,10 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                         Item item=gameManager.getItem(itemId);
                         if(item!=null) {
                             imageLoader.displayImage(
-                                    "assets://items/" + item.getDotaId() + ".png",
+                                    Utils.getItemImage(item.getDotaId()),
                                     itemView,
                                     options);
-                            itemView.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(getActivity(),itemId));
+                            itemView.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(itemId));
                         }
                         else {
                             itemView.setImageResource(R.drawable.emptyitembg);

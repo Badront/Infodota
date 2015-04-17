@@ -89,7 +89,9 @@ public class HeroSkillsQuiz extends QuizFragment {
             View view = inflater.inflate(R.layout.item_quiz_holder, null, false);
             view.setLayoutParams(layoutParams);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
-            imageLoader.displayImage("assets://skills/" + ability.getName() + ".png", imageView);
+            imageLoader.displayImage(
+                    Utils.getSkillImage(ability.getName()),
+                    imageView);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

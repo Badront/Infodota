@@ -118,7 +118,7 @@ public class TooltipPart extends Fragment implements GuideHolder {
                             Item itemToOpen = itemService.getItemByDotaId(activity, item);
                             Intent intent = new Intent(activity, ItemInfoActivity.class);
                             intent.putExtra("id", itemToOpen.getId());
-                            startActivityForResult(intent, 1);
+                            startActivityForResult(intent, ItemInfoActivity.UP_REQUEST);
 
                         }
                     });

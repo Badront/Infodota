@@ -11,8 +11,11 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.TrackdotaGamePagerAdapter;
 import com.badr.infodota.api.trackdota.GameManager;
+import com.badr.infodota.api.trackdota.TrackdotaUtils;
 import com.badr.infodota.api.trackdota.core.CoreResult;
+import com.badr.infodota.api.trackdota.game.Team;
 import com.badr.infodota.api.trackdota.live.LiveGame;
+import com.badr.infodota.api.trackdota.live.LiveTeam;
 import com.badr.infodota.service.trackdota.TrackdotaService;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.retrofit.TaskRequest;
@@ -21,6 +24,8 @@ import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
+
+import java.text.MessageFormat;
 
 /**
  * Created by ABadretdinov
@@ -104,6 +109,20 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             spiceManager.execute(new LiveGameLoadRequest(this,matchId), this);
         } else if (object instanceof LiveGame) {
             liveGame = (LiveGame) object;
+            LiveTeam radiantLive=liveGame.getRadiant();
+            Team radiant=coreResult.getRadiant();
+            LiveTeam direLive=liveGame.getDire();
+            Team dire=coreResult.getDire();
+            if(radiant!=null&&dire!=null&&radiantLive!=null&&direLive!=null){
+                getSupportActionBar().setTitle(
+                        MessageFormat.format(
+                                "{0}:{1} - {2}:{3}",
+                                TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT),
+                                radiantLive.getScore(),
+                                TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE),
+                                direLive.getScore())
+                );
+            }
             progressBar.setVisibility(View.GONE);
             adapter.update(coreResult, liveGame);
             if(liveGame.getStatus()<4)
