@@ -311,4 +311,21 @@
     <string name="picks_and_bans">Picks and bans</string>
     <string name="picks_">{0} picks</string>
     <string name="bans_">{0} bans</string>
+    <string name="team_wins_">{0} victory!</string>
+    <string name="player_kills_">{0} has killed a hero</string>
+    <string name="player_kills_multiple_">{0} has killed {1} heroes</string>
+    <string name="player_dies_">{0} has died</string>
+    <string name="player_dies_multiple_">{0} has died {1} times</string>
+    <string name="log_item_pickup">{0} picked up {1}</string>
+    <string name="log_item_purchased">{0} purchased {1}</string>
+    <string name="log_item_sold">{0} sold {1}</string>
+    <string name="log_item_used">{0} used {1}</string>
+    <string name="log_hero_drops_item">{0} dropped his {1}</string>
+    <string name="log_hero_buys_back">{0} bought back into the game</string>
+    <string name="roshan_death">Roshan has been slain</string>
+    <string name="roshan_respawn">Roshan has respawned</string>
+    <string name="log_team_loses_barracks">{0} lost their {1} {2} barracks</string>
+    <string name="log_team_loses_tower">{0} lost their {1} T{2} tower</string>
+    <string name="barrack_ranged">ranged</string>
+    <string name="barrack_melee">melee</string>
 </resources>

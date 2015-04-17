@@ -30,9 +30,9 @@ import java.util.List;
  */
 public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter{
     DisplayImageOptions options;
+    private ImageLoader imageLoader;
     private LayoutInflater inflater;
     private List<Object> games=new ArrayList<Object>();
-    private ImageLoader imageLoader;
     public LiveGamesAdapter(Context context,List<EnhancedMatch> matches){
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 

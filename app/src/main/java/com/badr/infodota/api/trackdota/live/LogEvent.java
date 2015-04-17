@@ -21,6 +21,17 @@ public class LogEvent implements Serializable {
     @SerializedName("account_id")
     private long accountId;
 
+    @Expose
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public long getTimestamp() {
         return timestamp;
     }

@@ -48,4 +48,13 @@
     <color name="radiant_transparent_dead">#c400310c</color>
     <color name="dire_transparent">#9baf1715</color>
     <color name="dire_transparent_dead">#d12b0605</color>
+
+    <color name="buyback">#ffe9de23</color>
+    <color name="barracks">#ff952be9</color>
+    <color name="item">#ff00dae9</color>
+    <color name="lowlight">#ffaaaaaa</color>
+    <color name="rapier">#ffe9009a</color>
+    <color name="roshan">#ffe97000</color>
+    <color name="tower">#ff005de9</color>
+
 </resources>

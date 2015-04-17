@@ -308,4 +308,21 @@
     <string name="picks_and_bans">Пики и Баны</string>
     <string name="picks_">Пики {0}</string>
     <string name="bans_">Баны {0}</string>
+    <string name="team_wins_">Победа {0}!</string>
+    <string name="player_kills_">{0} убил героя</string>
+    <string name="player_kills_multiple_">{0} убил {1} героев</string>
+    <string name="player_dies_">{0} умер</string>
+    <string name="player_dies_multiple_">{0} умер {1} раз(а)</string>
+    <string name="log_item_pickup">{0} поднял {1}</string>
+    <string name="log_item_purchased">{0} купил {1}</string>
+    <string name="log_item_sold">{0} продал {1}</string>
+    <string name="log_item_used">{0} использовал {1}</string>
+    <string name="log_hero_drops_item">{0} потерял свою {1}</string>
+    <string name="log_hero_buys_back">{0} выкупился в игру</string>
+    <string name="roshan_death">Рошан был убит</string>
+    <string name="roshan_respawn">Рошан возродился</string>
+    <string name="log_team_loses_barracks">{0} потеряли {1} бараки {2} боя</string>
+    <string name="log_team_loses_tower">{0} потеряли {1} Т{2} вышку</string>
+    <string name="barrack_ranged">дальнего</string>
+    <string name="barrack_melee">ближнего</string>
 </resources>

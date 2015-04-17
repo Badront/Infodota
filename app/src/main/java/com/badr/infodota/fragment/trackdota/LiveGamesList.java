@@ -40,7 +40,6 @@ public class LiveGamesList extends ListFragment implements Updatable<List<Enhanc
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);
         setListAdapter(new LiveGamesAdapter(getActivity(), null));
     }
 

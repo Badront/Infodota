@@ -10,6 +10,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.trackdota.game.CommonInfo;
+import com.badr.infodota.fragment.trackdota.game.LogList;
 import com.badr.infodota.fragment.trackdota.game.MapAndHeroes;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
@@ -28,7 +29,7 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
     private LiveGame liveGame;
     private String[] titles;
     private Refresher refresher;
-    private Map<Integer,Updatable> fragmentsMap =new HashMap<Integer,Updatable>();
+    private Map<Integer,Updatable<Pair<CoreResult,LiveGame>>> fragmentsMap =new HashMap<Integer,Updatable<Pair<CoreResult,LiveGame>>>();
     public TrackdotaGamePagerAdapter(Context context,FragmentManager fragmentManager,Refresher refresher, CoreResult coreResult,LiveGame liveGame){
         super(fragmentManager);
         titles=context.getResources().getStringArray(R.array.trackdota_game);
@@ -51,6 +52,10 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
                 MapAndHeroes mapAndHeroes=MapAndHeroes.newInstance(refresher,coreResult,liveGame);
                 fragmentsMap.put(position,mapAndHeroes);
                 return mapAndHeroes;
+            case 4:
+                LogList logList= LogList.newInstance(refresher,coreResult,liveGame);
+                fragmentsMap.put(position,logList);
+                return logList;
         }
     }
 
@@ -69,7 +74,7 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
         this.liveGame=liveGame;
         Set<Integer> keySet=fragmentsMap.keySet();
         for(Integer key:keySet){
-            Updatable updatable=fragmentsMap.get(key);
+            Updatable<Pair<CoreResult,LiveGame>> updatable=fragmentsMap.get(key);
             switch (key){
                 default:
                 case 0:

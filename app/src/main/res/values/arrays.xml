@@ -224,4 +224,14 @@
         <item>LOG</item>
         <item>STREAMS</item>
     </string-array>
+    <string-array name="map_barracks_line">
+        <item>top</item>
+        <item>middle</item>
+        <item>bottom</item>
+    </string-array>
+    <string-array name="map_tower_line">
+        <item>top</item>
+        <item>middle</item>
+        <item>bottom</item>
+    </string-array>
 </resources>
