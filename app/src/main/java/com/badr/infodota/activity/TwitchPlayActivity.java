@@ -23,11 +23,8 @@ import android.widget.ImageView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.api.twitch.AccessToken;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.service.twitch.TwitchService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.TappableSurfaceView;
 import com.octo.android.robospice.SpiceManager;
@@ -36,8 +33,6 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
 import com.parser.Playlist;
-
-import java.util.List;
 
 /**
  * User: Histler
@@ -333,7 +328,7 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
 
         @Override
         public Element.List loadData() throws Exception {
-            AccessToken result = twitchService.getAccessToken(channelName);
+            TwitchAccessToken result = twitchService.getAccessToken(channelName);
 
             if (result!= null) {
                 Pair<Playlist, String> playlistResult = twitchService.getPlaylist(context, channelName, result);

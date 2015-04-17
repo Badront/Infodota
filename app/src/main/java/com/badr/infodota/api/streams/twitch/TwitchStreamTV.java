@@ -1,4 +1,4 @@
-package com.badr.infodota.api.twitch;
+package com.badr.infodota.api.streams.twitch;
 
 import java.util.Map;
 
@@ -6,11 +6,11 @@ import java.util.Map;
  * User: Histler
  * Date: 25.02.14
  */
-public class StreamTV {
+public class TwitchStreamTV {
     private Map<String, String> _links;
-    private Stream stream;
+    private TwitchStream stream;
 
-    public StreamTV() {
+    public TwitchStreamTV() {
     }
 
     public Map<String, String> get_links() {
@@ -21,11 +21,11 @@ public class StreamTV {
         this._links = _links;
     }
 
-    public Stream getStream() {
+    public TwitchStream getStream() {
         return stream;
     }
 
-    public void setStream(Stream stream) {
+    public void setStream(TwitchStream stream) {
         this.stream = stream;
     }
 }

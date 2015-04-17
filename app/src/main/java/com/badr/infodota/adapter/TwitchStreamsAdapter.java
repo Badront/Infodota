@@ -9,8 +9,7 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.StreamHolder;
 import com.badr.infodota.api.Constants;
-import com.badr.infodota.api.twitch.Channel;
-import com.badr.infodota.api.twitch.Stream;
+import com.badr.infodota.api.streams.Stream;
 import com.badr.infodota.fragment.twitch.TwitchGamesAdapter;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -27,9 +26,9 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
     DisplayImageOptions options;
     private ImageLoader imageLoader;
     private TwitchGamesAdapter holderAdapter;
-    private List<Channel> favStreams;
+    private List<Stream> favStreams;
 
-    public TwitchStreamsAdapter(TwitchGamesAdapter holderAdapter, List<Stream> streams, List<Channel> favStreams) {
+    public TwitchStreamsAdapter(TwitchGamesAdapter holderAdapter, Stream.List streams, List<Stream> favStreams) {
         super(streams);
         this.holderAdapter = holderAdapter;
         this.favStreams = favStreams;
@@ -57,20 +56,19 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
 
     @Override
     public void onBindViewHolder(StreamHolder holder, int position) {
-        Stream stream = getItem(position);
-        final Channel channel = stream.getChannel();
-        String channelTitle = channel.getName();
-        imageLoader.displayImage(MessageFormat.format(Constants.TwitchTV.PREVIEW_URL, channelTitle), holder.img, options);
-        holder.channel.setText(channelTitle);
-        holder.status.setText(channel.getStatus());
+        final Stream stream = getItem(position);
+
+        imageLoader.displayImage(MessageFormat.format(Constants.TwitchTV.PREVIEW_URL, stream.getChannel()), holder.img, options);
+        holder.channel.setText(stream.getChannel());
+        holder.status.setText(stream.getTitle());
         holder.viewers.setText(String.valueOf(stream.getViewers()));
-        if (favStreams.contains(channel)) {
+        if (favStreams.contains(stream)) {
             holder.favourite.setImageResource(R.drawable.favourite_on);
             holder.favourite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
-                    twitchService.deleteStream(v.getContext(), channel);
+                    twitchService.deleteStream(v.getContext(), stream);
 //                    notifyDataSetChanged();
                     holderAdapter.updateList();
                 }
@@ -81,7 +79,7 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
                 @Override
                 public void onClick(View v) {
                     TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
-                    twitchService.addStream(v.getContext(), channel);
+                    twitchService.addStream(v.getContext(), stream);
                     //notifyDataSetChanged();
                     holderAdapter.updateList();
                 }

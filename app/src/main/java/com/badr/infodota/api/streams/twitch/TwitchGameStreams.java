@@ -1,17 +1,16 @@
-package com.badr.infodota.api.twitch;
+package com.badr.infodota.api.streams.twitch;
 
-import java.util.List;
 import java.util.Map;
 
 /**
  * User: Histler
  * Date: 25.02.14
  */
-public class GameStreams {
+public class TwitchGameStreams {
     private Map<String, String> _links;
-    private Stream.List streams;
+    private TwitchStream.List streams;
 
-    public GameStreams() {
+    public TwitchGameStreams() {
     }
 
     public Map<String, String> get_links() {
@@ -22,11 +21,11 @@ public class GameStreams {
         this._links = _links;
     }
 
-    public Stream.List getStreams() {
+    public TwitchStream.List getStreams() {
         return streams;
     }
 
-    public void setStreams(Stream.List streams) {
+    public void setStreams(TwitchStream.List streams) {
         this.streams = streams;
     }
 }

@@ -5,18 +5,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.api.twitch.Channel;
+import com.badr.infodota.api.streams.Stream;
 
 /**
  * Created by ABadretdinov
  * 26.12.2014
  * 16:55
  */
-public class StreamDao extends GeneralDaoImpl<Channel> {
+public class StreamDao extends GeneralDaoImpl<Stream> {
     public static final String TABLE_NAME = "streams";
 
     public static final String COLUMN_CHANNEL = "channel";
-
+/*todo add provider column*/
     private static final String CREATE_TABLE_QUERY = "( "
             + COLUMN_ID + " integer primary key autoincrement, "
             + COLUMN_CHANNEL + " text default null);";
@@ -42,20 +42,20 @@ public class StreamDao extends GeneralDaoImpl<Channel> {
     }
 
     @Override
-    public Channel cursorToEntity(Cursor cursor, int index) {
-        Channel channel = new Channel();
+    public Stream cursorToEntity(Cursor cursor, int index) {
+        Stream channel = new Stream();
         int i = index;
         channel.setId(cursor.getLong(i));
         i++;
-        channel.setName(cursor.getString(i));
+        channel.setChannel(cursor.getString(i));
         return channel;
     }
 
     @Override
-    protected ContentValues entityToContentValues(Channel entity) {
+    protected ContentValues entityToContentValues(Stream entity) {
         ContentValues values = new ContentValues();
-        if (!TextUtils.isEmpty(entity.getName())) {
-            values.put(COLUMN_CHANNEL, entity.getName());
+        if (!TextUtils.isEmpty(entity.getChannel())) {
+            values.put(COLUMN_CHANNEL, entity.getChannel());
         } else {
             values.putNull(COLUMN_CHANNEL);
         }
@@ -63,19 +63,19 @@ public class StreamDao extends GeneralDaoImpl<Channel> {
     }
 
     @Override
-    public void delete(SQLiteDatabase database, Channel entity) {
-        database.delete(getTableName(), COLUMN_CHANNEL + " =? ", new String[]{entity.getName()});
+    public void delete(SQLiteDatabase database, Stream entity) {
+        database.delete(getTableName(), COLUMN_CHANNEL + " =? ", new String[]{entity.getChannel()});
     }
 
     @Override
-    public void saveOrUpdate(SQLiteDatabase database, Channel entity) {
-        Channel entityFromDB = getByName(database, entity.getName());
+    public void saveOrUpdate(SQLiteDatabase database, Stream entity) {
+        Stream entityFromDB = getByName(database, entity.getChannel());
         if (entityFromDB == null) {
             save(database, entity);
         }
     }
 
-    public Channel getByName(SQLiteDatabase database, String channel) {
+    public Stream getByName(SQLiteDatabase database, String channel) {
         Cursor cursor = database.query(
                 getTableName()
                 , getAllColumns(), COLUMN_CHANNEL + " = ?"

@@ -1,17 +1,18 @@
-package com.badr.infodota.api.trackdota.core;
+package com.badr.infodota.api.streams;
 
+import com.badr.infodota.util.HasId;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
- * Created by ABadretdinov
- * 13.04.2015
- * 17:51
+ * Created by Badr on 17.04.2015.
  */
-public class Stream implements Serializable {
+public class Stream implements Serializable,HasId {
+    @Expose
+    private long id;
     @Expose
     private String channel;
     @Expose
@@ -24,11 +25,11 @@ public class Stream implements Serializable {
     @Expose
     private String language;
     @Expose
-    private String provider;
+    private String provider="Twitch";
 
     @Expose
     @SerializedName("hls_streams")
-    private List<StreamQuality> qualities;
+    private java.util.List<StreamQuality> qualities;
     @Expose
     @SerializedName("lang_confirmed")
     private boolean isLangConfirmed;
@@ -84,11 +85,11 @@ public class Stream implements Serializable {
         this.provider = provider;
     }
 
-    public List<StreamQuality> getQualities() {
+    public java.util.List<StreamQuality> getQualities() {
         return qualities;
     }
 
-    public void setQualities(List<StreamQuality> qualities) {
+    public void setQualities(java.util.List<StreamQuality> qualities) {
         this.qualities = qualities;
     }
 
@@ -106,5 +107,38 @@ public class Stream implements Serializable {
 
     public void setHlsEnabled(boolean isHlsEnabled) {
         this.isHlsEnabled = isHlsEnabled;
+    }
+
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(long id) {
+        this.id=id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Stream stream = (Stream) o;
+
+        if (channel != null ? !channel.equals(stream.channel) : stream.channel != null)
+            return false;
+        return !(provider != null ? !provider.equals(stream.provider) : stream.provider != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = channel != null ? channel.hashCode() : 0;
+        result = 31 * result + (provider != null ? provider.hashCode() : 0);
+        return result;
+    }
+
+    public static class List extends ArrayList<Stream> {
     }
 }

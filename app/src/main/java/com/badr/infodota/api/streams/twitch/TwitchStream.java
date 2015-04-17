@@ -1,4 +1,4 @@
-package com.badr.infodota.api.twitch;
+package com.badr.infodota.api.streams.twitch;
 
 import com.badr.infodota.util.HasId;
 import com.google.gson.annotations.SerializedName;
@@ -10,16 +10,16 @@ import java.util.Map;
  * User: Histler
  * Date: 25.02.14
  */
-public class Stream implements HasId {
+public class TwitchStream implements HasId {
     @SerializedName("_id")
     private long id;
     private Map<String, String> _links;
-    private Channel channel;
+    private TwitchChannel channel;
     private String game;
     private Map<String, String> preview;
     private int viewers;
 
-    public Stream() {
+    public TwitchStream() {
     }
 
     @Override
@@ -40,11 +40,11 @@ public class Stream implements HasId {
         this._links = _links;
     }
 
-    public Channel getChannel() {
+    public TwitchChannel getChannel() {
         return channel;
     }
 
-    public void setChannel(Channel channel) {
+    public void setChannel(TwitchChannel channel) {
         this.channel = channel;
     }
 
@@ -85,7 +85,7 @@ public class Stream implements HasId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Stream stream = (Stream) o;
+        TwitchStream stream = (TwitchStream) o;
 
         if (id != stream.id) return false;
         if (!channel.getName().equals(stream.channel.getName())) return false;
@@ -99,6 +99,6 @@ public class Stream implements HasId {
         result = 31 * result + channel.hashCode();
         return result;
     }
-    public static class List extends ArrayList<Stream>{
+    public static class List extends ArrayList<TwitchStream>{
     }
 }

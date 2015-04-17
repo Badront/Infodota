@@ -1,14 +1,14 @@
-package com.badr.infodota.api.twitch;
+package com.badr.infodota.api.streams.twitch;
 
 /**
  * User: Histler
  * Date: 27.02.14
  */
-public class AccessToken {
+public class TwitchAccessToken {
     private String token;
     private String sig;
 
-    public AccessToken() {
+    public TwitchAccessToken() {
     }
 
     public String getSig() {

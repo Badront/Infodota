@@ -50,9 +50,9 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
-        }
-        if(liveGame==null||liveGame.getStatus()<4) {
-            onRefresh();
+            if(liveGame==null||liveGame.getStatus()<4) {
+                onRefresh();
+            }
         }
     }
 

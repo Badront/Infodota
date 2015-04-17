@@ -1,15 +1,13 @@
-package com.badr.infodota.api.trackdota.core;
+package com.badr.infodota.api.streams;
 
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 
 /**
- * Created by ABadretdinov
- * 13.04.2015
- * 17:53
+ * Created by Badr on 17.04.2015.
  */
-public class StreamQuality implements Serializable{
+public class StreamQuality implements Serializable {
     @Expose
     private String protocol;
     @Expose

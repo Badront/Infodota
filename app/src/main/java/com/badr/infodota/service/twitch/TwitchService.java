@@ -4,10 +4,9 @@ import android.content.Context;
 import android.util.Pair;
 
 import com.badr.infodota.InitializingBean;
-import com.badr.infodota.api.twitch.AccessToken;
-import com.badr.infodota.api.twitch.Channel;
-import com.badr.infodota.api.twitch.GameStreams;
-import com.badr.infodota.api.twitch.StreamTV;
+import com.badr.infodota.api.streams.Stream;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
+import com.badr.infodota.api.streams.twitch.TwitchChannel;
 import com.parser.Playlist;
 
 import java.util.List;
@@ -18,19 +17,19 @@ import java.util.List;
  * Time: 17:55
  */
 public interface TwitchService extends InitializingBean {
-    AccessToken getAccessToken(String channelName);
+    TwitchAccessToken getAccessToken(String channelName);
 
-    GameStreams getGameStreams();
+    Stream.List getGameStreams();
 
-    StreamTV getStream(String channelName);
+    Stream getStream(String channelName);
 
-    Pair<Playlist, String> getPlaylist(Context context, String channelName, AccessToken accessToken);
+    Pair<Playlist, String> getPlaylist(Context context, String channelName, TwitchAccessToken accessToken);
 
-    boolean isStreamFavourite(Context context, Channel channel);
+    boolean isStreamFavourite(Context context, TwitchChannel channel);
 
-    void addStream(Context context, Channel channel);
+    void addStream(Context context, Stream channel);
 
-    void deleteStream(Context context, Channel channel);
+    void deleteStream(Context context, Stream channel);
 
-    List<Channel> getFavouriteStreams(Context context);
+    List<Stream> getFavouriteStreams(Context context);
 }

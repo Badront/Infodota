@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -14,17 +13,12 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.activity.TwitchPlayActivity;
 import com.badr.infodota.adapter.TwitchStreamsAdapter;
-import com.badr.infodota.api.Constants;
-import com.badr.infodota.api.twitch.AccessToken;
-import com.badr.infodota.api.twitch.Channel;
-import com.badr.infodota.api.twitch.Stream;
-import com.badr.infodota.api.twitch.StreamTV;
-import com.badr.infodota.remote.twitch.TwitchRemoteService;
+import com.badr.infodota.api.streams.Stream;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.badr.infodota.util.DialogUtils;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.TaskRequest;
-import com.google.gson.Gson;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -32,13 +26,6 @@ import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
 import com.parser.Playlist;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,11 +35,11 @@ import java.util.List;
  * Time: 15:22
  */
 public class FavouriteStreamsList extends TwitchMatchListHolder implements RequestListener<Stream.List> {
-    private List<Channel> channels;
+    private List<Stream> channels;
     private TwitchGamesAdapter holderAdapter;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
 
-    public static FavouriteStreamsList newInstance(TwitchGamesAdapter holderAdapter, List<Channel> channels) {
+    public static FavouriteStreamsList newInstance(TwitchGamesAdapter holderAdapter, List<Stream> channels) {
         FavouriteStreamsList fragment = new FavouriteStreamsList();
         fragment.setHolderAdapter(holderAdapter);
         fragment.setChannels(channels);
@@ -62,7 +49,10 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
     @Override
     public void onStart() {
         super.onStart();
-        spiceManager.start(getActivity());
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            onRefresh();
+        }
     }
 
     @Override
@@ -77,47 +67,38 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
         this.holderAdapter = holderAdapter;
     }
 
-    public void setChannels(List<Channel> channels) {
-        this.channels = channels != null ? channels : new ArrayList<Channel>();
+    public void setChannels(List<Stream> channels) {
+        this.channels = channels != null ? channels : new ArrayList<Stream>();
     }
 
     @Override
-    public void updateList(List<Channel> channels) {
+    public void updateList(List<Stream> channels) {
         this.channels = channels;
         onRefresh();
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        onRefresh();
-    }
-
-    @Override
     public void onItemClick(View view, int position) {
-
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Stream stream = getAdapter().getItem(position);
-        Channel channel = stream.getChannel();
         switch (preferences.getInt("player_type", 0)) {
             case 0: {
                 Intent intent;
-                String channelName = channel.getName();
                 intent = new Intent(getActivity(), TwitchPlayActivity.class);
-                intent.putExtra("channelName", channelName);
-                intent.putExtra("channelTitle", channel.getStatus());
+                intent.putExtra("channelName", stream.getChannel());
+                intent.putExtra("channelTitle", stream.getTitle());
                 startActivity(intent);
                 break;
             }
             case 1: {
                 Intent intent;
-                String url = channel.getUrl();
+                String url = "http://www.twitch.tv/"+stream.getChannel();
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
                 break;
             }
             default: {
-                final String channelName = channel.getName();
+                final String channelName = stream.getChannel();
                 final Activity activity = getActivity();
                 if (activity != null) {
                     DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<String>() {
@@ -126,7 +107,7 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
 
                         @Override
                         public String doTask(OnPublishProgressListener listener) throws Exception {
-                            AccessToken atResult = service.getAccessToken(channelName);
+                            TwitchAccessToken atResult = service.getAccessToken(channelName);
                             if (atResult!= null) {
                                 Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
                                 Playlist playlist = playlistResult.first;
@@ -187,9 +168,9 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
     }
     public class FavStreamsLoadRequest extends TaskRequest<Stream.List>{
 
-        List<Channel> channels;
+        List<Stream> channels;
         TwitchService twitchService=BeanContainer.getInstance().getTwitchService();
-        public FavStreamsLoadRequest(List<Channel> channels) {
+        public FavStreamsLoadRequest(List<Stream> channels) {
             super(Stream.List.class);
             this.channels=channels;
         }
@@ -198,10 +179,10 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
         public Stream.List loadData() throws Exception {
             if(channels!=null){
                 Stream.List list=new Stream.List();
-                for (Channel channel : channels) {
-                    StreamTV streamTV=twitchService.getStream(channel.getName());
-                    if(streamTV.getStream()!=null){
-                        list.add(streamTV.getStream());
+                for (Stream channel : channels) {
+                    Stream stream=twitchService.getStream(channel.getChannel());
+                    if(stream!=null){
+                        list.add(stream);
                     }
                 }
                 return list;

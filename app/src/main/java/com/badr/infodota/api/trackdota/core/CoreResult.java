@@ -1,5 +1,6 @@
 package com.badr.infodota.api.trackdota.core;
 
+import com.badr.infodota.api.streams.Stream;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
 import com.google.gson.annotations.Expose;

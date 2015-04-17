@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Pair;
 
 import com.badr.infodota.api.Constants;
-import com.badr.infodota.api.twitch.AccessToken;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.remote.BaseRemoteServiceImpl;
 import com.parser.Playlist;
 
@@ -19,14 +19,14 @@ import java.text.MessageFormat;
  */
 public class TwitchRemoteServiceImpl extends BaseRemoteServiceImpl implements TwitchRemoteService {
     @Override
-    public AccessToken getAccessToken(Context context, String channelName) throws Exception {
+    public TwitchAccessToken getAccessToken(Context context, String channelName) throws Exception {
         String url = MessageFormat.format(Constants.TwitchTV.ACCESS_TOKEN_URL, channelName);
-        Pair<AccessToken, String> result = basicRequestSend(context, url, AccessToken.class);
+        Pair<TwitchAccessToken, String> result = basicRequestSend(context, url, TwitchAccessToken.class);
         return result.first;
     }
 
     @Override
-    public Pair<Playlist, String> getPlaylist(Context context, String channelName, AccessToken accessToken)
+    public Pair<Playlist, String> getPlaylist(Context context, String channelName, TwitchAccessToken accessToken)
             throws Exception {
         String url = getPlaylistUrl(context, channelName, accessToken);
         Pair<String, String> result = basicRequestSend(context, url);
@@ -38,7 +38,7 @@ public class TwitchRemoteServiceImpl extends BaseRemoteServiceImpl implements Tw
     }
 
     @Override
-    public String getPlaylistUrl(Context context, String channelName, AccessToken accessToken) {
+    public String getPlaylistUrl(Context context, String channelName, TwitchAccessToken accessToken) {
         try {
             return MessageFormat.format(Constants.TwitchTV.M3U8_URL, channelName,
                     URLEncoder.encode(accessToken.getToken(), "UTF-8"), accessToken.getSig());
