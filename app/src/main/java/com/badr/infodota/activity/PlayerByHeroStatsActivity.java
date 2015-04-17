@@ -21,6 +21,7 @@ import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.ResourceUtils;
+import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.HorizontalScrollViewListener;
 import com.badr.infodota.view.ObservableHorizontalScrollView;
@@ -195,7 +196,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                 for(Hero hero:heroes){
                     List<String> results=playerHeroesStats.heroResults.get(hero);
                     View verticalHeaderRow = inflater.inflate(R.layout.player_by_hero_stats_vertical, verticalHeader, false);
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()),
                             (ImageView) verticalHeaderRow.findViewById(R.id.image), options);
                     verticalHeader.addView(verticalHeaderRow);
                     verticalHeaderRow.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));

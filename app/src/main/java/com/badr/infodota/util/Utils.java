@@ -103,4 +103,16 @@ public class Utils {
         c.drawBitmap(bmpOriginal, 0, 0, paint);
         return bmpGrayscale;
     }
+
+    public static String getHeroFullImage(String heroDotaId){
+        return "assets://heroes/" + heroDotaId + "/full.png";
+    }
+
+    public static String getHeroPortraitImage(String heroDotaId){
+        return "assets://heroes/" + heroDotaId + "/vert.jpg";
+    }
+
+    public static String getHeroMiniImage(String heroDotaId){
+        return "assets://heroes/" + heroDotaId + "/mini.png";
+    }
 }

@@ -6,15 +6,14 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.CommonStatHolder;
 import com.badr.infodota.api.CommonStat;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -46,9 +45,10 @@ public class CommonStatsAdapter extends BaseRecyclerAdapter<CommonStat,CommonSta
     public void onBindViewHolder(CommonStatHolder holder, int position) {
         CommonStat entity=getItem(position);
         holder.header.setText(entity.getHeader());
-        imageLoader
-                .displayImage("assets://heroes/" + entity.getHero().getDotaId() + "/full.png",
-                        holder.heroImg, options);
+        imageLoader.displayImage(
+                Utils.getHeroFullImage(entity.getHero().getDotaId()),
+                holder.heroImg,
+                options);
         holder.heroName.setText(entity.getHero().getLocalizedName());
 
         int color=entity.isWon()? Color.GREEN:Color.RED;

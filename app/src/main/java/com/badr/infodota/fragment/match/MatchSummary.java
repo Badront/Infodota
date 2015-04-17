@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.match;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -19,10 +18,9 @@ import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.matchdetails.PickBan;
 import com.badr.infodota.api.matchdetails.Result;
 import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.util.GrayImageLoadingListener;
 import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -124,32 +122,11 @@ public class MatchSummary extends Fragment {
                         Hero hero = heroService.getHeroById(activity, pickBan.getHero_id());
                         if (hero != null) {
                             if(pickBan.isIs_pick()){
-                                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", currentImage);
+                                imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), currentImage);
                             }
                             else {
-                                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", currentImage,
-                                        new ImageLoadingListener() {
-                                            @Override
-                                            public void onLoadingStarted(String s, View view) {
-
-                                            }
-
-                                            @Override
-                                            public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                            }
-
-                                            @Override
-                                            @SuppressWarnings("deprecation")
-                                            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                                ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
-                                            }
-
-                                            @Override
-                                            public void onLoadingCancelled(String s, View view) {
-
-                                            }
-                                        });
+                                imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), currentImage,
+                                        new GrayImageLoadingListener());
                             }
                             currentImage.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                         }

@@ -33,7 +33,6 @@ import android.widget.TextView;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.AboutActivity;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.HeroesAdapter;
@@ -43,10 +42,9 @@ import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.fragment.SearchableFragment;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.CarouselPageTransformer;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
+import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.PagerContainer;
@@ -392,8 +390,10 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
                     //ignored
                 }
             } else {
-                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/vert.jpg",
-                        imageView, options);
+                imageLoader.displayImage(
+                        Utils.getHeroPortraitImage(hero.getDotaId()),
+                        imageView,
+                        options);
             }
 
 

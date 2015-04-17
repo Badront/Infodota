@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.api.heroes.Hero;
@@ -28,15 +27,14 @@ import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
 import com.badr.infodota.api.trackdota.live.LiveGame;
-import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.util.GrayImageLoadingListener;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,7 +49,6 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
     private LiveGame liveGame;
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
-    private HeroService heroService= BeanContainer.getInstance().getHeroService();
     final private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
@@ -108,7 +105,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             League league=coreResult.getLeague();
             if(league!=null) {
                 if (league.isHasImage()) {
-                    imageLoader.displayImage("http://www.trackdota.com/data/images/leagues/" + league.getId() + ".jpg", (ImageView) root.findViewById(R.id.league_logo), options);
+                    imageLoader.displayImage(TrackdotaUtils.getLeagueImageUrl(league.getId()), (ImageView) root.findViewById(R.id.league_logo), options);
                 }
                 ((TextView) root.findViewById(R.id.league_name)).setText(league.getName());
                 final String leagueUrl=league.getUrl();
@@ -125,22 +122,29 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             }
             TextView gameRdWins=(TextView)root.findViewById(R.id.game_rd_wins);
             gameRdWins.setText(coreResult.getRadiantWins()+" - "+coreResult.getDireWins());
-            StringBuilder gameState=new StringBuilder("Game ");
+            StringBuilder gameState=new StringBuilder(getString(R.string.game));
+            gameState.append(" ");
             gameState.append(coreResult.getDireWins()+coreResult.getRadiantWins()+1);
-            gameState.append(" / BO");
+            gameState.append(" / ");
+            gameState.append(getString(R.string.bo));
+            gameState.append(1+coreResult.getSeriesType()*2);
+            if(coreResult.getSeriesType()==0){
+                gameRdWins.setText("-");
+
+            }
+            /*
             switch (coreResult.getSeriesType()){
                 case 0:
                     gameState.append(1);
-                    gameRdWins.setText("-");
                     break;
                 case 1:
                     gameState.append(3);
                     break;
                 default:
                     gameState.append("{").append(coreResult.getSeriesType()).append("}");
-            }
+            }*/
             ((TextView)root.findViewById(R.id.game_state)).setText(gameState.toString());
-            ((TextView)root.findViewById(R.id.viewers)).setText(coreResult.getSpectators()+" viewers");
+            ((TextView)root.findViewById(R.id.viewers)).setText(MessageFormat.format(getString(R.string.viewers_),coreResult.getSpectators()));
             SimpleDateFormat dateTimeFormat=new SimpleDateFormat("HH:mm  dd.MM.yyyy");
             ((TextView) root.findViewById(R.id.game_start_time)).setText(dateTimeFormat.format(new Date(coreResult.getStartTime()*1000L)));
 
@@ -169,30 +173,17 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             ((TextView)root.findViewById(R.id.game_duration)).setText(minutes+":"+(seconds<10?"0":"")+seconds);
             //((TextView)root.findViewById(R.id.nwa_team_tag)).setText();
             TextView gameStatus = (TextView) root.findViewById(R.id.game_status);
-            switch (coreResult.getStatus()) {
-                case 1:
-                    gameStatus.setText("In hero selection");
-                    break;
-                case 2:
-                    gameStatus.setText("Waiting for creep spawn");
-                    break;
-                case 3:
-                    gameStatus.setText("In progress");
-                    break;
-                case 4:
-                    gameStatus.setText("Finished");
-                    break;
-            }
+            gameStatus.setText(TrackdotaUtils.getGameStatus(activity,coreResult.getStatus()));
 
             //todo net worth advantage team tag, gold advantage - from LiveGame
             if(liveGame!=null) {
-                ((TextView) root.findViewById(R.id.roshan_status)).setText(liveGame.getRoshanRespawnTimer() > 0 ? "Respawning in " + liveGame.getRoshanRespawnTimer() + "s" : "Alive");
+                ((TextView) root.findViewById(R.id.roshan_status)).setText(liveGame.getRoshanRespawnTimer() > 0 ?MessageFormat.format(getString(R.string.respawn_in),liveGame.getRoshanRespawnTimer()): getString(R.string.alive));
 
                 ((TextView) root.findViewById(R.id.radiant_score)).setText(String.valueOf(liveGame.getRadiant().getScore()));
                 ((TextView) root.findViewById(R.id.dire_score)).setText(String.valueOf(liveGame.getDire().getScore()));
 
                 if (liveGame.isPaused()) {
-                    gameStatus.setText("Paused");
+                    gameStatus.setText(getString(R.string.paused));
                 }
             }
             LayoutInflater inflater= (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -207,7 +198,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     Hero hero=gameManager.getHero(pick.getHeroId());
                     if(hero!=null) {
                         imageLoader.displayImage(
-                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                Utils.getHeroFullImage(hero.getDotaId()),
                                 (ImageView) row.findViewById(R.id.image),
                                 options);
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(pick.getHeroId()));
@@ -227,30 +218,11 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     Hero hero=gameManager.getHero(ban.getHeroId());
                     if(hero!=null) {
                         imageLoader.displayImage(
-                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                Utils.getHeroFullImage(hero.getDotaId()),
                                 (ImageView) row.findViewById(R.id.image),
-                                options, new ImageLoadingListener() {
-                                    @Override
-                                    public void onLoadingStarted(String s, View view) {
-
-                                    }
-
-                                    @Override
-                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                    }
-
-                                    @Override
-                                    @SuppressWarnings("deprecation")
-                                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                        ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
-                                    }
-
-                                    @Override
-                                    public void onLoadingCancelled(String s, View view) {
-
-                                    }
-                                });
+                                options,
+                                new GrayImageLoadingListener()
+                                );
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(ban.getHeroId()));
                     }
                     radiantBans.addView(row);
@@ -269,7 +241,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     Hero hero=gameManager.getHero(pick.getHeroId());
                     if(hero!=null) {
                         imageLoader.displayImage(
-                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                Utils.getHeroFullImage(hero.getDotaId()),
                                 (ImageView) row.findViewById(R.id.image),
                                 options);
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(pick.getHeroId()));
@@ -289,30 +261,10 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
                     Hero hero=gameManager.getHero(ban.getHeroId());
                     if(hero!=null) {
                         imageLoader.displayImage(
-                                "assets://heroes/" + hero.getDotaId() + "/full.png",
+                                Utils.getHeroFullImage(hero.getDotaId()),
                                 (ImageView) row.findViewById(R.id.image),
-                                options, new ImageLoadingListener() {
-                                    @Override
-                                    public void onLoadingStarted(String s, View view) {
-
-                                    }
-
-                                    @Override
-                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                    }
-
-                                    @Override
-                                    @SuppressWarnings("deprecation")
-                                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                        ((ImageView) view).setImageBitmap(Utils.toGrayScale(bitmap));
-                                    }
-
-                                    @Override
-                                    public void onLoadingCancelled(String s, View view) {
-
-                                    }
-                                });
+                                options,
+                                new GrayImageLoadingListener());
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(ban.getHeroId()));
                     }
                     direBans.addView(row);

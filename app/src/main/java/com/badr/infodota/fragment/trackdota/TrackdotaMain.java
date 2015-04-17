@@ -41,12 +41,9 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
     @Override
     public void onStart() {
         super.onStart();
-        spiceManager.start(getActivity());
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+        }
         onRefresh();
     }
 

@@ -28,13 +28,12 @@ import com.badr.infodota.api.joindota.SubmatchItem;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.joindota.JoinDotaService;
 import com.badr.infodota.util.DateUtils;
+import com.badr.infodota.util.GrayImageLoadingListener;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -173,32 +172,15 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                 List<Hero> heroes = heroService.getHeroesByName(this, heroName);
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
-                    LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, null, false);
+                    LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, team1bans, false);
                     imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team1bans.addView(imageLayout);
-                    final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
-                    imageLoader.loadImage("assets://heroes/" + hero.getDotaId() + "/full.png", options,
-                            new ImageLoadingListener() {
-                                @Override
-                                public void onLoadingStarted(String s, View view) {
-
-                                }
-
-                                @Override
-                                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                }
-
-                                @Override
-                                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                    imageView.setImageBitmap(Utils.toGrayScale(bitmap));
-                                }
-
-                                @Override
-                                public void onLoadingCancelled(String s, View view) {
-
-                                }
-                            });
+                    ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
+                    imageLoader.displayImage(
+                            Utils.getHeroFullImage(hero.getDotaId()),
+                            imageView,
+                            options,
+                            new GrayImageLoadingListener());
                 }
             }
             FlowLayout team2bans = (FlowLayout) view.findViewById(R.id.bans2);
@@ -206,54 +188,37 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                 List<Hero> heroes = heroService.getHeroesByName(this, heroName);
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
-                    LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, null, false);
+                    LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, team2bans, false);
                     imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team2bans.addView(imageLayout);
-                    final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
-                    imageLoader.loadImage("assets://heroes/" + hero.getDotaId() + "/full.png", options,
-                            new ImageLoadingListener() {
-                                @Override
-                                public void onLoadingStarted(String s, View view) {
-
-                                }
-
-                                @Override
-                                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                                }
-
-                                @Override
-                                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                                    imageView.setImageBitmap(Utils.toGrayScale(bitmap));
-                                }
-
-                                @Override
-                                public void onLoadingCancelled(String s, View view) {
-
-                                }
-                            });
+                    ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
+                    imageLoader.displayImage(
+                            Utils.getHeroFullImage(hero.getDotaId()),
+                            imageView,
+                            options,
+                            new GrayImageLoadingListener());
                 }
             }
             LinearLayout team1 = (LinearLayout) view.findViewById(R.id.team1);
             LinearLayout team2 = (LinearLayout) view.findViewById(R.id.team2);
             int size = submatchItem.getTeam1picks().size();
             for (int i = 0; i < size; i++) {
-                LinearLayout team1HeroHolder = (LinearLayout) inflater.inflate(R.layout.image_text_row_left, null, false);
-                LinearLayout team2HeroHolder = (LinearLayout) inflater.inflate(R.layout.image_text_row_right, null, false);
+                LinearLayout team1HeroHolder = (LinearLayout) inflater.inflate(R.layout.image_text_row_left, team1, false);
+                LinearLayout team2HeroHolder = (LinearLayout) inflater.inflate(R.layout.image_text_row_right, team2, false);
                 ((TextView) team1HeroHolder.findViewById(R.id.text)).setText(submatchItem.getTeam1playerNames().get(i));
                 ((TextView) team2HeroHolder.findViewById(R.id.text)).setText(submatchItem.getTeam2playerNames().get(i));
                 List<Hero> heroes = heroService.getHeroesByName(this, submatchItem.getTeam1picks().get(i));
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team1HeroHolder.findViewById(R.id.img);
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", imageView, options);
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), imageView, options);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 heroes = heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i));
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team2HeroHolder.findViewById(R.id.img);
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", imageView, options);
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), imageView, options);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 team1.addView(team1HeroHolder);

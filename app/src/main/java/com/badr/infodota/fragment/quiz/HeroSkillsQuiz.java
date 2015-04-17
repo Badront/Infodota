@@ -15,6 +15,7 @@ import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.api.abilities.Ability;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -108,7 +109,8 @@ public class HeroSkillsQuiz extends QuizFragment {
     }
 
     private void initCoreHero(View root) {
-        imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/vert.jpg",
+        imageLoader.displayImage(
+                Utils.getHeroPortraitImage(hero.getDotaId()),
                 (ImageView) root.findViewById(R.id.hero_img));
     }
 

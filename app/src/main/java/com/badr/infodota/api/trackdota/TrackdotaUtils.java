@@ -1,7 +1,9 @@
 package com.badr.infodota.api.trackdota;
 
+import android.content.Context;
 import android.text.TextUtils;
 
+import com.badr.infodota.R;
 import com.badr.infodota.api.trackdota.game.Team;
 
 /**
@@ -20,5 +22,23 @@ public class TrackdotaUtils {
     }
     public static String getTeamImageUrl(Team team){
         return "http://www.trackdota.com/data/images/teams/"+team.getId()+".png";
+    }
+    public static String getLeagueImageUrl(long leagueId){
+        return "http://www.trackdota.com/data/images/leagues/"+leagueId+".jpg";
+    }
+    public static String getGameStatus(Context context,int status){
+        switch (status){
+            case 1:
+                return context.getString(R.string.in_hero_selection);
+            case 2:
+                return context.getString(R.string.waiting_for_horn);
+            case 3:
+                return context.getString(R.string.in_progress);
+            case 4:
+                return context.getString(R.string.finished);
+            default:
+                return context.getString(R.string.match_status_unknown);
+
+        }
     }
 }

@@ -19,6 +19,7 @@ import com.badr.infodota.view.PinnedSectionListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +94,7 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
     public View getView(int position, View convertView, ViewGroup parent) {
         View itemView=convertView;
         Object object=getItem(position);
+        Context context=parent.getContext();
         if(object instanceof GameHeader){
             itemView=inflater.inflate(R.layout.trackdota_live_game_list_section,parent,false);
             TextView sectionHeader = (TextView) itemView.findViewById(R.id.text);
@@ -103,11 +105,11 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
                 sectionHeader.setText(header.name);
             }
             else {
-                sectionHeader.setText("Unspecified league");
+                sectionHeader.setText(context.getString(R.string.unspecified_league));
             }
             if(header.hasImage){
                 imageView.setVisibility(View.VISIBLE);
-                imageLoader.displayImage("http://www.trackdota.com/data/images/leagues/"+header.id+".jpg", imageView, options);
+                imageLoader.displayImage(TrackdotaUtils.getLeagueImageUrl(header.id), imageView, options);
             }
             else {
                 imageView.setVisibility(View.INVISIBLE);
@@ -138,8 +140,8 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             EnhancedGame game= (EnhancedGame) object;
             Team radiant=game.getRadiant();
             if(radiant!=null){
-                holder.radiantTag.setText(!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant");
-                holder.radiantName.setText(!TextUtils.isEmpty(radiant.getName())?radiant.getName():"Radiant");
+                holder.radiantTag.setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT));
+                holder.radiantName.setText(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.DIRE));
                 if(radiant.isHasLogo()) {
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), holder.radiantLogo, options);
                 }
@@ -155,8 +157,8 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             holder.radiantScore.setText(String.valueOf(game.getRadiantKills()));
             Team dire=game.getDire();
             if(dire!=null){
-                holder.direTag.setText(!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire");
-                holder.direName.setText(!TextUtils.isEmpty(dire.getName())?dire.getName():"Dire");
+                holder.direTag.setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE));
+                holder.direName.setText(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE));
                 if(dire.isHasLogo()) {
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), holder.direLogo, options);
                 }else {
@@ -169,28 +171,23 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
                 holder.direLogo.setImageResource(R.drawable.default_img);
             }
             holder.direScore.setText(String.valueOf(game.getDireKills()));
-            StringBuilder gameState=new StringBuilder("Game ");
+            StringBuilder gameState=new StringBuilder(context.getString(R.string.game));
+            gameState.append(" ");
             gameState.append(game.getDireWins()+game.getRadiantWins()+1);
-            gameState.append(" / BO");
-            switch (game.getSeriesType()){
-                case 0:
-                    gameState.append(1);
-                    break;
-                case 1:
-                    gameState.append(3);
-                    gameState.append(" (");
-                    gameState.append(game.getRadiantWins());
-                    gameState.append(" - ");
-                    gameState.append(game.getDireWins());
-                    gameState.append(")");
-                    break;
-                default:
-                    gameState.append("{").append(game.getSeriesType()).append("}");
+            gameState.append(" / ");
+            gameState.append(context.getString(R.string.bo));
+            gameState.append(1 + game.getSeriesType() * 2);
+            if(game.getSeriesType()!=0){
+                gameState.append(" (");
+                gameState.append(game.getRadiantWins());
+                gameState.append(" - ");
+                gameState.append(game.getDireWins());
+                gameState.append(")");
             }
             holder.gameState.setText(gameState.toString());
             if(game.getStreams()>0)
             {
-                holder.streams.setText(game.getStreams()+" streams");
+                holder.streams.setText(MessageFormat.format(context.getString(R.string.streams_),game.getStreams()));
                 holder.streams.setVisibility(View.VISIBLE);
             }
             else {
@@ -199,14 +196,14 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             holder.scoreHolder.setVisibility(View.VISIBLE);
             switch (game.getStatus()){
                 case 1:
-                    holder.gameTime.setText("In hero selection");
+                    holder.gameTime.setText(context.getString(R.string.in_hero_selection));
                     holder.scoreHolder.setVisibility(View.INVISIBLE);
                     break;
                 case 2:
-                    holder.gameTime.setText("Waiting for horn");
+                    holder.gameTime.setText(context.getString(R.string.waiting_for_horn));
                     break;
                 case 3:
-                    holder.gameTime.setText(game.getDuration()/60+" minutes");
+                    holder.gameTime.setText(MessageFormat.format(context.getString(R.string.minutes_),game.getDuration() / 60));
                     break;
                 default:
             }

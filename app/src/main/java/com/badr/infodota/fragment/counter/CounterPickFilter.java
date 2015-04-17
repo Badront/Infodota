@@ -34,6 +34,7 @@ import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.api.heroes.TruepickerHero;
 import com.badr.infodota.service.cosmetic.CounterService;
 import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -299,13 +300,13 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             {
                 if (allies.size() > i) {
                     TruepickerHero hero = heroService.getTruepickerHero(activity, allies.get(i));
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", allyViews[i], options);
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), allyViews[i], options);
                 } else {
                     imageLoader.displayImage("assets://default_img.png", allyViews[i], options);
                 }
                 if (enemies.size() > i) {
                     TruepickerHero hero = heroService.getTruepickerHero(activity, enemies.get(i));
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", enemyViews[i], options);
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), enemyViews[i], options);
                 } else {
                     imageLoader.displayImage("assets://default_img.png", enemyViews[i], options);
                 }
@@ -313,7 +314,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             if (enemies.size() == 5)//та же поправка
             {
                 TruepickerHero hero = heroService.getTruepickerHero(activity, enemies.get(4));
-                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", enemyViews[4], options);
+                imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), enemyViews[4], options);
             } else {
                 imageLoader.displayImage("assets://default_img.png", enemyViews[4], options);
             }
@@ -356,7 +357,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
                     View view = inflater.inflate(R.layout.hero_row, recommendationsView, false);
                     ((TextView) view.findViewById(R.id.name)).setText(hero.getLocalizedName());
                     imageLoader
-                            .displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
+                            .displayImage(Utils.getHeroFullImage(hero.getDotaId()),
                                     (ImageView) view.findViewById(R.id.img), options);
                     view.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     recommendationsView.addView(view);

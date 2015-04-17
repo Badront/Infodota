@@ -50,7 +50,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static com.badr.infodota.util.Utils.PHONE;
@@ -196,7 +195,8 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                 RelativeLayout row= (RelativeLayout) inflater.inflate(R.layout.trackdota_map_minihero,holder,false);
                 Hero hero=gameManager.getHero(player.getHeroId());
                 if(hero!=null) {
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/mini.png",
+                    imageLoader.displayImage(
+                            Utils.getHeroMiniImage(hero.getDotaId()),
                             (ImageView) row.findViewById(R.id.image),
                             options);
                     //todo переделать
@@ -384,7 +384,7 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                     TextView heroName=(TextView)playerRow.findViewById(R.id.nick);
                     heroName.setVisibility(View.VISIBLE);
                     heroName.setText(hero.getLocalizedName());
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()),
                             (ImageView) playerRow.findViewById(R.id.hero_img),
                             options);
                 }
@@ -467,14 +467,16 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                                     }
                                 }
                             }
-
-                            List<AbilityUpgrade> abilityUpgrades = Arrays.asList(upgrades);
-                            Iterator<AbilityUpgrade> iterator=abilityUpgrades.iterator();
-                            while (iterator.hasNext()){
-                                if(iterator.next()==null){
-                                    iterator.remove();
-                                }
+                            /*delete empty upgrades (if player has extra level points)*/
+                            int newSize=upgrades.length;
+                            while (newSize>0&&upgrades[newSize-1]==null){
+                                newSize--;
                             }
+                            if(newSize!=upgrades.length){
+                                upgrades=Arrays.copyOf(upgrades,newSize);
+                            }
+                            List<AbilityUpgrade> abilityUpgrades = Arrays.asList(upgrades);
+
                             matchPlayer.setAbilityUpgrades(abilityUpgrades);
                             AdditionalUnit au = new AdditionalUnit();
                             long[] itemIds = livePlayer.getItemIds();

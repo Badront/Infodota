@@ -292,4 +292,16 @@
     <string name="net_worth"><b>Net worth:</b></string>
     <string name="respawn_in">Возродится через {0} с.</string>
     <string name="no_mana">Не хватает маны</string>
+    <string name="unspecified_league">Неизвестная лига</string>
+    <string name="streams_">{0} стримов</string>
+    <string name="in_hero_selection">Процесс банопика</string>
+    <string name="waiting_for_horn">Ожидание начала</string>
+    <string name="minutes_">{0} минут</string>
+    <string name="viewers_">" viewers"</string>
+    <string name="in_progress">Матч идет</string>
+    <string name="finished">Матч окончен</string>
+    <string name="match_status_unknown">Неизвестный статус</string>
+    <string name="game">Игра</string>
+    <string name="bo">БО</string>
+    <string name="paused">Пауза</string>
 </resources>

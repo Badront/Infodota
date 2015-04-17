@@ -187,7 +187,7 @@ public class MatchDetailsAdapter extends BaseAdapter {
 
         final Hero hero = player.getHero();
         if (hero != null) {
-            imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", holder.heroImg, options);
+            imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.heroImg, options);
            /* holder.heroImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

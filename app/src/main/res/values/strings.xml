@@ -295,4 +295,16 @@
     <string name="net_worth"><b>Net worth:</b></string>
     <string name="respawn_in">Respawn in {0} sec.</string>
     <string name="no_mana">Not enough mana</string>
+    <string name="unspecified_league">Unspecified league</string>
+    <string name="streams_">{0} streams</string>
+    <string name="in_hero_selection">In hero selection</string>
+    <string name="waiting_for_horn">Waiting for horn</string>
+    <string name="minutes_">{0} minutes</string>
+    <string name="viewers_">" viewers"</string>
+    <string name="in_progress">Match in progress</string>
+    <string name="finished">Match has finished</string>
+    <string name="match_status_unknown">Unknown Status</string>
+    <string name="game">Game</string>
+    <string name="bo">BO</string>
+    <string name="paused">Paused</string>
 </resources>

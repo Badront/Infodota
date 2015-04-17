@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,12 +101,14 @@ public class HeroStatInfo extends Fragment {
                 imageView.setImageDrawable(gifFromFile);
                 ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
             } catch (IOException e) {
-                //ignored
+                Log.e(getClass().getName(),e.getLocalizedMessage());
             }
         } else {
             ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.heroprimaryportrait_overlay);
-            imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/vert.jpg",
-                    imageView, options);
+            imageLoader.displayImage(
+                    Utils.getHeroPortraitImage(hero.getDotaId()),
+                    imageView,
+                    options);
         }
     }
 

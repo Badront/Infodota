@@ -254,18 +254,18 @@ public class MatchPlayerInfoActivity extends BaseActivity {
                         ultStatus.setText(getString(R.string.not_levelled));
                         break;
                     case 1:
-                        if(player.getUltCooldown()>0){
+                        if(player.getUltCooldown()!=null){
                             ultStatus.setTextColor(getResources().getColor(R.color.enemy_team));
                             ultStatus.setText(MessageFormat.format(getString(R.string.on_cooldown),player.getUltCooldown()));
                         }
-                        else {
-                            ultStatus.setTextColor(getResources().getColor(R.color.ally_team));
-                            ultStatus.setText(getString(R.string.is_ready));
-                        }
                         break;
-                    case 3:
+                    case 2:
                         ultStatus.setTextColor(getResources().getColor(R.color.enemy_team));
                         ultStatus.setText(getString(R.string.no_mana));
+                        break;
+                    case 3:
+                        ultStatus.setTextColor(getResources().getColor(R.color.ally_team));
+                        ultStatus.setText(getString(R.string.is_ready));
                         break;
                 }
             }
@@ -275,7 +275,7 @@ public class MatchPlayerInfoActivity extends BaseActivity {
             ImageView heroImg = (ImageView) findViewById(R.id.hero_img);
             TextView heroName = (TextView) findViewById(R.id.hero_name);
             if (hero != null) {
-                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", heroImg, options);
+                imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), heroImg, options);
                 heroImg.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 heroName.setText(hero.getLocalizedName());
             } else {

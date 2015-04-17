@@ -19,6 +19,7 @@ import com.badr.infodota.view.PinnedSectionListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -101,6 +102,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
     public View getView(int position, View convertView, ViewGroup parent) {
         View itemView=convertView;
         Object object=getItem(position);
+        Context context=parent.getContext();
         if(object instanceof GameHeader){
             itemView=inflater.inflate(R.layout.trackdota_live_game_list_section,parent,false);
             TextView sectionHeader = (TextView) itemView.findViewById(R.id.text);
@@ -111,11 +113,11 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 sectionHeader.setText(header.name);
             }
             else {
-                sectionHeader.setText("Unspecified league");
+                sectionHeader.setText(context.getString(R.string.unspecified_league));
             }
             if(header.hasImage){
                 imageView.setVisibility(View.VISIBLE);
-                imageLoader.displayImage("http://www.trackdota.com/data/images/leagues/"+header.id+".jpg", imageView, options);
+                imageLoader.displayImage(TrackdotaUtils.getLeagueImageUrl(header.id), imageView, options);
             }
             else {
                 imageView.setVisibility(View.INVISIBLE);
@@ -146,8 +148,8 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
             Game game= (Game) object;
             Team radiant=game.getRadiant();
             if(radiant!=null){
-                holder.radiantTag.setText(!TextUtils.isEmpty(radiant.getTag())?radiant.getTag():"Radiant");
-                holder.radiantName.setText(!TextUtils.isEmpty(radiant.getName())?radiant.getName():"Radiant");
+                holder.radiantTag.setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT));
+                holder.radiantName.setText(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT));
                 if(radiant.isHasLogo()) {
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), holder.radiantLogo, options);
                 }
@@ -164,8 +166,8 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
             holder.radiantScore.setText(String.valueOf(game.getRadiantKills()));
             Team dire=game.getDire();
             if(dire!=null){
-                holder.direTag.setText(!TextUtils.isEmpty(dire.getTag())?dire.getTag():"Dire");
-                holder.direName.setText(!TextUtils.isEmpty(dire.getName())?dire.getName():"Dire");
+                holder.direTag.setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE));
+                holder.direName.setText(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE));
                 if(dire.isHasLogo()) {
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), holder.direLogo, options);
                 }else {
@@ -180,8 +182,8 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
             holder.direScore.setText(String.valueOf(game.getDireKills()));
 
             holder.gameStartTime.setText(dateTimeFormat.format(new Date(game.getStartTime()*1000)));
-            holder.viewers.setText(game.getSpectators()+" viewers");
-            holder.gameDuration.setText(game.getDuration()/60+" minutes");
+            holder.viewers.setText(MessageFormat.format(context.getString(R.string.viewers_),game.getSpectators()));
+            holder.gameDuration.setText(MessageFormat.format(context.getString(R.string.minutes_),game.getDuration()/60));
         }
         return itemView;
     }
