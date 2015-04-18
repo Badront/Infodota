@@ -58,7 +58,7 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
                 fragmentsMap.put(position,logList);
                 return logList;
             case 5:
-                StreamList streamList=StreamList.newInstance(refresher,coreResult,liveGame);
+                StreamList streamList=StreamList.newInstance(refresher,coreResult);
                 fragmentsMap.put(position,streamList);
                 return streamList;
         }

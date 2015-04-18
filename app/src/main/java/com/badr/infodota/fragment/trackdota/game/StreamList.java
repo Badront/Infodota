@@ -8,15 +8,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.PopupMenu;
 import android.text.TextUtils;
 import android.util.Pair;
-import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
@@ -48,26 +46,25 @@ import java.util.List;
 /**
  * Created by Badr on 18.04.2015.
  */
-public class StreamList extends RecyclerFragment<Stream, StreamHolder> implements RequestListener<Stream.List>,TwitchGamesAdapter,Updatable<Pair<CoreResult,LiveGame>> {
+public class StreamList extends RecyclerFragment<Stream, StreamHolder> implements RequestListener<Stream.List>, TwitchGamesAdapter, Updatable<Pair<CoreResult, LiveGame>> {
     private List<Stream> channels;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
     private CoreResult coreResult;
-    private LiveGame liveGame;
     private Refresher refresher;
-    public static StreamList newInstance(Refresher refresher,CoreResult coreResult,LiveGame liveGame){
-        StreamList fragment=new StreamList();
-        fragment.refresher=refresher;
-        fragment.coreResult=coreResult;
-        fragment.liveGame=liveGame;
+
+    public static StreamList newInstance(Refresher refresher, CoreResult coreResult) {
+        StreamList fragment = new StreamList();
+        fragment.refresher = refresher;
+        fragment.coreResult = coreResult;
         return fragment;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()) {
+        if (!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
-            if(coreResult!=null) {
+            if (coreResult != null) {
                 spiceManager.execute(new StreamsLoadRequest(), this);
             }
         }
@@ -75,7 +72,7 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
     @Override
     public void onStop() {
-        if(spiceManager.isStarted()){
+        if (spiceManager.isStarted()) {
             spiceManager.shouldStop();
         }
         super.onStop();
@@ -83,60 +80,56 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
     @Override
     public void onRefresh() {
-        if(refresher!=null){
+        if (refresher != null) {
             setRefreshing(true);
             refresher.onRefresh();
         }
     }
 
+    public static final int PLAYER_TYPE = 1403;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        setLayoutId(R.layout.trackdota_streams);
-        View view=super.onCreateView(inflater, container, savedInstanceState);
-        actionMenuView= (ActionMenuView) view.findViewById(R.id.actionMenuView);
-        return view;
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (Build.VERSION.SDK_INT > 14) {
+            int currentPlayer = preferences.getInt("player_type", 0);
+            MenuItem playerType = menu.add(1, PLAYER_TYPE, 1, getResources().getStringArray(R.array.player_types)[currentPlayer]);
+            MenuItemCompat.setShowAsAction(playerType, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        } else {
+            preferences.edit().putInt("player_type", 1).commit();
+        }
     }
 
-    private ActionMenuView actionMenuView;
-    public static final int PLAYER_TYPE = 1403;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == PLAYER_TYPE) {
+            final MenuItem player = item;
+            PopupMenu popup = new PopupMenu(getActivity(), getActivity().findViewById(item.getItemId()));
+            final Menu menu = popup.getMenu();
+            String[] playerTypes = getResources().getStringArray(R.array.player_types);
+            for (int i = 0; i < playerTypes.length; i++) {
+                menu.add(2, i, 0, playerTypes[i]);
+            }
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    player.setTitle(menuItem.getTitle());
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    preferences.edit().putInt("player_type", menuItem.getItemId()).commit();
+                    return true;
+                }
+            });
+            popup.show();
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (Build.VERSION.SDK_INT < 14) {
-            preferences.edit().putInt("player_type", 1).commit();
-            actionMenuView.setVisibility(View.GONE);
-        } else {
-            actionMenuView.setVisibility(View.VISIBLE);
-            int currentPlayer = preferences.getInt("player_type", 0);
-            Menu actionMenu = actionMenuView.getMenu();
-            MenuItem player = actionMenu.add(1, PLAYER_TYPE, 1, getResources().getStringArray(R.array.player_types)[currentPlayer]);
-            MenuItemCompat.setShowAsAction(player, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-            actionMenuView.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    final MenuItem player=menuItem;
-                    PopupMenu popup = new PopupMenu(getActivity(), getActivity().findViewById(menuItem.getItemId()));
-                    final Menu menu = popup.getMenu();
-                    String[] playerTypes = getResources().getStringArray(R.array.player_types);
-                    for (int i = 0; i < playerTypes.length; i++) {
-                        menu.add(2, i, 0, playerTypes[i]);
-                    }
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem menuItem) {
-                            player.setTitle(menuItem.getTitle());
-                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                            preferences.edit().putInt("player_type", menuItem.getItemId()).commit();
-                            return true;
-                        }
-                    });
-                    popup.show();
-                    return true;
-                }
-            });
-        }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -154,7 +147,7 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
             }
             case 1: {
                 Intent intent;
-                String url = "http://www.twitch.tv/"+stream.getChannel();
+                String url = "http://www.twitch.tv/" + stream.getChannel();
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
                 break;
@@ -226,16 +219,15 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
     @Override
     public void onUpdate(Pair<CoreResult, LiveGame> entity) {
-        coreResult=entity.first;
-        liveGame=entity.second;
+        coreResult = entity.first;
         setRefreshing(true);
-        if(coreResult!=null) {
+        if (coreResult != null) {
             spiceManager.execute(new StreamsLoadRequest(), this);
         }
     }
 
     public class StreamsLoadRequest extends TaskRequest<Stream.List> {
-        private TwitchService twitchService=BeanContainer.getInstance().getTwitchService();
+        private TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
 
         public StreamsLoadRequest() {
             super(Stream.List.class);
@@ -243,11 +235,11 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
         @Override
         public Stream.List loadData() throws Exception {
-            if(coreResult.getStreams()!=null){
-                channels=twitchService.getFavouriteStreams(getActivity());
-                Stream.List list=new Stream.List();
+            if (coreResult.getStreams() != null) {
+                channels = twitchService.getFavouriteStreams(getActivity());
+                Stream.List list = new Stream.List();
                 for (Stream channel : coreResult.getStreams()) {
-                    if("twitch".equals(channel.getProvider())) {
+                    if ("twitch".equals(channel.getProvider())) {
                         Stream stream = twitchService.getStream(channel.getChannel());
                         if (stream != null) {
                             list.add(stream);
