@@ -454,19 +454,25 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                             matchPlayer.setGoldPerMin(livePlayer.getGpm());
                             matchPlayer.setLevel(livePlayer.getLevel());
                             List<Ability> abilities = livePlayer.getAbilities();
-                            AbilityUpgrade[] upgrades = new AbilityUpgrade[livePlayer.getLevel()];
-                            for (int i = 0, size = abilities.size(); i < size; i++) {
-                                Ability ability = abilities.get(i);
-                                int[] abBuild = ability.getBuild();
-                                for (int index = 0; index < abBuild.length; index++) {
-                                    if(abBuild[index]==1) {
-                                        AbilityUpgrade upgrade = new AbilityUpgrade();
-                                        upgrade.setAbility(ability.getId());
-                                        upgrade.setLevel(index + 1);
-                                        upgrades[index] = upgrade;
+                                /*this shit with level may not work, that's why we need dummy */
+                                AbilityUpgrade[] upgrades = new AbilityUpgrade[livePlayer.getLevel()];
+                                for (int i = 0, size = abilities.size(); i < size; i++) {
+                                    Ability ability = abilities.get(i);
+                                    int[] abBuild = ability.getBuild();
+                                    for (int index = 0; index < abBuild.length; index++) {
+                                        if (abBuild[index] == 1) {
+                                            AbilityUpgrade upgrade = new AbilityUpgrade();
+                                            upgrade.setAbility(ability.getId());
+                                            upgrade.setLevel(index + 1);
+                                            if(upgrades.length<=index){
+                                                AbilityUpgrade[] dummy=new AbilityUpgrade[index+1];
+                                                System.arraycopy(upgrades,0,dummy,0,upgrades.length);
+                                                upgrades=dummy;
+                                            }
+                                            upgrades[index] = upgrade;
+                                        }
                                     }
                                 }
-                            }
                             /*delete empty upgrades (if player has extra level points)*/
                             int newSize=upgrades.length;
                             while (newSize>0&&upgrades[newSize-1]==null){
