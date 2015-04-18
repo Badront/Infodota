@@ -44,11 +44,16 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
         fragment.extraParams = extraParams;
         return fragment;
     }
-
+    private boolean initialized=false;
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                loadGames(1);
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -57,6 +62,12 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
             spiceManager.shouldStop();
         }
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     @Override
@@ -85,7 +96,6 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
                 loadGames(page);
             }
         });
-        loadGames(1);
     }
 
     @Override
@@ -110,12 +120,14 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(MatchItem.List matchItems) {
+        initialized=true;
         setRefreshing(false);
         ((LeaguesGamesAdapter) getListAdapter()).addMatchItems(matchItems);
     }

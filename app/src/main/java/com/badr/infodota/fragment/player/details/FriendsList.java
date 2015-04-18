@@ -1,6 +1,7 @@
 package com.badr.infodota.fragment.player.details;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -23,8 +24,6 @@ import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-import java.util.List;
-
 /**
  * User: ABadretdinov
  * Date: 21.04.14
@@ -35,11 +34,23 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
     private BeanContainer container = BeanContainer.getInstance();
     private PlayerService playerService = container.getPlayerService();
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private boolean initialized=false;
+
+    public static FriendsList newInstance(Unit unit) {
+        FriendsList fragment = new FriendsList();
+        fragment.setAccount(unit);
+        return fragment;
+    }
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                onRefresh();
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -50,10 +61,10 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
         super.onStop();
     }
 
-    public static FriendsList newInstance(Unit unit) {
-        FriendsList fragment = new FriendsList();
-        fragment.setAccount(unit);
-        return fragment;
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     public void setAccount(Unit account) {
@@ -66,14 +77,13 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
     }
 
     @Override
-    public RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(getActivity(),1);
+    public RecyclerView.LayoutManager getLayoutManager(Context context) {
+        return new GridLayoutManager(context,1);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setColumnSize();
-        onRefresh();
     }
 
     @Override
@@ -109,12 +119,14 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Unit.List units) {
+        initialized=true;
         setRefreshing(false);
         Activity activity=getActivity();
         if (units != null &&activity!=null) {

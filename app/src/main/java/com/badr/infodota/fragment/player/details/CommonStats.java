@@ -1,23 +1,19 @@
 package com.badr.infodota.fragment.player.details;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.MatchInfoActivity;
 import com.badr.infodota.adapter.CommonStatsAdapter;
 import com.badr.infodota.adapter.holder.CommonStatHolder;
@@ -58,7 +54,7 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
     DisplayImageOptions options;
     private String metric;
     private Unit account;
-
+    private boolean initialized=false;
     public static CommonStats newInstance(Unit account, Bundle args, String metric) {
         CommonStats fragment = new CommonStats();
         fragment.setArguments(args);
@@ -69,8 +65,13 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                onRefresh();
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -79,6 +80,12 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
             spiceManager.shouldStop();
         }
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     public void setAccount(Unit account) {
@@ -90,8 +97,8 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
     }
 
     @Override
-    public RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(getActivity(),1);
+    public RecyclerView.LayoutManager getLayoutManager(Context context) {
+        return new GridLayoutManager(context,1);
     }
 
     @Override
@@ -103,7 +110,6 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
                 .bitmapConfig(Bitmap.Config.RGB_565).build();
         imageLoader = ImageLoader.getInstance();
         setColumnSize();
-        onRefresh();
     }
 
     @Override
@@ -128,12 +134,14 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(CommonInfo commonInfo) {
+        initialized=true;
         setRefreshing(false);
         ActionBarActivity activity= (ActionBarActivity) getActivity();
         if(activity!=null&&commonInfo!=null) {

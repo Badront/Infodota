@@ -1,15 +1,13 @@
 package com.badr.infodota.fragment.player.groups;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,26 +18,18 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.PlayerInfoActivity;
 import com.badr.infodota.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.adapter.PlayersAdapter;
 import com.badr.infodota.adapter.holder.PlayerHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.player.PlayerService;
-import com.badr.infodota.util.DialogUtils;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -52,11 +42,16 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
     private BeanContainer container = BeanContainer.getInstance();
     private PlayerService playerService = container.getPlayerService();
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
+    private boolean initialized=false;
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                initData();
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -68,13 +63,19 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
     }
 
     @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setLayoutId(R.layout.players_list);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
     @Override
-    public RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(getActivity(),1);
+    public RecyclerView.LayoutManager getLayoutManager(Context context) {
+        return new GridLayoutManager(context,1);
     }
 
     @Override
@@ -99,7 +100,6 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
                     onRefresh();
                 }
             });
-            initData();
         }
     }
 
@@ -158,6 +158,7 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
@@ -178,6 +179,7 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
 
     @Override
     public void onRequestSuccess(Unit.List units) {
+        initialized=true;
         setRefreshing(false);
         PlayersAdapter adapter = new PlayersAdapter(units, true, getResources().getStringArray(R.array.match_history_title));
         setAdapter(adapter);

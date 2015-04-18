@@ -1,10 +1,10 @@
 package com.badr.infodota.fragment.player.groups;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -19,44 +19,45 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.PlayerInfoActivity;
-import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.adapter.PlayersAdapter;
 import com.badr.infodota.adapter.holder.PlayerHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.fragment.RecyclerFragment;
-import com.badr.infodota.fragment.player.details.FriendsList;
 import com.badr.infodota.service.player.PlayerService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-import java.util.List;
-
 /**
  * User: Histler
  * Date: 04.02.14
  */
 public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implements TextWatcher,RequestListener<Unit.List> {
-    private Unit.Groups group;
+
     private EditText search;
     private String query = null;
     private Filter filter;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
+    private boolean initialized=false;
     public static GroupPlayersList newInstance(Unit.Groups group) {
         GroupPlayersList fragment = new GroupPlayersList();
-        fragment.setGroup(group);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("group",group);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                onRefresh();
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -67,8 +68,10 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
         super.onStop();
     }
 
-    public void setGroup(Unit.Groups group) {
-        this.group = group;
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     @Override
@@ -78,8 +81,8 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
     }
 
     @Override
-    public RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(getActivity(),1);
+    public RecyclerView.LayoutManager getLayoutManager(Context context) {
+        return new GridLayoutManager(context,1);
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -89,7 +92,6 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
             setColumnSize();
             search = (EditText) root.findViewById(R.id.search);
 
-            onRefresh();
             search.addTextChangedListener(this);
             root.findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,17 +155,19 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        spiceManager.execute(new UnitsLoadRequest(group),this);
+        spiceManager.execute(new UnitsLoadRequest((Unit.Groups) getArguments().getSerializable("group")),this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Unit.List units) {
+        initialized=true;
         setRefreshing(false);
         PlayersAdapter adapter = new PlayersAdapter(units, false, getResources().getStringArray(R.array.match_history_title));
         filter = adapter.getFilter();

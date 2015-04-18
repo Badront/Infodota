@@ -52,19 +52,20 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     View progressBar;
     private MatchItem matchItem;
     private ImageLoader imageLoader;
-    private BeanContainer container = BeanContainer.getInstance();
     private Menu menu;
     private Button showStreams;
     private LinearLayout streamsHolder;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
-        super.onStart();
         if(spiceManager.isStarted()) {
             spiceManager.start(this);
-            initMatch();
+            if(!initialized) {
+                initMatch();
+            }
         }
+        super.onStart();
     }
 
     @Override
@@ -240,12 +241,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         progressBar.setVisibility(View.GONE);
         Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Object object) {
+        initialized=true;
         progressBar.setVisibility(View.GONE);
         if(object instanceof String){
             String result= (String) object;

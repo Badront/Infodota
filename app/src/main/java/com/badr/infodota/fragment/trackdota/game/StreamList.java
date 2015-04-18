@@ -61,13 +61,13 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
     @Override
     public void onStart() {
-        super.onStart();
         if (!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
             if (coreResult != null) {
                 spiceManager.execute(new StreamsLoadRequest(), this);
             }
         }
+        super.onStart();
     }
 
     @Override

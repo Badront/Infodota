@@ -55,14 +55,16 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
     ImageLoader imageLoader = ImageLoader.getInstance();
 
     private Result matchResult;
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
-        super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
-            spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
+            if(!initialized) {
+                spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
+            }
         }
+        super.onStart();
     }
 
     @Override
@@ -104,11 +106,13 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Object o) {
+        initialized=true;
         if(o instanceof LongPair){
             LongPair pair= (LongPair) o;
             Team team = new Team();

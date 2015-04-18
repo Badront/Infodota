@@ -53,7 +53,7 @@ public class GameManager {
     public void addItem(Item item){
         items.put(item.getId(),item);
     }
-    public void clear(){
+    public static void clear(){
         instance=null;
     }
 }

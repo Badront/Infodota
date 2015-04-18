@@ -45,14 +45,16 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
         fragment.setChannels(channels);
         return fragment;
     }
-
+    private boolean initialized=false;
     @Override
     public void onStart() {
-        super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
-            onRefresh();
+            if(!initialized) {
+                onRefresh();
+            }
         }
+        super.onStart();
     }
 
     @Override
@@ -61,6 +63,12 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
             spiceManager.shouldStop();
         }
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     public void setHolderAdapter(TwitchGamesAdapter holderAdapter) {
@@ -157,12 +165,14 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Stream.List streams) {
+        initialized=true;
         setRefreshing(false);
         setAdapter(new TwitchStreamsAdapter(holderAdapter,streams,channels));
     }

@@ -48,6 +48,7 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     private ListView listView;
     private Hero hero;
     private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+    private boolean initialized=false;
 
     public static HeroResponses newInstance(Hero hero) {
         HeroResponses fragment = new HeroResponses();
@@ -57,8 +58,13 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                spiceManager.execute(new HeroResponseLoadRequest(),this);
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -77,6 +83,7 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initialized=false;
         final View root = getView();
         if (root == null) {
             return;
@@ -134,7 +141,6 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
                 searchView.setText("");
             }
         });
-        spiceManager.execute(new HeroResponseLoadRequest(),this);
         setOnClickListener();
     }
 
@@ -164,17 +170,20 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        initialized=false;
         killMediaPlayer();
+        super.onDestroy();
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
 
     }
 
     @Override
     public void onRequestSuccess(HeroResponse.List heroResponses) {
+        initialized=true;
         File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
         String musicPath=musicFolder.getAbsolutePath();
         adapter = new HeroResponsesAdapter(getActivity(), heroResponses, musicPath);

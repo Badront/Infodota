@@ -107,8 +107,8 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
 
     @Override
     public void onStart() {
-        super.onStart();
         spiceManager.start(getActivity());
+        super.onStart();
     }
 
     @Override

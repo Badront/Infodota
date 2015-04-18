@@ -43,6 +43,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
     private Handler updateHandler=new Handler();
     private Runnable updateTask;
+    /*need to initialize*/
     private GameManager mGameManager=GameManager.getInstance();
 
     @Override
@@ -87,6 +88,13 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
             indicator.setViewPager(pager);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mGameManager=null;
+        GameManager.clear();
+        super.onDestroy();
     }
 
     @Override

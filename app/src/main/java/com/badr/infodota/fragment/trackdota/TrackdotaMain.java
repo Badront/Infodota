@@ -38,13 +38,20 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
     private Handler updateHandler=new Handler();
     private Runnable updateTask;
     private static final long DELAY_20_SEC = 20000;
+    private boolean initialized=false;
+
     @Override
     public void onStart() {
-        super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
+            if(!initialized){
+                onRefresh();
+            }
+            else {
+                startDelayedUpdate();
+            }
         }
-        onRefresh();
+        super.onStart();
     }
 
     @Override
@@ -54,6 +61,12 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
         }
         cancelDelayedUpdate();
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     private void cancelDelayedUpdate() {
@@ -106,6 +119,7 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         progressBar.setVisibility(View.GONE);
         adapter.update(null);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
@@ -113,6 +127,7 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
 
     @Override
     public void onRequestSuccess(GamesResult gamesResult) {
+        initialized=true;
         progressBar.setVisibility(View.GONE);
         adapter.update(gamesResult);
         startDelayedUpdate();

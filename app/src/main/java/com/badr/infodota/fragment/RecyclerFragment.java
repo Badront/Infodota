@@ -1,5 +1,6 @@
 package com.badr.infodota.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -31,19 +32,19 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
     }
 
     public RecyclerView getRecyclerView() {
-        ensureList();
+        if(mRecyclerView==null) {
+            ensureList(getView());
+        }
         return mRecyclerView;
     }
 
-    public RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(getActivity());
+    public RecyclerView.LayoutManager getLayoutManager(Context context) {
+        LinearLayoutManager manager= new LinearLayoutManager(context);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        return manager;
     }
 
-    private void ensureList() {
-        if (mRecyclerView != null) {
-            return;
-        }
-        View root = getView();
+    private void ensureList(View root) {
         if (root == null) {
             throw new IllegalStateException("Content view not yet created");
         }
@@ -53,7 +54,7 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
             mRecyclerView = (RecyclerView) root.findViewById(android.R.id.list);
         }
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(getLayoutManager());
+        mRecyclerView.setLayoutManager(getLayoutManager(mRecyclerView.getContext()));
         mRecyclerView.setVerticalScrollBarEnabled(true);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         mRecyclerView.setItemAnimator(itemAnimator);
@@ -93,13 +94,9 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(layoutId, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ensureList();
+        View view= inflater.inflate(layoutId, container, false);
+        ensureList(view);
+        return view;
     }
 
     public void setRefreshing(boolean refreshing) {

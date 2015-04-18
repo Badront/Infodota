@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,60 +16,19 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.api.Constants;
-import com.badr.infodota.api.abilities.Ability;
-import com.badr.infodota.api.abilities.AbilityResult;
-import com.badr.infodota.api.heroes.GetHeroes;
-import com.badr.infodota.api.heroes.GetHeroesSkills;
-import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.api.heroes.Skill;
-import com.badr.infodota.api.items.GetItems;
-import com.badr.infodota.api.items.Item;
-import com.badr.infodota.api.items.ItemTypes;
-import com.badr.infodota.api.responses.HeroResponse;
-import com.badr.infodota.api.responses.HeroResponsesResult;
 import com.badr.infodota.dao.Helper;
 import com.badr.infodota.service.LocalUpdateService;
-import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.utils.L;
 import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.TextNode;
-import org.jsoup.select.Elements;
-
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * User: ABadretdinov
@@ -88,7 +45,6 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
 
     @Override
     protected void onStart() {
-        super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
             final int currentVersion = localUpdateService.getVersion(this);
@@ -99,6 +55,7 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
                 checkGooglePlayServicesAndRun();
             }
         }
+        super.onStart();
     }
 
     @Override

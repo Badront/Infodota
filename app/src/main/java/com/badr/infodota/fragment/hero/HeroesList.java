@@ -81,11 +81,27 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
+    private boolean initialized=false;
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized) {
+                if (carousel) {
+                    loadHeroesForCarousel();
+                } else {
+                    loadHeroesForGridView();
+                }
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     @Override
@@ -249,7 +265,6 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
             // clipping on the pager for its children.
             pager.setClipChildren(false);
             pager.setPageMargin(0);
-            loadHeroesForCarousel();
         } else {
             gridView = (RecyclerView) root.findViewById(R.id.gridView);
             gridView.setHasFixedSize(true);
@@ -257,7 +272,6 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
             //layoutManager.setReverseLayout(true);
             gridView.setLayoutManager(layoutManager);
             setColumnSize();
-            loadHeroesForGridView();
         }
     }
 
@@ -294,7 +308,7 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForGridView() {
-        spiceManager.execute(new HeroLoadRequest(),this);
+        spiceManager.execute(new HeroLoadRequest(), this);
     }
 
     @Override
@@ -312,16 +326,17 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForCarousel() {
-        spiceManager.execute(new CarouselHeroesLoadRequest(),this);
+        spiceManager.execute(new CarouselHeroesLoadRequest(), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-
+        initialized=true;
     }
 
     @Override
     public void onRequestSuccess(Object o) {
+        initialized=true;
         if(o instanceof CarouselHero.List){
             CarouselHero.List result= (CarouselHero.List) o;
             HeroCarouselPagerAdapter adapter = new HeroCarouselPagerAdapter(result);

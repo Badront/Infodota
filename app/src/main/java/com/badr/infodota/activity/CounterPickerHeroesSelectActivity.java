@@ -22,19 +22,15 @@ import com.badr.infodota.R;
 import com.badr.infodota.adapter.HeroesSelectAdapter;
 import com.badr.infodota.api.heroes.TruepickerHero;
 import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -53,14 +49,16 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     private ArrayList<Integer> allies;
     private int mode;
     private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
-        super.onStart();
         if(!spiceManager.isStarted()){
             spiceManager.start(this);
-            loadHeroesForGridView();
+            if(!initialized) {
+                loadHeroesForGridView();
+            }
         }
+        super.onStart();
     }
 
     @Override
@@ -199,11 +197,13 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRequestSuccess(TruepickerHero.List truepickerHeros) {
+        initialized=true;
         adapter = new HeroesSelectAdapter(CounterPickerHeroesSelectActivity.this, truepickerHeros, allies, enemies, mode);
         filter = adapter.getFilter();
         filter.filter(search);
