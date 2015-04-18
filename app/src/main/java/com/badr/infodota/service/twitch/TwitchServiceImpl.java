@@ -44,7 +44,7 @@ public class TwitchServiceImpl implements TwitchService {
                 stream.setHlsEnabled(true);
                 stream.setTitle(ts.getChannel().getStatus());
                 stream.setViewers(ts.getViewers());
-                stream.setProvider("Twitch");
+                stream.setProvider("twitch");
                 //stream.setQualities();
                 list.add(stream);
             }
@@ -62,7 +62,7 @@ public class TwitchServiceImpl implements TwitchService {
             stream.setChannel(channel.getName());
             stream.setTitle(channel.getStatus());
             stream.setViewers(result.getStream().getViewers());
-            stream.setProvider("Twitch");
+            stream.setProvider("twitch");
             stream.setHlsEnabled(true);
             return stream;
         }

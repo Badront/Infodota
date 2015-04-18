@@ -25,7 +25,7 @@ public class Stream implements Serializable,HasId {
     @Expose
     private String language;
     @Expose
-    private String provider="Twitch";
+    private String provider="twitch";
 
     @Expose
     @SerializedName("hls_streams")

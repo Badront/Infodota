@@ -12,6 +12,7 @@ import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.trackdota.game.CommonInfo;
 import com.badr.infodota.fragment.trackdota.game.LogList;
 import com.badr.infodota.fragment.trackdota.game.MapAndHeroes;
+import com.badr.infodota.fragment.trackdota.game.StreamList;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 
@@ -56,6 +57,10 @@ public class TrackdotaGamePagerAdapter extends FragmentPagerAdapter {
                 LogList logList= LogList.newInstance(refresher,coreResult,liveGame);
                 fragmentsMap.put(position,logList);
                 return logList;
+            case 5:
+                StreamList streamList=StreamList.newInstance(refresher,coreResult,liveGame);
+                fragmentsMap.put(position,streamList);
+                return streamList;
         }
     }
 
