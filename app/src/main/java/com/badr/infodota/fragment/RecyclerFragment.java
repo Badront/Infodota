@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.BaseRecyclerAdapter;
@@ -54,8 +53,8 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
             mRecyclerView = (RecyclerView) root.findViewById(android.R.id.list);
         }
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setVerticalScrollBarEnabled(true);
         mRecyclerView.setLayoutManager(getLayoutManager());
+        mRecyclerView.setVerticalScrollBarEnabled(true);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         mRecyclerView.setItemAnimator(itemAnimator);
         mListContainer = (SwipeRefreshLayout) root.findViewById(R.id.listContainer);
