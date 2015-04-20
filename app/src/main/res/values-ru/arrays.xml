@@ -211,4 +211,8 @@
         <item>центральную</item>
         <item>нижнюю</item>
     </string-array>
+    <string-array name="charts_array">
+        <item>Разница в золоте</item>
+        <item>Разница в опыте</item>
+    </string-array>
 </resources>

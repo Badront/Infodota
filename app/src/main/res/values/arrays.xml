@@ -234,4 +234,8 @@
         <item>middle</item>
         <item>bottom</item>
     </string-array>
+    <string-array name="charts_array">
+        <item>Difference in net worth</item>
+        <item>Difference in XP</item>
+    </string-array>
 </resources>
