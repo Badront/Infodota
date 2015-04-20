@@ -19,6 +19,8 @@ Contact: histlerbar@gmail.com<br />
 <a href="https://github.com/pnikosis/materialish-progress">materialish-progress</a> by pnikosis<br />
 <a href="https://github.com/ApmeM/android-flowlayout">FlowLayout</a> by Artem Votincev<br />
 <a href="http://jsoup.org/">Jsoup</a> by Jonathan Hedley<br />
+<a href="http://square.github.io/retrofit/">Retrofit</a> by Square, Inc.<br />
+<a href="https://github.com/stephanenicolas/robospice">Robospice</a> by Octo Technology<br />
 appcompat and gson by google<br /><br />
 Also thanks to <a href="http://www.visualpharm.com">VisualPharm</a> for remove ads icon<br />
 <a href="http://www.psdgraphics.com/">PSDgraphics</a> for app icon template (I've purchased license for 1 item)
