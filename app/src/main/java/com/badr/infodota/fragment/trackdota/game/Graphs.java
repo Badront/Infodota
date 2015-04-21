@@ -16,6 +16,7 @@ import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -99,9 +100,11 @@ public class Graphs extends Fragment implements Updatable<Pair<CoreResult,LiveGa
         LimitLine limitLine=new LimitLine(0f);
         limitLine.setLineColor(Color.WHITE);
         limitLine.setLineWidth(2f);
-        mLineData.addLimitLine(limitLine);
+        XAxis xAxis=mChart.getXAxis();
+
+        xAxis.addLimitLine(limitLine);
         mChart.setData(mLineData);
-        mChart.setSta
+
         /*chartsViewTask*/
 
     }
