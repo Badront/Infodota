@@ -263,9 +263,9 @@ public class QuizActivity extends BaseActivity {
             signedInit();
         }
     }*/
-
+    public static final int QUIZ_TIME=60000;
     private void signedInit() {
-        timer = new IncreasingCountDownTimer(60000, 1000) {
+        timer = new IncreasingCountDownTimer(QUIZ_TIME, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 ActionBar actionBar = getSupportActionBar();

@@ -37,7 +37,10 @@ public class TI4Activity extends BaseActivity implements RequestListener<Long> {
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()){
+            spiceManager.start(this);
+            spiceManager.execute(new PrizePoolLoadRequest(getApplicationContext()),this);
+        }
     }
 
     @Override
@@ -52,7 +55,6 @@ public class TI4Activity extends BaseActivity implements RequestListener<Long> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ti4_holder);
         getSupportActionBar().setTitle("The International 2014");
-        spiceManager.execute(new PrizePoolLoadRequest(getApplicationContext()),this);
         initPager();
     }
 

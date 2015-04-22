@@ -6,10 +6,12 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.api.twitch.AccessToken;
-import com.badr.infodota.api.twitch.Channel;
-import com.badr.infodota.api.twitch.GameStreams;
-import com.badr.infodota.api.twitch.StreamTV;
+import com.badr.infodota.api.streams.Stream;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
+import com.badr.infodota.api.streams.twitch.TwitchChannel;
+import com.badr.infodota.api.streams.twitch.TwitchGameStreams;
+import com.badr.infodota.api.streams.twitch.TwitchStream;
+import com.badr.infodota.api.streams.twitch.TwitchStreamTV;
 import com.badr.infodota.dao.DatabaseManager;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.remote.twitch.TwitchRemoteService;
@@ -27,22 +29,48 @@ public class TwitchServiceImpl implements TwitchService {
     private StreamDao streamDao;
 
     @Override
-    public AccessToken getAccessToken(String channelName) {
+    public TwitchAccessToken getAccessToken(String channelName) {
         return BeanContainer.getInstance().getTwitchRestService().getAccessToken(channelName);
     }
 
     @Override
-    public GameStreams getGameStreams() {
-        return BeanContainer.getInstance().getTwitchRestService().getGameStreams();
+    public Stream.List getGameStreams() {
+        TwitchGameStreams tgs=BeanContainer.getInstance().getTwitchRestService().getGameStreams();
+        if(tgs!=null){
+            Stream.List list=new Stream.List();
+            for(TwitchStream ts:tgs.getStreams()){
+                Stream stream=new Stream();
+                stream.setChannel(ts.getChannel().getName());
+                stream.setHlsEnabled(true);
+                stream.setTitle(ts.getChannel().getStatus());
+                stream.setViewers(ts.getViewers());
+                stream.setProvider("twitch");
+                //stream.setQualities();
+                list.add(stream);
+            }
+            return list;
+        }
+        return null;
     }
 
     @Override
-    public StreamTV getStream(String channelName) {
-        return BeanContainer.getInstance().getTwitchRestService().getStream(channelName);
+    public Stream getStream(String channelName) {
+        TwitchStreamTV result= BeanContainer.getInstance().getTwitchRestService().getStream(channelName);
+        if(result!=null){
+            Stream stream= new Stream();
+            TwitchChannel channel=result.getStream().getChannel();
+            stream.setChannel(channel.getName());
+            stream.setTitle(channel.getStatus());
+            stream.setViewers(result.getStream().getViewers());
+            stream.setProvider("twitch");
+            stream.setHlsEnabled(true);
+            return stream;
+        }
+        return null;
     }
 
     @Override
-    public Pair<Playlist, String> getPlaylist(Context context, String channelName, AccessToken accessToken) {
+    public Pair<Playlist, String> getPlaylist(Context context, String channelName, TwitchAccessToken accessToken) {
         try {
             Pair<Playlist, String> result = service.getPlaylist(context, channelName, accessToken);
             if (result.first == null) {
@@ -58,7 +86,7 @@ public class TwitchServiceImpl implements TwitchService {
     }
 
     @Override
-    public boolean isStreamFavourite(Context context, Channel channel) {
+    public boolean isStreamFavourite(Context context, TwitchChannel channel) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
@@ -69,7 +97,7 @@ public class TwitchServiceImpl implements TwitchService {
     }
 
     @Override
-    public void addStream(Context context, Channel channel) {
+    public void addStream(Context context, Stream channel) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
@@ -80,7 +108,7 @@ public class TwitchServiceImpl implements TwitchService {
     }
 
     @Override
-    public void deleteStream(Context context, Channel channel) {
+    public void deleteStream(Context context, Stream channel) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
@@ -91,7 +119,7 @@ public class TwitchServiceImpl implements TwitchService {
     }
 
     @Override
-    public List<Channel> getFavouriteStreams(Context context) {
+    public List<Stream> getFavouriteStreams(Context context) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {

@@ -21,16 +21,12 @@ import com.badr.infodota.adapter.ItemsAdapter;
 import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.service.item.ItemService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.util.List;
 
 /**
  * User: Histler
@@ -43,11 +39,16 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
     private String selectedFilter = null;
     private Filter filter;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(spiceManager.isStarted()) {
+            spiceManager.start(this);
+            if(!initialized) {
+                loadItems();
+            }
+        }
     }
 
     @Override
@@ -110,7 +111,6 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
         //layoutManager.setReverseLayout(true);
         gridView.setLayoutManager(layoutManager);
         setColumnSize();
-        loadItems();
     }
 
     private void setColumnSize() {
@@ -176,11 +176,13 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Item.List items) {
+        initialized=true;
         mAdapter = new ItemsAdapter(items);
         filter = mAdapter.getFilter();
         filter.filter(search);

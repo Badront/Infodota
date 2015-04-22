@@ -32,8 +32,6 @@ import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.fragment.SearchableFragment;
 import com.badr.infodota.service.item.ItemService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
@@ -42,7 +40,6 @@ import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -57,11 +54,17 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
+    private boolean initialized=false;
 
     @Override
     public void onStart() {
+        if(spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                loadItems();
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -70,6 +73,12 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
             spiceManager.shouldStop();
         }
         super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     @Override
@@ -183,7 +192,6 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
             //layoutManager.setReverseLayout(true);
             gridView.setLayoutManager(layoutManager);
             setColumnSize();
-            loadItems();
         }
     }
 
@@ -241,11 +249,13 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
 
     }
 
     @Override
     public void onRequestSuccess(Item.List items) {
+        initialized=true;
         mAdapter = new ItemsAdapter(items);
         filter = mAdapter.getFilter();
         filter.filter(search);

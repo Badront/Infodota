@@ -1,4 +1,4 @@
-package com.badr.infodota.api.twitch;
+package com.badr.infodota.api.streams.twitch;
 
 import com.badr.infodota.util.HasId;
 import com.google.gson.annotations.SerializedName;
@@ -9,7 +9,7 @@ import java.util.Map;
  * User: Histler
  * Date: 25.02.14
  */
-public class Channel implements HasId {
+public class TwitchChannel implements HasId {
     @SerializedName("_id")
     private long id;
     private Map<String, String> _links;
@@ -26,7 +26,7 @@ public class Channel implements HasId {
     private String updated_at;
     private String url;
 
-    public Channel() {
+    public TwitchChannel() {
     }
 
     public long getId() {
@@ -151,7 +151,7 @@ public class Channel implements HasId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Channel channel = (Channel) o;
+        TwitchChannel channel = (TwitchChannel) o;
 
         if (name != null ? !name.equals(channel.name) : channel.name != null) return false;
 

@@ -76,6 +76,46 @@ public class Player extends ShortPlayer implements Serializable {
     @SerializedName("additional_units")
     private List<AdditionalUnit> additionalUnits;
 
+    private Long respawnTimer;
+
+    private Integer ultState;
+
+    private Integer ultCooldown;
+
+    private Long netWorth;
+
+    public Long getNetWorth() {
+        return netWorth;
+    }
+
+    public void setNetWorth(Long netWorth) {
+        this.netWorth = netWorth;
+    }
+
+    public Integer getUltCooldown() {
+        return ultCooldown;
+    }
+
+    public void setUltCooldown(Integer ultCooldown) {
+        this.ultCooldown = ultCooldown;
+    }
+
+    public Integer getUltState() {
+        return ultState;
+    }
+
+    public void setUltState(Integer ultState) {
+        this.ultState = ultState;
+    }
+
+    public Long getRespawnTimer() {
+        return respawnTimer;
+    }
+
+    public void setRespawnTimer(Long respawnTimer) {
+        this.respawnTimer = respawnTimer;
+    }
+
     public Player() {
         super();
     }

@@ -1,8 +1,8 @@
 package com.badr.infodota.remote;
 
-import com.badr.infodota.api.twitch.AccessToken;
-import com.badr.infodota.api.twitch.GameStreams;
-import com.badr.infodota.api.twitch.StreamTV;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
+import com.badr.infodota.api.streams.twitch.TwitchGameStreams;
+import com.badr.infodota.api.streams.twitch.TwitchStreamTV;
 
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -12,9 +12,9 @@ import retrofit.http.Path;
  */
 public interface TwitchRestService {
     @GET("/kraken/streams?game=Dota%202&hls=true")
-    GameStreams getGameStreams();
+    TwitchGameStreams getGameStreams();
     @GET("/kraken/streams/{name}")
-    StreamTV getStream(@Path("name")String channelName);
+    TwitchStreamTV getStream(@Path("name")String channelName);
     @GET("/api/channels/{name}/access_token")
-    AccessToken getAccessToken(@Path("name")String channelName);
+    TwitchAccessToken getAccessToken(@Path("name")String channelName);
 }

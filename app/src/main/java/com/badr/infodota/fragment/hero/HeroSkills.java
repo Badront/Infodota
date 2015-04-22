@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.hero;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 
 import com.badr.infodota.R;
@@ -9,18 +8,12 @@ import com.badr.infodota.adapter.SkillsAdapter;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.heroes.Skill;
 import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -38,11 +31,16 @@ public class HeroSkills extends ListFragment implements RequestListener<Skill.Li
         fragment.hero = hero;
         return fragment;
     }
-
+    private boolean initialized=false;
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                spiceManager.execute(new SkillsLoadRequest(),this);
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -54,18 +52,19 @@ public class HeroSkills extends ListFragment implements RequestListener<Skill.Li
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        spiceManager.execute(new SkillsLoadRequest(),this);
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-
+        initialized=true;
     }
 
     @Override
     public void onRequestSuccess(Skill.List skills) {
+        initialized=true;
         setListAdapter(new SkillsAdapter(getActivity(), skills));
 
     }

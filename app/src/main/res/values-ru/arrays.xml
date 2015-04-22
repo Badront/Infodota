@@ -10,6 +10,7 @@
         <item>TWITCH.TV</item>
         <item>НОВОСТИ</item>
         <item>ТУРНИРНЫЕ ИГРЫ</item>
+        <item>TRACKDOTA</item>
         <!--<item>THE INTERNATIONAL</item>-->
     </string-array>
     <string-array name="lobby_types">
@@ -186,5 +187,47 @@
         <item>Инструменты</item>
         <item>Наборы</item>
         <item>Сундуки</item>
+    </string-array>
+    <string-array name="trackdota">
+        <item>LIVE</item>
+        <item>ПОПУЛЯРНЫЕ</item>
+        <item>НЕДАВНИЕ</item>
+    </string-array>
+    <string-array name="trackdota_game">
+        <item>ОСНОВНОЕ</item>
+        <item>КАРТА &amp; ГЕРОИ</item>
+        <item>ГРАФИКИ</item>
+        <item>СТАТИСТИКА</item>
+        <item>ЛОГИ</item>
+        <item>СТРИМЫ</item>
+    </string-array>
+    <string-array name="map_barracks_line">
+        <item>верхние</item>
+        <item>центральные</item>
+        <item>нижние</item>
+    </string-array>
+    <string-array name="map_tower_line">
+        <item>верхнюю</item>
+        <item>центральную</item>
+        <item>нижнюю</item>
+    </string-array>
+    <string-array name="trackdota_team_charts">
+        <item>Разница в золоте</item>
+        <item>Разница в опыте</item>
+    </string-array>
+    <string-array name="trackdota_player_stats">
+        <item>Ценность</item>
+        <item>Уровень</item>
+        <item>Текущее золото</item>
+        <item>K / D / A</item>
+        <item>GPM / XPM</item>
+        <item>Добиваний / Денаев</item>
+        <item>Убийств</item>
+        <item>Смертей</item>
+        <item>Помощей</item>
+        <item>Золота в минуту</item>
+        <item>Опыта в минуту</item>
+        <item>Добиваний</item>
+        <item>Денаев</item>
     </string-array>
 </resources>

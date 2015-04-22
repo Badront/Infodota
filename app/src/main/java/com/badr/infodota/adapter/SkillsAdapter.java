@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.api.heroes.Skill;
 import com.badr.infodota.util.FileUtils;
+import com.badr.infodota.util.Utils;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeIntents;
@@ -88,7 +89,9 @@ public class SkillsAdapter extends BaseAdapter {
         Skill skill = getItem(position);
         holder.name.setText(Html.fromHtml(skill.getDname()));
         holder.affects.setText(Html.fromHtml(skill.getAffects()));
-        imageLoader.displayImage("assets://skills/" + skill.getName() + ".png", holder.image,
+        imageLoader.displayImage(
+                Utils.getSkillImage(skill.getName()),
+                holder.image,
                 options);
         holder.loreHolder.removeAllViews();
         holder.paramsHolder.removeAllViews();

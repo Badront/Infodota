@@ -24,7 +24,7 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.pager.TwitchPagerAdapter;
-import com.badr.infodota.api.twitch.Channel;
+import com.badr.infodota.api.streams.Stream;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.badr.infodota.view.SlidingTabLayout;
 
@@ -95,9 +95,9 @@ public class TwitchHolder extends Fragment { //pullToRefresh + FloatingActionBut
                     String channelName = textView.getText().toString();
                     if (!TextUtils.isEmpty(channelName)) {
                         TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
-                        Channel channel = new Channel();
-                        channel.setName(channelName);
-                        twitchService.addStream(getActivity(), channel);
+                        Stream stream = new Stream();
+                        stream.setChannel(channelName);
+                        twitchService.addStream(getActivity(), stream);
                     }
                     dialog.dismiss();
                     adapter.updateList();

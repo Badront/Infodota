@@ -1,5 +1,6 @@
 package com.badr.infodota.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
@@ -80,4 +82,19 @@ public class HeroInfoActivity extends BaseActivity {
             indicator.setViewPager(pager);
         }
     }
+
+    public static class OnDotaHeroClickListener implements View.OnClickListener {
+        private long heroId;
+        public OnDotaHeroClickListener(long heroId){
+            this.heroId=heroId;
+        }
+        @Override
+        public void onClick(View v) {
+            Context context=v.getContext();
+            Intent intent = new Intent(context, HeroInfoActivity.class);
+            intent.putExtra("id", heroId);
+            context.startActivity(intent);
+        }
+    }
+
 }

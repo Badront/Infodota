@@ -10,6 +10,7 @@ import android.widget.Filterable;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.HeroHolder;
 import com.badr.infodota.api.heroes.Hero;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -58,7 +59,7 @@ public class HeroesAdapter extends BaseRecyclerAdapter<Hero, HeroHolder> impleme
     public void onBindViewHolder(HeroHolder holder, int position) {
         Hero hero = getItem(position);
         holder.name.setText(hero.getLocalizedName());
-        imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", holder.image, options);
+        imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.image, options);
     }
 
     @Override

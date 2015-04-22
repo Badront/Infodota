@@ -10,6 +10,7 @@ import android.widget.Filterable;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.ItemHolder;
 import com.badr.infodota.api.items.Item;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -92,7 +93,10 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
         Item item = getItem(position);
         holder.name.setText(item.getDname());
 
-        imageLoader.displayImage("assets://items/" + item.getDotaId() + ".png", holder.image, options);
+        imageLoader.displayImage(
+                Utils.getItemImage(item.getDotaId()),
+                holder.image,
+                options);
     }
 
     @Override

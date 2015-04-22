@@ -113,6 +113,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/tower_damage" />
+
+            <TextView
+                android:id="@+id/net_worth"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/net_worth" />
         </LinearLayout>
 
         <LinearLayout

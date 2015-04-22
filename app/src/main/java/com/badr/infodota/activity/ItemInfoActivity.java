@@ -1,5 +1,7 @@
 package com.badr.infodota.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import java.util.List;
  * Date: 18.01.14
  */
 public class ItemInfoActivity extends BaseActivity {
+    public static final int UP_REQUEST=1;
     private Item item;
 
     @Override
@@ -120,15 +123,7 @@ public class ItemInfoActivity extends BaseActivity {
                 ((TextView) row.findViewById(R.id.name)).setText(fromItem.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(fromItem.getCost()));
                 if (fromItem.getId() != 0) {
-                    final long id = fromItem.getId();
-                    row.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(ItemInfoActivity.this, ItemInfoActivity.class);
-                            intent.putExtra("id", id);
-                            startActivityForResult(intent, 1);
-                        }
-                    });
+                    row.setOnClickListener(new OnDotaItemClickListener(fromItem.getId(),UP_REQUEST));
                 }
                 currentCost += fromItem.getCost();
                 fromLayout.addView(row);
@@ -152,15 +147,7 @@ public class ItemInfoActivity extends BaseActivity {
                 ((TextView) row.findViewById(R.id.name)).setText(toItem.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(toItem.getCost()));
                 if (toItem.getId() != 0) {
-                    final long id = toItem.getId();
-                    row.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(ItemInfoActivity.this, ItemInfoActivity.class);
-                            intent.putExtra("id", id);
-                            startActivityForResult(intent, 1);
-                        }
-                    });
+                    row.setOnClickListener(new OnDotaItemClickListener(toItem.getId(),UP_REQUEST));
                 }
                 toLayout.addView(row);
             }
@@ -169,7 +156,7 @@ public class ItemInfoActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == RESULT_CANCELED) {
+        if (requestCode == UP_REQUEST && resultCode == RESULT_CANCELED) {
             setResult(RESULT_CANCELED);
             finish();
         } else {
@@ -200,5 +187,33 @@ public class ItemInfoActivity extends BaseActivity {
             }
         }
 
+    }
+
+    public static class OnDotaItemClickListener implements View.OnClickListener {
+        private long itemId;
+        private boolean forResult=false;
+        private int requestCode;
+        public OnDotaItemClickListener(long itemId){
+            this.itemId=itemId;
+        }
+        public OnDotaItemClickListener(long itemId,int REQUEST_CODE){
+            this(itemId);
+            forResult=true;
+            requestCode=REQUEST_CODE;
+
+
+        }
+        @Override
+        public void onClick(View v) {
+            Context context=v.getContext();
+            Intent intent = new Intent(context, ItemInfoActivity.class);
+            intent.putExtra("id", itemId);
+            if(forResult){
+                ((Activity)context).startActivityForResult(intent,requestCode);
+            }
+            else {
+                context.startActivity(intent);
+            }
+        }
     }
 }

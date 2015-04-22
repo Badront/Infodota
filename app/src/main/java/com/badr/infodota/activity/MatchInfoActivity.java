@@ -1,14 +1,18 @@
 package com.badr.infodota.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.Pair;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -55,11 +59,16 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
     ImageLoader imageLoader = ImageLoader.getInstance();
 
     private Result matchResult;
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+            if(!initialized) {
+                spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
+            }
+        }
         super.onStart();
-        spiceManager.start(this);
     }
 
     @Override
@@ -68,6 +77,28 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             spiceManager.shouldStop();
         }
         super.onStop();
+    }
+
+    private MenuItem trackdotaItem;
+    public static final int TRACKDOTA_GAME_ID=322;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        trackdotaItem = menu.add(1, TRACKDOTA_GAME_ID, 1, R.string.trackdota_match);
+        MenuItemCompat.setShowAsAction(trackdotaItem, MenuItemCompat.SHOW_AS_ACTION_NEVER);
+        trackdotaItem.setVisible(matchResult!=null&&((matchResult.getPicks_bans()!=null&& matchResult.getPicks_bans().size()>0)||matchResult.getRadiant_team_id()!=null||matchResult.getDire_team_id()!=null));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==trackdotaItem.getItemId()){
+            Intent intent = new Intent(this, TrackdotaGameInfoActivity.class);
+            intent.putExtra("id", simpleMatchId!=null?Long.valueOf(simpleMatchId):matchResult.getMatch_id());
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -86,7 +117,6 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             }
 
             initPager();
-            spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
         }
     }
 
@@ -102,11 +132,13 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Object o) {
+        initialized=true;
         if(o instanceof LongPair){
             LongPair pair= (LongPair) o;
             Team team = new Team();
@@ -154,7 +186,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             if (matchResult.getRadiant_logo() != null) {
                 Team radiant = teamService.getTeamById(MatchInfoActivity.this, matchResult.getRadiant_team_id());
 
-                if (!TextUtils.isEmpty(radiant.getLogo())) {
+                if (radiant!=null&&!TextUtils.isEmpty(radiant.getLogo())) {
                     imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
@@ -186,7 +218,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             }
             if (matchResult.getDire_logo() != null) {
                 Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDire_team_id());
-                if (!TextUtils.isEmpty(dire.getLogo())) {
+                if (dire!=null&&!TextUtils.isEmpty(dire.getLogo())) {
                     imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
@@ -219,6 +251,8 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                     spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDire_logo()), this);
                 }
             }
+
+            trackdotaItem.setVisible((matchResult.getPicks_bans()!=null&& matchResult.getPicks_bans().size()>0)||matchResult.getRadiant_team_id()!=null||matchResult.getDire_team_id()!=null);
             actionBar.setTitle(getString(
                     matchResult.isRadiant_win() ?
                             R.string.radiant_win

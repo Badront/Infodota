@@ -15,6 +15,7 @@ import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.api.abilities.Ability;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -66,12 +67,15 @@ public class HeroSkillsQuiz extends QuizFragment {
             fakeAbilities.add(nonHeroAbilities.get(idRandom.nextInt(nonHeroAbilities.size())));
         }
         Collections.shuffle(fakeAbilities, idRandom);
-        initCoreHero();
-        initFakeFlow();
+        View root=getView();
+        if(root!=null) {
+            initCoreHero(root);
+            initFakeFlow(root);
+        }
     }
 
-    private void initFakeFlow() {
-        LinearLayout fakeFlow = (LinearLayout) getView().findViewById(R.id.ability_fake_holder);
+    private void initFakeFlow(View root) {
+        LinearLayout fakeFlow = (LinearLayout) root.findViewById(R.id.ability_fake_holder);
         LinearLayout fake1 = (LinearLayout) fakeFlow.findViewById(R.id.ability_fake_holder1);
         LinearLayout fake2 = (LinearLayout) fakeFlow.findViewById(R.id.ability_fake_holder2);
         fake1.removeAllViews();
@@ -85,7 +89,9 @@ public class HeroSkillsQuiz extends QuizFragment {
             View view = inflater.inflate(R.layout.item_quiz_holder, null, false);
             view.setLayoutParams(layoutParams);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
-            imageLoader.displayImage("assets://skills/" + ability.getName() + ".png", imageView);
+            imageLoader.displayImage(
+                    Utils.getSkillImage(ability.getName()),
+                    imageView);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -104,9 +110,10 @@ public class HeroSkillsQuiz extends QuizFragment {
         }
     }
 
-    private void initCoreHero() {
-        imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/vert.jpg",
-                (ImageView) getView().findViewById(R.id.hero_img));
+    private void initCoreHero(View root) {
+        imageLoader.displayImage(
+                Utils.getHeroPortraitImage(hero.getDotaId()),
+                (ImageView) root.findViewById(R.id.hero_img));
     }
 
     @Override

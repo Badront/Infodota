@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.hero;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -67,15 +66,7 @@ public class HeroDefaultItemBuild extends Fragment {
                 ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
                 ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                final long id = item.getId();
-                row.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", id);
-                        startActivityForResult(intent, 1);
-                    }
-                });
+                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
                 startingItems.addView(row);
             }
         }
@@ -91,15 +82,7 @@ public class HeroDefaultItemBuild extends Fragment {
                 ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
                 ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                final long id = item.getId();
-                row.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", id);
-                        startActivityForResult(intent, 1);
-                    }
-                });
+                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
                 earlyGameItems.addView(row);
             }
         }
@@ -115,15 +98,7 @@ public class HeroDefaultItemBuild extends Fragment {
                 ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
                 ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                final long id = item.getId();
-                row.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", id);
-                        startActivityForResult(intent, 1);
-                    }
-                });
+                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
                 coreItems.addView(row);
             }
         }
@@ -138,15 +113,7 @@ public class HeroDefaultItemBuild extends Fragment {
                 ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
                 ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                final long id = item.getId();
-                row.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", id);
-                        startActivityForResult(intent, 1);
-                    }
-                });
+                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
                 luxuryItems.addView(row);
             }
         }

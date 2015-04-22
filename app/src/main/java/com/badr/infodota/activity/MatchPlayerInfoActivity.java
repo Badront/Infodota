@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+import java.text.MessageFormat;
 
 /**
  * User: ABadretdinov
@@ -122,8 +125,12 @@ public class MatchPlayerInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ability_upgrade);
-        options = new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.default_img).cacheInMemory(true)
-                .cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.default_img)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
         // Initialize ImageLoader with configuration.
         imageLoader = ImageLoader.getInstance();
         Bundle bundle = getIntent().getExtras();
@@ -132,6 +139,9 @@ public class MatchPlayerInfoActivity extends BaseActivity {
             randomSkills = bundle.getBoolean("randomSkills", false);
 
             account = playerService.getAccountById(this, player.getAccount_id());
+            if(account==null){
+                account=player.getAccount();
+            }
             if (account != null) {
                 final ActionBar actionBar = getSupportActionBar();
                 actionBar.setTitle(account.getName());
@@ -221,21 +231,52 @@ public class MatchPlayerInfoActivity extends BaseActivity {
                     leaverTV.setVisibility(View.INVISIBLE);
                 }
             }
+            Long respawnTime=player.getRespawnTimer();
+            if(respawnTime!=null){
+                findViewById(R.id.alive_status).setVisibility(View.VISIBLE);
+                TextView aliveStatus= (TextView) findViewById(R.id.alive);
+                if(respawnTime>0){
+                    aliveStatus.setTextColor(getResources().getColor(R.color.enemy_team));
+                    aliveStatus.setText(getString(R.string.dead));
+                }
+                else{
+                    aliveStatus.setTextColor(getResources().getColor(R.color.ally_team));
+                    aliveStatus.setText(getString(R.string.alive));
+                }
+            }
+            Integer ultState=player.getUltState();
+            if(ultState!=null){
+                findViewById(R.id.ult_status).setVisibility(View.VISIBLE);
+                TextView ultStatus= (TextView) findViewById(R.id.ultimate);
+                switch (ultState){
+                    case 0:
+                        ultStatus.setTextColor(Color.WHITE);
+                        ultStatus.setText(getString(R.string.not_levelled));
+                        break;
+                    case 1:
+                        if(player.getUltCooldown()!=null){
+                            ultStatus.setTextColor(getResources().getColor(R.color.enemy_team));
+                            ultStatus.setText(MessageFormat.format(getString(R.string.on_cooldown),player.getUltCooldown()));
+                        }
+                        break;
+                    case 2:
+                        ultStatus.setTextColor(getResources().getColor(R.color.enemy_team));
+                        ultStatus.setText(getString(R.string.no_mana));
+                        break;
+                    case 3:
+                        ultStatus.setTextColor(getResources().getColor(R.color.ally_team));
+                        ultStatus.setText(getString(R.string.is_ready));
+                        break;
+                }
+            }
             HeroService heroService = BeanContainer.getInstance().getHeroService();
             ((TextView) findViewById(R.id.player_lvl)).setText(getString(R.string.level) + ": " + player.getLevel());
-            final Hero hero = heroService.getHeroById(MatchPlayerInfoActivity.this, player.getHero_id());
+            Hero hero = heroService.getHeroById(MatchPlayerInfoActivity.this, player.getHero_id());
             ImageView heroImg = (ImageView) findViewById(R.id.hero_img);
             TextView heroName = (TextView) findViewById(R.id.hero_name);
             if (hero != null) {
-                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", heroImg, options);
-                heroImg.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MatchPlayerInfoActivity.this, HeroInfoActivity.class);
-                        intent.putExtra("id", hero.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), heroImg, options);
+                heroImg.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 heroName.setText(hero.getLocalizedName());
             } else {
                 heroImg.setImageResource(R.drawable.default_img);

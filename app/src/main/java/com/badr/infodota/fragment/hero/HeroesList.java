@@ -33,7 +33,6 @@ import android.widget.TextView;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.AboutActivity;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.HeroesAdapter;
@@ -43,10 +42,9 @@ import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.fragment.SearchableFragment;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.CarouselPageTransformer;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
+import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.PagerContainer;
@@ -83,11 +81,27 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
+    private boolean initialized=false;
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized) {
+                if (carousel) {
+                    loadHeroesForCarousel();
+                } else {
+                    loadHeroesForGridView();
+                }
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
     }
 
     @Override
@@ -251,7 +265,6 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
             // clipping on the pager for its children.
             pager.setClipChildren(false);
             pager.setPageMargin(0);
-            loadHeroesForCarousel();
         } else {
             gridView = (RecyclerView) root.findViewById(R.id.gridView);
             gridView.setHasFixedSize(true);
@@ -259,7 +272,6 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
             //layoutManager.setReverseLayout(true);
             gridView.setLayoutManager(layoutManager);
             setColumnSize();
-            loadHeroesForGridView();
         }
     }
 
@@ -296,7 +308,7 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForGridView() {
-        spiceManager.execute(new HeroLoadRequest(),this);
+        spiceManager.execute(new HeroLoadRequest(), this);
     }
 
     @Override
@@ -314,16 +326,17 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForCarousel() {
-        spiceManager.execute(new CarouselHeroesLoadRequest(),this);
+        spiceManager.execute(new CarouselHeroesLoadRequest(), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-
+        initialized=true;
     }
 
     @Override
     public void onRequestSuccess(Object o) {
+        initialized=true;
         if(o instanceof CarouselHero.List){
             CarouselHero.List result= (CarouselHero.List) o;
             HeroCarouselPagerAdapter adapter = new HeroCarouselPagerAdapter(result);
@@ -392,8 +405,10 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
                     //ignored
                 }
             } else {
-                imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/vert.jpg",
-                        imageView, options);
+                imageLoader.displayImage(
+                        Utils.getHeroPortraitImage(hero.getDotaId()),
+                        imageView,
+                        options);
             }
 
 
@@ -404,7 +419,10 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
                 for (String skill : skills) {
                     ViewGroup skillView = (ViewGroup) layoutInflater.inflate(R.layout.skill_carousel_holder, skillsHolder, false);
                     skillView.setLayoutParams(layoutParams);
-                    imageLoader.displayImage("assets://skills/" + skill + ".png", (ImageView) skillView.findViewById(R.id.skill_img), options);
+                    imageLoader.displayImage(
+                            Utils.getSkillImage(skill),
+                            (ImageView) skillView.findViewById(R.id.skill_img),
+                            options);
                     skillsHolder.addView(skillView);
                 }
             }

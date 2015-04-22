@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Infodota" parent="@style/Theme.AppCompat">
+    <style name="Infodota.Base" parent="Theme.AppCompat">
         <item name="clickableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
 </resources>

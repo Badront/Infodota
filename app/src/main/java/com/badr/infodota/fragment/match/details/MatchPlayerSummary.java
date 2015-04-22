@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.match.details;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -22,6 +21,7 @@ import com.badr.infodota.api.items.Item;
 import com.badr.infodota.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.api.matchdetails.Player;
 import com.badr.infodota.service.item.ItemService;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -74,96 +74,66 @@ public class MatchPlayerSummary extends Fragment {
             Item current = itemService.getItemById(activity, player.getItem0());
             ImageView item0 = (ImageView) root.findViewById(R.id.item0);
             if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", item0, options);
-                final Item finalCurrent = current;
-                item0.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(
+                        Utils.getItemImage(current.getDotaId()),
+                        item0,
+                        options);
+                item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item0.setImageResource(R.drawable.emptyitembg);
             }
             current = itemService.getItemById(activity, player.getItem1());
             ImageView item1 = (ImageView) root.findViewById(R.id.item1);
             if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", item1, options);
-                final Item finalCurrent = current;
-                item1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(
+                        Utils.getItemImage(current.getDotaId()),
+                        item1,
+                        options);
+                item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item1.setImageResource(R.drawable.emptyitembg);
             }
             current = itemService.getItemById(activity, player.getItem2());
             ImageView item2 = (ImageView) root.findViewById(R.id.item2);
             if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", item2, options);
-                final Item finalCurrent = current;
-                item2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(
+                        Utils.getItemImage(current.getDotaId()),
+                        item2,
+                        options);
+                item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item2.setImageResource(R.drawable.emptyitembg);
             }
             current = itemService.getItemById(activity, player.getItem3());
             ImageView item3 = (ImageView) root.findViewById(R.id.item3);
             if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", item3, options);
-                final Item finalCurrent = current;
-                item3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(
+                        Utils.getItemImage(current.getDotaId()),
+                        item3,
+                        options);
+                item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item3.setImageResource(R.drawable.emptyitembg);
             }
             current = itemService.getItemById(activity, player.getItem4());
             ImageView item4 = (ImageView) root.findViewById(R.id.item4);
             if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", item4, options);
-                final Item finalCurrent = current;
-                item4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(
+                        Utils.getItemImage(current.getDotaId()),
+                        item4,
+                        options);
+                item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item4.setImageResource(R.drawable.emptyitembg);
             }
             current = itemService.getItemById(activity, player.getItem5());
             ImageView item5 = (ImageView) root.findViewById(R.id.item5);
             if (current != null) {
-                imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", item5, options);
-                final Item finalCurrent = current;
-                item5.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                        intent.putExtra("id", (long) finalCurrent.getId());
-                        startActivity(intent);
-                    }
-                });
+                imageLoader.displayImage(
+                        Utils.getItemImage(current.getDotaId()),
+                        item5,
+                        options);
+                item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item5.setImageResource(R.drawable.emptyitembg);
             }
@@ -174,96 +144,66 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem0());
                 ImageView additionalUnitItem0 = (ImageView) root.findViewById(R.id.additional_unit_item0);
                 if (current != null) {
-                    imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", additionalUnitItem0, options);
-                    final Item finalCurrent = current;
-                    additionalUnitItem0.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                            intent.putExtra("id", (long) finalCurrent.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    imageLoader.displayImage(
+                            Utils.getItemImage(current.getDotaId()),
+                            additionalUnitItem0,
+                            options);
+                    additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
                 }
                 current = itemService.getItemById(activity, unit.getItem1());
                 ImageView additionalUnitItem1 = (ImageView) root.findViewById(R.id.additional_unit_item1);
                 if (current != null) {
-                    imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", additionalUnitItem1, options);
-                    final Item finalCurrent = current;
-                    additionalUnitItem1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                            intent.putExtra("id", (long) finalCurrent.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    imageLoader.displayImage(
+                            Utils.getItemImage(current.getDotaId()),
+                            additionalUnitItem1,
+                            options);
+                    additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
                 }
                 current = itemService.getItemById(activity, unit.getItem2());
                 ImageView additionalUnitItem2 = (ImageView) root.findViewById(R.id.additional_unit_item2);
                 if (current != null) {
-                    imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", additionalUnitItem2, options);
-                    final Item finalCurrent = current;
-                    additionalUnitItem2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                            intent.putExtra("id", (long) finalCurrent.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    imageLoader.displayImage(
+                            Utils.getItemImage(current.getDotaId()),
+                            additionalUnitItem2,
+                            options);
+                    additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
                 }
                 current = itemService.getItemById(activity, unit.getItem3());
                 ImageView additionalUnitItem3 = (ImageView) root.findViewById(R.id.additional_unit_item3);
                 if (current != null) {
-                    imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", additionalUnitItem3, options);
-                    final Item finalCurrent = current;
-                    additionalUnitItem3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                            intent.putExtra("id", (long) finalCurrent.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    imageLoader.displayImage(
+                            Utils.getItemImage(current.getDotaId()),
+                            additionalUnitItem3,
+                            options);
+                    additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
                 }
                 current = itemService.getItemById(activity, unit.getItem4());
                 ImageView additionalUnitItem4 = (ImageView) root.findViewById(R.id.additional_unit_item4);
                 if (current != null) {
-                    imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", additionalUnitItem4, options);
-                    final Item finalCurrent = current;
-                    additionalUnitItem4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                            intent.putExtra("id", (long) finalCurrent.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    imageLoader.displayImage(
+                            Utils.getItemImage(current.getDotaId()),
+                            additionalUnitItem4,
+                            options);
+                    additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
                 }
                 current = itemService.getItemById(activity, unit.getItem5());
                 ImageView additionalUnitItem5 = (ImageView) root.findViewById(R.id.additional_unit_item5);
                 if (current != null) {
-                    imageLoader.displayImage("assets://items/" + current.getDotaId() + ".png", additionalUnitItem5, options);
-                    final Item finalCurrent = current;
-                    additionalUnitItem5.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getActivity(), ItemInfoActivity.class);
-                            intent.putExtra("id", (long) finalCurrent.getId());
-                            startActivity(intent);
-                        }
-                    });
+                    imageLoader.displayImage(
+                            Utils.getItemImage(current.getDotaId()),
+                            additionalUnitItem5,
+                            options);
+                    additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem5.setImageResource(R.drawable.emptyitembg);
                 }
@@ -284,12 +224,22 @@ public class MatchPlayerSummary extends Fragment {
                     Html.fromHtml(getString(R.string.gpm) + " " + player.getGoldPerMin()));
             ((TextView) root.findViewById(R.id.xpm)).setText(
                     Html.fromHtml(getString(R.string.xpm) + " " + player.getXpPerMin()));
-            ((TextView) root.findViewById(R.id.hero_damage)).setText(
-                    Html.fromHtml(getString(R.string.hero_damage) + " " + player.getHeroDamage()));
-            ((TextView) root.findViewById(R.id.hero_healing)).setText(
-                    Html.fromHtml(getString(R.string.hero_healing) + " " + player.getHeroHealing()));
-            ((TextView) root.findViewById(R.id.tower_damage)).setText(
-                    Html.fromHtml(getString(R.string.tower_damage) + " " + player.getTowerDamage()));
+            if(player.getNetWorth()==null) {
+                ((TextView) root.findViewById(R.id.hero_damage)).setText(
+                        Html.fromHtml(getString(R.string.hero_damage) + " " + player.getHeroDamage()));
+                ((TextView) root.findViewById(R.id.hero_healing)).setText(
+                        Html.fromHtml(getString(R.string.hero_healing) + " " + player.getHeroHealing()));
+                ((TextView) root.findViewById(R.id.tower_damage)).setText(
+                        Html.fromHtml(getString(R.string.tower_damage) + " " + player.getTowerDamage()));
+            }
+            else {
+                TextView netWorth= (TextView) root.findViewById(R.id.net_worth);
+                netWorth.setVisibility(View.VISIBLE);
+                netWorth.setText(Html.fromHtml(getString(R.string.net_worth) + " " + player.getNetWorth()));
+                root.findViewById(R.id.hero_damage).setVisibility(View.GONE);
+                root.findViewById(R.id.hero_healing).setVisibility(View.GONE);
+                root.findViewById(R.id.tower_damage).setVisibility(View.GONE);
+            }
         }
     }
 
@@ -318,25 +268,27 @@ public class MatchPlayerSummary extends Fragment {
 
     private void orientationChanged() {
         View root = getView();
-        switch (getState()) {
-            case TABLET_LANDSCAPE:
-                ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.VERTICAL);
-                ((LinearLayout) root.findViewById(R.id.additional_unit_holder)).setOrientation(LinearLayout.VERTICAL);
-                ((LinearLayout) root.findViewById(R.id.item_holder)).setOrientation(LinearLayout.HORIZONTAL);
-                ((LinearLayout) root.findViewById(R.id.main_holder)).setOrientation(LinearLayout.HORIZONTAL);
-                break;
-            case TABLET_PORTRAIT:
-                ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.VERTICAL);
-                ((LinearLayout) root.findViewById(R.id.additional_unit_holder)).setOrientation(LinearLayout.VERTICAL);
-                ((LinearLayout) root.findViewById(R.id.item_holder)).setOrientation(LinearLayout.VERTICAL);
-                ((LinearLayout) root.findViewById(R.id.main_holder)).setOrientation(LinearLayout.HORIZONTAL);
-                break;
-            case PHONE:
-                ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.HORIZONTAL);
-                ((LinearLayout) root.findViewById(R.id.additional_unit_holder)).setOrientation(LinearLayout.HORIZONTAL);
-                ((LinearLayout) root.findViewById(R.id.item_holder)).setOrientation(LinearLayout.VERTICAL);
-                ((LinearLayout) root.findViewById(R.id.main_holder)).setOrientation(LinearLayout.VERTICAL);
-                break;
+        if(root!=null) {
+            switch (getState()) {
+                case TABLET_LANDSCAPE:
+                    ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) root.findViewById(R.id.additional_unit_holder)).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) root.findViewById(R.id.item_holder)).setOrientation(LinearLayout.HORIZONTAL);
+                    ((LinearLayout) root.findViewById(R.id.main_holder)).setOrientation(LinearLayout.HORIZONTAL);
+                    break;
+                case TABLET_PORTRAIT:
+                    ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) root.findViewById(R.id.additional_unit_holder)).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) root.findViewById(R.id.item_holder)).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) root.findViewById(R.id.main_holder)).setOrientation(LinearLayout.HORIZONTAL);
+                    break;
+                case PHONE:
+                    ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.HORIZONTAL);
+                    ((LinearLayout) root.findViewById(R.id.additional_unit_holder)).setOrientation(LinearLayout.HORIZONTAL);
+                    ((LinearLayout) root.findViewById(R.id.item_holder)).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) root.findViewById(R.id.main_holder)).setOrientation(LinearLayout.VERTICAL);
+                    break;
+            }
         }
     }
 }

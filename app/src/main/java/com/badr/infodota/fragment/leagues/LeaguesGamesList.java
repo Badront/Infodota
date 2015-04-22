@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.ActionMenuView;
-import android.text.TextUtils;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.LeagueGameActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.LeaguesGamesAdapter;
@@ -24,15 +21,11 @@ import com.badr.infodota.api.joindota.MatchItem;
 import com.badr.infodota.fragment.ListFragment;
 import com.badr.infodota.service.joindota.JoinDotaService;
 import com.badr.infodota.util.EndlessScrollListener;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -51,11 +44,16 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
         fragment.extraParams = extraParams;
         return fragment;
     }
-
+    private boolean initialized=false;
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                loadGames(1);
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -67,8 +65,14 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
     }
 
     @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        setLayoutId(R.layout.leagues_games_list);
+        setLayoutId(R.layout.pinned_section_list);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -92,7 +96,6 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
                 loadGames(page);
             }
         });
-        loadGames(1);
     }
 
     @Override
@@ -117,12 +120,14 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(MatchItem.List matchItems) {
+        initialized=true;
         setRefreshing(false);
         ((LeaguesGamesAdapter) getListAdapter()).addMatchItems(matchItems);
     }

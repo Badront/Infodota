@@ -69,7 +69,10 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+            updateGuides();
+        }
     }
 
     @Override
@@ -197,7 +200,6 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
                 mToolbar.setNavigationIcon(iconDrawable);
             }
             actionBar.setTitle(hero.getLocalizedName());
-            updateGuides();
             initPager();
         } else {
             finish();

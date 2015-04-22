@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.ActionMenuView;
-import android.text.TextUtils;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -13,26 +11,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.R;
 import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.activity.NewsItemActivity;
 import com.badr.infodota.adapter.NewsAdapter;
-import com.badr.infodota.api.Constants;
 import com.badr.infodota.api.news.AppNews;
 import com.badr.infodota.api.news.NewsItem;
 import com.badr.infodota.fragment.ListFragment;
 import com.badr.infodota.service.news.NewsService;
 import com.badr.infodota.util.EndlessScrollListener;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -69,7 +61,6 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
                 loadNews(page, totalItemsCount);
             }
         });
-        loadNews(0, 0);
     }
 
     @Override
@@ -93,11 +84,16 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
     public void onRefresh() {
         loadNews(0, getListAdapter().getCount());
     }
-
+    private boolean initialized=false;
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()){
+            spiceManager.start(getActivity());
+            if(!initialized){
+                loadNews(0, 0);
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -109,13 +105,21 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
     }
 
     @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
+    }
+
+    @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         setRefreshing(false);
     }
 
     @Override
     public void onRequestSuccess(AppNews newsItems) {
+        initialized=true;
         ((NewsAdapter) getListAdapter()).addNewsItems(newsItems.getNewsitems());
         setRefreshing(false);
 

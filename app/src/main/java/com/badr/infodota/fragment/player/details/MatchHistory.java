@@ -1,51 +1,40 @@
 package com.badr.infodota.fragment.player.details;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.MatchInfoActivity;
 import com.badr.infodota.adapter.HeroesAutoCompleteAdapter;
 import com.badr.infodota.adapter.MatchAdapter;
 import com.badr.infodota.adapter.holder.PlayerMatchHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.api.matchhistory.Match;
-import com.badr.infodota.api.matchhistory.MatchHistoryResultResponse;
 import com.badr.infodota.api.matchhistory.PlayerMatch;
 import com.badr.infodota.api.matchhistory.PlayerMatchResult;
-import com.badr.infodota.api.matchhistory.Result;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.match.MatchService;
 import com.badr.infodota.util.EndlessRecycleScrollListener;
-import com.badr.infodota.util.EndlessScrollListener;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.octo.android.robospice.retry.RetryPolicy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,7 +49,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     private Long heroId = null;
     private AutoCompleteTextView heroView;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
+    private boolean initialized=false;
     public static MatchHistory newInstance(Unit account) {
         MatchHistory fragment = new MatchHistory();
         fragment.account = account;
@@ -69,8 +58,13 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
 
     @Override
     public void onStart() {
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(getActivity());
+            if(!initialized){
+                loadHistory(0, true);
+            }
+        }
         super.onStart();
-        spiceManager.start(getActivity());
     }
 
     @Override
@@ -82,23 +76,28 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     }
 
     @Override
+    public void onDestroy() {
+        initialized=false;
+        super.onDestroy();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setLayoutId(R.layout.match_history);
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager(Context context) {
+        return new GridLayoutManager(context,1);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View root=getView();
-        if (root != null) {
-            RecyclerView recyclerView = getRecyclerView();
-            recyclerView.setHasFixedSize(true);
-            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1);
-            layoutManager.setSmoothScrollbarEnabled(true);
-            recyclerView.setLayoutManager(layoutManager);
+        Activity activity = getActivity();
+        if (root != null&&activity!=null) {
             setColumnSize();
-            Activity activity = getActivity();
             heroView = (AutoCompleteTextView) root.findViewById(R.id.hero_search);
             List<Hero> heroes = heroService.getAllHeroes(activity);
             heroView.setAdapter(new HeroesAutoCompleteAdapter(activity, heroes));
@@ -119,7 +118,6 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
                     loadHistory(0, true);
                 }
             });
-            loadHistory(0, true);
             getRecyclerView().setOnScrollListener(new EndlessRecycleScrollListener() {
                 @Override
                 public void onLoadMore() {
@@ -182,12 +180,14 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
+        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(PlayerMatchResult playerMatchResult) {
+        initialized=true;
         setRefreshing(false);
         if (playerMatchResult!=null) {
             total = playerMatchResult.getTotalMatches();

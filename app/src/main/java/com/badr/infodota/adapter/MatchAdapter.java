@@ -5,24 +5,17 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.adapter.holder.CommonStatHolder;
 import com.badr.infodota.adapter.holder.PlayerMatchHolder;
 import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.api.matchdetails.Player;
-import com.badr.infodota.api.matchhistory.Match;
 import com.badr.infodota.api.matchhistory.PlayerMatch;
-import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.util.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -52,8 +45,9 @@ public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch,PlayerMatchHol
 
     public void addMatches(List<PlayerMatch> subMatches) {
         if (subMatches != null) {
+            int was=getItemCount();
             getItems().addAll(subMatches);
-            notifyDataSetChanged();
+            notifyItemRangeChanged(was,subMatches.size());
         }
     }
 
@@ -73,7 +67,7 @@ public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch,PlayerMatchHol
             holder.gameType.setText(context.getResources().getStringArray(R.array.lobby_types)[gameType]);
         }
         Hero hero=entity.getPlayer().getHero();
-        imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png", holder.heroImg, options);
+        imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.heroImg, options);
         holder.heroName.setText(hero.getLocalizedName());
     }
 }

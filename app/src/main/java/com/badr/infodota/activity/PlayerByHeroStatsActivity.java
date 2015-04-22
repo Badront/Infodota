@@ -1,7 +1,6 @@
 package com.badr.infodota.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -22,6 +21,7 @@ import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.ResourceUtils;
+import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.HorizontalScrollViewListener;
 import com.badr.infodota.view.ObservableHorizontalScrollView;
@@ -65,7 +65,24 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+
+            Bundle bundle = getIntent().getExtras();
+            StringBuilder urlBuilder = new StringBuilder("http://dotabuff.com/players/");
+            urlBuilder.append(account.getAccountId());
+            urlBuilder.append("/heroes?");
+            urlBuilder.append("date=");
+            urlBuilder.append(bundle.getString("date"));
+            urlBuilder.append("&game_mode=");
+            urlBuilder.append(bundle.getString("game_mode"));
+            urlBuilder.append("&match_type=");
+            urlBuilder.append(bundle.getString("match_type"));
+            urlBuilder.append("&metric=");
+            urlBuilder.append(bundle.getString("metric"));
+
+            spiceManager.execute(new PlayerHeroesStatsLoadRequest(this,urlBuilder.toString()),this);
+        }
     }
 
     @Override
@@ -75,7 +92,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
         }
         super.onStop();
     }
-
+    private Unit account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +115,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
         imageLoader = ImageLoader.getInstance();
 
         Bundle bundle = getIntent().getExtras();
-        Unit account = (Unit) bundle.get("account");
+        account = (Unit) bundle.get("account");
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(account.getName());
         imageLoader.loadImage(account.getIcon(), options, new ImageLoadingListener() {
@@ -133,24 +150,9 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
             }
         });
 
-        StringBuilder urlBuilder = new StringBuilder("http://dotabuff.com/players/");
-        urlBuilder.append(account.getAccountId());
-        urlBuilder.append("/heroes?");
-        urlBuilder.append("date=");
-        urlBuilder.append(bundle.getString("date"));
-        urlBuilder.append("&game_mode=");
-        urlBuilder.append(bundle.getString("game_mode"));
-        urlBuilder.append("&match_type=");
-        urlBuilder.append(bundle.getString("match_type"));
-        urlBuilder.append("&metric=");
-        urlBuilder.append(bundle.getString("metric"));
-        final String url = urlBuilder.toString();
-
         horizontalHeader.removeAllViews();
         verticalHeader.removeAllViews();
         content.removeAllViews();
-
-        spiceManager.execute(new PlayerHeroesStatsLoadRequest(this,url),this);
     }
 
     @Override
@@ -194,19 +196,10 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                 for(Hero hero:heroes){
                     List<String> results=playerHeroesStats.heroResults.get(hero);
                     View verticalHeaderRow = inflater.inflate(R.layout.player_by_hero_stats_vertical, verticalHeader, false);
-                    imageLoader.displayImage("assets://heroes/" + hero.getDotaId() + "/full.png",
+                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()),
                             (ImageView) verticalHeaderRow.findViewById(R.id.image), options);
                     verticalHeader.addView(verticalHeaderRow);
-                    final long heroId=hero.getId();
-                    verticalHeaderRow.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(PlayerByHeroStatsActivity.this,
-                                    HeroInfoActivity.class);
-                            intent.putExtra("id", heroId);
-                            startActivity(intent);
-                        }
-                    });
+                    verticalHeaderRow.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     LinearLayout row = (LinearLayout) inflater.inflate(R.layout.player_by_hero_stats_row, content, false);
                     for (String verticalResult : results) {
                         LinearLayout cell = (LinearLayout) inflater.inflate(R.layout.player_by_hero_stats_cell, row, false);

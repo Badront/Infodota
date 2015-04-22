@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
@@ -80,9 +79,7 @@ public class PlayerInfoActivity extends BaseActivity {
                         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
                             MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
-                            if (adapter != null) {
-                                adapter.update();
-                            }
+                            adapter.update();
                         }
                         menu.removeItem(R.id.add_btn);
                         menuForSaved();
@@ -98,9 +95,7 @@ public class PlayerInfoActivity extends BaseActivity {
                         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
                             MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
-                            if (adapter != null) {
-                                adapter.update();
-                            }
+                            adapter.update();
                         }
                         menu.removeItem(R.id.delete_btn);
                         menu.removeItem(R.id.group_id);
@@ -164,7 +159,7 @@ public class PlayerInfoActivity extends BaseActivity {
             FragmentPagerAdapter adapter = new PlayerInfoPagerAdapter(this, getSupportFragmentManager(), account);
             final ViewPager pager = (ViewPager) findViewById(R.id.pager);
             pager.setAdapter(adapter);
-            pager.setOffscreenPageLimit(5);
+            pager.setOffscreenPageLimit(3);
             SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
             indicator.setViewPager(pager);
             pager.setCurrentItem(2);

@@ -23,11 +23,8 @@ import android.widget.ImageView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.api.twitch.AccessToken;
+import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.service.twitch.TwitchService;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.TappableSurfaceView;
 import com.octo.android.robospice.SpiceManager;
@@ -36,8 +33,6 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
 import com.parser.Playlist;
-
-import java.util.List;
 
 /**
  * User: Histler
@@ -58,7 +53,11 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
     @Override
     protected void onStart() {
         super.onStart();
-        spiceManager.start(this);
+        if(!spiceManager.isStarted()) {
+            spiceManager.start(this);
+            String channelName = getIntent().getExtras().getString("channelName");
+            getAccessToken(channelName);
+        }
     }
 
     @Override
@@ -187,9 +186,7 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
         });
         //http://video12.fra01.hls.twitch.tv/hls4/starladder1_8686670976_68409999/mobile/index.m3u8?token=id=2186420592380609324,bid=8686670976,exp=1393625278,node=video12-1.fra01.hls.justin.tv,nname=video12.fra01,fmt=mobile&sig=c522f7bacc493511b053c6c32301b0ef6ae863f1
         //String url="http://usher.twitch.tv/api/channel/hls/gsstudio_dota.m3u8?token={\"user_id\":null,\"channel\":\"gsstudio_dota\",\"expires\":1393530360,\"chansub\":{\"view_until\":1924905600,\"restricted_bitrates\":[]},\"private\":{\"allowed_to_view\":true},\"privileged\":false}&sig=61458b8929e15eb6508dc44484bc32ef091abec4";
-        String channelName = getIntent().getExtras().getString("channelName");
         getSupportActionBar().setTitle(getIntent().getExtras().getString("channelTitle"));
-        getAccessToken(channelName);
     }
 
     @Override
@@ -331,7 +328,7 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
 
         @Override
         public Element.List loadData() throws Exception {
-            AccessToken result = twitchService.getAccessToken(channelName);
+            TwitchAccessToken result = twitchService.getAccessToken(channelName);
 
             if (result!= null) {
                 Pair<Playlist, String> playlistResult = twitchService.getPlaylist(context, channelName, result);

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.api.twitch.Channel;
+import com.badr.infodota.api.streams.Stream;
 import com.badr.infodota.fragment.twitch.FavouriteStreamsList;
 import com.badr.infodota.fragment.twitch.StreamsList;
 import com.badr.infodota.fragment.twitch.TwitchGamesAdapter;
@@ -28,7 +28,7 @@ import java.util.Set;
 public class TwitchPagerAdapter extends FragmentPagerAdapter implements TwitchGamesAdapter {
     private Context context;
     private Map<Integer, TwitchMatchListHolder> groupMap = new HashMap<Integer, TwitchMatchListHolder>();
-    private List<Channel> channels;
+    private List<Stream> channels;
     private TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
 
     public TwitchPagerAdapter(FragmentManager fm, Context context) {

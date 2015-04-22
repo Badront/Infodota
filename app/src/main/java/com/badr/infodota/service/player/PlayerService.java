@@ -29,5 +29,4 @@ public interface PlayerService extends InitializingBean {
     Unit.List getSearchedAccounts(Context context);
 
     Unit.List getAccountsByGroup(Context context, Unit.Groups group);
-
 }
