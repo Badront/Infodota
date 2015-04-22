@@ -234,8 +234,23 @@
         <item>middle</item>
         <item>bottom</item>
     </string-array>
-    <string-array name="charts_array">
+    <string-array name="trackdota_team_charts">
         <item>Difference in net worth</item>
         <item>Difference in XP</item>
+    </string-array>
+    <string-array name="trackdota_player_stats">
+        <item>Net worth</item>
+        <item>Hero level</item>
+        <item>Current gold</item>
+        <item>K / D / A</item>
+        <item>GPM / XPM</item>
+        <item>Last Hits / Denies</item>
+        <item>Kills</item>
+        <item>Deaths</item>
+        <item>Assists</item>
+        <item>Gold per minute</item>
+        <item>XP per minute</item>
+        <item>Last Hits</item>
+        <item>Denies</item>
     </string-array>
 </resources>

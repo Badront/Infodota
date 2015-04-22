@@ -53,4 +53,9 @@ public class Player implements Serializable {
     public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

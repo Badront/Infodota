@@ -211,8 +211,23 @@
         <item>центральную</item>
         <item>нижнюю</item>
     </string-array>
-    <string-array name="charts_array">
+    <string-array name="trackdota_team_charts">
         <item>Разница в золоте</item>
         <item>Разница в опыте</item>
+    </string-array>
+    <string-array name="trackdota_player_stats">
+        <item>Ценность</item>
+        <item>Уровень</item>
+        <item>Текущее золото</item>
+        <item>K / D / A</item>
+        <item>GPM / XPM</item>
+        <item>Добиваний / Денаев</item>
+        <item>Убийств</item>
+        <item>Смертей</item>
+        <item>Помощей</item>
+        <item>Золота в минуту</item>
+        <item>Опыта в минуту</item>
+        <item>Добиваний</item>
+        <item>Денаев</item>
     </string-array>
 </resources>

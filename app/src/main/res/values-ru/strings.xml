@@ -325,4 +325,5 @@
     <string name="log_team_loses_tower">{0} потеряли {1} Т{2} вышку</string>
     <string name="barrack_ranged">дальнего</string>
     <string name="barrack_melee">ближнего</string>
+    <string name="stat_not_found">Данные отсутствуют</string>
 </resources>

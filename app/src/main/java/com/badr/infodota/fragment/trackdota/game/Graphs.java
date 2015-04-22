@@ -94,7 +94,7 @@ public class Graphs extends Fragment implements Updatable<Pair<CoreResult,LiveGa
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_spinner_item,
-                getResources().getStringArray(R.array.charts_array));
+                getResources().getStringArray(R.array.trackdota_team_charts));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mChartSpinner.setAdapter(adapter);
         mChartSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -112,6 +112,7 @@ public class Graphs extends Fragment implements Updatable<Pair<CoreResult,LiveGa
 
             }
         });
+        runOnTick();
     }
 
     private void runOnTick() {
