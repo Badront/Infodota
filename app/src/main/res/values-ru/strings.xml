@@ -332,4 +332,5 @@
     <string name="search_match">Поиск игры по matchId</string>
     <string name="search">Искать</string>
     <string name="could_not_load_match">Не удалось загрузить матч</string>
+    <string name="trackdota_match">Открыть через Trackdota</string>
 </resources>
