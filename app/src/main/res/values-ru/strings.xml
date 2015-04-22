@@ -72,7 +72,8 @@
     <string name="never_connected_too_long">Не загрузился</string>
     <string name="not_picked">Не выбрал</string>
     <string name="afk">АФК</string>
-    <string name="match_id">ID матча:</string>
+    <string name="match_id_">ID матча:</string>
+    <string name="match_id">ID матча</string>
     <string name="start_time">Время начала:</string>
     <string name="match_length">Длительность:</string>
     <string name="lobby_type">Тип лобби:</string>
@@ -328,4 +329,7 @@
     <string name="stat_not_found">Данные отсутствуют</string>
     <string name="match_short_info">Коротко</string>
     <string name="api_is_down">Dota 2 API недоступно. Матчи не будут обновляться, пока API не поднимется</string>
+    <string name="search_match">Поиск игры по matchId</string>
+    <string name="search">Искать</string>
+    <string name="could_not_load_match">Не удалось загрузить матч</string>
 </resources>

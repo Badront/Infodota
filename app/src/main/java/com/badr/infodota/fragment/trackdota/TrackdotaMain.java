@@ -1,20 +1,29 @@
 package com.badr.infodota.fragment.trackdota;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.ListHolderActivity;
+import com.badr.infodota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.adapter.pager.TrackdotaPagerAdapter;
 import com.badr.infodota.api.trackdota.game.GamesResult;
 import com.badr.infodota.service.trackdota.TrackdotaService;
@@ -38,6 +47,7 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
     private Handler updateHandler=new Handler();
     private Runnable updateTask;
     private static final long DELAY_20_SEC = 20000;
+    public static final int SEARCH_MATCH = 322;
     private boolean initialized=false;
 
     @Override
@@ -86,7 +96,47 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         ((ListHolderActivity) getActivity()).getActionMenuView().setVisibility(View.GONE);
+        MenuItem search=menu.add(1,SEARCH_MATCH,0,getString(R.string.search_match));
+        search.setIcon(R.drawable.search);
+        MenuItemCompat.setShowAsAction(search,MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == SEARCH_MATCH) {
+            Activity activity=getActivity();
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            final EditText textView = new EditText(activity);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            textView.setLayoutParams(lp);
+            textView.setHint(R.string.match_id);
+            textView.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+            builder.setTitle(R.string.search_match);
+            builder.setView(textView);
+            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setPositiveButton(R.string.search, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String matchId = textView.getText().toString();
+                    if (!TextUtils.isEmpty(matchId)) {
+                        Intent intent = new Intent(getActivity(), TrackdotaGameInfoActivity.class);
+                        intent.putExtra("id", Long.valueOf(matchId));
+                        startActivity(intent);
+                    }
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

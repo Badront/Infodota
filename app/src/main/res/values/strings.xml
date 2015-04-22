@@ -74,7 +74,8 @@
     <string name="afk">AFK</string>
     <string name="never_connected">Never connected</string>
     <string name="never_connected_too_long">Too long to connect</string>
-    <string name="match_id">Match id:</string>
+    <string name="match_id_">Match id:</string>
+    <string name="match_id">Match id</string>
     <string name="start_time">Start time:</string>
     <string name="match_length">Match length:</string>
     <string name="lobby_type">Lobby type:</string>
@@ -331,4 +332,7 @@
     <string name="stat_not_found">Not found</string>
     <string name="match_short_info">Short info</string>
     <string name="api_is_down">Dota 2 API is currently down. Matches will not update until service resumes.</string>
+    <string name="search_match">Search by match id</string>
+    <string name="search">Search</string>
+    <string name="could_not_load_match">Could not load match</string>
 </resources>

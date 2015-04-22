@@ -143,6 +143,10 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         } else if(object==null){
             progressBar.setVisibility(View.GONE);
             adapter.update(coreResult,liveGame);
+            if(coreResult==null&&liveGame==null){
+                Toast.makeText(progressBar.getContext(),R.string.could_not_load_match,Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
     }
 
