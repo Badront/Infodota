@@ -329,4 +329,5 @@
     <string name="barrack_ranged">ranged</string>
     <string name="barrack_melee">melee</string>
     <string name="stat_not_found">Not found</string>
+    <string name="match_short_info">Short info</string>
 </resources>

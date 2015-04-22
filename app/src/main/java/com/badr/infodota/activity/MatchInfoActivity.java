@@ -160,7 +160,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             if (matchResult.getRadiant_logo() != null) {
                 Team radiant = teamService.getTeamById(MatchInfoActivity.this, matchResult.getRadiant_team_id());
 
-                if (!TextUtils.isEmpty(radiant.getLogo())) {
+                if (radiant!=null&&!TextUtils.isEmpty(radiant.getLogo())) {
                     imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
@@ -192,7 +192,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             }
             if (matchResult.getDire_logo() != null) {
                 Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDire_team_id());
-                if (!TextUtils.isEmpty(dire.getLogo())) {
+                if (dire!=null&&!TextUtils.isEmpty(dire.getLogo())) {
                     imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {

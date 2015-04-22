@@ -11,6 +11,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.activity.HeroInfoActivity;
+import com.badr.infodota.activity.MatchInfoActivity;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.trackdota.GameManager;
 import com.badr.infodota.api.trackdota.TrackdotaUtils;
@@ -76,9 +80,34 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
         return view;
     }
 
+    private MenuItem summaryInfo;
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        summaryInfo=menu.add(2,0,0,R.string.match_short_info);
+        if(coreResult!=null&&coreResult.getStatus()==4){
+            summaryInfo.setVisible(true);
+        }
+        else {
+            summaryInfo.setVisible(false);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.equals(summaryInfo)){
+            Intent intent=new Intent(getActivity(),MatchInfoActivity.class);
+            intent.putExtra("matchId",String.valueOf(coreResult.getId()));
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.empty_item)
                 .cacheInMemory(true)
@@ -174,7 +203,9 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult,Li
             //((TextView)root.findViewById(R.id.nwa_team_tag)).setText();
             TextView gameStatus = (TextView) root.findViewById(R.id.game_status);
             gameStatus.setText(TrackdotaUtils.getGameStatus(activity,coreResult.getStatus()));
-
+            if(summaryInfo!=null) {
+                summaryInfo.setVisible(coreResult.getStatus() == 4);
+            }
             //todo net worth advantage team tag, gold advantage - from LiveGame
             if(liveGame!=null) {
                 ((TextView) root.findViewById(R.id.roshan_status)).setText(liveGame.getRoshanRespawnTimer() > 0 ?MessageFormat.format(getString(R.string.respawn_in),liveGame.getRoshanRespawnTimer()): getString(R.string.alive));
