@@ -130,6 +130,9 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
         initialized=true;
         progressBar.setVisibility(View.GONE);
         adapter.update(gamesResult);
+        if(gamesResult!=null&&gamesResult.getApiDowntime()>0){
+            Toast.makeText(progressBar.getContext(),R.string.api_is_down,Toast.LENGTH_LONG).show();
+        }
         startDelayedUpdate();
     }
 

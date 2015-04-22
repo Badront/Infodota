@@ -137,6 +137,9 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             {
                 startDelayedUpdate();
             }
+            if(liveGame.getApiDowntime() > 0){
+                Toast.makeText(progressBar.getContext(),R.string.api_is_down,Toast.LENGTH_LONG).show();
+            }
         } else if(object==null){
             progressBar.setVisibility(View.GONE);
             adapter.update(coreResult,liveGame);
