@@ -1,1 +1,19 @@
-{"attrib": "+ 6 к броне<br/>+ 6 к интеллекту<br/>+ 6 к регенерации здоровья<br/>РАДИУС: 600<br/>ДОП. МАГИЧЕСКИЙ УРОН: 25%<br/>+ 6 к силе<br/>+ 6 к ловкости<br/>+ 6 к урону", "cd": 30.0, "components": ["helm_of_iron_will", "null_talisman"], "qual": "rare", "notes": "", "desc": "Активируемая: Magic Weakness — ослабляет врагов, увеличивая магический урон, наносимый им, в течение 25.0 секунд.", "dname": "Veil of Discord", "dotaId": "veil_of_discord", "mc": 75.0, "img": "veil_of_discord_lg.png", "lore": "Головной убор испорченных магов.", "id": 190, "created": true, "cost": 2675}
+{
+  "dotaId": "veil_of_discord",
+  "id": 190,
+  "img": "veil_of_discord_lg.png",
+  "dname": "Veil of Discord",
+  "qual": "rare",
+  "cost": 2520,
+  "desc": "Активируемая: Magic Weakness — ослабляет врагов, увеличивая магический урон, наносимый им, в течение 16.0 секунд.",
+  "notes": "",
+  "attrib": "+ 6 к регенерации здоровья<br/>+ 6 к броне<br/>+ 6 ко всем атрибутам<br/>+ 6 УРОНА<br/>ДОП. МАГИЧЕСКИЙ УРОН: 25%<br/>РАДИУС ДЕЙСТВИЯ: 600<br/>ДЛИТЕЛЬНОСТЬ ДЕЙСТВИЯ: 16",
+  "mc": 50,
+  "cd": 20,
+  "lore": "Головной убор испорченных магов.",
+  "components": [
+    "helm_of_iron_will",
+    "null_talisman"
+  ],
+  "created": true
+}

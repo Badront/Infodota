@@ -1,1 +1,16 @@
-{"attrib": "HEALTH RESTORED: 135<br/>MANA RESTORED: 70<br/>DURATION: 3", "cd": 0.0, "qual": "consumable", "notes": "Bottle is shareable.", "desc": "Use:  Regenerate - Restores HP and Mana over time. Effect is lost if unit is attacked. Empty Bottle refills near town fountain.  You can also store runes in the bottle, to save for later use.  After 2 minutes, stored Runes will be activated.  If Bottle is empty, it causes a courier to move 30% slower.", "dname": "Bottle", "dotaId": "bottle", "mc": false, "img": "bottle_lg.png", "lore": "An old bottle that survived the ages, the contents placed inside become enchanted.", "id": 41, "created": false, "cost": 700}
+{
+  "dotaId": "bottle",
+  "id": 41,
+  "img": "bottle_lg.png",
+  "dname": "Bottle",
+  "qual": "consumable",
+  "cost": 700,
+  "desc": "Use: Regenerate - Consumes a charge to restore Health and Mana over time. Healing stops if attacked.  Bottle can be refilled at your team's fountain.  Runes can be stored in the Bottle for later use, and are activated automatically after 2 minutes.  If Bottle does not have full charges and is placed on a courier, the courier will move 30% slower.<br \/>\r\n<br/>Hold Control to use Regenerate on an allied hero.  Stored runes cannot be shared.",
+  "notes": "Bottle is shareable.",
+  "attrib": "HEALTH RESTORED: 135<br/>MANA RESTORED: 70<br/>DURATION: 3",
+  "mc": false,
+  "cd": 0,
+  "lore": "An old bottle that survived the ages, the contents placed inside become enchanted.",
+  "components": null,
+  "created": false
+}

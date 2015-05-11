@@ -1,1 +1,16 @@
-{"attrib": "+ 3 к интеллекту", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Mantle of Intelligence", "dotaId": "mantle", "mc": false, "img": "mantle_lg.png", "lore": "Прекрасная сапфировая мантия, которую королевы носили из поколения в поколение.", "id": 15, "created": false, "cost": 150}
+{
+  "dotaId": "mantle",
+  "id": 15,
+  "img": "mantle_lg.png",
+  "dname": "Mantle of Intelligence",
+  "qual": "component",
+  "cost": 150,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 3 к интеллекту",
+  "mc": false,
+  "cd": false,
+  "lore": "Прекрасная сапфировая мантия, которую королевы носили из поколения в поколение.",
+  "components": null,
+  "created": false
+}

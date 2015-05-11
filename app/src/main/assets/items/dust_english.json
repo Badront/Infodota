@@ -1,1 +1,16 @@
-{"attrib": "DURATION: 12<br/>RADIUS: 1050<br/>SLOW: 15%", "cd": 60.0, "qual": "consumable", "notes": "Places a buff on enemy units in the area that prevents them from becoming invisible.", "desc": "Use: Reveal - Reveals and slows invisible Heroes in a nearby area.", "dname": "Dust of Appearance", "dotaId": "dust", "mc": 5.0, "img": "dust_lg.png", "lore": "", "id": 40, "created": false, "cost": 180}
+{
+  "dotaId": "dust",
+  "id": 40,
+  "img": "dust_lg.png",
+  "dname": "Dust of Appearance",
+  "qual": "consumable",
+  "cost": 180,
+  "desc": "Use: Reveals and slows invisible Heroes in a nearby area.",
+  "notes": "Places a buff on enemy units in the area that prevents them from becoming invisible.",
+  "attrib": "DURATION: 12<br/>RADIUS: 1050<br/>SLOW: 20%",
+  "mc": 5,
+  "cd": 60,
+  "lore": "",
+  "components": null,
+  "created": false
+}

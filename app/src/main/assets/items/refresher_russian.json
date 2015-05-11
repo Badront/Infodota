@@ -1,1 +1,19 @@
-{"attrib": "+ 5 к регенерации здоровья<br/>+ 200% к регенерации маны<br/>+ 40 к урону<br/>+ 6 к интеллекту", "cd": 195, "components": ["oblivion_staff", "pers"], "qual": "rare", "notes": "", "desc": "Активируемая: Reset Cooldowns — сбрасывает время перезарядки всех ваших предметов и способностей.", "dname": "Refresher Orb", "dotaId": "refresher", "mc": 375.0, "img": "refresher_lg.png", "lore": "Могущественный артефакт, созданный для магов.", "id": 110, "created": true, "cost": 5225}
+{
+  "dotaId": "refresher",
+  "id": 110,
+  "img": "refresher_lg.png",
+  "dname": "Refresher Orb",
+  "qual": "rare",
+  "cost": 5300,
+  "desc": "Активируемая: Reset Cooldowns — сбрасывает время перезарядки всех ваших предметов и способностей.",
+  "notes": "",
+  "attrib": "+ 10 к регенерации здоровья<br/>+ 250% к регенерации маны<br/>+ 20 УРОНА",
+  "mc": 375,
+  "cd": 195,
+  "lore": "Могущественный артефакт, созданный для магов.",
+  "components": [
+    "pers",
+    "pers"
+  ],
+  "created": true
+}

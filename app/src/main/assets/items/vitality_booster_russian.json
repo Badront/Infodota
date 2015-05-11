@@ -1,1 +1,15 @@
-{"attrib": "+ 250 к здоровью", "cd": false, "qual": "secret_shop", "notes": "", "desc": " ", "dname": "Vitality Booster", "dotaId": "vitality_booster", "mc": false, "img": "vitality_booster_lg.png", "lore": "Драгоценный рубин, переходящий из поколения в поколение в семьях воинов.", "id": 61, "created": false, "cost": 1100}
+{
+  "dotaId": "vitality_booster",
+  "attrib": "+ 250 к здоровью",
+  "cd": false,
+  "qual": "secret_shop",
+  "notes": "",
+  "desc": " ",
+  "dname": "Vitality Booster",
+  "mc": false,
+  "img": "vitality_booster_lg.png",
+  "lore": "Драгоценный рубин, переходящий из поколения в поколение в семьях воинов.",
+  "id": 61,
+  "created": false,
+  "cost": 1100
+}

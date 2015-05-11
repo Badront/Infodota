@@ -1,1 +1,16 @@
-{"attrib": "+ 5 к броне", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Chainmail", "dotaId": "chainmail", "mc": false, "img": "chainmail_lg.png", "lore": "Кольчуга среднего размера.", "id": 4, "created": false, "cost": 550}
+{
+  "dotaId": "chainmail",
+  "id": 4,
+  "img": "chainmail_lg.png",
+  "dname": "Chainmail",
+  "qual": "component",
+  "cost": 550,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 5 к броне",
+  "mc": false,
+  "cd": false,
+  "lore": "Кольчуга среднего размера.",
+  "components": null,
+  "created": false
+}

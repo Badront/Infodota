@@ -1,1 +1,16 @@
-{"attrib": "+ 46 к урону", "cd": false, "qual": "secret_shop", "notes": "", "desc": "", "dname": "Demon Edge", "dotaId": "demon_edge", "mc": false, "img": "demon_edge_lg.png", "lore": "Одно из старейших орудий, скованное кузнецом-демоном Абзидианом, убило своего создателя, когда тот проверял его заточку.", "id": 51, "created": false, "cost": 2400}
+{
+  "dotaId": "demon_edge",
+  "id": 51,
+  "img": "demon_edge_lg.png",
+  "dname": "Demon Edge",
+  "qual": "secret_shop",
+  "cost": 2400,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 46 УРОНА",
+  "mc": false,
+  "cd": false,
+  "lore": "Одно из старейших орудий, скованное кузнецом-демоном Абзидианом, убило своего создателя, когда тот проверял его заточку.",
+  "components": null,
+  "created": false
+}

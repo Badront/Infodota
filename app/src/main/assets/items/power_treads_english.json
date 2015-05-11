@@ -1,1 +1,20 @@
-{"attrib": "+ 50 Movement Speed<br/>+ 8 Selected Attribute<br/>+ 30 Attack Speed", "cd": false, "components": ["gloves", "boots", "belt_of_strength"], "qual": "common", "notes": "", "desc": "Active: Switch Attribute - Changes selected attribute between Strength, Agility and Intelligence.<br/><br/>Flat movement speed bonuses from multiple pairs of boots do not stack.", "dname": "Power Treads", "dotaId": "power_treads", "mc": false, "img": "power_treads_lg.png", "lore": "A pair of tough-skinned boots that change to meet the demands of the wearer.", "id": 63, "created": true, "cost": 1400}
+{
+  "dotaId": "power_treads",
+  "id": 63,
+  "img": "power_treads_lg.png",
+  "dname": "Power Treads",
+  "qual": "common",
+  "cost": 1400,
+  "desc": "Active: Switch Attribute - Changes selected attribute between Strength, Agility and Intelligence.<br \/>\r\n<br \/>\r\nPower Treads can be built using a Belt of Strength, Band of Elvenskin, or a Robe of the Magi.  Flat movement speed bonuses from multiple pairs of boots do not stack, nor does the attack speed bonus from multiple Power Treads.",
+  "notes": "",
+  "attrib": "+ 50 Movement Speed<br/>+ 9 Selected Attribute<br/>+ 30 Attack Speed",
+  "mc": false,
+  "cd": false,
+  "lore": "A pair of tough-skinned boots that change to meet the demands of the wearer.",
+  "components": [
+    "boots",
+    "gloves",
+    "belt_of_strength"
+  ],
+  "created": true
+}

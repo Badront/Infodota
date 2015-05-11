@@ -1,1 +1,16 @@
-{"attrib": "+ 3 Armor", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Ring of Protection", "dotaId": "ring_of_protection", "mc": false, "img": "ring_of_protection_lg.png", "lore": "A glimmering ring that defends its bearer.", "id": 12, "created": false, "cost": 200}
+{
+  "dotaId": "ring_of_protection",
+  "id": 12,
+  "img": "ring_of_protection_lg.png",
+  "dname": "Ring of Protection",
+  "qual": "component",
+  "cost": 200,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 3 Armor",
+  "mc": false,
+  "cd": false,
+  "lore": "A glimmering ring that defends its bearer.",
+  "components": null,
+  "created": false
+}

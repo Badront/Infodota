@@ -1,1 +1,20 @@
-{"attrib": "PHASE DURATION: 4<br/>PHASE MOVE BOOST: 16%<br/>+ 50 Movement Speed<br/>+ 24 Damage", "cd": 8.0, "components": ["boots", "blades_of_attack", "blades_of_attack"], "qual": "common", "notes": "", "desc": "Active: Phase - Gives increased movement speed and lets you move through units.  Phase is cancelled upon using another item or ability.<br/><br/>Flat movement speed bonuses from multiple pairs of boots do not stack.", "dname": "Phase Boots", "dotaId": "phase_boots", "mc": false, "img": "phase_boots_lg.png", "lore": "Boots that allow the wearer to travel between the ether.", "id": 50, "created": true, "cost": 1350}
+{
+  "dotaId": "phase_boots",
+  "id": 50,
+  "img": "phase_boots_lg.png",
+  "dname": "Phase Boots",
+  "qual": "common",
+  "cost": 1290,
+  "desc": "Active: Phase - Gives increased movement speed and lets you move through units.  Phase is cancelled upon using another item or ability.<br/><br/>Flat movement speed bonuses from multiple pairs of boots do not stack.",
+  "notes": "",
+  "attrib": "+ 50 Movement Speed<br/>+ 24 Damage<br/>PHASE MOVE BOOST: 16%<br/>PHASE DURATION: 3.6",
+  "mc": false,
+  "cd": 8,
+  "lore": "Boots that allow the wearer to travel between the ether.",
+  "components": [
+    "boots",
+    "blades_of_attack",
+    "blades_of_attack"
+  ],
+  "created": true
+}

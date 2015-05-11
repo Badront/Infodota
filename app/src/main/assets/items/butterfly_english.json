@@ -1,1 +1,20 @@
-{"attrib": "+ 30 Agility<br/>+ 30 Damage<br/>+ 35% Evasion<br/>+ 30 Attack Speed", "cd": false, "components": ["talisman_of_evasion", "quarterstaff", "eagle"], "qual": "epic", "notes": "", "desc": "Active: Flutter - Trade evasion for 20% additional movement speed for 8.0 seconds. ", "dname": "Butterfly", "dotaId": "butterfly", "mc": false, "img": "butterfly_lg.png", "lore": "Only the mightiest and most experienced of warriors can wield the Butterfly, but it provides incredible dexterity in combat.", "id": 139, "created": true, "cost": 6000}
+{
+  "dotaId": "butterfly",
+  "id": 139,
+  "img": "butterfly_lg.png",
+  "dname": "Butterfly",
+  "qual": "epic",
+  "cost": 5875,
+  "desc": "Active: Flutter - Trade evasion for 25% additional movement speed for 6.0 seconds.<br/><br/>Stacks diminishingly with other sources of Evasion.",
+  "notes": "",
+  "attrib": "+ 30 Agility<br/>+ 30 Damage<br/>+ 35% Evasion<br/>+ 30 Attack Speed<br/>FLUTTER BONUS MOVE SPEED: 25%<br/>FLUTTER DURATION: 6",
+  "mc": false,
+  "cd": 35,
+  "lore": "Only the mightiest and most experienced of warriors can wield the Butterfly, but it provides incredible dexterity in combat.",
+  "components": [
+    "eagle",
+    "talisman_of_evasion",
+    "quarterstaff"
+  ],
+  "created": true
+}

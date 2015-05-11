@@ -1,1 +1,19 @@
-{"attrib": "+ 30 Intelligence<br/>+ 15 Armor<br/>AURA SLOW: 40%", "cd": 30.0, "components": ["platemail", "mystic_staff"], "qual": "epic", "notes": "The wave extends at a speed of 350 to a max size of 900.The Arctic Blast follows its caster.", "desc": "Active: Arctic Blast - Emits a freezing wave that does 200 damage to enemies and slows their movement by -40% for 4.0 seconds.<br/>Passive: Freezing Aura - Reduces attack speed on enemies.<br/><br/>Multiple instances of Freezing Aura do not stack.", "dname": "Shiva\u0027s Guard", "dotaId": "shivas_guard", "mc": 100.0, "img": "shivas_guard_lg.png", "lore": "Said to have belonged to a goddess, today it retains much of its former power.", "id": 119, "created": true, "cost": 4700}
+{
+  "dotaId": "shivas_guard",
+  "id": 119,
+  "img": "shivas_guard_lg.png",
+  "dname": "Shiva's Guard",
+  "qual": "epic",
+  "cost": 4700,
+  "desc": "Active: Arctic Blast - Emits a freezing wave that deals 200 magical damage to enemies and slows their movement by -40% for 4.0 seconds.<br/>Passive: Freezing Aura - Reduces the attack speed of all enemies in a 900 radius.<br/><br/>Multiple instances of Freezing Aura do not stack.",
+  "notes": "The wave extends at a speed of 350 to a max size of 900.<br/>The Arctic Blast follows its caster.",
+  "attrib": "+ 30 Intelligence<br/>+ 15 Armor<br/>AURA ATTACK SLOW: 45<br/>BLAST DAMAGE: 200<br/>BLAST MOVEMENT SLOW: 40%<br/>BLAST SLOW DURATION: 4<br/>BLAST RADIUS: 900",
+  "mc": 100,
+  "cd": 30,
+  "lore": "Said to have belonged to a goddess, today it retains much of its former power.",
+  "components": [
+    "platemail",
+    "mystic_staff"
+  ],
+  "created": true
+}

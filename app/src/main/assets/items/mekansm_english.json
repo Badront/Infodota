@@ -1,1 +1,19 @@
-{"attrib": "+ 5 All Attributes<br/>+ 5 Armor<br/>BONUS HP REGEN: 4", "cd": 45.0, "components": ["headdress", "buckler"], "qual": "rare", "notes": "Restore does not affect units that have been affected by Restore in the last 25 seconds.", "desc": "Active: Restore - Heals 250 HP and gives +2 armor in an area.<br/>Passive: Mekansm Aura - Bonus HP Regen in an area.<br/><br/>Multiple instances of Mekansm Aura do not stack.", "dname": "Mekansm", "dotaId": "mekansm", "mc":225, "img": "mekansm_lg.png", "lore": "A glowing jewel formed out of assorted parts that somehow fit together perfectly.", "id": 79, "created": true, "cost": 2300}
+{
+  "dotaId": "mekansm",
+  "id": 79,
+  "img": "mekansm_lg.png",
+  "dname": "Mekansm",
+  "qual": "rare",
+  "cost": 2300,
+  "desc": "Active: Restore - Heals 250 health and gives +2 armor to allied units in a 900 radius.<br/>Passive: Mekansm Aura - Grants 4 health regeneration to allied units in a 900 radius.<br/><br/>Multiple instances of Mekansm Aura do not stack.",
+  "notes": "Restore does not affect units that have been affected by Restore in the last 25 seconds.",
+  "attrib": "+ 5 All Attributes<br/>+ 5 Armor<br/>AURA HEALTH REGEN: 4<br/>RESTORE HEAL: 250<br/>RESTORE ARMOR: 2<br/>RESTORE ARMOR DURATION: 25<br/>AURA/RESTORE RADIUS: 900",
+  "mc": 225,
+  "cd": 45,
+  "lore": "A glowing jewel formed out of assorted parts that somehow fit together perfectly.",
+  "components": [
+    "headdress",
+    "buckler"
+  ],
+  "created": true
+}

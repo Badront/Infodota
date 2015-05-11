@@ -1,1 +1,16 @@
-{"attrib": "+ 250 к мане", "cd": false, "qual": "secret_shop", "notes": "", "desc": "", "dname": "Energy Booster", "dotaId": "energy_booster", "mc": false, "img": "energy_booster_lg.png", "lore": "Этот ляписовый камень усиливает магический потенциал владельца, позволяя ему дольше сохранять колдовские силы в бою.", "id": 59, "created": false, "cost": 1000}
+{
+  "dotaId": "energy_booster",
+  "id": 59,
+  "img": "energy_booster_lg.png",
+  "dname": "Energy Booster",
+  "qual": "secret_shop",
+  "cost": 900,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 250 к мане",
+  "mc": false,
+  "cd": false,
+  "lore": "Этот ляписовый камень усиливает магический потенциал владельца, позволяя ему дольше сохранять колдовские силы в бою.",
+  "components": null,
+  "created": false
+}

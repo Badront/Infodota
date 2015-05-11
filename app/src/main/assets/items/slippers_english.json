@@ -1,1 +1,16 @@
-{"attrib": "+ 3 Agility", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Slippers of Agility", "dotaId": "slippers", "mc": false, "img": "slippers_lg.png", "lore": "Light boots made from spider skin that tingles your senses.", "id": 14, "created": false, "cost": 150}
+{
+  "dotaId": "slippers",
+  "id": 14,
+  "img": "slippers_lg.png",
+  "dname": "Slippers of Agility",
+  "qual": "component",
+  "cost": 150,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 3 к ловкости",
+  "mc": false,
+  "cd": false,
+  "lore": "Легкие ботинки, сделанные из кожи паука, обостряют ваши ощущения.",
+  "components": null,
+  "created": false
+}

@@ -1,1 +1,16 @@
-{"attrib": "+ 10 Armor", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Platemail", "dotaId": "platemail", "mc": false, "img": "platemail_lg.png", "lore": "Thick metal plates that protect the entire upper body. Avoid dropping on feet.", "id": 9, "created": false, "cost": 1400}
+{
+  "dotaId": "platemail",
+  "id": 9,
+  "img": "platemail_lg.png",
+  "dname": "Platemail",
+  "qual": "secret_shop",
+  "cost": 1400,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 10 к броне",
+  "mc": false,
+  "cd": false,
+  "lore": "Толстые металлические пластины, полностью защищающие верхнюю часть тела. Будьте аккуратнее — не уроните на ноги!",
+  "components": null,
+  "created": false
+}

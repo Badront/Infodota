@@ -1,1 +1,16 @@
-{"attrib": "DURATION: 10<br/>HEALTH RESTORED: 400", "cd": false, "qual": "consumable", "notes": "Flask is shareable.", "desc": "Use: Regenerate - Restores HP over time.  If the user is attacked, the effect is lost.", "dname": "Healing Salve", "dotaId": "flask", "mc": false, "img": "flask_lg.png", "lore": "A magical salve that can quickly mend even the deepest of wounds.", "id": 39, "created": false, "cost": 110}
+{
+  "dotaId": "flask",
+  "id": 39,
+  "img": "flask_lg.png",
+  "dname": "Healing Salve",
+  "qual": "consumable",
+  "cost": 110,
+  "desc": "Use: Restores health to the target unit over time.  If the unit is attacked, the effect is lost.",
+  "notes": "",
+  "attrib": "DURATION: 8<br/>HEALTH RESTORED: 400",
+  "mc": false,
+  "cd": false,
+  "lore": "A magical salve that can quickly mend even the deepest of wounds.",
+  "components": null,
+  "created": false
+}

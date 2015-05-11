@@ -3,7 +3,7 @@
     "cd": false,
     "qual": "consumable",
     "notes": "",
-    "desc": "Creature that carries items to and from your base.",
+    "desc": "Use: Deploy Courier - Deploys a creature to carry items to and from your team's base.",
     "dname": "Animal Courier",
     "dotaId": "courier",
     "mc": false,
