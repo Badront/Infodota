@@ -72,7 +72,7 @@
         "dname": "Replicate",
         "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b><br/>PIERCES SPELL IMMUNITY: <b><font color=\"#70EA72\">Yes</font></b>",
         "desc": "Morphling replicates any hero, friend or foe, dealing 50% of the original Hero\u0027s outgoing damage while taking 100% of any incoming damage.  At any time, Morphling can instantly take the position of the Replicate for 150 mana. If Morphling dies, the Replicate will expire.<br/>Upgradable by Aghanim\u0027s Scepter.",
-        "notes": "You can\u0027t target yourself with Replicate without Aghanim\u0027s Scepter.",
+        "notes": "",
         "dmg": "",
         "attrib": "DURATION: <b><font color=\"#ffffff\">30/45/60</font></b><br/>REPLICATE DAMAGE: <b><font color=\"#ffffff\">50%/50%/50%</font></b><br/>REPLICATE DAMAGE TAKEN: <b><font color=\"#ffffff\">100%/100%/100%</font></b><br/>CAST RANGE: <b><font color=\"#ffffff\">700/1100/1500</font></b>",
         "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> 25/25/25<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> 80",

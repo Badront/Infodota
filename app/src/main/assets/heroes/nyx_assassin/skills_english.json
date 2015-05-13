@@ -64,7 +64,7 @@
         "attrib": "",
         "cmb": "<img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> 0",
         "lore": "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey.",
-        "hurl": "Nyx_Assassin"
+        "hurl": "Nyx_Assassin",
         "name": "nyx_assassin_unburrow",
         "youtube":null,
         "id": 4
