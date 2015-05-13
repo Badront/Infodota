@@ -47,7 +47,7 @@
         "desc": "Centaur leads all allies into a vicious charge causing them to move through units at max speed and stop any enemy units they trample. Trampled enemies take damage based on Centaur Warrunner\u0027s strength. Each enemy can be trampled once.<br/>Upgradable with Aghanim\u0027s Scepter.",
         "notes": "Doesn\u0027t affect Spell Immune units.",
         "dmg": "",
-        "attrib": "STAMPEDE DURATION: <b><font color=\"#ffffff\">3.75</font></b><br/>STRENGTH MULTIPLIER DAMAGE: <b><font color=\"#ffffff\">1/2/3</font></b><br/>STOP DURATION: <b><font color=\"#ffffff\">1.5</font></b><br/>TRAMPLE RADIUS: <b><font color=\"#ffffff\">105</font></b><br/><font color=\"#6fe871\">SCEPTER DAMAGE REDUCTION:</font></b> <b><font color=\"#ffffff\">70%</font></b>",
+        "attrib": "STAMPEDE DURATION: <b><font color=\"#ffffff\">3.75</font></b><br/>STRENGTH MULTIPLIER DAMAGE: <b><font color=\"#ffffff\">1/2/3</font></b><br/>STOP DURATION: <b><font color=\"#ffffff\">1.5</font></b><br/>TRAMPLE RADIUS: <b><font color=\"#ffffff\">105</font></b><br/><font color=\"#6fe871\">SCEPTER DAMAGE REDUCTION:</font></b> <b><font color=\"#ffffff\">60%</font></b>",
         "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> 100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> 90/75/60",
         "lore": "The great belt of Omexe, which labels Bradwarden as the greatest warrior of his kind, incites his fellow gladiators to follow him into barbarous combat.",
         "hurl": "Centaur_Warrunner",

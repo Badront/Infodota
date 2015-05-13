@@ -47,7 +47,7 @@
         "desc": "Ursa впадает в ярость, увеличивая урон от Fury Swipes и получая на 80% меньше урона. Снимает все негативные эффекты.",
         "notes": "",
         "dmg": "",
-        "attrib": "МНОЖИТЕЛЬ FURY SWIPES: <b><font color=\"#ffffff\">2/2.5/3</font></b><br/>СНИЖЕНИЕ УРОНА: <b><font color=\"#ffffff\">80%</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">4</font></b>",
+        "attrib": "МНОЖИТЕЛЬ FURY SWIPES: <b><font color=\"#ffffff\">1.5/2/2.5</font></b><br/>СНИЖЕНИЕ УРОНА: <b><font color=\"#ffffff\">80%</font></b><br/>ДЛИТЕЛЬНОСТЬ: <b><font color=\"#ffffff\">4</font></b>",
         "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\"/> 0/0/0<br/><img alt=\"Перезарядка\" title=\"Перезарядка\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\"/> 50/45/40",
         "lore": "Ульфсаар отдается своему древнему духу, приобретая невиданную свирепость.",
         "hurl": "Ursa",

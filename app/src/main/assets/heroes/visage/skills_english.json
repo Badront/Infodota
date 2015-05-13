@@ -47,7 +47,7 @@
         "desc": "Conjures up two blind Familiars to fight for Visage.  Familiars have high attack power, but each attack drains a charge of damage that recharges slowly over time.  Familiars possess the Stone Form ability, that allows them to turn into stone, stunning enemies upon landing.  While in Stone Form, Familiars are invulnerable, and rapidly regenerate their health and damage.  Familiars grant high bounty when killed.<br/>Upgradable by Aghanim\u0027s Scepter.",
         "notes": "Casting Summon Familiars will replace any existing Familiars.<br/>Each Familiar starts with 7 damage charges. Familiars are Spell Immune.",
         "dmg": "",
-        "attrib": "FAMILIAR ATTACKS TO DESTROY: <b><font color=\"#ffffff\">4</font></b><br/>FAMILIAR ARMOR: <b><font color=\"#ffffff\">0/1/2</font></b><br/>FAMILIAR SPEED: <b><font color=\"#ffffff\">380/390/400</font></b><br/>FAMILIAR MAX DAMAGE: <b><font color=\"#ffffff\">56/98/154</font></b>",
+        "attrib": "FAMILIAR ATTACKS TO DESTROY: <b><font color=\"#ffffff\">3</font></b><br/>FAMILIAR ARMOR: <b><font color=\"#ffffff\">0/1/2</font></b><br/>FAMILIAR SPEED: <b><font color=\"#ffffff\">380/390/400</font></b><br/>FAMILIAR MAX DAMAGE: <b><font color=\"#ffffff\">56/98/154</font></b>",
         "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> 150/150/150<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> 180/160/140",
         "lore": "Guardians of the Narrow Maze, Necro\u0027lic\u0027s Familiars stand watch over his domain.",
         "hurl": "Visage",

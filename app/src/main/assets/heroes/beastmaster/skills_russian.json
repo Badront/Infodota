@@ -19,7 +19,7 @@
         "desc": "Beastmaster призывает зоркого ястреба, наблюдающего за полем боя. С 3 уровня ястреб становится невидимым, если не передвигается в течение 4 секунд.",
         "notes": "",
         "dmg": "",
-        "attrib": "ЗДОРОВЬЕ ЯСТРЕБА: <b><font color=\"#ffffff\">40/60/80/100</font></b><br/>СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">250/300/350/400</font></b><br/>ОБЗОР ЯСТРЕБА ДНЕМ: <b><font color=\"#ffffff\">700/1000/1300/1600</font></b><br/>ОБЗОР ЯСТРЕБА НОЧЬЮ: <b><font color=\"#ffffff\">700/800/900/1000</font></b><br/>ДЛИТЕЛЬНОСТЬ ЖИЗНИ ЯСТРЕБА: <b><font color=\"#ffffff\">60/60/60/60</font></b>",
+        "attrib": "ЗДОРОВЬЕ ЯСТРЕБА: <b><font color=\"#ffffff\">40/60/80/100</font></b><br/>СКОРОСТЬ ПЕРЕДВИЖЕНИЯ: <b><font color=\"#ffffff\">250/275/300/325</font></b><br/>ОБЗОР ЯСТРЕБА ДНЕМ: <b><font color=\"#ffffff\">700/1000/1300/1600</font></b><br/>ОБЗОР ЯСТРЕБА НОЧЬЮ: <b><font color=\"#ffffff\">700/800/900/1000</font></b><br/>ДЛИТЕЛЬНОСТЬ ЖИЗНИ ЯСТРЕБА: <b><font color=\"#ffffff\">60/60/60/60</font></b>",
         "cmb": "<img alt=\"Расход маны\" title=\"Расход маны\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\"/> 15<br/><img alt=\"Перезарядка\" title=\"Перезарядка\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\"/> 40",
         "lore": "После того, как Beastmaster подружился со странным зверем в детстве, он научился призывать животных на помощь.",
         "hurl": "Beastmaster",

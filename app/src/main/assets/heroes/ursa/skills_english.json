@@ -47,7 +47,7 @@
         "desc": "Ursa goes into a frenzy, multiplying his Fury Swipes damage and causing him to take 80% less damage. Removes any existing debuffs.",
         "notes": "",
         "dmg": "",
-        "attrib": "FURY SWIPES MULTIPLIER: <b><font color=\"#ffffff\">2/2.5/3</font></b><br/>DAMAGE REDUCTION: <b><font color=\"#ffffff\">80%</font></b><br/>DURATION: <b><font color=\"#ffffff\">4</font></b>",
+        "attrib": "FURY SWIPES MULTIPLIER: <b><font color=\"#ffffff\">1.5/2/2.5</font></b><br/>DAMAGE REDUCTION: <b><font color=\"#ffffff\">80%</font></b><br/>DURATION: <b><font color=\"#ffffff\">4</font></b>",
         "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> 0/0/0<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> 50/45/40",
         "lore": "Ulfsaar succumbs to his ancient spirit, becoming the most ferocious creature on the battlefield.",
         "hurl": "Ursa",

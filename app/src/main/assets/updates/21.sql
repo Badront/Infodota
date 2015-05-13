@@ -144,6 +144,6 @@ UNION ALL SELECT '254','glimmer_cape','caster','1950','Glimmer Cape'
 UNION ALL SELECT '231','guardian_greaves','support','5300','Guardian Greaves'
 UNION ALL SELECT '226','lotus_orb','armor','4050','Lotus Orb'
 UNION ALL SELECT '235','octarine_core','caster','5900','Octarine Core'
-UNION ALL SELECT '249','silver_edge','weapons','5200','Silver Edge'
+UNION ALL SELECT '249','silver_edge','weapons','5450','Silver Edge'
 UNION ALL SELECT '229','solar_crest','caster','3000','Solar Crest'
 UNION ALL SELECT '220','travel_boots_2','common','4450','Boots of Travel';
