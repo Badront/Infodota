@@ -1,8 +1,8 @@
 {
-    "versionCode":720,
+    "versionCode":725,
     "message":
     {
-        "en-us":"Fixed some complex items recipes",
-        "ru":"Исправлены сборки некоторых предметов"
+        "en-us":"-6.84b update.\n-Added Trackdota.com support\n-some fixes and updates\nAttention! Delete previous version before installing this one.",
+        "ru":"-Изменения 6.84b\n-Добавлена поодержка Trackdota.com\n-Другие исправления и улучшения\nВнимание! Удалите предыдущую версию перед установкой этой."
     }
 }
