@@ -197,7 +197,7 @@ public class MatchResults extends Fragment {
 
     @Override
     public void onDestroy() {
-        ((ActionBarActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
+        ((AppCompatActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
         if (updaterTask != null) {
             updaterTask.cancel(true);
             updaterTask = null;

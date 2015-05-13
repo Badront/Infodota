@@ -1,1 +1,16 @@
-{"attrib": "+ 15% Spell Resistance", "cd": false, "qual": "component", "notes": " Magic resistance does stack with other Cloaks, Hood of Defiance, or Pipe of Insight.", "desc": "", "dname": "Cloak", "dotaId": "cloak", "mc": false, "img": "cloak_lg.png", "lore": "A cloak made of a magical material that works to dispel any magic cast on it.", "id": 31, "created": false, "cost": 550}
+{
+  "dotaId": "cloak",
+  "id": 31,
+  "img": "cloak_lg.png",
+  "dname": "Cloak",
+  "qual": "component",
+  "cost": 550,
+  "desc": "",
+  "notes": "Stacks multiplicatively with other sources of spell resistance.",
+  "attrib": "+ 20% Spell Resistance",
+  "mc": false,
+  "cd": false,
+  "lore": "A cloak made of a magical material that works to dispel any magic cast on it.",
+  "components": null,
+  "created": false
+}

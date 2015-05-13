@@ -1,35 +1,42 @@
+
 {
-    "author": "Valve",
-    "hero": "npc_dota_hero_techies",
-    "Title": "Recommended items for Techies",
+"author":"Valve",
+"hero":"npc_dota_hero_techies",
+"Title":"Recommended items for Techies",
 
-    "Items": {
-        "startingItems": [
-            "tango",
-            "clarity",
-            "clarity",
-            "clarity",
-            "courier"
-        ],
+"Items":
+{
+"startingItems":
+[
+"tango",
+"clarity",
+"clarity",
+"clarity",
+"courier"
+],
 
-        "earlyGame": [
-            "tranquil_boots",
-            "soul_ring",
-            "tpscroll"
-        ],
+"earlyGame":
+[
+"tranquil_boots",
+"soul_ring",
+"tpscroll"
+],
 
-        "coreItems": [
-            "cyclone",
-            "ultimate_scepter"
-        ],
+"coreItems":
+[
+"cyclone",
+"ultimate_scepter"
+],
 
-        "luxury": [
-            "bloodstone",
-            "ghost",
-            "sheepstick",
-            "shivas_guard",
-            "force_staff",
-            "necronomicon_3"
-        ]
-    }
+"luxury":
+[
+"bloodstone",
+"ghost",
+"sheepstick",
+"shivas_guard",
+"force_staff",
+"necronomicon_3",
+"octarine_core"
+]
+}
 }

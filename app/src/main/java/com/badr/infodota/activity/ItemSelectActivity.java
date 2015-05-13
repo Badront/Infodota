@@ -43,7 +43,7 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
     @Override
     protected void onStart() {
         super.onStart();
-        if(spiceManager.isStarted()) {
+        if(!spiceManager.isStarted()) {
             spiceManager.start(this);
             if(!initialized) {
                 loadItems();

@@ -1,1 +1,21 @@
-{"attrib": "+ 3 All Attributes<br/>RESTORE PER CHARGE: 17", "cd": 13.0, "components": ["branches", "branches", "branches", "magic_stick"], "qual": "common", "notes": "Gains charges for spells cast by visible enemies in 1200 range.Certain abilities and item abilities will not add charges.", "desc": "Active: Energy Charge - Gains charges (max 15) based on enemies using abilities in a nearby area.  When activated, it restores health and mana based on the number of charges stored.", "dname": "Magic Wand", "dotaId": "magic_wand", "mc": false, "img": "magic_wand_lg.png", "lore": "A simple wand used to channel magic energies, it is favored by apprentice wizards and great warlocks alike.", "id": 36, "created": true, "cost": 500}
+{
+  "dotaId": "magic_wand",
+  "id": 36,
+  "img": "magic_wand_lg.png",
+  "dname": "Magic Wand",
+  "qual": "common",
+  "cost": 465,
+  "desc": "Active: Energy Charge - Instantly restores health and mana based on the number of charges stored. Gains a charge (max 17) whenever a nearby visible enemy uses an ability.",
+  "notes": "Gains charges for spells cast by visible enemies in 1200 range.<br/>Certain abilities and item abilities will not add charges.",
+  "attrib": "+ 4 All Attributes<br/>HEALTH/MANA PER CHARGE: 15",
+  "mc": false,
+  "cd": 13,
+  "lore": "A simple wand used to channel magic energies, it is favored by apprentice wizards and great warlocks alike.",
+  "components": [
+    "circlet",
+    "branches",
+    "branches",
+    "magic_stick"
+  ],
+  "created": true
+}

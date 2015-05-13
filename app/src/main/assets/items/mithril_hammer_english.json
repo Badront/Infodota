@@ -1,1 +1,16 @@
-{"attrib": "+ 24 Damage", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Mithril Hammer", "dotaId": "mithril_hammer", "mc": false, "img": "mithril_hammer_lg.png", "lore": "A hammer forged of pure mithril.", "id": 8, "created": false, "cost": 1600}
+{
+  "dotaId": "mithril_hammer",
+  "id": 8,
+  "img": "mithril_hammer_lg.png",
+  "dname": "Mithril Hammer",
+  "qual": "component",
+  "cost": 1600,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 24 Damage",
+  "mc": false,
+  "cd": false,
+  "lore": "A hammer forged of pure mithril.",
+  "components": null,
+  "created": false
+}

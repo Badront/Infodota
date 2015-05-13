@@ -1,1 +1,16 @@
-{"attrib": "MELEE SLOW: 12%<br/>RANGED SLOW: 4%<br/>DURATION: 4<br/>POISON DAMAGE: 3", "cd": false, "qual": "secret_shop", "notes": "", "desc": "Passive: Poison Attack - Poisons the target, dealing damage over time and slowing, depending on whether your hero is melee or ranged.<br/><br/>Orb of Venom is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.", "dname": "Orb of Venom", "dotaId": "orb_of_venom", "mc": false, "img": "orb_of_venom_lg.png", "lore": "Envenoms your veapon with the venom of a venomous viper.", "id": 181, "created": false, "cost": 275}
+{
+  "dotaId": "orb_of_venom",
+  "id": 181,
+  "img": "orb_of_venom_lg.png",
+  "dname": "Orb of Venom",
+  "qual": "component",
+  "cost": 275,
+  "desc": "Passive: Poison Attack - Poisons the target, dealing damage over time and slowing movement based on whether the equipped hero is melee or ranged.<br/><br/>Orb of Venom is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.  Orb of Venom can be combined with Lifesteal Attack Modifiers.",
+  "notes": "",
+  "attrib": "POISON DAMAGE PER SECOND: 3<br/>POISON MELEE SLOW: 12%<br/>POISON RANGED SLOW: 4%<br/>POISON DURATION: 4",
+  "mc": false,
+  "cd": false,
+  "lore": "Envenoms your veapon with the venom of a venomous viper.",
+  "components": null,
+  "created": false
+}

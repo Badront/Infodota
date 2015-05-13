@@ -1,1 +1,16 @@
-{"attrib": "DURATION: 40<br/>MANA RESTORED: 150", "cd": false, "qual": "consumable", "notes": "Clarity is shareable.", "desc": "Use: Restores mana over time.  If the user is attacked, the effect is lost.", "dname": "Clarity", "dotaId": "clarity", "mc": false, "img": "clarity_lg.png", "lore": "Clear water that enhances the ability to meditate.", "id": 38, "created": false, "cost": 50}
+{
+  "dotaId": "clarity",
+  "id": 38,
+  "img": "clarity_lg.png",
+  "dname": "Clarity",
+  "qual": "consumable",
+  "cost": 50,
+  "desc": "Use: Restores mana to the target unit over time.  If the unit is attacked, the effect is lost.",
+  "notes": "",
+  "attrib": "TOTAL MANA RESTORED: 170<br/>DURATION: 45",
+  "mc": false,
+  "cd": false,
+  "lore": "Clear water that enhances the ability to meditate.",
+  "components": null,
+  "created": false
+}

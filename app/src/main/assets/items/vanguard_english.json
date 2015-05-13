@@ -1,1 +1,20 @@
-{"attrib": "+ 250 Health<br/>+ 6 HP Regeneration<br/>BLOCK CHANCE: 80%<br/>RANGED BLOCK: 20<br/>MELEE BLOCK: 40", "cd": false, "components": ["ring_of_health", "vitality_booster", "stout_shield"], "qual": "epic", "notes": "Multiple sources of damage block don\u0027t stack.", "desc": "Passive: Damage Block - Gives a chance to block damage, depending on the type of hero you are.", "dname": "Vanguard", "dotaId": "vanguard", "mc": false, "img": "vanguard_lg.png", "lore": "A powerful shield that defends its wielder from even the most vicious of attacks.", "id": 125, "created": true, "cost": 2225}
+{
+  "dotaId": "vanguard",
+  "id": 125,
+  "img": "vanguard_lg.png",
+  "dname": "Vanguard",
+  "qual": "epic",
+  "cost": 2175,
+  "desc": "Passive: Damage Block - Gives the wielder a chance to block damage from each incoming attack based on whether the equipped hero is melee or ranged.",
+  "notes": "Multiple sources of damage block don't stack.",
+  "attrib": "+ 250 Health<br/>+ 6 HP Regeneration<br/>BLOCK CHANCE: 75%<br/>BLOCK DAMAGE MELEE: 40<br/>BLOCK DAMAGE RANGED: 20",
+  "mc": false,
+  "cd": false,
+  "lore": "A powerful shield that defends its wielder from even the most vicious of attacks.",
+  "components": [
+    "ring_of_health",
+    "vitality_booster",
+    "stout_shield"
+  ],
+  "created": true
+}

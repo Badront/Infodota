@@ -1,40 +1,47 @@
+
 {
-	"author":"Valve",
-	"hero":"npc_dota_hero_night_stalker",
-	"Title":"Recommended items for Night Stalker",
-	
-	"Items":
-	{	
-		"startingItems":[
-			"gauntlets",
-			"gauntlets",
-			"clarity",
-			"flask",
-			"tango"
-		],
-		
-		"earlyGame":[
-			"magic_stick",
-			"boots",
-			"urn_of_shadows"
-		],
-		
-		"coreItems":[
-			"magic_wand",
-			"phase_boots",
-			"vanguard",
-			"tpscroll"
-		],
-		
-		"luxury":[
-			"heart",
-			"assault",
-			"black_king_bar",
-			"ultimate_scepter",
-			"armlet",
-			"heavens_halberd",
-			"abyssal_blade",
-			"satanic"
-		]
-	}
+"author"	 "Valve",
+"hero"	 "npc_dota_hero_night_stalker",
+"Title"	 "Recommended items for Night Stalker",
+
+"Items":
+{
+"startingItems":
+[
+"item"	 	"item_gauntlets",
+"item"	 	"item_gauntlets",
+"item"	 	"item_clarity",
+"item"	 	"item_flask",
+"tango"
+],
+
+"earlyGame":
+[
+"item"	 	"item_magic_stick",
+"item"	 	"item_boots",
+"item"		 "item_urn_of_shadows"
+],
+
+"coreItems":
+[
+"item"	 	"item_magic_wand",
+"item"	 	"item_phase_boots",
+"item"	 	"item_vanguard",
+"tpscroll"
+],
+
+"luxury":
+[
+"item"	 	"item_heart",
+"item"	 	"item_assault",
+"item"	 	"item_black_king_bar",
+"item"	 	"item_ultimate_scepter",
+"item"	 	"item_armlet",
+"item"	 	"item_heavens_halberd",
+"item"	 	"item_abyssal_blade",
+"satanic",
+"moon_shard",
+"lotus_orb"
+]
+}
 }

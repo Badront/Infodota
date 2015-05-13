@@ -1,1 +1,16 @@
-{"attrib": "+ 21 к урону", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Claymore", "dotaId": "claymore", "mc": false, "img": "claymore_lg.png", "lore": "Меч, способный пробить броню — это обычный выбор начинающих меченосцев.", "id": 5, "created": false, "cost": 1400}
+{
+  "dotaId": "claymore",
+  "id": 5,
+  "img": "claymore_lg.png",
+  "dname": "Claymore",
+  "qual": "component",
+  "cost": 1400,
+  "desc": "",
+  "notes": "",
+  "attrib": "+ 21 УРОНА",
+  "mc": false,
+  "cd": false,
+  "lore": "Меч, способный пробить броню — это обычный выбор начинающих меченосцев.",
+  "components": null,
+  "created": false
+}

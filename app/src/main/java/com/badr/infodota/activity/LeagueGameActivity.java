@@ -59,7 +59,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     private boolean initialized=false;
     @Override
     protected void onStart() {
-        if(spiceManager.isStarted()) {
+        if(!spiceManager.isStarted()) {
             spiceManager.start(this);
             if(!initialized) {
                 initMatch();

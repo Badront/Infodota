@@ -1,1 +1,19 @@
-{"attrib": "+ 2 All Attributes<br/>BONUS REGEN: 3", "cd": false, "components": ["ring_of_regen", "branches"], "qual": "rare", "notes": "", "desc": "Passive: Regeneration Aura - Restores HP to allies in a 750 unit radius.<br/><br/>Multiple instances of Regeneration Aura do not stack.", "dname": "Headdress", "dotaId": "headdress", "mc": false, "img": "headdress_lg.png", "lore": "Creates a soothing aura that restores allies in battle.", "id": 94, "created": true, "cost": 600}
+{
+  "dotaId": "headdress",
+  "id": 94,
+  "img": "headdress_lg.png",
+  "dname": "Headdress",
+  "qual": "rare",
+  "cost": 600,
+  "desc": "Passive: Regeneration Aura - Restores health to allies in a 900 unit radius.<br/><br/>Multiple instances of Regeneration Aura do not stack.",
+  "notes": "",
+  "attrib": "+ 2 All Attributes<br/>AURA HEALTH REGEN: 3<br/>AURA REGEN RADIUS: 900",
+  "mc": false,
+  "cd": false,
+  "lore": "Creates a soothing aura that restores allies in battle.",
+  "components": [
+    "ring_of_regen",
+    "branches"
+  ],
+  "created": true
+}

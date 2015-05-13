@@ -1,6 +1,6 @@
 package com.badr.infodota.activity;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,7 +13,7 @@ import com.badr.infodota.R;
  * Date: 29.01.14
  * Time: 12:41
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends AppCompatActivity {
     ActionMenuView mActionMenuView;
     Toolbar mToolbar;
 

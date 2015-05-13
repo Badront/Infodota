@@ -1,1 +1,20 @@
-{"attrib": "MELEE BLOCK: 20<br/>RANGED BLOCK: 10<br/>BLOCK CHANCE: 60%<br/>+ 6 Agility", "cd": false, "components": ["slippers", "slippers", "stout_shield"], "qual": "common", "notes": "Multiple sources of damage block don\u0027t stack.", "desc": "Passive: Damage Block - Blocks physical attack damage, depending on the type of hero you are.  Poor Man\u0027s Shield will always block attacks from enemy Heroes, but has a chance to block damage from creeps.", "dname": "Poor Man\u0027s Shield", "dotaId": "poor_mans_shield", "mc": false, "img": "poor_mans_shield_lg.png", "lore": "A busted old shield that seems to block more than it should.", "id": 71, "created": true, "cost": 550}
+{
+  "dotaId": "poor_mans_shield",
+  "id": 71,
+  "img": "poor_mans_shield_lg.png",
+  "dname": "Poor Man's Shield",
+  "qual": "common",
+  "cost": 500,
+  "desc": "Passive: Damage Block - Blocks physical attack damage based on whether the equipped hero is ranged or melee.  Poor Man's Shield will always block attacks from enemy Heroes, but has a 53% chance to block damage from creeps.",
+  "notes": "Multiple sources of damage block don't stack.",
+  "attrib": "+ 6 Agility<br/>MELEE DAMAGE BLOCK: 20<br/>RANGED DAMAGE BLOCK: 10<br/>CREEP BLOCK CHANCE: 53%",
+  "mc": false,
+  "cd": false,
+  "lore": "A busted old shield that seems to block more than it should.",
+  "components": [
+    "slippers",
+    "slippers",
+    "stout_shield"
+  ],
+  "created": true
+}

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
@@ -58,7 +59,7 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
 
     @Override
     public void onStart() {
-        if(spiceManager.isStarted()) {
+        if(!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
             if(!initialized){
                 loadItems();
@@ -250,7 +251,7 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     @Override
     public void onRequestFailure(SpiceException spiceException) {
         initialized=true;
-
+        Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -260,7 +261,7 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
         filter = mAdapter.getFilter();
         filter.filter(search);
         gridView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(ItemsList.this);
+        mAdapter.setOnItemClickListener(this);
     }
     public class ItemsLoadRequest extends TaskRequest<Item.List>{
 

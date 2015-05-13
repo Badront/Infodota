@@ -1,1 +1,15 @@
-{"attrib": "+ 25% Evasion", "cd": false, "qual": "component", "notes": "", "desc": "", "dname": "Talisman of Evasion", "dotaId": "talisman_of_evasion", "mc": false, "img": "talisman_of_evasion_lg.png", "lore": "A necklace that allows you to anticipate enemy attacks.", "id": 32, "created": false, "cost": 1800}
+{
+  "dotaId": "talisman_of_evasion",
+  "attrib": "+ 25% Evasion",
+  "cd": false,
+  "qual": "secret_shop",
+  "notes": "",
+  "desc": "Stacks diminishingly with other sources of Evasion.",
+  "dname": "Talisman of Evasion",
+  "mc": false,
+  "img": "talisman_of_evasion_lg.png",
+  "lore": "A necklace that allows you to anticipate enemy attacks.",
+  "id": 32,
+  "created": false,
+  "cost": 1800
+}

@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.PopupMenu;
 import android.text.TextUtils;
@@ -361,7 +361,7 @@ public class CosmeticList extends Fragment implements SearchableFragment {
 
     @Override
     public void onDestroy() {
-        ((ActionBarActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
+        ((AppCompatActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
         super.onDestroy();
     }
 }

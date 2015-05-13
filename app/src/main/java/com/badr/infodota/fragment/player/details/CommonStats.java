@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -143,7 +143,7 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
     public void onRequestSuccess(CommonInfo commonInfo) {
         initialized=true;
         setRefreshing(false);
-        ActionBarActivity activity= (ActionBarActivity) getActivity();
+        AppCompatActivity activity= (AppCompatActivity) getActivity();
         if(activity!=null&&commonInfo!=null) {
             activity.getSupportActionBar().setSubtitle(MessageFormat
                     .format(getString(R.string.record_with_win_rate), commonInfo.wins, commonInfo.loses, commonInfo.winRate));
