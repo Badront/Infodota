@@ -57,7 +57,7 @@
     },
     {
         "dname": "Minefield Sign",
-        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br/>DAMAGE TYPE: <b><font color=\"#ffffff\">DOTA_ToolTip_Damage_None</font></b>",
+        "affects": "ABILITY: <b><font color=\"#ffffff\">Point Target</font></b><br/>DAMAGE TYPE: <b><font color=\"#ffffff\">None</font></b>",
         "desc": "Plant a warning sign to remind enemies to step lightly. Only one sign can exist at a time. Lasts 180 seconds.<br/>Upgradable by Aghanim\u0027s Scepter, allowing Minefield Sign to hide any Land Mines, Stasis Traps, and Remote Mines in a 125 radius from True Sight.",
         "notes": "",
         "dmg": "",
