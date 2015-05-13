@@ -12,5 +12,7 @@ import java.util.List;
  * Time: 15:28
  */
 public abstract class TwitchMatchListHolder extends RecyclerFragment<Stream, StreamHolder> {
+    public final String TWITCH_PACKAGE = "tv.twitch.android.viewer";
+
     public abstract void updateList(List<Stream> channels);
 }

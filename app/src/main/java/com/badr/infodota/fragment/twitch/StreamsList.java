@@ -18,6 +18,7 @@ import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.service.twitch.TwitchService;
 import com.badr.infodota.util.DialogUtils;
 import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
@@ -105,8 +106,14 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
             }
             case 1: {
                 Intent intent;
-                String url = "http://www.twitch.tv/"+stream.getChannel();
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                if(Utils.IsPackageInstalled(getActivity(),TWITCH_PACKAGE)){
+                    String url = "twitch://stream/"+stream.getChannel();
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                }
+                else {
+                    String url = "http://www.twitch.tv/"+stream.getChannel();
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                }
                 startActivity(intent);
                 break;
             }
