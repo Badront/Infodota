@@ -106,12 +106,10 @@ Ex: no other arcane boots, or mana regen passive",
 		"AbilityTooltips":
 		{
 				"ancient_apparition_cold_feet":"Note: AA is a very Situational Support hero, but when used correctly can net your Carry a ton of farm/kills. Cold Feet is a skill that requires a lot of communication between u and your lane partners. With good timing and a Stun/slow makes for easy kills. Rotation: Cold Feet-Stun/Slow-right clicks ",
-				"ancient_apparition_ice_vortex":"Vortex Is a follow up skill for the most Part. It can also be used to give slight vision on the field and Mini-map.
-Use after Ice Vortex to increase Cold Feet success chance. Also use during a chase or get away as it slows hero movement Significantly. Keep this up during any team fight",
+				"ancient_apparition_ice_vortex":"Vortex Is a follow up skill for the most Part. It can also be used to give slight vision on the field and Mini-map.Use after Ice Vortex to increase Cold Feet success chance. Also use during a chase or get away as it slows hero movement Significantly. Keep this up during any team fight",
 				"ancient_apparition_chilling_touch":"Chilling Touch Is AA's most situational skill. You as a support need to determine when this is Viable. It sacrifices attack speed for increased damage. Use early game to pack a PUNCH in your early game right clicks. NOTE: does NOT work towers",
 				"ancient_apparition_ice_blast":"Ice Blast when Used correctly Makes AA a Global support, but plays a huge roll in team fights. Uses: To initiate a team fight or long range Gank. Note: Ice Blast stops all forms of regeneration Ex: auto Regen, Mekansm, Healing skills. Note: Has a low cooldown so can be used before and after Fights",
-				"ancient_apparition_ice_blast_release":"
-"
+				"ancient_apparition_ice_blast_release":""
 		}
 	}
 }
