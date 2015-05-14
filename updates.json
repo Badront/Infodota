@@ -1,8 +1,8 @@
 {
-    "versionCode":725,
+    "versionCode":726,
     "message":
     {
-        "en-us":"-6.84b update.\n-Added Trackdota.com support\n-some fixes and updates\nAttention! Delete previous version before installing this one.",
-        "ru":"-Изменения 6.84b\n-Добавлена поодержка Trackdota.com\n-Другие исправления и улучшения\nВнимание! Удалите предыдущую версию перед установкой этой."
+        "en-us":"-Quick fixes from 725 version\n-External twitch player now uses twitch.app if available\nnew in 725:\n-6.84b update.\n-added Trackdota.com support\n-some fixes and updates\nAttention! Delete previous version before installing this one (if You don't have 6.84 update version).",
+        "ru":"-Исправлены ошибки и вылеты после обновления 725\n-Сторонний плеер twitch.tv теперь открывается в приложении twitch.tv, если оно установлено\nновое в 725:\n-Изменения 6.84b\n-Добавлена поодержка Trackdota.com\n-Другие исправления и улучшения\nВнимание! Удалите предыдущую версию перед установкой этой (если у вас еще не установлена версия с обновлением 6.84)."
     }
 }
