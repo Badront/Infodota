@@ -10,65 +10,10 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/flowHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/starting_items"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <com.badr.infodota.view.FlowLayout
-                android:id="@+id/starting_items"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/early_game"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <com.badr.infodota.view.FlowLayout
-                android:id="@+id/early_game"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/core_items"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <com.badr.infodota.view.FlowLayout
-                android:id="@+id/core_items"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/luxury_items"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <com.badr.infodota.view.FlowLayout
-                android:id="@+id/luxury_items"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
 </LinearLayout>

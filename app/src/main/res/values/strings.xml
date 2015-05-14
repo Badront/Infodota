@@ -34,8 +34,11 @@
     <string name="mc">Mana cost:</string>
     <string name="recipe">Recipe</string>
     <string name="starting_items">STARTING ITEMS</string>
+    <string name="starting_items_secondary">STARTING ITEMS SECONDARY</string>
     <string name="early_game">EARLY GAME</string>
+    <string name="early_game_secondary">EARLY GAME SECONDARY</string>
     <string name="core_items">CORE ITEMS</string>
+    <string name="core_items_secondary">CORE ITEMS SECONDARY</string>
     <string name="luxury_items">LUXURY</string>
     <string name="default_guide">ITEMS</string>
     <string name="guides">GUIDES</string>

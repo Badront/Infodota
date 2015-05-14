@@ -33,8 +33,11 @@
     <string name="mc">Расход маны:</string>
     <string name="recipe">Рецепт</string>
     <string name="starting_items">НАЧАЛЬНЫЕ ПРЕДМЕТЫ</string>
+    <string name="starting_items_secondary">НАЧАЛЬНЫЕ ПРЕДМЕТЫ (ДЛЯ ДОП.СУЩЕСТВ)</string>
     <string name="early_game">ДЛЯ РАННЕЙ ИГРЫ</string>
+    <string name="early_game_secondary">ДЛЯ РАННЕЙ ИГРЫ (ДЛЯ ДОП.СУЩЕСТВ)</string>
     <string name="core_items">ОСНОВНЫЕ ПРЕДМЕТЫ</string>
+    <string name="core_items_secondary">ОСНОВНЫЕ ПРЕДМЕТЫ (ДЛЯ ДОП.СУЩЕСТВ)</string>
     <string name="luxury_items">ПО СИТУАЦИИ</string>
     <string name="default_guide">ПРЕДМЕТЫ</string>
     <string name="guides">ГАЙДЫ</string>

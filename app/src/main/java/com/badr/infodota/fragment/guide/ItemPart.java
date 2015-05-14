@@ -55,7 +55,6 @@ public class ItemPart extends Fragment implements GuideHolder {
     }
 
     private void initGuide() {
-
         View fragmentView = getView();
         if (itemBuild != null&&fragmentView!=null) {
             LinearLayout flowHolder = (LinearLayout) fragmentView.findViewById(R.id.flowHolder);

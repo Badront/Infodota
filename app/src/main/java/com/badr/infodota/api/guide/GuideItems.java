@@ -8,11 +8,38 @@ import java.io.Serializable;
  */
 public class GuideItems implements Serializable {
     private String[] startingItems;
+    private String[] startingItems_Secondary;
     private String[] earlyGame;
+    private String[] earlyGame_Secondary;
     private String[] coreItems;
+    private String[] coreItems_Secondary;
     private String[] luxury;
 
     public GuideItems() {
+    }
+
+    public String[] getStartingItems_Secondary() {
+        return startingItems_Secondary;
+    }
+
+    public void setStartingItems_Secondary(String[] startingItems_Secondary) {
+        this.startingItems_Secondary = startingItems_Secondary;
+    }
+
+    public String[] getEarlyGame_Secondary() {
+        return earlyGame_Secondary;
+    }
+
+    public void setEarlyGame_Secondary(String[] earlyGame_Secondary) {
+        this.earlyGame_Secondary = earlyGame_Secondary;
+    }
+
+    public String[] getCoreItems_Secondary() {
+        return coreItems_Secondary;
+    }
+
+    public void setCoreItems_Secondary(String[] coreItems_Secondary) {
+        this.coreItems_Secondary = coreItems_Secondary;
     }
 
     public String[] getStartingItems() {

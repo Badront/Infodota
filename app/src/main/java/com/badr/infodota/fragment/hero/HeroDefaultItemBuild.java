@@ -14,8 +14,7 @@ import android.widget.TextView;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.ItemInfoActivity;
-import com.badr.infodota.api.guide.GuideItems;
-import com.badr.infodota.api.guide.valve.Guide;
+import com.badr.infodota.api.guide.custom.ItemBuild;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.service.item.ItemService;
@@ -23,12 +22,16 @@ import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.view.FlowLayout;
 import com.google.gson.Gson;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * User: Histler
  * Date: 19.01.14
  */
 public class HeroDefaultItemBuild extends Fragment {
-    private Guide guide;
+    private ItemBuild guide;
     private Hero hero;
 
     public static HeroDefaultItemBuild newInstance(Hero hero) {
@@ -46,75 +49,67 @@ public class HeroDefaultItemBuild extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         String guideEntity = FileUtils.getTextFromAsset(getActivity(), "heroes/" + hero.getDotaId() + "/default.json");
-        guide = new Gson().fromJson(guideEntity, Guide.class);
+        guide = new Gson().fromJson(guideEntity, ItemBuild.class);
         initGuide();
     }
 
+
+
     private void initGuide() {
-        GuideItems guideItems = guide.getItems();//todo nullPointer.
         View fragmentView = getView();
-        ItemService itemService = BeanContainer.getInstance().getItemService();
-        Activity activity = getActivity();
-        FlowLayout startingItems = (FlowLayout) fragmentView.findViewById(R.id.starting_items);
-        startingItems.removeAllViews();
-        for (String itemName : guideItems.getStartingItems()) {
-            Item item = itemService.getItemByDotaId(activity, itemName);
-            if (item == null) {
-                Log.d(HeroDefaultItemBuild.class.getName(), "error loading item: " + itemName);
-            } else {
-                LinearLayout row = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.item_recept_row, null);
-                ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
-                ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
-                ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
-                startingItems.addView(row);
-            }
-        }
+        if (guide != null&&fragmentView!=null) {
+            LinearLayout flowHolder = (LinearLayout) fragmentView.findViewById(R.id.flowHolder);
+            flowHolder.removeAllViews();
+            Map<String, List<String>> guideItems = guide.getItems();
+            if (guideItems != null) {
+                Activity activity = getActivity();
+                ItemService itemService = BeanContainer.getInstance().getItemService();
+                Set<String> guideStateSet = guideItems.keySet();
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                for (String guideState : guideStateSet) {
+                    ViewGroup flowRow = (ViewGroup) inflater.inflate(R.layout.guide_item_flow_row, null, false);
+                    FlowLayout flowLayout = (FlowLayout) flowRow.findViewById(R.id.items);
+                    TextView header = (TextView) flowRow.findViewById(R.id.header);
 
-        FlowLayout earlyGameItems = (FlowLayout) fragmentView.findViewById(R.id.early_game);
-        earlyGameItems.removeAllViews();
-        for (String itemName : guideItems.getEarlyGame()) {
-            Item item = itemService.getItemByDotaId(activity, itemName);
-            if (item == null) {
-                Log.d(HeroDefaultItemBuild.class.getName(), "error loading item: " + itemName);
-            } else {
-                LinearLayout row = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.item_recept_row, null);
-                ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
-                ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
-                ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
-                earlyGameItems.addView(row);
-            }
-        }
+                    if ("startingItems".equals(guideState)) {
+                        header.setText(R.string.starting_items);
+                    } else if ("earlyGame".equals(guideState)) {
+                        header.setText(R.string.early_game);
 
-        FlowLayout coreItems = (FlowLayout) fragmentView.findViewById(R.id.core_items);
-        coreItems.removeAllViews();
-        for (String itemName : guideItems.getCoreItems()) {
-            Item item = itemService.getItemByDotaId(activity, itemName);
-            if (item == null) {
-                Log.d(HeroDefaultItemBuild.class.getName(), "error loading item: " + itemName);
-            } else {
-                LinearLayout row = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.item_recept_row, null);
-                ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
-                ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
-                ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
-                coreItems.addView(row);
-            }
-        }
-        FlowLayout luxuryItems = (FlowLayout) fragmentView.findViewById(R.id.luxury_items);
-        luxuryItems.removeAllViews();
-        for (String itemName : guideItems.getLuxury()) {
-            Item item = itemService.getItemByDotaId(activity, itemName);
-            if (item == null) {
-                Log.d(HeroDefaultItemBuild.class.getName(), "error loading item: " + itemName);
-            } else {
-                LinearLayout row = (LinearLayout) getActivity().getLayoutInflater().inflate(R.layout.item_recept_row, null);
-                ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(getActivity(), "items/" + item.getDotaId() + ".png"));
-                ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
-                ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
-                row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
-                luxuryItems.addView(row);
+                    } else if ("coreItems".equals(guideState)) {
+                        header.setText(R.string.core_items);
+
+                    } else if ("luxury".equals(guideState)) {
+                        header.setText(R.string.luxury_items);
+                    } else if("startingItems_Secondary".equals(guideState)) {
+                        header.setText(R.string.starting_items_secondary);
+                    } else if("earlyGame_Secondary".equals(guideState)){
+                        header.setText(R.string.early_game_secondary);
+                    }else if("coreItems_Secondary".equals(guideState)) {
+                        header.setText(R.string.core_items_secondary);
+                    }else {
+                        header.setText(guideState);
+                    }
+                    List<String> items = guideItems.get(guideState);
+                    for (String itemName : items) {
+                        Item item = itemService.getItemByDotaId(activity, itemName);
+                        if (item == null) {
+                            Log.d(getClass().getName(), "error loading item: " + itemName);
+                        } else {
+                            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, null);
+                            FileUtils.setDrawableFromAsset((ImageView) row.findViewById(R.id.img),
+                                    "items/" + item.getDotaId() + ".png");
+                            //().setImageDrawable(Utils.getDrawableFromAsset(getActivity(), ));
+                            ((TextView) row.findViewById(R.id.name)).setText(item.getDname());
+                            ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
+                            row.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(item.getId(),ItemInfoActivity.UP_REQUEST));
+                            flowLayout.addView(row);
+                        }
+                    }
+                    if (items.size() > 0) {
+                        flowHolder.addView(flowRow);
+                    }
+                }
             }
         }
     }
