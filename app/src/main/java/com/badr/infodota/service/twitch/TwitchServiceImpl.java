@@ -56,7 +56,7 @@ public class TwitchServiceImpl implements TwitchService {
     @Override
     public Stream getStream(String channelName) {
         TwitchStreamTV result= BeanContainer.getInstance().getTwitchRestService().getStream(channelName);
-        if(result!=null){
+        if(result!=null&&result.getStream()!=null){
             Stream stream= new Stream();
             TwitchChannel channel=result.getStream().getChannel();
             stream.setChannel(channel.getName());

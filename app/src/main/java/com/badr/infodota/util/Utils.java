@@ -3,6 +3,7 @@ package com.badr.infodota.util;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -57,6 +58,17 @@ public class Utils {
             }
         }
         return state;
+    }
+    public static boolean IsPackageInstalled(Context context,String PackageUri) {
+        final PackageManager pm = context.getPackageManager();
+        boolean IsPackageInstalled = false;
+        try {
+            pm.getPackageInfo(PackageUri, PackageManager.GET_ACTIVITIES);
+            IsPackageInstalled = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            IsPackageInstalled = false;
+        }
+        return IsPackageInstalled;
     }
 
     public static void addPlayerToListDialog(final Context context, DialogInterface.OnClickListener listener) {

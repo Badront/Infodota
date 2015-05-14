@@ -29,8 +29,6 @@ import com.badr.infodota.api.guide.custom.Guide;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
@@ -41,7 +39,6 @@ import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,13 +62,15 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
     private Menu menu;
     private int selected;
     private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
         super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
-            updateGuides();
+            if(!initialized) {
+                updateGuides();
+            }
         }
     }
 
@@ -252,6 +251,7 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
 
     @Override
     public void onRequestSuccess(List list) {
+        initialized=true;
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(GuideActivity.this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

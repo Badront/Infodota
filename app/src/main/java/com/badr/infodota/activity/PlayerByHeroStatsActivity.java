@@ -61,27 +61,28 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
     private View contentHolder;
     private View progressBarHolder;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-
+    private boolean initialized=false;
     @Override
     protected void onStart() {
         super.onStart();
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
+            if(!initialized) {
+                Bundle bundle = getIntent().getExtras();
+                StringBuilder urlBuilder = new StringBuilder("http://dotabuff.com/players/");
+                urlBuilder.append(account.getAccountId());
+                urlBuilder.append("/heroes?");
+                urlBuilder.append("date=");
+                urlBuilder.append(bundle.getString("date"));
+                urlBuilder.append("&game_mode=");
+                urlBuilder.append(bundle.getString("game_mode"));
+                urlBuilder.append("&match_type=");
+                urlBuilder.append(bundle.getString("match_type"));
+                urlBuilder.append("&metric=");
+                urlBuilder.append(bundle.getString("metric"));
 
-            Bundle bundle = getIntent().getExtras();
-            StringBuilder urlBuilder = new StringBuilder("http://dotabuff.com/players/");
-            urlBuilder.append(account.getAccountId());
-            urlBuilder.append("/heroes?");
-            urlBuilder.append("date=");
-            urlBuilder.append(bundle.getString("date"));
-            urlBuilder.append("&game_mode=");
-            urlBuilder.append(bundle.getString("game_mode"));
-            urlBuilder.append("&match_type=");
-            urlBuilder.append(bundle.getString("match_type"));
-            urlBuilder.append("&metric=");
-            urlBuilder.append(bundle.getString("metric"));
-
-            spiceManager.execute(new PlayerHeroesStatsLoadRequest(this,urlBuilder.toString()),this);
+                spiceManager.execute(new PlayerHeroesStatsLoadRequest(this, urlBuilder.toString()), this);
+            }
         }
     }
 
@@ -173,6 +174,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
 
     @Override
     public void onRequestSuccess(PlayerHeroesStats playerHeroesStats) {
+        initialized=true;
         progressBarHolder.setVisibility(View.GONE);
         contentHolder.setVisibility(View.VISIBLE);
         if(playerHeroesStats!=null){
