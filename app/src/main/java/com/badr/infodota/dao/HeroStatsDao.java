@@ -132,7 +132,7 @@ public class HeroStatsDao extends GeneralDaoImpl<HeroStats> {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("drop table if exists "+getTableName());
-        super.onUpgrade(database, oldVersion, newVersion);
+        onCreate(database);
     }
     @Override
     public HeroStats cursorToEntity(Cursor cursor, int index) {

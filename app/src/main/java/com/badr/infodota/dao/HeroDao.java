@@ -108,7 +108,7 @@ public class HeroDao extends GeneralDaoImpl<Hero> {
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("drop table if exists "+getTableName());
         database.execSQL("drop table if exists "+TRUEPICKER_MAPPER_TABLE_NAME);
-        super.onUpgrade(database, oldVersion, newVersion);
+        onCreate(database);
     }
 
     private void initTruePickerIds(SQLiteDatabase db) {

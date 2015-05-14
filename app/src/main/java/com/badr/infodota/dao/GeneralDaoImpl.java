@@ -74,7 +74,6 @@ public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion,
                           int newVersion) {
-        onCreate(database);
     }
 
     protected ContentValues entityToContentValues(E entity) {

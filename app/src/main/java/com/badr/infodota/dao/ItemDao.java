@@ -154,7 +154,7 @@ public class ItemDao extends GeneralDaoImpl<Item> {
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("drop table if exists "+getTableName());
         database.execSQL("drop table if exists "+ITEMS_FROM_MAPPER_TABLE_NAME);
-        super.onUpgrade(database, oldVersion, newVersion);
+        onCreate(database);
     }
 
     public void bindItems(SQLiteDatabase database, Item item) {
