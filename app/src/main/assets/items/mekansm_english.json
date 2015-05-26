@@ -9,7 +9,7 @@
   "notes": "Restore does not affect units that have been affected by Restore in the last 25 seconds.",
   "attrib": "+ 5 All Attributes<br/>+ 5 Armor<br/>AURA HEALTH REGEN: 4<br/>RESTORE HEAL: 250<br/>RESTORE ARMOR: 2<br/>RESTORE ARMOR DURATION: 25<br/>AURA/RESTORE RADIUS: 900",
   "mc": 225,
-  "cd": 45,
+  "cd": 65,
   "lore": "A glowing jewel formed out of assorted parts that somehow fit together perfectly.",
   "components": [
     "headdress",

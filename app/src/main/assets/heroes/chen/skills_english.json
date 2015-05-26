@@ -44,10 +44,10 @@
     {
         "dname": "Holy Persuasion",
         "affects": "ABILITY: <b><font color=\"#ffffff\">Unit Target</font></b>",
-        "desc": "Gives control of an enemy or neutral creep, and gives it bonus hit points.<br/>Upgradable by Aghanim\u0027s Scepter, allowing Chen to persuade Ancient Creeps. The number of Ancient Creeps that can be persuaded is based on the level of Hand of God.",
+        "desc": "Chen takes control of an enemy or neutral creep. If the persuaded creep's base health is naturally below the health minimum, its base health will be raised to the health minimum.<br/>Upgradable by Aghanim\u0027s Scepter, allowing Chen to persuade Ancient Creeps. The number of Ancient Creeps that can be persuaded is based on the level of Hand of God.",
         "notes": "You may only cast this ability on Ancient Creeps with Aghanim\u0027s Scepter.<br/>When persuading a new creep above your max unit count, the oldest persuaded unit will die.",
         "dmg": "",
-        "attrib": "MAX UNITS: <b><font color=\"#ffffff\">1/2/3/4</font></b><br/>HEALTH BONUS: <b><font color=\"#ffffff\">75/150/225/300</font></b>",
+        "attrib": "MAX UNITS: <b><font color=\"#ffffff\">1/2/3/4</font></b><br/>MINIMUM BASE HEALTH: <b><font color=\"#ffffff\">700/800/900/1000</font></b>",
         "cmb": "<img alt=\"Mana Cost\" title=\"Mana Cost\" class=\"manaImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/mana.png\" width=\"16\" height=\"16\" border=\"0\" /> 100/100/100/100<br/><img alt=\"Cooldown\" title=\"Cooldown\" class=\"cooldownImg\" src=\"http://cdn.dota2.com/apps/dota2/images/tooltips/cooldown.png\" width=\"16\" height=\"16\" border=\"0\" /> 30/26/22/18",
         "lore": "Although they may not be knights, Chen incorporates beasts into the Fold in the same way he himself was converted.",
         "hurl": "Chen",
