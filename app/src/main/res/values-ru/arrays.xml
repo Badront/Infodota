@@ -134,8 +134,8 @@
     </string-array>
     <string-array name="player_types">
         <item>Встроенный плеер</item>
-        <item>Сторонний плеер twitch.tv</item>
         <item>Сторонний плеер стримов</item>
+        <item>Сторонний плеер видео</item>
     </string-array>
     <string-array name="player_common_stats_titles">
         <item>Общая</item>

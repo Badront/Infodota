@@ -1,30 +1,20 @@
 package com.badr.infodota.fragment.twitch;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.activity.TwitchPlayActivity;
 import com.badr.infodota.adapter.TwitchStreamsAdapter;
 import com.badr.infodota.api.streams.Stream;
-import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.service.twitch.TwitchService;
-import com.badr.infodota.util.DialogUtils;
-import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.StreamUtils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.parser.Element;
-import com.parser.Playlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,62 +81,15 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
         Stream stream = getAdapter().getItem(position);
         switch (preferences.getInt("player_type", 0)) {
             case 0: {
-                Intent intent;
-                intent = new Intent(getActivity(), TwitchPlayActivity.class);
-                intent.putExtra("channelName", stream.getChannel());
-                intent.putExtra("channelTitle", stream.getTitle());
-                startActivity(intent);
+                StreamUtils.openActivity(getActivity(), stream);
                 break;
             }
             case 1: {
-                Intent intent;
-                String url = "http://www.twitch.tv/"+stream.getChannel();
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                StreamUtils.openInSpecialApp(getActivity(), stream);
                 break;
             }
             default: {
-                final String channelName = stream.getChannel();
-                final Activity activity = getActivity();
-                if (activity != null) {
-                    DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<String>() {
-                        BeanContainer container = BeanContainer.getInstance();
-                        TwitchService service = container.getTwitchService();
-
-                        @Override
-                        public String doTask(OnPublishProgressListener listener) throws Exception {
-                            TwitchAccessToken atResult = service.getAccessToken(channelName);
-                            if (atResult!= null) {
-                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
-                                Playlist playlist = playlistResult.first;
-                                List<Element> elements = playlist.getElements();
-                                if (elements != null && elements.size() > 0) {
-                                    return elements.get(0).getURI().toString();
-                                }
-                            }
-                            return "";
-                        }
-
-                        @Override
-                        public void doAfterTask(String result) {
-                            if (!TextUtils.isEmpty(result)) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(Uri.parse(result), "application/x-mpegURL");//"video/m3u8");  //
-                                startActivity(intent);
-                            }
-                        }
-
-                        @Override
-                        public void handleError(String error) {
-
-                        }
-
-                        @Override
-                        public String getName() {
-                            return null;
-                        }
-                    });
-                }
+                StreamUtils.openInVideoStreamApp(getActivity(),stream);
             }
         }
     }

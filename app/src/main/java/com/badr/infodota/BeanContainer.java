@@ -8,6 +8,7 @@ import com.badr.infodota.dao.HeroStatsDao;
 import com.badr.infodota.dao.ItemDao;
 import com.badr.infodota.dao.StreamDao;
 import com.badr.infodota.dao.TeamDao;
+import com.badr.infodota.remote.DouyuRestService;
 import com.badr.infodota.remote.SteamService;
 import com.badr.infodota.remote.TrackdotaRestService;
 import com.badr.infodota.remote.TwitchRestService;
@@ -21,6 +22,7 @@ import com.badr.infodota.service.LocalUpdateService;
 import com.badr.infodota.service.cosmetic.CounterServiceImpl;
 import com.badr.infodota.service.counterpicker.CosmeticService;
 import com.badr.infodota.service.counterpicker.CosmeticServiceImpl;
+import com.badr.infodota.service.douyu.DouyuServiceImpl;
 import com.badr.infodota.service.hero.HeroServiceImpl;
 import com.badr.infodota.service.item.ItemServiceImpl;
 import com.badr.infodota.service.joindota.JoinDotaServiceImpl;
@@ -30,7 +32,6 @@ import com.badr.infodota.service.news.NewsServiceImpl;
 import com.badr.infodota.service.player.PlayerServiceImpl;
 import com.badr.infodota.service.team.TeamServiceImpl;
 import com.badr.infodota.service.ti4.TI4ServiceImpl;
-import com.badr.infodota.service.trackdota.TrackdotaService;
 import com.badr.infodota.service.trackdota.TrackdotaServiceImpl;
 import com.badr.infodota.service.twitch.TwitchServiceImpl;
 import com.badr.infodota.service.update.UpdateService;
@@ -56,6 +57,9 @@ public class BeanContainer implements InitializingBean {
 
     private RestAdapter twitchRestAdapter;
     private TwitchRestService twitchRestService;
+
+    private RestAdapter douyuRestAdapter;
+    private DouyuRestService douyuRestService;
 
     private RestAdapter trackdotaRestAdapter;
     private TrackdotaRestService trackdotaRestService;
@@ -84,6 +88,7 @@ public class BeanContainer implements InitializingBean {
 
     private TwitchRemoteServiceImpl twitchRemoteService;
     private TwitchServiceImpl twitchService;
+    private DouyuServiceImpl douyuService;
     private StreamDao streamDao;
 
     private HeroServiceImpl heroService;
@@ -146,6 +151,8 @@ public class BeanContainer implements InitializingBean {
         twitchRemoteService = new TwitchRemoteServiceImpl();
         twitchService = new TwitchServiceImpl();
 
+        douyuService = new DouyuServiceImpl();
+
         heroService = new HeroServiceImpl();
 
         itemService = new ItemServiceImpl();
@@ -178,6 +185,7 @@ public class BeanContainer implements InitializingBean {
         joinDotaService.initialize();
         teamService.initialize();
         twitchService.initialize();
+        douyuService.initialize();
         trackdotaService.initialize();
         updateService.initialize();
     }
@@ -238,6 +246,10 @@ public class BeanContainer implements InitializingBean {
         return twitchService;
     }
 
+    public DouyuServiceImpl getDouyuService() {
+        return douyuService;
+    }
+
     public HeroDao getHeroDao() {
         return heroDao;
     }
@@ -296,12 +308,21 @@ public class BeanContainer implements InitializingBean {
         }
         return twitchRestService;
     }
+
+    public DouyuRestService getDouyuRestService(){
+        if(douyuRestService==null){
+            douyuRestService=getDouyuRestAdapter().create(DouyuRestService.class);
+        }
+        return douyuRestService;
+    }
+
     public TrackdotaRestService getTrackdotaRestService(){
         if(trackdotaRestService==null){
             trackdotaRestService=getTrackdotaRestAdapter().create(TrackdotaRestService.class);
         }
         return trackdotaRestService;
     }
+
     public RestAdapter getTwitchRestAdapter() {
         if(twitchRestAdapter == null){
             twitchRestAdapter =new RestAdapter.Builder()
@@ -309,6 +330,15 @@ public class BeanContainer implements InitializingBean {
                     .build();
         }
         return twitchRestAdapter;
+    }
+
+    public RestAdapter getDouyuRestAdapter(){
+        if(douyuRestAdapter==null){
+            douyuRestAdapter=new RestAdapter.Builder()
+                    .setEndpoint("http://api.douyutv.com/api/client/")
+                    .build();
+        }
+        return douyuRestAdapter;
     }
 
     public RestAdapter getSteamRestAdapter(){
@@ -321,13 +351,6 @@ public class BeanContainer implements InitializingBean {
         return steamRestAdapter;
     }
 
-    public SteamService getSteamService(){
-        if(steamService==null){
-            steamService=getSteamRestAdapter().create(SteamService.class);
-        }
-        return steamService;
-    }
-
     public RestAdapter getTrackdotaRestAdapter(){
         if(trackdotaRestAdapter==null){
             trackdotaRestAdapter=new RestAdapter.Builder()
@@ -335,6 +358,13 @@ public class BeanContainer implements InitializingBean {
                     .build();
         }
         return trackdotaRestAdapter;
+    }
+
+    public SteamService getSteamService(){
+        if(steamService==null){
+            steamService=getSteamRestAdapter().create(SteamService.class);
+        }
+        return steamService;
     }
 
 

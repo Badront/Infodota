@@ -17,6 +17,7 @@ public class StreamHolder extends BaseViewHolder {
     public TextView channel;
     public TextView viewers;
     public ImageView favourite;
+    public ImageView provider;
 
     public StreamHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
@@ -25,5 +26,6 @@ public class StreamHolder extends BaseViewHolder {
         status = (TextView) itemView.findViewById(R.id.status);
         viewers = (TextView) itemView.findViewById(R.id.viewers);
         favourite = (ImageView) itemView.findViewById(R.id.favourite);
+        provider = (ImageView) itemView.findViewById(R.id.provider);
     }
 }

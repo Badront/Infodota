@@ -10,11 +10,14 @@ import java.util.ArrayList;
 /**
  * Created by Badr on 17.04.2015.
  */
-public class Stream implements Serializable,HasId {
+public class Stream implements Serializable,HasId,Comparable {
     @Expose
     private long id;
     @Expose
     private String channel;
+
+    private String image;
+
     @Expose
     private long viewers;
     @Expose
@@ -119,6 +122,14 @@ public class Stream implements Serializable,HasId {
         this.id=id;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,6 +148,14 @@ public class Stream implements Serializable,HasId {
         int result = channel != null ? channel.hashCode() : 0;
         result = 31 * result + (provider != null ? provider.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        if(another instanceof Stream){
+            return (int)(viewers-((Stream)another).viewers);
+        }
+        return -1;
     }
 
     public static class List extends ArrayList<Stream> {

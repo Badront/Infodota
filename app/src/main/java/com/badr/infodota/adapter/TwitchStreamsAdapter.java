@@ -1,6 +1,7 @@
 package com.badr.infodota.adapter;
 
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,12 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
     public void onBindViewHolder(StreamHolder holder, int position) {
         final Stream stream = getItem(position);
 
-        imageLoader.displayImage(MessageFormat.format(Constants.TwitchTV.PREVIEW_URL, stream.getChannel()), holder.img, options);
+        if(TextUtils.isEmpty(stream.getImage())){
+            imageLoader.displayImage(MessageFormat.format(Constants.TwitchTV.PREVIEW_URL, stream.getChannel()), holder.img, options);
+        }
+        else {
+            imageLoader.displayImage(stream.getImage(), holder.img, options);
+        }
         holder.channel.setText(stream.getChannel());
         holder.status.setText(stream.getTitle());
         holder.viewers.setText(String.valueOf(stream.getViewers()));
@@ -84,6 +90,12 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
                     holderAdapter.updateList();
                 }
             });
+        }
+        if("douyu".equals(stream.getProvider())){
+            holder.provider.setImageResource(R.drawable.douyu);
+        }
+        else {
+            holder.provider.setImageResource(R.drawable.twitch);
         }
     }
 

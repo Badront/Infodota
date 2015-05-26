@@ -1,15 +1,11 @@
 package com.badr.infodota.fragment.trackdota.game;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.PopupMenu;
-import android.text.TextUtils;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,28 +15,25 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.TwitchPlayActivity;
 import com.badr.infodota.adapter.TwitchStreamsAdapter;
 import com.badr.infodota.adapter.holder.StreamHolder;
 import com.badr.infodota.api.streams.Stream;
-import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.fragment.twitch.TwitchGamesAdapter;
+import com.badr.infodota.service.douyu.DouyuService;
 import com.badr.infodota.service.twitch.TwitchService;
-import com.badr.infodota.util.DialogUtils;
-import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.Refresher;
+import com.badr.infodota.util.StreamUtils;
 import com.badr.infodota.util.Updatable;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.parser.Element;
-import com.parser.Playlist;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -138,62 +131,15 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
         Stream stream = getAdapter().getItem(position);
         switch (preferences.getInt("player_type", 0)) {
             case 0: {
-                Intent intent;
-                intent = new Intent(getActivity(), TwitchPlayActivity.class);
-                intent.putExtra("channelName", stream.getChannel());
-                intent.putExtra("channelTitle", stream.getTitle());
-                startActivity(intent);
+                StreamUtils.openActivity(getActivity(), stream);
                 break;
             }
             case 1: {
-                Intent intent;
-                String url = "http://www.twitch.tv/" + stream.getChannel();
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                StreamUtils.openInSpecialApp(getActivity(), stream);
                 break;
             }
             default: {
-                final String channelName = stream.getChannel();
-                final Activity activity = getActivity();
-                if (activity != null) {
-                    DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<String>() {
-                        BeanContainer container = BeanContainer.getInstance();
-                        TwitchService service = container.getTwitchService();
-
-                        @Override
-                        public String doTask(OnPublishProgressListener listener) throws Exception {
-                            TwitchAccessToken atResult = service.getAccessToken(channelName);
-                            if (atResult != null) {
-                                Pair<Playlist, String> playlistResult = service.getPlaylist(activity, channelName, atResult);
-                                Playlist playlist = playlistResult.first;
-                                List<Element> elements = playlist.getElements();
-                                if (elements != null && elements.size() > 0) {
-                                    return elements.get(0).getURI().toString();
-                                }
-                            }
-                            return "";
-                        }
-
-                        @Override
-                        public void doAfterTask(String result) {
-                            if (!TextUtils.isEmpty(result)) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(Uri.parse(result), "application/x-mpegURL");//"video/m3u8");  //
-                                startActivity(intent);
-                            }
-                        }
-
-                        @Override
-                        public void handleError(String error) {
-
-                        }
-
-                        @Override
-                        public String getName() {
-                            return null;
-                        }
-                    });
-                }
+                StreamUtils.openInVideoStreamApp(getActivity(),stream);
             }
         }
     }
@@ -228,6 +174,7 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
     public class StreamsLoadRequest extends TaskRequest<Stream.List> {
         private TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
+        private DouyuService douyuService = BeanContainer.getInstance().getDouyuService();
 
         public StreamsLoadRequest() {
             super(Stream.List.class);
@@ -244,8 +191,15 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
                         if (stream != null) {
                             list.add(stream);
                         }
+                    } else if("douyu".equals(channel.getProvider())){
+                        Stream stream=douyuService.getStream(channel);
+                        if(stream!=null){
+                            list.add(stream);
+                        }
                     }
                 }
+                Collections.sort(list);
+                Collections.reverse(list);
                 return list;
             }
             return null;
