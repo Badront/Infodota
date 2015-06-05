@@ -19,9 +19,17 @@ public class League implements Serializable {
     @SerializedName("image")
     private boolean hasImage;
     @Expose
+    private int views;
+    @Expose
+    private String description;
+    @Expose
+
+    @SerializedName("match_count")
+    private int matchCount;
+    @Expose
     private String name;
     @Expose
-    private long tier;
+    private int tier;
 
     public long getId() {
         return id;
@@ -55,12 +63,36 @@ public class League implements Serializable {
         this.name = name;
     }
 
-    public long getTier() {
+    public int getTier() {
         return tier;
     }
 
-    public void setTier(long tier) {
+    public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public void setMatchCount(int matchCount) {
+        this.matchCount = matchCount;
     }
 
     @Override

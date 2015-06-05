@@ -1,0 +1,235 @@
+{
+  "count": 23,
+  "leagues": [
+    {
+      "image": true,
+      "views": 8882404,
+      "description": "The MarsTV Dota 2 League (MDL) is a league hosted by MarsTV that will feature a base prize-pool of around $320,000.",
+      "tier": 3,
+      "match_count": 76,
+      "id": 2986,
+      "name": "MarsTV Dota 2 League",
+      "url": "http://www.huomaotv.com.cn/index.php?c=huodong&a=mdl"
+    },
+    {
+      "image": true,
+      "views": 123346,
+      "description": "Mineski-Events Team proudly presents the 7th season of the Mineski Pro-Gaming League. Witness intense Dota 2 action as teams from all over the Philippines battle for the right to be named as the best in the country and a share from the initial prize pool of PHP 840,000.",
+      "tier": 3,
+      "match_count": 77,
+      "id": 2693,
+      "name": "Mineski Pro-Gaming League Season 7",
+      "url": "http://mineski.net/"
+    },
+    {
+      "image": true,
+      "views": 46783172,
+      "description": "Who will emerge victorious? Witness the world's top teams battle at The International.",
+      "tier": 3,
+      "match_count": 232,
+      "id": 2733,
+      "name": "The International 2015",
+      "url": "http://www.dota2.com/international/overview/"
+    },
+    {
+      "image": true,
+      "views": 5619695,
+      "description": "16 professional teams will face stiff competition in ECL 2015. League consists includes the top teams from the ACE league.",
+      "tier": 3,
+      "match_count": 54,
+      "id": 2985,
+      "name": "Esports Champion League 2015 Spring",
+      "url": "http://www.cespc.com/"
+    },
+    {
+      "image": true,
+      "views": 4362988,
+      "description": "WCA 2015 returns with four regional qualifiers. Qualifier winners will meet and compete for $140,000 at the LAN finals in Yinchuan in December. This is the chinese Pro-qualifier which includes 32 matches.",
+      "tier": 3,
+      "match_count": 45,
+      "id": 2922,
+      "name": "World Cyber Arena 2015",
+      "url": "http://www.wca.com.cn/"
+    },
+    {
+      "image": true,
+      "views": 2012719,
+      "description": "G-League 2014 brings you 50 teams competing for the $45,000 prize pool.",
+      "tier": 3,
+      "match_count": 45,
+      "id": 2032,
+      "name": "G-League 2014",
+      "url": "http://gleague.gamefy.cn/"
+    },
+    {
+      "image": true,
+      "views": 5167821,
+      "description": "ASUS ROG DreamLeague Season 3. The World's best Dota 2 teams fighitning every week to reach the playoffs at DreamHack Summer 2015. Base prize pool $100,000. ",
+      "tier": 3,
+      "match_count": 111,
+      "id": 2790,
+      "name": "ASUS ROG DreamLeague Season 3",
+      "url": "http://dreamleague.dreamhack.se/"
+    },
+    {
+      "image": true,
+      "views": 80534028,
+      "description": "IMBATV present the championship, where every amateur team is able to prove themselves and compete with top teams from all over the world. The best teams from amateur tournament will face the top professional teams with the top 8 teams competing in the finals in Shanghai, China. This ticket only grants access to view games from i league Season 3.",
+      "tier": 3,
+      "match_count": 291,
+      "id": 2815,
+      "name": "i-League Season 3",
+      "url": "http://www.imbatv.cn/ileague"
+    },
+    {
+      "image": true,
+      "views": 732505,
+      "description": "The Dota 2 Canada Cup is back! Featuring some of the finest teams from North and South America. ",
+      "tier": 3,
+      "match_count": 89,
+      "id": 2673,
+      "name": "Dota 2 Canada Cup Season 5",
+      "url": "http://www.dota2.ca/"
+    },
+    {
+      "image": true,
+      "views": 254,
+      "description": "The UGC League in a community league currently running Dota 2 and TF2 Skill based competitions",
+      "tier": 2,
+      "match_count": 65,
+      "id": 2970,
+      "name": "UGC Dota 2 League Season 4",
+      "url": "http://www.ugcleague.com"
+    },
+    {
+      "image": true,
+      "views": 373338,
+      "description": "FACEIT Pro League is an elite community created by professional Dota2 players from Europe. Watch hundreds of games per month for free and witness the best players of Europe fight for a monthly prizepool. You can aswell qualify for FPL by playing at FACEIT Master League.",
+      "tier": 2,
+      "match_count": 222,
+      "id": 3092,
+      "name": "FACEIT Pro League",
+      "url": "http://pro.faceit.com/"
+    },
+    {
+      "image": true,
+      "views": 1946,
+      "description": "32 South American teams competing for a cash prize. This edition of the LFP now with more South American teams!",
+      "tier": 2,
+      "match_count": 93,
+      "id": 3071,
+      "name": "Lima Five Peru - Gunners",
+      "url": "http://www.limafiveperu.com/"
+    },
+    {
+      "image": true,
+      "views": 42583,
+      "description": "Second version of one of the biggest tournaments in Latin America. The 16 best teams in South America compete to for the $1,500USD prize pool. ",
+      "tier": 2,
+      "match_count": 56,
+      "id": 2963,
+      "name": "Sudamerican Master 2",
+      "url": "http://www.livedota.tv/"
+    },
+    {
+      "image": true,
+      "views": 1011694,
+      "description": "The global Dota 2 league for everyone. This includes most matches from the semi-pro division 2 and some matches from the amateur divisions.",
+      "tier": 2,
+      "match_count": 605,
+      "id": 2517,
+      "name": "joinDOTA League #5",
+      "url": "http://www.joindota.com/en/leagues/"
+    },
+    {
+      "image": true,
+      "views": 301649,
+      "description": "8 professional team will fight for 10 000$",
+      "tier": 2,
+      "match_count": 14,
+      "id": 3013,
+      "name": "FirstGameTV DOTA 2 CUP",
+      "url": "http://https://firstgame.tv/"
+    },
+    {
+      "image": true,
+      "views": 1454,
+      "description": "Amateur teams from CIS will compete for a prize of 50$",
+      "tier": 2,
+      "match_count": 133,
+      "id": 3012,
+      "name": "Eternally Exiled Cup Season III",
+      "url": "http://www.exiled.su/"
+    },
+    {
+      "image": true,
+      "views": 91,
+      "description": "Master League tournament teams Peru where beginners start looking for new challenges.",
+      "tier": 2,
+      "match_count": 20,
+      "id": 3177,
+      "name": "Master League",
+      "url": "http://culturagamer.weebly.com/"
+    },
+    {
+      "image": true,
+      "views": 515,
+      "description": "DOT.fair Challenge has a $ 15.000 cash prize for grabs ! LAN will feature 4 European teams from Europe and it will be held in Cluj - Napoca, the most popular city from Transylvania - Romania.",
+      "tier": 2,
+      "match_count": 39,
+      "id": 2879,
+      "name": "DOT.fair Challenge",
+      "url": "http://www.dot-fair.com/"
+    },
+    {
+      "image": true,
+      "views": 822628,
+      "description": "Twelve of the top teams from China compete for the 100,000RMB prize pool.",
+      "tier": 2,
+      "match_count": 35,
+      "id": 1116,
+      "name": "Esports Champion League",
+      "url": "http://fight.pcgames.com.cn/fightspecial/ecl/"
+    },
+    {
+      "image": true,
+      "views": 263660,
+      "description": "The MTC is a proffesional tournament in which some of the best teams known will be invited to compete against each other.",
+      "tier": 2,
+      "match_count": 23,
+      "id": 2954,
+      "name": "Mountain Trail Challenge",
+      "url": "http://www.swissdotacommunity.ch"
+    },
+    {
+      "image": true,
+      "views": 1920908,
+      "description": "The Esportal Dota 2 League is an exciting new international event with a 110,000 euro prizepool and a truly open qualifier which will have no limits on the number of participating teams. Watch the best teams in Dota take on all challengers in multiple qualifier events, culminating in a LAN finals! This ticket only gives you access to view games from the Esportal Dota 2 League.",
+      "tier": 2,
+      "match_count": 278,
+      "id": 2172,
+      "name": "Esportal Dota 2 League Ticket",
+      "url": "http://esportal.com/"
+    },
+    {
+      "image": true,
+      "views": 1863,
+      "description": "The leagues brings together the best Latin American teams to compete for the grand prize.",
+      "tier": 2,
+      "match_count": 186,
+      "id": 2597,
+      "name": "Retos Dota GG - TDL",
+      "url": "http://dotagg.com/"
+    },
+    {
+      "image": true,
+      "views": 127953,
+      "description": "This tournament features 16 of the best South-East Asian teams competing for a total prize money of 3,000USD and hardware from AOC and Rapoo.",
+      "tier": 2,
+      "match_count": 14,
+      "id": 3072,
+      "name": "AOC & Rapoo Masters Championship",
+      "url": "http://www.dotatalk.com/amc"
+    }
+  ]
+}

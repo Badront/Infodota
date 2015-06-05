@@ -3,9 +3,13 @@ package com.badr.infodota.service.trackdota;
 import android.content.Context;
 
 import com.badr.infodota.InitializingBean;
+import com.badr.infodota.api.trackdota.LeaguesResult;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.GamesResult;
+import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.live.LiveGame;
+
+import java.util.List;
 
 /**
  * Created by ABadretdinov
@@ -19,4 +23,6 @@ public interface TrackdotaService extends InitializingBean {
     CoreResult getGameCoreData(Context context,long gameId);
 
     GamesResult getGames();
+
+    List<League> getLeagues();
 }

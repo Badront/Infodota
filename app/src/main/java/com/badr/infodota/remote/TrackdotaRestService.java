@@ -1,5 +1,6 @@
 package com.badr.infodota.remote;
 
+import com.badr.infodota.api.trackdota.LeaguesResult;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.GamesResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
@@ -19,4 +20,6 @@ public interface TrackdotaRestService {
     CoreResult getGameCoreData(@Path("gameId")long gameId);
     @GET("/games_v2.json")
     GamesResult getGames();
+    @GET("/leagues.json")
+    LeaguesResult getLeagues();
 }

@@ -1,6 +1,7 @@
 package com.badr.infodota.service.trackdota;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.util.Log;
 
 import com.badr.infodota.BeanContainer;
@@ -8,10 +9,12 @@ import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.api.trackdota.GameManager;
+import com.badr.infodota.api.trackdota.LeaguesResult;
 import com.badr.infodota.api.trackdota.core.BanPick;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.core.Player;
 import com.badr.infodota.api.trackdota.game.GamesResult;
+import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.api.trackdota.live.LivePlayer;
 import com.badr.infodota.remote.TrackdotaRestService;
@@ -140,6 +143,21 @@ public class TrackdotaServiceImpl implements TrackdotaService {
             return restService.getGames();
         } catch (Exception e) {
             String message = "Failed to get trackdota games, cause:" + e.getMessage();
+            Log.e(getClass().getName(), message);
+        }
+        return null;
+    }
+
+    @Override
+    public List<League> getLeagues() {
+        try {
+            LeaguesResult result=restService.getLeagues();
+            if(result!=null){
+                return result.getLeagues();
+            }
+            return new ArrayList<>();
+        } catch (Exception e) {
+            String message = "Failed to get trackdota leagues, cause:" + e.getMessage();
             Log.e(getClass().getName(), message);
         }
         return null;
