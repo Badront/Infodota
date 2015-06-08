@@ -302,6 +302,7 @@
     <string name="waiting_for_horn">Ожидание начала</string>
     <string name="minutes_">{0} минут</string>
     <string name="viewers_">{0} смотрящих</string>
+    <string name="matches_">{0} матчей</string>
     <string name="in_progress">Матч идет</string>
     <string name="finished">Матч окончен</string>
     <string name="match_status_unknown">Неизвестный статус</string>

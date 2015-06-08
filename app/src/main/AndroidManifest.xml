@@ -96,6 +96,9 @@
             android:name=".activity.TrackdotaGameInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
+            android:name=".activity.TrackdotaLeagueInfoActivity"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity
             android:name=".activity.TI4Activity"
             android:configChanges="keyboard|orientation|screenSize" />
         <!--<activity

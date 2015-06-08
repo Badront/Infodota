@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.badr.infodota.R;
 import com.badr.infodota.api.trackdota.game.GamesResult;
 import com.badr.infodota.fragment.trackdota.FeaturedGamesList;
+import com.badr.infodota.fragment.trackdota.LeaguesList;
 import com.badr.infodota.fragment.trackdota.LiveGamesList;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
@@ -24,7 +25,7 @@ import java.util.Set;
  */
 public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
     private String[] titles;
-    private Map<Integer,Updatable> fragmentsMap =new HashMap<Integer,Updatable>();
+    private Map<Integer,Object> fragmentsMap =new HashMap<Integer,Object>();
     private Refresher refresher;
     public TrackdotaPagerAdapter(Context context,FragmentManager fm, Refresher refresher) {
         super(fm);
@@ -42,6 +43,10 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
                 LiveGamesList liveGames=LiveGamesList.newInstance(refresher);
                 fragmentsMap.put(0, liveGames);
                 return liveGames;
+            case 3:
+                LeaguesList leagues=new LeaguesList();
+                fragmentsMap.put(3,leagues);
+                return leagues;
             default:
                 FeaturedGamesList featuredGames=FeaturedGamesList.newInstance(refresher);
                 fragmentsMap.put(position, featuredGames);
@@ -59,6 +64,7 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
     public int getCount() {
         return titles.length;
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return titles[position];
@@ -85,7 +91,10 @@ public class TrackdotaPagerAdapter extends FragmentPagerAdapter{
                         break;
                 }
             }
-            fragmentsMap.get(key).onUpdate(entity);
+            Object fragment=fragmentsMap.get(key);
+            if(fragment instanceof Updatable){
+                ((Updatable)fragment).onUpdate(entity);
+            }
         }
     }
 }

@@ -118,7 +118,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
                     loadHistory(0, true);
                 }
             });
-            getRecyclerView().setOnScrollListener(new EndlessRecycleScrollListener() {
+            getRecyclerView().addOnScrollListener(new EndlessRecycleScrollListener() {
                 @Override
                 public void onLoadMore() {
                     long lastMatchId = 0;
@@ -155,13 +155,9 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     }
 
     private void loadHistory(long fromMatchId, boolean reCreateAdapter) {
-        /*if(reCreateAdapter){
-            setAdapter(new MatchAdapter(null));
-            total=1;
-        }*/
         if(reCreateAdapter||total>getAdapter().getItemCount()){
             setRefreshing(true);
-            spiceManager.execute(new PlayerMatchLoadRequest(account.getAccountId(),fromMatchId,heroId),this);
+            spiceManager.execute(new PlayerMatchLoadRequest(reCreateAdapter,account.getAccountId(),fromMatchId,heroId),this);
         }
     }
 
@@ -191,7 +187,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
         setRefreshing(false);
         if (playerMatchResult!=null) {
             total = playerMatchResult.getTotalMatches();
-            if(getAdapter()==null){
+            if(playerMatchResult.isRecreate()||getAdapter()==null){
                 setAdapter(new MatchAdapter(playerMatchResult.getPlayerMatches()));
             }
             else{
@@ -215,8 +211,10 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
         private long fromMatchId;
         private long accountId;
         private Long heroId;
-        public PlayerMatchLoadRequest(long accountId, long fromMatchId, Long heroId) {
+        private boolean recreate;
+        public PlayerMatchLoadRequest(boolean recreate,long accountId, long fromMatchId, Long heroId) {
             super(PlayerMatchResult.class);
+            this.recreate=recreate;
             this.fromMatchId=fromMatchId;
             this.accountId=accountId;
             this.heroId=heroId;
@@ -227,7 +225,11 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
             Activity activity=getActivity();
             if(activity!=null)
             {
-                return matchService.getMatches(activity,accountId, fromMatchId, heroId);
+                PlayerMatchResult result=matchService.getMatches(activity,accountId, fromMatchId, heroId);
+                if(result!=null){
+                    result.setRecreate(recreate);
+                }
+                return result;
             }
             return null;
         }

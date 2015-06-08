@@ -26,7 +26,7 @@
     <dimen name="skill_role_bkg_size">36dp</dimen>
     <dimen name="skill_role_size">34dp</dimen>
 
-    <dimen name="hero_row_textSize">10.0sp</dimen>
+    <dimen name="hero_row_textSize">10sp</dimen>
     <dimen name="hero_row_text_width">90dp</dimen>
 
     <dimen name="item_row_image_size">60dp</dimen>
@@ -44,4 +44,7 @@
 
     <dimen name="hero_row_width">128dp</dimen>
     <dimen name="hero_row_height">62dp</dimen>
+
+    <dimen name="view_padding">8dp</dimen>
+    <dimen name="half_view_padding">4dp</dimen>
 </resources>

@@ -192,6 +192,7 @@
         <item>LIVE</item>
         <item>ПОПУЛЯРНЫЕ</item>
         <item>НЕДАВНИЕ</item>
+        <item>ТУРНИРЫ</item>
     </string-array>
     <string-array name="trackdota_game">
         <item>ОСНОВНОЕ</item>

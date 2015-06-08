@@ -141,7 +141,7 @@ public class LiveGamesAdapter extends BaseAdapter implements PinnedSectionListVi
             Team radiant=game.getRadiant();
             if(radiant!=null){
                 holder.radiantTag.setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT));
-                holder.radiantName.setText(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.DIRE));
+                holder.radiantName.setText(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT));
                 if(radiant.isHasLogo()) {
                     imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), holder.radiantLogo, options);
                 }

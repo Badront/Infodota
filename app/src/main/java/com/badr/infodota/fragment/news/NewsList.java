@@ -33,8 +33,6 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefreshListener,RequestListener<AppNews> {
 
-    private BeanContainer container = BeanContainer.getInstance();
-    private NewsService newsService = container.getNewsService();
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
 
 
@@ -140,6 +138,8 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
                 NewsItem lastItem = ((NewsAdapter) getListAdapter()).getItem(totalItemsCount - 1);
                 fromDate = lastItem.getDate();
             }
+            BeanContainer container = BeanContainer.getInstance();
+            NewsService newsService = container.getNewsService();
             return newsService.getNews(getActivity(), fromDate);
         }
     }

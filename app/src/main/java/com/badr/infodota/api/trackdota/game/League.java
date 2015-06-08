@@ -23,7 +23,6 @@ public class League implements Serializable {
     @Expose
     private String description;
     @Expose
-
     @SerializedName("match_count")
     private int matchCount;
     @Expose

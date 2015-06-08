@@ -1,15 +1,22 @@
 package com.badr.infodota.api.matchhistory;
 
-import android.util.Pair;
-
 /**
  * Created by Badr on 22.03.2015.
  */
 public class PlayerMatchResult {
+    private boolean recreate;
     private PlayerMatch.List playerMatches;
     private long totalMatches;
     private int status;
     private String statusDetails;
+
+    public boolean isRecreate() {
+        return recreate;
+    }
+
+    public void setRecreate(boolean recreate) {
+        this.recreate = recreate;
+    }
 
     public String getStatusDetails() {
         return statusDetails;

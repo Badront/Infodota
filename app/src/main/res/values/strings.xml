@@ -305,6 +305,7 @@
     <string name="waiting_for_horn">Waiting for horn</string>
     <string name="minutes_">{0} minutes</string>
     <string name="viewers_">{0} viewers</string>
+    <string name="matches_">{0} matches</string>
     <string name="in_progress">Match in progress</string>
     <string name="finished">Match has finished</string>
     <string name="match_status_unknown">Unknown Status</string>

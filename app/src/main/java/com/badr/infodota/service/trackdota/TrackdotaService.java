@@ -6,10 +6,8 @@ import com.badr.infodota.InitializingBean;
 import com.badr.infodota.api.trackdota.LeaguesResult;
 import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.GamesResult;
-import com.badr.infodota.api.trackdota.game.League;
+import com.badr.infodota.api.trackdota.league.LeagueGameResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
-
-import java.util.List;
 
 /**
  * Created by ABadretdinov
@@ -24,5 +22,7 @@ public interface TrackdotaService extends InitializingBean {
 
     GamesResult getGames();
 
-    List<League> getLeagues();
+    LeaguesResult getLeagues();
+
+    LeagueGameResult getLeagueGames(long leagueId);
 }
