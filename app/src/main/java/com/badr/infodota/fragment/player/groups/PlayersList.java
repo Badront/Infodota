@@ -31,6 +31,8 @@ import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * User: ABadretdinov
  * Date: 20.01.14
@@ -196,7 +198,7 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
         public Unit.List loadData() throws Exception {
             Activity activity=getActivity();
             if(activity!=null) {
-                if(searchText==null){
+                if(StringUtils.isEmpty(searchText)){
                     return playerService.getSearchedAccounts(activity);
                 }
                 else {
