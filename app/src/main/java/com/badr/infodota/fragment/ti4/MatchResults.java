@@ -237,13 +237,13 @@ public class MatchResults extends Fragment {
                                         teamService.saveTeam(activity, team);
                                     }
                                 }
-                                Team dire = teamService.getTeamById(activity, result.getDire_team_id());
+                                Team dire = teamService.getTeamById(activity, result.getDireTeamId());
                                 if (dire == null) {
                                     Pair<String, String> direTeamLogo = teamService.getTeamLogo(activity,
                                             result.getDire_logo());
                                     if (direTeamLogo.first != null) {
                                         Team team = new Team();
-                                        team.setId(result.getDire_team_id());
+                                        team.setId(result.getDireTeamId());
                                         team.setTeamLogoId(result.getDire_logo());
                                         team.setLogo(direTeamLogo.first);
                                         teamService.saveTeam(activity, team);

@@ -6,7 +6,7 @@ package com.badr.infodota.api.matchhistory;
  * Time: 18:42
  */
 public class MatchHistoryResultResponse {
-    Result result;
+    private Result result;
 
     public MatchHistoryResultResponse() {
     }

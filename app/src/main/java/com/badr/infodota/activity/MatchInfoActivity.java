@@ -86,7 +86,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
         // Inflate the menu items for use in the action bar
         trackdotaItem = menu.add(1, TRACKDOTA_GAME_ID, 1, R.string.trackdota_match);
         MenuItemCompat.setShowAsAction(trackdotaItem, MenuItemCompat.SHOW_AS_ACTION_NEVER);
-        trackdotaItem.setVisible(matchResult!=null&&((matchResult.getPicks_bans()!=null&& matchResult.getPicks_bans().size()>0)||matchResult.getRadiant_team_id()!=null||matchResult.getDire_team_id()!=null));
+        trackdotaItem.setVisible(matchResult!=null&&((matchResult.getPicks_bans()!=null&& matchResult.getPicks_bans().size()>0)||matchResult.getRadiantTeamId()!=null||matchResult.getDireTeamId()!=null));
         return true;
     }
 
@@ -142,13 +142,13 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
         if(o instanceof LongPair){
             LongPair pair= (LongPair) o;
             Team team = new Team();
-            if(pair.first.equals(matchResult.getRadiant_logo())) {
-                team.setId(matchResult.getRadiant_team_id());
-                team.setTeamLogoId(matchResult.getRadiant_logo());
+            if(pair.first.equals(matchResult.getRadiantLogo())) {
+                team.setId(matchResult.getRadiantTeamId());
+                team.setTeamLogoId(matchResult.getRadiantLogo());
             }
             else {
-                team.setId(matchResult.getDire_team_id());
-                team.setTeamLogoId(matchResult.getDire_logo());
+                team.setId(matchResult.getDireTeamId());
+                team.setTeamLogoId(matchResult.getDireLogo());
             }
             team.setLogo(pair.second);
             teamService.saveTeam(MatchInfoActivity.this, team);
@@ -183,8 +183,8 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             matchResult = (Result) o;
             adapter.updateMatchDetails(matchResult);
             ActionBar actionBar = getSupportActionBar();
-            if (matchResult.getRadiant_logo() != null) {
-                Team radiant = teamService.getTeamById(MatchInfoActivity.this, matchResult.getRadiant_team_id());
+            if (matchResult.getRadiantLogo() != null) {
+                Team radiant = teamService.getTeamById(MatchInfoActivity.this, matchResult.getRadiantTeamId());
 
                 if (radiant!=null&&!TextUtils.isEmpty(radiant.getLogo())) {
                     imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
@@ -213,11 +213,11 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     });
                 } else {
-                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getRadiant_logo()), this);
+                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getRadiantLogo()), this);
                 }
             }
-            if (matchResult.getDire_logo() != null) {
-                Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDire_team_id());
+            if (matchResult.getDireLogo() != null) {
+                Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDireTeamId());
                 if (dire!=null&&!TextUtils.isEmpty(dire.getLogo())) {
                     imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
                         @Override
@@ -248,13 +248,13 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     });
                 } else {
-                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDire_logo()), this);
+                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDireLogo()), this);
                 }
             }
 
-            trackdotaItem.setVisible((matchResult.getPicks_bans()!=null&& matchResult.getPicks_bans().size()>0)||matchResult.getRadiant_team_id()!=null||matchResult.getDire_team_id()!=null);
+            trackdotaItem.setVisible((matchResult.getPicks_bans()!=null&& matchResult.getPicks_bans().size()>0)||matchResult.getRadiantTeamId()!=null||matchResult.getDireTeamId()!=null);
             actionBar.setTitle(getString(
-                    matchResult.isRadiant_win() ?
+                    matchResult.isRadiantWin() ?
                             R.string.radiant_win
                             : R.string.dire_win));
         }

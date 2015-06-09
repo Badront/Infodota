@@ -1,6 +1,7 @@
 package com.badr.infodota.api.matchdetails;
 
 import com.badr.infodota.api.matchhistory.Match;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -16,29 +17,38 @@ import java.util.TimeZone;
  */
 public class Result extends Match implements Serializable {
     //true if radiant won, false otherwise
-    private boolean radiant_win;
+    @SerializedName("radiant_win")
+    private boolean radiantWin;
     //the total time in seconds the match ran for
     private long duration;
     //an 11-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
-    private long tower_status_radiant;
+    @SerializedName("tower_status_radiant")
+    private int towerStatusRadiant;
     //an 11-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
-    private long tower_status_dire;
+    @SerializedName("tower_status_dire")
+    private int towerStatusDire;
     //a 6-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Barracks_Status
-    private long barracks_status_radiant;
+    @SerializedName("barracks_status_radiant")
+    private int barracksStatusRadiant;
     //a 6-bit unsinged int: see http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Barracks_Status
-    private long barracks_status_dire;
+    @SerializedName("barracks_status_dire")
+    private int barracksStatusDire;
     //for replays
     private long cluster;
     //the time in seconds at which first blood occurred
-    private long first_blood_time;
+    @SerializedName("first_blood_time")
+    private long firstBloodTime;
     //the number of human players in the match
-    private int human_players;
+    @SerializedName("human_players")
+    private int humanPlayers;
     //the leauge this match is from (see GetMatchHistory)
     private long leagueid;
     //the number of thumbs up the game has received
-    private long positive_votes;
+    @SerializedName("positive_votes")
+    private long positiveVotes;
     //the number of thumbs up the game has received
-    private long negative_votes;
+    @SerializedName("negative_votes")
+    private long negativeVotes;
     /*
     a number representing the game mode of this match
     * '1' : 'All Pick',
@@ -64,17 +74,25 @@ public class Result extends Match implements Serializable {
     * (i.e. this is a league match in a private lobby)
     * */
     //the name of the radiant team
-    private String radiant_name;
-    private Long radiant_logo;
-    private Long radiant_team_id;
+    @SerializedName("radiant_name")
+    private String radiantName;
+    @SerializedName("radiant_logo")
+    private Long radiantLogo;
+    @SerializedName("radiant_team_id")
+    private Long radiantTeamId;
     //true if all players on radiant belong to this team, false otherwise (i.e. are the stand-ins {false} or not {true})
-    private Integer radiant_team_complete;
+    @SerializedName("radiant_team_complete")
+    private Integer radiantTeamComplete;
     //he name of the dire team
-    private String dire_name;
-    private Long dire_logo;
-    private Long dire_team_id;
+    @SerializedName("dire_name")
+    private String direName;
+    @SerializedName("dire_logo")
+    private Long direLogo;
+    @SerializedName("dire_team_id")
+    private Long direTeamId;
     //true if all players on dire belong to this team, false otherwise (i.e. are the stand-ins {false} or not {true})
-    private Integer dire_team_complete;
+    @SerializedName("dire_team_complete")
+    private Integer direTeamComplete;
 
     private List<PickBan> picks_bans;
 
@@ -93,12 +111,12 @@ public class Result extends Match implements Serializable {
         this.section = section;
     }
 
-    public boolean isRadiant_win() {
-        return radiant_win;
+    public boolean isRadiantWin() {
+        return radiantWin;
     }
 
-    public void setRadiant_win(boolean radiant_win) {
-        this.radiant_win = radiant_win;
+    public void setRadiantWin(boolean radiantWin) {
+        this.radiantWin = radiantWin;
     }
 
     public long getDuration() {
@@ -109,36 +127,36 @@ public class Result extends Match implements Serializable {
         this.duration = duration;
     }
 
-    public long getTower_status_radiant() {
-        return tower_status_radiant;
+    public int getTowerStatusRadiant() {
+        return towerStatusRadiant;
     }
 
-    public void setTower_status_radiant(long tower_status_radiant) {
-        this.tower_status_radiant = tower_status_radiant;
+    public void setTowerStatusRadiant(int towerStatusRadiant) {
+        this.towerStatusRadiant = towerStatusRadiant;
     }
 
-    public long getTower_status_dire() {
-        return tower_status_dire;
+    public int getTowerStatusDire() {
+        return towerStatusDire;
     }
 
-    public void setTower_status_dire(long tower_status_dire) {
-        this.tower_status_dire = tower_status_dire;
+    public void setTowerStatusDire(int towerStatusDire) {
+        this.towerStatusDire = towerStatusDire;
     }
 
-    public long getBarracks_status_radiant() {
-        return barracks_status_radiant;
+    public int getBarracksStatusRadiant() {
+        return barracksStatusRadiant;
     }
 
-    public void setBarracks_status_radiant(long barracks_status_radiant) {
-        this.barracks_status_radiant = barracks_status_radiant;
+    public void setBarracksStatusRadiant(int barracksStatusRadiant) {
+        this.barracksStatusRadiant = barracksStatusRadiant;
     }
 
-    public long getBarracks_status_dire() {
-        return barracks_status_dire;
+    public int getBarracksStatusDire() {
+        return barracksStatusDire;
     }
 
-    public void setBarracks_status_dire(long barracks_status_dire) {
-        this.barracks_status_dire = barracks_status_dire;
+    public void setBarracksStatusDire(int barracksStatusDire) {
+        this.barracksStatusDire = barracksStatusDire;
     }
 
     public long getCluster() {
@@ -149,20 +167,20 @@ public class Result extends Match implements Serializable {
         this.cluster = cluster;
     }
 
-    public long getFirst_blood_time() {
-        return first_blood_time;
+    public long getFirstBloodTime() {
+        return firstBloodTime;
     }
 
-    public void setFirst_blood_time(long first_blood_time) {
-        this.first_blood_time = first_blood_time;
+    public void setFirstBloodTime(long firstBloodTime) {
+        this.firstBloodTime = firstBloodTime;
     }
 
-    public int getHuman_players() {
-        return human_players;
+    public int getHumanPlayers() {
+        return humanPlayers;
     }
 
-    public void setHuman_players(int human_players) {
-        this.human_players = human_players;
+    public void setHumanPlayers(int humanPlayers) {
+        this.humanPlayers = humanPlayers;
     }
 
     public long getLeagueid() {
@@ -173,20 +191,20 @@ public class Result extends Match implements Serializable {
         this.leagueid = leagueid;
     }
 
-    public long getPositive_votes() {
-        return positive_votes;
+    public long getPositiveVotes() {
+        return positiveVotes;
     }
 
-    public void setPositive_votes(long positive_votes) {
-        this.positive_votes = positive_votes;
+    public void setPositiveVotes(long positiveVotes) {
+        this.positiveVotes = positiveVotes;
     }
 
-    public long getNegative_votes() {
-        return negative_votes;
+    public long getNegativeVotes() {
+        return negativeVotes;
     }
 
-    public void setNegative_votes(long negative_votes) {
-        this.negative_votes = negative_votes;
+    public void setNegativeVotes(long negativeVotes) {
+        this.negativeVotes = negativeVotes;
     }
 
     public long getGame_mode() {
@@ -205,52 +223,52 @@ public class Result extends Match implements Serializable {
         this.season = season;
     }
 
-    public String getRadiant_name() {
-        return radiant_name;
+    public String getRadiantName() {
+        return radiantName;
     }
 
-    public void setRadiant_name(String radiant_name) {
-        this.radiant_name = radiant_name;
+    public void setRadiantName(String radiantName) {
+        this.radiantName = radiantName;
     }
 
-    public Long getRadiant_logo() {
-        return radiant_logo;
+    public Long getRadiantLogo() {
+        return radiantLogo;
     }
 
-    public void setRadiant_logo(Long radiant_logo) {
-        this.radiant_logo = radiant_logo;
+    public void setRadiantLogo(Long radiantLogo) {
+        this.radiantLogo = radiantLogo;
     }
 
-    public Integer getRadiant_team_complete() {
-        return radiant_team_complete;
+    public Integer getRadiantTeamComplete() {
+        return radiantTeamComplete;
     }
 
-    public void setRadiant_team_complete(Integer radiant_team_complete) {
-        this.radiant_team_complete = radiant_team_complete;
+    public void setRadiantTeamComplete(Integer radiantTeamComplete) {
+        this.radiantTeamComplete = radiantTeamComplete;
     }
 
-    public String getDire_name() {
-        return dire_name;
+    public String getDireName() {
+        return direName;
     }
 
-    public void setDire_name(String dire_name) {
-        this.dire_name = dire_name;
+    public void setDireName(String direName) {
+        this.direName = direName;
     }
 
-    public Long getDire_logo() {
-        return dire_logo;
+    public Long getDireLogo() {
+        return direLogo;
     }
 
-    public void setDire_logo(Long dire_logo) {
-        this.dire_logo = dire_logo;
+    public void setDireLogo(Long direLogo) {
+        this.direLogo = direLogo;
     }
 
-    public Integer getDire_team_complete() {
-        return dire_team_complete;
+    public Integer getDireTeamComplete() {
+        return direTeamComplete;
     }
 
-    public void setDire_team_complete(Integer dire_team_complete) {
-        this.dire_team_complete = dire_team_complete;
+    public void setDireTeamComplete(Integer direTeamComplete) {
+        this.direTeamComplete = direTeamComplete;
     }
 
     public List<PickBan> getPicks_bans() {
@@ -261,20 +279,20 @@ public class Result extends Match implements Serializable {
         this.picks_bans = picks_bans;
     }
 
-    public Long getRadiant_team_id() {
-        return radiant_team_id;
+    public Long getRadiantTeamId() {
+        return radiantTeamId;
     }
 
-    public void setRadiant_team_id(Long radiant_team_id) {
-        this.radiant_team_id = radiant_team_id;
+    public void setRadiantTeamId(Long radiantTeamId) {
+        this.radiantTeamId = radiantTeamId;
     }
 
-    public Long getDire_team_id() {
-        return dire_team_id;
+    public Long getDireTeamId() {
+        return direTeamId;
     }
 
-    public void setDire_team_id(Long dire_team_id) {
-        this.dire_team_id = dire_team_id;
+    public void setDireTeamId(Long direTeamId) {
+        this.direTeamId = direTeamId;
     }
 
 
@@ -302,36 +320,36 @@ public class Result extends Match implements Serializable {
             leftTimestamp/=24;
             if(rightTimestamp!=leftTimestamp)return false;*/
         } else {
-            if (barracks_status_dire != result.barracks_status_dire) return false;
-            if (barracks_status_radiant != result.barracks_status_radiant) return false;
+            if (barracksStatusDire != result.barracksStatusDire) return false;
+            if (barracksStatusRadiant != result.barracksStatusRadiant) return false;
             if (cluster != result.cluster) return false;
             if (duration != result.duration) return false;
-            if (first_blood_time != result.first_blood_time) return false;
+            if (firstBloodTime != result.firstBloodTime) return false;
             if (game_mode != result.game_mode) return false;
-            if (human_players != result.human_players) return false;
+            if (humanPlayers != result.humanPlayers) return false;
             if (leagueid != result.leagueid) return false;
-            if (negative_votes != result.negative_votes) return false;
-            if (positive_votes != result.positive_votes) return false;
-            if (radiant_win != result.radiant_win) return false;
-            if (tower_status_dire != result.tower_status_dire) return false;
-            if (tower_status_radiant != result.tower_status_radiant) return false;
-            if (dire_logo != null ? !dire_logo.equals(result.dire_logo) : result.dire_logo != null)
+            if (negativeVotes != result.negativeVotes) return false;
+            if (positiveVotes != result.positiveVotes) return false;
+            if (radiantWin != result.radiantWin) return false;
+            if (towerStatusDire != result.towerStatusDire) return false;
+            if (towerStatusRadiant != result.towerStatusRadiant) return false;
+            if (direLogo != null ? !direLogo.equals(result.direLogo) : result.direLogo != null)
                 return false;
-            if (dire_name != null ? !dire_name.equals(result.dire_name) : result.dire_name != null)
+            if (direName != null ? !direName.equals(result.direName) : result.direName != null)
                 return false;
-            if (dire_team_complete != null ? !dire_team_complete.equals(result.dire_team_complete) : result.dire_team_complete != null)
+            if (direTeamComplete != null ? !direTeamComplete.equals(result.direTeamComplete) : result.direTeamComplete != null)
                 return false;
-            if (dire_team_id != null ? !dire_team_id.equals(result.dire_team_id) : result.dire_team_id != null)
+            if (direTeamId != null ? !direTeamId.equals(result.direTeamId) : result.direTeamId != null)
                 return false;
             if (picks_bans != null ? !picks_bans.equals(result.picks_bans) : result.picks_bans != null)
                 return false;
-            if (radiant_logo != null ? !radiant_logo.equals(result.radiant_logo) : result.radiant_logo != null)
+            if (radiantLogo != null ? !radiantLogo.equals(result.radiantLogo) : result.radiantLogo != null)
                 return false;
-            if (radiant_name != null ? !radiant_name.equals(result.radiant_name) : result.radiant_name != null)
+            if (radiantName != null ? !radiantName.equals(result.radiantName) : result.radiantName != null)
                 return false;
-            if (radiant_team_complete != null ? !radiant_team_complete.equals(result.radiant_team_complete) : result.radiant_team_complete != null)
+            if (radiantTeamComplete != null ? !radiantTeamComplete.equals(result.radiantTeamComplete) : result.radiantTeamComplete != null)
                 return false;
-            if (radiant_team_id != null ? !radiant_team_id.equals(result.radiant_team_id) : result.radiant_team_id != null)
+            if (radiantTeamId != null ? !radiantTeamId.equals(result.radiantTeamId) : result.radiantTeamId != null)
                 return false;
             if (season != null ? !season.equals(result.season) : result.season != null)
                 return false;
@@ -341,28 +359,28 @@ public class Result extends Match implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = (radiant_win ? 1 : 0);
+        int result = (radiantWin ? 1 : 0);
         result = 31 * result + (int) (duration ^ (duration >>> 32));
-        result = 31 * result + (int) (tower_status_radiant ^ (tower_status_radiant >>> 32));
-        result = 31 * result + (int) (tower_status_dire ^ (tower_status_dire >>> 32));
-        result = 31 * result + (int) (barracks_status_radiant ^ (barracks_status_radiant >>> 32));
-        result = 31 * result + (int) (barracks_status_dire ^ (barracks_status_dire >>> 32));
+        result = 31 * result + (int) (towerStatusRadiant ^ (towerStatusRadiant >>> 32));
+        result = 31 * result + (int) (towerStatusDire ^ (towerStatusDire >>> 32));
+        result = 31 * result + (int) (barracksStatusRadiant ^ (barracksStatusRadiant >>> 32));
+        result = 31 * result + (int) (barracksStatusDire ^ (barracksStatusDire >>> 32));
         result = 31 * result + (int) (cluster ^ (cluster >>> 32));
-        result = 31 * result + (int) (first_blood_time ^ (first_blood_time >>> 32));
-        result = 31 * result + human_players;
+        result = 31 * result + (int) (firstBloodTime ^ (firstBloodTime >>> 32));
+        result = 31 * result + humanPlayers;
         result = 31 * result + (int) (leagueid ^ (leagueid >>> 32));
-        result = 31 * result + (int) (positive_votes ^ (positive_votes >>> 32));
-        result = 31 * result + (int) (negative_votes ^ (negative_votes >>> 32));
+        result = 31 * result + (int) (positiveVotes ^ (positiveVotes >>> 32));
+        result = 31 * result + (int) (negativeVotes ^ (negativeVotes >>> 32));
         result = 31 * result + (int) (game_mode ^ (game_mode >>> 32));
         result = 31 * result + (season != null ? season.hashCode() : 0);
-        result = 31 * result + (radiant_name != null ? radiant_name.hashCode() : 0);
-        result = 31 * result + (radiant_logo != null ? radiant_logo.hashCode() : 0);
-        result = 31 * result + (radiant_team_id != null ? radiant_team_id.hashCode() : 0);
-        result = 31 * result + (radiant_team_complete != null ? radiant_team_complete.hashCode() : 0);
-        result = 31 * result + (dire_name != null ? dire_name.hashCode() : 0);
-        result = 31 * result + (dire_logo != null ? dire_logo.hashCode() : 0);
-        result = 31 * result + (dire_team_id != null ? dire_team_id.hashCode() : 0);
-        result = 31 * result + (dire_team_complete != null ? dire_team_complete.hashCode() : 0);
+        result = 31 * result + (radiantName != null ? radiantName.hashCode() : 0);
+        result = 31 * result + (radiantLogo != null ? radiantLogo.hashCode() : 0);
+        result = 31 * result + (radiantTeamId != null ? radiantTeamId.hashCode() : 0);
+        result = 31 * result + (radiantTeamComplete != null ? radiantTeamComplete.hashCode() : 0);
+        result = 31 * result + (direName != null ? direName.hashCode() : 0);
+        result = 31 * result + (direLogo != null ? direLogo.hashCode() : 0);
+        result = 31 * result + (direTeamId != null ? direTeamId.hashCode() : 0);
+        result = 31 * result + (direTeamComplete != null ? direTeamComplete.hashCode() : 0);
         result = 31 * result + (picks_bans != null ? picks_bans.hashCode() : 0);
         return result;
     }

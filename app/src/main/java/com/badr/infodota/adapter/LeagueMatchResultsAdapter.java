@@ -179,9 +179,9 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
             holder.time.setText(localTime);
             if (item instanceof Result) {
                 final Result matchResult = (Result) item;
-                holder.radiantName.setText(matchResult.getRadiant_name());
-                holder.direName.setText(matchResult.getDire_name());
-                if (matchResult.isRadiant_win()) {
+                holder.radiantName.setText(matchResult.getRadiantName());
+                holder.direName.setText(matchResult.getDireName());
+                if (matchResult.isRadiantWin()) {
                     holder.radiantName.setTextColor(Color.GREEN);
                     holder.direName.setTextColor(Color.RED);
                 } else {
@@ -190,14 +190,14 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
                 }
 
                 TeamService teamService = BeanContainer.getInstance().getTeamService();
-                Team radiant = teamService.getTeamById(context, matchResult.getRadiant_team_id());
+                Team radiant = teamService.getTeamById(context, matchResult.getRadiantTeamId());
                 if (!TextUtils.isEmpty(radiant.getLogo())) {
                     imageLoader.displayImage(radiant.getLogo(), holder.radiantLogo, options);
                 } else {
                     holder.radiantLogo.setImageResource(R.drawable.steam_default);
                 }
 
-                Team dire = teamService.getTeamById(context, matchResult.getDire_team_id());
+                Team dire = teamService.getTeamById(context, matchResult.getDireTeamId());
                 if (!TextUtils.isEmpty(dire.getLogo())) {
                     imageLoader.displayImage(dire.getLogo(), holder.direLogo, options);
                 } else {
