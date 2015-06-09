@@ -24,14 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/half_view_padding">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingBottom="5dp">
+                android:paddingBottom="@dimen/half_view_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -46,14 +46,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="@dimen/half_view_padding"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ghost Scepter      "
                             android:textColor="@android:color/white"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -62,11 +61,10 @@
                             android:id="@+id/cost"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/half_view_padding"
                             android:drawableLeft="@drawable/gold"
-                            android:drawablePadding="5dp"
-                            android:gravity="center_vertical"
-                            android:text="1800" />
+                            android:drawablePadding="@dimen/half_view_padding"
+                            android:gravity="center_vertical" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -74,44 +72,44 @@
                     android:id="@+id/mc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:drawablePadding="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
+                    android:drawablePadding="@dimen/half_view_padding"
                     android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/cd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:drawablePadding="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
+                    android:drawablePadding="@dimen/half_view_padding"
                     android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/attrib"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
                     android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
                     android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/lore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
                     android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
                     android:visibility="gone" />
             </LinearLayout>
 
@@ -120,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingBottom="5dp">
+                android:paddingBottom="@dimen/half_view_padding">
 
                 <TextView
                     android:id="@+id/makes_to_title"
@@ -141,7 +139,7 @@
                     android:id="@+id/makes_from_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/half_view_padding"
                     android:text="@string/makes_from"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
@@ -151,7 +149,7 @@
                     android:id="@+id/makes_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="@dimen/half_view_padding"
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>

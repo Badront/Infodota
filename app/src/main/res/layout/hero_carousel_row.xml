@@ -69,8 +69,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/skill_role_holder_margin_bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="@dimen/half_view_padding"
+            android:layout_marginRight="@dimen/half_view_padding"
             android:gravity="bottom"
             android:orientation="horizontal" />
     </RelativeLayout>

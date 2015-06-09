@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:padding="5dp"
+        android:padding="@dimen/half_view_padding"
         android:orientation="horizontal">
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@drawable/abc_spinner_mtrl_am_alpha"
-            android:paddingLeft="2dp" />
+            android:paddingLeft="@dimen/half_view_padding" />
     </LinearLayout>
 
     <com.badr.infodota.view.SlidingTabLayout
@@ -45,7 +45,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="0px"
         android:layout_weight="1" />
 
 </LinearLayout>

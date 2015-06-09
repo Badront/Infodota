@@ -22,15 +22,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp">
+            android:paddingLeft="@dimen/half_view_padding"
+            android:paddingRight="@dimen/half_view_padding">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="256dp"
                 android:layout_height="170dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="@dimen/view_padding" />
 
             <TextView
                 android:id="@+id/title"
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/view_padding"
                 android:text="текст" />
 
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/view_padding"
                 android:text="Description"
                 android:textStyle="italic" />
 
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"
+                android:paddingTop="@dimen/view_padding"
                 android:text="@string/part_of_set" />
 
             <LinearLayout
@@ -80,9 +80,9 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp">
+                android:paddingLeft="@dimen/half_view_padding"
+                android:paddingRight="@dimen/half_view_padding"
+                android:paddingTop="@dimen/half_view_padding">
 
                 <ImageView
                     android:id="@+id/set_img"

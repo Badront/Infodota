@@ -6,7 +6,7 @@
     android:background="?attr/selectableItemBackground"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="@dimen/half_view_padding">
 
     <TextView
         android:id="@+id/name"
@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/half_view_padding"
         android:orientation="horizontal">
 
 
@@ -35,7 +35,7 @@
             android:id="@+id/viewers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/view_padding"
             android:drawableLeft="@drawable/viewers"
             android:drawablePadding="5dp"
             android:singleLine="true"

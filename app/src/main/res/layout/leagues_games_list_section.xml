@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="@dimen/half_view_padding">
 
     <TextView
         android:id="@+id/section_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="5dp"
+        android:paddingLeft="@dimen/half_view_padding"
         android:textColor="@android:color/white" />
 </LinearLayout>

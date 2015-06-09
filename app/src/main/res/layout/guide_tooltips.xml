@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/half_view_padding"
         android:orientation="vertical">
 
         <TextView
@@ -21,14 +21,14 @@
             android:id="@+id/abilities_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/half_view_padding"
             android:orientation="vertical" />
 
         <TextView
             android:id="@+id/items_holder_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/half_view_padding"
             android:text="@string/tooltips_for_items"
             android:textSize="16sp"
             android:visibility="gone" />
@@ -37,7 +37,7 @@
             android:id="@+id/items_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/half_view_padding"
             android:orientation="vertical" />
     </LinearLayout>
 </ScrollView>

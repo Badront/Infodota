@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/clickableItemBackground"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/view_padding">
 
     <TextView
         android:id="@+id/title"

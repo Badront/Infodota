@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:paddingBottom="2dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
+    android:paddingLeft="@dimen/half_view_padding"
+    android:paddingRight="@dimen/half_view_padding"
     android:paddingTop="2dp">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="top"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="@dimen/half_view_padding" />
 
     <TextView
         android:id="@android:id/text1"
@@ -27,5 +27,5 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="top"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="@dimen/half_view_padding" />
 </LinearLayout>

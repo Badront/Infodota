@@ -5,9 +5,9 @@
     android:background="?attr/clickableItemBackground"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="5dp">
+    android:paddingLeft="@dimen/half_view_padding"
+    android:paddingRight="@dimen/half_view_padding"
+    android:paddingTop="@dimen/half_view_padding">
 
     <ImageView
         android:id="@+id/img"

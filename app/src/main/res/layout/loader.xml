@@ -22,8 +22,8 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/toast_frame"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="@dimen/view_padding"
+        android:paddingRight="@dimen/view_padding"
         android:text="@string/loading"
         android:textColor="@android:color/white"
         android:textSize="16sp" />

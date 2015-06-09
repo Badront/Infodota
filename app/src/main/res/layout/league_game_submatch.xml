@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingLeft="@dimen/half_view_padding"
+        android:paddingRight="@dimen/half_view_padding">
 
         <LinearLayout
             android:id="@+id/team1"

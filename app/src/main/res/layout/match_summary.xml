@@ -155,34 +155,4 @@
             </TableRow>
         </TableLayout>
     </LinearLayout>
-
-    <!--
-    match_id
-    время начала
-    продолжительность
-    tower_status_radiant    http://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails#Tower_Status
-    tower_status_dire
-    barracks_status_radiant
-    barracks_status_dire
-    cluster (откуда качать повтор. на мобиле не надо)
-    время фб
-    тип лобби
-    сколько игроков (ботов)
-    id лиги/
-    сколько + игре, сколько - игре.
-    game mode
-    '1' : 'All Pick',
-'2' : "Captains Mode",
-'3' : 'Random Draft',
-'4' : 'Single Draft',
-'5' : 'All Random',
-'6' : '?? INTRO/DEATH ??',
-'7' : 'The Diretide',
-'8' : "Reverse Captains Mode",
-'9' : 'Greeviling',
-'10' : 'Tutorial',
-'11' : 'Mid Only',
-'12' : 'Least Played',
-'13' : 'New Player Pool'
-    -->
 </ScrollView>

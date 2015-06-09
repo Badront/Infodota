@@ -20,27 +20,27 @@
                 android:id="@+id/date_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/half_view_padding"
                 android:text="@string/time" />
 
             <Spinner
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
+                android:layout_margin="@dimen/half_view_padding" />
 
             <TextView
                 android:id="@+id/game_mode_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/half_view_padding"
                 android:text="@string/game_mode" />
 
             <Spinner
                 android:id="@+id/game_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
+                android:layout_margin="@dimen/half_view_padding" />
 
             <!--               <TextView
                                    android:layout_height="wrap_content"
@@ -59,14 +59,14 @@
                 android:id="@+id/metric_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/half_view_padding"
                 android:text="@string/metric" />
 
             <Spinner
                 android:id="@+id/metric"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp" />
+                android:layout_margin="@dimen/half_view_padding" />
         </LinearLayout>
     </ScrollView>
 
@@ -74,6 +74,6 @@
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/half_view_padding"
         android:text="@string/show_results" />
 </LinearLayout>

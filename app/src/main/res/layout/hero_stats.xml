@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ScrollView
@@ -13,16 +13,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="5dp">
+            android:paddingTop="@dimen/half_view_padding">
 
             <LinearLayout
                 android:id="@+id/portrait_holder1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
+                android:paddingBottom="@dimen/half_view_padding"
+                android:paddingLeft="@dimen/half_view_padding"
+                android:paddingRight="@dimen/half_view_padding">
 
                 <RelativeLayout
                     android:id="@+id/content1"
@@ -54,7 +54,7 @@
                         android:id="@+id/txtFaction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
+                        android:paddingLeft="@dimen/half_view_padding"
                         android:text="Radiant"
                         android:textColor="@android:color/white"
                         android:textSize="15sp"
@@ -83,17 +83,17 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#ff2f2f2f"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="@dimen/half_view_padding">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -119,7 +119,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -146,7 +146,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -171,41 +171,41 @@
                 </LinearLayout>
 
                 <TableLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5.0dip">
+                    android:paddingTop="@dimen/half_view_padding">
 
                     <TableRow
                         android:id="@+id/tableRow3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5.0dip">
+                        android:paddingLeft="@dimen/half_view_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="@string/level"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="lvl 1"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="lvl 16"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="lvl 25"
                             android:textStyle="bold" />
                     </TableRow>
@@ -215,12 +215,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#ff2f2f2f"
-                        android:paddingLeft="5.0dip">
+                        android:paddingLeft="@dimen/half_view_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="@string/hp"
                             android:textStyle="bold" />
 
@@ -228,31 +228,31 @@
                             android:id="@+id/health1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/health16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/health25"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
                     </TableRow>
 
                     <TableRow
                         android:id="@+id/rowMana"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5.0dip">
+                        android:paddingLeft="@dimen/half_view_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="@string/mp"
                             android:textStyle="bold" />
 
@@ -260,19 +260,19 @@
                             android:id="@+id/mana1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/mana16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/mana25"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
                     </TableRow>
 
                     <TableRow
@@ -280,12 +280,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#ff2f2f2f"
-                        android:paddingLeft="5.0dip">
+                        android:paddingLeft="@dimen/half_view_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="@string/damage"
                             android:textStyle="bold" />
 
@@ -293,31 +293,31 @@
                             android:id="@+id/damage1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/damage16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/damage25"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
                     </TableRow>
 
                     <TableRow
                         android:id="@+id/rowArmor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5.0dip">
+                        android:paddingLeft="@dimen/half_view_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="@string/armor"
                             android:textStyle="bold" />
 
@@ -325,19 +325,19 @@
                             android:id="@+id/armor1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/armor16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/armor25"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
                     </TableRow>
 
                     <TableRow
@@ -345,12 +345,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#ff2f2f2f"
-                        android:paddingLeft="5.0dip">
+                        android:paddingLeft="@dimen/half_view_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0"
+                            android:layout_weight="1"
                             android:text="@string/attacks_per_second"
                             android:textStyle="bold" />
 
@@ -358,26 +358,26 @@
                             android:id="@+id/attack_speed1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/attack_speed16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
 
                         <TextView
                             android:id="@+id/attack_speed25"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.0" />
+                            android:layout_weight="1" />
                     </TableRow>
                 </TableLayout>
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="5.0dip">
+                    android:paddingLeft="@dimen/half_view_padding">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -386,7 +386,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -407,7 +407,7 @@
                             android:id="@+id/movement_speed1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -427,7 +427,7 @@
                             android:id="@+id/attack_range1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -448,7 +448,7 @@
                             android:id="@+id/turn_rate1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -468,7 +468,7 @@
                             android:id="@+id/sight_range1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -489,7 +489,7 @@
                             android:id="@+id/attack_duration1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -509,7 +509,7 @@
                             android:id="@+id/cast_duration1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -530,7 +530,7 @@
                             android:id="@+id/missile_speed1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="@dimen/view_padding"
                             android:layout_weight="1"
                             android:gravity="center" />
                     </TableRow>
@@ -538,9 +538,9 @@
 
                 <TextView
                     android:id="@+id/txtLore"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5.0dip" />
+                    android:padding="@dimen/half_view_padding" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

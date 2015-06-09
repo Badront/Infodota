@@ -9,7 +9,7 @@
         android:id="@+id/search_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/half_view_padding"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -51,7 +51,7 @@
         android:layout_below="@id/search_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/half_view_padding"
         android:text="@string/search_history"
         android:textSize="16sp"
         android:visibility="gone" />
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/view_padding"
             android:gravity="center"
             android:text="@string/empty_player_list"
             android:textSize="16sp" />

@@ -15,7 +15,7 @@
             android:id="@+id/ability_1_img"
             android:layout_width="@dimen/skillbuild_image_size"
             android:layout_height="@dimen/skillbuild_image_size"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/half_view_padding"
             android:layout_weight="1"
             android:tag="0" />
 
@@ -23,7 +23,7 @@
             android:id="@+id/ability_2_img"
             android:layout_width="@dimen/skillbuild_image_size"
             android:layout_height="@dimen/skillbuild_image_size"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/half_view_padding"
             android:layout_weight="1"
             android:tag="1" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/ability_3_img"
             android:layout_width="@dimen/skillbuild_image_size"
             android:layout_height="@dimen/skillbuild_image_size"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/half_view_padding"
             android:layout_weight="1"
             android:tag="2" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/ability_4_img"
             android:layout_width="@dimen/skillbuild_image_size"
             android:layout_height="@dimen/skillbuild_image_size"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/half_view_padding"
             android:layout_weight="1"
             android:tag="3" />
 
@@ -47,7 +47,7 @@
             android:id="@+id/ability_attr_img"
             android:layout_width="@dimen/skillbuild_image_size"
             android:layout_height="@dimen/skillbuild_image_size"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/half_view_padding"
             android:layout_weight="1"
             android:tag="4" />
     </LinearLayout>

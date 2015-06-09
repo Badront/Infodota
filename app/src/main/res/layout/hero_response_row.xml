@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/clickableItemBackground"
     android:orientation="horizontal"
-    android:padding="15dp">
+    android:padding="@dimen/view_padding">
 
     <TableLayout
         android:id="@+id/image_holder"
@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
+        android:gravity="center_vertical"
         android:text="Antimage" />
 
     <com.pnikosis.materialishprogress.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"

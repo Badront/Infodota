@@ -6,7 +6,7 @@
     android:gravity="center_vertical"
     android:background="@color/primary"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="@dimen/half_view_padding">
     <ImageView
         android:layout_width="46dp"
         android:layout_height="28dp"
@@ -15,6 +15,6 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
+        android:paddingLeft="@dimen/half_view_padding"
         android:textColor="@android:color/white" />
 </LinearLayout>

@@ -3,9 +3,9 @@
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="42dp"
-    android:layout_marginTop="5dp"
-    android:paddingBottom="3dp"
-    android:paddingTop="3dp">
+    android:layout_marginTop="@dimen/half_view_padding"
+    android:paddingBottom="@dimen/half_view_padding"
+    android:paddingTop="@dimen/half_view_padding">
 
     <ImageView
         android:id="@+id/radiant_hero"

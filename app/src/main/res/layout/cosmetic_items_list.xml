@@ -9,7 +9,7 @@
         android:id="@+id/update_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:padding="@dimen/half_view_padding"
         android:textSize="12sp" />
 
     <GridView

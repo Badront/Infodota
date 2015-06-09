@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/half_view_padding">
 
             <TextView
                 android:id="@+id/title"
@@ -47,7 +47,7 @@
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginLeft="@dimen/half_view_padding" />
             </LinearLayout>
 
             <LinearLayout
@@ -64,7 +64,7 @@
                     android:id="@+id/author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp" />
+                    android:layout_marginLeft="@dimen/half_view_padding" />
             </LinearLayout>
 
             <TextView

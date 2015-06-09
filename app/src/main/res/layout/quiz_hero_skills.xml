@@ -19,14 +19,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/view_padding"
                 android:text="@string/choose_hero_skill" />
 
             <ImageView
                 android:id="@+id/hero_img"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_margin="10dp" />
+                android:layout_margin="@dimen/view_padding" />
         </LinearLayout>
 
         <LinearLayout
@@ -34,9 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/view_padding"
+            android:layout_marginRight="@dimen/view_padding"
+            android:layout_marginTop="@dimen/view_padding"
             android:orientation="vertical">
 
             <LinearLayout

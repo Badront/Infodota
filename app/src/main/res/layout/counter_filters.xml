@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/half_view_padding"
                 android:text="@string/enemies"
                 android:textColor="@color/enemy_team" />
 
@@ -32,8 +32,8 @@
                     android:id="@+id/enemy0"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="@dimen/half_view_padding"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -41,7 +41,7 @@
                     android:id="@+id/enemy1"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -49,7 +49,7 @@
                     android:id="@+id/enemy2"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -57,7 +57,7 @@
                     android:id="@+id/enemy3"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -65,7 +65,7 @@
                     android:id="@+id/enemy4"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
             </LinearLayout>
@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="@dimen/half_view_padding"
                 android:text="@string/allies"
                 android:textColor="@color/ally_team" />
 
@@ -86,8 +86,8 @@
                     android:id="@+id/ally0"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="@dimen/half_view_padding"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -95,7 +95,7 @@
                     android:id="@+id/ally1"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -103,7 +103,7 @@
                     android:id="@+id/ally2"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
 
@@ -111,14 +111,14 @@
                     android:id="@+id/ally3"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="@dimen/half_view_padding"
                     android:layout_weight="1"
                     android:src="@drawable/default_img" />
                 <!--    <ImageView
                             android:layout_height="wrap_content"
                             android:layout_width="0px"
                             android:layout_weight="1"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginRight="@dimen/half_view_padding"
                             android:src="@drawable/default_img"
                             android:id="@+id/ally4"/>-->
             </LinearLayout>
@@ -139,7 +139,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/half_view_padding"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -167,7 +167,7 @@
                 android:id="@+id/holder_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/half_view_padding"
                 android:text="@string/recommended_to_you"
                 android:visibility="gone" />
 
@@ -184,6 +184,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/half_view_padding"
         android:text="@string/show_results" />
 </LinearLayout>

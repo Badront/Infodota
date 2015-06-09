@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/clickableItemBackground"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/view_padding">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/view_padding"
                 android:orientation="vertical">
 
                 <TextView
@@ -72,7 +72,7 @@
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="@dimen/half_view_padding">
 
             <TableRow>
 
@@ -80,68 +80,68 @@
                     android:id="@+id/kills"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="Kills:" />
 
                 <TextView
                     android:id="@+id/gold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="Gold:" />
 
                 <TextView
                     android:id="@+id/gpm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="GPM:" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="@dimen/half_view_padding">
 
                 <TextView
                     android:id="@+id/death"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="Death:" />
 
                 <TextView
                     android:id="@+id/last_hits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="Last hits:" />
 
                 <TextView
                     android:id="@+id/xpm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="XPM:" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="@dimen/half_view_padding">
 
                 <TextView
                     android:id="@+id/assists"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="Assists:" />
 
                 <TextView
                     android:id="@+id/denies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:paddingRight="@dimen/view_padding"
                     android:text="Denies:" />
             </TableRow>
         </TableLayout>
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/half_view_padding"
             android:orientation="vertical">
 
             <LinearLayout

@@ -5,13 +5,13 @@
     android:background="?attr/clickableItemBackground"
     android:gravity="center_horizontal"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="@dimen/half_view_padding">
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="132dp"
         android:layout_height="76dp"
-        android:padding="5dp" />
+        android:padding="@dimen/half_view_padding" />
 
     <TextView
         android:id="@+id/name"

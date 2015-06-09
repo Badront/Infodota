@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="5dp">
+    android:padding="@dimen/half_view_padding">
     <ImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:id="@+id/hero_icon"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="@dimen/half_view_padding"/>
     <TextView
         android:layout_width="0px"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/half_view_padding"
         android:id="@+id/stat_value"/>
 
 </LinearLayout>

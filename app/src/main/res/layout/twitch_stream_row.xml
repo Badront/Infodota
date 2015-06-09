@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/clickableItemBackground"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="@dimen/view_padding">
     <RelativeLayout
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/half_view_padding"
         android:orientation="vertical">
 
         <TextView
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/viewers"
-                    android:drawablePadding="5dp"
+                    android:drawablePadding="@dimen/half_view_padding"
                     android:singleLine="true"
                     android:text="4803"
                     android:textSize="14dp" />

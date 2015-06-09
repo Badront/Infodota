@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/view_padding"
+        android:layout_marginRight="@dimen/view_padding"
+        android:layout_marginTop="@dimen/view_padding"
         android:orientation="horizontal">
 
         <ImageView
@@ -33,7 +33,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/view_padding"
             android:orientation="vertical">
 
             <TextView
@@ -61,7 +61,7 @@
                     android:id="@+id/leaver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/view_padding"
                     android:textSize="14sp"
                     android:visibility="invisible"/>
             </LinearLayout>
@@ -82,7 +82,7 @@
                     android:id="@+id/alive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/half_view_padding"
                     android:textColor="@color/ally_team"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -103,7 +103,7 @@
                     android:id="@+id/ultimate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/half_view_padding"
                     android:textColor="@color/ally_team"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -118,7 +118,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="0px"
         android:layout_weight="1" />
 
 </LinearLayout>

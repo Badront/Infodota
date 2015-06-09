@@ -18,7 +18,7 @@
         android:id="@+id/quiz_stats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/half_view_padding"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -38,7 +38,7 @@
                 android:id="@+id/attempt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/half_view_padding"
                 android:text="3" />
         </LinearLayout>
 
@@ -58,7 +58,7 @@
                 android:id="@+id/score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/half_view_padding"
                 android:text="0" />
         </LinearLayout>
     </LinearLayout>

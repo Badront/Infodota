@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:background="?attr/clickableItemBackground"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/view_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/half_view_padding"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/half_view_padding"
                 android:layout_toRightOf="@id/skill_img"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/hero_skill_name_textSize"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/skill_name"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/half_view_padding"
                 android:layout_toRightOf="@id/skill_img"
                 android:textSize="@dimen/hero_skill_affects_textSize" />
         </RelativeLayout>
@@ -54,14 +54,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingLeft="5dp" />
+            android:paddingLeft="@dimen/half_view_padding" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/skill_other_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/half_view_padding"
         android:orientation="vertical">
 
         <LinearLayout
@@ -78,9 +78,9 @@
         android:layout_gravity="right"
         android:background="?attr/selectableItemBackground"
         android:drawableLeft="@drawable/youtube_icon"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/half_view_padding"
         android:gravity="center_vertical"
-        android:paddingLeft="5dp"
+        android:paddingLeft="@dimen/half_view_padding"
         android:singleLine="true"
         android:text="@string/watch_on_youtube"
         android:textSize="@dimen/hero_skill_affects_textSize"
