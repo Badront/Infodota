@@ -47,6 +47,17 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> getItemsByName(Context context, String name) {
+        DatabaseManager manager = DatabaseManager.getInstance(context);
+        SQLiteDatabase database = manager.openDatabase();
+        try {
+            return itemDao.getEntitiesByName(database,name);
+        } finally {
+            manager.closeDatabase();
+        }
+    }
+
+    @Override
     public Item getItemById(Context context, long id) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();

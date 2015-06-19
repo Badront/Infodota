@@ -18,6 +18,8 @@ public interface ItemService extends InitializingBean {
 
     List<Item> getAllItems(Context context);
 
+    List<Item> getItemsByName(Context context,String name);
+
     Item getItemById(Context context, long id);
 
     Item getItemByDotaId(Context context, String dotaId);

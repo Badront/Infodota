@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.items.Item;
 
 import java.util.ArrayList;
@@ -116,6 +117,27 @@ public class ItemDao extends GeneralDaoImpl<Item> {
         Cursor cursor = database.query(getTableName(), getAllColumns(), COLUMN_TYPE + "=?", new String[]{type}, null, null, getDefaultOrderColumns());
         List<Item> entities = new ArrayList<>();
         try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Item entity = cursorToEntity(cursor, 0);
+                    entities.add(entity);
+                } while (cursor.moveToNext());
+            }
+            return entities;
+        } finally {
+            cursor.close();
+        }
+    }
+
+
+    public List<Item> getEntitiesByName(SQLiteDatabase database, String name) {
+        if (TextUtils.isEmpty(name)) {
+            return getAllEntities(database);
+        }
+        String lower = "%" + name.toLowerCase() + "%";
+        Cursor cursor = database.query(getTableName(), getAllColumns(), COLUMN_DNAME + " like ?", new String[]{lower}, null, null, getDefaultOrderColumns());
+        try {
+            List<Item> entities = new ArrayList<>(cursor.getCount());
             if (cursor.moveToFirst()) {
                 do {
                     Item entity = cursorToEntity(cursor, 0);

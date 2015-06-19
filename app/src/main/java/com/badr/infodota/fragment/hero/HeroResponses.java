@@ -253,7 +253,12 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
                 mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
                     public void onPrepared(MediaPlayer mp) {
-                        mediaPlayer.start();
+                        try {
+                            mediaPlayer.start();
+                        }
+                        catch (IllegalStateException e){
+                            //ignored
+                        }
                     }
                 });
                 mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {

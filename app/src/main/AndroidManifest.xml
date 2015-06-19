@@ -101,6 +101,8 @@
         <activity
             android:name=".activity.TI4Activity"
             android:configChanges="keyboard|orientation|screenSize" />
+        <activity android:name="com.util.infoparser.InfoParserActivity"
+            android:configChanges="keyboard|orientation|screenSize"/>
         <!--<activity
                 android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
                 android:name="com.google.ads.AdActivity" />-->
