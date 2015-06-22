@@ -254,6 +254,22 @@ public class HeroDao extends GeneralDaoImpl<Hero> {
             cursor.close();
         }
     }
+    public Hero getExactEntity(SQLiteDatabase database,String name){
+        if (TextUtils.isEmpty(name)) {
+            return null;
+        }
+        String lower = name.toLowerCase();
+        Cursor cursor = database.query(getTableName(), getAllColumns(), COLUMN_NAME + " like ? or " + COLUMN_LOCALIZED_NAME + " like ?", new String[]{lower, lower}, null, null, getDefaultOrderColumns());
+        try {
+            Hero entity =null;
+            if (cursor.moveToFirst()) {
+                    entity = cursorToEntity(cursor, 0);
+            }
+            return entity;
+        } finally {
+            cursor.close();
+        }
+    }
 
     public List<Hero> getEntities(SQLiteDatabase database, String name) {
         if (TextUtils.isEmpty(name)) {

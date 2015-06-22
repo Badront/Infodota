@@ -152,7 +152,7 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
         View vi = convertView;
         Match item = getItem(position);
         if ((item instanceof Result) && ((Result) item).isSection()) {
-            vi = inflater.inflate(R.layout.leagues_games_list_section, parent, false);
+            vi = inflater.inflate(R.layout.list_section, parent, false);
             TextView sectionHeader = (TextView) vi.findViewById(R.id.section_title);
 
             long timestamp = item.getStart_time();

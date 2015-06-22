@@ -106,7 +106,7 @@ public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionLis
         View vi = convertView;
         MatchItem item = getItem(position);
         if (item.isSection()) {
-            vi = inflater.inflate(R.layout.leagues_games_list_section, parent, false);
+            vi = inflater.inflate(R.layout.list_section, parent, false);
             TextView sectionHeader = (TextView) vi.findViewById(R.id.section_title);
             sectionHeader.setText(DateUtils.DATE_FORMAT.format(item.getDate()));
         } else {

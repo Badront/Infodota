@@ -21,7 +21,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/half_view_padding"
             android:background="@drawable/abc_textfield_search_material"
             android:orientation="horizontal">
@@ -41,11 +41,12 @@
                 android:id="@+id/clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:src="@drawable/abc_ic_clear_mtrl_alpha" />
         </LinearLayout>
     </LinearLayout>
 
-    <ListView
+    <com.badr.infodota.view.PinnedSectionListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="0px"

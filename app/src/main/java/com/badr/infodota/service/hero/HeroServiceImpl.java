@@ -16,7 +16,6 @@ import com.badr.infodota.dao.HeroDao;
 import com.badr.infodota.dao.HeroStatsDao;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.helper.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,6 +92,17 @@ public class HeroServiceImpl implements HeroService {
         SQLiteDatabase database = manager.openDatabase();
         try {
             return heroDao.getEntities(database, name);
+        } finally {
+            manager.closeDatabase();
+        }
+    }
+
+    @Override
+    public Hero getExactHeroByName(Context context, String name) {
+        DatabaseManager manager = DatabaseManager.getInstance(context);
+        SQLiteDatabase database = manager.openDatabase();
+        try {
+            return heroDao.getExactEntity(database, name);
         } finally {
             manager.closeDatabase();
         }

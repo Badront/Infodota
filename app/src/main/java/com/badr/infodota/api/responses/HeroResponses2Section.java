@@ -1,7 +1,7 @@
 package com.badr.infodota.api.responses;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by ABadretdinov
@@ -13,7 +13,7 @@ public class HeroResponses2Section implements Serializable {
     private String name;
     /*not using it by now*/
     private String ability;
-    private List<HeroResponse2> responses;
+    private java.util.List<HeroResponse2> responses;
 
     public String getCode() {
         return code;
@@ -39,11 +39,14 @@ public class HeroResponses2Section implements Serializable {
         this.ability = ability;
     }
 
-    public List<HeroResponse2> getResponses() {
+    public java.util.List<HeroResponse2> getResponses() {
         return responses;
     }
 
-    public void setResponses(List<HeroResponse2> responses) {
+    public void setResponses(java.util.List<HeroResponse2> responses) {
         this.responses = responses;
+    }
+
+    public static class List extends ArrayList<HeroResponses2Section> {
     }
 }

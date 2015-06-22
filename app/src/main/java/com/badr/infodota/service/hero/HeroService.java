@@ -23,6 +23,8 @@ public interface HeroService extends InitializingBean {
 
     List<Hero> getHeroesByName(Context context, String name);
 
+    Hero getExactHeroByName(Context context, String name);
+
     List<CarouselHero> getCarouselHeroes(Context context, String filter);
 
     CarouselHero.List getCarouselHeroes(Context context, String filter,String name);

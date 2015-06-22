@@ -122,11 +122,11 @@ public class InfoParserActivity extends Activity implements RequestListener {
                     for (int i = index, size = contentChildren.size() - 1; i < size && isH2; i++) {
                         Element h2 = contentChildren.get(i);
                         if ("h2".equals(h2.tagName())) {
-                            i++;
-                            Element ul = contentChildren.get(i).select("ul").first();
+                            Element ul = contentChildren.get(i+1).select("ul").first();
                             String sectionName=h2.child(0).text();
                             //todo тут могут быть вложенные span с предметами и скилами. исследуй это
                             if(ul!=null) {
+                                i++;
                                 HeroResponses2Section section = new HeroResponses2Section();
                                 section.setCode(code);
                                 section.setName(sectionName);
@@ -205,9 +205,9 @@ public class InfoParserActivity extends Activity implements RequestListener {
                             response2.setRune("regen");
                         }
                     } else {
-                        List<Hero> heroesWithThisName = heroService.getHeroesByName(mContext, extraFieldName);
-                        if (heroesWithThisName != null && heroesWithThisName.size() > 0) {
-                            response2.getHeroes().add(heroesWithThisName.get(0).getDotaId());
+                        Hero heroeWithThisName = heroService.getExactHeroByName(mContext, extraFieldName);
+                        if (heroeWithThisName!= null) {
+                            response2.getHeroes().add(heroeWithThisName.getDotaId());
                         } else {
                             List<Item> itemsWithThisName = itemService.getItemsByName(mContext, extraFieldName);
                             if (itemsWithThisName != null && itemsWithThisName.size() > 0) {

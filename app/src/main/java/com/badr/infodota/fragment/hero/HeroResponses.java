@@ -22,8 +22,8 @@ import android.widget.Toast;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.HeroResponsesAdapter;
 import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.api.responses.HeroResponse;
-import com.badr.infodota.api.responses.HeroResponsesResult;
+import com.badr.infodota.api.responses.HeroResponse2;
+import com.badr.infodota.api.responses.HeroResponses2Section;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
@@ -33,14 +33,13 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * User: ABadretdinov
  * Date: 05.02.14
  * Time: 17:53
  */
-public class HeroResponses extends Fragment implements RequestListener<HeroResponse.List> {
+public class HeroResponses extends Fragment implements RequestListener<HeroResponses2Section.List> {
     private MediaPlayer mediaPlayer;
     private HeroResponsesAdapter adapter;
     private Filter mFilter;
@@ -161,8 +160,11 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
                 if (adapter.isEditMode()) {
                     adapter.setItemClicked(position);
                 } else {
-                    HeroResponse heroResponse = adapter.getItem(position);
-                    new MusicLoader(position).execute(heroResponse);
+                    Object object=adapter.getItem(position);
+                    if(object instanceof HeroResponse2) {
+                        HeroResponse2 heroResponse = (HeroResponse2) object;
+                        new MusicLoader(position).execute(heroResponse);
+                    }
                 }
             }
         });
@@ -182,7 +184,7 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     }
 
     @Override
-    public void onRequestSuccess(HeroResponse.List heroResponses) {
+    public void onRequestSuccess(HeroResponses2Section.List heroResponses) {
         initialized=true;
         File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
         String musicPath=musicFolder.getAbsolutePath();
@@ -191,38 +193,39 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
         listView.setAdapter(adapter);
     }
 
-    public class HeroResponseLoadRequest extends TaskRequest<HeroResponse.List>{
+    public class HeroResponseLoadRequest extends TaskRequest<HeroResponses2Section.List>{
 
         public HeroResponseLoadRequest() {
-            super(HeroResponse.List.class);
+            super(HeroResponses2Section.List.class);
         }
 
         @Override
-        public HeroResponse.List loadData() throws Exception {
+        public HeroResponses2Section.List loadData() throws Exception {
             Activity activity=getActivity();
             if(activity!=null) {
                 String responsesEntity = FileUtils.getTextFromAsset(activity,
                         "heroes" + File.separator + hero.getDotaId() + File.separator + "responses.json");
-                HeroResponsesResult heroResponsesResult = new Gson().fromJson(responsesEntity, HeroResponsesResult.class);
+                HeroResponses2Section.List sections = new Gson().fromJson(responsesEntity, HeroResponses2Section.List.class);
 
-                List<HeroResponse> heroResponses = heroResponsesResult.getResponses();
                 File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
                 if (musicFolder.exists()) {
-                    for (HeroResponse heroResponse : heroResponses) {
-                        String[] urlParts = heroResponse.getUrl().split(File.separator);
-                        String fileName = musicFolder + File.separator + urlParts[urlParts.length - 1];
-                        if (new File(fileName).exists()) {
-                            heroResponse.setLocalUrl(fileName);
+                    for(HeroResponses2Section section:sections) {
+                        for (HeroResponse2 heroResponse : section.getResponses()) {
+                            String[] urlParts = heroResponse.getUrl().split(File.separator);
+                            String fileName = musicFolder + File.separator + urlParts[urlParts.length - 1];
+                            if (new File(fileName).exists()) {
+                                heroResponse.setLocalUrl(fileName);
+                            }
                         }
                     }
                 }
-                return new HeroResponse.List(heroResponses);
+                return sections;
             }
             return null;
         }
     }
 
-    public class MusicLoader extends AsyncTask<HeroResponse, Object, String> {
+    public class MusicLoader extends AsyncTask<HeroResponse2, Object, String> {
         private int position;
 
         public MusicLoader(int position) {
@@ -236,8 +239,8 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
         }
 
         @Override
-        protected String doInBackground(HeroResponse... params) {
-            HeroResponse heroResponse = params[0];
+        protected String doInBackground(HeroResponse2... params) {
+            HeroResponse2 heroResponse = params[0];
             String path = heroResponse.getUrl();
             if (!TextUtils.isEmpty(heroResponse.getLocalUrl())) {
                 File filePath = new File(heroResponse.getLocalUrl());
