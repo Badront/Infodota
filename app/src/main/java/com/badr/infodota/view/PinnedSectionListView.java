@@ -261,8 +261,9 @@ public class PinnedSectionListView extends ListView {
 
 	int findFirstVisibleSectionPosition(int firstVisibleItem, int visibleItemCount) {
 		ListAdapter adapter = getAdapter();
+        int adapterSize=adapter.getCount()-1;
 		for (int childIndex = 0; childIndex < visibleItemCount; childIndex++) {
-			int position = firstVisibleItem + childIndex;
+			int position = Math.min(firstVisibleItem + childIndex,adapterSize);
 			int viewType = adapter.getItemViewType(position);
 			if (isItemViewTypePinned(adapter, viewType)) return position;
 		}
@@ -284,7 +285,7 @@ public class PinnedSectionListView extends ListView {
 		}
 
 		// try slow way by looking through to the next section item above
-		for (int position=fromPosition; position>=0; position--) {
+		for (int position=Math.min(fromPosition,adapter.getCount()-1); position>=0; position--) {
 			int viewType = adapter.getItemViewType(position);
 			if (isItemViewTypePinned(adapter, viewType)) return position;
 		}

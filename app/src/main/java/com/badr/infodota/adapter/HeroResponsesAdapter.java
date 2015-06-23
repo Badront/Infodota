@@ -92,7 +92,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
             sectionNameB.append(section.getName());
             String sectionName=sectionNameB.toString();
             if(section.getResponses()!=null){
-                if(TextUtils.isEmpty(filter)||sectionName.contains(filter)) {
+                if(TextUtils.isEmpty(filter)||sectionName.toLowerCase().contains(filter)) {
                     result.add(sectionName);
                     result.addAll(section.getResponses());
                 }

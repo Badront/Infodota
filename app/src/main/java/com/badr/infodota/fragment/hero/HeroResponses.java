@@ -180,7 +180,6 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     @Override
     public void onRequestFailure(SpiceException spiceException) {
         initialized=true;
-
     }
 
     @Override
