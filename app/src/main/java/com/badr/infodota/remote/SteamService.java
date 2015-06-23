@@ -48,7 +48,7 @@ public interface SteamService {
             @Query("hero_id")Long heroId
             );
 
-    @GET("/IEconItems_570/GetSchema/v0001/")
+    @GET("/IEconItems_570/GetSchemaURL/v1/")
     StoreResult getCosmeticItems(@Query("language")String language);
 
     @GET("/ISteamEconomy/GetAssetPrices/v0001?language=en&appid=570")

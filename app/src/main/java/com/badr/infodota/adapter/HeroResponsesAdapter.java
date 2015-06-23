@@ -157,14 +157,14 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
 
     public void changeEditMode(boolean editMode) {
         this.editMode = editMode;
-        toLocalLoad = new ArrayList<HeroResponse2>();
+        toLocalLoad = new ArrayList<>();
         notifyDataSetChanged();
     }
 
     public void inverseChecked() {
         if (editMode) {
             List<HeroResponse2> notToLoad = toLocalLoad;
-            toLocalLoad = new ArrayList<HeroResponse2>();
+            toLocalLoad = new ArrayList<>();
             for(Object object:filteredHeroResponses){
                 if(object instanceof HeroResponse2){
                     HeroResponse2 heroResponse2= (HeroResponse2) object;
@@ -248,7 +248,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     String[] heroResponseActions = context.getResources().getStringArray(R.array.hero_response_actions);
                     builder.setTitle(R.string.response_dialog_title);
-                    builder.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, heroResponseActions), new DialogInterface.OnClickListener() {
+                    builder.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, heroResponseActions), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
@@ -321,6 +321,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
                 }
             }
             if(!TextUtils.isEmpty(response2.getRune())){
+                System.out.println(response2.getRune());
                 //todo
             }
             if (row != null) {

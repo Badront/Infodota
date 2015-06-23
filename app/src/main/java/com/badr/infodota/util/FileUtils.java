@@ -166,6 +166,19 @@ public class FileUtils {
         }
         return false;
     }
+    public static void saveStringFile(String fileName, String data) {
+        File skillFile = new File(Environment.getExternalStorageDirectory().getPath() + "/dota/" + fileName);
+        skillFile.getParentFile().mkdirs();
+        try {
+            FileOutputStream fOut = new FileOutputStream(skillFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+            myOutWriter.append(data);
+            myOutWriter.close();
+            fOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static Bitmap getBitmapFromAsset(Context context, String strName) {
         AssetManager assetManager = context.getAssets();
