@@ -100,7 +100,7 @@ public class InfoParserActivity extends Activity implements RequestListener {
 
         /*do not use /ru, otherwise you won't have items*/
         private List<HeroResponses2Section> loadHeroResponses(Hero hero) throws Exception {
-            String heroName = hero.getLocalizedName().replace("'", "%27").replace(' ', '_');
+            String heroName = "Legion_Commander";//hero.getLocalizedName().replace("'", "%27").replace(' ', '_');
 
             String url = MessageFormat.format(Constants.Heroes.DOTA2_WIKI_RESPONSES_URL, heroName);
             System.out.println("hero url: " + url);
@@ -111,6 +111,8 @@ public class InfoParserActivity extends Activity implements RequestListener {
             String code=null;
             if (spanList != null && !spanList.isEmpty()) {
                 Element firstH2 = spanList.first().parent(); //h2
+                spanList=null;
+                doc=null;
                 if (firstH2 != null) {
                     Elements contentChildren = content.children();
                     int index = contentChildren.indexOf(firstH2);
@@ -119,12 +121,12 @@ public class InfoParserActivity extends Activity implements RequestListener {
                         contentChildren=contentChildren.first().children();
                         index=contentChildren.indexOf(firstH2);
                     }
+                    content=null;
                     for (int i = index, size = contentChildren.size() - 1; i < size && isH2; i++) {
                         Element h2 = contentChildren.get(i);
                         if ("h2".equals(h2.tagName())) {
                             Element ul = contentChildren.get(i+1).select("ul").first();
                             String sectionName=h2.child(0).text();
-                            //todo тут могут быть вложенные span с предметами и скилами. исследуй это
                             if(ul!=null) {
                                 i++;
                                 HeroResponses2Section section = new HeroResponses2Section();
@@ -148,7 +150,7 @@ public class InfoParserActivity extends Activity implements RequestListener {
                                 code=sectionName;
                             }
                         }
-                        else if("h1".equals(h2.tagName())) {
+                        else if("h1".equals(h2.tagName())) { //h1 and other h2s are in the different div
                             code=h2.child(0).text();
                         }
                         else {
