@@ -75,6 +75,7 @@ public interface Constants {
     }
 
     interface Cosmetics {
+        String ITEM_BASE_URL="http://cdn.dota2.com/apps/570/{0}";
         String SUBURL = "https://api.steampowered.com/IEconItems_570/GetSchema/v0001/?key={0}&language={1}";
         /*public static final String SUBURL="https://raw.githubusercontent.com/SchemaTracker/SteamEcon/master/cache/schema_570.json";*/
         //public static final String SUBURL="http://api.steampowered.com/IEconItems_570/GetSchemaURL/v1/?key={0}&language={1}";

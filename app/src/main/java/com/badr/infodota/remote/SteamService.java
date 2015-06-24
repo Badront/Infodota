@@ -1,5 +1,6 @@
 package com.badr.infodota.remote;
 
+import com.badr.infodota.api.cosmetics.icon.ItemIconHolderResult;
 import com.badr.infodota.api.cosmetics.player.PlayerCosmeticItem;
 import com.badr.infodota.api.cosmetics.price.PricesResult;
 import com.badr.infodota.api.cosmetics.store.StoreResult;
@@ -56,4 +57,7 @@ public interface SteamService {
 
     @GET("/IEconItems_570/GetPlayerItems/v0001/")
     List<PlayerCosmeticItem> getPlayerCosmeticItems(@Query("steamId") long steamId);
+
+    @GET("/IEconDOTA2_570/GetItemIconPath/v1/?format=json")
+    ItemIconHolderResult getItemIconPath(@Query("iconname") String iconname);
 }

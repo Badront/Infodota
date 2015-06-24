@@ -10,6 +10,7 @@ public class VDFtoJsonParser {
     public static String parse(String vdf) {
         String json = vdf;
         json = "{\n" + json + "\n}";
+        json=json.replace("\\\"","");
         json = json.replaceAll("\"([^\"]*)\"(\\s*)\\{", "\"$1\": {");
         json = json.replaceAll("\"([^\"]*)\"\\s*\"([^\"]*)\"", "\"$1\": \"$2\",");
         json = json.replaceAll(",(\\s*[\\}\\]])", "$1");
