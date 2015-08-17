@@ -1,6 +1,7 @@
 package com.badr.infodota.fragment.quiz;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import com.badr.infodota.api.abilities.Ability;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,6 @@ import java.util.Random;
  */
 public class HeroSkillsQuiz extends QuizFragment {
     public static final int SKILLS_NUM_TO_DISPLAY = 8;
-    private ImageLoader imageLoader;
     private Hero hero;
     private Ability realAbility;
     private List<Ability> fakeAbilities;
@@ -50,7 +50,6 @@ public class HeroSkillsQuiz extends QuizFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        imageLoader = ImageLoader.getInstance();
         HeroService heroService = BeanContainer.getInstance().getHeroService();
         Activity activity = getActivity();
         List<Hero> heroes = heroService.getAllHeroes(activity);
@@ -67,8 +66,8 @@ public class HeroSkillsQuiz extends QuizFragment {
             fakeAbilities.add(nonHeroAbilities.get(idRandom.nextInt(nonHeroAbilities.size())));
         }
         Collections.shuffle(fakeAbilities, idRandom);
-        View root=getView();
-        if(root!=null) {
+        View root = getView();
+        if (root != null) {
             initCoreHero(root);
             initFakeFlow(root);
         }
@@ -80,7 +79,8 @@ public class HeroSkillsQuiz extends QuizFragment {
         LinearLayout fake2 = (LinearLayout) fakeFlow.findViewById(R.id.ability_fake_holder2);
         fake1.removeAllViews();
         fake2.removeAllViews();
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        Context context = root.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.weight = 1f;
@@ -89,9 +89,7 @@ public class HeroSkillsQuiz extends QuizFragment {
             View view = inflater.inflate(R.layout.item_quiz_holder, null, false);
             view.setLayoutParams(layoutParams);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
-            imageLoader.displayImage(
-                    Utils.getSkillImage(ability.getName()),
-                    imageView);
+            Glide.with(context).load(Utils.getSkillImage(ability.getName())).into(imageView);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -111,9 +109,7 @@ public class HeroSkillsQuiz extends QuizFragment {
     }
 
     private void initCoreHero(View root) {
-        imageLoader.displayImage(
-                Utils.getHeroPortraitImage(hero.getDotaId()),
-                (ImageView) root.findViewById(R.id.hero_img));
+        Glide.with(root.getContext()).load(Utils.getHeroPortraitImage(hero.getDotaId())).into((ImageView) root.findViewById(R.id.hero_img));
     }
 
     @Override

@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
@@ -22,18 +21,16 @@ import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.service.player.PlayerService;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.SlidingTabLayout;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 /**
  * User: Histler
  * Date: 21.01.14
  */
 public class PlayerInfoActivity extends BaseActivity {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     PlayerService playerService = BeanContainer.getInstance().getPlayerService();
     private Unit account;
     private Menu menu;
@@ -112,50 +109,31 @@ public class PlayerInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player_info);
-        options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle.containsKey("account")) {
             account = (Unit) bundle.get("account");
             final ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle(account.getName());
-            imageLoader.loadImage(account.getIcon(), options, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-
-                }
-
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-                }
-
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    final TypedArray styledAttributes = getTheme()
-                            .obtainStyledAttributes(new int[]{R.attr.actionBarSize});
-                    int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
-                    styledAttributes.recycle();
-                    Bitmap icon = loadedImage;
-                    if (icon != null) {
-                        icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
-                        Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
-                        //actionBar.setDisplayShowHomeEnabled(true);
-                        //actionBar.setIcon(iconDrawable);
-                        mToolbar.setNavigationIcon(iconDrawable);
+            if(actionBar!=null&&account!=null) {
+                actionBar.setTitle(account.getName());
+                Glide.with(this).load(account.getIcon()).into(new SimpleTarget<GlideDrawable>() {
+                    @Override
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        final TypedArray styledAttributes = getTheme()
+                                .obtainStyledAttributes(new int[]{R.attr.actionBarSize});
+                        int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
+                        styledAttributes.recycle();
+                        Bitmap icon = Utils.getBitmap(resource);
+                        if (icon != null) {
+                            icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
+                            Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
+                            //actionBar.setDisplayShowHomeEnabled(true);
+                            //actionBar.setIcon(iconDrawable);
+                            mToolbar.setNavigationIcon(iconDrawable);
+                        }
                     }
-                }
-
-                @Override
-                public void onLoadingCancelled(String imageUri, View view) {
-
-                }
-            });
+                });
+            }
             FragmentPagerAdapter adapter = new PlayerInfoPagerAdapter(this, getSupportFragmentManager(), account);
             final ViewPager pager = (ViewPager) findViewById(R.id.pager);
             pager.setAdapter(adapter);

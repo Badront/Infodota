@@ -1,6 +1,6 @@
 package com.badr.infodota.adapter;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +13,7 @@ import com.badr.infodota.api.Constants;
 import com.badr.infodota.api.streams.Stream;
 import com.badr.infodota.fragment.twitch.TwitchGamesAdapter;
 import com.badr.infodota.service.twitch.TwitchService;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -24,8 +23,6 @@ import java.util.List;
  * Date: 28.02.14
  */
 public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHolder> {
-    DisplayImageOptions options;
-    private ImageLoader imageLoader;
     private TwitchGamesAdapter holderAdapter;
     private List<Stream> favStreams;
 
@@ -33,13 +30,6 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
         super(streams);
         this.holderAdapter = holderAdapter;
         this.favStreams = favStreams;
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_game)
-                .cacheOnDisk(true)
-                .cacheInMemory(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
     }
 
     public void addStream(Stream stream) {
@@ -58,12 +48,11 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
     @Override
     public void onBindViewHolder(StreamHolder holder, int position) {
         final Stream stream = getItem(position);
-
-        if(TextUtils.isEmpty(stream.getImage())){
-            imageLoader.displayImage(MessageFormat.format(Constants.TwitchTV.PREVIEW_URL, stream.getChannel()), holder.img, options);
-        }
-        else {
-            imageLoader.displayImage(stream.getImage(), holder.img, options);
+        Context context = holder.img.getContext();
+        if (TextUtils.isEmpty(stream.getImage())) {
+            Glide.with(context).load(MessageFormat.format(Constants.TwitchTV.PREVIEW_URL, stream.getChannel())).placeholder(R.drawable.default_game).into(holder.img);
+        } else {
+            Glide.with(context).load(stream.getImage()).placeholder(R.drawable.default_game).into(holder.img);
         }
         holder.channel.setText(stream.getChannel());
         holder.status.setText(stream.getTitle());
@@ -91,10 +80,9 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
                 }
             });
         }
-        if("douyu".equals(stream.getProvider())){
+        if ("douyu".equals(stream.getProvider())) {
             holder.provider.setImageResource(R.drawable.douyu);
-        }
-        else {
+        } else {
             holder.provider.setImageResource(R.drawable.twitch);
         }
     }

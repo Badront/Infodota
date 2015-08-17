@@ -1,7 +1,6 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +15,7 @@ import com.badr.infodota.api.trackdota.game.Game;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
 import com.badr.infodota.view.PinnedSectionListView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -31,21 +29,12 @@ import java.util.List;
  * 12:34
  */
 public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
-    DisplayImageOptions options;
     private LayoutInflater inflater;
     private List<Object> mGames=new ArrayList<Object>();
-    private ImageLoader imageLoader;
     private SimpleDateFormat dateTimeFormat=new SimpleDateFormat("HH:mm  dd.MM.yyyy");
     public FeaturedGamesAdapter(Context context,List<Game> games){
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.empty_item)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         if(games!=null){
             for (Game game:games) {
                 int size=mGames.size();
@@ -117,7 +106,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
             }
             if(header.hasImage){
                 imageView.setVisibility(View.VISIBLE);
-                imageLoader.displayImage(TrackdotaUtils.getLeagueImageUrl(header.id), imageView, options);
+                Glide.with(context).load(TrackdotaUtils.getLeagueImageUrl(header.id)).placeholder(R.drawable.empty_item).into(imageView);
             }
             else {
                 imageView.setVisibility(View.INVISIBLE);
@@ -151,7 +140,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 holder.radiantTag.setText(TrackdotaUtils.getTeamTag(radiant,TrackdotaUtils.RADIANT));
                 holder.radiantName.setText(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT));
                 if(radiant.isHasLogo()) {
-                    imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), holder.radiantLogo, options);
+                    Glide.with(context).load(TrackdotaUtils.getTeamImageUrl(radiant)).placeholder(R.drawable.empty_item).into(holder.radiantLogo);
                 }
                 else {
                     holder.radiantLogo.setImageResource(R.drawable.default_img);
@@ -169,7 +158,7 @@ public class FeaturedGamesAdapter extends BaseAdapter implements PinnedSectionLi
                 holder.direTag.setText(TrackdotaUtils.getTeamTag(dire,TrackdotaUtils.DIRE));
                 holder.direName.setText(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE));
                 if(dire.isHasLogo()) {
-                    imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), holder.direLogo, options);
+                    Glide.with(context).load(TrackdotaUtils.getTeamImageUrl(dire)).placeholder(R.drawable.empty_item).into(holder.direLogo);
                 }else {
                     holder.direLogo.setImageResource(R.drawable.default_img);
                 }

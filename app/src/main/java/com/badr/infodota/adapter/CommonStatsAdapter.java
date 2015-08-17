@@ -1,7 +1,6 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.CommonStatHolder;
 import com.badr.infodota.api.CommonStat;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -22,16 +20,9 @@ import java.util.List;
  * 18:06
  */
 public class CommonStatsAdapter extends BaseRecyclerAdapter<CommonStat,CommonStatHolder> {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private String[] localizedWinLose;
     public CommonStatsAdapter(Context context,List<CommonStat> data) {
         super(data);
-        options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565).build();
-        imageLoader = ImageLoader.getInstance();
         localizedWinLose=new String[]{context.getString(R.string.win),context.getString(R.string.lost)};
     }
 
@@ -45,10 +36,11 @@ public class CommonStatsAdapter extends BaseRecyclerAdapter<CommonStat,CommonSta
     public void onBindViewHolder(CommonStatHolder holder, int position) {
         CommonStat entity=getItem(position);
         holder.header.setText(entity.getHeader());
-        imageLoader.displayImage(
-                Utils.getHeroFullImage(entity.getHero().getDotaId()),
-                holder.heroImg,
-                options);
+        Context context=holder.header.getContext();
+        Glide
+                .with(context)
+                .load(Utils.getHeroFullImage(entity.getHero().getDotaId()))
+                .into(holder.heroImg);
         holder.heroName.setText(entity.getHero().getLocalizedName());
 
         int color=entity.isWon()? Color.GREEN:Color.RED;

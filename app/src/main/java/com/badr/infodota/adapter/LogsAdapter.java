@@ -2,7 +2,6 @@ package com.badr.infodota.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -24,8 +23,7 @@ import com.badr.infodota.api.trackdota.live.LogEvent;
 import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.PinnedSectionListView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -38,31 +36,22 @@ import java.util.List;
  * 15:05
  */
 public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
-    DisplayImageOptions options;
-    private ImageLoader imageLoader;
     private ItemService itemService = BeanContainer.getInstance().getItemService();
     private GameManager gameManager = GameManager.getInstance();
-    private List<Object> logs=new ArrayList<Object>();
+    private List<Object> logs = new ArrayList<Object>();
     private Team radiant;
     private Team dire;
 
 
-    public LogsAdapter(List<LogEvent> logEvents,Team radiant,Team dire){
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.empty_item)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
-        this.radiant=radiant;
-        this.dire=dire;
+    public LogsAdapter(List<LogEvent> logEvents, Team radiant, Team dire) {
+        this.radiant = radiant;
+        this.dire = dire;
         /*add normal sorting*/
-        if(logEvents!=null){
-            List<LogEvent> events=new ArrayList<>(logEvents);
+        if (logEvents != null) {
+            List<LogEvent> events = new ArrayList<>(logEvents);
             Collections.reverse(events);
-            for(LogEvent logEvent:events){
-                if(!logs.contains(logEvent.getTimestamp())){
+            for (LogEvent logEvent : events) {
+                if (!logs.contains(logEvent.getTimestamp())) {
                     logs.add(logEvent.getTimestamp());
                 }
                 logs.add(logEvent);
@@ -87,37 +76,36 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View itemView=convertView;
-        Object object=getItem(position);
-        Context context=parent.getContext();
-        if(object instanceof LogEvent){
+        View itemView = convertView;
+        Object object = getItem(position);
+        Context context = parent.getContext();
+        if (object instanceof LogEvent) {
             LogEventHolder holder;
-            if(itemView==null||itemView.getTag()==null){
-                itemView=((LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trackdota_log_row,parent,false);
-                holder=new LogEventHolder();
-                holder.heroIcon= (ImageView) itemView.findViewById(R.id.hero_icon);
-                holder.text= (TextView) itemView.findViewById(android.R.id.text1);
-                holder.itemIcon= (ImageView) itemView.findViewById(R.id.item_icon);
+            if (itemView == null || itemView.getTag() == null) {
+                itemView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trackdota_log_row, parent, false);
+                holder = new LogEventHolder();
+                holder.heroIcon = (ImageView) itemView.findViewById(R.id.hero_icon);
+                holder.text = (TextView) itemView.findViewById(android.R.id.text1);
+                holder.itemIcon = (ImageView) itemView.findViewById(R.id.item_icon);
                 itemView.setTag(holder);
+            } else {
+                holder = (LogEventHolder) itemView.getTag();
             }
-            else {
-                holder= (LogEventHolder) itemView.getTag();
-            }
-            LogEvent logEvent= (LogEvent) object;
+            LogEvent logEvent = (LogEvent) object;
             holder.text.setTextSize(2, 16f);
             holder.heroIcon.setVisibility(View.VISIBLE);
             holder.itemIcon.setVisibility(View.VISIBLE);
             holder.text.setVisibility(View.VISIBLE);
-            Resources resources=context.getResources();
+            Resources resources = context.getResources();
 
-            if("kill".equals(logEvent.getAction())){
+            if ("kill".equals(logEvent.getAction())) {
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(Color.WHITE);
-                Player player=gameManager.getPlayer(logEvent.getAccountId());
-                Hero hero=gameManager.getHero(player.getHeroId());
-                imageLoader.displayImage(Utils.getHeroMiniImage(hero.getDotaId()),holder.heroIcon,options);
-                String playerName=getHtmlColorWrap(player.getName(),player.getTeam()==TrackdotaUtils.RADIANT?resources.getColor(R.color.ally_team):resources.getColor(R.color.enemy_team));
-                if(logEvent.getDelta()>1){
+                Player player = gameManager.getPlayer(logEvent.getAccountId());
+                Hero hero = gameManager.getHero(player.getHeroId());
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
+                if (logEvent.getDelta() > 1) {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -127,8 +115,7 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                     )
                             )
                     );
-                }
-                else {
+                } else {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -138,15 +125,14 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                             )
                     );
                 }
-            }
-            else if("death".equals(logEvent.getAction())){
+            } else if ("death".equals(logEvent.getAction())) {
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(Color.WHITE);
-                Player player=gameManager.getPlayer(logEvent.getAccountId());
-                Hero hero=gameManager.getHero(player.getHeroId());
-                imageLoader.displayImage(Utils.getHeroMiniImage(hero.getDotaId()),holder.heroIcon,options);
-                String playerName=getHtmlColorWrap(player.getName(),player.getTeam()==TrackdotaUtils.RADIANT?resources.getColor(R.color.ally_team):resources.getColor(R.color.enemy_team));
-                if(logEvent.getDelta()>1){
+                Player player = gameManager.getPlayer(logEvent.getAccountId());
+                Hero hero = gameManager.getHero(player.getHeroId());
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
+                if (logEvent.getDelta() > 1) {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -156,8 +142,7 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                     )
                             )
                     );
-                }
-                else {
+                } else {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -167,33 +152,31 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                             )
                     );
                 }
-            }
-            else if("item".equals(logEvent.getAction())){
-                Player player=gameManager.getPlayer(logEvent.getAccountId());
+            } else if ("item".equals(logEvent.getAction())) {
+                Player player = gameManager.getPlayer(logEvent.getAccountId());
                 holder.text.setTextColor(Color.WHITE);
-                Hero hero=gameManager.getHero(player.getHeroId());
-                long itemId=Long.valueOf(logEvent.getId());
-                Item item=gameManager.getItem(itemId);
-                imageLoader.displayImage(Utils.getHeroMiniImage(hero.getDotaId()),holder.heroIcon,options);
-                if(item==null){
-                    item=itemService.getItemById(context,itemId);
+                Hero hero = gameManager.getHero(player.getHeroId());
+                long itemId = Long.valueOf(logEvent.getId());
+                Item item = gameManager.getItem(itemId);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                if (item == null) {
+                    item = itemService.getItemById(context, itemId);
                     gameManager.addItem(item);
                 }
-                imageLoader.displayImage(Utils.getItemImage(item.getDotaId()),holder.itemIcon,options);
-                String itemName=getHtmlColorWrap(item.getDname(),resources.getColor(R.color.item));
-                String playerName=getHtmlColorWrap(player.getName(),player.getTeam()==TrackdotaUtils.RADIANT?resources.getColor(R.color.ally_team):resources.getColor(R.color.enemy_team));
-                if((itemId==117||itemId==33)&&logEvent.getDelta()>=1){
+                Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(R.drawable.empty_item).into(holder.itemIcon);
+                String itemName = getHtmlColorWrap(item.getDname(), resources.getColor(R.color.item));
+                String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
+                if ((itemId == 117 || itemId == 33) && logEvent.getDelta() >= 1) {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
                                             context.getString(R.string.log_item_pickup),
                                             playerName,
                                             itemName
-                                            )
+                                    )
                             )
                     );
-                }
-                else if(logEvent.getDelta()>=1){
+                } else if (logEvent.getDelta() >= 1) {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -203,8 +186,7 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                     )
                             )
                     );
-                }
-                else if(logEvent.getDelta()==0){
+                } else if (logEvent.getDelta() == 0) {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -214,8 +196,7 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                     )
                             )
                     );
-                }
-                else {
+                } else {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -226,35 +207,31 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                             )
                     );
                 }
-            }
-            else if("tower".equals(logEvent.getAction())){
+            } else if ("tower".equals(logEvent.getAction())) {
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(resources.getColor(R.color.tower));
                 String teamName;
-                long delta=logEvent.getDelta();
+                long delta = logEvent.getDelta();
                 /*первые 11 товеров - radiant*/
-                if(delta<11){
-                    teamName=getHtmlColorWrap(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT), resources.getColor(R.color.ally_team));
-                }
-                else {
-                    teamName=getHtmlColorWrap(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE), resources.getColor(R.color.enemy_team));
-                    delta-=11;
+                if (delta < 11) {
+                    teamName = getHtmlColorWrap(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT), resources.getColor(R.color.ally_team));
+                } else {
+                    teamName = getHtmlColorWrap(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE), resources.getColor(R.color.enemy_team));
+                    delta -= 11;
                 }
                 String line;
                 int level;
-                String[] lines=context.getResources().getStringArray(R.array.map_tower_line);
-                if(delta==10){
-                    level=4;
-                    line=lines[2];
-                }
-                else if(delta==9){
-                    level=4;
-                    line=lines[0];
-                }
-                else {
-                    line=lines[((int) (delta / 3))];
-                    level= (int) (1+delta%3);
+                String[] lines = context.getResources().getStringArray(R.array.map_tower_line);
+                if (delta == 10) {
+                    level = 4;
+                    line = lines[2];
+                } else if (delta == 9) {
+                    level = 4;
+                    line = lines[0];
+                } else {
+                    line = lines[((int) (delta / 3))];
+                    level = (int) (1 + delta % 3);
                 }
                 holder.text.setText(
                         Html.fromHtml(
@@ -266,23 +243,21 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                 )
                         )
                 );
-            }
-            else if("barracks".equals(logEvent.getAction())){
+            } else if ("barracks".equals(logEvent.getAction())) {
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(resources.getColor(R.color.barracks));
-                long delta=logEvent.getDelta();
+                long delta = logEvent.getDelta();
                 String teamName;
                 /*первые 6 бараков - radiant*/
-                if(delta<6){
-                    teamName= getHtmlColorWrap(TrackdotaUtils.getTeamName(radiant,TrackdotaUtils.RADIANT),resources.getColor(R.color.ally_team));
+                if (delta < 6) {
+                    teamName = getHtmlColorWrap(TrackdotaUtils.getTeamName(radiant, TrackdotaUtils.RADIANT), resources.getColor(R.color.ally_team));
+                } else {
+                    teamName = getHtmlColorWrap(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE), resources.getColor(R.color.enemy_team));
+                    delta -= 6;
                 }
-                else {
-                    teamName=getHtmlColorWrap(TrackdotaUtils.getTeamName(dire, TrackdotaUtils.DIRE), resources.getColor(R.color.enemy_team));
-                    delta-=6;
-                }
-                String place=context.getResources().getStringArray(R.array.map_barracks_line)[((int) (delta / 2))];
-                String type=delta%2==0?context.getString(R.string.barrack_melee):context.getString(R.string.barrack_ranged);
+                String place = context.getResources().getStringArray(R.array.map_barracks_line)[((int) (delta / 2))];
+                String type = delta % 2 == 0 ? context.getString(R.string.barrack_melee) : context.getString(R.string.barrack_ranged);
                 holder.text.setText(
                         Html.fromHtml(
                                 MessageFormat.format(
@@ -294,14 +269,13 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                         )
                 );
 
-            }
-            else if("buyback".equals(logEvent.getAction())){
+            } else if ("buyback".equals(logEvent.getAction())) {
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(resources.getColor(R.color.buyback));
-                Player player=gameManager.getPlayer(logEvent.getAccountId());
-                Hero hero=gameManager.getHero(player.getHeroId());
-                imageLoader.displayImage(Utils.getHeroMiniImage(hero.getDotaId()),holder.heroIcon,options);
-                String playerName=getHtmlColorWrap(player.getName(),player.getTeam()==TrackdotaUtils.RADIANT?resources.getColor(R.color.ally_team):resources.getColor(R.color.enemy_team));
+                Player player = gameManager.getPlayer(logEvent.getAccountId());
+                Hero hero = gameManager.getHero(player.getHeroId());
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
                 holder.text.setText(
                         Html.fromHtml(
                                 MessageFormat.format(
@@ -310,25 +284,22 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                 )
                         )
                 );
-            }
-            else if("roshan".equals(logEvent.getAction())){
+            } else if ("roshan".equals(logEvent.getAction())) {
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.text.setTextSize(2, 20f);
                 holder.text.setTextColor(resources.getColor(R.color.roshan));
-                if(logEvent.getDelta()<0){
+                if (logEvent.getDelta() < 0) {
                     holder.text.setText(context.getString(R.string.roshan_death));
-                }
-                else {
+                } else {
                     holder.text.setText(context.getString(R.string.roshan_respawn));
                 }
-            }
-            else if("win".equals(logEvent.getAction())){
+            } else if ("win".equals(logEvent.getAction())) {
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.text.setTextSize(2, 24f);
                 holder.text.setTextColor(Color.WHITE);
-                String teamName=logEvent.getDelta()==TrackdotaUtils.RADIANT?
+                String teamName = logEvent.getDelta() == TrackdotaUtils.RADIANT ?
                         getHtmlColorWrap(
                                 TrackdotaUtils.getTeamName(
                                         radiant,
@@ -336,7 +307,7 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                 ),
                                 resources.getColor(R.color.ally_team)
                         )
-                        :getHtmlColorWrap(
+                        : getHtmlColorWrap(
                         TrackdotaUtils.getTeamName(
                                 dire,
                                 TrackdotaUtils.DIRE
@@ -351,23 +322,22 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                 )
                         )
                 );
-            }
-            else if("rapier".equals(logEvent.getAction())){
+            } else if ("rapier".equals(logEvent.getAction())) {
                 holder.text.setTextColor(resources.getColor(R.color.rapier));
                 holder.text.setTextColor(Color.WHITE);
-                Player player=gameManager.getPlayer(logEvent.getAccountId());
-                Hero hero=gameManager.getHero(player.getHeroId());
-                long itemId=133;
-                Item item=gameManager.getItem(itemId);
-                imageLoader.displayImage(Utils.getHeroMiniImage(hero.getDotaId()),holder.heroIcon,options);
-                if(item==null){
-                    item=itemService.getItemById(context,itemId);
+                Player player = gameManager.getPlayer(logEvent.getAccountId());
+                Hero hero = gameManager.getHero(player.getHeroId());
+                long itemId = 133;
+                Item item = gameManager.getItem(itemId);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                if (item == null) {
+                    item = itemService.getItemById(context, itemId);
                     gameManager.addItem(item);
                 }
-                imageLoader.displayImage(Utils.getItemImage(item.getDotaId()),holder.itemIcon,options);
-                String itemName=getHtmlColorWrap(item.getDname(),resources.getColor(R.color.item));
-                String playerName=getHtmlColorWrap(player.getName(),player.getTeam()==TrackdotaUtils.RADIANT?resources.getColor(R.color.ally_team):resources.getColor(R.color.enemy_team));
-                if(logEvent.getDelta()>0){
+                Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(R.drawable.empty_item).into(holder.itemIcon);
+                String itemName = getHtmlColorWrap(item.getDname(), resources.getColor(R.color.item));
+                String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
+                if (logEvent.getDelta() > 0) {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -377,8 +347,7 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                                     )
                             )
                     );
-                }
-                else {
+                } else {
                     holder.text.setText(
                             Html.fromHtml(
                                     MessageFormat.format(
@@ -391,17 +360,17 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                 }
 
             }
-        }
-        else {
-            long time= (long) object;
-            itemView=((LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trackdota_log_pinned_header,parent,false);
-            long minutes=time/60;
-            long seconds=time-minutes*60;
-            ((TextView)itemView.findViewById(android.R.id.text1)).setText(minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+        } else {
+            long time = (long) object;
+            itemView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.trackdota_log_pinned_header, parent, false);
+            long minutes = time / 60;
+            long seconds = time - minutes * 60;
+            ((TextView) itemView.findViewById(android.R.id.text1)).setText(minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
         }
         return itemView;
     }
-    private String getHtmlColorWrap(String text, int color){
+
+    private String getHtmlColorWrap(String text, int color) {
         return "<font color='" + String.format("#%06X", 0xFFFFFF & color) + "'>" + text + "</font>";
     }
 
@@ -414,14 +383,15 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
 
     @Override
     public boolean isItemViewTypePinned(int viewType) {
-        return viewType==1;
-    }
-    @Override
-    public int getItemViewType(int position) {
-        return getItem(position) instanceof LogEvent? 0 : 1;
+        return viewType == 1;
     }
 
-    public class LogEventHolder{
+    @Override
+    public int getItemViewType(int position) {
+        return getItem(position) instanceof LogEvent ? 0 : 1;
+    }
+
+    public class LogEventHolder {
         ImageView heroIcon;
         TextView text;
         ImageView itemIcon;

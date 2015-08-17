@@ -11,6 +11,8 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.widget.ArrayAdapter;
 
 import com.badr.infodota.R;
@@ -61,7 +63,7 @@ public class Utils {
     }
     public static boolean IsPackageInstalled(Context context,String PackageUri) {
         final PackageManager pm = context.getPackageManager();
-        boolean IsPackageInstalled = false;
+        boolean IsPackageInstalled;
         try {
             pm.getPackageInfo(PackageUri, PackageManager.GET_ACTIVITIES);
             IsPackageInstalled = true;
@@ -100,6 +102,33 @@ public class Utils {
         builder.show();
     }
 
+    public static Bitmap getBitmap(Drawable drawable){
+        Bitmap bitmap;
+        if(drawable instanceof BitmapDrawable){
+            bitmap=((BitmapDrawable) drawable).getBitmap();
+        }else {
+            if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+                bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565); // Single color bitmap will be created of 1x1 pixel
+            } else {
+                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.RGB_565);
+            }
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+        }
+        return bitmap;
+    }
+
+    public static Bitmap drawableToGrayScale(Drawable drawable){
+        Bitmap bitmap=getBitmap(drawable);
+        if(bitmap!=null) {
+            return toGrayScale(bitmap);
+        }
+        else {
+            return null;
+        }
+    }
+
     public static Bitmap toGrayScale(Bitmap bmpOriginal) {
         int width, height;
         height = bmpOriginal.getHeight();
@@ -117,21 +146,21 @@ public class Utils {
     }
 
     public static String getItemImage(String itemDotaId){
-        return "assets://items/" + itemDotaId + ".png";
+        return "file:///android_asset/items/" + itemDotaId + ".png";
     }
 
     public static String getHeroFullImage(String heroDotaId){
-        return "assets://heroes/" + heroDotaId + "/full.png";
+        return "file:///android_asset/heroes/" + heroDotaId + "/full.png";
     }
 
     public static String getHeroPortraitImage(String heroDotaId){
-        return "assets://heroes/" + heroDotaId + "/vert.jpg";
+        return "file:///android_asset/heroes/" + heroDotaId + "/vert.jpg";
     }
 
     public static String getHeroMiniImage(String heroDotaId){
-        return "assets://heroes/" + heroDotaId + "/mini.png";
+        return "file:///android_asset/heroes/" + heroDotaId + "/mini.png";
     }
     public static String getSkillImage(String skillName){
-        return "assets://skills/"+skillName+".png";
+        return "file:///android_asset/skills/"+skillName+".png";
     }
 }

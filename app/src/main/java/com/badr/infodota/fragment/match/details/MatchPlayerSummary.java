@@ -3,7 +3,6 @@ package com.badr.infodota.fragment.match.details;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -22,8 +21,7 @@ import com.badr.infodota.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.api.matchdetails.Player;
 import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 /**
  * User: Histler
@@ -34,8 +32,6 @@ public class MatchPlayerSummary extends Fragment {
     private static final int TABLET_PORTRAIT = 1;
     private static final int TABLET_LANDSCAPE = 2;
     private Player player;
-    private DisplayImageOptions options;
-    private ImageLoader imageLoader;
 
     public static MatchPlayerSummary newInstance(Player player) {
         MatchPlayerSummary fragment = new MatchPlayerSummary();
@@ -56,28 +52,18 @@ public class MatchPlayerSummary extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         orientationChanged();
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         initBasicInfo();
     }
 
     private void initBasicInfo() {
         View root = getView();
         final Activity activity = getActivity();
-        if(root!=null&&activity!=null) {
+        if (root != null && activity != null) {
             ItemService itemService = BeanContainer.getInstance().getItemService();
             Item current = itemService.getItemById(activity, player.getItem0());
             ImageView item0 = (ImageView) root.findViewById(R.id.item0);
             if (current != null) {
-                imageLoader.displayImage(
-                        Utils.getItemImage(current.getDotaId()),
-                        item0,
-                        options);
+                Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(item0);
                 item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item0.setImageResource(R.drawable.emptyitembg);
@@ -85,10 +71,7 @@ public class MatchPlayerSummary extends Fragment {
             current = itemService.getItemById(activity, player.getItem1());
             ImageView item1 = (ImageView) root.findViewById(R.id.item1);
             if (current != null) {
-                imageLoader.displayImage(
-                        Utils.getItemImage(current.getDotaId()),
-                        item1,
-                        options);
+                Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(item1);
                 item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item1.setImageResource(R.drawable.emptyitembg);
@@ -96,10 +79,7 @@ public class MatchPlayerSummary extends Fragment {
             current = itemService.getItemById(activity, player.getItem2());
             ImageView item2 = (ImageView) root.findViewById(R.id.item2);
             if (current != null) {
-                imageLoader.displayImage(
-                        Utils.getItemImage(current.getDotaId()),
-                        item2,
-                        options);
+                Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(item2);
                 item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item2.setImageResource(R.drawable.emptyitembg);
@@ -107,10 +87,7 @@ public class MatchPlayerSummary extends Fragment {
             current = itemService.getItemById(activity, player.getItem3());
             ImageView item3 = (ImageView) root.findViewById(R.id.item3);
             if (current != null) {
-                imageLoader.displayImage(
-                        Utils.getItemImage(current.getDotaId()),
-                        item3,
-                        options);
+                Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(item3);
                 item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item3.setImageResource(R.drawable.emptyitembg);
@@ -118,10 +95,7 @@ public class MatchPlayerSummary extends Fragment {
             current = itemService.getItemById(activity, player.getItem4());
             ImageView item4 = (ImageView) root.findViewById(R.id.item4);
             if (current != null) {
-                imageLoader.displayImage(
-                        Utils.getItemImage(current.getDotaId()),
-                        item4,
-                        options);
+                Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(item4);
                 item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item4.setImageResource(R.drawable.emptyitembg);
@@ -129,10 +103,7 @@ public class MatchPlayerSummary extends Fragment {
             current = itemService.getItemById(activity, player.getItem5());
             ImageView item5 = (ImageView) root.findViewById(R.id.item5);
             if (current != null) {
-                imageLoader.displayImage(
-                        Utils.getItemImage(current.getDotaId()),
-                        item5,
-                        options);
+                Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(item5);
                 item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
             } else {
                 item5.setImageResource(R.drawable.emptyitembg);
@@ -144,10 +115,7 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem0());
                 ImageView additionalUnitItem0 = (ImageView) root.findViewById(R.id.additional_unit_item0);
                 if (current != null) {
-                    imageLoader.displayImage(
-                            Utils.getItemImage(current.getDotaId()),
-                            additionalUnitItem0,
-                            options);
+                    Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(additionalUnitItem0);
                     additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
@@ -155,10 +123,7 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem1());
                 ImageView additionalUnitItem1 = (ImageView) root.findViewById(R.id.additional_unit_item1);
                 if (current != null) {
-                    imageLoader.displayImage(
-                            Utils.getItemImage(current.getDotaId()),
-                            additionalUnitItem1,
-                            options);
+                    Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(additionalUnitItem1);
                     additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
@@ -166,10 +131,7 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem2());
                 ImageView additionalUnitItem2 = (ImageView) root.findViewById(R.id.additional_unit_item2);
                 if (current != null) {
-                    imageLoader.displayImage(
-                            Utils.getItemImage(current.getDotaId()),
-                            additionalUnitItem2,
-                            options);
+                    Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(additionalUnitItem2);
                     additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
@@ -177,10 +139,7 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem3());
                 ImageView additionalUnitItem3 = (ImageView) root.findViewById(R.id.additional_unit_item3);
                 if (current != null) {
-                    imageLoader.displayImage(
-                            Utils.getItemImage(current.getDotaId()),
-                            additionalUnitItem3,
-                            options);
+                    Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(additionalUnitItem3);
                     additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
@@ -188,10 +147,7 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem4());
                 ImageView additionalUnitItem4 = (ImageView) root.findViewById(R.id.additional_unit_item4);
                 if (current != null) {
-                    imageLoader.displayImage(
-                            Utils.getItemImage(current.getDotaId()),
-                            additionalUnitItem4,
-                            options);
+                    Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(additionalUnitItem4);
                     additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
@@ -199,10 +155,7 @@ public class MatchPlayerSummary extends Fragment {
                 current = itemService.getItemById(activity, unit.getItem5());
                 ImageView additionalUnitItem5 = (ImageView) root.findViewById(R.id.additional_unit_item5);
                 if (current != null) {
-                    imageLoader.displayImage(
-                            Utils.getItemImage(current.getDotaId()),
-                            additionalUnitItem5,
-                            options);
+                    Glide.with(activity).load(Utils.getItemImage(current.getDotaId())).placeholder(R.drawable.default_img).into(additionalUnitItem5);
                     additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(current.getId()));
                 } else {
                     additionalUnitItem5.setImageResource(R.drawable.emptyitembg);
@@ -224,16 +177,15 @@ public class MatchPlayerSummary extends Fragment {
                     Html.fromHtml(getString(R.string.gpm) + " " + player.getGoldPerMin()));
             ((TextView) root.findViewById(R.id.xpm)).setText(
                     Html.fromHtml(getString(R.string.xpm) + " " + player.getXpPerMin()));
-            if(player.getNetWorth()==null) {
+            if (player.getNetWorth() == null) {
                 ((TextView) root.findViewById(R.id.hero_damage)).setText(
                         Html.fromHtml(getString(R.string.hero_damage) + " " + player.getHeroDamage()));
                 ((TextView) root.findViewById(R.id.hero_healing)).setText(
                         Html.fromHtml(getString(R.string.hero_healing) + " " + player.getHeroHealing()));
                 ((TextView) root.findViewById(R.id.tower_damage)).setText(
                         Html.fromHtml(getString(R.string.tower_damage) + " " + player.getTowerDamage()));
-            }
-            else {
-                TextView netWorth= (TextView) root.findViewById(R.id.net_worth);
+            } else {
+                TextView netWorth = (TextView) root.findViewById(R.id.net_worth);
                 netWorth.setVisibility(View.VISIBLE);
                 netWorth.setText(Html.fromHtml(getString(R.string.net_worth) + " " + player.getNetWorth()));
                 root.findViewById(R.id.hero_damage).setVisibility(View.GONE);
@@ -268,7 +220,7 @@ public class MatchPlayerSummary extends Fragment {
 
     private void orientationChanged() {
         View root = getView();
-        if(root!=null) {
+        if (root != null) {
             switch (getState()) {
                 case TABLET_LANDSCAPE:
                     ((LinearLayout) root.findViewById(R.id.unit_holder)).setOrientation(LinearLayout.VERTICAL);

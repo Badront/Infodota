@@ -1,7 +1,6 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,7 @@ import com.badr.infodota.adapter.holder.PlayerMatchHolder;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.matchhistory.PlayerMatch;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,20 +22,11 @@ import java.util.TimeZone;
  * Date: 20.01.14
  * Time: 19:00
  */
-public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch,PlayerMatchHolder> {
-    DisplayImageOptions options;
-    private ImageLoader imageLoader;
+public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch, PlayerMatchHolder> {
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm  dd.MM.yyyy");
 
     public MatchAdapter(List<PlayerMatch> matches) {
         super(matches);
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
         sdf.setTimeZone(tz);
@@ -45,9 +34,9 @@ public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch,PlayerMatchHol
 
     public void addMatches(List<PlayerMatch> subMatches) {
         if (subMatches != null) {
-            int was=getItemCount();
+            int was = getItemCount();
             getItems().addAll(subMatches);
-            notifyItemRangeChanged(was,subMatches.size());
+            notifyItemRangeChanged(was, subMatches.size());
         }
     }
 
@@ -59,15 +48,15 @@ public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch,PlayerMatchHol
 
     @Override
     public void onBindViewHolder(PlayerMatchHolder holder, int position) {
-        PlayerMatch entity=getItem(position);
+        PlayerMatch entity = getItem(position);
         holder.gameStartTime.setText(sdf.format(entity.getGameTime()));
-        int gameType=entity.getLobbyType();
-        Context context=holder.gameType.getContext();
+        int gameType = entity.getLobbyType();
+        Context context = holder.gameType.getContext();
         if (gameType != -1) {
             holder.gameType.setText(context.getResources().getStringArray(R.array.lobby_types)[gameType]);
         }
-        Hero hero=entity.getPlayer().getHero();
-        imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.heroImg, options);
+        Hero hero = entity.getPlayer().getHero();
+        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.heroImg);
         holder.heroName.setText(hero.getLocalizedName());
     }
 }

@@ -11,10 +11,10 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -65,14 +65,13 @@ public class FileUtils {
     }
 
     public static void setDrawableFromAsset(ImageView imageView, String strName) {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage("assets://" + strName, imageView);
+        Glide.with(imageView.getContext()).load("file:///android_asset/" + strName).into(imageView);
     }
 
     public static Drawable getDrawableFromAsset(Context context, String strName) {
         AssetManager assetManager = context.getAssets();
         InputStream istr;
-        Drawable drawable = null;
+        Drawable drawable;
         try {
             istr = assetManager.open(strName);
 
@@ -80,7 +79,7 @@ public class FileUtils {
             drawable = new BitmapDrawable(context.getResources(), bitmap);
             drawable.setBounds(0, 0, Utils.dpSize(context, drawable.getIntrinsicWidth()), Utils.dpSize(context, drawable.getIntrinsicWidth()));
         } catch (IOException e) {
-            return null;
+            drawable = null;
         }
 
         return drawable;
@@ -106,8 +105,8 @@ public class FileUtils {
 
     public static String getTextFromAsset(Context context, String fileName) {
         AssetManager assetManager = context.getAssets();
-        String text = "";
-        InputStream inputStream = null;
+        String text;
+        InputStream inputStream;
         try {
             inputStream = assetManager.open(fileName);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -121,6 +120,7 @@ public class FileUtils {
             text = byteArrayOutputStream.toString();
         } catch (IOException e) {
             e.printStackTrace();
+            text = null;
         }
 
         return text;
@@ -166,11 +166,12 @@ public class FileUtils {
         }
         return false;
     }
+
     public static void saveStringFile(String fileName, String data) {
-        File skillFile = new File(Environment.getExternalStorageDirectory().getPath() + "/dota/" + fileName);
-        skillFile.getParentFile().mkdirs();
+        File file = new File(Environment.getExternalStorageDirectory().getPath() + "/dota/" + fileName);
+        file.getParentFile().mkdirs();
         try {
-            FileOutputStream fOut = new FileOutputStream(skillFile);
+            FileOutputStream fOut = new FileOutputStream(file);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
             myOutWriter.append(data);
             myOutWriter.close();
@@ -183,12 +184,12 @@ public class FileUtils {
     public static Bitmap getBitmapFromAsset(Context context, String strName) {
         AssetManager assetManager = context.getAssets();
         InputStream istr;
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         try {
             istr = assetManager.open(strName);
             bitmap = BitmapFactory.decodeStream(istr);
         } catch (IOException e) {
-            return null;
+            bitmap = null;
         }
 
         return bitmap;

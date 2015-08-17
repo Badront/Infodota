@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -49,8 +48,7 @@ import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.PagerContainer;
 import com.badr.infodota.view.TransformableViewPager;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -69,25 +67,23 @@ import pl.droidsonroids.gif.GifImageView;
  * Date: 15.01.14
  * Time: 14:14
  */
-public class HeroesList extends Fragment implements SearchableFragment,RequestListener {
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
-    protected ImageLoader imageLoader;
+public class HeroesList extends Fragment implements SearchableFragment, RequestListener {
     RecyclerView gridView;
     PagerContainer mContainer;
     TransformableViewPager pager;
     boolean carousel;
     RecyclerView.LayoutManager layoutManager;
-    private DisplayImageOptions options;
+    private SpiceManager spiceManager = new SpiceManager(LocalSpiceService.class);
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
-    private boolean initialized=false;
+    private boolean initialized = false;
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
+        if (!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
-            if(!initialized) {
+            if (!initialized) {
                 if (carousel) {
                     loadHeroesForCarousel();
                 } else {
@@ -100,13 +96,13 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
     @Override
     public void onDestroy() {
-        initialized=false;
+        initialized = false;
         super.onDestroy();
     }
 
     @Override
     public void onStop() {
-        if(spiceManager.isStarted()){
+        if (spiceManager.isStarted()) {
             spiceManager.shouldStop();
         }
         super.onStop();
@@ -178,7 +174,7 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
                 showLanguageDialog();
                 return true;
             case R.id.new_version:
-                UpdateUtils.checkNewVersion(getActivity(),true);
+                UpdateUtils.checkNewVersion(getActivity(), true);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -244,13 +240,6 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
             return;
         }
         if (carousel) {
-            options = new DisplayImageOptions.Builder()
-                    .cacheInMemory(true)
-                    .cacheOnDisk(true)
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .build();
-            imageLoader = ImageLoader.getInstance();
-
             mContainer = (PagerContainer) root.findViewById(R.id.pager_container);
 
             pager = mContainer.getViewPager();
@@ -331,19 +320,18 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
+        initialized = true;
     }
 
     @Override
     public void onRequestSuccess(Object o) {
-        initialized=true;
-        if(o instanceof CarouselHero.List){
-            CarouselHero.List result= (CarouselHero.List) o;
+        initialized = true;
+        if (o instanceof CarouselHero.List) {
+            CarouselHero.List result = (CarouselHero.List) o;
             HeroCarouselPagerAdapter adapter = new HeroCarouselPagerAdapter(result);
             pager.setAdapter(adapter);
-        }
-        else if(o instanceof Hero.List){
-            Hero.List result= (Hero.List) o;
+        } else if (o instanceof Hero.List) {
+            Hero.List result = (Hero.List) o;
             final HeroesAdapter adapter = new HeroesAdapter(result);
             filter = adapter.getFilter();
             filter.filter(search);
@@ -360,7 +348,7 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
         }
     }
 
-    public class HeroCarouselPagerAdapter extends PagerAdapter{
+    public class HeroCarouselPagerAdapter extends PagerAdapter {
         private List<CarouselHero> mData;
         private String dir;
 
@@ -391,24 +379,17 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            LayoutInflater layoutInflater = LayoutInflater.from(container.getContext());
+            Context context = container.getContext();
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
             final ViewGroup view = (ViewGroup) layoutInflater.inflate(R.layout.hero_carousel_row, container, false);
             final CarouselHero hero = getItem(position);
 
             File gifFile = new File(dir + hero.getDotaId() + File.separator, "anim.gif");
-            GifImageView imageView = (GifImageView) view.findViewById(R.id.gifHero);
+            ImageView imageView = (ImageView) view.findViewById(R.id.gifHero);
             if (gifFile.exists()) {
-                try {
-                    GifDrawable gifFromFile = new GifDrawable(gifFile);
-                    imageView.setImageDrawable(gifFromFile);
-                } catch (IOException e) {
-                    //ignored
-                }
+                Glide.with(context).load(gifFile).asGif().into(imageView);
             } else {
-                imageLoader.displayImage(
-                        Utils.getHeroPortraitImage(hero.getDotaId()),
-                        imageView,
-                        options);
+                Glide.with(context).load(Utils.getHeroPortraitImage(hero.getDotaId())).into(imageView);
             }
 
 
@@ -419,10 +400,7 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
                 for (String skill : skills) {
                     ViewGroup skillView = (ViewGroup) layoutInflater.inflate(R.layout.skill_carousel_holder, skillsHolder, false);
                     skillView.setLayoutParams(layoutParams);
-                    imageLoader.displayImage(
-                            Utils.getSkillImage(skill),
-                            (ImageView) skillView.findViewById(R.id.skill_img),
-                            options);
+                    Glide.with(context).load(Utils.getSkillImage(skill)).into((ImageView) skillView.findViewById(R.id.skill_img));
                     skillsHolder.addView(skillView);
                 }
             }
@@ -455,10 +433,10 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            GifImageView gifView = (GifImageView) ((View) object).findViewById(R.id.gifHero);
-            if (gifView.getDrawable() instanceof GifDrawable) {
+            ImageView gifView = (ImageView) ((View) object).findViewById(R.id.gifHero);
+            /*if (gifView.getDrawable() instanceof GifDrawable) {
                 ((GifDrawable) gifView.getDrawable()).recycle();
-            }
+            }*/
             gifView.setImageDrawable(null);
             container.removeView((View) object);
         }
@@ -468,7 +446,8 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
             return (view == object);
         }
     }
-    public class CarouselHeroesLoadRequest extends TaskRequest<CarouselHero.List>{
+
+    public class CarouselHeroesLoadRequest extends TaskRequest<CarouselHero.List> {
 
         public CarouselHeroesLoadRequest() {
             super(CarouselHero.List.class);
@@ -476,8 +455,8 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
         @Override
         public CarouselHero.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null) {
+            Activity activity = getActivity();
+            if (activity != null) {
                 HeroService heroService = BeanContainer.getInstance().getHeroService();
                 return heroService.getCarouselHeroes(activity, selectedFilter, search);
             }
@@ -485,7 +464,7 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
         }
     }
 
-    public class HeroLoadRequest extends TaskRequest<Hero.List>{
+    public class HeroLoadRequest extends TaskRequest<Hero.List> {
 
         public HeroLoadRequest() {
             super(Hero.List.class);
@@ -493,8 +472,8 @@ public class HeroesList extends Fragment implements SearchableFragment,RequestLi
 
         @Override
         public Hero.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null) {
+            Activity activity = getActivity();
+            if (activity != null) {
                 HeroService heroService = BeanContainer.getInstance().getHeroService();
                 return heroService.getFilteredHeroes(activity, selectedFilter);
             }

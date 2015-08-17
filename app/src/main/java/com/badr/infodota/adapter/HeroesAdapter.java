@@ -1,6 +1,6 @@
 package com.badr.infodota.adapter;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +11,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.HeroHolder;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,19 +22,10 @@ import java.util.List;
  * Time: 12:25
  */
 public class HeroesAdapter extends BaseRecyclerAdapter<Hero, HeroHolder> implements Filterable {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private List<Hero> filtered;
 
     public HeroesAdapter(List<Hero> heroes) {
         super(heroes);
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisk(false)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         filtered = mData;
     }
 
@@ -59,7 +49,8 @@ public class HeroesAdapter extends BaseRecyclerAdapter<Hero, HeroHolder> impleme
     public void onBindViewHolder(HeroHolder holder, int position) {
         Hero hero = getItem(position);
         holder.name.setText(hero.getLocalizedName());
-        imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.image, options);
+        Context context=holder.name.getContext();
+        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
     }
 
     @Override

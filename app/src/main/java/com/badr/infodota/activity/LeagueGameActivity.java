@@ -28,12 +28,11 @@ import com.badr.infodota.api.joindota.SubmatchItem;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.joindota.JoinDotaService;
 import com.badr.infodota.util.DateUtils;
-import com.badr.infodota.util.GrayImageLoadingListener;
+import com.badr.infodota.util.GrayImageLoadListener;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -48,10 +47,8 @@ import java.util.List;
  */
 public class LeagueGameActivity extends BaseActivity implements RequestListener {
     public static final int ADD_CALENDAR_EVENT_ID = 4321;
-    DisplayImageOptions options;
     View progressBar;
     private MatchItem matchItem;
-    private ImageLoader imageLoader;
     private Menu menu;
     private Button showStreams;
     private LinearLayout streamsHolder;
@@ -103,14 +100,6 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.league_game_info);
-        imageLoader = ImageLoader.getInstance();
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.flag_default)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey("matchItem")) {
             matchItem = (MatchItem) bundle.get("matchItem");
@@ -122,8 +111,8 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     private void initMatch() {
         ((TextView) findViewById(R.id.team1)).setText(matchItem.getTeam1name());
         ((TextView) findViewById(R.id.team2)).setText(matchItem.getTeam2name());
-        imageLoader.displayImage(matchItem.getTeam1flagLink(), (ImageView) findViewById(R.id.flag1), options);
-        imageLoader.displayImage(matchItem.getTeam2flagLink(), (ImageView) findViewById(R.id.flag2), options);
+        Glide.with(this).load(matchItem.getTeam1flagLink()).into((ImageView) findViewById(R.id.flag1)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
+        Glide.with(this).load(matchItem.getTeam2flagLink()).into((ImageView) findViewById(R.id.flag2)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
         progressBar = findViewById(R.id.progressBar);
         showStreams = (Button) findViewById(R.id.show_streams);
         streamsHolder = (LinearLayout) findViewById(R.id.streams_holder);
@@ -160,8 +149,8 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
             }
             ((TextView) findViewById(R.id.text_detailed_date)).setText("TBA");
         }
-        imageLoader.displayImage(matchItem.getTeam1logoLink(), (ImageView) findViewById(R.id.logo1), options);
-        imageLoader.displayImage(matchItem.getTeam2logoLink(), (ImageView) findViewById(R.id.logo2), options);
+        Glide.with(this).load(matchItem.getTeam1logoLink()).into((ImageView) findViewById(R.id.logo1)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
+        Glide.with(this).load(matchItem.getTeam2logoLink()).into((ImageView) findViewById(R.id.logo2)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
         HeroService heroService = BeanContainer.getInstance().getHeroService();
         LinearLayout holder = (LinearLayout) findViewById(R.id.games_holder);
         holder.removeAllViews();
@@ -176,12 +165,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                     LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, team1bans, false);
                     imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team1bans.addView(imageLayout);
-                    ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
-                    imageLoader.displayImage(
-                            Utils.getHeroFullImage(hero.getDotaId()),
-                            imageView,
-                            options,
-                            new GrayImageLoadingListener());
+                    Glide.with(this).load(matchItem.getTeam2logoLink()).into(new GrayImageLoadListener((ImageView) imageLayout.findViewById(R.id.img))).onLoadStarted(getResources().getDrawable(R.drawable.emptyitembg));
                 }
             }
             FlowLayout team2bans = (FlowLayout) view.findViewById(R.id.bans2);
@@ -193,11 +177,12 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                     imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team2bans.addView(imageLayout);
                     ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
-                    imageLoader.displayImage(
-                            Utils.getHeroFullImage(hero.getDotaId()),
-                            imageView,
-                            options,
-                            new GrayImageLoadingListener());
+                    Glide
+                            .with(this)
+                            .load(Utils.getHeroFullImage(hero.getDotaId()))
+                            .into(new GrayImageLoadListener(imageView))
+                            .onLoadStarted(getResources()
+                                    .getDrawable(R.drawable.emptyitembg));
                 }
             }
             LinearLayout team1 = (LinearLayout) view.findViewById(R.id.team1);
@@ -212,14 +197,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team1HeroHolder.findViewById(R.id.img);
-                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), imageView, options);
+                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(imageView).onLoadStarted(getResources().getDrawable(R.drawable.emptyitembg));
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 heroes = heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i));
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team2HeroHolder.findViewById(R.id.img);
-                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), imageView, options);
+                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(imageView).onLoadStarted(getResources().getDrawable(R.drawable.emptyitembg));
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 team1.addView(team1HeroHolder);

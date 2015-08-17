@@ -1,14 +1,13 @@
 package com.badr.infodota.fragment.hero;
 
+import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,15 +22,12 @@ import com.badr.infodota.api.heroes.HeroStats;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 
 import pl.droidsonroids.gif.GifDrawable;
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * User: ABadretdinov
@@ -39,10 +35,8 @@ import pl.droidsonroids.gif.GifImageView;
  * Time: 14:43
  */
 public class HeroStatInfo extends Fragment {
-    protected ImageLoader imageLoader;
-    private DisplayImageOptions options;
     private Hero hero;
-    private GifImageView imageView;
+    private ImageView imageView;
 
     public static HeroStatInfo newInstance(Hero hero) {
         HeroStatInfo fragment = new HeroStatInfo();
@@ -58,13 +52,6 @@ public class HeroStatInfo extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        options = new DisplayImageOptions.Builder()
-                //.showImageOnLoading(R.drawable.antimage_vert)
-                .cacheInMemory(false)
-                .cacheOnDisk(false)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         updateForConfigChanged();
 
         initImage();
@@ -83,12 +70,13 @@ public class HeroStatInfo extends Fragment {
     }
 
     private void initImage() {
-        imageView = (GifImageView) getView().findViewById(R.id.imgHero);
+        Context context = getActivity();
+        imageView = (ImageView) getView().findViewById(R.id.imgHero);
         File externalFilesDir;
         String dir;
         externalFilesDir = Environment.getExternalStorageDirectory();
         if (externalFilesDir == null) {
-            externalFilesDir = new File(getActivity().getFilesDir().getPath() + getActivity().getPackageName() + "/files");
+            externalFilesDir = new File(context.getFilesDir().getPath() + getActivity().getPackageName() + "/files");
         } else {
             externalFilesDir = new File(externalFilesDir, "/Android/data/" + getActivity().getPackageName() + "/files");
         }
@@ -96,19 +84,11 @@ public class HeroStatInfo extends Fragment {
         dir += File.separator + "anim" + File.separator;
         File gifFile = new File(dir + hero.getDotaId() + File.separator, "anim.gif");
         if (gifFile.exists()) {
-            try {
-                GifDrawable gifFromFile = new GifDrawable(gifFile);
-                imageView.setImageDrawable(gifFromFile);
-                ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
-            } catch (IOException e) {
-                Log.e(getClass().getName(),e.getLocalizedMessage());
-            }
+            Glide.with(context).load(gifFile).asGif().into(imageView);
+            ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
         } else {
             ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.heroprimaryportrait_overlay);
-            imageLoader.displayImage(
-                    Utils.getHeroPortraitImage(hero.getDotaId()),
-                    imageView,
-                    options);
+            Glide.with(context).load(Utils.getHeroPortraitImage(hero.getDotaId())).into(imageView);
         }
     }
 
@@ -116,7 +96,7 @@ public class HeroStatInfo extends Fragment {
     private void showHeroInfo() {
         HeroStats stats = hero.getStats();
         View root = getView();
-        if(root!=null) {
+        if (root != null) {
             //((TextView)fragmentView.findViewById(R.id.title)).setText(hero.getLocalizedName());
             ((TextView) root.findViewById(R.id.txtFaction)).setText(stats.getAlignment() == 0 ? "Radiant" : "Dire");
             addHeroRoles(root);
@@ -160,7 +140,7 @@ public class HeroStatInfo extends Fragment {
                     .setText(String.valueOf(stats.getBaseAgi()) + "+" + String.valueOf(stats.getAgiGain()));
             ((TextView) root.findViewById(R.id.txtIntelligence))
                     .setText(String.valueOf(stats.getBaseInt()) + "+" + String.valueOf(stats.getIntGain()));
-		/*Hit points*/
+        /*Hit points*/
             ((TextView) root.findViewById(R.id.health1))
                     .setText(String.valueOf(Math.round(150 + 19/*hp per str*/ * stats.getBaseStr())));
             ((TextView) root.findViewById(R.id.health16)).setText(

@@ -2,7 +2,6 @@ package com.badr.infodota.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.Html;
@@ -19,11 +18,10 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.heroes.Skill;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.Utils;
+import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeIntents;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -32,25 +30,14 @@ import java.util.List;
  * Date: 17.01.14
  */
 public class SkillsAdapter extends BaseAdapter {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private LayoutInflater mInflater;
     private List<Skill> mSkills;
     private DrawableImageGetter imageGetter;
-    private Context mContext;
 
     public SkillsAdapter(Context context, List<Skill> skills) {
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisk(false)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
-        mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mSkills = skills;
-        imageGetter = new DrawableImageGetter();
+        imageGetter = new DrawableImageGetter(context);
     }
 
     @Override
@@ -72,6 +59,7 @@ public class SkillsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         SkillHolder holder;
+        Context context = parent.getContext();
         if (convertView == null) {
             vi = mInflater.inflate(R.layout.hero_skill_row, parent, false);
             holder = new SkillHolder();
@@ -89,38 +77,36 @@ public class SkillsAdapter extends BaseAdapter {
         Skill skill = getItem(position);
         holder.name.setText(Html.fromHtml(skill.getDname()));
         holder.affects.setText(Html.fromHtml(skill.getAffects()));
-        imageLoader.displayImage(
-                Utils.getSkillImage(skill.getName()),
-                holder.image,
-                options);
+        Glide.with(context)
+                .load(Utils.getSkillImage(skill.getName()))
+                .into(holder.image);
         holder.loreHolder.removeAllViews();
         holder.paramsHolder.removeAllViews();
         if (!TextUtils.isEmpty(skill.getCmb())) {
-            TextView tv = new TextView(mContext);
+            TextView tv = new TextView(context);
             tv.setText(Html.fromHtml(skill.getCmb(), imageGetter, null));
             holder.paramsHolder.addView(tv);
         }
 
         if (!TextUtils.isEmpty(skill.getDmg())) {
-            TextView tv = new TextView(mContext);
+            TextView tv = new TextView(context);
             tv.setText(Html.fromHtml(skill.getDmg(), imageGetter, null));
             holder.paramsHolder.addView(tv);
         }
 
         if (!TextUtils.isEmpty(skill.getAttrib())) {
-            TextView tv = new TextView(mContext);
+            TextView tv = new TextView(context);
             tv.setText(Html.fromHtml(skill.getAttrib(), imageGetter, null));
             holder.paramsHolder.addView(tv);
         }
         if (!TextUtils.isEmpty(skill.getDesc())) {
-            TextView tv = new TextView(mContext);
+            TextView tv = new TextView(context);
             tv.setText(Html.fromHtml(skill.getDesc(), imageGetter, null));
             holder.loreHolder.addView(tv);
         }
 
-
         if (!TextUtils.isEmpty(skill.getNotes())) {
-            TextView tv = new TextView(mContext);
+            TextView tv = new TextView(context);
             tv.setText(Html.fromHtml(skill.getNotes(), imageGetter, null));
             holder.loreHolder.addView(tv);
         }
@@ -132,12 +118,12 @@ public class SkillsAdapter extends BaseAdapter {
             holder.youtube.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(mContext).equals(YouTubeInitializationResult.SUCCESS)) {
-                        Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(mContext, youtubeUrl, false, false);
-                        mContext.startActivity(intent);
-
+                    Context context = v.getContext();
+                    if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(context).equals(YouTubeInitializationResult.SUCCESS)) {
+                        Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(context, youtubeUrl, false, false);
+                        context.startActivity(intent);
                     } else {
-                        mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + youtubeUrl)));
+                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + youtubeUrl)));
                     }
                 }
             });
@@ -155,6 +141,12 @@ public class SkillsAdapter extends BaseAdapter {
     }
 
     public class DrawableImageGetter implements Html.ImageGetter {
+        private Context mContext;
+
+        public DrawableImageGetter(Context context) {
+            super();
+            this.mContext = context;
+        }
 
         @Override
         public Drawable getDrawable(String source) {

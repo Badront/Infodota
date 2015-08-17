@@ -1,7 +1,6 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,8 +17,7 @@ import com.badr.infodota.api.matchdetails.Team;
 import com.badr.infodota.api.matchhistory.Match;
 import com.badr.infodota.service.team.TeamService;
 import com.badr.infodota.view.PinnedSectionListView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,8 +38,6 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
     private Context context;
     private LayoutInflater inflater;
     private List<Match> matchItems;
-    private ImageLoader imageLoader;
-    private DisplayImageOptions options;
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
     private boolean isCanceled = false;
 
@@ -49,13 +45,6 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
         this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.matchItems = matchItems != null ? matchItems : new ArrayList<Match>();
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.steam_default)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
         timeFormat.setTimeZone(tz);
@@ -73,6 +62,7 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
             }
         }
     }
+
     public void addMatches(List<Match> subMatches) {
         if (subMatches != null) {
             matchItems.addAll(subMatches);
@@ -192,14 +182,22 @@ public class LeagueMatchResultsAdapter extends BaseAdapter implements PinnedSect
                 TeamService teamService = BeanContainer.getInstance().getTeamService();
                 Team radiant = teamService.getTeamById(context, matchResult.getRadiantTeamId());
                 if (!TextUtils.isEmpty(radiant.getLogo())) {
-                    imageLoader.displayImage(radiant.getLogo(), holder.radiantLogo, options);
+                    Glide
+                            .with(context)
+                            .load(radiant.getLogo())
+                            .placeholder(R.drawable.steam_default)
+                            .into(holder.radiantLogo);
                 } else {
                     holder.radiantLogo.setImageResource(R.drawable.steam_default);
                 }
 
                 Team dire = teamService.getTeamById(context, matchResult.getDireTeamId());
                 if (!TextUtils.isEmpty(dire.getLogo())) {
-                    imageLoader.displayImage(dire.getLogo(), holder.direLogo, options);
+                    Glide
+                            .with(context)
+                            .load(dire.getLogo())
+                            .placeholder(R.drawable.steam_default)
+                            .into(holder.direLogo);
                 } else {
                     holder.direLogo.setImageResource(R.drawable.steam_default);
                 }

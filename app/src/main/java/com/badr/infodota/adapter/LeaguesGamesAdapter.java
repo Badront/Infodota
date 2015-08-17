@@ -1,7 +1,7 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +13,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.joindota.MatchItem;
 import com.badr.infodota.util.DateUtils;
 import com.badr.infodota.view.PinnedSectionListView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +24,12 @@ import java.util.List;
  * Time: 18:36
  */
 public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter {
-    DisplayImageOptions options;
     private LayoutInflater inflater;
     private List<MatchItem> matchItems;
-    private ImageLoader imageLoader;
 
     public LeaguesGamesAdapter(Context context, List<MatchItem> matchItems) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.matchItems = matchItems != null ? matchItems : new ArrayList<MatchItem>();
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.flag_default)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         for (int i = 0; i < this.matchItems.size(); i++) {
             MatchItem item = this.matchItems.get(i);
             MatchItem possibleHeader = new MatchItem();
@@ -111,7 +101,7 @@ public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionLis
             sectionHeader.setText(DateUtils.DATE_FORMAT.format(item.getDate()));
         } else {
             MatchItemHolder holder;
-            if (vi == null||vi.getTag()==null) {
+            if (vi == null || vi.getTag() == null) {
                 vi = inflater.inflate(R.layout.leagues_games_row, parent, false);
                 holder = new MatchItemHolder();
                 holder.flag1 = (ImageView) vi.findViewById(R.id.flag1);
@@ -125,8 +115,9 @@ public class LeaguesGamesAdapter extends BaseAdapter implements PinnedSectionLis
             }
             holder.team1.setText(item.getTeam1name());
             holder.team2.setText(item.getTeam2name());
-            imageLoader.displayImage(item.getTeam1flagLink(), holder.flag1, options);
-            imageLoader.displayImage(item.getTeam2flagLink(), holder.flag2, options);
+            Context context = parent.getContext();
+            Glide.with(context).load(item.getTeam1flagLink()).placeholder(R.drawable.flag_default).into(holder.flag1);
+            Glide.with(context).load(item.getTeam2flagLink()).placeholder(R.drawable.flag_default).into(holder.flag2);
 
             holder.middleText.setText(item.getMiddleText());
         }

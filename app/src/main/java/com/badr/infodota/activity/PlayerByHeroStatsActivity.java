@@ -25,10 +25,10 @@ import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.HorizontalScrollViewListener;
 import com.badr.infodota.view.ObservableHorizontalScrollView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -51,8 +51,6 @@ import java.util.Set;
  * Time: 17:11
  */
 public class PlayerByHeroStatsActivity extends BaseActivity implements HorizontalScrollViewListener,RequestListener<PlayerByHeroStatsActivity.PlayerHeroesStats> {
-    private DisplayImageOptions options;
-    private ImageLoader imageLoader;
     private ObservableHorizontalScrollView obs1;
     private ObservableHorizontalScrollView obs2;
     private LinearLayout content;
@@ -111,45 +109,30 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
         horizontalHeader = (LinearLayout) findViewById(R.id.horizontal_header_holder);
         verticalHeader = (LinearLayout) findViewById(R.id.vertical_header_holder);
 
-        options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565).build();
-        imageLoader = ImageLoader.getInstance();
+
 
         Bundle bundle = getIntent().getExtras();
         account = (Unit) bundle.get("account");
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(account.getName());
-        imageLoader.loadImage(account.getIcon(), options, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{R.attr.actionBarSize});
-                int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
-                styledAttributes.recycle();
-                Bitmap icon = loadedImage;
-                if (icon != null) {
-                    icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
-                    Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
-                    //actionBar.setDisplayShowHomeEnabled(true);
-                    //actionBar.setIcon(iconDrawable);
-                    mToolbar.setNavigationIcon(iconDrawable);
+        if(actionBar!=null&&account!=null) {
+            actionBar.setTitle(account.getName());
+            Glide.with(this).load(account.getIcon()).into(new SimpleTarget<GlideDrawable>() {
+                @Override
+                public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                    final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{R.attr.actionBarSize});
+                    int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
+                    styledAttributes.recycle();
+                    Bitmap icon = Utils.getBitmap(resource);
+                    if (icon != null) {
+                        icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
+                        Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
+                        //actionBar.setDisplayShowHomeEnabled(true);
+                        //actionBar.setIcon(iconDrawable);
+                        mToolbar.setNavigationIcon(iconDrawable);
+                    }
                 }
-            }
-
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-        });
+            });
+        }
 
         horizontalHeader.removeAllViews();
         verticalHeader.removeAllViews();
@@ -198,8 +181,8 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                 for(Hero hero:heroes){
                     List<String> results=playerHeroesStats.heroResults.get(hero);
                     View verticalHeaderRow = inflater.inflate(R.layout.player_by_hero_stats_vertical, verticalHeader, false);
-                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()),
-                            (ImageView) verticalHeaderRow.findViewById(R.id.image), options);
+                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(
+                            (ImageView) verticalHeaderRow.findViewById(R.id.image));
                     verticalHeader.addView(verticalHeaderRow);
                     verticalHeaderRow.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     LinearLayout row = (LinearLayout) inflater.inflate(R.layout.player_by_hero_stats_row, content, false);

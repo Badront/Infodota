@@ -1,7 +1,6 @@
 package com.badr.infodota.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
@@ -16,8 +15,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.cosmetics.store.CosmeticItem;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.view.FlowLayout;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,8 +28,7 @@ import java.util.Set;
  * Time: 14:21
  */
 public class CosmeticItemInfoActivity extends BaseActivity {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
+
     private CosmeticItem item;
     private CosmeticItem set;
     private ArrayList<CosmeticItem> setItems;
@@ -52,13 +49,6 @@ public class CosmeticItemInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cosmetic_item_info);
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.emptyitembg)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         Bundle bundle = getIntent().getExtras();
         if (bundle.containsKey("set")) {
             set = (CosmeticItem) bundle.getSerializable("set");
@@ -72,15 +62,18 @@ public class CosmeticItemInfoActivity extends BaseActivity {
         }
     }
 
+    @SuppressWarnings("deprecation")
     private void initItem() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(item.getName());
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setTitle(item.getName());
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(item.getName());
         title.setTextColor(getResources().getColor(ResourceUtils.COSMETIC_ITEM_QUALITY_IDS[item.getItem_quality()]));
 
-        imageLoader.displayImage(item.getImage_url_large(), (ImageView) findViewById(R.id.image), options);
+        Glide.with(this).load(item.getImage_url_large()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.image));
 
         TextView type = (TextView) findViewById(R.id.type);
         type.setText(item.getItem_type_name());
@@ -137,7 +130,8 @@ public class CosmeticItemInfoActivity extends BaseActivity {
             LayoutInflater inflater = getLayoutInflater();
             for (final CosmeticItem cosmeticItem : setItems) {
                 View view = inflater.inflate(R.layout.cosmetic_item_row, null, false);
-                imageLoader.displayImage(cosmeticItem.getImage_url(), (ImageView) view.findViewById(R.id.img), options);
+
+                Glide.with(this).load(cosmeticItem.getImage_url()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.img));
                 TextView name = (TextView) view.findViewById(R.id.name);
                 name.setText(cosmeticItem.getName());
                 view.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +167,7 @@ public class CosmeticItemInfoActivity extends BaseActivity {
             findViewById(R.id.flow_set).setVisibility(View.GONE);
             setLayout.setVisibility(View.VISIBLE);
             setTitle.setVisibility(View.VISIBLE);
-            imageLoader.displayImage(set.getImage_url(), (ImageView) setLayout.findViewById(R.id.set_img), options);
+            Glide.with(this).load(set.getImage_url()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.set_img));
             ((TextView) setLayout.findViewById(R.id.set_name)).setText(set.getName());
             setLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

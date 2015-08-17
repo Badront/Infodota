@@ -1,6 +1,6 @@
 package com.badr.infodota.adapter;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +11,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.adapter.holder.ItemHolder;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,6 @@ import java.util.List;
  */
 public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implements Filterable {
 
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private List<Item> filtered;
     private Filter filter = new Filter() {
         @Override
@@ -57,13 +54,6 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
     public ItemsAdapter(List<Item> items) {
         super(items);
         this.filtered = mData;
-        options = new DisplayImageOptions.Builder()
-                //.showImageOnLoading(R.drawable.emptyitembg)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
     }
 
     @Override
@@ -93,10 +83,8 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
         Item item = getItem(position);
         holder.name.setText(item.getDname());
 
-        imageLoader.displayImage(
-                Utils.getItemImage(item.getDotaId()),
-                holder.image,
-                options);
+        Context context = holder.name.getContext();
+        Glide.with(context).load(Utils.getItemImage(item.getDotaId())).into(holder.image);
     }
 
     @Override

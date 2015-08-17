@@ -31,12 +31,8 @@ import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.service.match.MatchService;
 import com.badr.infodota.service.player.PlayerService;
 import com.badr.infodota.service.team.TeamService;
-import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -56,7 +52,6 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
     BeanContainer container = BeanContainer.getInstance();
     TeamService teamService = container.getTeamService();
-    ImageLoader imageLoader = ImageLoader.getInstance();
 
     private Result matchResult;
     private boolean initialized=false;
@@ -152,6 +147,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             }
             team.setLogo(pair.second);
             teamService.saveTeam(MatchInfoActivity.this, team);
+           /*
             imageLoader.loadImage(pair.second, new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String s, View view) {
@@ -177,7 +173,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                 public void onLoadingCancelled(String s, View view) {
 
                 }
-            });
+            });*/
         }
         else if(o instanceof Result){
             matchResult = (Result) o;
@@ -187,7 +183,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                 Team radiant = teamService.getTeamById(MatchInfoActivity.this, matchResult.getRadiantTeamId());
 
                 if (radiant!=null&&!TextUtils.isEmpty(radiant.getLogo())) {
-                    imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
+                    /*imageLoader.loadImage(radiant.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
 
@@ -211,7 +207,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         @Override
                         public void onLoadingCancelled(String s, View view) {
                         }
-                    });
+                    });*/
                 } else {
                     spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getRadiantLogo()), this);
                 }
@@ -219,7 +215,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             if (matchResult.getDireLogo() != null) {
                 Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDireTeamId());
                 if (dire!=null&&!TextUtils.isEmpty(dire.getLogo())) {
-                    imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
+                    /*imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
 
@@ -238,15 +234,15 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                                     0,
                                     Utils.dpSize(MatchInfoActivity.this, 40),
                                     Utils.dpSize(MatchInfoActivity.this, 40));
-										/*dire.setIcon(drawable);
-										dire.setText("");*/
+										*//*dire.setIcon(drawable);
+										dire.setText("");*//*
                         }
 
                         @Override
                         public void onLoadingCancelled(String s, View view) {
 
                         }
-                    });
+                    });*/
                 } else {
                     spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDireLogo()), this);
                 }

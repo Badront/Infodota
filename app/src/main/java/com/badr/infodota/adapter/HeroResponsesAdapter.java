@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -31,8 +30,7 @@ import com.badr.infodota.api.responses.HeroResponses2Section;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.PinnedSectionListView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -52,12 +50,10 @@ import java.util.List;
  * Time: 18:32
  */
 public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter, Filterable {
-    protected ImageLoader imageLoader;
     TableRow.LayoutParams otherLayoutParams;
     private Context context;
     private List<HeroResponses2Section> mHeroSectionsResponses;
     private List<Object> filteredHeroResponses;
-    private DisplayImageOptions options;
     private int dp2;
     private String holderFolder;
     private List<Integer> playerQueue;
@@ -69,40 +65,33 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
         this.context = context;
         this.holderFolder = holderFolder;
         this.mHeroSectionsResponses = heroSectionsResponses != null ? heroSectionsResponses : new ArrayList<HeroResponses2Section>();
-        options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         int dp30 = Utils.dpSize(context, 30);
         dp2 = Utils.dpSize(context, 2);
         otherLayoutParams = new TableRow.LayoutParams(dp30, dp30);
         playerQueue = new ArrayList<>();
-        filteredHeroResponses=generateFilteredValue(null);
+        filteredHeroResponses = generateFilteredValue(null);
     }
 
     private List<Object> generateFilteredValue(String filter) {
-        List<Object>result=new ArrayList<>();
-        for(HeroResponses2Section section: mHeroSectionsResponses){
-            StringBuilder sectionNameB=new StringBuilder("");
-            if(!TextUtils.isEmpty(section.getCode())){
+        List<Object> result = new ArrayList<>();
+        for (HeroResponses2Section section : mHeroSectionsResponses) {
+            StringBuilder sectionNameB = new StringBuilder("");
+            if (!TextUtils.isEmpty(section.getCode())) {
                 sectionNameB.append(section.getCode()).append(" ");
             }
             sectionNameB.append(section.getName());
-            String sectionName=sectionNameB.toString();
-            if(section.getResponses()!=null){
-                if(TextUtils.isEmpty(filter)||sectionName.toLowerCase().contains(filter)) {
+            String sectionName = sectionNameB.toString();
+            if (section.getResponses() != null) {
+                if (TextUtils.isEmpty(filter) || sectionName.toLowerCase().contains(filter)) {
                     result.add(sectionName);
                     result.addAll(section.getResponses());
-                }
-                else {
-                    boolean sectionAdded=false;
-                    for(HeroResponse2 response2:section.getResponses()){
-                        if(response2.getTitle().toLowerCase().contains(filter)){
-                            if(!sectionAdded){
+                } else {
+                    boolean sectionAdded = false;
+                    for (HeroResponse2 response2 : section.getResponses()) {
+                        if (response2.getTitle().toLowerCase().contains(filter)) {
+                            if (!sectionAdded) {
                                 result.add(sectionName);
-                                sectionAdded=true;
+                                sectionAdded = true;
                             }
                             result.add(response2);
                         }
@@ -143,8 +132,8 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
     }
 
     public void setItemClicked(int position) {
-        Object clickedItem=getItem(position);
-        if(clickedItem instanceof HeroResponse2) {
+        Object clickedItem = getItem(position);
+        if (clickedItem instanceof HeroResponse2) {
             HeroResponse2 heroResponse = (HeroResponse2) clickedItem;
             if (toLocalLoad.contains(heroResponse)) {
                 toLocalLoad.remove(heroResponse);
@@ -165,13 +154,12 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
         if (editMode) {
             List<HeroResponse2> notToLoad = toLocalLoad;
             toLocalLoad = new ArrayList<>();
-            for(Object object:filteredHeroResponses){
-                if(object instanceof HeroResponse2){
-                    HeroResponse2 heroResponse2= (HeroResponse2) object;
-                    if(notToLoad.contains(heroResponse2)){
+            for (Object object : filteredHeroResponses) {
+                if (object instanceof HeroResponse2) {
+                    HeroResponse2 heroResponse2 = (HeroResponse2) object;
+                    if (notToLoad.contains(heroResponse2)) {
                         notToLoad.remove(heroResponse2);
-                    }
-                    else if(TextUtils.isEmpty(heroResponse2.getLocalUrl())){
+                    } else if (TextUtils.isEmpty(heroResponse2.getLocalUrl())) {
                         toLocalLoad.add(heroResponse2);
                     }
                 }
@@ -189,13 +177,13 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         Object object = getItem(position);
-        if(object instanceof String){
-            LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-            vi=inflater.inflate(R.layout.list_section,parent,false);
-            ((TextView)vi.findViewById(R.id.section_title)).setText((String)object);
-        }else {
+        if (object instanceof String) {
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            vi = inflater.inflate(R.layout.list_section, parent, false);
+            ((TextView) vi.findViewById(R.id.section_title)).setText((String) object);
+        } else {
             HeroResponseHolder holder;
-            final HeroResponse2 response2= (HeroResponse2) object;
+            final HeroResponse2 response2 = (HeroResponse2) object;
             if (vi == null) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
                 holder = new HeroResponseHolder();
@@ -277,11 +265,11 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
             });
 
             TableRow row = null;
-            int index=0;
-            if(response2.getHeroes()!=null){
-                List<String> heroes=response2.getHeroes();
-                for(int i=0,hSize=heroes.size();i<hSize;i++){
-                    String heroName=heroes.get(i);
+            int index = 0;
+            if (response2.getHeroes() != null) {
+                List<String> heroes = response2.getHeroes();
+                for (int i = 0, hSize = heroes.size(); i < hSize; i++) {
+                    String heroName = heroes.get(i);
                     if (index % 3 == 0) {
                         if (row != null) {
                             holder.othersHeroHolder.addView(row);
@@ -295,14 +283,14 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
                     imageView.setPadding(dp2, dp2, dp2, dp2);
                     imageView.setLayoutParams(otherLayoutParams);
                     row.addView(imageView);
-                    imageLoader.displayImage("assets://heroes" + File.separator + heroName + File.separator + "mini.png", imageView, options);
+                    Glide.with(context).load(Uri.parse("file:///android_asset/heroes" + File.separator + heroName + File.separator + "mini.png")).into(imageView);
                     index++;
                 }
             }
-            if(response2.getItems()!=null){
-                List<String> items=response2.getItems();
-                for(int i=0,iSize=items.size();i<iSize;i++){
-                    String itemName=items.get(i);
+            if (response2.getItems() != null) {
+                List<String> items = response2.getItems();
+                for (int i = 0, iSize = items.size(); i < iSize; i++) {
+                    String itemName = items.get(i);
                     if (index % 3 == 0) {
                         if (row != null) {
                             holder.othersHeroHolder.addView(row);
@@ -316,11 +304,11 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
                     imageView.setPadding(dp2, dp2, dp2, dp2);
                     imageView.setLayoutParams(otherLayoutParams);
                     row.addView(imageView);
-                    imageLoader.displayImage("assets://items" + File.separator + itemName + ".png", imageView, options);
+                    Glide.with(context).load(Uri.parse("file:///android_asset/items" + File.separator + itemName + ".png")).into(imageView);
                     index++;
                 }
             }
-            if(!TextUtils.isEmpty(response2.getRune())){
+            if (!TextUtils.isEmpty(response2.getRune())) {
                 System.out.println(response2.getRune());
                 //todo
             }
@@ -339,7 +327,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
-                List<Object> filteredHeroResponses =generateFilteredValue(constraint.toString().toLowerCase());
+                List<Object> filteredHeroResponses = generateFilteredValue(constraint.toString().toLowerCase());
                 filterResults.count = filteredHeroResponses.size();
                 filterResults.values = filteredHeroResponses;
                 return filterResults;
@@ -391,6 +379,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
     private void loadFile(HeroResponse2 heroResponse, boolean saveAsDefault) {
         new Mp3Loader(Arrays.asList(heroResponse), saveAsDefault).execute();
     }
+
     @Override
     public int getViewTypeCount() {
         return 2;
@@ -398,11 +387,12 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
 
     @Override
     public boolean isItemViewTypePinned(int viewType) {
-        return viewType==1;
+        return viewType == 1;
     }
+
     @Override
     public int getItemViewType(int position) {
-        return getItem(position) instanceof String? 1 : 0;
+        return getItem(position) instanceof String ? 1 : 0;
     }
 
     private class HeroResponseHolder {

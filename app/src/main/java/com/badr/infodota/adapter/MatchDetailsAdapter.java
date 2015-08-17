@@ -1,7 +1,7 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +18,7 @@ import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.api.matchdetails.Player;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,29 +33,21 @@ import static com.badr.infodota.util.Utils.TABLET_PORTRAIT;
  * Time: 14:44
  */
 public class MatchDetailsAdapter extends BaseAdapter {
-    DisplayImageOptions options;
     int state;
     private List<Player> players;
     private LayoutInflater inflater;
     private Context context;
-    private ImageLoader imageLoader;
+
     public MatchDetailsAdapter(Context context, List<Player> players) {
         this.context = context;
         this.players = players != null ? players : new ArrayList<Player>();
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
-        state=Utils.getDeviceState(context);
+        state = Utils.getDeviceState(context);
     }
 
     @Override
     public void notifyDataSetChanged() {
-        state=Utils.getDeviceState(context);
+        state = Utils.getDeviceState(context);
         super.notifyDataSetChanged();
     }
 
@@ -184,10 +175,9 @@ public class MatchDetailsAdapter extends BaseAdapter {
                 holder.leaver.setVisibility(View.INVISIBLE);
             }
         }
-
         final Hero hero = player.getHero();
         if (hero != null) {
-            imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.heroImg, options);
+            Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.heroImg);
            /* holder.heroImg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -201,42 +191,42 @@ public class MatchDetailsAdapter extends BaseAdapter {
             holder.heroImg.setImageResource(R.drawable.default_img);
             holder.heroName.setText("");
         }
-        if (player.getItem0dotaId()!= null) {
-            imageLoader.displayImage(Utils.getItemImage(player.getItem0dotaId()), holder.item0, options);
+        if (player.getItem0dotaId() != null) {
+            Glide.with(context).load(Utils.getItemImage(player.getItem0dotaId())).placeholder(R.drawable.default_img).into(holder.item0);
             holder.item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem0()));
         } else {
             holder.item0.setImageResource(R.drawable.emptyitembg);
         }
-        if (player.getItem1dotaId()!= null) {
-            imageLoader.displayImage(Utils.getItemImage(player.getItem1dotaId()), holder.item1, options);
+        if (player.getItem1dotaId() != null) {
+            Glide.with(context).load(Utils.getItemImage(player.getItem1dotaId())).placeholder(R.drawable.default_img).into(holder.item1);
             holder.item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem1()));
         } else {
             holder.item1.setImageResource(R.drawable.emptyitembg);
         }
 
-        if (player.getItem2dotaId()!= null) {
-            imageLoader.displayImage(Utils.getItemImage(player.getItem2dotaId()), holder.item2, options);
+        if (player.getItem2dotaId() != null) {
+            Glide.with(context).load(Utils.getItemImage(player.getItem2dotaId())).placeholder(R.drawable.default_img).into(holder.item2);
             holder.item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem2()));
         } else {
             holder.item2.setImageResource(R.drawable.emptyitembg);
         }
 
-        if (player.getItem3dotaId()!= null) {
-            imageLoader.displayImage(Utils.getItemImage(player.getItem3dotaId()), holder.item3, options);
+        if (player.getItem3dotaId() != null) {
+            Glide.with(context).load(Utils.getItemImage(player.getItem3dotaId())).placeholder(R.drawable.default_img).into(holder.item3);
             holder.item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem3()));
         } else {
             holder.item3.setImageResource(R.drawable.emptyitembg);
         }
 
-        if (player.getItem4dotaId()!= null) {
-            imageLoader.displayImage(Utils.getItemImage(player.getItem4dotaId()), holder.item4, options);
+        if (player.getItem4dotaId() != null) {
+            Glide.with(context).load(Utils.getItemImage(player.getItem4dotaId())).placeholder(R.drawable.default_img).into(holder.item4);
             holder.item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem4()));
         } else {
             holder.item4.setImageResource(R.drawable.emptyitembg);
         }
 
-        if (player.getItem5dotaId()!= null) {
-            imageLoader.displayImage(Utils.getItemImage(player.getItem5dotaId()), holder.item5, options);
+        if (player.getItem5dotaId() != null) {
+            Glide.with(context).load(Utils.getItemImage(player.getItem5dotaId())).placeholder(R.drawable.default_img).into(holder.item5);
             holder.item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem5()));
         } else {
             holder.item5.setImageResource(R.drawable.emptyitembg);
@@ -245,43 +235,43 @@ public class MatchDetailsAdapter extends BaseAdapter {
             AdditionalUnit unit = player.getAdditionalUnits().get(0);
             holder.additionalUnitHolder.setVisibility(View.VISIBLE);
 
-            if (unit.getItem0dotaId()!= null) {
-                imageLoader.displayImage(Utils.getItemImage(unit.getItem0dotaId()), holder.additionalUnitItem0, options);
+            if (unit.getItem0dotaId() != null) {
+                Glide.with(context).load(Utils.getItemImage(unit.getItem0dotaId())).placeholder(R.drawable.default_img).into(holder.additionalUnitItem0);
                 holder.additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem0()));
             } else {
                 holder.additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
             }
 
-            if (unit.getItem1dotaId()!= null) {
-                imageLoader.displayImage(Utils.getItemImage(unit.getItem1dotaId()), holder.additionalUnitItem1, options);
+            if (unit.getItem1dotaId() != null) {
+                Glide.with(context).load(Utils.getItemImage(unit.getItem1dotaId())).placeholder(R.drawable.default_img).into(holder.additionalUnitItem1);
                 holder.additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem1()));
             } else {
                 holder.additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
             }
 
-            if (unit.getItem2dotaId()!= null) {
-                imageLoader.displayImage(Utils.getItemImage(unit.getItem2dotaId()), holder.additionalUnitItem2, options);
+            if (unit.getItem2dotaId() != null) {
+                Glide.with(context).load(Utils.getItemImage(unit.getItem2dotaId())).placeholder(R.drawable.default_img).into(holder.additionalUnitItem2);
                 holder.additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem2()));
             } else {
                 holder.additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
             }
 
-            if (unit.getItem3dotaId()!= null) {
-                imageLoader.displayImage(Utils.getItemImage(unit.getItem3dotaId()), holder.additionalUnitItem3, options);
+            if (unit.getItem3dotaId() != null) {
+                Glide.with(context).load(Utils.getItemImage(unit.getItem3dotaId())).placeholder(R.drawable.default_img).into(holder.additionalUnitItem3);
                 holder.additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem3()));
             } else {
                 holder.additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
             }
 
-            if (unit.getItem4dotaId()!= null) {
-                imageLoader.displayImage(Utils.getItemImage(unit.getItem4dotaId()), holder.additionalUnitItem4, options);
+            if (unit.getItem4dotaId() != null) {
+                Glide.with(context).load(Utils.getItemImage(unit.getItem4dotaId())).placeholder(R.drawable.default_img).into(holder.additionalUnitItem4);
                 holder.additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem4()));
             } else {
                 holder.additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
             }
 
-            if (unit.getItem5dotaId()!= null) {
-                imageLoader.displayImage(Utils.getItemImage(unit.getItem5dotaId()), holder.additionalUnitItem5, options);
+            if (unit.getItem5dotaId() != null) {
+                Glide.with(context).load(Utils.getItemImage(unit.getItem5dotaId())).placeholder(R.drawable.default_img).into(holder.additionalUnitItem5);
                 holder.additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem5()));
             } else {
                 holder.additionalUnitItem5.setImageResource(R.drawable.emptyitembg);

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,8 +23,6 @@ import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.retrofit.TaskRequest;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -48,13 +45,12 @@ import java.util.Set;
  * Date: 27.03.14
  * Time: 18:27
  */
-public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> implements RequestListener<CommonStats.CommonInfo>{
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
+public class CommonStats extends RecyclerFragment<CommonStat, CommonStatHolder> implements RequestListener<CommonStats.CommonInfo> {
+    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
     private String metric;
     private Unit account;
-    private boolean initialized=false;
+    private boolean initialized = false;
+
     public static CommonStats newInstance(Unit account, Bundle args, String metric) {
         CommonStats fragment = new CommonStats();
         fragment.setArguments(args);
@@ -65,9 +61,9 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
+        if (!spiceManager.isStarted()) {
             spiceManager.start(getActivity());
-            if(!initialized){
+            if (!initialized) {
                 onRefresh();
             }
         }
@@ -76,7 +72,7 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public void onStop() {
-        if(spiceManager.isStarted()){
+        if (spiceManager.isStarted()) {
             spiceManager.shouldStop();
         }
         super.onStop();
@@ -84,7 +80,7 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public void onDestroy() {
-        initialized=false;
+        initialized = false;
         super.onDestroy();
     }
 
@@ -98,17 +94,12 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public RecyclerView.LayoutManager getLayoutManager(Context context) {
-        return new GridLayoutManager(context,1);
+        return new GridLayoutManager(context, 1);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        options = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565).build();
-        imageLoader = ImageLoader.getInstance();
         setColumnSize();
     }
 
@@ -119,7 +110,7 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
     }
 
     private void setColumnSize() {
-        if(getRecyclerView()!=null) {
+        if (getRecyclerView() != null) {
             if (getResources().getBoolean(R.bool.is_tablet)) {
                 ((GridLayoutManager) getRecyclerView().getLayoutManager()).setSpanCount(2);
             } else {
@@ -134,26 +125,26 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
+        initialized = true;
         setRefreshing(false);
-        Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(CommonInfo commonInfo) {
-        initialized=true;
+        initialized = true;
         setRefreshing(false);
-        AppCompatActivity activity= (AppCompatActivity) getActivity();
-        if(activity!=null&&commonInfo!=null) {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null && commonInfo != null) {
             activity.getSupportActionBar().setSubtitle(MessageFormat
                     .format(getString(R.string.record_with_win_rate), commonInfo.wins, commonInfo.loses, commonInfo.winRate));
-            setAdapter(new CommonStatsAdapter(activity,commonInfo.stats));
+            setAdapter(new CommonStatsAdapter(activity, commonInfo.stats));
         }
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        CommonStat entity=getAdapter().getItem(position);
+        CommonStat entity = getAdapter().getItem(position);
         Intent intent = new Intent(view.getContext(), MatchInfoActivity.class);
         intent.putExtra("matchId", entity.getMatchId());
         startActivity(intent);
@@ -165,24 +156,32 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
         spiceManager.execute(new CommonStatLoadRequest(account.getAccountId(), metric, getArguments()), this);
     }
 
-    public class CommonStatLoadRequest extends TaskRequest<CommonInfo>{
+    public static class CommonInfo {
+        CommonStat.List stats;
+        String wins;
+        String loses;
+        String winRate;
+    }
+
+    public class CommonStatLoadRequest extends TaskRequest<CommonInfo> {
 
         private long accountId;
         private String metric;
         private Bundle args;
         private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm  dd.MM.yyyy");
         private SimpleDateFormat fromSdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-        public CommonStatLoadRequest(long accountId, String metric,Bundle args) {
+
+        public CommonStatLoadRequest(long accountId, String metric, Bundle args) {
             super(CommonInfo.class);
-            this.accountId=accountId;
-            this.metric=metric;
-            this.args=args;
+            this.accountId = accountId;
+            this.metric = metric;
+            this.args = args;
         }
 
         @Override
         public CommonInfo loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null) {
+            Activity activity = getActivity();
+            if (activity != null) {
                 StringBuilder url = new StringBuilder("http://dotabuff.com/players/");
                 url.append(accountId);
                 url.append("/records");
@@ -216,8 +215,8 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
                         break;
                     }
                 }
-                CommonInfo result=new CommonInfo();
-                result.winRate=winRateElement != null ? winRateElement.html() : "NaN%";
+                CommonInfo result = new CommonInfo();
+                result.winRate = winRateElement != null ? winRateElement.html() : "NaN%";
                 result.wins = wins;
                 result.loses = lost;
                 Elements recordsElements = doc.select("div[class=player-records]");
@@ -264,18 +263,12 @@ public class CommonStats extends RecyclerFragment<CommonStat,CommonStatHolder> i
                                 entities.add(entity);
                             }
                         }
-                        result.stats=entities;
+                        result.stats = entities;
                         return result;
                     }
                 }
             }
             return null;
         }
-    }
-    public static class CommonInfo{
-        CommonStat.List stats;
-        String wins;
-        String loses;
-        String winRate;
     }
 }

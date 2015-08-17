@@ -2,7 +2,6 @@ package com.badr.infodota.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +17,7 @@ import com.badr.infodota.adapter.pager.MatchHistoryPagerAdapter;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.service.player.PlayerService;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +27,6 @@ import java.util.List;
  * Date: 21.01.14
  */
 public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> implements Filterable {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     PlayerService playerService = BeanContainer.getInstance().getPlayerService();
     private List<Unit> filtered;
     private String[] groupNames;
@@ -39,13 +35,6 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
     public PlayersAdapter(List<Unit> players, boolean groupVisible, String[] groupNames) {
         super(players);
         this.filtered = mData;
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.steam_default)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         this.groupNames = groupNames;
         showGroup = groupVisible;
     }
@@ -75,7 +64,8 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
     public void onBindViewHolder(PlayerHolder holder, int position) {
         final Unit unit = getItem(position);
         holder.name.setText(unit.getName());
-        imageLoader.displayImage(unit.getIcon(), holder.icon, options);
+        Context context = holder.name.getContext();
+        Glide.with(context).load(unit.getIcon()).placeholder(R.drawable.steam_default).into(holder.icon);
         if (unit.getGroup() == Unit.Groups.NONE) {
 
             addInit(holder, unit);

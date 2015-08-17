@@ -21,8 +21,6 @@ import com.badr.infodota.service.LocalUpdateService;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.utils.L;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -70,7 +68,6 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loader);
-        L.writeLogs(false);
         SharedPreferences localPrefs = getSharedPreferences("locale", MODE_PRIVATE);
         String loc = localPrefs.getString("current", null);
         if (loc != null) {
@@ -228,8 +225,6 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
 
         @Override
         public String loadData() throws Exception {
-            ImageLoader.getInstance().clearDiskCache();
-            ImageLoader.getInstance().clearMemoryCache();
             AssetManager assetManager = context.getAssets();
             String[] files = assetManager.list("updates");
             for (String fileName : files) {

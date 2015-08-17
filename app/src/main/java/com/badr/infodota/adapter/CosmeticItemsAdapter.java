@@ -2,7 +2,6 @@ package com.badr.infodota.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +15,7 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.api.cosmetics.store.CosmeticItem;
 import com.badr.infodota.util.ResourceUtils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +26,6 @@ import java.util.List;
  * Time: 19:02
  */
 public class CosmeticItemsAdapter extends BaseAdapter implements Filterable {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private LayoutInflater mInflater;
     private List<CosmeticItem> items;
     private List<CosmeticItem> filtered;
@@ -53,10 +49,11 @@ public class CosmeticItemsAdapter extends BaseAdapter implements Filterable {
         }
 
         @Override
+        @SuppressWarnings("unchecked")
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filtered = (ArrayList<CosmeticItem>) results.values;
             if (filtered == null) {
-                filtered = new ArrayList<CosmeticItem>();
+                filtered = new ArrayList<>();
             }
             if (results.count >= 0) {
                 notifyDataSetChanged();
@@ -67,13 +64,6 @@ public class CosmeticItemsAdapter extends BaseAdapter implements Filterable {
     };
 
     public CosmeticItemsAdapter(Context context, List<CosmeticItem> items) {
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.emptyitembg)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.items = items != null ? items : new ArrayList<CosmeticItem>();
         this.filtered = items;
@@ -119,7 +109,8 @@ public class CosmeticItemsAdapter extends BaseAdapter implements Filterable {
         holder.name.setText(item.getName());
         Resources resources = parent.getContext().getResources();
         holder.name.setTextColor(resources.getColor(ResourceUtils.COSMETIC_ITEM_QUALITY_IDS[item.getItem_quality()]));
-        imageLoader.displayImage(item.getImage_url(), holder.image, options);
+        Context context=holder.name.getContext();
+        Glide.with(context).load(item.getImage_url()).placeholder(R.drawable.emptyitembg).into(holder.image);
         return vi;
     }
 

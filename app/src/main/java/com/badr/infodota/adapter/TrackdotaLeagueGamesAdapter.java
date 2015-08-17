@@ -1,8 +1,8 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +15,7 @@ import com.badr.infodota.api.trackdota.TrackdotaUtils;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.game.Team;
 import com.badr.infodota.api.trackdota.league.LeagueGame;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -28,35 +27,26 @@ import java.util.List;
  * 17:26
  */
 public class TrackdotaLeagueGamesAdapter extends BaseAdapter {
-    DisplayImageOptions options;
-    private ImageLoader imageLoader;
     private League mLeague;
     private List<LeagueGame> mData;
-    public TrackdotaLeagueGamesAdapter(League league,List<LeagueGame> data) {
-        super();
 
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.empty_item)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
-        mData=data!=null?data:new ArrayList<LeagueGame>();
-        mLeague=league;
+    public TrackdotaLeagueGamesAdapter(League league, List<LeagueGame> data) {
+        super();
+        mData = data != null ? data : new ArrayList<LeagueGame>();
+        mLeague = league;
     }
 
     @Override
     public int getCount() {
-        return mData.size()+1;
+        return mData.size() + 1;
     }
 
     @Override
     public Object getItem(int position) {
-        if(position==0){
+        if (position == 0) {
             return mLeague;
         }
-        return mData.get(position-1);
+        return mData.get(position - 1);
     }
 
     @Override
@@ -66,22 +56,22 @@ public class TrackdotaLeagueGamesAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View itemView=convertView;
-        final Context context=parent.getContext();
-        if(position==0){
-            LayoutInflater inflater=LayoutInflater.from(context);
-            itemView=inflater.inflate(R.layout.trackdota_league_header,parent,false);
-            ((TextView)itemView.findViewById(R.id.description)).setText(mLeague.getDescription());
-            ((TextView)itemView.findViewById(R.id.viewers)).setText(MessageFormat.format(context.getString(R.string.viewers_), mLeague.getViews()));
-            ((TextView)itemView.findViewById(R.id.matches)).setText(MessageFormat.format(context.getString(R.string.matches_), mLeague.getMatchCount()));
-            if(mLeague.isHasImage()) {
-                imageLoader.displayImage(TrackdotaUtils.getLeagueImageUrl(mLeague.getId()), (ImageView) itemView.findViewById(R.id.league_logo), options);
-            }
-            else {
+        View itemView = convertView;
+        final Context context = parent.getContext();
+        if (position == 0) {
+            LayoutInflater inflater = LayoutInflater.from(context);
+            itemView = inflater.inflate(R.layout.trackdota_league_header, parent, false);
+            ((TextView) itemView.findViewById(R.id.description)).setText(mLeague.getDescription());
+            ((TextView) itemView.findViewById(R.id.viewers)).setText(MessageFormat.format(context.getString(R.string.viewers_), mLeague.getViews()));
+            ((TextView) itemView.findViewById(R.id.matches)).setText(MessageFormat.format(context.getString(R.string.matches_), mLeague.getMatchCount()));
+
+            if (mLeague.isHasImage()) {
+                Glide.with(context).load(TrackdotaUtils.getLeagueImageUrl(mLeague.getId())).placeholder(R.drawable.empty_item).into((ImageView) itemView.findViewById(R.id.league_logo));
+            } else {
                 ((ImageView) itemView.findViewById(R.id.league_logo)).setImageResource(R.drawable.empty_item);
             }
-        }else {
-            Object object=getItem(position);
+        } else {
+            Object object = getItem(position);
             LiveGameHolder holder;
             if (itemView == null || itemView.getTag() == null) {
                 LayoutInflater inflater = LayoutInflater.from(context);
@@ -104,17 +94,17 @@ public class TrackdotaLeagueGamesAdapter extends BaseAdapter {
                 holder = (LiveGameHolder) itemView.getTag();
             }
             LeagueGame game = (LeagueGame) object;
-            ((View)holder.radiantTag.getParent()).setVisibility(View.GONE);
+            ((View) holder.radiantTag.getParent()).setVisibility(View.GONE);
             holder.radiantName.setText(game.getRadiantTeamName());
-            Team radiant=new Team();
+            Team radiant = new Team();
             radiant.setId(game.getRadiantTeamId());
-            imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(radiant), holder.radiantLogo, options);
+            Glide.with(context).load(TrackdotaUtils.getTeamImageUrl(radiant)).placeholder(R.drawable.empty_item).into(holder.radiantLogo);
 
             holder.radiantScore.setText(String.valueOf(game.getRadiantScore()));
             Team dire = new Team();
             dire.setId(game.getDireTeamId());
             holder.direName.setText(game.getDireTeamName());
-            imageLoader.displayImage(TrackdotaUtils.getTeamImageUrl(dire), holder.direLogo, options);
+            Glide.with(context).load(TrackdotaUtils.getTeamImageUrl(dire)).placeholder(R.drawable.empty_item).into(holder.direLogo);
 
             holder.direScore.setText(String.valueOf(game.getDireScore()));
             StringBuilder gameState = new StringBuilder(context.getString(R.string.game));
@@ -149,18 +139,19 @@ public class TrackdotaLeagueGamesAdapter extends BaseAdapter {
                     break;
                 case 4:
                     holder.gameTime.setText(MessageFormat.format(context.getString(R.string.minutes_), game.getDuration() / 60));
-                    if(game.getWinner()==0){
+                    if (game.getWinner() == 0) {
                         holder.direName.setPaintFlags(holder.direName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                    }
-                    else {
-                        holder.radiantName.setPaintFlags(holder.radiantName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);;
+                    } else {
+                        holder.radiantName.setPaintFlags(holder.radiantName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        ;
                     }
                 default:
             }
         }
         return itemView;
     }
-    public class LiveGameHolder{
+
+    public class LiveGameHolder {
         ImageView radiantLogo;
         ImageView direLogo;
         TextView radiantTag;

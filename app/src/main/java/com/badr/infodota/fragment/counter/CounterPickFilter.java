@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,8 +36,7 @@ import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -53,8 +51,6 @@ import java.util.List;
  * Time: 17:46
  */
 public class CounterPickFilter extends Fragment implements RequestListener<TruepickerHero.List> {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private ScrollView scroll;
     private FlowLayout recommendationsView;
     private View recommendsTitle;
@@ -82,8 +78,8 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             "mid double carry",
             "mid double support"
     };
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private View.OnClickListener allyListener=new View.OnClickListener() {
+    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
+    private View.OnClickListener allyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getActivity(), CounterPickerHeroesSelectActivity.class);
@@ -94,7 +90,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
         }
     };
 
-    private View.OnClickListener enemyListener=new View.OnClickListener() {
+    private View.OnClickListener enemyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getActivity(), CounterPickerHeroesSelectActivity.class);
@@ -113,7 +109,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
 
     @Override
     public void onStop() {
-        if(spiceManager.isStarted()){
+        if (spiceManager.isStarted()) {
             spiceManager.shouldStop();
         }
         super.onStop();
@@ -179,16 +175,13 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             });
             builder.show();
         }
-        options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565).build();
-        imageLoader = ImageLoader.getInstance();
-        enemies = new ArrayList<Integer>();
-        allies = new ArrayList<Integer>();
-        View root=getView();
-        if(root!=null) {
+        enemies = new ArrayList<>();
+        allies = new ArrayList<>();
+        View root = getView();
+        if (root != null) {
             recommendationsView = (FlowLayout) root.findViewById(R.id.holder);
-            progressBar=root.findViewById(R.id.progressBar);
-            recommendsTitle=root.findViewById(R.id.holder_title);
+            progressBar = root.findViewById(R.id.progressBar);
+            recommendsTitle = root.findViewById(R.id.holder_title);
             scroll = (ScrollView) root.findViewById(R.id.scroll);
             roleSpinner = (Spinner) root.findViewById(R.id.role_select);
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -197,7 +190,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             roleSpinner.setAdapter(adapter);
 
 		/*root.findViewById(R.id.role_select).setOnClickListener(new View.OnClickListener()
-		{
+        {
 			@Override
 			public void onClick(View v)
 			{
@@ -285,7 +278,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
                     progressBar.setVisibility(View.VISIBLE);
                     recommendsTitle.setVisibility(View.GONE);
                     recommendationsView.removeAllViews();
-                    spiceManager.execute(new TruepickerLoadRequest(),CounterPickFilter.this);
+                    spiceManager.execute(new TruepickerLoadRequest(), CounterPickFilter.this);
                 }
             });
             loadImages();
@@ -300,23 +293,23 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             {
                 if (allies.size() > i) {
                     TruepickerHero hero = heroService.getTruepickerHero(activity, allies.get(i));
-                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), allyViews[i], options);
+                    Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into(allyViews[i]);
                 } else {
-                    imageLoader.displayImage("assets://default_img.png", allyViews[i], options);
+                    Glide.with(activity).load(Uri.parse("file:///android_asset/default_img.png")).into(allyViews[i]);
                 }
                 if (enemies.size() > i) {
                     TruepickerHero hero = heroService.getTruepickerHero(activity, enemies.get(i));
-                    imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), enemyViews[i], options);
+                    Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into(enemyViews[i]);
                 } else {
-                    imageLoader.displayImage("assets://default_img.png", enemyViews[i], options);
+                    Glide.with(activity).load(Uri.parse("file:///android_asset/default_img.png")).into(enemyViews[i]);
                 }
             }
             if (enemies.size() == 5)//та же поправка
             {
                 TruepickerHero hero = heroService.getTruepickerHero(activity, enemies.get(4));
-                imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), enemyViews[4], options);
+                Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into(enemyViews[4]);
             } else {
-                imageLoader.displayImage("assets://default_img.png", enemyViews[4], options);
+                Glide.with(activity).load(Uri.parse("file:///android_asset/default_img.png")).into(enemyViews[4]);
             }
         }
     }
@@ -348,17 +341,15 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
     public void onRequestSuccess(TruepickerHero.List truepickerHeros) {
         if (truepickerHeros != null) {
             View root = getView();
-            Activity activity=getActivity();
-            if (root != null&&activity!=null) {
+            Activity activity = getActivity();
+            if (root != null && activity != null) {
                 progressBar.setVisibility(View.GONE);
                 recommendsTitle.setVisibility(View.VISIBLE);
                 LayoutInflater inflater = activity.getLayoutInflater();
                 for (TruepickerHero hero : truepickerHeros) {
                     View view = inflater.inflate(R.layout.hero_row, recommendationsView, false);
                     ((TextView) view.findViewById(R.id.name)).setText(hero.getLocalizedName());
-                    imageLoader
-                            .displayImage(Utils.getHeroFullImage(hero.getDotaId()),
-                                    (ImageView) view.findViewById(R.id.img), options);
+                    Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into((ImageView) view.findViewById(R.id.img));
                     view.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     recommendationsView.addView(view);
                 }
@@ -372,7 +363,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
         }
     }
 
-    public class TruepickerLoadRequest extends TaskRequest<TruepickerHero.List>{
+    public class TruepickerLoadRequest extends TaskRequest<TruepickerHero.List> {
 
         public TruepickerLoadRequest() {
             super(TruepickerHero.List.class);
@@ -388,9 +379,8 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
 								rolesToAdd.add(roleCodes[i]);
 							}
 						}*/
-            Activity activity=getActivity();
-            if(activity!=null)
-            {
+            Activity activity = getActivity();
+            if (activity != null) {
                 return service.getCounters(activity, allies, enemies, 1/*roleSpinner.getSelectedItemPosition()*/);
             }
             return null;

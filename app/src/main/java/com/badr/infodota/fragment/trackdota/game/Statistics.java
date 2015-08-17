@@ -1,7 +1,6 @@
 package com.badr.infodota.fragment.trackdota.game;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,8 +28,7 @@ import com.badr.infodota.api.trackdota.live.LiveTeam;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.Updatable;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,59 +40,49 @@ import java.util.List;
  * 18.04.2015
  * 11:33
  */
-public class Statistics extends Fragment implements Updatable<Pair<CoreResult,LiveGame>> {
+public class Statistics extends Fragment implements Updatable<Pair<CoreResult, LiveGame>> {
+    int mSelectedStat;
     private Refresher refresher;
     private CoreResult coreResult;
     private LiveGame liveGame;
     private SwipeRefreshLayout mScrollContainer;
-    private LinearLayout mStatHolder;
-    private Spinner mStatTypeSpinner;
-    int mSelectedStat;
-    private DisplayImageOptions options;
-    private ImageLoader imageLoader;
-
-    public static Statistics newInstance(Refresher refresher,CoreResult coreResult,LiveGame liveGame){
-        Statistics fragment=new Statistics();
-        fragment.refresher=refresher;
-        fragment.coreResult=coreResult;
-        fragment.liveGame=liveGame;
-        return fragment;
-    }
-
     final private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            if(refresher!=null) {
+            if (refresher != null) {
                 mScrollContainer.setRefreshing(true);
                 refresher.onRefresh();
             }
         }
     };
+    private LinearLayout mStatHolder;
+    private Spinner mStatTypeSpinner;
+
+    public static Statistics newInstance(Refresher refresher, CoreResult coreResult, LiveGame liveGame) {
+        Statistics fragment = new Statistics();
+        fragment.refresher = refresher;
+        fragment.coreResult = coreResult;
+        fragment.liveGame = liveGame;
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root=inflater.inflate(R.layout.trackdota_game_statistics,container,false);
+        View root = inflater.inflate(R.layout.trackdota_game_statistics, container, false);
 
         mScrollContainer = (SwipeRefreshLayout) root.findViewById(R.id.listContainer);
         mScrollContainer.setOnRefreshListener(mOnRefreshListener);
         mScrollContainer.setColorSchemeResources(R.color.primary);
 
-        mStatHolder= (LinearLayout) root.findViewById(R.id.stat_holder);
-        mStatTypeSpinner= (Spinner) root.findViewById(R.id.stat_type);
+        mStatHolder = (LinearLayout) root.findViewById(R.id.stat_holder);
+        mStatTypeSpinner = (Spinner) root.findViewById(R.id.stat_type);
         return root;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.empty_item)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_spinner_item,
                 getResources().getStringArray(R.array.trackdota_player_stats));
@@ -120,22 +108,22 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
     @Override
     public void onUpdate(Pair<CoreResult, LiveGame> entity) {
         mScrollContainer.setRefreshing(false);
-        this.coreResult=entity.first;
-        this.liveGame=entity.second;
+        this.coreResult = entity.first;
+        this.liveGame = entity.second;
         updateStatistic();
     }
 
     private void updateStatistic() {
         mStatHolder.removeAllViews();
-        if(liveGame!=null&&liveGame.getStatus()>=2){
-            GameManager gameManager=GameManager.getInstance();
-            List<StatEntry> statEntries=new ArrayList<>();
-            LiveTeam radiant=liveGame.getRadiant();
-            for(LivePlayer livePlayer:radiant.getPlayers()){
-                StatEntry entry=new StatEntry();
-                Player player=gameManager.getPlayer(livePlayer.getAccountId());
+        if (liveGame != null && liveGame.getStatus() >= 2) {
+            GameManager gameManager = GameManager.getInstance();
+            List<StatEntry> statEntries = new ArrayList<>();
+            LiveTeam radiant = liveGame.getRadiant();
+            for (LivePlayer livePlayer : radiant.getPlayers()) {
+                StatEntry entry = new StatEntry();
+                Player player = gameManager.getPlayer(livePlayer.getAccountId());
                 entry.setPlayerName(player.getName());
-                Hero hero=gameManager.getHero(player.getHeroId());
+                Hero hero = gameManager.getHero(player.getHeroId());
                 entry.setHeroDotaId(hero != null ? hero.getDotaId() : null);
                 entry.setTeam(TrackdotaUtils.RADIANT);
                 entry.setDisplayValue(getDisplayValue(livePlayer));
@@ -143,12 +131,12 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
                 entry.setLivePlayer(livePlayer);
                 statEntries.add(entry);
             }
-            LiveTeam dire=liveGame.getDire();
-            for(LivePlayer livePlayer:dire.getPlayers()){
-                StatEntry entry=new StatEntry();
-                Player player=gameManager.getPlayer(livePlayer.getAccountId());
+            LiveTeam dire = liveGame.getDire();
+            for (LivePlayer livePlayer : dire.getPlayers()) {
+                StatEntry entry = new StatEntry();
+                Player player = gameManager.getPlayer(livePlayer.getAccountId());
                 entry.setPlayerName(player.getName());
-                Hero hero=gameManager.getHero(player.getHeroId());
+                Hero hero = gameManager.getHero(player.getHeroId());
                 entry.setHeroDotaId(hero != null ? hero.getDotaId() : null);
                 entry.setTeam(TrackdotaUtils.DIRE);
                 entry.setDisplayValue(getDisplayValue(livePlayer));
@@ -157,28 +145,28 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
                 statEntries.add(entry);
             }
             Collections.sort(statEntries);
-            LayoutInflater inflater= (LayoutInflater) mStatHolder.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            int radiantColor=getResources().getColor(R.color.radiant_dark);
-            int direColor=getResources().getColor(R.color.dire_dark);
-            for(StatEntry entry:statEntries){
-                View row=inflater.inflate(R.layout.trackdota_game_stat_row,mStatHolder,false);
-                imageLoader.displayImage(Utils.getHeroMiniImage(entry.getHeroDotaId()), (ImageView) row.findViewById(R.id.hero_icon),options);
-                ((TextView)row.findViewById(R.id.player_name)).setText(entry.getPlayerName());
-                if(entry.getTeam()==TrackdotaUtils.RADIANT){
+            LayoutInflater inflater = (LayoutInflater) mStatHolder.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            int radiantColor = getResources().getColor(R.color.radiant_dark);
+            int direColor = getResources().getColor(R.color.dire_dark);
+            for (StatEntry entry : statEntries) {
+                View row = inflater.inflate(R.layout.trackdota_game_stat_row, mStatHolder, false);
+                Glide.with(row.getContext()).load(Utils.getHeroMiniImage(entry.getHeroDotaId())).placeholder(R.drawable.empty_item).into((ImageView) row.findViewById(R.id.hero_icon));
+                ((TextView) row.findViewById(R.id.player_name)).setText(entry.getPlayerName());
+                if (entry.getTeam() == TrackdotaUtils.RADIANT) {
                     row.setBackgroundColor(radiantColor);
-                }
-                else {
+                } else {
                     row.setBackgroundColor(direColor);
                 }
-                ((TextView)row.findViewById(R.id.stat_value)).setText(entry.getDisplayValue());
-                row.setOnClickListener(new TrackdotaUtils.OnLivePlayerClickListener(entry.getLivePlayer(),entry.getPlayerName()));
+                ((TextView) row.findViewById(R.id.stat_value)).setText(entry.getDisplayValue());
+                row.setOnClickListener(new TrackdotaUtils.OnLivePlayerClickListener(entry.getLivePlayer(), entry.getPlayerName()));
                 mStatHolder.addView(row);
             }
         }
 
     }
-    private String getDisplayValue(LivePlayer livePlayer){
-        switch (mSelectedStat){
+
+    private String getDisplayValue(LivePlayer livePlayer) {
+        switch (mSelectedStat) {
             default:
                 return getString(R.string.stat_not_found);
             case 0:
@@ -188,11 +176,11 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
             case 2:
                 return String.valueOf(livePlayer.getGold());
             case 3:
-                return livePlayer.getKills()+" / "+livePlayer.getDeath()+" / "+livePlayer.getAssists();
+                return livePlayer.getKills() + " / " + livePlayer.getDeath() + " / " + livePlayer.getAssists();
             case 4:
-                return livePlayer.getGpm()+" / "+livePlayer.getXpm();
+                return livePlayer.getGpm() + " / " + livePlayer.getXpm();
             case 5:
-                return livePlayer.getLastHits()+" / "+livePlayer.getDenies();
+                return livePlayer.getLastHits() + " / " + livePlayer.getDenies();
             case 6:
                 return String.valueOf(livePlayer.getKills());
             case 7:
@@ -209,22 +197,23 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
                 return String.valueOf(livePlayer.getDenies());
         }
     }
-    private int getSortValue(LivePlayer livePlayer){
-        switch (mSelectedStat){
+
+    private int getSortValue(LivePlayer livePlayer) {
+        switch (mSelectedStat) {
             default:
                 return 0;
             case 0:
-                return (int)livePlayer.getNetWorth();
+                return (int) livePlayer.getNetWorth();
             case 1:
                 return livePlayer.getLevel();
             case 2:
-                return (int)livePlayer.getGold();
+                return (int) livePlayer.getGold();
             case 3:
-                return (livePlayer.getKills()+livePlayer.getAssists())/(livePlayer.getDeath()!=0?livePlayer.getDeath():1);
+                return (livePlayer.getKills() + livePlayer.getAssists()) / (livePlayer.getDeath() != 0 ? livePlayer.getDeath() : 1);
             case 4:
                 return livePlayer.getGpm();
             case 5:
-                return livePlayer.getLastHits()+livePlayer.getDenies();
+                return livePlayer.getLastHits() + livePlayer.getDenies();
             case 6:
                 return livePlayer.getKills();
             case 7:
@@ -243,7 +232,7 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
         }
     }
 
-    public static class StatEntry implements Serializable,Comparable{
+    public static class StatEntry implements Serializable, Comparable {
         private String heroDotaId;
         private String playerName;
         private int team;
@@ -298,12 +287,13 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult,Li
         public void setSortValue(int sortValue) {
             this.sortValue = sortValue;
         }
+
         /*Sort desc*/
         @Override
         public int compareTo(Object another) {
-            if(another instanceof StatEntry){
-                int value= ((StatEntry) another).getSortValue()-sortValue;
-                if(value==0){
+            if (another instanceof StatEntry) {
+                int value = ((StatEntry) another).getSortValue() - sortValue;
+                if (value == 0) {
                     return displayValue.compareTo(((StatEntry) another).getDisplayValue());
                 }
                 return value;

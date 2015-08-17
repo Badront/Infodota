@@ -1,7 +1,6 @@
 package com.badr.infodota.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,7 @@ import com.badr.infodota.activity.CounterPickerHeroesSelectActivity;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.heroes.TruepickerHero;
 import com.badr.infodota.util.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +26,6 @@ import java.util.List;
  * Time: 19:20
  */
 public class HeroesSelectAdapter extends BaseAdapter implements Filterable {
-    protected ImageLoader imageLoader;
-    DisplayImageOptions options;
     private LayoutInflater mInflater;
     private List<TruepickerHero> mHeroes;
     private List<TruepickerHero> allHeroes;
@@ -41,13 +37,6 @@ public class HeroesSelectAdapter extends BaseAdapter implements Filterable {
 
     public HeroesSelectAdapter(Context context, List<TruepickerHero> heroes, List<Integer> allies, List<Integer> enemies, int mode) {
         this.mode = mode;
-        options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.default_img)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader = ImageLoader.getInstance();
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         allHeroes = heroes;
         mHeroes = heroes != null ? heroes : new ArrayList<TruepickerHero>();
@@ -109,7 +98,8 @@ public class HeroesSelectAdapter extends BaseAdapter implements Filterable {
         } else {
             vi.setBackgroundResource(0);
         }
-        imageLoader.displayImage(Utils.getHeroFullImage(hero.getDotaId()), holder.image, options);
+        Context context=parent.getContext();
+        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
         return vi;
     }
 

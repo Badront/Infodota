@@ -1,6 +1,7 @@
 package com.badr.infodota.fragment.quiz;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import com.badr.infodota.api.items.Item;
 import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.FlowLayout;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,6 @@ import java.util.Random;
  */
 public class ItemsQuiz extends QuizFragment {
     public static final int ITEMS_FROM_SIZE = 8;
-    private ImageLoader imageLoader;
     private Item item;
     private List<Item> itemsFrom;
     private List<Item> fakeFrom;
@@ -53,7 +53,6 @@ public class ItemsQuiz extends QuizFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        imageLoader = ImageLoader.getInstance();
         ItemService itemService = BeanContainer.getInstance().getItemService();
         Activity activity = getActivity();
         List<Item> items = itemService.getComplexItems(activity);
@@ -78,8 +77,8 @@ public class ItemsQuiz extends QuizFragment {
             fakeFrom.add(allItems.get(idRandom.nextInt(allItems.size())));
         }
         Collections.shuffle(fakeFrom, idRandom);
-        View root=getView();
-        if(root!=null) {
+        View root = getView();
+        if (root != null) {
             initCoreItem(root);
             initFromFlow(root);
             initFakeFlow(root);
@@ -89,8 +88,7 @@ public class ItemsQuiz extends QuizFragment {
     }
 
     private void initCoreItem(View root) {
-        imageLoader.displayImage(Utils.getItemImage(item.getDotaId()),
-                (ImageView) root.findViewById(R.id.request_item));
+        Glide.with(root.getContext()).load(Utils.getItemImage(item.getDotaId())).into((ImageView) root.findViewById(R.id.request_item));
 
     }
 
@@ -100,7 +98,8 @@ public class ItemsQuiz extends QuizFragment {
         LinearLayout fake2 = (LinearLayout) fakeFlowLayout.findViewById(R.id.recipe_fake_holder2);
         fake1.removeAllViews();
         fake2.removeAllViews();
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        Context context = root.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.weight = 1f;
@@ -110,9 +109,7 @@ public class ItemsQuiz extends QuizFragment {
             view.setTag(i);
             view.setLayoutParams(layoutParams);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
-            imageLoader.displayImage(
-                    Utils.getItemImage(fakeItem.getDotaId()),
-                    imageView);
+            Glide.with(context).load(Utils.getItemImage(fakeItem.getDotaId())).into(imageView);
             view.setEnabled(true);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -120,9 +117,7 @@ public class ItemsQuiz extends QuizFragment {
                     if (notChoosed.size() > 0) {
                         View view1 = notChoosed.get(0);
                         notChoosed.remove(0);
-                        imageLoader.displayImage(
-                                Utils.getItemImage(fakeItem.getDotaId()),
-                                (ImageView) view1.findViewById(R.id.img));
+                        Glide.with(v.getContext()).load(Utils.getItemImage(fakeItem.getDotaId())).into((ImageView) view1.findViewById(R.id.img));
                         view1.setTag(v.getTag());
                         view1.setEnabled(true);
                         v.setEnabled(false);
