@@ -171,7 +171,7 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                 RelativeLayout row = (RelativeLayout) inflater.inflate(R.layout.trackdota_map_minihero, holder, false);
                 Hero hero = gameManager.getHero(player.getHeroId());
                 if (hero != null) {
-                    Glide.with(activity).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into((ImageView) row.findViewById(R.id.image));
+                    Glide.with(activity).load(Utils.getHeroMiniImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.image));
                     //todo переделать
                     row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(player.getHeroId()));
                 }
@@ -351,7 +351,7 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                     TextView heroName = (TextView) playerRow.findViewById(R.id.nick);
                     heroName.setVisibility(View.VISIBLE);
                     heroName.setText(hero.getLocalizedName());
-                    Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into((ImageView) playerRow.findViewById(R.id.hero_img));
+                    Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) playerRow.findViewById(R.id.hero_img));
                 }
                 TextView playerNick = (TextView) playerRow.findViewById(R.id.hero_name);
                 playerNick.setTextColor(teamColor);
@@ -380,7 +380,7 @@ public class MapAndHeroes extends Fragment implements Updatable<Pair<CoreResult,
                         long itemId = livePlayer.getItemIds()[i];
                         Item item = gameManager.getItem(itemId);
                         if (item != null) {
-                            Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(R.drawable.empty_item).into(itemView);
+                            Glide.with(context).load(Utils.getItemImage(item.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into(itemView);
                             itemView.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(itemId));
                         } else {
                             itemView.setImageResource(R.drawable.emptyitembg);

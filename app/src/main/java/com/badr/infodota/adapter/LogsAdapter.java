@@ -93,17 +93,17 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
             }
             LogEvent logEvent = (LogEvent) object;
             holder.text.setTextSize(2, 16f);
-            holder.heroIcon.setVisibility(View.VISIBLE);
-            holder.itemIcon.setVisibility(View.VISIBLE);
             holder.text.setVisibility(View.VISIBLE);
             Resources resources = context.getResources();
 
             if ("kill".equals(logEvent.getAction())) {
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
+                holder.heroIcon.setVisibility(View.VISIBLE);
                 holder.text.setTextColor(Color.WHITE);
                 Player player = gameManager.getPlayer(logEvent.getAccountId());
                 Hero hero = gameManager.getHero(player.getHeroId());
-                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(0).into(holder.heroIcon);
                 String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
                 if (logEvent.getDelta() > 1) {
                     holder.text.setText(
@@ -126,11 +126,13 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                     );
                 }
             } else if ("death".equals(logEvent.getAction())) {
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
+                holder.heroIcon.setVisibility(View.VISIBLE);
                 holder.text.setTextColor(Color.WHITE);
                 Player player = gameManager.getPlayer(logEvent.getAccountId());
                 Hero hero = gameManager.getHero(player.getHeroId());
-                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(0).into(holder.heroIcon);
                 String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
                 if (logEvent.getDelta() > 1) {
                     holder.text.setText(
@@ -153,17 +155,19 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                     );
                 }
             } else if ("item".equals(logEvent.getAction())) {
+                holder.itemIcon.setVisibility(View.VISIBLE);
+                holder.heroIcon.setVisibility(View.VISIBLE);
                 Player player = gameManager.getPlayer(logEvent.getAccountId());
                 holder.text.setTextColor(Color.WHITE);
                 Hero hero = gameManager.getHero(player.getHeroId());
                 long itemId = Long.valueOf(logEvent.getId());
                 Item item = gameManager.getItem(itemId);
-                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(0).into(holder.heroIcon);
                 if (item == null) {
                     item = itemService.getItemById(context, itemId);
                     gameManager.addItem(item);
                 }
-                Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(R.drawable.empty_item).into(holder.itemIcon);
+                Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(0).into(holder.itemIcon);
                 String itemName = getHtmlColorWrap(item.getDname(), resources.getColor(R.color.item));
                 String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
                 if ((itemId == 117 || itemId == 33) && logEvent.getDelta() >= 1) {
@@ -208,7 +212,9 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                     );
                 }
             } else if ("tower".equals(logEvent.getAction())) {
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
+                holder.heroIcon.setImageResource(0);
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(resources.getColor(R.color.tower));
                 String teamName;
@@ -244,7 +250,9 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                         )
                 );
             } else if ("barracks".equals(logEvent.getAction())) {
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
+                holder.heroIcon.setImageResource(0);
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.text.setTextColor(resources.getColor(R.color.barracks));
                 long delta = logEvent.getDelta();
@@ -270,11 +278,13 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                 );
 
             } else if ("buyback".equals(logEvent.getAction())) {
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
+                holder.heroIcon.setVisibility(View.VISIBLE);
                 holder.text.setTextColor(resources.getColor(R.color.buyback));
                 Player player = gameManager.getPlayer(logEvent.getAccountId());
                 Hero hero = gameManager.getHero(player.getHeroId());
-                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(0).into(holder.heroIcon);
                 String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
                 holder.text.setText(
                         Html.fromHtml(
@@ -285,7 +295,9 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                         )
                 );
             } else if ("roshan".equals(logEvent.getAction())) {
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
+                holder.heroIcon.setImageResource(0);
                 holder.heroIcon.setVisibility(View.GONE);
                 holder.text.setTextSize(2, 20f);
                 holder.text.setTextColor(resources.getColor(R.color.roshan));
@@ -295,7 +307,9 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                     holder.text.setText(context.getString(R.string.roshan_respawn));
                 }
             } else if ("win".equals(logEvent.getAction())) {
+                holder.heroIcon.setImageResource(0);
                 holder.heroIcon.setVisibility(View.GONE);
+                holder.itemIcon.setImageResource(0);
                 holder.itemIcon.setVisibility(View.GONE);
                 holder.text.setTextSize(2, 24f);
                 holder.text.setTextColor(Color.WHITE);
@@ -323,18 +337,20 @@ public class LogsAdapter extends BaseAdapter implements PinnedSectionListView.Pi
                         )
                 );
             } else if ("rapier".equals(logEvent.getAction())) {
+                holder.itemIcon.setVisibility(View.VISIBLE);
+                holder.heroIcon.setVisibility(View.VISIBLE);
                 holder.text.setTextColor(resources.getColor(R.color.rapier));
                 holder.text.setTextColor(Color.WHITE);
                 Player player = gameManager.getPlayer(logEvent.getAccountId());
                 Hero hero = gameManager.getHero(player.getHeroId());
                 long itemId = 133;
                 Item item = gameManager.getItem(itemId);
-                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(R.drawable.empty_item).into(holder.heroIcon);
+                Glide.with(context).load(Utils.getHeroMiniImage(hero.getDotaId())).placeholder(0).into(holder.heroIcon);
                 if (item == null) {
                     item = itemService.getItemById(context, itemId);
                     gameManager.addItem(item);
                 }
-                Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(R.drawable.empty_item).into(holder.itemIcon);
+                Glide.with(context).load(Utils.getItemImage(item.getDotaId())).placeholder(0).into(holder.itemIcon);
                 String itemName = getHtmlColorWrap(item.getDname(), resources.getColor(R.color.item));
                 String playerName = getHtmlColorWrap(player.getName(), player.getTeam() == TrackdotaUtils.RADIANT ? resources.getColor(R.color.ally_team) : resources.getColor(R.color.enemy_team));
                 if (logEvent.getDelta() > 0) {

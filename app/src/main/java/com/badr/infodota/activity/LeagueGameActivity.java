@@ -2,13 +2,15 @@ package com.badr.infodota.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,50 +47,43 @@ import java.util.List;
  * Date: 22.04.14
  * Time: 18:58
  */
-public class LeagueGameActivity extends BaseActivity implements RequestListener {
+public class LeagueGameActivity extends BaseActivity implements RequestListener, SwipeRefreshLayout.OnRefreshListener {
     public static final int ADD_CALENDAR_EVENT_ID = 4321;
+    SwipeRefreshLayout mSwipeRefreshView;
     View progressBar;
     private MatchItem matchItem;
     private Menu menu;
     private Button showStreams;
     private LinearLayout streamsHolder;
     private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+
+    //private boolean initialized=false;
     @Override
     protected void onStart() {
         if(!spiceManager.isStarted()) {
             spiceManager.start(this);
-            if(!initialized) {
-                initMatch();
-            }
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    protected void onStop() {
+    protected void onDestroy() {
         if(spiceManager.isStarted()){
             spiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
-        MenuItem refresh = menu.add(1, 1001, 1, R.string.refresh);
-        refresh.setIcon(R.drawable.ic_menu_refresh);
-        MenuItemCompat.setShowAsAction(refresh, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
         this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 1001) {
-            reloadMatchDetails();
-            return true;
-        } else if (item.getItemId() == ADD_CALENDAR_EVENT_ID) {
+        if (item.getItemId() == ADD_CALENDAR_EVENT_ID) {
             createCalendarEvent();
             return true;
         } else {
@@ -100,23 +95,27 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.league_game_info);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey("matchItem")) {
-            matchItem = (MatchItem) bundle.get("matchItem");
-        } else {
-            finish();
-        }
-    }
-
-    private void initMatch() {
-        ((TextView) findViewById(R.id.team1)).setText(matchItem.getTeam1name());
-        ((TextView) findViewById(R.id.team2)).setText(matchItem.getTeam2name());
-        Glide.with(this).load(matchItem.getTeam1flagLink()).into((ImageView) findViewById(R.id.flag1)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
-        Glide.with(this).load(matchItem.getTeam2flagLink()).into((ImageView) findViewById(R.id.flag2)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
+        mSwipeRefreshView = (SwipeRefreshLayout) findViewById(R.id.listContainer);
+        mSwipeRefreshView.setOnRefreshListener(this);
+        TypedValue typedValue = new TypedValue();
+        TypedArray a = obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
+        int colorAccent = a.getColor(0, 0);
+        a.recycle();
+        mSwipeRefreshView.setColorSchemeColors(colorAccent);
         progressBar = findViewById(R.id.progressBar);
         showStreams = (Button) findViewById(R.id.show_streams);
         streamsHolder = (LinearLayout) findViewById(R.id.streams_holder);
-        reloadMatchDetails();
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey("matchItem")) {
+            matchItem = (MatchItem) bundle.get("matchItem");
+            ((TextView) findViewById(R.id.team1)).setText(matchItem.getTeam1name());
+            ((TextView) findViewById(R.id.team2)).setText(matchItem.getTeam2name());
+            Glide.with(this).load(matchItem.getTeam1flagLink()).placeholder(R.drawable.flag_default).into((ImageView) findViewById(R.id.flag1));
+            Glide.with(this).load(matchItem.getTeam2flagLink()).placeholder(R.drawable.flag_default).into((ImageView) findViewById(R.id.flag2));
+        } else {
+            finish();
+        }
     }
 
     private void reloadMatchDetails() {
@@ -149,14 +148,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
             }
             ((TextView) findViewById(R.id.text_detailed_date)).setText("TBA");
         }
-        Glide.with(this).load(matchItem.getTeam1logoLink()).into((ImageView) findViewById(R.id.logo1)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
-        Glide.with(this).load(matchItem.getTeam2logoLink()).into((ImageView) findViewById(R.id.logo2)).onLoadStarted(getResources().getDrawable(R.drawable.flag_default));
+        Glide.with(this).load(matchItem.getTeam1logoLink()).placeholder(R.drawable.flag_default).into((ImageView) findViewById(R.id.logo1));
+        Glide.with(this).load(matchItem.getTeam2logoLink()).placeholder(R.drawable.flag_default).into((ImageView) findViewById(R.id.logo2));
         HeroService heroService = BeanContainer.getInstance().getHeroService();
         LinearLayout holder = (LinearLayout) findViewById(R.id.games_holder);
         holder.removeAllViews();
         LayoutInflater inflater = getLayoutInflater();
         for (SubmatchItem submatchItem : matchItem.getSubmatches()) {
-            LinearLayout view = (LinearLayout) inflater.inflate(R.layout.league_game_submatch, null, false);
+            LinearLayout view = (LinearLayout) inflater.inflate(R.layout.league_game_submatch, holder, false);
             FlowLayout team1bans = (FlowLayout) view.findViewById(R.id.bans1);
             for (String heroName : submatchItem.getTeam1bans()) {
                 List<Hero> heroes = heroService.getHeroesByName(this, heroName);
@@ -165,7 +164,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                     LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, team1bans, false);
                     imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team1bans.addView(imageLayout);
-                    Glide.with(this).load(matchItem.getTeam2logoLink()).into(new GrayImageLoadListener((ImageView) imageLayout.findViewById(R.id.img))).onLoadStarted(getResources().getDrawable(R.drawable.emptyitembg));
+                    Glide.with(this).load(matchItem.getTeam2logoLink()).placeholder(R.drawable.emptyitembg).into(new GrayImageLoadListener((ImageView) imageLayout.findViewById(R.id.img)));
                 }
             }
             FlowLayout team2bans = (FlowLayout) view.findViewById(R.id.bans2);
@@ -180,9 +179,8 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                     Glide
                             .with(this)
                             .load(Utils.getHeroFullImage(hero.getDotaId()))
-                            .into(new GrayImageLoadListener(imageView))
-                            .onLoadStarted(getResources()
-                                    .getDrawable(R.drawable.emptyitembg));
+                            .placeholder(R.drawable.default_img)
+                            .into(new GrayImageLoadListener(imageView));
                 }
             }
             LinearLayout team1 = (LinearLayout) view.findViewById(R.id.team1);
@@ -197,14 +195,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team1HeroHolder.findViewById(R.id.img);
-                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(imageView).onLoadStarted(getResources().getDrawable(R.drawable.emptyitembg));
+                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 heroes = heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i));
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team2HeroHolder.findViewById(R.id.img);
-                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(imageView).onLoadStarted(getResources().getDrawable(R.drawable.emptyitembg));
+                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 team1.addView(team1HeroHolder);
@@ -226,14 +224,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
+        mSwipeRefreshView.setRefreshing(false);
         progressBar.setVisibility(View.GONE);
         Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Object object) {
-        initialized=true;
+        mSwipeRefreshView.setRefreshing(false);
         progressBar.setVisibility(View.GONE);
         if(object instanceof String){
             String result= (String) object;
@@ -302,6 +300,12 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener 
             loadStreams();
             fillGameInfo();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mSwipeRefreshView.setRefreshing(true);
+        reloadMatchDetails();
     }
 
     public static class ChannelLoadRequest extends TaskRequest<String>{

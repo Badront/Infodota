@@ -150,7 +150,7 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult, L
             int direColor = getResources().getColor(R.color.dire_dark);
             for (StatEntry entry : statEntries) {
                 View row = inflater.inflate(R.layout.trackdota_game_stat_row, mStatHolder, false);
-                Glide.with(row.getContext()).load(Utils.getHeroMiniImage(entry.getHeroDotaId())).placeholder(R.drawable.empty_item).into((ImageView) row.findViewById(R.id.hero_icon));
+                Glide.with(row.getContext()).load(Utils.getHeroMiniImage(entry.getHeroDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.hero_icon));
                 ((TextView) row.findViewById(R.id.player_name)).setText(entry.getPlayerName());
                 if (entry.getTeam() == TrackdotaUtils.RADIANT) {
                     row.setBackgroundColor(radiantColor);
