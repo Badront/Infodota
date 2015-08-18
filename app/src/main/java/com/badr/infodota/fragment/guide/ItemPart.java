@@ -89,7 +89,7 @@ public class ItemPart extends Fragment implements GuideHolder {
                         if (item == null) {
                             Log.d(ItemPart.class.getName(), "error loading item: " + itemName);
                         } else {
-                            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, null);
+                            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, flowLayout,false);
                             FileUtils.setDrawableFromAsset((ImageView) row.findViewById(R.id.img),
                                     "items/" + item.getDotaId() + ".png");
                             //().setImageDrawable(Utils.getDrawableFromAsset(getActivity(), ));

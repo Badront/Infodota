@@ -25,9 +25,9 @@ public class ByHeroStats extends Fragment {
             "",
             "month",
             "week",
-            "patch_6.80",
-            "patch_6.81",
-            "patch_6.81b"
+            "patch_6.84",
+            "patch_6.84b",
+            "patch_6.84c"
     };
     private static final String[] GAME_MODE = new String[]{
             "",

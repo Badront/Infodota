@@ -89,10 +89,10 @@ public class ItemPartEdit extends Fragment implements GuideHolder, OnAfterEditLi
     }
 
     private void initNewPart(String title, List<String> items) {
-        final LinearLayout part = (LinearLayout) inflater.inflate(R.layout.guide_creator_item_part, null, false);
+        final LinearLayout part = (LinearLayout) inflater.inflate(R.layout.guide_creator_item_part, itemHolder, false);
         itemHolder.addView(part);
         final FlowLayout flow = (FlowLayout) part.findViewById(R.id.items);
-        LinearLayout addRow = (LinearLayout) inflater.inflate(R.layout.item_recept_row, null);
+        LinearLayout addRow = (LinearLayout) inflater.inflate(R.layout.item_recept_row, flow,false);
         addRow.findViewById(R.id.name).setVisibility(View.GONE);
         addRow.findViewById(R.id.cost).setVisibility(View.GONE);
         ((ImageView) addRow.findViewById(R.id.img)).setImageResource(R.drawable.ic_menu_add);
@@ -134,7 +134,7 @@ public class ItemPartEdit extends Fragment implements GuideHolder, OnAfterEditLi
         if (items != null && items.size() > 0) {
             for (String itemName : items) {
                 final Item item = itemService.getItemByDotaId(activity, itemName);
-                final LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, null);
+                final LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, flow,false);
                 row.setTag(item.getDotaId());
                 FileUtils.setDrawableFromAsset((ImageView) row.findViewById(R.id.img),
                         "items/" + item.getDotaId() + ".png");
@@ -209,7 +209,7 @@ public class ItemPartEdit extends Fragment implements GuideHolder, OnAfterEditLi
             final long id = data.getLongExtra("id", 0);
             ItemService itemService = BeanContainer.getInstance().getItemService();
             final Item item = itemService.getItemById(getActivity(), id);
-            final LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, null);
+            final LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, currentFlow,false);
             row.setTag(item.getDotaId());
             FileUtils.setDrawableFromAsset((ImageView) row.findViewById(R.id.img),
                     "items/" + item.getDotaId() + ".png");

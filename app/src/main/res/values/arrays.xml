@@ -103,9 +103,9 @@
         <item>All time</item>
         <item>This month</item>
         <item>This week</item>
-        <item>Patch 6.80</item>
-        <item>Patch 6.81</item>
-        <item>Patch 6.81b(current)</item>
+        <item>Patch 6.84</item>
+        <item>Patch 6.84b</item>
+        <item>Patch 6.84c(current)</item>
     </string-array>
     <string-array name="statsByHero_game_mode">
         <item>All modes</item>
@@ -173,9 +173,9 @@
         <item>Last 3 Month</item>
         <item>Last 6 Month</item>
         <item>Last Year</item>
-        <item>Patch 6.80</item>
-        <item>Patch 6.81</item>
-        <item>Patch 6.81b(current)</item>
+        <item>Patch 6.84</item>
+        <item>Patch 6.84b</item>
+        <item>Patch 6.84c(current)</item>
     </string-array>
     <string-array name="statsCommon_game_mode">
         <item>All modes</item>

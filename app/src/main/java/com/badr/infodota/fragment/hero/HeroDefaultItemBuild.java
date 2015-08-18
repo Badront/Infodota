@@ -67,7 +67,7 @@ public class HeroDefaultItemBuild extends Fragment {
                 Set<String> guideStateSet = guideItems.keySet();
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 for (String guideState : guideStateSet) {
-                    ViewGroup flowRow = (ViewGroup) inflater.inflate(R.layout.guide_item_flow_row, null, false);
+                    ViewGroup flowRow = (ViewGroup) inflater.inflate(R.layout.guide_item_flow_row, flowHolder, false);
                     FlowLayout flowLayout = (FlowLayout) flowRow.findViewById(R.id.items);
                     TextView header = (TextView) flowRow.findViewById(R.id.header);
 
@@ -96,7 +96,7 @@ public class HeroDefaultItemBuild extends Fragment {
                         if (item == null) {
                             Log.d(getClass().getName(), "error loading item: " + itemName);
                         } else {
-                            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, null);
+                            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.item_recept_row, flowLayout,false);
                             FileUtils.setDrawableFromAsset((ImageView) row.findViewById(R.id.img),
                                     "items/" + item.getDotaId() + ".png");
                             //().setImageDrawable(Utils.getDrawableFromAsset(getActivity(), ));

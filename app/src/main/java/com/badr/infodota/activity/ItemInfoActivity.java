@@ -65,8 +65,10 @@ public class ItemInfoActivity extends BaseActivity {
 
     private void initItem(List<Item> from, List<Item> to) {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(item.getDname());
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if(actionBar!=null) {
+            actionBar.setTitle(item.getDname());
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         FileUtils.setDrawableFromAsset(((ImageView) findViewById(R.id.item_image)), "items/" + item.getDotaId() + ".png");
         ((TextView) findViewById(R.id.name)).setText(ResourceUtils.getLocalizedItemType(this, item.getType()));
         ((TextView) findViewById(R.id.cost)).setText(String.valueOf(item.getCost()));
@@ -117,7 +119,7 @@ public class ItemInfoActivity extends BaseActivity {
             fromLayout.removeAllViews();
             int currentCost = 0;
             for (Item fromItem : from) {
-                LinearLayout row = (LinearLayout) getLayoutInflater().inflate(R.layout.item_recept_row, null);
+                LinearLayout row = (LinearLayout) getLayoutInflater().inflate(R.layout.item_recept_row, fromLayout,false);
                 FileUtils.setDrawableFromAsset(((ImageView) row.findViewById(R.id.img)),
                         "items/" + fromItem.getDotaId() + ".png");
                 ((TextView) row.findViewById(R.id.name)).setText(fromItem.getDname());
@@ -129,7 +131,7 @@ public class ItemInfoActivity extends BaseActivity {
                 fromLayout.addView(row);
             }
             if (currentCost < item.getCost()) {
-                LinearLayout row = (LinearLayout) getLayoutInflater().inflate(R.layout.item_recept_row, null);
+                LinearLayout row = (LinearLayout) getLayoutInflater().inflate(R.layout.item_recept_row, fromLayout,false);
                 ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(this, "items/recipe.png"));
                 ((TextView) row.findViewById(R.id.name)).setText(getString(R.string.recipe));
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(item.getCost() - currentCost));
@@ -142,7 +144,7 @@ public class ItemInfoActivity extends BaseActivity {
             toLayout.setVisibility(View.VISIBLE);
             toLayout.removeAllViews();
             for (Item toItem : to) {
-                LinearLayout row = (LinearLayout) getLayoutInflater().inflate(R.layout.item_recept_row, null);
+                LinearLayout row = (LinearLayout) getLayoutInflater().inflate(R.layout.item_recept_row, toLayout,false);
                 ((ImageView) row.findViewById(R.id.img)).setImageDrawable(FileUtils.getDrawableFromAsset(this, "items/" + toItem.getDotaId() + ".png"));
                 ((TextView) row.findViewById(R.id.name)).setText(toItem.getDname());
                 ((TextView) row.findViewById(R.id.cost)).setText(String.valueOf(toItem.getCost()));

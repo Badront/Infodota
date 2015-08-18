@@ -80,9 +80,9 @@
         <item>За все время</item>
         <item>В этом месяце</item>
         <item>На этой неделе</item>
-        <item>Патч 6.80</item>
-        <item>Патч 6.81</item>
-        <item>Патч 6.81b(текущий)</item>
+        <item>Патч 6.84</item>
+        <item>Патч 6.84b</item>
+        <item>Патч 6.84c(текущий)</item>
     </string-array>
     <string-array name="statsByHero_game_mode">
         <item>Все режимы</item>
@@ -150,9 +150,9 @@
         <item>Последние 3 месяца</item>
         <item>Последние 6 месяцев</item>
         <item>Последний год</item>
-        <item>Патч 6.80</item>
-        <item>Патч 6.81</item>
-        <item>Патч 6.81b(текущий)</item>
+        <item>Патч 6.84</item>
+        <item>Патч 6.84b</item>
+        <item>Патч 6.84c(текущий)</item>
     </string-array>
     <string-array name="statsCommon_game_mode">
         <item>Все режимы</item>

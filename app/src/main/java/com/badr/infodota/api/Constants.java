@@ -23,7 +23,7 @@ public interface Constants {
     }
 
     interface DotaBuff {
-        String SEARCH_URL = "http://www.dotabuff.com/search?q=";
+        String SEARCH_URL = "http://www.dotabuff.com/search?utf8=%E2%9C%93&q=";
     }
 
     interface Details {

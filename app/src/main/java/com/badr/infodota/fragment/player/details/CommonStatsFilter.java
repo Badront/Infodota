@@ -28,9 +28,9 @@ public class CommonStatsFilter extends Fragment {
             "3month",
             "6month",
             "year",
-            "patch_6.80",
-            "patch_6.81",
-            "patch_6.81b"
+            "patch_6.84",
+            "patch_6.84b",
+            "patch_6.84c"
     };
     private static final String[] GAME_MODE = new String[]{
             "",
@@ -62,9 +62,9 @@ public class CommonStatsFilter extends Fragment {
     private Unit account;
     private Bundle args;
 
-    public static CommonStatsFilter newInstance(Unit account){
-        CommonStatsFilter fragment=new CommonStatsFilter();
-        fragment.account=account;
+    public static CommonStatsFilter newInstance(Unit account) {
+        CommonStatsFilter fragment = new CommonStatsFilter();
+        fragment.account = account;
         return fragment;
     }
 
@@ -93,7 +93,7 @@ public class CommonStatsFilter extends Fragment {
                 startActivity(intent);
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_date));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_date));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         byDateSpinner.setAdapter(adapter);
         byDateSpinner.setSelection(0);
@@ -109,7 +109,7 @@ public class CommonStatsFilter extends Fragment {
             }
         });
 
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_game_mode));
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_game_mode));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         byGameModeSpinner.setAdapter(adapter);
         byGameModeSpinner.setSelection(0);
@@ -125,7 +125,7 @@ public class CommonStatsFilter extends Fragment {
             }
         });
 
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_lobby_type));
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_lobby_type));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         byLobbyTypeSpinner.setAdapter(adapter);
         byLobbyTypeSpinner.setSelection(0);
@@ -141,7 +141,7 @@ public class CommonStatsFilter extends Fragment {
             }
         });
 
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_result));
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.statsCommon_result));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         resultSpinner.setAdapter(adapter);
         resultSpinner.setSelection(0);

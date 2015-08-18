@@ -243,6 +243,9 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                                     hero = possibleHeroes.get(0);
                                     heroResults.add(hero.getLocalizedName());
                                 }
+                            } else if(!"cell-icon".equals(className)){
+                                String columnResult = column.text();
+                                heroResults.add(columnResult);
                             }
                         } else {
                             String columnResult = column.text();

@@ -194,7 +194,7 @@ public class CommonStats extends RecyclerFragment<CommonStat, CommonStatHolder> 
                 }
 
                 Document doc = Jsoup.connect(url.toString()).get();
-                Elements headerElements = doc.select("div[id=content-header-secondary]");
+                Elements headerElements = doc.select("div[class=header-content-secondary]");
                 Element headerElement = headerElements.first();
                 Elements winsElement = headerElement.select("span[class=wins]");
                 String wins = null;

@@ -66,7 +66,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
 
     @Override
     public Unit.List getAccounts(String name) throws Exception {
-        String url = Constants.DotaBuff.SEARCH_URL + URLEncoder.encode(name, "UTF-8");
+        String url = Constants.DotaBuff.SEARCH_URL + URLEncoder.encode(name, "UTF-8")+"&button=#results_players";
         Document document = Jsoup.connect(url).get();    //document.location()
         String location = document.location();
         if (!url.equals(location)) {
@@ -74,13 +74,13 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
             Long accountId = Long.valueOf(parts[parts.length - 1]);
             return getAccounts(Arrays.asList(accountId));
         } else {
-            Elements elements = document.select("div[class=record player]");
+            Elements elements = document.select("div[class=result result-player]");
             Unit.List units = new Unit.List();
             for (Element element : elements) {
                 Element img = element.select("img").first();
                 Unit unit = new Unit();
                 unit.setIcon(img.attr("src"));
-                Element nameElement = element.select("div[class=name]").first();
+                Element nameElement = element.select("div[class=head]").first();
                 Element dotaBuffUrl = nameElement.select("a").first();
                 String accountUrl = dotaBuffUrl.attr("href");
                 unit.setUrl(accountUrl);
