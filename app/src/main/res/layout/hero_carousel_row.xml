@@ -5,7 +5,7 @@
     android:layout_height="@dimen/carousel_height"
     android:orientation="vertical">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifHero"
         android:layout_width="@dimen/carousel_anim_width"
         android:layout_height="@dimen/carousel_anim_height"

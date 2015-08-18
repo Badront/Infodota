@@ -10,7 +10,7 @@
         "lore": "Из органа, которым драконы извергают пламя, Аурот выдыхает невообразимый холод, который ввергает врагов в жгучую агонию.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_arctic_burn",
-        "youtube":"",
+        "youtube": "QJjASKaV5pM",
         "id": 0
     },
     {
@@ -24,7 +24,7 @@
         "lore": "Виверна запускает во врагов ледяной шар, медленно собирающийся железами ее холодной глотки.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_splinter_blast",
-        "youtube":"",
+        "youtube": "SCGete8RbbU",
         "id": 1
     },
     {
@@ -38,7 +38,7 @@
         "lore": "Сердце зимы заключает героя в холодные целительные объятья. Лед замедляет течение крови и упрощает работу лечебной магии.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_cold_embrace",
-        "youtube":"",
+        "youtube": "8UDmKdYAQP4",
         "id": 2
     },
     {
@@ -52,7 +52,7 @@
         "lore": "Старейшее из заклинаний, почитаемых драконами-писателями, открывает глаза на истину: иногда враг моего врага — мой враг.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_winters_curse",
-        "youtube":"",
+        "youtube": "AW7PdQw92ak",
         "id": 3
     }
 ]

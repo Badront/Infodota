@@ -25,9 +25,11 @@ import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.MessageFormat;
 
 import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 /**
  * User: ABadretdinov
@@ -36,7 +38,7 @@ import pl.droidsonroids.gif.GifDrawable;
  */
 public class HeroStatInfo extends Fragment {
     private Hero hero;
-    private ImageView imageView;
+    private GifImageView imageView;
 
     public static HeroStatInfo newInstance(Hero hero) {
         HeroStatInfo fragment = new HeroStatInfo();
@@ -71,7 +73,7 @@ public class HeroStatInfo extends Fragment {
 
     private void initImage() {
         Context context = getActivity();
-        imageView = (ImageView) getView().findViewById(R.id.imgHero);
+        imageView = (GifImageView) getView().findViewById(R.id.imgHero);
         File externalFilesDir;
         String dir;
         externalFilesDir = Environment.getExternalStorageDirectory();
@@ -84,8 +86,12 @@ public class HeroStatInfo extends Fragment {
         dir += File.separator + "anim" + File.separator;
         File gifFile = new File(dir + hero.getDotaId() + File.separator, "anim.gif");
         if (gifFile.exists()) {
-            Glide.with(context).load(gifFile).asGif().into(imageView);
-            ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
+            try {
+                GifDrawable gifFromFile = new GifDrawable(gifFile);
+                imageView.setImageDrawable(gifFromFile);
+                ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
+            } catch (IOException ignored) {
+            }
         } else {
             ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.heroprimaryportrait_overlay);
             Glide.with(context).load(Utils.getHeroPortraitImage(hero.getDotaId())).into(imageView);

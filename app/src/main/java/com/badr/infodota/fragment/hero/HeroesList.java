@@ -385,9 +385,14 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
             final CarouselHero hero = getItem(position);
 
             File gifFile = new File(dir + hero.getDotaId() + File.separator, "anim.gif");
-            ImageView imageView = (ImageView) view.findViewById(R.id.gifHero);
+            GifImageView imageView = (GifImageView) view.findViewById(R.id.gifHero);
             if (gifFile.exists()) {
-                Glide.with(context).load(gifFile).asGif().into(imageView);
+                try {
+                    GifDrawable gifFromFile = new GifDrawable(gifFile);
+                    imageView.setImageDrawable(gifFromFile);
+                } catch (IOException e) {
+                    //ignored
+                }
             } else {
                 Glide.with(context).load(Utils.getHeroPortraitImage(hero.getDotaId())).into(imageView);
             }
@@ -433,10 +438,10 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            ImageView gifView = (ImageView) ((View) object).findViewById(R.id.gifHero);
-            /*if (gifView.getDrawable() instanceof GifDrawable) {
+            GifImageView gifView = (GifImageView) ((View) object).findViewById(R.id.gifHero);
+            if (gifView.getDrawable() instanceof GifDrawable) {
                 ((GifDrawable) gifView.getDrawable()).recycle();
-            }*/
+            }
             gifView.setImageDrawable(null);
             container.removeView((View) object);
         }

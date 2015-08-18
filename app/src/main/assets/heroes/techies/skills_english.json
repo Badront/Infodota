@@ -10,7 +10,7 @@
         "lore": "The bane of Toterin!",
         "hurl": "Techies",
         "name": "techies_land_mines",
-        "youtube":"",
+        "youtube": "2CE4VAX29Bo",
         "id": 0
     },
     {
@@ -24,7 +24,7 @@
         "lore": "The scourge of Trapper Town!",
         "hurl": "Techies",
         "name": "techies_stasis_trap",
-        "youtube":"",
+        "youtube": "mkoWUQ2JTQA",
         "id": 1
     },
     {
@@ -38,7 +38,7 @@
         "lore": "What\u0027s this button do?",
         "hurl": "Techies",
         "name": "techies_suicide",
-        "youtube":"",
+        "youtube": "yieLNvs_GPc",
         "id": 2
     },
     {
@@ -66,7 +66,7 @@
         "lore": "Watch your step!",
         "hurl": "Techies",
         "name": "techies_minefield_sign",
-        "youtube":"",
+        "youtube": "pc5c9hep9ZQ",
         "id": 4
     },
     {
@@ -80,7 +80,7 @@
         "lore": "The downfall of Dredger\u0027s Bight!",
         "hurl": "Techies",
         "name": "techies_remote_mines",
-        "youtube":"",
+        "youtube": "MtWbyUgaAZA",
         "id": 5
     }
 ]

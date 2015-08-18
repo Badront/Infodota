@@ -164,7 +164,11 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
                     LinearLayout imageLayout = (LinearLayout) inflater.inflate(R.layout.image_holder, team1bans, false);
                     imageLayout.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     team1bans.addView(imageLayout);
-                    Glide.with(this).load(matchItem.getTeam2logoLink()).placeholder(R.drawable.emptyitembg).into(new GrayImageLoadListener((ImageView) imageLayout.findViewById(R.id.img)));
+                    Glide
+                            .with(this)
+                            .load(Utils.getHeroFullImage(hero.getDotaId()))
+                            .placeholder(R.drawable.default_img)
+                            .into(new GrayImageLoadListener((ImageView) imageLayout.findViewById(R.id.img)));
                 }
             }
             FlowLayout team2bans = (FlowLayout) view.findViewById(R.id.bans2);
@@ -185,20 +189,20 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
             }
             LinearLayout team1 = (LinearLayout) view.findViewById(R.id.team1);
             LinearLayout team2 = (LinearLayout) view.findViewById(R.id.team2);
-            int size = submatchItem.getTeam1picks().size();
+            int size = Math.max(submatchItem.getTeam1picks().size(), submatchItem.getTeam2picks().size());
             for (int i = 0; i < size; i++) {
                 LinearLayout team1HeroHolder = (LinearLayout) inflater.inflate(R.layout.image_text_row_left, team1, false);
                 LinearLayout team2HeroHolder = (LinearLayout) inflater.inflate(R.layout.image_text_row_right, team2, false);
                 ((TextView) team1HeroHolder.findViewById(R.id.text)).setText(submatchItem.getTeam1playerNames().get(i));
                 ((TextView) team2HeroHolder.findViewById(R.id.text)).setText(submatchItem.getTeam2playerNames().get(i));
-                List<Hero> heroes = heroService.getHeroesByName(this, submatchItem.getTeam1picks().get(i));
+                List<Hero> heroes = submatchItem.getTeam1picks().size() > i ? heroService.getHeroesByName(this, submatchItem.getTeam1picks().get(i)) : null;
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team1HeroHolder.findViewById(R.id.img);
                     Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
-                heroes = heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i));
+                heroes = submatchItem.getTeam2picks().size() > i ? heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i)) : null;
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team2HeroHolder.findViewById(R.id.img);

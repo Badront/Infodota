@@ -10,7 +10,7 @@
         "lore": "The same organ where some dragons stoke their inner flame is, in Auroth, a crucible of unimaginable cold. From deep within her frosty gullet, an exhalation sends enemies into burning agony.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_arctic_burn",
-        "youtube":"",
+        "youtube": "QJjASKaV5pM",
         "id": 0
     },
     {
@@ -24,7 +24,7 @@
         "lore": "Produced slowly by specialized vesicles in her frozen gullet, Winter Wyvern blast shards of ice at her enemies.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_splinter_blast",
-        "youtube":"",
+        "youtube": "SCGete8RbbU",
         "id": 1
     },
     {
@@ -38,7 +38,7 @@
         "lore": "From winter\u0027s heart comes a cold, healing embrace. The ice slows the blood and allows the spell to better work its curative magic.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_cold_embrace",
-        "youtube":"",
+        "youtube": "8UDmKdYAQP4",
         "id": 2
     },
     {
@@ -52,7 +52,7 @@
         "lore": "The oldest of the bookwurm\u2019s spells, this curse lends truth to the old saw: sometimes the enemy of my enemy is my enemy still.",
         "hurl": "Winter_Wyvern",
         "name": "winter_wyvern_winters_curse",
-        "youtube":"",
+        "youtube": "AW7PdQw92ak",
         "id": 3
     }
 ]
