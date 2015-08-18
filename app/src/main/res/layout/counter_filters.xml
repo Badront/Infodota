@@ -26,47 +26,48 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <ImageView
                     android:id="@+id/enemy0"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginLeft="@dimen/half_view_padding"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/enemy1"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/enemy2"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/enemy3"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/enemy4"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.2"
                     android:src="@drawable/default_img" />
             </LinearLayout>
 
@@ -80,62 +81,42 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <ImageView
                     android:id="@+id/ally0"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginLeft="@dimen/half_view_padding"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.25"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/ally1"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.25"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/ally2"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.25"
                     android:src="@drawable/default_img" />
 
                 <ImageView
                     android:id="@+id/ally3"
-                    android:layout_width="0px"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginRight="@dimen/half_view_padding"
-                    android:layout_weight="1"
+                    android:layout_weight="0.25"
                     android:src="@drawable/default_img" />
-                <!--    <ImageView
-                            android:layout_height="wrap_content"
-                            android:layout_width="0px"
-                            android:layout_weight="1"
-                            android:layout_marginRight="@dimen/half_view_padding"
-                            android:src="@drawable/default_img"
-                            android:id="@+id/ally4"/>-->
             </LinearLayout>
-            <!--
-                        <LinearLayout
-                            android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="@string/players_level"/>
-                            <Spinner
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:id="@+id/level"/>
-                            </LinearLayout>-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,10 +138,10 @@
             <com.pnikosis.materialishprogress.ProgressWheel
                 xmlns:wheel="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/progressBar"
-                android:visibility="gone"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
+                android:visibility="gone"
                 wheel:matProg_barColor="@color/primary"
                 wheel:matProg_progressIndeterminate="true" />
             <TextView
