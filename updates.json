@@ -1,8 +1,8 @@
 {
-    "versionCode":726,
+    "versionCode": 762,
     "message":
     {
-        "en-us":"-Quick fixes from 725 version\n-External twitch player now uses twitch.app if available\nnew in 725:\n-6.84b update.\n-added Trackdota.com support\n-some fixes and updates\nAttention! Delete previous version before installing this one (if You don't have 6.84 update version).",
-        "ru":"-Исправлены ошибки и вылеты после обновления 725\n-Сторонний плеер twitch.tv теперь открывается в приложении twitch.tv, если оно установлено\nновое в 725:\n-Изменения 6.84b\n-Добавлена поодержка Trackdota.com\n-Другие исправления и улучшения\nВнимание! Удалите предыдущую версию перед установкой этой (если у вас еще не установлена версия с обновлением 6.84)."
+        "en-us": "-Some fixes from 726 version\n-Added trackdota leagues support\n-6.84c update.\n-Added minimap on match details\n-Added sections on responses\n-Fixed services (players search, stats, joindota)\n-Other fixes",
+        "ru": "-Исправлены ошибки и вылеты после обновления 726\n-Добавлены лиги в trackdota\n-Изменения 6.84c\n-Исправлены ошибки в скилах\n-Добавлена миникарта в информации по матчу\n-Добавлены разделы в репликах\n-Исправлены неработающие сервисы (поиск игроков, статистика, joindota)\n-Другие исправления и улучшения"
     }
 }
