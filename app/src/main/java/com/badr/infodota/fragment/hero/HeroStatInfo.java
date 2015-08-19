@@ -19,10 +19,16 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.heroes.HeroStats;
+import com.badr.infodota.api.responses.HeroResponse;
+import com.badr.infodota.task.MediaPlayerForRandomHeroResponseRequest;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.UncachedSpiceService;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,14 +42,38 @@ import pl.droidsonroids.gif.GifImageView;
  * Date: 15.01.14
  * Time: 14:43
  */
-public class HeroStatInfo extends Fragment {
-    private Hero hero;
-    private GifImageView imageView;
+public class HeroStatInfo extends Fragment implements RequestListener<HeroResponse> {
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
+    private Hero mHero;
+    private GifImageView mImageView;
 
     public static HeroStatInfo newInstance(Hero hero) {
         HeroStatInfo fragment = new HeroStatInfo();
-        fragment.hero = hero;
+        fragment.mHero = hero;
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        if (!mSpiceManager.isStarted()) {
+            Context context = getActivity();
+            mSpiceManager.start(context);
+            mSpiceManager.execute(new MediaPlayerForRandomHeroResponseRequest(context.getApplicationContext(), mHero, "Spawning"), this);
+        }
+        super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        Drawable drawable = mImageView.getDrawable();
+        if (drawable instanceof GifDrawable) {
+            ((GifDrawable) drawable).recycle();
+            mImageView.setImageDrawable(null);
+        }
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -61,49 +91,42 @@ public class HeroStatInfo extends Fragment {
         showHeroInfo();
     }
 
-    @Override
-    public void onDestroy() {
-        Drawable drawable = imageView.getDrawable();
-        if (drawable instanceof GifDrawable) {
-            ((GifDrawable) drawable).recycle();
-            imageView.setImageDrawable(null);
-        }
-        super.onDestroy();
-    }
-
     private void initImage() {
         Context context = getActivity();
-        imageView = (GifImageView) getView().findViewById(R.id.imgHero);
-        File externalFilesDir;
-        String dir;
-        externalFilesDir = Environment.getExternalStorageDirectory();
-        if (externalFilesDir == null) {
-            externalFilesDir = new File(context.getFilesDir().getPath() + getActivity().getPackageName() + "/files");
-        } else {
-            externalFilesDir = new File(externalFilesDir, "/Android/data/" + getActivity().getPackageName() + "/files");
-        }
-        dir = externalFilesDir.getAbsolutePath();
-        dir += File.separator + "anim" + File.separator;
-        File gifFile = new File(dir + hero.getDotaId() + File.separator, "anim.gif");
-        if (gifFile.exists()) {
-            try {
-                GifDrawable gifFromFile = new GifDrawable(gifFile);
-                imageView.setImageDrawable(gifFromFile);
-                ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
-            } catch (IOException ignored) {
+        View root = getView();
+        if (root != null) {
+            mImageView = (GifImageView) root.findViewById(R.id.imgHero);
+            File externalFilesDir;
+            String dir;
+            externalFilesDir = Environment.getExternalStorageDirectory();
+            if (externalFilesDir == null) {
+                externalFilesDir = new File(context.getFilesDir().getPath() + getActivity().getPackageName() + "/files");
+            } else {
+                externalFilesDir = new File(externalFilesDir, "/Android/data/" + getActivity().getPackageName() + "/files");
             }
-        } else {
-            ((ImageView) getView().findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.heroprimaryportrait_overlay);
-            Glide.with(context).load(Utils.getHeroPortraitImage(hero.getDotaId())).into(imageView);
+            dir = externalFilesDir.getAbsolutePath();
+            dir += File.separator + "anim" + File.separator;
+            File gifFile = new File(dir + mHero.getDotaId() + File.separator, "anim.gif");
+            if (gifFile.exists()) {
+                try {
+                    GifDrawable gifFromFile = new GifDrawable(gifFile);
+                    mImageView.setImageDrawable(gifFromFile);
+                    ((ImageView) root.findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.herogif_overlay);
+                } catch (IOException ignored) {
+                }
+            } else {
+                ((ImageView) root.findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.heroprimaryportrait_overlay);
+                Glide.with(context).load(Utils.getHeroPortraitImage(mHero.getDotaId())).into(mImageView);
+            }
         }
     }
 
     @SuppressWarnings("deprecation")
     private void showHeroInfo() {
-        HeroStats stats = hero.getStats();
+        HeroStats stats = mHero.getStats();
         View root = getView();
         if (root != null) {
-            //((TextView)fragmentView.findViewById(R.id.title)).setText(hero.getLocalizedName());
+            //((TextView)fragmentView.findViewById(R.id.title)).setText(mHero.getLocalizedName());
             ((TextView) root.findViewById(R.id.txtFaction)).setText(stats.getAlignment() == 0 ? "Radiant" : "Dire");
             addHeroRoles(root);
 
@@ -211,7 +234,7 @@ public class HeroStatInfo extends Fragment {
                     stats.getProjectileSpeed() != 0 ? String.valueOf(stats.getProjectileSpeed()) : getActivity()
                             .getString(R.string.instant));
             String locale = getString(R.string.language);
-            String path = "heroes/" + hero.getDotaId() + "/lore_" + locale + ".txt";
+            String path = "heroes/" + mHero.getDotaId() + "/lore_" + locale + ".txt";
             ((TextView) root.findViewById(R.id.txtLore)).setText(Html.fromHtml(FileUtils.getTextFromAsset(getActivity(), path)));
             //http://www.playdota.com/mechanics/damagearmor
         }
@@ -220,7 +243,7 @@ public class HeroStatInfo extends Fragment {
     private void addHeroRoles(View root) {
         LinearLayout rolesHolder = (LinearLayout) root.findViewById(R.id.roles_holder);
         rolesHolder.removeAllViews();
-        HeroStats heroStat = hero.getStats();
+        HeroStats heroStat = mHero.getStats();
         if (heroStat.getRoles() != null) {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -245,14 +268,27 @@ public class HeroStatInfo extends Fragment {
     }
 
     private void updateForConfigChanged() {
-        LinearLayout portraitHolder = (LinearLayout) getView().findViewById(R.id.portrait_holder1);
-        LinearLayout mainHolder = (LinearLayout) getView().findViewById(R.id.main_vertical);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mainHolder.setOrientation(LinearLayout.HORIZONTAL);
-            portraitHolder.setOrientation(LinearLayout.VERTICAL);
-        } else {
-            mainHolder.setOrientation(LinearLayout.VERTICAL);
-            portraitHolder.setOrientation(LinearLayout.HORIZONTAL);
+        View root = getView();
+        if (root != null) {
+            LinearLayout portraitHolder = (LinearLayout) root.findViewById(R.id.portrait_holder1);
+            LinearLayout mainHolder = (LinearLayout) root.findViewById(R.id.main_vertical);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                mainHolder.setOrientation(LinearLayout.HORIZONTAL);
+                portraitHolder.setOrientation(LinearLayout.VERTICAL);
+            } else {
+                mainHolder.setOrientation(LinearLayout.VERTICAL);
+                portraitHolder.setOrientation(LinearLayout.HORIZONTAL);
+            }
         }
+    }
+
+    @Override
+    public void onRequestFailure(SpiceException spiceException) {
+        //do nothing
+    }
+
+    @Override
+    public void onRequestSuccess(HeroResponse heroResponse) {
+        //todo play
     }
 }

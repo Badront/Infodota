@@ -262,7 +262,7 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
                 });
             } catch (Exception e) {
                 e.printStackTrace();
-                return e.getLocalizedMessage();
+                return e.getMessage();
             }
             return null;
         }

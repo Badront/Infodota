@@ -16,16 +16,15 @@ import retrofit.converter.Converter;
 
 public abstract class RetrofitSpiceService extends SpiceService {
 
-    private Map<Class<?>, Object> retrofitInterfaceToServiceMap = new HashMap<Class<?>, Object>();
-    private RestAdapter.Builder builder;
-    private RestAdapter restAdapter;
     protected List<Class<?>> retrofitInterfaceList = new ArrayList<Class<?>>();
+    private Map<Class<?>, Object> retrofitInterfaceToServiceMap = new HashMap<Class<?>, Object>();
+    private RestAdapter restAdapter;
     private Converter mConverter;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        builder = createRestAdapterBuilder();
+        RestAdapter.Builder builder = createRestAdapterBuilder();
         restAdapter = builder.build();
     }
 

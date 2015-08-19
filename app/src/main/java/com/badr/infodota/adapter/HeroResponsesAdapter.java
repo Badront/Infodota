@@ -49,6 +49,7 @@ import java.util.List;
  * Date: 05.02.14
  * Time: 18:32
  */
+/*todo перевести на recyclerview, иначе обовлять отдельно строки нет возможности, приходится notifyDataSetChanged делать, а он затратный*/
 public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter, Filterable {
     TableRow.LayoutParams otherLayoutParams;
     private Context context;
