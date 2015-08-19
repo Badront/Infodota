@@ -64,10 +64,6 @@ public class TooltipPart extends Fragment implements GuideHolder {
     private void initTooltips() {
         View root = getView();
         if (guide != null&&root!=null) {
-            /*DotaDAO dao=new DotaDAO(getActivity());
-            dao.openReadable();
-			Hero hero=dao.getHero(getArguments().getInt("id"));
-			dao.close();*/
             AbilityBuild abilityBuild = guide.getAbilityBuild();
             LinearLayout abilitiesHolder = (LinearLayout) root.findViewById(R.id.abilities_holder);
             abilitiesHolder.removeAllViews();
@@ -78,17 +74,9 @@ public class TooltipPart extends Fragment implements GuideHolder {
                 Map<String, String> abilitiesTooltips = abilityBuild.getAbilityTooltips();
 
                 for (String ability : abilitiesTooltips.keySet()) {
-                    ViewGroup tooltipRow = (ViewGroup) inflater.inflate(R.layout.tooltip_row, null, false);
-/*					Drawable abilityIcon;
-					if("attribute_bonus".equals(ability)){
-						abilityIcon=Utils.getDrawableFromAsset(getActivity(),ability+".png");
-					}else
-					{
-					}*/
-                    //abilityIcon= Utils.getDrawableFromAsset(getActivity(),);
+                    ViewGroup tooltipRow = (ViewGroup) inflater.inflate(R.layout.tooltip_row, abilitiesHolder, false);
                     FileUtils.setDrawableFromAsset(((ImageView) tooltipRow.findViewById(R.id.tooltip_img)),
                             "skills/" + ability + ".png");
-                    //.setImageDrawable(abilityIcon);
                     ((TextView) tooltipRow.findViewById(R.id.tooltip)).setText(abilitiesTooltips.get(ability));
                     abilitiesHolder.addView(tooltipRow);
                 }
@@ -105,10 +93,8 @@ public class TooltipPart extends Fragment implements GuideHolder {
                 Map<String, String> itemsTooltips = itemBuild.getItemTooltips();
 
                 for (final String item : itemsTooltips.keySet()) {
-                    ViewGroup tooltipRow = (ViewGroup) inflater.inflate(R.layout.tooltip_row, null, false);
-                    //Drawable itemIcon= Utils.getDrawableFromAsset(getActivity(),);
+                    ViewGroup tooltipRow = (ViewGroup) inflater.inflate(R.layout.tooltip_row, itemsHolder, false);
                     FileUtils.setDrawableFromAsset(((ImageView) tooltipRow.findViewById(R.id.tooltip_img)), "items/" + item + ".png");
-                    //.setImageDrawable(itemIcon);
                     ((TextView) tooltipRow.findViewById(R.id.tooltip)).setText(itemsTooltips.get(item));
                     tooltipRow.findViewById(R.id.tooltip_img).setOnClickListener(new View.OnClickListener() {
                         @Override

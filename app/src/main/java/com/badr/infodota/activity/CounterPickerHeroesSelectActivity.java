@@ -37,36 +37,33 @@ import java.util.ArrayList;
  * Date: 21.02.14
  * Time: 18:17
  */
-public class CounterPickerHeroesSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener,RequestListener<TruepickerHero.List> {
+public class CounterPickerHeroesSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener, RequestListener<TruepickerHero.List> {
     public static final int ENEMY = 0;
     public static final int ALLY = 1;
     HeroesSelectAdapter adapter;
     GridView gridView;
     private String search = null;
     private String selectedFilter = null;
-    private Filter filter;
     private ArrayList<Integer> enemies;
     private ArrayList<Integer> allies;
     private int mode;
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
+
     @Override
     protected void onStart() {
-        if(!spiceManager.isStarted()){
-            spiceManager.start(this);
-            if(!initialized) {
-                loadHeroesForGridView();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
+            loadHeroesForGridView();
         }
         super.onStart();
     }
 
     @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
@@ -192,31 +189,30 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     }
 
     private void loadHeroesForGridView() {
-        spiceManager.execute(new TruepickerHeroLoadRequest(getApplicationContext(),selectedFilter), this);
+        mSpiceManager.execute(new TruepickerHeroLoadRequest(getApplicationContext(), selectedFilter), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
-        Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRequestSuccess(TruepickerHero.List truepickerHeros) {
-        initialized=true;
         adapter = new HeroesSelectAdapter(CounterPickerHeroesSelectActivity.this, truepickerHeros, allies, enemies, mode);
-        filter = adapter.getFilter();
+        Filter filter = adapter.getFilter();
         filter.filter(search);
         gridView.setAdapter(adapter);
     }
 
-    public static class TruepickerHeroLoadRequest extends TaskRequest<TruepickerHero.List>{
+    public static class TruepickerHeroLoadRequest extends TaskRequest<TruepickerHero.List> {
         private String filter;
         private Context context;
-        public TruepickerHeroLoadRequest(Context context,String filter) {
+
+        public TruepickerHeroLoadRequest(Context context, String filter) {
             super(TruepickerHero.List.class);
-            this.filter=filter;
-            this.context=context;
+            this.filter = filter;
+            this.context = context;
         }
 
         @Override

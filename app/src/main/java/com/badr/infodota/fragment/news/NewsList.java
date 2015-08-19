@@ -33,7 +33,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefreshListener,RequestListener<AppNews> {
 
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
 
     @Override
@@ -75,53 +75,44 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
         if (getListAdapter() == null) {
             setListAdapter(new NewsAdapter(activity, null));
         }
-        spiceManager.execute(new NewsLoadRequest(page,totalItemsCount),this);
+        mSpiceManager.execute(new NewsLoadRequest(page, totalItemsCount), this);
     }
 
     @Override
     public void onRefresh() {
         loadNews(0, getListAdapter().getCount());
     }
-    private boolean initialized=false;
+
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()){
-            spiceManager.start(getActivity());
-            if(!initialized){
-                loadNews(0, 0);
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            loadNews(0, 0);
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         setRefreshing(false);
     }
 
     @Override
     public void onRequestSuccess(AppNews newsItems) {
-        initialized=true;
         ((NewsAdapter) getListAdapter()).addNewsItems(newsItems.getNewsitems());
         setRefreshing(false);
 
     }
+
     public class NewsLoadRequest extends TaskRequest<AppNews>{
         private int page;
         private int totalItemsCount;

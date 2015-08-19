@@ -5,17 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.util.Pair;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.TI4PagerAdapter;
 import com.badr.infodota.service.ti4.TI4Service;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;
@@ -32,23 +27,23 @@ import java.text.MessageFormat;
  */
 @Deprecated
 public class TI4Activity extends BaseActivity implements RequestListener<Long> {
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()){
-            spiceManager.start(this);
-            spiceManager.execute(new PrizePoolLoadRequest(getApplicationContext()),this);
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
+            mSpiceManager.execute(new PrizePoolLoadRequest(getApplicationContext()), this);
         }
     }
 
     @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

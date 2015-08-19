@@ -38,25 +38,22 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     @Override
     protected void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
-            if(!initialized) {
-                loadItems();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
+            loadItems();
         }
     }
 
     @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
@@ -138,7 +135,7 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
     }
 
     private void loadItems() {
-        spiceManager.execute(new ItemLoadRequest(this,selectedFilter),this);
+        mSpiceManager.execute(new ItemLoadRequest(this, selectedFilter), this);
     }
 
     @Override
@@ -176,13 +173,11 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         Toast.makeText(this,spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Item.List items) {
-        initialized=true;
         mAdapter = new ItemsAdapter(items);
         filter = mAdapter.getFilter();
         filter.filter(search);

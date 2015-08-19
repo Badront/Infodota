@@ -21,8 +21,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Time: 15:57
  */
 public class HeroSkills extends ListFragment implements RequestListener<Skill.List> {
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
-
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
 
     private Hero hero;
 
@@ -31,40 +30,30 @@ public class HeroSkills extends ListFragment implements RequestListener<Skill.Li
         fragment.hero = hero;
         return fragment;
     }
-    private boolean initialized=false;
+
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                spiceManager.execute(new SkillsLoadRequest(),this);
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            mSpiceManager.execute(new SkillsLoadRequest(), this);
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
     }
 
     @Override
     public void onRequestSuccess(Skill.List skills) {
-        initialized=true;
         setListAdapter(new SkillsAdapter(getActivity(), skills));
 
     }

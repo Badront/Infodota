@@ -33,8 +33,7 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
     private Unit account;
     private BeanContainer container = BeanContainer.getInstance();
     private PlayerService playerService = container.getPlayerService();
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     public static FriendsList newInstance(Unit unit) {
         FriendsList fragment = new FriendsList();
@@ -44,26 +43,18 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                onRefresh();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -73,7 +64,7 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
 
     @Override
     public void onRefresh() {
-        spiceManager.execute(new UnitsLoadRequest(),this);
+        mSpiceManager.execute(new UnitsLoadRequest(), this);
     }
 
     @Override
@@ -119,14 +110,12 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Unit.List units) {
-        initialized=true;
         setRefreshing(false);
         Activity activity=getActivity();
         if (units != null &&activity!=null) {

@@ -7,8 +7,8 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.api.Constants;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.items.Item;
-import com.badr.infodota.api.responses.HeroResponse2;
-import com.badr.infodota.api.responses.HeroResponses2Section;
+import com.badr.infodota.api.responses.HeroResponse;
+import com.badr.infodota.api.responses.HeroResponsesSection;
 import com.badr.infodota.service.hero.HeroService;
 import com.badr.infodota.service.item.ItemService;
 import com.badr.infodota.util.FileUtils;
@@ -30,9 +30,9 @@ import java.util.List;
  * 16:07
  */
 public class ResponseLoadRequest extends TaskRequest<String> {
-    private Context mContext;
     HeroService heroService = BeanContainer.getInstance().getHeroService();
     ItemService itemService = BeanContainer.getInstance().getItemService();
+    private Context mContext;
 
     public ResponseLoadRequest(Context context) {
         super(String.class);
@@ -43,14 +43,14 @@ public class ResponseLoadRequest extends TaskRequest<String> {
     public String loadData() throws Exception {
         List<Hero> heroes = heroService.getAllHeroes(mContext);
         for (Hero hero : heroes) {
-            List<HeroResponses2Section> responses = loadHeroResponses(hero);
+            List<HeroResponsesSection> responses = loadHeroResponses(hero);
             FileUtils.saveJsonFile(Environment.getExternalStorageDirectory().getPath() + "/dota/" + hero.getDotaId() + "/responses.json", responses);
         }
         return "";
     }
 
     /*do not use /ru, otherwise you won't have items*/
-    private List<HeroResponses2Section> loadHeroResponses(Hero hero) throws Exception {
+    private List<HeroResponsesSection> loadHeroResponses(Hero hero) throws Exception {
         String heroName = hero.getLocalizedName().replace("'", "%27").replace(' ', '_');
 
         String url = MessageFormat.format(Constants.Heroes.DOTA2_WIKI_RESPONSES_URL, heroName);
@@ -58,7 +58,7 @@ public class ResponseLoadRequest extends TaskRequest<String> {
         Document doc = Jsoup.connect(url).get();
         Element content = doc.select("div#content").first();
         Elements spanList = content.select("span[class=mw-headline]");
-        List<HeroResponses2Section> heroResponsesList = new ArrayList<>();
+        List<HeroResponsesSection> heroResponsesList = new ArrayList<>();
         String code=null;
         if (spanList != null && !spanList.isEmpty()) {
             Element firstH2 = spanList.first().parent(); //h2
@@ -80,16 +80,16 @@ public class ResponseLoadRequest extends TaskRequest<String> {
                         String sectionName=h2.child(0).text();
                         if(ul!=null) {
                             i++;
-                            HeroResponses2Section section = new HeroResponses2Section();
+                            HeroResponsesSection section = new HeroResponsesSection();
                             section.setCode(code);
                             section.setName(sectionName);
                             Elements headerResponses = ul.select("li");
-                            section.setResponses(new ArrayList<HeroResponse2>());
+                            section.setResponses(new ArrayList<HeroResponse>());
                             for (Element elResponse : headerResponses) {
                                 Elements alist = elResponse.select("a[title=Play]");
                                 if (alist != null && !alist.isEmpty()) {
                                     Element aWithLink = alist.first();
-                                    HeroResponse2 response2 = getHeroResponse2(aWithLink);
+                                    HeroResponse response2 = getHeroResponse2(aWithLink);
                                     if (response2 != null) {
                                         section.getResponses().add(response2);
                                     }
@@ -110,12 +110,12 @@ public class ResponseLoadRequest extends TaskRequest<String> {
                 }
             }
         } else {
-            HeroResponses2Section section=new HeroResponses2Section();
+            HeroResponsesSection section = new HeroResponsesSection();
             section.setName("All responses");
-            section.setResponses(new ArrayList<HeroResponse2>());
+            section.setResponses(new ArrayList<HeroResponse>());
             Elements elements = doc.select("a[title=Play]");
             for(Element element:elements){
-                HeroResponse2 response2=getHeroResponse2(element);
+                HeroResponse response2 = getHeroResponse2(element);
                 if(response2!=null){
                     section.getResponses().add(response2);
                 }
@@ -125,11 +125,11 @@ public class ResponseLoadRequest extends TaskRequest<String> {
         return heroResponsesList;
     }
 
-    private HeroResponse2 getHeroResponse2(Element aWithLink) {
-        HeroResponse2 response2 = null;
+    private HeroResponse getHeroResponse2(Element aWithLink) {
+        HeroResponse response2 = null;
         if (aWithLink != null && aWithLink.hasAttr("href")) {
             Element elResponse = aWithLink.parent();
-            response2 = new HeroResponse2();
+            response2 = new HeroResponse();
             response2.setUrl(aWithLink.attr("href"));
             String title = null;
             List<TextNode> nodes = elResponse.textNodes();

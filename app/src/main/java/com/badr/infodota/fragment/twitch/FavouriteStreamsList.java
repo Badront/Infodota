@@ -25,9 +25,10 @@ import java.util.List;
  * Time: 15:22
  */
 public class FavouriteStreamsList extends TwitchMatchListHolder implements RequestListener<Stream.List> {
+    FavStreamsLoadRequest request;
     private List<Stream> channels;
     private TwitchGamesAdapter holderAdapter;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     public static FavouriteStreamsList newInstance(TwitchGamesAdapter holderAdapter, List<Stream> channels) {
         FavouriteStreamsList fragment = new FavouriteStreamsList();
@@ -35,29 +36,21 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
         fragment.setChannels(channels);
         return fragment;
     }
-    private boolean initialized=false;
+
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized) {
-                onRefresh();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -93,29 +86,26 @@ public class FavouriteStreamsList extends TwitchMatchListHolder implements Reque
             }
         }
     }
-    FavStreamsLoadRequest request;
 
     @Override
     public void onRefresh() {
         setRefreshing(true);
         if(request!=null)
         {
-            spiceManager.cancel(request);
+            mSpiceManager.cancel(request);
         }
         request=new FavStreamsLoadRequest(channels);
-        spiceManager.execute(request,this);
+        mSpiceManager.execute(request, this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Stream.List streams) {
-        initialized=true;
         setRefreshing(false);
         setAdapter(new TwitchStreamsAdapter(holderAdapter,streams,channels));
     }

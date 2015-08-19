@@ -39,8 +39,7 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
     private EditText search;
     private String query = null;
     private Filter filter;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     public static GroupPlayersList newInstance(Unit.Groups group) {
         GroupPlayersList fragment = new GroupPlayersList();
         Bundle bundle=new Bundle();
@@ -51,26 +50,18 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                onRefresh();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -155,19 +146,17 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        spiceManager.execute(new UnitsLoadRequest((Unit.Groups) getArguments().getSerializable("group")),this);
+        mSpiceManager.execute(new UnitsLoadRequest((Unit.Groups) getArguments().getSerializable("group")), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Unit.List units) {
-        initialized=true;
         setRefreshing(false);
         PlayersAdapter adapter = new PlayersAdapter(units, false, getResources().getStringArray(R.array.match_history_title));
         filter = adapter.getFilter();

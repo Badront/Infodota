@@ -25,7 +25,7 @@ import java.util.List;
 public class StreamsList extends TwitchMatchListHolder implements RequestListener<Stream.List> {
     private TwitchGamesAdapter holderAdapter;
     private List<Stream> channels;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     public static StreamsList newInstance(TwitchGamesAdapter holderAdapter, List<Stream> channels) {
         StreamsList fragment = new StreamsList();
@@ -34,29 +34,20 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
         return fragment;
     }
 
-    private boolean initialized=false;
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized) {
-                onRefresh();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -77,7 +68,7 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        spiceManager.execute(new StreamsLoadRequest(),this);
+        mSpiceManager.execute(new StreamsLoadRequest(), this);
     }
 
     @Override
@@ -101,7 +92,6 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
 
@@ -109,7 +99,6 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
 
     @Override
     public void onRequestSuccess(Stream.List streams) {
-        initialized=true;
         setRefreshing(false);
         TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, streams, channels);
         setAdapter(adapter);

@@ -48,8 +48,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     private long total = 1;
     private Long heroId = null;
     private AutoCompleteTextView heroView;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     public static MatchHistory newInstance(Unit account) {
         MatchHistory fragment = new MatchHistory();
         fragment.account = account;
@@ -58,26 +57,18 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                loadHistory(0, true);
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            loadHistory(0, true);
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -157,7 +148,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     private void loadHistory(long fromMatchId, boolean reCreateAdapter) {
         if(reCreateAdapter||total>getAdapter().getItemCount()){
             setRefreshing(true);
-            spiceManager.execute(new PlayerMatchLoadRequest(reCreateAdapter,account.getAccountId(),fromMatchId,heroId),this);
+            mSpiceManager.execute(new PlayerMatchLoadRequest(reCreateAdapter, account.getAccountId(), fromMatchId, heroId), this);
         }
     }
 
@@ -176,14 +167,12 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(PlayerMatchResult playerMatchResult) {
-        initialized=true;
         setRefreshing(false);
         if (playerMatchResult!=null) {
             total = playerMatchResult.getTotalMatches();

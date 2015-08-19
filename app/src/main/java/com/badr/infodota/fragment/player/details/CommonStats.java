@@ -46,10 +46,9 @@ import java.util.Set;
  * Time: 18:27
  */
 public class CommonStats extends RecyclerFragment<CommonStat, CommonStatHolder> implements RequestListener<CommonStats.CommonInfo> {
-    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private String metric;
     private Unit account;
-    private boolean initialized = false;
 
     public static CommonStats newInstance(Unit account, Bundle args, String metric) {
         CommonStats fragment = new CommonStats();
@@ -61,26 +60,18 @@ public class CommonStats extends RecyclerFragment<CommonStat, CommonStatHolder> 
 
     @Override
     public void onStart() {
-        if (!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if (!initialized) {
-                onRefresh();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized = false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -125,14 +116,12 @@ public class CommonStats extends RecyclerFragment<CommonStat, CommonStatHolder> 
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized = true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(CommonInfo commonInfo) {
-        initialized = true;
         setRefreshing(false);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null && commonInfo != null) {
@@ -153,7 +142,7 @@ public class CommonStats extends RecyclerFragment<CommonStat, CommonStatHolder> 
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        spiceManager.execute(new CommonStatLoadRequest(account.getAccountId(), metric, getArguments()), this);
+        mSpiceManager.execute(new CommonStatLoadRequest(account.getAccountId(), metric, getArguments()), this);
     }
 
     public static class CommonInfo {

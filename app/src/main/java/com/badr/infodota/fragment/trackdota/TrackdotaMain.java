@@ -41,41 +41,36 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * 11:28
  */
 public class TrackdotaMain extends Fragment implements RequestListener<GamesResult>,Refresher {
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    public static final int SEARCH_MATCH = 322;
+    private static final long DELAY_20_SEC = 20000;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private TrackdotaPagerAdapter adapter;
     private View progressBar;
     private Handler updateHandler=new Handler();
     private Runnable updateTask;
-    private static final long DELAY_20_SEC = 20000;
-    public static final int SEARCH_MATCH = 322;
-    private boolean initialized=false;
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                onRefresh();
-            }
-            else {
-                startDelayedUpdate();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
+        } else {
+            startDelayedUpdate();
         }
         super.onStart();
     }
 
     @Override
     public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
         cancelDelayedUpdate();
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -164,12 +159,11 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
     public void onRefresh(){
         cancelDelayedUpdate();
         progressBar.setVisibility(View.VISIBLE);
-        spiceManager.execute(new GamesResultLoadRequest(),this);
+        mSpiceManager.execute(new GamesResultLoadRequest(), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         progressBar.setVisibility(View.GONE);
         adapter.update(null);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
@@ -177,7 +171,6 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
 
     @Override
     public void onRequestSuccess(GamesResult gamesResult) {
-        initialized=true;
         progressBar.setVisibility(View.GONE);
         adapter.update(gamesResult);
         if(gamesResult!=null&&gamesResult.getApiDowntime()>0){

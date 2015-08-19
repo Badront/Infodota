@@ -55,13 +55,12 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
     private Menu menu;
     private Button showStreams;
     private LinearLayout streamsHolder;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
-    //private boolean initialized=false;
     @Override
     protected void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
             onRefresh();
         }
         super.onStart();
@@ -69,8 +68,8 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
 
     @Override
     protected void onDestroy() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
         super.onDestroy();
     }
@@ -122,12 +121,12 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
         progressBar.setVisibility(View.VISIBLE);
         showStreams.setVisibility(View.GONE);
         streamsHolder.setVisibility(View.GONE);
-        spiceManager.execute(new MatchItemLoadRequest(matchItem),this);
+        mSpiceManager.execute(new MatchItemLoadRequest(matchItem), this);
     }
 
     private void loadStreams() {
         progressBar.setVisibility(View.VISIBLE);
-        spiceManager.execute(new ChannelLoadRequest(matchItem.getStreams()), this);
+        mSpiceManager.execute(new ChannelLoadRequest(matchItem.getStreams()), this);
     }
 
     private void fillGameInfo() {

@@ -31,30 +31,22 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class LeaguesList extends RecyclerFragment<League,TrackdotaLeagueHolder> implements RequestListener<LeaguesResult> {
 
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
+
     @Override
     public void onStart(){
-        if(!spiceManager.isStarted()){
-            spiceManager.start(getActivity());
-            if(!initialized){
-                onRefresh();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            onRefresh();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
     @Override
@@ -99,19 +91,17 @@ public class LeaguesList extends RecyclerFragment<League,TrackdotaLeagueHolder> 
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        spiceManager.execute(new LeagueLoadRequest(), this);
+        mSpiceManager.execute(new LeagueLoadRequest(), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(LeaguesResult leaguesResult) {
-        initialized=true;
         setRefreshing(false);
         Context context=getActivity();
         if(leaguesResult!=null&&context!=null){

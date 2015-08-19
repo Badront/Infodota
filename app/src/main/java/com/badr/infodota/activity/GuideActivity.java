@@ -61,25 +61,22 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
     private Guide guide;
     private Menu menu;
     private int selected;
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
     @Override
     protected void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
-            if(!initialized) {
-                updateGuides();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
+            updateGuides();
         }
     }
 
     @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
 
@@ -206,7 +203,7 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
     }
 
     private void updateGuides() {
-        spiceManager.execute(new GuidesLoadRequest(getApplicationContext(),hero.getDotaId(),guideNameMap),this);
+        mSpiceManager.execute(new GuidesLoadRequest(getApplicationContext(), hero.getDotaId(), guideNameMap), this);
     }
 
     private String getFileName(String guideTitle) {
@@ -251,8 +248,7 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
 
     @Override
     public void onRequestSuccess(List list) {
-        initialized=true;
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(GuideActivity.this, android.R.layout.simple_spinner_item, list);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(GuideActivity.this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         final SharedPreferences prefs = getSharedPreferences("last_watched_guide", MODE_PRIVATE);
@@ -311,10 +307,8 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
             String dir = externalFilesDir.getAbsolutePath();
             for (String guideFileName : creatorsGuideList) {
                 String entity = FileUtils.getTextFromFile(dir + File.separator + "guides" + File.separator + heroDotaId+ File.separator + guideFileName);
-                if (entity != null) {
-                    TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
-                    guideNameMap.put(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + heroDotaId + File.separator + guideFileName, titleOnly.getTitle());
-                }
+                TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
+                guideNameMap.put(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + heroDotaId + File.separator + guideFileName, titleOnly.getTitle());
             }
             for (String guideFileName : guideList) {
                 String entity = FileUtils.getTextFromAsset(context, "guides" + File.separator +heroDotaId + File.separator + guideFileName);

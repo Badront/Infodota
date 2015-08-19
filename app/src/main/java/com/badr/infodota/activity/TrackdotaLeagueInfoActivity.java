@@ -29,12 +29,13 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * 15:45
  */
 public class TrackdotaLeagueInfoActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, RequestListener<LeagueGameResult>, AdapterView.OnItemClickListener {
-    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
     protected SwipeRefreshLayout mListContainer;
     protected ListView mListView;
     protected View mProgressBar;
     protected View mEmptyView;
     protected TrackdotaLeagueGamesAdapter mAdapter;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
+    private long leagueId;
 
     private void ensureList() {
         mListView = (ListView) findViewById(android.R.id.list);
@@ -71,8 +72,6 @@ public class TrackdotaLeagueInfoActivity extends BaseActivity implements SwipeRe
         }
     }
 
-    private long leagueId;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,23 +86,23 @@ public class TrackdotaLeagueInfoActivity extends BaseActivity implements SwipeRe
     @Override
     protected void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
         }
     }
 
     @Override
-    protected void onStop() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
     public void onRefresh() {
         mListContainer.setRefreshing(true);
-        spiceManager.execute(new LeagueGamesLoadRequest(leagueId),this);
+        mSpiceManager.execute(new LeagueGamesLoadRequest(leagueId), this);
     }
 
     @Override

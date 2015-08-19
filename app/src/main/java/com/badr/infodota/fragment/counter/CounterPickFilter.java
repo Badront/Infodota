@@ -17,10 +17,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +41,6 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -57,7 +54,6 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
     private View progressBar;
     private ArrayList<Integer> enemies;
     private ArrayList<Integer> allies;
-    private Spinner roleSpinner;
     private ImageView[] enemyViews = new ImageView[5];
     private ImageView[] allyViews = new ImageView[4];
     //private boolean[] roles;
@@ -78,7 +74,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             "mid double carry",
             "mid double support"
     };
-    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private View.OnClickListener allyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -103,16 +99,16 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
 
     @Override
     public void onStart() {
-        spiceManager.start(getActivity());
+        mSpiceManager.start(getActivity());
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
+    public void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
@@ -183,11 +179,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             progressBar = root.findViewById(R.id.progressBar);
             recommendsTitle = root.findViewById(R.id.holder_title);
             scroll = (ScrollView) root.findViewById(R.id.scroll);
-            roleSpinner = (Spinner) root.findViewById(R.id.role_select);
-            final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_spinner_item, roleCodes);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            roleSpinner.setAdapter(adapter);
+
             enemyViews[0] = (ImageView) root.findViewById(R.id.enemy0);
             enemyViews[0].setOnClickListener(enemyListener);
             enemyViews[1] = (ImageView) root.findViewById(R.id.enemy1);
@@ -213,7 +205,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
                     progressBar.setVisibility(View.VISIBLE);
                     recommendsTitle.setVisibility(View.GONE);
                     recommendationsView.removeAllViews();
-                    spiceManager.execute(new TruepickerLoadRequest(), CounterPickFilter.this);
+                    mSpiceManager.execute(new TruepickerLoadRequest(), CounterPickFilter.this);
                 }
             });
             loadImages();
@@ -273,15 +265,15 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
     }
 
     @Override
-    public void onRequestSuccess(TruepickerHero.List truepickerHeros) {
-        if (truepickerHeros != null) {
+    public void onRequestSuccess(TruepickerHero.List truepickerHeroes) {
+        if (truepickerHeroes != null) {
             View root = getView();
             Activity activity = getActivity();
             if (root != null && activity != null) {
                 progressBar.setVisibility(View.GONE);
                 recommendsTitle.setVisibility(View.VISIBLE);
                 LayoutInflater inflater = activity.getLayoutInflater();
-                for (TruepickerHero hero : truepickerHeros) {
+                for (TruepickerHero hero : truepickerHeroes) {
                     View view = inflater.inflate(R.layout.hero_row, recommendationsView, false);
                     ((TextView) view.findViewById(R.id.name)).setText(hero.getLocalizedName());
                     Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into((ImageView) view.findViewById(R.id.img));
@@ -308,15 +300,9 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
         public TruepickerHero.List loadData() throws Exception {
             BeanContainer beanContainer = BeanContainer.getInstance();
             CounterService service = beanContainer.getCounterService();
-            List<String> rolesToAdd = new ArrayList<String>();
-						/*for(int i=0;i<roles.length;i++){
-							if(roles[i]){
-								rolesToAdd.add(roleCodes[i]);
-							}
-						}*/
             Activity activity = getActivity();
             if (activity != null) {
-                return service.getCounters(activity, allies, enemies, 1/*roleSpinner.getSelectedItemPosition()*/);
+                return service.getCounters(activity, allies, enemies, 1);
             }
             return null;
         }

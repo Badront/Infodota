@@ -48,24 +48,16 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
     private View progressBar;
     private int qualityPosition;
     private Element.List qualities;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
             String channelName = getIntent().getExtras().getString("channelName");
             getAccessToken(channelName);
         }
-    }
-
-    @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
     }
 
     @Override
@@ -199,7 +191,7 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
     }
 
     private void getAccessToken(String channelName) {
-        spiceManager.execute(new QualitiesLoadRequest(getApplicationContext(),channelName),this);
+        mSpiceManager.execute(new QualitiesLoadRequest(getApplicationContext(), channelName), this);
     }
 
     private void setStreamQuality() {
@@ -239,11 +231,10 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
     }
 
     @Override
-    protected void onDestroy() {/*
-        if (accessTokenThread != null && !accessTokenThread.isCancelled()) {
-            accessTokenThread.cancel(true);
-            accessTokenThread = null;
-        }*/
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         if (mediaPlayer != null) {
             try {
                 mediaPlayer.release();

@@ -39,15 +39,15 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
     LocalUpdateService localUpdateService = BeanContainer.getInstance().getLocalUpdateService();
     private boolean showDialog = false;
     private boolean doubleBackToExitPressedOnce = false;
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
 
     @Override
     protected void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
             final int currentVersion = localUpdateService.getVersion(this);
             if (currentVersion != Helper.DATABASE_VERSION) {
-                spiceManager.execute(new UpdateLoadRequest(this),this);
+                mSpiceManager.execute(new UpdateLoadRequest(this), this);
             } else {
                 showDialog = true;
                 checkGooglePlayServicesAndRun();
@@ -57,11 +57,11 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
     }
 
     @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override

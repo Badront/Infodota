@@ -40,8 +40,9 @@ import java.util.List;
  * Created by Badr on 18.04.2015.
  */
 public class StreamList extends RecyclerFragment<Stream, StreamHolder> implements RequestListener<Stream.List>, TwitchGamesAdapter, Updatable<Pair<CoreResult, LiveGame>> {
+    public static final int PLAYER_TYPE = 1403;
     private List<Stream> channels;
-    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private CoreResult coreResult;
     private Refresher refresher;
 
@@ -54,21 +55,21 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
 
     @Override
     public void onStart() {
-        if (!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
             if (coreResult != null) {
-                spiceManager.execute(new StreamsLoadRequest(), this);
+                mSpiceManager.execute(new StreamsLoadRequest(), this);
             }
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
+    public void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
@@ -78,8 +79,6 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
             refresher.onRefresh();
         }
     }
-
-    public static final int PLAYER_TYPE = 1403;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -168,7 +167,7 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
         coreResult = entity.first;
         setRefreshing(true);
         if (coreResult != null) {
-            spiceManager.execute(new StreamsLoadRequest(), this);
+            mSpiceManager.execute(new StreamsLoadRequest(), this);
         }
     }
 

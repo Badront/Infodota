@@ -61,6 +61,7 @@ public class Utils {
         }
         return state;
     }
+
     public static boolean IsPackageInstalled(Context context,String PackageUri) {
         final PackageManager pm = context.getPackageManager();
         boolean IsPackageInstalled;
@@ -78,7 +79,7 @@ public class Utils {
         builder.setTitle(R.string.add_player_title);
         String[] list = context.getResources().getStringArray(R.array.match_history_title);
 
-        builder.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, Arrays.copyOfRange(list, 1, 3)), listener);
+        builder.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, Arrays.copyOfRange(list, 1, 3)), listener);
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -108,7 +109,7 @@ public class Utils {
             bitmap=((BitmapDrawable) drawable).getBitmap();
         }else {
             if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-                bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565); // Single color bitmap will be created of 1x1 pixel
+                bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
             } else {
                 bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.RGB_565);
             }

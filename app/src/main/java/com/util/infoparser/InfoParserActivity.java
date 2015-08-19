@@ -20,12 +20,7 @@ import com.util.infoparser.loader.ResponseLoadRequest;
  * 15:20
  */
 public class InfoParserActivity extends Activity implements RequestListener {
-    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
-
-    enum LoadType{
-        response,
-        cosmetic_items
-    }
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private LoadType mCurLoadType=LoadType.cosmetic_items;
 
     @Override
@@ -36,14 +31,14 @@ public class InfoParserActivity extends Activity implements RequestListener {
 
     @Override
     protected void onStart() {
-        if (!spiceManager.isStarted()) {
-            spiceManager.start(this);
-            switch (mCurLoadType){
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
+            switch (mCurLoadType) {
                 case response:
-                    spiceManager.execute(new ResponseLoadRequest(getApplicationContext()), this);
+                    mSpiceManager.execute(new ResponseLoadRequest(getApplicationContext()), this);
                     break;
                 case cosmetic_items:
-                    spiceManager.execute(new CosmeticItemsLoadRequest(getApplicationContext()),this);
+                    mSpiceManager.execute(new CosmeticItemsLoadRequest(getApplicationContext()), this);
             }
         }
         super.onStart();
@@ -51,12 +46,11 @@ public class InfoParserActivity extends Activity implements RequestListener {
 
     @Override
     protected void onDestroy() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
         super.onDestroy();
     }
-
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
@@ -68,5 +62,10 @@ public class InfoParserActivity extends Activity implements RequestListener {
         Toast.makeText(this, "Done", Toast.LENGTH_LONG).show();
         startActivity(new Intent(this, LoaderActivity.class));
         finish();
+    }
+
+    enum LoadType {
+        response,
+        cosmetic_items
     }
 }

@@ -49,36 +49,27 @@ import java.util.Locale;
  * Time: 18:28
  */
 public class ItemsList extends Fragment implements SearchableFragment, OnItemClickListener,RequestListener<Item.List> {
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
     private RecyclerView gridView;
     private ItemsAdapter mAdapter;
     private String search = null;
     private String selectedFilter = null;
     private Filter filter;
-    private boolean initialized=false;
 
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                loadItems();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            loadItems();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -197,7 +188,7 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     }
 
     private void loadItems() {
-        spiceManager.execute(new ItemsLoadRequest(),this);
+        mSpiceManager.execute(new ItemsLoadRequest(), this);
     }
 
     @Override
@@ -250,13 +241,11 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Item.List items) {
-        initialized=true;
         mAdapter = new ItemsAdapter(items);
         filter = mAdapter.getFilter();
         filter.filter(search);

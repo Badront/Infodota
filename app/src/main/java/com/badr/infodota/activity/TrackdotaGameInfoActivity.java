@@ -40,7 +40,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     private long matchId;
     private TrackdotaGamePagerAdapter adapter;
     private View progressBar;
-    private SpiceManager spiceManager = new SpiceManager(UncachedSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private Handler updateHandler=new Handler();
     private Runnable updateTask;
     /*need to initialize*/
@@ -49,8 +49,8 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     @Override
     protected void onStart() {
         super.onStart();
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
             if(liveGame==null||liveGame.getStatus()<4) {
                 onRefresh();
             }
@@ -59,12 +59,10 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
 
     @Override
     protected void onStop() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
-        }
         cancelDelayedUpdate();
         super.onStop();
     }
+
 
     private void cancelDelayedUpdate() {
         if(updateTask!=null) {
@@ -92,6 +90,9 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
 
     @Override
     protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         mGameManager=null;
         GameManager.clear();
         super.onDestroy();
@@ -101,7 +102,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRefresh() {
         cancelDelayedUpdate();
         progressBar.setVisibility(View.VISIBLE);
-        spiceManager.execute(new CoreGameLoadRequest(this, matchId), this);
+        mSpiceManager.execute(new CoreGameLoadRequest(this, matchId), this);
     }
 
     @Override
@@ -114,7 +115,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRequestSuccess(Object object) {
         if (object instanceof CoreResult) {
             coreResult = (CoreResult) object;
-            spiceManager.execute(new LiveGameLoadRequest(this,matchId), this);
+            mSpiceManager.execute(new LiveGameLoadRequest(this, matchId), this);
         } else if (object instanceof LiveGame) {
             liveGame = (LiveGame) object;
             LiveTeam radiantLive=liveGame.getRadiant();

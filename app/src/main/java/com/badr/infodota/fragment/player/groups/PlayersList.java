@@ -43,30 +43,21 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
     private View listHeader;
     private BeanContainer container = BeanContainer.getInstance();
     private PlayerService playerService = container.getPlayerService();
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
-    private boolean initialized=false;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                initData();
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            initData();
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -124,7 +115,7 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
     }
 
     private void initData() {
-        spiceManager.execute(new SearchedPlayersLoadRequest(null),this);
+        mSpiceManager.execute(new SearchedPlayersLoadRequest(null), this);
     }
 
     @Override
@@ -155,12 +146,11 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        spiceManager.execute(new SearchedPlayersLoadRequest(searchRequest.getText().toString()), this);
+        mSpiceManager.execute(new SearchedPlayersLoadRequest(searchRequest.getText().toString()), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
     }
@@ -181,7 +171,6 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
 
     @Override
     public void onRequestSuccess(Unit.List units) {
-        initialized=true;
         setRefreshing(false);
         PlayersAdapter adapter = new PlayersAdapter(units, true, getResources().getStringArray(R.array.match_history_title));
         setAdapter(adapter);

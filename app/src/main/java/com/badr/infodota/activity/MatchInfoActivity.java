@@ -2,9 +2,6 @@ package com.badr.infodota.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -13,7 +10,6 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
@@ -47,35 +43,32 @@ import java.util.List;
  * Time: 13:41
  */
 public class MatchInfoActivity extends BaseActivity implements RequestListener {
-    private String simpleMatchId;
-    private MatchInfoPagerAdapter adapter;
-    private SpiceManager spiceManager=new SpiceManager(UncachedSpiceService.class);
+    public static final int TRACKDOTA_GAME_ID = 322;
     BeanContainer container = BeanContainer.getInstance();
     TeamService teamService = container.getTeamService();
-
+    private String simpleMatchId;
+    private MatchInfoPagerAdapter adapter;
+    private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private Result matchResult;
-    private boolean initialized=false;
+    private MenuItem trackdotaItem;
+
     @Override
     protected void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(this);
-            if(!initialized) {
-                spiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(this);
+            mSpiceManager.execute(new MatchDetailsLoadRequest(getApplicationContext(), matchResult, simpleMatchId), this);
         }
         super.onStart();
     }
 
     @Override
-    protected void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
+    protected void onDestroy() {
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
-    private MenuItem trackdotaItem;
-    public static final int TRACKDOTA_GAME_ID=322;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -127,13 +120,11 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         Toast.makeText(this, spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(Object o) {
-        initialized=true;
         if(o instanceof LongPair){
             LongPair pair= (LongPair) o;
             Team team = new Team();
@@ -209,7 +200,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     });*/
                 } else {
-                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getRadiantLogo()), this);
+                    mSpiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getRadiantLogo()), this);
                 }
             }
             if (matchResult.getDireLogo() != null) {
@@ -244,7 +235,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     });*/
                 } else {
-                    spiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDireLogo()), this);
+                    mSpiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDireLogo()), this);
                 }
             }
 
@@ -257,14 +248,14 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
     }
     public static class MatchDetailsLoadRequest extends TaskRequest<Result>{
 
-        private Result matchResult;
-        private String matchId;
-        private Context context;
         BeanContainer container=BeanContainer.getInstance();
         MatchService matchService = container.getMatchService();
         PlayerService playerService = container.getPlayerService();
         HeroService heroService=container.getHeroService();
         ItemService itemService=container.getItemService();
+        private Result matchResult;
+        private String matchId;
+        private Context context;
         public MatchDetailsLoadRequest(Context context,Result matchResult,String matchId) {
             super(Result.class);
             this.context=context;

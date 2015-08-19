@@ -25,8 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.api.responses.HeroResponse2;
-import com.badr.infodota.api.responses.HeroResponses2Section;
+import com.badr.infodota.api.responses.HeroResponse;
+import com.badr.infodota.api.responses.HeroResponsesSection;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.PinnedSectionListView;
@@ -52,19 +52,19 @@ import java.util.List;
 public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter, Filterable {
     TableRow.LayoutParams otherLayoutParams;
     private Context context;
-    private List<HeroResponses2Section> mHeroSectionsResponses;
+    private List<HeroResponsesSection> mHeroSectionsResponses;
     private List<Object> filteredHeroResponses;
     private int dp2;
     private String holderFolder;
     private List<Integer> playerQueue;
-    private List<HeroResponse2> toLocalLoad;
+    private List<HeroResponse> toLocalLoad;
     private boolean editMode = false;
 
-    public HeroResponsesAdapter(Context context, List<HeroResponses2Section> heroSectionsResponses, String holderFolder) {
+    public HeroResponsesAdapter(Context context, List<HeroResponsesSection> heroSectionsResponses, String holderFolder) {
         editMode = false;
         this.context = context;
         this.holderFolder = holderFolder;
-        this.mHeroSectionsResponses = heroSectionsResponses != null ? heroSectionsResponses : new ArrayList<HeroResponses2Section>();
+        this.mHeroSectionsResponses = heroSectionsResponses != null ? heroSectionsResponses : new ArrayList<HeroResponsesSection>();
         int dp30 = Utils.dpSize(context, 30);
         dp2 = Utils.dpSize(context, 2);
         otherLayoutParams = new TableRow.LayoutParams(dp30, dp30);
@@ -74,7 +74,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
 
     private List<Object> generateFilteredValue(String filter) {
         List<Object> result = new ArrayList<>();
-        for (HeroResponses2Section section : mHeroSectionsResponses) {
+        for (HeroResponsesSection section : mHeroSectionsResponses) {
             StringBuilder sectionNameB = new StringBuilder("");
             if (!TextUtils.isEmpty(section.getCode())) {
                 sectionNameB.append(section.getCode()).append(" ");
@@ -87,7 +87,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
                     result.addAll(section.getResponses());
                 } else {
                     boolean sectionAdded = false;
-                    for (HeroResponse2 response2 : section.getResponses()) {
+                    for (HeroResponse response2 : section.getResponses()) {
                         if (response2.getTitle().toLowerCase().contains(filter)) {
                             if (!sectionAdded) {
                                 result.add(sectionName);
@@ -133,8 +133,8 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
 
     public void setItemClicked(int position) {
         Object clickedItem = getItem(position);
-        if (clickedItem instanceof HeroResponse2) {
-            HeroResponse2 heroResponse = (HeroResponse2) clickedItem;
+        if (clickedItem instanceof HeroResponse) {
+            HeroResponse heroResponse = (HeroResponse) clickedItem;
             if (toLocalLoad.contains(heroResponse)) {
                 toLocalLoad.remove(heroResponse);
             } else {
@@ -152,15 +152,15 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
 
     public void inverseChecked() {
         if (editMode) {
-            List<HeroResponse2> notToLoad = toLocalLoad;
+            List<HeroResponse> notToLoad = toLocalLoad;
             toLocalLoad = new ArrayList<>();
             for (Object object : filteredHeroResponses) {
-                if (object instanceof HeroResponse2) {
-                    HeroResponse2 heroResponse2 = (HeroResponse2) object;
-                    if (notToLoad.contains(heroResponse2)) {
-                        notToLoad.remove(heroResponse2);
-                    } else if (TextUtils.isEmpty(heroResponse2.getLocalUrl())) {
-                        toLocalLoad.add(heroResponse2);
+                if (object instanceof HeroResponse) {
+                    HeroResponse heroResponse = (HeroResponse) object;
+                    if (notToLoad.contains(heroResponse)) {
+                        notToLoad.remove(heroResponse);
+                    } else if (TextUtils.isEmpty(heroResponse.getLocalUrl())) {
+                        toLocalLoad.add(heroResponse);
                     }
                 }
             }
@@ -183,7 +183,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
             ((TextView) vi.findViewById(R.id.section_title)).setText((String) object);
         } else {
             HeroResponseHolder holder;
-            final HeroResponse2 response2 = (HeroResponse2) object;
+            final HeroResponse response2 = (HeroResponse) object;
             if (vi == null) {
                 LayoutInflater inflater = LayoutInflater.from(parent.getContext());
                 holder = new HeroResponseHolder();
@@ -348,7 +348,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
         };
     }
 
-    private void setAsRingtone(HeroResponse2 heroResponse) {
+    private void setAsRingtone(HeroResponse heroResponse) {
         File file = new File(heroResponse.getLocalUrl());
         if (file.exists()) {
             ContentValues values = new ContentValues();
@@ -376,7 +376,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
         }
     }
 
-    private void loadFile(HeroResponse2 heroResponse, boolean saveAsDefault) {
+    private void loadFile(HeroResponse heroResponse, boolean saveAsDefault) {
         new Mp3Loader(Arrays.asList(heroResponse), saveAsDefault).execute();
     }
 
@@ -406,11 +406,11 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
 
     public class Mp3Loader extends AsyncTask<String, String, String> {
         ProgressDialog progressDialog;
-        private List<HeroResponse2> heroResponses;
+        private List<HeroResponse> heroResponses;
         private boolean setAsTone;
 
-        private Mp3Loader(List<HeroResponse2> heroResponses, boolean asRingtone) {
-            this.heroResponses = heroResponses != null ? heroResponses : new ArrayList<HeroResponse2>();
+        private Mp3Loader(List<HeroResponse> heroResponses, boolean asRingtone) {
+            this.heroResponses = heroResponses != null ? heroResponses : new ArrayList<HeroResponse>();
             this.setAsTone = asRingtone;
         }
 
@@ -432,7 +432,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
         @SuppressWarnings("deprecation")
         protected String doInBackground(String... params) {
             try {
-                for (HeroResponse2 heroResponse : heroResponses) {
+                for (HeroResponse heroResponse : heroResponses) {
                     publishProgress(heroResponse.getTitle());
                     HttpResponse heroPicture = new DefaultHttpClient().execute(new HttpGet(heroResponse.getUrl()));
                     if (heroPicture.getStatusLine().getStatusCode() == 200) {

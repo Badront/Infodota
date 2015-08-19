@@ -73,22 +73,18 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
     TransformableViewPager pager;
     boolean carousel;
     RecyclerView.LayoutManager layoutManager;
-    private SpiceManager spiceManager = new SpiceManager(LocalSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
     private String search = null;
     private String selectedFilter = null;
-    private Filter filter;
-    private boolean initialized = false;
 
     @Override
     public void onStart() {
-        if (!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if (!initialized) {
-                if (carousel) {
-                    loadHeroesForCarousel();
-                } else {
-                    loadHeroesForGridView();
-                }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            if (carousel) {
+                loadHeroesForCarousel();
+            } else {
+                loadHeroesForGridView();
             }
         }
         super.onStart();
@@ -96,16 +92,10 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
 
     @Override
     public void onDestroy() {
-        initialized = false;
-        super.onDestroy();
-    }
-
-    @Override
-    public void onStop() {
-        if (spiceManager.isStarted()) {
-            spiceManager.shouldStop();
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
         }
-        super.onStop();
+        super.onDestroy();
     }
 
     @Override
@@ -297,7 +287,7 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForGridView() {
-        spiceManager.execute(new HeroLoadRequest(), this);
+        mSpiceManager.execute(new HeroLoadRequest(), this);
     }
 
     @Override
@@ -315,17 +305,15 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForCarousel() {
-        spiceManager.execute(new CarouselHeroesLoadRequest(), this);
+        mSpiceManager.execute(new CarouselHeroesLoadRequest(), this);
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized = true;
     }
 
     @Override
     public void onRequestSuccess(Object o) {
-        initialized = true;
         if (o instanceof CarouselHero.List) {
             CarouselHero.List result = (CarouselHero.List) o;
             HeroCarouselPagerAdapter adapter = new HeroCarouselPagerAdapter(result);
@@ -333,7 +321,7 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
         } else if (o instanceof Hero.List) {
             Hero.List result = (Hero.List) o;
             final HeroesAdapter adapter = new HeroesAdapter(result);
-            filter = adapter.getFilter();
+            Filter filter = adapter.getFilter();
             filter.filter(search);
             gridView.setAdapter(adapter);
             adapter.setOnItemClickListener(new OnItemClickListener() {

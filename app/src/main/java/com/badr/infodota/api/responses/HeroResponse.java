@@ -8,7 +8,7 @@ import java.util.List;
  * 19.06.2015
  * 16:03
  */
-public class HeroResponse2 implements Serializable{
+public class HeroResponse implements Serializable {
     private String title;
     private List<String> items;
     private List<String> heroes;

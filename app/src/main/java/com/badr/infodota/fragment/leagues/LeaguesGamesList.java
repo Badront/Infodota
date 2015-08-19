@@ -33,7 +33,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Time: 18:30
  */
 public class LeaguesGamesList extends ListFragment implements RequestListener<MatchItem.List>{
-    private SpiceManager spiceManager=new SpiceManager(LocalSpiceService.class);
+    private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
     private String extraParams;
 
     public LeaguesGamesList() {
@@ -44,29 +44,21 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
         fragment.extraParams = extraParams;
         return fragment;
     }
-    private boolean initialized=false;
+
     @Override
     public void onStart() {
-        if(!spiceManager.isStarted()) {
-            spiceManager.start(getActivity());
-            if(!initialized){
-                loadGames(1);
-            }
+        if (!mSpiceManager.isStarted()) {
+            mSpiceManager.start(getActivity());
+            loadGames(1);
         }
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        if(spiceManager.isStarted()){
-            spiceManager.shouldStop();
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
-        initialized=false;
+        if (mSpiceManager.isStarted()) {
+            mSpiceManager.shouldStop();
+        }
         super.onDestroy();
     }
 
@@ -110,7 +102,7 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
 
     private void loadGames(final int page) {
         setRefreshing(true);
-        spiceManager.execute(new MatchItemsLoadRequest(page),this);
+        mSpiceManager.execute(new MatchItemsLoadRequest(page), this);
     }
 
     @Override
@@ -120,14 +112,12 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-        initialized=true;
         setRefreshing(false);
         Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onRequestSuccess(MatchItem.List matchItems) {
-        initialized=true;
         setRefreshing(false);
         ((LeaguesGamesAdapter) getListAdapter()).addMatchItems(matchItems);
     }
