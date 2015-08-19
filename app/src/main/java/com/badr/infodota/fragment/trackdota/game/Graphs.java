@@ -37,17 +37,23 @@ import java.util.List;
  * 11:31
  */
 public class Graphs extends Fragment implements Updatable<Pair<CoreResult,LiveGame>> {
+    int mSelectedStat;
     private Refresher refresher;
     private CoreResult coreResult;
     private LiveGame liveGame;
     private Spinner mChartSpinner;
     private LineChart mChart;
     private SwipeRefreshLayout mScrollContainer;
-    private LineData mLineData;
-    private LineDataSet mLineDataSet;
-    private List<Entry> mLineDataSetEntries;
+    final private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            if (refresher != null) {
+                mScrollContainer.setRefreshing(true);
+                refresher.onRefresh();
+            }
+        }
+    };
     private ArrayList<String> mTicks;
-    int mSelectedStat;
 
     public static Graphs newInstance(Refresher refresher,CoreResult coreResult,LiveGame liveGame){
         Graphs fragment=new Graphs();
@@ -57,15 +63,6 @@ public class Graphs extends Fragment implements Updatable<Pair<CoreResult,LiveGa
         return fragment;
     }
 
-    final private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            if(refresher!=null) {
-                mScrollContainer.setRefreshing(true);
-                refresher.onRefresh();
-            }
-        }
-    };
     @Override
     public void onUpdate(Pair<CoreResult, LiveGame> entity) {
         mScrollContainer.setRefreshing(false);
@@ -184,29 +181,29 @@ public class Graphs extends Fragment implements Updatable<Pair<CoreResult,LiveGa
         leftAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return String.valueOf((int)value);
+                return String.valueOf((int) value);
             }
         });
 
         leftAxis.setTextColor(Color.WHITE);
 
         mChart.getAxisRight().setEnabled(false);
-        mChart.animateX(2500);
+        //mChart.animateX(2500);
         clearChart();
     }
 
     public void clearChart(){
-        mLineDataSetEntries=new ArrayList<>();
-        mLineDataSet=new LineDataSet(mLineDataSetEntries,"");
+        List<Entry> mLineDataSetEntries = new ArrayList<>();
+        LineDataSet mLineDataSet = new LineDataSet(mLineDataSetEntries, "");
         mLineDataSet.setLineWidth(2f);
         mLineDataSet.setCircleSize(0f);
-        mLineDataSet.addEntry(new Entry(0f,0));
+        mLineDataSet.addEntry(new Entry(0f, 0));
         mLineDataSet.setDrawValues(false);
         mTicks=new ArrayList<>();
         mTicks.add("0");
-        List list=new ArrayList();
+        List<LineDataSet> list = new ArrayList<>();
         list.add(mLineDataSet);
-        mLineData=new LineData(mTicks,list);
+        LineData mLineData = new LineData(mTicks, list);
         mChart.setData(mLineData);
     }
 }
