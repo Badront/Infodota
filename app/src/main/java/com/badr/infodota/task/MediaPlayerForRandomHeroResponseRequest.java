@@ -1,7 +1,9 @@
 package com.badr.infodota.task;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.badr.infodota.api.heroes.Hero;
@@ -19,20 +21,41 @@ import java.util.Random;
  * 19.08.2015
  * 18:01
  */
-public class MediaPlayerForRandomHeroResponseRequest extends TaskRequest<HeroResponse> {
+public class MediaPlayerForRandomHeroResponseRequest extends TaskRequest<MediaPlayer> implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
     private String mHeroDotaId;
     private Context mContext;
     private String mSectionName;
+    private MediaPlayer mMediaPlayer;
 
-    public MediaPlayerForRandomHeroResponseRequest(Context context, Hero hero, String sectionName) {
-        super(HeroResponse.class);
+    public MediaPlayerForRandomHeroResponseRequest(Context context, Hero hero, String sectionName, MediaPlayer mediaPlayer) {
+        super(MediaPlayer.class);
         this.mHeroDotaId = hero.getDotaId();
         this.mContext = context;
         this.mSectionName = sectionName;
     }
 
     @Override
-    public HeroResponse loadData() throws Exception {
+    public MediaPlayer loadData() throws Exception {
+        HeroResponse heroResponse = getHeroResponse();
+        if (heroResponse != null) {
+            mMediaPlayer = new MediaPlayer();
+            String path = heroResponse.getUrl();
+            if (!TextUtils.isEmpty(heroResponse.getLocalUrl())) {
+                File filePath = new File(heroResponse.getLocalUrl());
+                if (filePath.exists()) {
+                    path = heroResponse.getLocalUrl();
+                }
+            }
+            mMediaPlayer.setDataSource(path);
+            mMediaPlayer.prepare();
+            mMediaPlayer.setOnPreparedListener(this);
+            mMediaPlayer.setOnErrorListener(this);
+        }
+        return mMediaPlayer;
+    }
+
+    @Nullable
+    private HeroResponse getHeroResponse() {
         String responsesEntity = FileUtils.getTextFromAsset(
                 mContext,
                 "heroes" + File.separator + mHeroDotaId + File.separator + "responses.json");
@@ -41,8 +64,8 @@ public class MediaPlayerForRandomHeroResponseRequest extends TaskRequest<HeroRes
             for (HeroResponsesSection section : sections) {
                 if (mSectionName.equals(section.getName())) {
                     int size = section.getResponses().size();
-                    Random rand = new Random(size);
-                    HeroResponse response = section.getResponses().get(Math.min(size - 1, rand.nextInt()));
+                    Random rand = new Random();
+                    HeroResponse response = section.getResponses().get(rand.nextInt(size - 1));
                     File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + mHeroDotaId + File.separator);
                     if (musicFolder.exists()) {
                         String[] urlParts = response.getUrl().split(File.separator);
@@ -56,5 +79,19 @@ public class MediaPlayerForRandomHeroResponseRequest extends TaskRequest<HeroRes
             }
         }
         return null;
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mp) {
+        try {
+            mp.start();
+        } catch (IllegalStateException e) {
+            //ignored
+        }
+    }
+
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        return false;
     }
 }

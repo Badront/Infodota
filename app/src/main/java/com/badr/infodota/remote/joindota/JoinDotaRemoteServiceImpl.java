@@ -7,10 +7,9 @@ import android.util.Log;
 import com.badr.infodota.api.joindota.LiveStream;
 import com.badr.infodota.api.joindota.MatchItem;
 import com.badr.infodota.api.joindota.SubmatchItem;
-import com.badr.infodota.remote.BaseRemoteServiceImpl;
+import com.badr.infodota.util.http.NameValuePair;
+import com.badr.infodota.util.http.URLEncodedUtils;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

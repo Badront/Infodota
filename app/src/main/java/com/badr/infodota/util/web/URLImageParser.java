@@ -10,12 +10,10 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * User: Histler
@@ -117,10 +115,12 @@ public class URLImageParser implements Html.ImageGetter {
         }
 
         private InputStream fetch(String urlString) throws IOException {
-            DefaultHttpClient httpClient = new DefaultHttpClient();
+            URL url = new URL(urlString);
+            URLConnection urlConnection = url.openConnection();
+            /*DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpGet request = new HttpGet(urlString);
-            HttpResponse response = httpClient.execute(request);
-            return response.getEntity().getContent();
+            HttpResponse response = httpClient.execute(request);*/
+            return urlConnection.getInputStream()/*response.getEntity().getContent()*/;
         }
     }
 }

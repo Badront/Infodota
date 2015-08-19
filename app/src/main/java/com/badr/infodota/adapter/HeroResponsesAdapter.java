@@ -32,14 +32,11 @@ import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.PinnedSectionListView;
 import com.bumptech.glide.Glide;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -435,17 +432,16 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
             try {
                 for (HeroResponse heroResponse : heroResponses) {
                     publishProgress(heroResponse.getTitle());
-                    HttpResponse heroPicture = new DefaultHttpClient().execute(new HttpGet(heroResponse.getUrl()));
-                    if (heroPicture.getStatusLine().getStatusCode() == 200) {
-                        HttpEntity pictureEntity = heroPicture.getEntity();
-                        InputStream input = new BufferedInputStream(pictureEntity.getContent());
-                        String[] urlPath = heroResponse.getUrl().split("/");
-                        String path = holderFolder + File.separator + urlPath[urlPath.length - 1];
-                        if (FileUtils.saveFile(path, input)) {
-                            heroResponse.setLocalUrl(path);
-                        } else {
-                            throw new Exception(context.getString(R.string.file_saving_error));
-                        }
+                    URL url = new URL(heroResponse.getUrl());
+                    URLConnection urlConnection = url.openConnection();
+
+                    InputStream input = new BufferedInputStream(urlConnection.getInputStream());
+                    String[] urlPath = heroResponse.getUrl().split("/");
+                    String path = holderFolder + File.separator + urlPath[urlPath.length - 1];
+                    if (FileUtils.saveFile(path, input)) {
+                        heroResponse.setLocalUrl(path);
+                    } else {
+                        throw new Exception(context.getString(R.string.file_saving_error));
                     }
                 }
             } catch (Exception e) {

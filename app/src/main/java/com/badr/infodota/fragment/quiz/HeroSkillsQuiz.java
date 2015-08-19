@@ -60,7 +60,7 @@ public class HeroSkillsQuiz extends QuizFragment {
         //любой скил, кроме attribute_bonus
         realAbility = heroAbilities.get(idRandom.nextInt(heroAbilities.size() - 1));
         List<Ability> nonHeroAbilities = heroService.getNotThisHeroAbilities(activity, hero.getId());
-        fakeAbilities = new ArrayList<Ability>();
+        fakeAbilities = new ArrayList<>();
         fakeAbilities.add(realAbility);
         while (fakeAbilities.size() < SKILLS_NUM_TO_DISPLAY) {
             fakeAbilities.add(nonHeroAbilities.get(idRandom.nextInt(nonHeroAbilities.size())));

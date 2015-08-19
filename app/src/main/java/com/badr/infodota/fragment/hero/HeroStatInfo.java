@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.heroes.HeroStats;
-import com.badr.infodota.api.responses.HeroResponse;
 import com.badr.infodota.task.MediaPlayerForRandomHeroResponseRequest;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.ResourceUtils;
@@ -42,10 +42,11 @@ import pl.droidsonroids.gif.GifImageView;
  * Date: 15.01.14
  * Time: 14:43
  */
-public class HeroStatInfo extends Fragment implements RequestListener<HeroResponse> {
+public class HeroStatInfo extends Fragment implements RequestListener<MediaPlayer>, View.OnClickListener {
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private Hero mHero;
     private GifImageView mImageView;
+    private MediaPlayer mMediaPlayer;
 
     public static HeroStatInfo newInstance(Hero hero) {
         HeroStatInfo fragment = new HeroStatInfo();
@@ -58,9 +59,24 @@ public class HeroStatInfo extends Fragment implements RequestListener<HeroRespon
         if (!mSpiceManager.isStarted()) {
             Context context = getActivity();
             mSpiceManager.start(context);
-            mSpiceManager.execute(new MediaPlayerForRandomHeroResponseRequest(context.getApplicationContext(), mHero, "Spawning"), this);
+            playSpawningResponse(context);
         }
         super.onStart();
+    }
+
+    private void playSpawningResponse(Context context) {
+        killMediaPlayer();
+        mSpiceManager.execute(new MediaPlayerForRandomHeroResponseRequest(context.getApplicationContext(), mHero, "Spawning", mMediaPlayer), this);
+    }
+
+    private void killMediaPlayer() {
+        if (mMediaPlayer != null) {
+            try {
+                mMediaPlayer.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -73,6 +89,7 @@ public class HeroStatInfo extends Fragment implements RequestListener<HeroRespon
         if (mSpiceManager.isStarted()) {
             mSpiceManager.shouldStop();
         }
+        killMediaPlayer();
         super.onDestroy();
     }
 
@@ -96,6 +113,7 @@ public class HeroStatInfo extends Fragment implements RequestListener<HeroRespon
         View root = getView();
         if (root != null) {
             mImageView = (GifImageView) root.findViewById(R.id.imgHero);
+            mImageView.setOnClickListener(this);
             File externalFilesDir;
             String dir;
             externalFilesDir = Environment.getExternalStorageDirectory();
@@ -288,7 +306,14 @@ public class HeroStatInfo extends Fragment implements RequestListener<HeroRespon
     }
 
     @Override
-    public void onRequestSuccess(HeroResponse heroResponse) {
-        //todo play
+    public void onRequestSuccess(MediaPlayer mediaPlayer) {
+        this.mMediaPlayer = mediaPlayer;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mImageView.equals(v)) {
+            playSpawningResponse(v.getContext());
+        }
     }
 }
