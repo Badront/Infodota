@@ -16,7 +16,6 @@ import com.badr.infodota.service.twitch.TwitchService;
 import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;
-import java.util.List;
 
 /**
  * User: Histler
@@ -24,12 +23,10 @@ import java.util.List;
  */
 public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHolder> {
     private TwitchGamesAdapter holderAdapter;
-    private List<Stream> favStreams;
 
-    public TwitchStreamsAdapter(TwitchGamesAdapter holderAdapter, Stream.List streams, List<Stream> favStreams) {
+    public TwitchStreamsAdapter(TwitchGamesAdapter holderAdapter, Stream.List streams) {
         super(streams);
         this.holderAdapter = holderAdapter;
-        this.favStreams = favStreams;
     }
 
     public void addStream(Stream stream) {
@@ -57,7 +54,7 @@ public class TwitchStreamsAdapter extends BaseRecyclerAdapter<Stream, StreamHold
         holder.channel.setText(stream.getChannel());
         holder.status.setText(stream.getTitle());
         holder.viewers.setText(String.valueOf(stream.getViewers()));
-        if (favStreams.contains(stream)) {
+        if (stream.isFavourite()) {
             holder.favourite.setImageResource(R.drawable.favourite_on);
             holder.favourite.setOnClickListener(new View.OnClickListener() {
                 @Override

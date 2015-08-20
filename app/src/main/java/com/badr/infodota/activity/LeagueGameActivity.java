@@ -28,11 +28,11 @@ import com.badr.infodota.api.joindota.LiveStream;
 import com.badr.infodota.api.joindota.MatchItem;
 import com.badr.infodota.api.joindota.SubmatchItem;
 import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.service.joindota.JoinDotaService;
+import com.badr.infodota.task.ChannelLoadRequest;
+import com.badr.infodota.task.MatchItemLoadRequest;
 import com.badr.infodota.util.DateUtils;
 import com.badr.infodota.util.GrayImageLoadListener;
 import com.badr.infodota.util.Utils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
 import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
@@ -309,33 +309,5 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
     public void onRefresh() {
         mSwipeRefreshView.setRefreshing(true);
         reloadMatchDetails();
-    }
-
-    public static class ChannelLoadRequest extends TaskRequest<String>{
-        private List<LiveStream> liveStreams;
-        private BeanContainer container = BeanContainer.getInstance();
-        private JoinDotaService service = container.getJoinDotaService();
-        public ChannelLoadRequest(List<LiveStream> liveStreams) {
-            super(String.class);
-            this.liveStreams=liveStreams;
-        }
-
-        @Override
-        public String loadData() throws Exception {
-            return service.fillChannelName(liveStreams);
-        }
-    }
-    public static class MatchItemLoadRequest extends TaskRequest<MatchItem>{
-        JoinDotaService service=BeanContainer.getInstance().getJoinDotaService();
-        private MatchItem matchItem;
-        public MatchItemLoadRequest(MatchItem matchItem) {
-            super(MatchItem.class);
-            this.matchItem=matchItem;
-        }
-
-        @Override
-        public MatchItem loadData() throws Exception {
-            return service.updateMatchItem(matchItem);
-        }
     }
 }

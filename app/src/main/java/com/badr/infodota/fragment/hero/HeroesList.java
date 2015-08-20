@@ -29,7 +29,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.AboutActivity;
 import com.badr.infodota.activity.HeroInfoActivity;
@@ -39,13 +38,13 @@ import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.api.heroes.CarouselHero;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.fragment.SearchableFragment;
-import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.task.CarouselHeroesLoadRequest;
+import com.badr.infodota.task.HeroLoadRequest;
 import com.badr.infodota.util.CarouselPageTransformer;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.PagerContainer;
 import com.badr.infodota.view.TransformableViewPager;
 import com.bumptech.glide.Glide;
@@ -74,8 +73,8 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
     boolean carousel;
     RecyclerView.LayoutManager layoutManager;
     private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
-    private String search = null;
-    private String selectedFilter = null;
+    private String mSearch = null;
+    private String mFilter = null;
 
     @Override
     public void onStart() {
@@ -142,10 +141,10 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == 0) {
                             item.setTitle(R.string.filter);
-                            selectedFilter = null;
+                            mFilter = null;
                         } else {
                             item.setTitle(menuItem.getTitle());
-                            selectedFilter = ResourceUtils.getHeroRole(menuItem.getItemId());
+                            mFilter = ResourceUtils.getHeroRole(menuItem.getItemId());
                         }
                         if (carousel) {
                             loadHeroesForCarousel();
@@ -287,14 +286,17 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForGridView() {
-        mSpiceManager.execute(new HeroLoadRequest(), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            mSpiceManager.execute(new HeroLoadRequest(activity.getApplicationContext(), mFilter), this);
+        }
     }
 
     @Override
     public void onTextSearching(final String text) {
         //if we searched before, or searching now
-        if (!TextUtils.isEmpty(search) || !TextUtils.isEmpty(text)) {
-            this.search = text;
+        if (!TextUtils.isEmpty(mSearch) || !TextUtils.isEmpty(text)) {
+            this.mSearch = text;
             if (carousel) {
                 loadHeroesForCarousel();
             } else {
@@ -305,7 +307,10 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
 
     @SuppressWarnings("unchecked")
     private void loadHeroesForCarousel() {
-        mSpiceManager.execute(new CarouselHeroesLoadRequest(), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            mSpiceManager.execute(new CarouselHeroesLoadRequest(activity.getApplicationContext(), mFilter, mSearch), this);
+        }
     }
 
     @Override
@@ -322,7 +327,7 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
             Hero.List result = (Hero.List) o;
             final HeroesAdapter adapter = new HeroesAdapter(result);
             Filter filter = adapter.getFilter();
-            filter.filter(search);
+            filter.filter(mSearch);
             gridView.setAdapter(adapter);
             adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
@@ -437,40 +442,6 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return (view == object);
-        }
-    }
-
-    public class CarouselHeroesLoadRequest extends TaskRequest<CarouselHero.List> {
-
-        public CarouselHeroesLoadRequest() {
-            super(CarouselHero.List.class);
-        }
-
-        @Override
-        public CarouselHero.List loadData() throws Exception {
-            Activity activity = getActivity();
-            if (activity != null) {
-                HeroService heroService = BeanContainer.getInstance().getHeroService();
-                return heroService.getCarouselHeroes(activity, selectedFilter, search);
-            }
-            return null;
-        }
-    }
-
-    public class HeroLoadRequest extends TaskRequest<Hero.List> {
-
-        public HeroLoadRequest() {
-            super(Hero.List.class);
-        }
-
-        @Override
-        public Hero.List loadData() throws Exception {
-            Activity activity = getActivity();
-            if (activity != null) {
-                HeroService heroService = BeanContainer.getInstance().getHeroService();
-                return heroService.getFilteredHeroes(activity, selectedFilter);
-            }
-            return null;
         }
     }
 }

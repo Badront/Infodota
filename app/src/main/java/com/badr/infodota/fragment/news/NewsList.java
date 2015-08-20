@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.activity.BaseActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.activity.NewsItemActivity;
@@ -18,9 +17,8 @@ import com.badr.infodota.adapter.NewsAdapter;
 import com.badr.infodota.api.news.AppNews;
 import com.badr.infodota.api.news.NewsItem;
 import com.badr.infodota.fragment.ListFragment;
-import com.badr.infodota.service.news.NewsService;
+import com.badr.infodota.task.NewsLoadRequest;
 import com.badr.infodota.util.EndlessScrollListener;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -71,11 +69,18 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
 
     private void loadNews(final int page, final int totalItemsCount) {
         final BaseActivity activity = (BaseActivity) getActivity();
-        setRefreshing(true);
-        if (getListAdapter() == null) {
-            setListAdapter(new NewsAdapter(activity, null));
+        if (activity != null) {
+            setRefreshing(true);
+            if (getListAdapter() == null) {
+                setListAdapter(new NewsAdapter(activity, null));
+            }
+            Long fromDate = null;
+            if (page != 0 && totalItemsCount > 0) {
+                NewsItem lastItem = ((NewsAdapter) getListAdapter()).getItem(totalItemsCount - 1);
+                fromDate = lastItem.getDate();
+            }
+            mSpiceManager.execute(new NewsLoadRequest(activity.getApplicationContext(), fromDate), this);
         }
-        mSpiceManager.execute(new NewsLoadRequest(page, totalItemsCount), this);
     }
 
     @Override
@@ -111,27 +116,5 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
         ((NewsAdapter) getListAdapter()).addNewsItems(newsItems.getNewsitems());
         setRefreshing(false);
 
-    }
-
-    public class NewsLoadRequest extends TaskRequest<AppNews>{
-        private int page;
-        private int totalItemsCount;
-        public NewsLoadRequest(int page, int totalItemsCount) {
-            super(AppNews.class);
-            this.page=page;
-            this.totalItemsCount=totalItemsCount;
-        }
-
-        @Override
-        public AppNews loadData() throws Exception {
-            Long fromDate = null;
-            if (page != 0 && totalItemsCount > 0) {
-                NewsItem lastItem = ((NewsAdapter) getListAdapter()).getItem(totalItemsCount - 1);
-                fromDate = lastItem.getDate();
-            }
-            BeanContainer container = BeanContainer.getInstance();
-            NewsService newsService = container.getNewsService();
-            return newsService.getNews(getActivity(), fromDate);
-        }
     }
 }

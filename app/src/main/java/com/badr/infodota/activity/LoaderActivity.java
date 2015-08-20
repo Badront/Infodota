@@ -2,11 +2,9 @@ package com.badr.infodota.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,14 +16,12 @@ import com.badr.infodota.R;
 import com.badr.infodota.api.Constants;
 import com.badr.infodota.dao.Helper;
 import com.badr.infodota.service.LocalUpdateService;
-import com.badr.infodota.util.FileUtils;
+import com.badr.infodota.task.UpdateLoadRequest;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-import java.io.File;
 import java.util.Locale;
 
 /**
@@ -47,7 +43,7 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
             mSpiceManager.start(this);
             final int currentVersion = localUpdateService.getVersion(this);
             if (currentVersion != Helper.DATABASE_VERSION) {
-                mSpiceManager.execute(new UpdateLoadRequest(this), this);
+                mSpiceManager.execute(new UpdateLoadRequest(getApplicationContext()), this);
             } else {
                 showDialog = true;
                 checkGooglePlayServicesAndRun();
@@ -215,26 +211,7 @@ public class LoaderActivity extends Activity implements RequestListener<String>{
         checkGooglePlayServicesAndRun();
     }
 
-    public static class UpdateLoadRequest extends TaskRequest<String>{
-        LocalUpdateService localUpdateService = BeanContainer.getInstance().getLocalUpdateService();
-        private Context context;
-        public UpdateLoadRequest(Context context) {
-            super(String.class);
-            this.context=context;
-        }
 
-        @Override
-        public String loadData() throws Exception {
-            AssetManager assetManager = context.getAssets();
-            String[] files = assetManager.list("updates");
-            for (String fileName : files) {
-                int fileVersion = Integer.valueOf(fileName.split("\\.")[0]);
-                String sql = FileUtils.getTextFromAsset(context, "updates" + File.separator + fileName);
-                localUpdateService.update(context, sql, fileVersion);
-            }
-            return "";
-        }
-    }
 
     /*public class HeroesLoader extends AsyncTask<String, String, String> {
         public static final String SUCCESS_CODE = "success";

@@ -1,13 +1,11 @@
 package com.badr.infodota.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,27 +13,17 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.MatchInfoPagerAdapter;
-import com.badr.infodota.api.dotabuff.Unit;
-import com.badr.infodota.api.items.Item;
-import com.badr.infodota.api.matchdetails.AdditionalUnit;
-import com.badr.infodota.api.matchdetails.MatchDetails;
-import com.badr.infodota.api.matchdetails.Player;
 import com.badr.infodota.api.matchdetails.Result;
 import com.badr.infodota.api.matchdetails.Team;
-import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.service.item.ItemService;
-import com.badr.infodota.service.match.MatchService;
-import com.badr.infodota.service.player.PlayerService;
 import com.badr.infodota.service.team.TeamService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.MatchDetailsLoadRequest;
+import com.badr.infodota.task.TeamLogoLoadRequest;
+import com.badr.infodota.util.LongPair;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: ABadretdinov
@@ -206,6 +194,17 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
             if (matchResult.getDireLogo() != null) {
                 Team dire = teamService.getTeamById(MatchInfoActivity.this, matchResult.getDireTeamId());
                 if (dire!=null&&!TextUtils.isEmpty(dire.getLogo())) {
+                    /*Glide.with(this).load(dire.getLogo()).into(new SimpleTarget<GlideDrawable>() {
+                        @Override
+                        public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                            resource.setBounds(
+                                    0,
+                                    0,
+                                    Utils.dpSize(MatchInfoActivity.this, 40),
+                                    Utils.dpSize(MatchInfoActivity.this, 40));
+
+                        }
+                    });*/
                     /*imageLoader.loadImage(dire.getLogo(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
@@ -235,7 +234,7 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                         }
                     });*/
                 } else {
-                    mSpiceManager.execute(new TeamLogoLoadRequest(this, matchResult.getDireLogo()), this);
+                    mSpiceManager.execute(new TeamLogoLoadRequest(getApplicationContext(), matchResult.getDireLogo()), this);
                 }
             }
 
@@ -246,143 +245,6 @@ public class MatchInfoActivity extends BaseActivity implements RequestListener {
                             : R.string.dire_win));
         }
     }
-    public static class MatchDetailsLoadRequest extends TaskRequest<Result>{
 
-        BeanContainer container=BeanContainer.getInstance();
-        MatchService matchService = container.getMatchService();
-        PlayerService playerService = container.getPlayerService();
-        HeroService heroService=container.getHeroService();
-        ItemService itemService=container.getItemService();
-        private Result matchResult;
-        private String matchId;
-        private Context context;
-        public MatchDetailsLoadRequest(Context context,Result matchResult,String matchId) {
-            super(Result.class);
-            this.context=context;
-            this.matchResult = matchResult;
-            this.matchId=matchId;
-        }
 
-        @Override
-        public Result loadData() throws Exception {
-            if (matchId != null) {
-                MatchDetails result = matchService.getMatchDetails(context, matchId);
-                if (result != null) {
-                    matchResult = result.getResult();
-                }
-            }
-            if (matchResult != null) {
-                List<Player> players = matchResult.getPlayers();
-                if (players != null && players.size() > 0) {
-                    List<Long> ids = new ArrayList<Long>();
-                    for (Player player : players) {
-                        if (player.getAccount_id() != Player.HIDDEN_ID) {
-                            ids.add(player.getAccount_id());
-                        }
-                    }
-                    if (ids.size() > 0) {
-                        Unit.List unitsResult = playerService.loadAccounts(ids);
-                        if (unitsResult != null &&unitsResult.size()>0) {
-                            for (Unit unit : unitsResult) {
-                                playerService.saveAccount(context, unit);
-                            }
-                            for (Player player : players) {
-                                if (player.getAccount_id() != Player.HIDDEN_ID) {
-                                    player.setAccount(playerService.getAccountById(context, player.getAccount_id()));
-                                }
-                                player.setHero(heroService.getHeroById(context, player.getHero_id()));
-                                loadPlayerItems(player);
-                            }
-                        }
-                    }
-                }
-
-            }
-            return matchResult;
-        }
-
-        private void loadPlayerItems(Player player) {
-            Item current=itemService.getItemById(context,player.getItem0());
-            if(current!=null){
-                player.setItem0dotaId(current.getDotaId());
-            }
-            current=itemService.getItemById(context,player.getItem1());
-            if(current!=null){
-                player.setItem1dotaId(current.getDotaId());
-            }
-            current=itemService.getItemById(context,player.getItem2());
-            if(current!=null){
-                player.setItem2dotaId(current.getDotaId());
-            }
-            current=itemService.getItemById(context,player.getItem3());
-            if(current!=null){
-                player.setItem3dotaId(current.getDotaId());
-            }
-            current=itemService.getItemById(context,player.getItem4());
-            if(current!=null){
-                player.setItem4dotaId(current.getDotaId());
-            }
-            current=itemService.getItemById(context,player.getItem5());
-            if(current!=null){
-                player.setItem5dotaId(current.getDotaId());
-            }
-            if(player.getAdditionalUnits()!=null){
-                for(AdditionalUnit unit:player.getAdditionalUnits()){
-                    current=itemService.getItemById(context,unit.getItem0());
-                    if(current!=null){
-                        unit.setItem0dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(context,unit.getItem1());
-                    if(current!=null){
-                        unit.setItem1dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(context,unit.getItem2());
-                    if(current!=null){
-                        unit.setItem2dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(context,unit.getItem3());
-                    if(current!=null){
-                        unit.setItem3dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(context,unit.getItem4());
-                    if(current!=null){
-                        unit.setItem4dotaId(current.getDotaId());
-                    }
-                    current=itemService.getItemById(context,unit.getItem5());
-                    if(current!=null){
-                        unit.setItem5dotaId(current.getDotaId());
-                    }
-                }
-            }
-        }
-    }
-    public static class TeamLogoLoadRequest extends TaskRequest<LongPair>{
-
-        TeamService service = BeanContainer.getInstance().getTeamService();
-        private Context context;
-        private long teamId;
-        public TeamLogoLoadRequest(Context context,long teamId) {
-            super(LongPair.class);
-            this.context=context;
-            this.teamId=teamId;
-        }
-
-        @Override
-        public LongPair loadData() throws Exception {
-            String result= service.getTeamLogo(context, teamId);
-            return new LongPair(teamId,result);
-        }
-    }
-    public static class LongPair extends Pair<Long,String>{
-
-        /**
-         * Constructor for a Pair.
-         *
-         * @param first  the first object in the Pair
-         * @param second the second object in the pair
-         */
-        public LongPair(Long first, String second) {
-            super(first, second);
-        }
-    }
 }

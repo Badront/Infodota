@@ -3,7 +3,6 @@ package com.badr.infodota.service.match;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.api.heroes.Hero;
@@ -18,7 +17,6 @@ import com.badr.infodota.util.FileUtils;
 import com.google.gson.Gson;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -70,9 +68,9 @@ public class MatchServiceImpl implements MatchService {
                         boolean found = false;
                         for (int i = 0; i < players.size() && !found; i++) {
                             Player player = players.get(i);
-                            if (player.getAccount_id() == accountId) {
+                            if (player.getAccountId() == accountId) {
                                 found = true;
-                                Hero hero = heroService.getHeroById(context, player.getHero_id());
+                                Hero hero = heroService.getHeroById(context, player.getHeroId());
                                 if (hero != null) {
                                     player.setHero(hero);
                                     playerMatch.setPlayer(player);

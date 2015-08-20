@@ -20,15 +20,13 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.adapter.pager.TrackdotaPagerAdapter;
 import com.badr.infodota.api.trackdota.game.GamesResult;
-import com.badr.infodota.service.trackdota.TrackdotaService;
+import com.badr.infodota.task.GamesResultLoadRequest;
 import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
@@ -190,17 +188,6 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
         updateHandler.postDelayed(updateTask,DELAY_20_SEC);
     }
 
-    public class GamesResultLoadRequest extends TaskRequest<GamesResult> {
-        private BeanContainer container=BeanContainer.getInstance();
-        private TrackdotaService trackdotaService=container.getTrackdotaService();
-        public GamesResultLoadRequest() {
-            super(GamesResult.class);
-        }
 
-        @Override
-        public GamesResult loadData() throws Exception {
-            return trackdotaService.getGames();
-        }
-    }
 
 }

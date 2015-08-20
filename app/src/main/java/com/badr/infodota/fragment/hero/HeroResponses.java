@@ -3,12 +3,10 @@ package com.badr.infodota.fragment.hero;
 import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +22,9 @@ import com.badr.infodota.adapter.HeroResponsesAdapter;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.api.responses.HeroResponse;
 import com.badr.infodota.api.responses.HeroResponsesSection;
-import com.badr.infodota.util.FileUtils;
+import com.badr.infodota.task.HeroResponseLoadRequest;
+import com.badr.infodota.task.MusicLoadRequest;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
-import com.google.gson.Gson;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -40,8 +37,8 @@ import java.io.File;
  * Time: 17:53
  */
 public class HeroResponses extends Fragment implements RequestListener<HeroResponsesSection.List> {
-    private MediaPlayer mediaPlayer;
-    private HeroResponsesAdapter adapter;
+    private MediaPlayer mMediaPlayer;
+    private HeroResponsesAdapter mAdapter;
     private Filter mFilter;
     private EditText searchView;
     private ListView listView;
@@ -57,8 +54,11 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     @Override
     public void onStart() {
         if (!mSpiceManager.isStarted()) {
-            mSpiceManager.start(getActivity());
-            mSpiceManager.execute(new HeroResponseLoadRequest(), this);
+            Activity activity = getActivity();
+            if (activity != null) {
+                mSpiceManager.start(activity);
+                mSpiceManager.execute(new HeroResponseLoadRequest(activity.getApplicationContext(), hero.getDotaId()), this);
+            }
         }
         super.onStart();
     }
@@ -74,8 +74,8 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (adapter != null) {
-            listView.setAdapter(adapter);
+        if (mAdapter != null) {
+            listView.setAdapter(mAdapter);
         }
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,28 +100,28 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
             root.findViewById(R.id.select_to_download).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    adapter.changeEditMode(true);
+                    mAdapter.changeEditMode(true);
                     root.findViewById(R.id.buttons_holder).setVisibility(View.VISIBLE);
                 }
             });
             root.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    adapter.changeEditMode(false);
+                    mAdapter.changeEditMode(false);
                     root.findViewById(R.id.buttons_holder).setVisibility(View.GONE);
                 }
             });
             root.findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    adapter.startLoadingFiles();
+                    mAdapter.startLoadingFiles();
                     root.findViewById(R.id.buttons_holder).setVisibility(View.GONE);
                 }
             });
             root.findViewById(R.id.invert).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    adapter.inverseChecked();
+                    mAdapter.inverseChecked();
                 }
             });
             root.findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
@@ -135,9 +135,9 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     }
 
     private void killMediaPlayer() {
-        if (mediaPlayer != null) {
+        if (mMediaPlayer != null) {
             try {
-                mediaPlayer.release();
+                mMediaPlayer.release();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -148,13 +148,14 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (adapter.isEditMode()) {
-                    adapter.setItemClicked(position);
+                if (mAdapter.isEditMode()) {
+                    mAdapter.setItemClicked(position);
                 } else {
-                    Object object=adapter.getItem(position);
+                    Object object = mAdapter.getItem(position);
                     if (object instanceof HeroResponse) {
                         HeroResponse heroResponse = (HeroResponse) object;
-                        new MusicLoader(position).execute(heroResponse);
+                        mAdapter.addToPlayLoading(position);
+                        mSpiceManager.execute(new MusicLoadRequest(mMediaPlayer, heroResponse), new MusicLoadRequestListener(position));
                     }
                 }
             }
@@ -178,103 +179,30 @@ public class HeroResponses extends Fragment implements RequestListener<HeroRespo
     public void onRequestSuccess(HeroResponsesSection.List heroResponses) {
         File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
         String musicPath=musicFolder.getAbsolutePath();
-        adapter = new HeroResponsesAdapter(getActivity(), heroResponses, musicPath);
-        mFilter = adapter.getFilter();
-        listView.setAdapter(adapter);
+        mAdapter = new HeroResponsesAdapter(getActivity(), heroResponses, musicPath);
+        mFilter = mAdapter.getFilter();
+        listView.setAdapter(mAdapter);
     }
 
-    public class HeroResponseLoadRequest extends TaskRequest<HeroResponsesSection.List> {
+    public class MusicLoadRequestListener implements RequestListener<MediaPlayer> {
+        private int mPosition;
 
-        public HeroResponseLoadRequest() {
-            super(HeroResponsesSection.List.class);
+        public MusicLoadRequestListener(int position) {
+            this.mPosition = position;
         }
 
         @Override
-        public HeroResponsesSection.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null) {
-                String responsesEntity = FileUtils.getTextFromAsset(activity,
-                        "heroes" + File.separator + hero.getDotaId() + File.separator + "responses.json");
-                HeroResponsesSection.List sections = new Gson().fromJson(responsesEntity, HeroResponsesSection.List.class);
-
-                File musicFolder = new File(Environment.getExternalStorageDirectory() + File.separator + "Music" + File.separator + "dota2" + File.separator + hero.getDotaId() + File.separator);
-                if (musicFolder.exists()) {
-                    for (HeroResponsesSection section : sections) {
-                        for (HeroResponse heroResponse : section.getResponses()) {
-                            String[] urlParts = heroResponse.getUrl().split(File.separator);
-                            String fileName = musicFolder + File.separator + urlParts[urlParts.length - 1];
-                            if (new File(fileName).exists()) {
-                                heroResponse.setLocalUrl(fileName);
-                            }
-                        }
-                    }
-                }
-                return sections;
-            }
-            return null;
-        }
-    }
-
-    public class MusicLoader extends AsyncTask<HeroResponse, Object, String> {
-        private int position;
-
-        public MusicLoader(int position) {
-            this.position = position;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            adapter.addToPlayLoading(position);
-        }
-
-        @Override
-        protected String doInBackground(HeroResponse... params) {
-            HeroResponse heroResponse = params[0];
-            String path = heroResponse.getUrl();
-            if (!TextUtils.isEmpty(heroResponse.getLocalUrl())) {
-                File filePath = new File(heroResponse.getLocalUrl());
-                if (filePath.exists()) {
-                    path = heroResponse.getLocalUrl();
-                }
-            }
-            try { //http://developer.android.com/intl/ru/reference/android/media/AsyncPlayer.html
-                killMediaPlayer();
-                mediaPlayer = new MediaPlayer();
-                mediaPlayer.setDataSource(path); // setup song from http://www.hrupin.com/wp-content/uploads/mp3/testsong_20_sec.mp3 URL to mediaplayer data source
-                mediaPlayer.prepare(); // you must call this method after setup the datasource in setDataSource method. After calling prepare() the instance of MediaPlayer starts load data from URL to internal buffer.
-                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        try {
-                            mediaPlayer.start();
-                        }
-                        catch (IllegalStateException e){
-                            //ignored
-                        }
-                    }
-                });
-                mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                    @Override
-                    public boolean onError(MediaPlayer mp, int what, int extra) {
-                        return true;
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-                return e.getMessage();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            adapter.loaded(position);
+        public void onRequestFailure(SpiceException spiceException) {
             Context context = getActivity();
-            if (!TextUtils.isEmpty(s) && context != null) {
+            if (context != null) {
                 Toast.makeText(context, getString(R.string.loading_response_error), Toast.LENGTH_SHORT).show();
             }
+        }
+
+        @Override
+        public void onRequestSuccess(MediaPlayer mediaPlayer) {
+            mMediaPlayer = mediaPlayer;
+            mAdapter.loaded(mPosition);
         }
     }
 }

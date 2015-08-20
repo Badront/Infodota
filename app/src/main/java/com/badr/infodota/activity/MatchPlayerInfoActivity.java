@@ -128,7 +128,7 @@ public class MatchPlayerInfoActivity extends BaseActivity {
             player = (Player) bundle.get("player");
             randomSkills = bundle.getBoolean("randomSkills", false);
 
-            account = playerService.getAccountById(this, player.getAccount_id());
+            account = playerService.getAccountById(this, player.getAccountId());
             if(account==null){
                 account=player.getAccount();
             }
@@ -246,7 +246,7 @@ public class MatchPlayerInfoActivity extends BaseActivity {
             }
             HeroService heroService = BeanContainer.getInstance().getHeroService();
             ((TextView) findViewById(R.id.player_lvl)).setText(getString(R.string.level) + ": " + player.getLevel());
-            Hero hero = heroService.getHeroById(MatchPlayerInfoActivity.this, player.getHero_id());
+            Hero hero = heroService.getHeroById(MatchPlayerInfoActivity.this, player.getHeroId());
             ImageView heroImg = (ImageView) findViewById(R.id.hero_img);
             TextView heroName = (TextView) findViewById(R.id.hero_name);
             if (hero != null) {

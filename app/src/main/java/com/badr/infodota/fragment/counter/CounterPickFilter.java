@@ -29,10 +29,9 @@ import com.badr.infodota.activity.CounterPickerHeroesSelectActivity;
 import com.badr.infodota.activity.HeroInfoActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.api.heroes.TruepickerHero;
-import com.badr.infodota.service.cosmetic.CounterService;
 import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.task.TruepickerCounterLoadRequest;
 import com.badr.infodota.util.Utils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.FlowLayout;
 import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
@@ -205,7 +204,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
                     progressBar.setVisibility(View.VISIBLE);
                     recommendsTitle.setVisibility(View.GONE);
                     recommendationsView.removeAllViews();
-                    mSpiceManager.execute(new TruepickerLoadRequest(), CounterPickFilter.this);
+                    mSpiceManager.execute(new TruepickerCounterLoadRequest(v.getContext().getApplicationContext(), allies, enemies), CounterPickFilter.this);
                 }
             });
             loadImages();
@@ -290,21 +289,4 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
         }
     }
 
-    public class TruepickerLoadRequest extends TaskRequest<TruepickerHero.List> {
-
-        public TruepickerLoadRequest() {
-            super(TruepickerHero.List.class);
-        }
-
-        @Override
-        public TruepickerHero.List loadData() throws Exception {
-            BeanContainer beanContainer = BeanContainer.getInstance();
-            CounterService service = beanContainer.getCounterService();
-            Activity activity = getActivity();
-            if (activity != null) {
-                return service.getCounters(activity, allies, enemies, 1);
-            }
-            return null;
-        }
-    }
 }

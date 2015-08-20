@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.TrackdotaLeagueInfoActivity;
 import com.badr.infodota.adapter.TrackdotaLeagueAdapter;
@@ -17,8 +16,7 @@ import com.badr.infodota.adapter.holder.TrackdotaLeagueHolder;
 import com.badr.infodota.api.trackdota.LeaguesResult;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.fragment.RecyclerFragment;
-import com.badr.infodota.service.trackdota.TrackdotaService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.LeagueLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -109,17 +107,5 @@ public class LeaguesList extends RecyclerFragment<League,TrackdotaLeagueHolder> 
         }
     }
 
-    public class LeagueLoadRequest extends TaskRequest<LeaguesResult>{
 
-        public LeagueLoadRequest() {
-            super(LeaguesResult.class);
-        }
-
-        @Override
-        public LeaguesResult loadData() throws Exception {
-            BeanContainer container=BeanContainer.getInstance();
-            TrackdotaService trackdotaService=container.getTrackdotaService();
-            return trackdotaService.getLeagues();
-        }
-    }
 }

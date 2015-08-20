@@ -1,13 +1,11 @@
 package com.badr.infodota.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.TrackdotaGamePagerAdapter;
 import com.badr.infodota.api.trackdota.GameManager;
@@ -16,9 +14,9 @@ import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.game.Team;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.api.trackdota.live.LiveTeam;
-import com.badr.infodota.service.trackdota.TrackdotaService;
+import com.badr.infodota.task.CoreGameLoadRequest;
+import com.badr.infodota.task.LiveGameLoadRequest;
 import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
@@ -102,7 +100,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRefresh() {
         cancelDelayedUpdate();
         progressBar.setVisibility(View.VISIBLE);
-        mSpiceManager.execute(new CoreGameLoadRequest(this, matchId), this);
+        mSpiceManager.execute(new CoreGameLoadRequest(getApplicationContext(), matchId), this);
     }
 
     @Override
@@ -115,7 +113,7 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
     public void onRequestSuccess(Object object) {
         if (object instanceof CoreResult) {
             coreResult = (CoreResult) object;
-            mSpiceManager.execute(new LiveGameLoadRequest(this, matchId), this);
+            mSpiceManager.execute(new LiveGameLoadRequest(getApplicationContext(), matchId), this);
         } else if (object instanceof LiveGame) {
             liveGame = (LiveGame) object;
             LiveTeam radiantLive=liveGame.getRadiant();
@@ -162,39 +160,4 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
         updateHandler.postDelayed(updateTask,DELAY_20_SEC);
     }
 
-    public static class CoreGameLoadRequest extends TaskRequest<CoreResult> {
-        private BeanContainer container = BeanContainer.getInstance();
-        private TrackdotaService trackdotaService = container.getTrackdotaService();
-        private long matchId;
-        private Context context;
-
-        public CoreGameLoadRequest(Context context,long matchId) {
-            super(CoreResult.class);
-            this.matchId = matchId;
-            this.context=context;
-        }
-
-        @Override
-        public CoreResult loadData() throws Exception {
-            return trackdotaService.getGameCoreData(context,matchId);
-        }
-    }
-
-    public static class LiveGameLoadRequest extends TaskRequest<LiveGame> {
-        private BeanContainer container = BeanContainer.getInstance();
-        private TrackdotaService trackdotaService = container.getTrackdotaService();
-        private long matchId;
-        private Context context;
-
-        public LiveGameLoadRequest(Context context,long matchId) {
-            super(LiveGame.class);
-            this.context=context;
-            this.matchId = matchId;
-        }
-
-        @Override
-        public LiveGame loadData() throws Exception {
-            return trackdotaService.getLiveGame(context,matchId);
-        }
-    }
 }

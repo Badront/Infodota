@@ -22,8 +22,8 @@ import java.util.List;
  */
 public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implements Filterable {
 
-    private List<Item> filtered;
-    private Filter filter = new Filter() {
+    private List<Item> mFiltered;
+    private Filter mFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults filterResults = new FilterResults();
@@ -43,9 +43,9 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
         @Override
         @SuppressWarnings("unchecked")
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filtered = (List<Item>) results.values;
-            if (filtered == null) {
-                filtered = new ArrayList<Item>();
+            mFiltered = (List<Item>) results.values;
+            if (mFiltered == null) {
+                mFiltered = new ArrayList<>();
             }
             notifyDataSetChanged();
         }
@@ -53,22 +53,22 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
 
     public ItemsAdapter(List<Item> items) {
         super(items);
-        this.filtered = mData;
+        this.mFiltered = mData;
     }
 
     @Override
     public int getItemCount() {
-        return filtered.size();
+        return mFiltered.size();
     }
 
     @Override
     public Item getItem(int position) {
-        return filtered.get(position);
+        return mFiltered.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return filtered.get(position).getId();
+        return mFiltered.get(position).getId();
     }
 
     @Override
@@ -89,6 +89,6 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
 
     @Override
     public Filter getFilter() {
-        return filter;
+        return mFilter;
     }
 }

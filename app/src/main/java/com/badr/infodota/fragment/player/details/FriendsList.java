@@ -18,7 +18,7 @@ import com.badr.infodota.adapter.holder.PlayerHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.player.PlayerService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.FriendsLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -31,8 +31,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements RequestListener<Unit.List>{
     private Unit account;
-    private BeanContainer container = BeanContainer.getInstance();
-    private PlayerService playerService = container.getPlayerService();
+    private PlayerService playerService = BeanContainer.getInstance().getPlayerService();
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     public static FriendsList newInstance(Unit unit) {
@@ -64,7 +63,7 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
 
     @Override
     public void onRefresh() {
-        mSpiceManager.execute(new UnitsLoadRequest(), this);
+        mSpiceManager.execute(new FriendsLoadRequest(account.getAccountId()), this);
     }
 
     @Override
@@ -121,17 +120,6 @@ public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements
         if (units != null &&activity!=null) {
             PlayersAdapter adapter = new PlayersAdapter(units, true, activity.getResources().getStringArray(R.array.match_history_title));
             setAdapter(adapter);
-        }
-    }
-    public class UnitsLoadRequest extends TaskRequest<Unit.List>{
-
-        public UnitsLoadRequest() {
-            super(Unit.List.class);
-        }
-
-        @Override
-        public Unit.List loadData() throws Exception {
-            return new Unit.List(playerService.loadFriends(account.getAccountId()));
         }
     }
 }

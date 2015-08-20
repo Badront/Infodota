@@ -1,5 +1,6 @@
 package com.badr.infodota.fragment.trackdota.game;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.TwitchStreamsAdapter;
 import com.badr.infodota.adapter.holder.StreamHolder;
@@ -22,26 +22,20 @@ import com.badr.infodota.api.trackdota.core.CoreResult;
 import com.badr.infodota.api.trackdota.live.LiveGame;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.fragment.twitch.TwitchGamesAdapter;
-import com.badr.infodota.service.douyu.DouyuService;
-import com.badr.infodota.service.twitch.TwitchService;
+import com.badr.infodota.task.TrackdotaStreamsLoadRequest;
 import com.badr.infodota.util.Refresher;
 import com.badr.infodota.util.StreamUtils;
 import com.badr.infodota.util.Updatable;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by Badr on 18.04.2015.
  */
 public class StreamList extends RecyclerFragment<Stream, StreamHolder> implements RequestListener<Stream.List>, TwitchGamesAdapter, Updatable<Pair<CoreResult, LiveGame>> {
     public static final int PLAYER_TYPE = 1403;
-    private List<Stream> channels;
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private CoreResult coreResult;
     private Refresher refresher;
@@ -56,9 +50,12 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
     @Override
     public void onStart() {
         if (!mSpiceManager.isStarted()) {
-            mSpiceManager.start(getActivity());
-            if (coreResult != null) {
-                mSpiceManager.execute(new StreamsLoadRequest(), this);
+            Activity activity = getActivity();
+            if (activity != null) {
+                mSpiceManager.start(activity);
+                if (coreResult != null) {
+                    mSpiceManager.execute(new TrackdotaStreamsLoadRequest(activity.getApplicationContext(), coreResult.getStreams()), this);
+                }
             }
         }
         super.onStart();
@@ -153,7 +150,7 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
     @Override
     public void onRequestSuccess(Stream.List streams) {
         setRefreshing(false);
-        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(this, streams, channels);
+        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(this, streams);
         setAdapter(adapter);
     }
 
@@ -165,43 +162,12 @@ public class StreamList extends RecyclerFragment<Stream, StreamHolder> implement
     @Override
     public void onUpdate(Pair<CoreResult, LiveGame> entity) {
         coreResult = entity.first;
-        setRefreshing(true);
-        if (coreResult != null) {
-            mSpiceManager.execute(new StreamsLoadRequest(), this);
-        }
-    }
-
-    public class StreamsLoadRequest extends TaskRequest<Stream.List> {
-        private TwitchService twitchService = BeanContainer.getInstance().getTwitchService();
-        private DouyuService douyuService = BeanContainer.getInstance().getDouyuService();
-
-        public StreamsLoadRequest() {
-            super(Stream.List.class);
-        }
-
-        @Override
-        public Stream.List loadData() throws Exception {
-            if (coreResult.getStreams() != null) {
-                channels = twitchService.getFavouriteStreams(getActivity());
-                Stream.List list = new Stream.List();
-                for (Stream channel : coreResult.getStreams()) {
-                    if ("twitch".equals(channel.getProvider())) {
-                        Stream stream = twitchService.getStream(channel.getChannel());
-                        if (stream != null) {
-                            list.add(stream);
-                        }
-                    } else if("douyu".equals(channel.getProvider())){
-                        Stream stream=douyuService.getStream(channel);
-                        if(stream!=null){
-                            list.add(stream);
-                        }
-                    }
-                }
-                Collections.sort(list);
-                Collections.reverse(list);
-                return list;
+        Activity activity = getActivity();
+        if (activity != null) {
+            setRefreshing(true);
+            if (coreResult != null) {
+                mSpiceManager.execute(new TrackdotaStreamsLoadRequest(activity.getApplicationContext(), coreResult.getStreams()), this);
             }
-            return null;
         }
     }
 }

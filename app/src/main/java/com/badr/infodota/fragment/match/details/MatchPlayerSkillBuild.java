@@ -74,7 +74,7 @@ public class MatchPlayerSkillBuild extends Fragment {
                 List<Ability> abilities;
                 if (!randomSkills) {
 
-                    abilities = heroService.getHeroAbilities(activity, player.getHero_id());
+                    abilities = heroService.getHeroAbilities(activity, player.getHeroId());
                 } else {
                     abilities = heroService.getAbilitiesByList(activity, inGameAbilities);
                 }

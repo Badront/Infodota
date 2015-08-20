@@ -1,7 +1,6 @@
 package com.badr.infodota.activity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,13 +23,12 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.pager.GuidePagerAdapter;
-import com.badr.infodota.api.guide.TitleOnly;
 import com.badr.infodota.api.guide.custom.Guide;
 import com.badr.infodota.api.heroes.Hero;
 import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.task.GuidesLoadRequest;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.google.gson.Gson;
 import com.octo.android.robospice.SpiceManager;
@@ -38,7 +36,6 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -279,47 +276,5 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
 
             }
         });
-    }
-
-    public static class GuidesLoadRequest extends TaskRequest<List>{
-        private Context context;
-        private String heroDotaId;
-        private Map<String,String> guideNameMap;
-        public GuidesLoadRequest(Context context,String heroDotaId,Map<String,String> guideNameMap) {
-            super(List.class);
-            this.context=context;
-            this.heroDotaId=heroDotaId;
-            this.guideNameMap=guideNameMap;
-        }
-
-        @Override
-        public List loadData() throws Exception {
-            String[] guideList = FileUtils.childrenFileNamesFromAssets(context, "guides/" + heroDotaId);
-            File externalFilesDir = FileUtils.externalFileDir(context);
-            File heroGuidesFolder = new File(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + heroDotaId + File.separator);
-            String[] creatorsGuideList;
-            if (heroGuidesFolder.exists() && heroGuidesFolder.isDirectory()) {
-                creatorsGuideList = heroGuidesFolder.list();
-            } else {
-                creatorsGuideList = new String[0];
-            }
-            guideNameMap.clear();
-            String dir = externalFilesDir.getAbsolutePath();
-            for (String guideFileName : creatorsGuideList) {
-                String entity = FileUtils.getTextFromFile(dir + File.separator + "guides" + File.separator + heroDotaId+ File.separator + guideFileName);
-                TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
-                guideNameMap.put(externalFilesDir.getAbsolutePath() + File.separator + "guides" + File.separator + heroDotaId + File.separator + guideFileName, titleOnly.getTitle());
-            }
-            for (String guideFileName : guideList) {
-                String entity = FileUtils.getTextFromAsset(context, "guides" + File.separator +heroDotaId + File.separator + guideFileName);
-                TitleOnly titleOnly = new Gson().fromJson(entity, TitleOnly.class);
-                guideNameMap.put("guides" + File.separator + heroDotaId + File.separator + guideFileName, titleOnly.getTitle());
-            }
-            List<String> guideNames = new ArrayList<String>();
-            for (String guidePath : guideNameMap.keySet()) {
-                guideNames.add(guideNameMap.get(guidePath));
-            }
-            return guideNames;
-        }
     }
 }

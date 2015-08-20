@@ -331,7 +331,7 @@
     <string name="barrack_ranged">дальнего</string>
     <string name="barrack_melee">ближнего</string>
     <string name="stat_not_found">Данные отсутствуют</string>
-    <string name="match_short_info">Коротко</string>
+    <string name="match_short_info">Кратко</string>
     <string name="api_is_down">Dota 2 API недоступно. Матчи не будут обновляться, пока API не поднимется</string>
     <string name="search_match">Поиск игры по matchId</string>
     <string name="search">Искать</string>

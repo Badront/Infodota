@@ -12,17 +12,15 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.LeagueGameActivity;
 import com.badr.infodota.activity.ListHolderActivity;
 import com.badr.infodota.adapter.LeaguesGamesAdapter;
 import com.badr.infodota.api.joindota.MatchItem;
 import com.badr.infodota.fragment.ListFragment;
-import com.badr.infodota.service.joindota.JoinDotaService;
+import com.badr.infodota.task.MatchItemsLoadRequest;
 import com.badr.infodota.util.EndlessScrollListener;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -34,14 +32,14 @@ import com.octo.android.robospice.request.listener.RequestListener;
  */
 public class LeaguesGamesList extends ListFragment implements RequestListener<MatchItem.List>{
     private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
-    private String extraParams;
+    private String mExtraParams;
 
     public LeaguesGamesList() {
     }
 
     public static LeaguesGamesList newInstance(String extraParams) {
         LeaguesGamesList fragment = new LeaguesGamesList();
-        fragment.extraParams = extraParams;
+        fragment.mExtraParams = extraParams;
         return fragment;
     }
 
@@ -101,8 +99,11 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
     }
 
     private void loadGames(final int page) {
-        setRefreshing(true);
-        mSpiceManager.execute(new MatchItemsLoadRequest(page), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            setRefreshing(true);
+            mSpiceManager.execute(new MatchItemsLoadRequest(activity.getApplicationContext(), mExtraParams, page), this);
+        }
     }
 
     @Override
@@ -122,24 +123,5 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
         ((LeaguesGamesAdapter) getListAdapter()).addMatchItems(matchItems);
     }
 
-    public class MatchItemsLoadRequest extends TaskRequest<MatchItem.List>{
 
-        private BeanContainer container = BeanContainer.getInstance();
-        private JoinDotaService joinDotaService = container.getJoinDotaService();
-        private int page;
-        public MatchItemsLoadRequest(int page) {
-            super(MatchItem.List.class);
-            this.page=page;
-        }
-
-        @Override
-        public MatchItem.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null)
-            {
-                return joinDotaService.getMatchItems(activity, page, extraParams);
-            }
-            return null;
-        }
-    }
 }

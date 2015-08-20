@@ -40,6 +40,16 @@ public class Stream implements Serializable,HasId,Comparable {
     @SerializedName("hls_enabled")
     private boolean isHlsEnabled;
 
+    private boolean isFavourite;
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
+    }
+
     public String getChannel() {
         return channel;
     }

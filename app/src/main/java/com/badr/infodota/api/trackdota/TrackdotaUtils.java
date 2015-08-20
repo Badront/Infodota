@@ -65,7 +65,7 @@ public class TrackdotaUtils {
         public void onClick(View v) {
             Context context = v.getContext();
             com.badr.infodota.api.matchdetails.Player matchPlayer = new com.badr.infodota.api.matchdetails.Player();
-            matchPlayer.setHero_id((int) livePlayer.getHeroId());
+            matchPlayer.setHeroId((int) livePlayer.getHeroId());
             matchPlayer.setKills(livePlayer.getKills());
             matchPlayer.setDeaths(livePlayer.getDeath());
             matchPlayer.setAssists(livePlayer.getAssists());
@@ -146,7 +146,7 @@ public class TrackdotaUtils {
             account.setAccountId(livePlayer.getAccountId());
             account.setName(playerName);
             matchPlayer.setAccount(account);
-            matchPlayer.setAccount_id(livePlayer.getAccountId());
+            matchPlayer.setAccountId(livePlayer.getAccountId());
 
             Intent intent = new Intent(context, MatchPlayerInfoActivity.class);
             intent.putExtra("player", matchPlayer);

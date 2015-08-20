@@ -1,13 +1,11 @@
 package com.badr.infodota.activity;
 
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,14 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.task.PlayerHeroesStatsLoadRequest;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.Utils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.badr.infodota.view.HorizontalScrollViewListener;
 import com.badr.infodota.view.ObservableHorizontalScrollView;
 import com.bumptech.glide.Glide;
@@ -34,13 +30,6 @@ import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -85,7 +74,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
         urlBuilder.append("&metric=");
         urlBuilder.append(bundle.getString("metric"));
 
-        mSpiceManager.execute(new PlayerHeroesStatsLoadRequest(this, urlBuilder.toString()), this);
+        mSpiceManager.execute(new PlayerHeroesStatsLoadRequest(getApplicationContext(), urlBuilder.toString()), this);
     }
 
     @Override
@@ -202,65 +191,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
     }
 
     public static class PlayerHeroesStats{
-        List<String> horizontalHeaders;
-        Map<Hero,List<String>> heroResults;
-    }
-    public static class PlayerHeroesStatsLoadRequest extends TaskRequest<PlayerHeroesStats>{
-        private String url;
-        private Context context;
-        public PlayerHeroesStatsLoadRequest(Context context, String url) {
-            super(PlayerHeroesStats.class);
-            this.context=context;
-            this.url=url;
-        }
-
-        @Override
-        public PlayerHeroesStats loadData() throws Exception {
-            HeroService heroService = BeanContainer.getInstance().getHeroService();
-            PlayerHeroesStats result=new PlayerHeroesStats();
-            Document doc = Jsoup.connect(url).get();
-            Element table = doc.select("table").first();
-            Element tableHeader = table.select("thead").first();
-            Elements headers = tableHeader.select("th");
-            result.horizontalHeaders = new ArrayList<String>();
-            for (Element elementHeader : headers) {
-                String horizontalHeader = elementHeader.text();
-                result.horizontalHeaders.add(horizontalHeader);
-            }
-            Element tableBody = table.select("tbody").first();
-            Elements rows = tableBody.select("tr");
-            result.heroResults=new LinkedHashMap<>();
-            for (Element row : rows) {
-                Hero hero = null;
-                List<String> heroResults = new ArrayList<String>();
-                if (TextUtils.isEmpty(row.attr("class"))) {
-                    Elements columns = row.select("td");
-                    for (Element column : columns) {
-                        String className = column.attr("class");
-                        if (!TextUtils.isEmpty(className)) {
-                            if ("cell-xlarge".equals(className)) {
-                                Element a = column.select("a").first();
-                                String heroName = a.text();
-                                List<Hero> possibleHeroes = heroService.getHeroesByName(context, heroName);
-                                if (possibleHeroes != null && possibleHeroes.size() > 0) {
-                                    hero = possibleHeroes.get(0);
-                                    heroResults.add(hero.getLocalizedName());
-                                }
-                            } else if(!"cell-icon".equals(className)){
-                                String columnResult = column.text();
-                                heroResults.add(columnResult);
-                            }
-                        } else {
-                            String columnResult = column.text();
-                            heroResults.add(columnResult);
-                        }
-                    }
-                }
-                if(hero!=null){
-                    result.heroResults.put(hero,heroResults);
-                }
-            }
-            return result;
-        }
+        public List<String> horizontalHeaders;
+        public Map<Hero, List<String>> heroResults;
     }
 }

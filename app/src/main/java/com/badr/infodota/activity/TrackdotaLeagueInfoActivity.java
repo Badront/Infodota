@@ -10,14 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.TrackdotaLeagueGamesAdapter;
 import com.badr.infodota.api.trackdota.game.League;
 import com.badr.infodota.api.trackdota.league.LeagueGame;
 import com.badr.infodota.api.trackdota.league.LeagueGameResult;
-import com.badr.infodota.service.trackdota.TrackdotaService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.TrackdotaLeagueGamesLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -102,7 +100,7 @@ public class TrackdotaLeagueInfoActivity extends BaseActivity implements SwipeRe
     @Override
     public void onRefresh() {
         mListContainer.setRefreshing(true);
-        mSpiceManager.execute(new LeagueGamesLoadRequest(leagueId), this);
+        mSpiceManager.execute(new TrackdotaLeagueGamesLoadRequest(leagueId), this);
     }
 
     @Override
@@ -135,20 +133,5 @@ public class TrackdotaLeagueInfoActivity extends BaseActivity implements SwipeRe
             intent.putExtra("id", ((LeagueGame)entity).getId());
         }
         startActivity(intent);
-    }
-
-    public static class LeagueGamesLoadRequest extends TaskRequest<LeagueGameResult>{
-        private long leagueId;
-        public LeagueGamesLoadRequest(long leagueId) {
-            super(LeagueGameResult.class);
-            this.leagueId=leagueId;
-        }
-
-        @Override
-        public LeagueGameResult loadData() throws Exception {
-            TrackdotaService trackdotaService= BeanContainer.getInstance().getTrackdotaService();
-
-            return trackdotaService.getLeagueGames(leagueId);
-        }
     }
 }

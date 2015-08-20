@@ -62,7 +62,7 @@ public class MatchDetailsAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return players.get(position).getAccount_id();
+        return players.get(position).getAccountId();
     }
 
     @Override

@@ -23,7 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.activity.AboutActivity;
 import com.badr.infodota.activity.ItemInfoActivity;
@@ -32,11 +31,10 @@ import com.badr.infodota.adapter.ItemsAdapter;
 import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.api.items.Item;
 import com.badr.infodota.fragment.SearchableFragment;
-import com.badr.infodota.service.item.ItemService;
+import com.badr.infodota.task.ItemsLoadRequest;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.UpdateUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -53,8 +51,8 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     private RecyclerView gridView;
     private ItemsAdapter mAdapter;
     private String search = null;
-    private String selectedFilter = null;
-    private Filter filter;
+    private String mSelectedFilter = null;
+    private Filter mFilter;
 
     @Override
     public void onStart() {
@@ -103,10 +101,10 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == 0) {
                             item.setTitle(R.string.filter);
-                            selectedFilter = null;
+                            mSelectedFilter = null;
                         } else {
                             item.setTitle(menuItem.getTitle());
-                            selectedFilter = ResourceUtils.getItemType(menuItem.getItemId());
+                            mSelectedFilter = ResourceUtils.getItemType(menuItem.getItemId());
                         }
                         loadItems();
 
@@ -188,7 +186,10 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     }
 
     private void loadItems() {
-        mSpiceManager.execute(new ItemsLoadRequest(), this);
+        Context context = getActivity();
+        if (context != null) {
+            mSpiceManager.execute(new ItemsLoadRequest(context.getApplicationContext(), mSelectedFilter), this);
+        }
     }
 
     @Override
@@ -224,8 +225,8 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     @Override
     public void onTextSearching(String text) {
         search = text;
-        if (filter != null) {
-            filter.filter(search);
+        if (mFilter != null) {
+            mFilter.filter(search);
         }
     }
 
@@ -247,25 +248,9 @@ public class ItemsList extends Fragment implements SearchableFragment, OnItemCli
     @Override
     public void onRequestSuccess(Item.List items) {
         mAdapter = new ItemsAdapter(items);
-        filter = mAdapter.getFilter();
-        filter.filter(search);
+        mFilter = mAdapter.getFilter();
+        mFilter.filter(search);
         gridView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
-    }
-    public class ItemsLoadRequest extends TaskRequest<Item.List>{
-
-        public ItemsLoadRequest() {
-            super(Item.List.class);
-        }
-
-        @Override
-        public Item.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null){
-                ItemService itemService = BeanContainer.getInstance().getItemService();
-                return itemService.getItems(activity, selectedFilter);
-            }
-            return null;
-        }
     }
 }

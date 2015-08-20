@@ -1,6 +1,5 @@
 package com.badr.infodota.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -15,14 +14,12 @@ import android.view.View;
 import android.widget.Filter;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.ItemsAdapter;
 import com.badr.infodota.adapter.OnItemClickListener;
 import com.badr.infodota.api.items.Item;
-import com.badr.infodota.service.item.ItemService;
+import com.badr.infodota.task.ItemLoadRequest;
 import com.badr.infodota.util.ResourceUtils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -183,20 +180,5 @@ public class ItemSelectActivity extends BaseActivity implements SearchView.OnQue
         filter.filter(search);
         gridView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
-    }
-    public static class ItemLoadRequest extends TaskRequest<Item.List>{
-        private String filter;
-        private Context context;
-        public ItemLoadRequest(Context context,String filter) {
-            super(Item.List.class);
-            this.context=context;
-            this.filter=filter;
-        }
-
-        @Override
-        public Item.List loadData() throws Exception {
-            ItemService itemService = BeanContainer.getInstance().getItemService();
-            return itemService.getItems(context, filter);
-        }
     }
 }

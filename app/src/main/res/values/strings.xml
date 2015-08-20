@@ -334,7 +334,7 @@
     <string name="barrack_ranged">ranged</string>
     <string name="barrack_melee">melee</string>
     <string name="stat_not_found">Not found</string>
-    <string name="match_short_info">Short info</string>
+    <string name="match_short_info">Shortly</string>
     <string name="api_is_down">Dota 2 API is currently down. Matches will not update until service resumes.</string>
     <string name="search_match">Search by match id</string>
     <string name="search">Search</string>

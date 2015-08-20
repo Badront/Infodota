@@ -24,7 +24,7 @@ import com.badr.infodota.adapter.holder.PlayerHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.player.PlayerService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.UtilsGroupLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -145,8 +145,11 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
 
     @Override
     public void onRefresh() {
-        setRefreshing(true);
-        mSpiceManager.execute(new UnitsLoadRequest((Unit.Groups) getArguments().getSerializable("group")), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            setRefreshing(true);
+            mSpiceManager.execute(new UtilsGroupLoadRequest(activity.getApplicationContext(), (Unit.Groups) getArguments().getSerializable("group")), this);
+        }
     }
 
     @Override
@@ -164,23 +167,4 @@ public class GroupPlayersList extends RecyclerFragment<Unit,PlayerHolder> implem
         setAdapter(adapter);
     }
 
-    public class UnitsLoadRequest extends TaskRequest<Unit.List>{
-
-        private PlayerService playerService = BeanContainer.getInstance().getPlayerService();
-        private Unit.Groups group;
-        public UnitsLoadRequest(Unit.Groups group) {
-            super(Unit.List.class);
-            this.group=group;
-        }
-
-        @Override
-        public Unit.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null)
-            {
-                return playerService.getAccountsByGroup(activity, group);
-            }
-            return null;
-        }
-    }
 }

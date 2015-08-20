@@ -27,9 +27,8 @@ import com.badr.infodota.api.matchhistory.PlayerMatch;
 import com.badr.infodota.api.matchhistory.PlayerMatchResult;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.service.match.MatchService;
+import com.badr.infodota.task.PlayerMatchLoadRequest;
 import com.badr.infodota.util.EndlessRecycleScrollListener;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -44,14 +43,14 @@ import java.util.List;
  */
 public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder> implements RequestListener<PlayerMatchResult> {
     HeroService heroService = BeanContainer.getInstance().getHeroService();
-    private Unit account;
-    private long total = 1;
-    private Long heroId = null;
+    private Unit mAccount;
+    private long mTotal = 1;
+    private Long mHeroId = null;
     private AutoCompleteTextView heroView;
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     public static MatchHistory newInstance(Unit account) {
         MatchHistory fragment = new MatchHistory();
-        fragment.account = account;
+        fragment.mAccount = account;
         return fragment;
     }
 
@@ -96,7 +95,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Hero hero = ((HeroesAutoCompleteAdapter) heroView.getAdapter()).getItem(position);
-                    heroId = hero.getId();
+                    mHeroId = hero.getId();
                     heroView.setText(hero.getLocalizedName());
                     loadHistory(0, true);
                 }
@@ -104,7 +103,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
             getView().findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    heroId = null;
+                    mHeroId = null;
                     heroView.setText("");
                     loadHistory(0, true);
                 }
@@ -146,9 +145,12 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     }
 
     private void loadHistory(long fromMatchId, boolean reCreateAdapter) {
-        if(reCreateAdapter||total>getAdapter().getItemCount()){
-            setRefreshing(true);
-            mSpiceManager.execute(new PlayerMatchLoadRequest(reCreateAdapter, account.getAccountId(), fromMatchId, heroId), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            if (reCreateAdapter || mTotal > getAdapter().getItemCount()) {
+                setRefreshing(true);
+                mSpiceManager.execute(new PlayerMatchLoadRequest(activity.getApplicationContext(), reCreateAdapter, mAccount.getAccountId(), fromMatchId, mHeroId), this);
+            }
         }
     }
 
@@ -175,7 +177,7 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
     public void onRequestSuccess(PlayerMatchResult playerMatchResult) {
         setRefreshing(false);
         if (playerMatchResult!=null) {
-            total = playerMatchResult.getTotalMatches();
+            mTotal = playerMatchResult.getTotalMatches();
             if(playerMatchResult.isRecreate()||getAdapter()==null){
                 setAdapter(new MatchAdapter(playerMatchResult.getPlayerMatches()));
             }
@@ -193,34 +195,5 @@ public class MatchHistory extends RecyclerFragment<PlayerMatch,PlayerMatchHolder
         }
     }
 
-    public class PlayerMatchLoadRequest extends TaskRequest<PlayerMatchResult>{
-        private BeanContainer container = BeanContainer.getInstance();
-        private MatchService matchService = container.getMatchService();
 
-        private long fromMatchId;
-        private long accountId;
-        private Long heroId;
-        private boolean recreate;
-        public PlayerMatchLoadRequest(boolean recreate,long accountId, long fromMatchId, Long heroId) {
-            super(PlayerMatchResult.class);
-            this.recreate=recreate;
-            this.fromMatchId=fromMatchId;
-            this.accountId=accountId;
-            this.heroId=heroId;
-        }
-
-        @Override
-        public PlayerMatchResult loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null)
-            {
-                PlayerMatchResult result=matchService.getMatches(activity,accountId, fromMatchId, heroId);
-                if(result!=null){
-                    result.setRecreate(recreate);
-                }
-                return result;
-            }
-            return null;
-        }
-    }
 }

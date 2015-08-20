@@ -5,12 +5,10 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.adapter.TwitchStreamsAdapter;
 import com.badr.infodota.api.streams.Stream;
-import com.badr.infodota.service.twitch.TwitchService;
+import com.badr.infodota.task.TwitchStreamsLoadRequest;
 import com.badr.infodota.util.StreamUtils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -68,7 +66,7 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
     @Override
     public void onRefresh() {
         setRefreshing(true);
-        mSpiceManager.execute(new StreamsLoadRequest(), this);
+        mSpiceManager.execute(new TwitchStreamsLoadRequest(channels), this);
     }
 
     @Override
@@ -100,19 +98,8 @@ public class StreamsList extends TwitchMatchListHolder implements RequestListene
     @Override
     public void onRequestSuccess(Stream.List streams) {
         setRefreshing(false);
-        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, streams, channels);
+        TwitchStreamsAdapter adapter = new TwitchStreamsAdapter(holderAdapter, streams);
         setAdapter(adapter);
     }
 
-    public class StreamsLoadRequest extends TaskRequest<Stream.List>{
-        private TwitchService twitchService=BeanContainer.getInstance().getTwitchService();
-        public StreamsLoadRequest() {
-            super(Stream.List.class);
-        }
-
-        @Override
-        public Stream.List loadData() throws Exception {
-            return twitchService.getGameStreams();
-        }
-    }
 }

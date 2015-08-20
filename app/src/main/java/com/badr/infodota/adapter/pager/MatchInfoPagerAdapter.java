@@ -98,7 +98,7 @@ public class MatchInfoPagerAdapter extends FragmentPagerAdapter /*implements Ico
             } else {
                 currentPlayers = new ArrayList<Player>();
                 for (Player player : match.getPlayers()) {
-                    if (player.getPlayer_slot() < 128 * (mdId + 1) && player.getPlayer_slot() >= 128 * mdId) {
+                    if (player.getPlayerSlot() < 128 * (mdId + 1) && player.getPlayerSlot() >= 128 * mdId) {
                         currentPlayers.add(player);
                     }
                 }

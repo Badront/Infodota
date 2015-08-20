@@ -1,6 +1,5 @@
 package com.badr.infodota.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -17,14 +16,12 @@ import android.widget.Filter;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.adapter.HeroesSelectAdapter;
 import com.badr.infodota.api.heroes.TruepickerHero;
-import com.badr.infodota.service.hero.HeroService;
+import com.badr.infodota.task.TruepickerHeroesLoadRequest;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -189,7 +186,7 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
     }
 
     private void loadHeroesForGridView() {
-        mSpiceManager.execute(new TruepickerHeroLoadRequest(getApplicationContext(), selectedFilter), this);
+        mSpiceManager.execute(new TruepickerHeroesLoadRequest(getApplicationContext(), selectedFilter), this);
     }
 
     @Override
@@ -205,20 +202,5 @@ public class CounterPickerHeroesSelectActivity extends BaseActivity implements S
         gridView.setAdapter(adapter);
     }
 
-    public static class TruepickerHeroLoadRequest extends TaskRequest<TruepickerHero.List> {
-        private String filter;
-        private Context context;
 
-        public TruepickerHeroLoadRequest(Context context, String filter) {
-            super(TruepickerHero.List.class);
-            this.filter = filter;
-            this.context = context;
-        }
-
-        @Override
-        public TruepickerHero.List loadData() throws Exception {
-            HeroService heroService = BeanContainer.getInstance().getHeroService();
-            return heroService.getTruepickerHeroes(context, filter);
-        }
-    }
 }

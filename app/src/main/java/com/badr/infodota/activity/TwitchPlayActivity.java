@@ -1,7 +1,6 @@
 package com.badr.infodota.activity;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.media.AudioManager;
@@ -12,7 +11,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.PopupMenu;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -21,18 +19,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
-import com.badr.infodota.service.twitch.TwitchService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.TwitchQualitiesLoadRequest;
 import com.badr.infodota.view.TappableSurfaceView;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.parser.Element;
-import com.parser.Playlist;
 
 /**
  * User: Histler
@@ -191,7 +185,7 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
     }
 
     private void getAccessToken(String channelName) {
-        mSpiceManager.execute(new QualitiesLoadRequest(getApplicationContext(), channelName), this);
+        mSpiceManager.execute(new TwitchQualitiesLoadRequest(getApplicationContext(), channelName), this);
     }
 
     private void setStreamQuality() {
@@ -304,31 +298,5 @@ public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Ca
         qualityPosition = preferences.getInt("player_default_quality", qualities.size() - 1);
         qualityPosition = Math.min(qualityPosition, qualities.size() - 1);
         setStreamQuality();
-    }
-    public static class  QualitiesLoadRequest extends TaskRequest<Element.List>{
-
-        private BeanContainer container = BeanContainer.getInstance();
-        private TwitchService twitchService = container.getTwitchService();
-        private String channelName;
-        private Context context;
-        public QualitiesLoadRequest(Context context,String channelName) {
-            super(Element.List.class);
-            this.channelName=channelName;
-            this.context=context;
-        }
-
-        @Override
-        public Element.List loadData() throws Exception {
-            TwitchAccessToken result = twitchService.getAccessToken(channelName);
-
-            if (result!= null) {
-                Pair<Playlist, String> playlistResult = twitchService.getPlaylist(context, channelName, result);
-                if (playlistResult.first != null) {
-                    Playlist playList = playlistResult.first;
-                    return new Element.List(playList.getElements());
-                }
-            }
-            return null;
-        }
     }
 }

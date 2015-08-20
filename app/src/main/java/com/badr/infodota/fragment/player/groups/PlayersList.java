@@ -25,25 +25,24 @@ import com.badr.infodota.adapter.holder.PlayerHolder;
 import com.badr.infodota.api.dotabuff.Unit;
 import com.badr.infodota.fragment.RecyclerFragment;
 import com.badr.infodota.service.player.PlayerService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.task.SearchedPlayersLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * User: ABadretdinov
  * Date: 20.01.14
  * Time: 18:14
  */
-public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements TextView.OnEditorActionListener,RequestListener<Unit.List> {
+public class PlayersList extends RecyclerFragment<Unit, PlayerHolder> implements TextView.OnEditorActionListener, RequestListener<Unit.List> {
     private TextView searchRequest;
     private View listHeader;
-    private BeanContainer container = BeanContainer.getInstance();
-    private PlayerService playerService = container.getPlayerService();
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
+    private
+    PlayerService playerService = BeanContainer.getInstance().getPlayerService();
+
     @Override
     public void onStart() {
         if (!mSpiceManager.isStarted()) {
@@ -66,20 +65,21 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
         setLayoutId(R.layout.players_list);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
     @Override
     public RecyclerView.LayoutManager getLayoutManager(Context context) {
-        return new GridLayoutManager(context,1);
+        return new GridLayoutManager(context, 1);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View root = getView();
-        if(root!=null) {
+        if (root != null) {
             setColumnSize();
             searchRequest = (TextView) root.findViewById(R.id.player_name);
             searchRequest.setOnEditorActionListener(this);
-            listHeader=root.findViewById(R.id.search_history);
+            listHeader = root.findViewById(R.id.search_history);
             root.findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -115,7 +115,10 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
     }
 
     private void initData() {
-        mSpiceManager.execute(new SearchedPlayersLoadRequest(null), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            mSpiceManager.execute(new SearchedPlayersLoadRequest(activity.getApplicationContext(), null), this);
+        }
     }
 
     @Override
@@ -135,7 +138,6 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
         Unit unit = mAdapter.getItem(position);
 
         unit.setSearched(true);
-        playerService = BeanContainer.getInstance().getPlayerService();
         playerService.saveAccount(getActivity(), unit);
 
         Intent intent = new Intent(getActivity(), PlayerInfoActivity.class);
@@ -145,25 +147,27 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
 
     @Override
     public void onRefresh() {
-        setRefreshing(true);
-        mSpiceManager.execute(new SearchedPlayersLoadRequest(searchRequest.getText().toString()), this);
+        Activity activity = getActivity();
+        if (activity != null) {
+            setRefreshing(true);
+            mSpiceManager.execute(new SearchedPlayersLoadRequest(activity.getApplicationContext(), searchRequest.getText().toString()), this);
+        }
     }
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
         setRefreshing(false);
-        Toast.makeText(getActivity(),spiceException.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), spiceException.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void setAdapter(BaseRecyclerAdapter<Unit, PlayerHolder> adapter) {
         super.setAdapter(adapter);
-        if(adapter.getItemCount()==0){
+        if (adapter.getItemCount() == 0) {
             listHeader.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             mEmptyView.setVisibility(View.GONE);
-            if(TextUtils.isEmpty(searchRequest.getText().toString())){
+            if (TextUtils.isEmpty(searchRequest.getText().toString())) {
                 listHeader.setVisibility(View.VISIBLE);
             }
         }
@@ -176,35 +180,5 @@ public class PlayersList extends RecyclerFragment<Unit,PlayerHolder> implements 
         setAdapter(adapter);
     }
 
-    public class SearchedPlayersLoadRequest extends TaskRequest<Unit.List>{
-        private String searchText;
-        public SearchedPlayersLoadRequest(String search) {
-            super(Unit.List.class);
-            this.searchText=search;
-        }
 
-        @Override
-        public Unit.List loadData() throws Exception {
-            Activity activity=getActivity();
-            if(activity!=null) {
-                if(StringUtils.isEmpty(searchText)){
-                    return playerService.getSearchedAccounts(activity);
-                }
-                else {
-                    Unit.List result = playerService.loadAccounts(searchText);
-                    Unit.List players = new Unit.List();
-                    for (Unit unit : result) {
-                        Unit local = playerService.getAccountById(activity, unit.getAccountId());
-                        if (local != null) {
-                            unit.setGroup(local.getGroup());
-                            unit.setLocalName(local.getLocalName());
-                        }
-                        players.add(unit);
-                    }
-                    return players;
-                }
-            }
-            return null;
-        }
-    }
 }
