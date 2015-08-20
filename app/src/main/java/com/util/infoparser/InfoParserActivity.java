@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.activity.LoaderActivity;
+import com.badr.infodota.base.activity.LoaderActivity;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

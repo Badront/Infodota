@@ -8,12 +8,12 @@ import android.text.TextUtils;
 import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.activity.BaseActivity;
-import com.badr.infodota.activity.TwitchPlayActivity;
-import com.badr.infodota.api.streams.Stream;
-import com.badr.infodota.api.streams.StreamQuality;
-import com.badr.infodota.api.streams.twitch.TwitchAccessToken;
-import com.badr.infodota.service.twitch.TwitchService;
+import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.TwitchPlayActivity;
+import com.badr.infodota.base.api.streams.Stream;
+import com.badr.infodota.base.api.streams.StreamQuality;
+import com.badr.infodota.base.api.streams.twitch.TwitchAccessToken;
+import com.badr.infodota.base.service.twitch.TwitchService;
 import com.parser.Element;
 import com.parser.Playlist;
 

@@ -4,13 +4,13 @@ import android.content.Context;
 import android.os.Environment;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.api.Constants;
-import com.badr.infodota.api.heroes.Hero;
-import com.badr.infodota.api.items.Item;
-import com.badr.infodota.api.responses.HeroResponse;
-import com.badr.infodota.api.responses.HeroResponsesSection;
-import com.badr.infodota.service.hero.HeroService;
-import com.badr.infodota.service.item.ItemService;
+import com.badr.infodota.base.api.Constants;
+import com.badr.infodota.hero.api.Hero;
+import com.badr.infodota.hero.api.responses.HeroResponse;
+import com.badr.infodota.hero.api.responses.HeroResponsesSection;
+import com.badr.infodota.hero.service.HeroService;
+import com.badr.infodota.item.api.Item;
+import com.badr.infodota.item.service.ItemService;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 

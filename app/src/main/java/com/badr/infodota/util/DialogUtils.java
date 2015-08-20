@@ -13,12 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.fragment.LoaderDialogFragment;
-
-import org.jsoup.helper.StringUtil;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.badr.infodota.base.fragment.LoaderDialogFragment;
 
 /**
  * User: ABadretdinov

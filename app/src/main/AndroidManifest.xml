@@ -10,96 +10,96 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
-        android:label="@string/app_name"
-        android:allowBackup="true"
         android:name=".DotaApplication"
+        android:allowBackup="true"
         android:icon="@drawable/icon"
+        android:label="@string/app_name"
         android:theme="@style/Infodota">
 
         <activity
-            android:name=".activity.LoaderActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:name=".base.activity.LoaderActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleInstance"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ListHolderActivity"
-            android:windowSoftInputMode="adjustNothing"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+            android:name=".base.activity.ListHolderActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".activity.HeroInfoActivity"
+            android:name=".hero.activity.HeroInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.GuideActivity"
+            android:name=".base.activity.GuideActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.ItemInfoActivity"
+            android:name=".item.activity.ItemInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.MatchInfoActivity"
+            android:name=".base.activity.MatchInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.PlayerInfoActivity"
-            android:windowSoftInputMode="stateHidden"
+            android:name=".base.activity.PlayerInfoActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".base.activity.MatchPlayerInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.MatchPlayerInfoActivity"
+            android:name=".base.activity.AboutActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.AboutActivity"
+            android:name=".base.activity.QuizActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.QuizActivity"
+            android:name=".base.activity.GuideCreatorActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.GuideCreatorActivity"
+            android:name=".item.activity.ItemSelectActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.ItemSelectActivity"
+            android:name=".base.activity.PlayerByHeroStatsActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.PlayerByHeroStatsActivity"
+            android:name=".base.activity.PlayerCommonStatsActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.PlayerCommonStatsActivity"
+            android:name=".base.activity.CosmeticItemInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.CosmeticItemInfoActivity"
-            android:configChanges="keyboard|orientation|screenSize" />
-        <activity
-            android:name=".activity.TwitchPlayActivity"
-            android:theme="@style/Infodota.OverlayActionBar"
+            android:name=".base.activity.TwitchPlayActivity"
+            android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="landscape"
-            android:configChanges="keyboard|orientation|screenSize" />
+            android:theme="@style/Infodota.OverlayActionBar" />
         <activity
-            android:name=".activity.CounterPickerHeroesSelectActivity"
+            android:name=".base.activity.CounterPickerHeroesSelectActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:uiOptions="splitActionBarWhenNarrow"
-            android:windowSoftInputMode="adjustNothing"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:windowSoftInputMode="adjustNothing">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
 
         <activity
-            android:name=".activity.NewsItemActivity"
+            android:name=".base.activity.NewsItemActivity"
             android:configChanges="keyboard|orientation|screenSize" />
 
         <activity
-            android:name=".activity.LeagueGameActivity"
+            android:name=".base.activity.LeagueGameActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.TrackdotaGameInfoActivity"
+            android:name=".base.activity.TrackdotaGameInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".activity.TrackdotaLeagueInfoActivity"
+            android:name=".base.activity.TrackdotaLeagueInfoActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
         <activity
-            android:name=".activity.TI4Activity"
+            android:name=".base.activity.TI4Activity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity android:name="com.util.infoparser.InfoParserActivity"
             android:configChanges="keyboard|orientation|screenSize"/>

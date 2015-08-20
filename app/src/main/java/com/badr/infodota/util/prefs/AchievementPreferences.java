@@ -3,7 +3,7 @@ package com.badr.infodota.util.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.badr.infodota.activity.QuizActivity;
+import com.badr.infodota.base.activity.QuizActivity;
 
 /**
  * User: ABadretdinov

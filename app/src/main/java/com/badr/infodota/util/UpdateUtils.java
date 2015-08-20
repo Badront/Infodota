@@ -6,9 +6,9 @@ import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.activity.BaseActivity;
-import com.badr.infodota.remote.BaseRemoteServiceImpl;
-import com.badr.infodota.service.update.UpdateService;
+import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.remote.BaseRemoteServiceImpl;
+import com.badr.infodota.base.service.update.UpdateService;
 
 /**
  * Created by Badr on 17.02.2015.

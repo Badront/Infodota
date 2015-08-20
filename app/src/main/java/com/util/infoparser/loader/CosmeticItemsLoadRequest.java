@@ -5,9 +5,9 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.api.cosmetics.icon.ItemIconHolderResult;
-import com.badr.infodota.api.cosmetics.store.StoreResult;
-import com.badr.infodota.remote.SteamService;
+import com.badr.infodota.base.api.cosmetics.icon.ItemIconHolderResult;
+import com.badr.infodota.base.api.cosmetics.store.StoreResult;
+import com.badr.infodota.base.remote.SteamService;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.VDFtoJsonParser;
 import com.badr.infodota.util.retrofit.TaskRequest;
