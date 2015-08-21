@@ -1,11 +1,11 @@
-package com.badr.infodota.base.task;
+package com.badr.infodota.news.task;
 
 import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.news.AppNews;
-import com.badr.infodota.base.service.news.NewsService;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.news.api.AppNews;
+import com.badr.infodota.news.service.NewsService;
 
 /**
  * Created by ABadretdinov

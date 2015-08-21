@@ -1,4 +1,4 @@
-package com.badr.infodota.base.adapter;
+package com.badr.infodota.match.adapter;
 
 import android.content.Context;
 import android.text.Html;
@@ -11,33 +11,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.matchdetails.AdditionalUnit;
-import com.badr.infodota.base.api.matchdetails.Player;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.item.activity.ItemInfoActivity;
+import com.badr.infodota.match.api.Player;
+import com.badr.infodota.match.api.detailed.AdditionalUnit;
 import com.badr.infodota.player.api.Unit;
-import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.badr.infodota.util.Utils.PHONE;
-import static com.badr.infodota.util.Utils.TABLET_LANDSCAPE;
-import static com.badr.infodota.util.Utils.TABLET_PORTRAIT;
+import static com.badr.infodota.base.util.Utils.PHONE;
+import static com.badr.infodota.base.util.Utils.TABLET_LANDSCAPE;
+import static com.badr.infodota.base.util.Utils.TABLET_PORTRAIT;
 
 /**
  * User: ABadretdinov
  * Date: 21.01.14
  * Time: 14:44
  */
-public class MatchDetailsAdapter extends BaseAdapter {
+public class MatchPlayersAdapter extends BaseAdapter {
     int state;
     private List<Player> players;
     private LayoutInflater inflater;
     private Context context;
 
-    public MatchDetailsAdapter(Context context, List<Player> players) {
+    public MatchPlayersAdapter(Context context, List<Player> players) {
         this.context = context;
         this.players = players != null ? players : new ArrayList<Player>();
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

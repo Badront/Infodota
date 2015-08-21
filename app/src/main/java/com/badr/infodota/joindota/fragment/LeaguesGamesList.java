@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.leagues;
+package com.badr.infodota.joindota.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,14 +13,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.LeagueGameActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.adapter.LeaguesGamesAdapter;
-import com.badr.infodota.base.api.joindota.MatchItem;
 import com.badr.infodota.base.fragment.ListFragment;
-import com.badr.infodota.base.task.MatchItemsLoadRequest;
-import com.badr.infodota.util.EndlessScrollListener;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.base.util.EndlessScrollListener;
+import com.badr.infodota.base.util.retrofit.LocalSpiceService;
+import com.badr.infodota.joindota.activity.LeagueGameActivity;
+import com.badr.infodota.joindota.adapter.LeaguesGamesAdapter;
+import com.badr.infodota.joindota.api.MatchItem;
+import com.badr.infodota.joindota.task.JoindotaMatchesLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -33,9 +33,6 @@ import com.octo.android.robospice.request.listener.RequestListener;
 public class LeaguesGamesList extends ListFragment implements RequestListener<MatchItem.List> {
     private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
     private String mExtraParams;
-
-    public LeaguesGamesList() {
-    }
 
     public static LeaguesGamesList newInstance(String extraParams) {
         LeaguesGamesList fragment = new LeaguesGamesList();
@@ -102,7 +99,7 @@ public class LeaguesGamesList extends ListFragment implements RequestListener<Ma
         Activity activity = getActivity();
         if (activity != null) {
             setRefreshing(true);
-            mSpiceManager.execute(new MatchItemsLoadRequest(activity.getApplicationContext(), mExtraParams, page), this);
+            mSpiceManager.execute(new JoindotaMatchesLoadRequest(activity.getApplicationContext(), mExtraParams, page), this);
         }
     }
 

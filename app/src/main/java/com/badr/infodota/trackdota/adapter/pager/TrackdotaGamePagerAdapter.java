@@ -8,6 +8,8 @@ import android.util.Pair;
 import android.util.SparseArray;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.trackdota.api.core.CoreResult;
 import com.badr.infodota.trackdota.api.live.LiveGame;
 import com.badr.infodota.trackdota.fragment.game.CommonInfo;
@@ -16,8 +18,6 @@ import com.badr.infodota.trackdota.fragment.game.LogList;
 import com.badr.infodota.trackdota.fragment.game.MapAndHeroes;
 import com.badr.infodota.trackdota.fragment.game.Statistics;
 import com.badr.infodota.trackdota.fragment.game.StreamList;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
 
 /**
  * Created by ABadretdinov

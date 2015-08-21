@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.fragment.ListFragment;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.trackdota.adapter.LogsAdapter;
 import com.badr.infodota.trackdota.api.core.CoreResult;
 import com.badr.infodota.trackdota.api.live.LiveGame;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
 
 /**
  * Created by ABadretdinov

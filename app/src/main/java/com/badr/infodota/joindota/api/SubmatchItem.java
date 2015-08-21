@@ -1,4 +1,4 @@
-package com.badr.infodota.base.api.joindota;
+package com.badr.infodota.joindota.api;
 
 import java.io.Serializable;
 import java.util.List;

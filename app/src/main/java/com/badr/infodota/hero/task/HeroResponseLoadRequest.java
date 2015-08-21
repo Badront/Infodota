@@ -3,10 +3,10 @@ package com.badr.infodota.hero.task;
 import android.content.Context;
 import android.os.Environment;
 
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.hero.api.responses.HeroResponse;
 import com.badr.infodota.hero.api.responses.HeroResponsesSection;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
 
 import java.io.File;

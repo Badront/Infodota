@@ -1,4 +1,4 @@
-package com.badr.infodota.base.activity;
+package com.badr.infodota.joindota.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,19 +23,20 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.joindota.LiveStream;
-import com.badr.infodota.base.api.joindota.MatchItem;
-import com.badr.infodota.base.api.joindota.SubmatchItem;
-import com.badr.infodota.base.task.ChannelLoadRequest;
-import com.badr.infodota.base.task.MatchItemLoadRequest;
+import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.util.DateUtils;
+import com.badr.infodota.base.util.GrayImageLoadListener;
+import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;
+import com.badr.infodota.joindota.api.LiveStream;
+import com.badr.infodota.joindota.api.MatchItem;
+import com.badr.infodota.joindota.api.SubmatchItem;
+import com.badr.infodota.joindota.task.JoindotaMatchLoadRequest;
+import com.badr.infodota.joindota.task.JoindotaMatchSteamLoadRequest;
 import com.badr.infodota.stream.activity.TwitchPlayActivity;
-import com.badr.infodota.util.DateUtils;
-import com.badr.infodota.util.GrayImageLoadListener;
-import com.badr.infodota.util.Utils;
-import com.badr.infodota.view.FlowLayout;
 import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
@@ -123,12 +124,12 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
         progressBar.setVisibility(View.VISIBLE);
         showStreams.setVisibility(View.GONE);
         streamsHolder.setVisibility(View.GONE);
-        mSpiceManager.execute(new MatchItemLoadRequest(matchItem), this);
+        mSpiceManager.execute(new JoindotaMatchLoadRequest(matchItem), this);
     }
 
     private void loadStreams() {
         progressBar.setVisibility(View.VISIBLE);
-        mSpiceManager.execute(new ChannelLoadRequest(matchItem.getStreams()), this);
+        mSpiceManager.execute(new JoindotaMatchSteamLoadRequest(matchItem.getStreams()), this);
     }
 
     private void fillGameInfo() {

@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.badr.infodota.base.activity.MatchPlayerInfoActivity;
-import com.badr.infodota.base.api.AbilityUpgrade;
-import com.badr.infodota.base.api.matchdetails.AdditionalUnit;
-import com.badr.infodota.base.api.matchdetails.Player;
+import com.badr.infodota.match.activity.MatchPlayerDetailsActivity;
+import com.badr.infodota.match.api.AbilityUpgrade;
+import com.badr.infodota.match.api.Player;
+import com.badr.infodota.match.api.detailed.AdditionalUnit;
 import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.trackdota.api.live.Ability;
 import com.badr.infodota.trackdota.api.live.LivePlayer;
@@ -119,7 +119,7 @@ public class OnLivePlayerClickListener implements View.OnClickListener {
         matchPlayer.setAccount(account);
         matchPlayer.setAccountId(mLivePlayer.getAccountId());
 
-        Intent intent = new Intent(context, MatchPlayerInfoActivity.class);
+        Intent intent = new Intent(context, MatchPlayerDetailsActivity.class);
         intent.putExtra("player", matchPlayer);
         context.startActivity(intent);
     }

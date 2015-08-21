@@ -1,4 +1,4 @@
-package com.badr.infodota.base.adapter;
+package com.badr.infodota.match.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.adapter.holder.PlayerMatchHolder;
-import com.badr.infodota.base.api.matchhistory.PlayerMatch;
+import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.api.Hero;
-import com.badr.infodota.util.Utils;
+import com.badr.infodota.match.adapter.holder.HistoryMatchHolder;
+import com.badr.infodota.match.api.history.PlayerMatch;
 import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
@@ -22,10 +23,10 @@ import java.util.TimeZone;
  * Date: 20.01.14
  * Time: 19:00
  */
-public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch, PlayerMatchHolder> {
+public class HistoryMatchesAdapter extends BaseRecyclerAdapter<PlayerMatch, HistoryMatchHolder> {
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm  dd.MM.yyyy");
 
-    public MatchAdapter(List<PlayerMatch> matches) {
+    public HistoryMatchesAdapter(List<PlayerMatch> matches) {
         super(matches);
         Calendar cal = Calendar.getInstance();
         TimeZone tz = cal.getTimeZone();
@@ -41,13 +42,13 @@ public class MatchAdapter extends BaseRecyclerAdapter<PlayerMatch, PlayerMatchHo
     }
 
     @Override
-    public PlayerMatchHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryMatchHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.match_row, parent, false);
-        return new PlayerMatchHolder(view, mOnItemClickListener);
+        return new HistoryMatchHolder(view, mOnItemClickListener);
     }
 
     @Override
-    public void onBindViewHolder(PlayerMatchHolder holder, int position) {
+    public void onBindViewHolder(HistoryMatchHolder holder, int position) {
         PlayerMatch entity = getItem(position);
         holder.gameStartTime.setText(sdf.format(entity.getGameTime()));
         int gameType = entity.getLobbyType();

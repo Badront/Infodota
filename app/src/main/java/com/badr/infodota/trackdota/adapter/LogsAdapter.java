@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.view.PinnedSectionListView;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.service.ItemService;
@@ -21,8 +23,6 @@ import com.badr.infodota.trackdota.api.GameManager;
 import com.badr.infodota.trackdota.api.core.Player;
 import com.badr.infodota.trackdota.api.game.Team;
 import com.badr.infodota.trackdota.api.live.LogEvent;
-import com.badr.infodota.util.Utils;
-import com.badr.infodota.view.PinnedSectionListView;
 import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;

@@ -1,4 +1,4 @@
-package com.badr.infodota.base.activity;
+package com.badr.infodota.cosmetic.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.cosmetics.store.CosmeticItem;
-import com.badr.infodota.util.ResourceUtils;
-import com.badr.infodota.view.FlowLayout;
+import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.util.ResourceUtils;
+import com.badr.infodota.base.view.FlowLayout;
+import com.badr.infodota.cosmetic.api.store.CosmeticItem;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.Set;
  * Date: 01.04.14
  * Time: 14:21
  */
-public class CosmeticItemInfoActivity extends BaseActivity {
+public class CosmeticItemDetailsActivity extends BaseActivity {
 
     private CosmeticItem item;
     private CosmeticItem set;
@@ -71,17 +72,17 @@ public class CosmeticItemInfoActivity extends BaseActivity {
         }
         TextView title = (TextView) findViewById(R.id.title);
         title.setText(item.getName());
-        title.setTextColor(getResources().getColor(ResourceUtils.COSMETIC_ITEM_QUALITY_IDS[item.getItem_quality()]));
+        title.setTextColor(getResources().getColor(ResourceUtils.COSMETIC_ITEM_QUALITY_IDS[item.getQuality()]));
 
-        Glide.with(this).load(item.getImage_url_large()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.image));
+        Glide.with(this).load(item.getImageUrlLarge()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.image));
 
         TextView type = (TextView) findViewById(R.id.type);
-        type.setText(item.getItem_type_name());
+        type.setText(item.getItemTypeName());
 
         TextView description = (TextView) findViewById(R.id.description);
-        if (!TextUtils.isEmpty(item.getItem_description())) {
+        if (!TextUtils.isEmpty(item.getDescription())) {
             description.setVisibility(View.VISIBLE);
-            description.setText(Html.fromHtml(item.getItem_description()));
+            description.setText(Html.fromHtml(item.getDescription()));
         } else {
             description.setVisibility(View.GONE);
         }
@@ -113,7 +114,7 @@ public class CosmeticItemInfoActivity extends BaseActivity {
             prices.setVisibility(View.GONE);
         }
 
-        if ("bundle".equals(item.getItem_class())) {
+        if ("bundle".equals(item.getItemClass())) {
             setSetsItemsInfo();
         } else {
             setSetInfo();
@@ -131,7 +132,7 @@ public class CosmeticItemInfoActivity extends BaseActivity {
             for (final CosmeticItem cosmeticItem : setItems) {
                 View view = inflater.inflate(R.layout.cosmetic_item_row, null, false);
 
-                Glide.with(this).load(cosmeticItem.getImage_url()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.img));
+                Glide.with(this).load(cosmeticItem.getImageUrl()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.img));
                 TextView name = (TextView) view.findViewById(R.id.name);
                 name.setText(cosmeticItem.getName());
                 view.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +151,7 @@ public class CosmeticItemInfoActivity extends BaseActivity {
     }
 
     private void recreateForItem(CosmeticItem cosmeticItem) {
-        Intent intent = new Intent(CosmeticItemInfoActivity.this, CosmeticItemInfoActivity.class);
+        Intent intent = new Intent(CosmeticItemDetailsActivity.this, CosmeticItemDetailsActivity.class);
         intent.putExtra("item", cosmeticItem);
         intent.putExtra("set", set);
         intent.putExtra("setItems", setItems);
@@ -167,7 +168,7 @@ public class CosmeticItemInfoActivity extends BaseActivity {
             findViewById(R.id.flow_set).setVisibility(View.GONE);
             setLayout.setVisibility(View.VISIBLE);
             setTitle.setVisibility(View.VISIBLE);
-            Glide.with(this).load(set.getImage_url()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.set_img));
+            Glide.with(this).load(set.getImageUrl()).placeholder(R.drawable.emptyitembg).into((ImageView) findViewById(R.id.set_img));
             ((TextView) setLayout.findViewById(R.id.set_name)).setText(set.getName());
             setLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

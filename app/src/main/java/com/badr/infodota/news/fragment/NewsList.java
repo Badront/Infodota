@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.news;
+package com.badr.infodota.news.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +12,13 @@ import android.widget.Toast;
 
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.activity.NewsItemActivity;
-import com.badr.infodota.base.adapter.NewsAdapter;
-import com.badr.infodota.base.api.news.AppNews;
-import com.badr.infodota.base.api.news.NewsItem;
 import com.badr.infodota.base.fragment.ListFragment;
-import com.badr.infodota.base.task.NewsLoadRequest;
-import com.badr.infodota.util.EndlessScrollListener;
+import com.badr.infodota.base.util.EndlessScrollListener;
+import com.badr.infodota.news.activity.NewsItemActivity;
+import com.badr.infodota.news.adapter.NewsAdapter;
+import com.badr.infodota.news.api.AppNews;
+import com.badr.infodota.news.api.NewsItem;
+import com.badr.infodota.news.task.NewsLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
