@@ -152,7 +152,7 @@
                 android:text="@string/recommended_to_you"
                 android:visibility="gone" />
 
-            <com.badr.infodota.view.FlowLayout
+            <com.badr.infodota.base.view.FlowLayout
                 android:id="@+id/holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -14,7 +14,7 @@
         support:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
-    <com.badr.infodota.view.SlidingTabLayout
+    <com.badr.infodota.base.view.SlidingTabLayout
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
