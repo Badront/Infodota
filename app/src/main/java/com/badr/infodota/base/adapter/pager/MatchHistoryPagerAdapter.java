@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.dotabuff.Unit;
 import com.badr.infodota.base.fragment.player.groups.GroupPlayersList;
 import com.badr.infodota.base.fragment.player.groups.PlayersList;
+import com.badr.infodota.player.api.Unit;
 
 import java.util.HashMap;
 import java.util.Map;

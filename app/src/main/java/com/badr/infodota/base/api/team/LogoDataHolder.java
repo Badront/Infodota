@@ -1,15 +1,14 @@
 package com.badr.infodota.base.api.team;
 
+import java.io.Serializable;
+
 /**
  * User: ABadretdinov
  * Date: 15.05.14
  * Time: 17:01
  */
-public class LogoDataHolder {
+public class LogoDataHolder implements Serializable {
     private LogoData data;
-
-    public LogoDataHolder() {
-    }
 
     public LogoData getData() {
         return data;

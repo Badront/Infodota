@@ -1,5 +1,7 @@
 package com.badr.infodota.base.api.news;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -16,12 +18,10 @@ public class NewsItem implements Serializable, Comparable {
     //author
     private String author;
     //if author is empty author
-    private String feedlabel;
+    @SerializedName("feedlabel")
+    private String feedLabel;
     //sort by edate
     private Long date;
-
-    public NewsItem() {
-    }
 
     public String getGid() {
         return gid;
@@ -63,12 +63,12 @@ public class NewsItem implements Serializable, Comparable {
         this.author = author;
     }
 
-    public String getFeedlabel() {
-        return feedlabel;
+    public String getFeedLabel() {
+        return feedLabel;
     }
 
-    public void setFeedlabel(String feedlabel) {
-        this.feedlabel = feedlabel;
+    public void setFeedLabel(String feedLabel) {
+        this.feedLabel = feedLabel;
     }
 
     public Long getDate() {

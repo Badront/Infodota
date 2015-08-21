@@ -13,7 +13,7 @@ import android.widget.Spinner;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.PlayerCommonStatsActivity;
-import com.badr.infodota.base.api.dotabuff.Unit;
+import com.badr.infodota.player.api.Unit;
 
 /**
  * User: ABadretdinov

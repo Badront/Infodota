@@ -1,8 +1,8 @@
 package com.badr.infodota.base.task;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.trackdota.LeaguesResult;
-import com.badr.infodota.base.service.trackdota.TrackdotaService;
+import com.badr.infodota.trackdota.api.LeaguesHolder;
+import com.badr.infodota.trackdota.service.TrackdotaService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 
 /**
@@ -10,14 +10,14 @@ import com.badr.infodota.util.retrofit.TaskRequest;
  * 20.08.2015
  * 15:37
  */
-public class LeagueLoadRequest extends TaskRequest<LeaguesResult> {
+public class LeagueLoadRequest extends TaskRequest<LeaguesHolder> {
 
     public LeagueLoadRequest() {
-        super(LeaguesResult.class);
+        super(LeaguesHolder.class);
     }
 
     @Override
-    public LeaguesResult loadData() throws Exception {
+    public LeaguesHolder loadData() throws Exception {
         BeanContainer container = BeanContainer.getInstance();
         TrackdotaService trackdotaService = container.getTrackdotaService();
         return trackdotaService.getLeagues();

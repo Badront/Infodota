@@ -1,7 +1,7 @@
 package com.badr.infodota.base.api.matchhistory;
 
-import com.badr.infodota.base.api.dotabuff.Unit;
 import com.badr.infodota.hero.api.Hero;
+import com.badr.infodota.player.api.Unit;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

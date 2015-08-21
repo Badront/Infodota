@@ -15,16 +15,6 @@ public class AbilityUpgrade implements Serializable {
     //the level of the hero when the ability was leveled.
     private int level;
 
-    public AbilityUpgrade(long ability, long time, int level) {
-        this.ability = ability;
-        this.time = time;
-        this.level = level;
-    }
-
-    public AbilityUpgrade() {
-        super();
-    }
-
     public long getAbility() {
         return ability;
     }

@@ -18,7 +18,7 @@ public class TI4ServiceImpl implements TI4Service {
         if (result == null) {
             return null;
         } else {
-            return result.getResult().getPrize_pool();
+            return result.getResult().getPrizePool();
         }
     }
 }

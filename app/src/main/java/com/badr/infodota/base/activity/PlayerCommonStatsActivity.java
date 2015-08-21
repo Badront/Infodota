@@ -11,7 +11,7 @@ import android.support.v7.app.ActionBar;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.pager.PlayerCommonStatsPagerAdapter;
-import com.badr.infodota.base.api.dotabuff.Unit;
+import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.bumptech.glide.Glide;

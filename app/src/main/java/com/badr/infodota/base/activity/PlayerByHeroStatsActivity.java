@@ -14,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.dotabuff.Unit;
 import com.badr.infodota.base.task.PlayerHeroesStatsLoadRequest;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
+import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.util.ResourceUtils;
 import com.badr.infodota.util.Utils;
 import com.badr.infodota.view.HorizontalScrollViewListener;

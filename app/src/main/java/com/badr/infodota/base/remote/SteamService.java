@@ -6,11 +6,11 @@ import com.badr.infodota.base.api.cosmetics.price.PricesResult;
 import com.badr.infodota.base.api.cosmetics.store.StoreResult;
 import com.badr.infodota.base.api.matchdetails.MatchDetails;
 import com.badr.infodota.base.api.matchhistory.MatchHistoryResultResponse;
-import com.badr.infodota.base.api.news.AppNewsResult;
-import com.badr.infodota.base.api.playersummaries.PlayersResult;
-import com.badr.infodota.base.api.playersummaries.friends.FriendsResult;
+import com.badr.infodota.base.api.news.AppNewsHolder;
 import com.badr.infodota.base.api.team.LogoDataHolder;
 import com.badr.infodota.base.api.ti4.PrizePoolHolder;
+import com.badr.infodota.player.api.PlayersResult;
+import com.badr.infodota.player.api.friends.FriendsResult;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public interface SteamService {
     PrizePoolHolder getLeaguePrizePool(@Query("leagueid") long leagueId);
 
     @GET("/ISteamNews/GetNewsForApp/v0002/?appid=570&count=50&format=json")
-    AppNewsResult getNews(@Query("enddate") Long enddate);
+    AppNewsHolder getNews(@Query("enddate") Long enddate);
 
     @GET("/IDOTA2Match_570/GetMatchDetails/V001/")
     MatchDetails getMatchDetails(@Query("match_id") String matchId);

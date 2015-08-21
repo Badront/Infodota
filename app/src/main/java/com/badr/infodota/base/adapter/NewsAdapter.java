@@ -82,9 +82,9 @@ public class NewsAdapter extends BaseAdapter {
         holder.title.setText(item.getTitle());
         String author;
         if (TextUtils.isEmpty(item.getAuthor())) {
-            author = item.getFeedlabel();
+            author = item.getFeedLabel();
         } else {
-            author = item.getAuthor() + " (" + item.getFeedlabel() + ")";
+            author = item.getAuthor() + " (" + item.getFeedLabel() + ")";
         }
         holder.author.setText(author);
         long timestamp = item.getDate();

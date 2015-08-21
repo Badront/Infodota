@@ -3,7 +3,7 @@ package com.badr.infodota.hero.service;
 import android.content.Context;
 
 import com.badr.infodota.InitializingBean;
-import com.badr.infodota.base.api.heroes.TruepickerHero;
+import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.hero.api.CarouselHero;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.abilities.Ability;

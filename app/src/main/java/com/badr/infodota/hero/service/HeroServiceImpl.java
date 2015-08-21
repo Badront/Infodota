@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.heroes.TruepickerHero;
 import com.badr.infodota.base.dao.DatabaseManager;
+import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.hero.api.CarouselHero;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.HeroStats;

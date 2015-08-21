@@ -18,6 +18,7 @@ import com.badr.infodota.base.api.matchdetails.Team;
 import com.badr.infodota.base.service.team.TeamService;
 import com.badr.infodota.base.task.MatchDetailsLoadRequest;
 import com.badr.infodota.base.task.TeamLogoLoadRequest;
+import com.badr.infodota.trackdota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.util.LongPair;
 import com.badr.infodota.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;

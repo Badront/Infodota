@@ -1,5 +1,8 @@
 package com.badr.infodota.base.api.news;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,26 +10,25 @@ import java.util.List;
  * Date: 21.04.14
  * Time: 18:27
  */
-public class AppNews {
-    private Long appid;
-    private List<NewsItem> newsitems;
+public class AppNews implements Serializable {
+    @SerializedName("appid")
+    private Long appId;
+    @SerializedName("newsitems")
+    private List<NewsItem> newsItems;
 
-    public AppNews() {
+    public Long getAppId() {
+        return appId;
     }
 
-    public Long getAppid() {
-        return appid;
+    public void setAppId(Long appId) {
+        this.appId = appId;
     }
 
-    public void setAppid(Long appid) {
-        this.appid = appid;
+    public List<NewsItem> getNewsItems() {
+        return newsItems;
     }
 
-    public List<NewsItem> getNewsitems() {
-        return newsitems;
-    }
-
-    public void setNewsitems(List<NewsItem> newsitems) {
-        this.newsitems = newsitems;
+    public void setNewsItems(List<NewsItem> newsItems) {
+        this.newsItems = newsItems;
     }
 }

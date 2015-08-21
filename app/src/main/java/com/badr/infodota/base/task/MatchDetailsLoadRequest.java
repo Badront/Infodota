@@ -3,7 +3,6 @@ package com.badr.infodota.base.task;
 import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.dotabuff.Unit;
 import com.badr.infodota.base.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.base.api.matchdetails.MatchDetails;
 import com.badr.infodota.base.api.matchdetails.Player;
@@ -13,6 +12,7 @@ import com.badr.infodota.base.service.player.PlayerService;
 import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.service.ItemService;
+import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.util.retrofit.TaskRequest;
 
 import java.util.ArrayList;

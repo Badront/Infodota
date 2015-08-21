@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.streams.twitch.TwitchAccessToken;
-import com.badr.infodota.base.service.twitch.TwitchService;
+import com.badr.infodota.stream.api.twitch.TwitchAccessToken;
+import com.badr.infodota.stream.service.TwitchService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.parser.Element;
 import com.parser.Playlist;

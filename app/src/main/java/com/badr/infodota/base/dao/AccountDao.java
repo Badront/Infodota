@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.api.dotabuff.Unit;
+import com.badr.infodota.player.api.Unit;
 
 import java.util.ArrayList;
 import java.util.List;

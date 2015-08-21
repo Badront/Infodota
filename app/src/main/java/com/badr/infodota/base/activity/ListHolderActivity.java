@@ -25,15 +25,15 @@ import com.badr.infodota.R;
 import com.badr.infodota.base.api.Constants;
 import com.badr.infodota.base.fragment.SearchableFragment;
 import com.badr.infodota.base.fragment.cosmetic.CosmeticList;
-import com.badr.infodota.base.fragment.counter.CounterPickFilter;
 import com.badr.infodota.base.fragment.leagues.LeaguesGamesList;
 import com.badr.infodota.base.fragment.news.NewsList;
 import com.badr.infodota.base.fragment.player.groups.PlayerGroupsHolder;
 import com.badr.infodota.base.fragment.quiz.QuizTypeSelect;
-import com.badr.infodota.base.fragment.trackdota.TrackdotaMain;
-import com.badr.infodota.base.fragment.twitch.TwitchHolder;
+import com.badr.infodota.counter.fragment.CounterPickFilter;
 import com.badr.infodota.hero.fragment.HeroesList;
 import com.badr.infodota.item.fragment.ItemsList;
+import com.badr.infodota.stream.fragment.TwitchHolder;
+import com.badr.infodota.trackdota.fragment.TrackdotaMain;
 import com.badr.infodota.util.UpdateUtils;
 
 /**

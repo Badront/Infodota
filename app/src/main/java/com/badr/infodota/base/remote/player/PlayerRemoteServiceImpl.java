@@ -2,13 +2,13 @@ package com.badr.infodota.base.remote.player;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.api.Constants;
-import com.badr.infodota.base.api.dotabuff.Unit;
-import com.badr.infodota.base.api.playersummaries.Player;
-import com.badr.infodota.base.api.playersummaries.PlayersHolder;
-import com.badr.infodota.base.api.playersummaries.PlayersResult;
-import com.badr.infodota.base.api.playersummaries.friends.Friend;
-import com.badr.infodota.base.api.playersummaries.friends.FriendsList;
-import com.badr.infodota.base.api.playersummaries.friends.FriendsResult;
+import com.badr.infodota.player.api.Player;
+import com.badr.infodota.player.api.PlayersHolder;
+import com.badr.infodota.player.api.PlayersResult;
+import com.badr.infodota.player.api.Unit;
+import com.badr.infodota.player.api.friends.Friend;
+import com.badr.infodota.player.api.friends.FriendsHolder;
+import com.badr.infodota.player.api.friends.FriendsResult;
 import com.badr.infodota.util.Utils;
 
 import org.jsoup.Jsoup;
@@ -90,8 +90,8 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
     public Unit.List getFriends(long id) throws Exception {
         long steam64id = Utils.steam32to64(id);
         FriendsResult result = BeanContainer.getInstance().getSteamService().getFriends(String.valueOf(steam64id));
-        if (result != null && result.getFriendslist() != null) {
-            FriendsList response = result.getFriendslist();
+        if (result != null && result.getFriendsHolder() != null) {
+            FriendsHolder response = result.getFriendsHolder();
             List<Friend> friends = response.getFriends();
             if (friends != null && friends.size() > 0) {
                 List<Long> ids = new ArrayList<Long>();

@@ -113,7 +113,7 @@ public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onRequestSuccess(AppNews newsItems) {
-        ((NewsAdapter) getListAdapter()).addNewsItems(newsItems.getNewsitems());
+        ((NewsAdapter) getListAdapter()).addNewsItems(newsItems.getNewsItems());
         setRefreshing(false);
 
     }

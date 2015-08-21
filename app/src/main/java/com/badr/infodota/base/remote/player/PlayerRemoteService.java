@@ -1,6 +1,6 @@
 package com.badr.infodota.base.remote.player;
 
-import com.badr.infodota.base.api.dotabuff.Unit;
+import com.badr.infodota.player.api.Unit;
 
 import java.util.List;
 

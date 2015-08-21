@@ -38,7 +38,7 @@ public class NewsItemActivity extends BaseActivity {
             TextView date = (TextView) findViewById(R.id.date);
             Button viewOriginal = (Button) findViewById(R.id.original);
             content.setText(Html.fromHtml(newsItem.getContents(), new URLImageParser(content, this), null));
-            author.setText(!TextUtils.isEmpty(newsItem.getAuthor()) ? newsItem.getAuthor() : newsItem.getFeedlabel());
+            author.setText(!TextUtils.isEmpty(newsItem.getAuthor()) ? newsItem.getAuthor() : newsItem.getFeedLabel());
             title.setText(newsItem.getTitle());
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm  dd.MM.yyyy");
             Calendar cal = Calendar.getInstance();

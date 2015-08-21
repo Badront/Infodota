@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.api.heroes.TruepickerHero;
 import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.hero.api.Hero;
 
 import java.util.ArrayList;

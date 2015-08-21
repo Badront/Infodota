@@ -9,11 +9,11 @@ import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.activity.BaseActivity;
-import com.badr.infodota.base.activity.TwitchPlayActivity;
-import com.badr.infodota.base.api.streams.Stream;
-import com.badr.infodota.base.api.streams.StreamQuality;
-import com.badr.infodota.base.api.streams.twitch.TwitchAccessToken;
-import com.badr.infodota.base.service.twitch.TwitchService;
+import com.badr.infodota.stream.activity.TwitchPlayActivity;
+import com.badr.infodota.stream.api.Stream;
+import com.badr.infodota.stream.api.StreamQuality;
+import com.badr.infodota.stream.api.twitch.TwitchAccessToken;
+import com.badr.infodota.stream.service.TwitchService;
 import com.parser.Element;
 import com.parser.Playlist;
 

@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.ArrayAdapter;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.dotabuff.Unit;
+import com.badr.infodota.player.api.Unit;
 
 import java.text.MessageFormat;
 import java.util.Arrays;

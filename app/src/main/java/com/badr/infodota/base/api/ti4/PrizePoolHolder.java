@@ -1,21 +1,20 @@
 package com.badr.infodota.base.api.ti4;
 
+import java.io.Serializable;
+
 /**
  * User: ABadretdinov
  * Date: 14.05.14
  * Time: 18:46
  */
-public class PrizePoolHolder {
-    private PrizePoolResult result;
+public class PrizePoolHolder implements Serializable {
+    private PrizePool result;
 
-    public PrizePoolHolder() {
-    }
-
-    public PrizePoolResult getResult() {
+    public PrizePool getResult() {
         return result;
     }
 
-    public void setResult(PrizePoolResult result) {
+    public void setResult(PrizePool result) {
         this.result = result;
     }
 }

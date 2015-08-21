@@ -71,12 +71,12 @@
             android:name=".base.activity.CosmeticItemInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".base.activity.TwitchPlayActivity"
+            android:name=".stream.activity.TwitchPlayActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Infodota.OverlayActionBar" />
         <activity
-            android:name=".base.activity.CounterPickerHeroesSelectActivity"
+            android:name=".counter.activity.CounterPickerHeroesSelectActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustNothing">
@@ -93,10 +93,10 @@
             android:name=".base.activity.LeagueGameActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".base.activity.TrackdotaGameInfoActivity"
+            android:name=".trackdota.activity.TrackdotaGameInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".base.activity.TrackdotaLeagueInfoActivity"
+            android:name=".trackdota.activity.TrackdotaLeagueInfoActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
         <activity
             android:name=".base.activity.TI4Activity"

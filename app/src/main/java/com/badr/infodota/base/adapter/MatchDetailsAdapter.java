@@ -11,11 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.dotabuff.Unit;
 import com.badr.infodota.base.api.matchdetails.AdditionalUnit;
 import com.badr.infodota.base.api.matchdetails.Player;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.item.activity.ItemInfoActivity;
+import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 

@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.dotabuff.Unit;
 import com.badr.infodota.base.dao.AccountDao;
 import com.badr.infodota.base.dao.DatabaseManager;
 import com.badr.infodota.base.remote.player.PlayerRemoteService;
+import com.badr.infodota.player.api.Unit;
 
 import java.util.List;
 
