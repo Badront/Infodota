@@ -1,4 +1,4 @@
-package com.badr.infodota.base.service.counterpicker;
+package com.badr.infodota.base.service.cosmetic;
 
 import android.content.Context;
 import android.util.Log;

@@ -17,7 +17,6 @@ import android.view.View;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
-import com.badr.infodota.base.activity.GuideActivity;
 import com.badr.infodota.hero.adapter.pager.HeroPagerAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;

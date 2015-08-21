@@ -1,4 +1,4 @@
-package com.badr.infodota.base.adapter.pager;
+package com.badr.infodota.hero.adapter.pager;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.guide.custom.Guide;
-import com.badr.infodota.base.fragment.guide.AbilityBuildPart;
-import com.badr.infodota.base.fragment.guide.GuideHolder;
-import com.badr.infodota.base.fragment.guide.ItemPart;
-import com.badr.infodota.base.fragment.guide.TooltipPart;
+import com.badr.infodota.hero.api.guide.custom.Guide;
+import com.badr.infodota.hero.fragment.guide.AbilityBuildPart;
+import com.badr.infodota.hero.fragment.guide.GuideHolder;
+import com.badr.infodota.hero.fragment.guide.ItemPart;
+import com.badr.infodota.hero.fragment.guide.TooltipPart;
 
 import java.util.ArrayList;
 import java.util.List;

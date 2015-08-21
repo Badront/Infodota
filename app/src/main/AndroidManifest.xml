@@ -34,7 +34,7 @@
             android:name=".hero.activity.HeroInfoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".base.activity.GuideActivity"
+            android:name=".hero.activity.GuideActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
             android:name=".item.activity.ItemInfoActivity"
@@ -56,7 +56,7 @@
             android:name=".base.activity.QuizActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
-            android:name=".base.activity.GuideCreatorActivity"
+            android:name=".hero.activity.GuideCreatorActivity"
             android:configChanges="keyboard|orientation|screenSize" />
         <activity
             android:name=".item.activity.ItemSelectActivity"

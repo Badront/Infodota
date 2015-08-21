@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.guide;
+package com.badr.infodota.hero.fragment.guide;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.guide.custom.AbilityBuild;
-import com.badr.infodota.base.api.guide.custom.Guide;
 import com.badr.infodota.hero.api.abilities.Ability;
+import com.badr.infodota.hero.api.guide.custom.AbilityBuild;
+import com.badr.infodota.hero.api.guide.custom.Guide;
 import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.util.FileUtils;
 
@@ -57,7 +57,7 @@ public class AbilityBuildPart extends Fragment implements GuideHolder {
             abilityHolder.removeAllViews();
             Activity activity = getActivity();
             if (abilityBuild != null && activity != null) {
-                Map<String, String> abilityUpgrades = abilityBuild.getAbilityOrder();
+                Map<String, String> abilityUpgrades = abilityBuild.getOrder();
                 if (abilityUpgrades != null && abilityUpgrades.size() > 0) {
 
                     HeroService heroService = BeanContainer.getInstance().getHeroService();

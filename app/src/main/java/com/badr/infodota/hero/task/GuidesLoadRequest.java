@@ -1,8 +1,8 @@
-package com.badr.infodota.base.task;
+package com.badr.infodota.hero.task;
 
 import android.content.Context;
 
-import com.badr.infodota.base.api.guide.TitleOnly;
+import com.badr.infodota.hero.api.guide.TitleOnly;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;

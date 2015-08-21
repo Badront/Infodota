@@ -1,6 +1,6 @@
-package com.badr.infodota.base.fragment.guide;
+package com.badr.infodota.hero.fragment.guide;
 
-import com.badr.infodota.base.api.guide.custom.Guide;
+import com.badr.infodota.hero.api.guide.custom.Guide;
 
 /**
  * User: ABadretdinov

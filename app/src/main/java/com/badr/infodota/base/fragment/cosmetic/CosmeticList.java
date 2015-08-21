@@ -38,7 +38,7 @@ import com.badr.infodota.base.api.cosmetics.store.ItemSet;
 import com.badr.infodota.base.api.cosmetics.store.Result;
 import com.badr.infodota.base.api.cosmetics.store.StoreResult;
 import com.badr.infodota.base.fragment.SearchableFragment;
-import com.badr.infodota.base.service.counterpicker.CosmeticService;
+import com.badr.infodota.base.service.cosmetic.CosmeticService;
 import com.badr.infodota.util.DialogUtils;
 import com.badr.infodota.util.ProgressTask;
 import com.badr.infodota.util.ResourceUtils;

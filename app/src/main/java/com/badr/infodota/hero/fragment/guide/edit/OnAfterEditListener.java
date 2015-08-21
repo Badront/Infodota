@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.guide.edit;
+package com.badr.infodota.hero.fragment.guide.edit;
 
 /**
  * User: ABadretdinov

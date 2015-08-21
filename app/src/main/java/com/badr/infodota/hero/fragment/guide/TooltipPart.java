@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.guide;
+package com.badr.infodota.hero.fragment.guide;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.guide.custom.AbilityBuild;
-import com.badr.infodota.base.api.guide.custom.Guide;
-import com.badr.infodota.base.api.guide.custom.ItemBuild;
+import com.badr.infodota.hero.api.guide.custom.AbilityBuild;
+import com.badr.infodota.hero.api.guide.custom.Guide;
+import com.badr.infodota.hero.api.guide.custom.ItemBuild;
 import com.badr.infodota.item.activity.ItemInfoActivity;
 import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.service.ItemService;
@@ -68,10 +68,10 @@ public class TooltipPart extends Fragment implements GuideHolder {
             LinearLayout abilitiesHolder = (LinearLayout) root.findViewById(R.id.abilities_holder);
             abilitiesHolder.removeAllViews();
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            if (abilityBuild != null && abilityBuild.getAbilityTooltips() != null) {
+            if (abilityBuild != null && abilityBuild.getTooltips() != null) {
                 root.findViewById(R.id.abilities_holder_header).setVisibility(View.VISIBLE);
                 abilitiesHolder.setVisibility(View.VISIBLE);
-                Map<String, String> abilitiesTooltips = abilityBuild.getAbilityTooltips();
+                Map<String, String> abilitiesTooltips = abilityBuild.getTooltips();
 
                 for (String ability : abilitiesTooltips.keySet()) {
                     ViewGroup tooltipRow = (ViewGroup) inflater.inflate(R.layout.tooltip_row, abilitiesHolder, false);
@@ -87,10 +87,10 @@ public class TooltipPart extends Fragment implements GuideHolder {
             LinearLayout itemsHolder = (LinearLayout) root.findViewById(R.id.items_holder);
             itemsHolder.removeAllViews();
             ItemBuild itemBuild = guide.getItemBuild();
-            if (itemBuild != null && itemBuild.getItemTooltips() != null) {
+            if (itemBuild != null && itemBuild.getTooltips() != null) {
                 root.findViewById(R.id.items_holder_header).setVisibility(View.VISIBLE);
                 itemsHolder.setVisibility(View.VISIBLE);
-                Map<String, String> itemsTooltips = itemBuild.getItemTooltips();
+                Map<String, String> itemsTooltips = itemBuild.getTooltips();
 
                 for (final String item : itemsTooltips.keySet()) {
                     ViewGroup tooltipRow = (ViewGroup) inflater.inflate(R.layout.tooltip_row, itemsHolder, false);

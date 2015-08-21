@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.guide.edit;
+package com.badr.infodota.hero.fragment.guide.edit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.guide.custom.AbilityBuild;
-import com.badr.infodota.base.api.guide.custom.Guide;
-import com.badr.infodota.base.fragment.guide.GuideHolder;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.abilities.Ability;
+import com.badr.infodota.hero.api.guide.custom.AbilityBuild;
+import com.badr.infodota.hero.api.guide.custom.Guide;
+import com.badr.infodota.hero.fragment.guide.GuideHolder;
 import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.util.FileUtils;
 
@@ -78,10 +78,10 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
         ViewGroup abilityHolder = (ViewGroup) root.findViewById(R.id.ability_holder);
         abilityHolder.removeAllViews();
         final AbilityBuild abilityBuild = guide.getAbilityBuild();
-        if (abilityBuild.getAbilityOrder() == null) {
-            abilityBuild.setAbilityOrder(new TreeMap<String, String>());
+        if (abilityBuild.getOrder() == null) {
+            abilityBuild.setOrder(new TreeMap<String, String>());
         }
-        Map<String, String> abilityUpgrades = abilityBuild.getAbilityOrder();
+        Map<String, String> abilityUpgrades = abilityBuild.getOrder();
 
         Activity activity = getActivity();
         HeroService heroService = BeanContainer.getInstance().getHeroService();
@@ -95,12 +95,12 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
                 public void onClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(getActivity().getString(R.string.skill_tooltip));
-                    if (abilityBuild.getAbilityTooltips() == null) {
-                        abilityBuild.setAbilityTooltips(new HashMap<String, String>());
+                    if (abilityBuild.getTooltips() == null) {
+                        abilityBuild.setTooltips(new HashMap<String, String>());
                     }
                     final EditText editText = new EditText(getActivity());
-                    if (abilityBuild.getAbilityTooltips().containsKey(ability.getName())) {
-                        editText.setText(abilityBuild.getAbilityTooltips().get(ability.getName()));
+                    if (abilityBuild.getTooltips().containsKey(ability.getName())) {
+                        editText.setText(abilityBuild.getTooltips().get(ability.getName()));
                     }
                     builder.setView(editText);
                     builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -112,10 +112,10 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
                     builder.setPositiveButton(R.string.add_tooltip, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (abilityBuild.getAbilityTooltips() == null) {
-                                abilityBuild.setAbilityTooltips(new HashMap<String, String>());
+                            if (abilityBuild.getTooltips() == null) {
+                                abilityBuild.setTooltips(new HashMap<String, String>());
                             }
-                            abilityBuild.getAbilityTooltips().put(ability.getName(), editText.getText().toString());
+                            abilityBuild.getTooltips().put(ability.getName(), editText.getText().toString());
                             dialog.dismiss();
                         }
                     });
@@ -143,7 +143,7 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
                         }
                         setUpgraded(textView);
                         String abilityStr = (String) textView.getTag();
-                        Map<String, String> abilityOrder = guide.getAbilityBuild().getAbilityOrder();
+                        Map<String, String> abilityOrder = guide.getAbilityBuild().getOrder();
                         if (abilityOrder.containsKey(finalLevel)) {
                             abilityOrder.remove(finalLevel);
                         }
@@ -178,8 +178,8 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
     @Override
     public void onSave() {
         AbilityBuild abilityBuild = guide.getAbilityBuild();
-        Map<String, String> map = abilityBuild.getAbilityOrder();
-        abilityBuild.setAbilityOrder(new TreeMap<String, String>(new Comparator<String>() {
+        Map<String, String> map = abilityBuild.getOrder();
+        abilityBuild.setOrder(new TreeMap<String, String>(new Comparator<String>() {
             @Override
             public int compare(String lhs, String rhs) {
                 if (lhs.length() > rhs.length()) {
@@ -190,6 +190,6 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
                 return lhs.compareTo(rhs);
             }
         }));
-        abilityBuild.getAbilityOrder().putAll(map);
+        abilityBuild.getOrder().putAll(map);
     }
 }

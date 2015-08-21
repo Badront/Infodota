@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.base.task.TwitchStreamsLoadRequest;
+import com.badr.infodota.stream.StreamUtils;
 import com.badr.infodota.stream.adapter.TwitchStreamsAdapter;
 import com.badr.infodota.stream.api.Stream;
-import com.badr.infodota.util.StreamUtils;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

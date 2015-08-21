@@ -1,4 +1,4 @@
-package com.badr.infodota.base.fragment.guide.edit;
+package com.badr.infodota.hero.fragment.guide.edit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,10 +17,10 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.api.guide.custom.Guide;
-import com.badr.infodota.base.api.guide.custom.ItemBuild;
-import com.badr.infodota.base.fragment.guide.GuideHolder;
 import com.badr.infodota.hero.api.Hero;
+import com.badr.infodota.hero.api.guide.custom.Guide;
+import com.badr.infodota.hero.api.guide.custom.ItemBuild;
+import com.badr.infodota.hero.fragment.guide.GuideHolder;
 import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.item.activity.ItemSelectActivity;
 import com.badr.infodota.item.api.Item;
@@ -297,18 +297,18 @@ public class ItemPartEdit extends Fragment implements GuideHolder, OnAfterEditLi
 
     private String getItemTooltip(String dotaId) {
         ItemBuild itemBuild = guide.getItemBuild();
-        if (itemBuild.getItemTooltips() == null) {
-            itemBuild.setItemTooltips(new HashMap<String, String>());
+        if (itemBuild.getTooltips() == null) {
+            itemBuild.setTooltips(new HashMap<String, String>());
         }
-        return itemBuild.getItemTooltips().get(dotaId);
+        return itemBuild.getTooltips().get(dotaId);
     }
 
     private void addTooltip(String dotaId, String tooltip) {
         ItemBuild itemBuild = guide.getItemBuild();
-        if (itemBuild.getItemTooltips() == null) {
-            itemBuild.setItemTooltips(new HashMap<String, String>());
+        if (itemBuild.getTooltips() == null) {
+            itemBuild.setTooltips(new HashMap<String, String>());
         }
-        itemBuild.getItemTooltips().put(dotaId, tooltip);
+        itemBuild.getTooltips().put(dotaId, tooltip);
     }
 
     @Override

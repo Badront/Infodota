@@ -1,4 +1,4 @@
-package com.badr.infodota.util;
+package com.badr.infodota.stream;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,9 @@ import com.badr.infodota.stream.api.Stream;
 import com.badr.infodota.stream.api.StreamQuality;
 import com.badr.infodota.stream.api.twitch.TwitchAccessToken;
 import com.badr.infodota.stream.service.TwitchService;
+import com.badr.infodota.util.DialogUtils;
+import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.util.Utils;
 import com.parser.Element;
 import com.parser.Playlist;
 

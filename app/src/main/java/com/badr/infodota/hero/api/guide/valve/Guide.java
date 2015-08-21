@@ -1,19 +1,21 @@
-package com.badr.infodota.base.api.guide.valve;
+package com.badr.infodota.hero.api.guide.valve;
 
-import com.badr.infodota.base.api.guide.GuideItems;
+import com.badr.infodota.hero.api.guide.GuideItems;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 /**
  * User: Histler
  * Date: 19.01.14
  */
-public class Guide {
+public class Guide implements Serializable {
     private String author;
     private String hero;
-    private String Title;
-    private GuideItems Items;
-
-    public Guide() {
-    }
+    @SerializedName("Title")
+    private String title;
+    @SerializedName("Items")
+    private GuideItems items;
 
     public String getAuthor() {
         return author;
@@ -32,18 +34,18 @@ public class Guide {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public GuideItems getItems() {
-        return Items;
+        return items;
     }
 
     public void setItems(GuideItems items) {
-        Items = items;
+        this.items = items;
     }
 }

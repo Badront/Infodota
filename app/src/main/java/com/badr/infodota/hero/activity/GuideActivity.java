@@ -1,4 +1,4 @@
-package com.badr.infodota.base.activity;
+package com.badr.infodota.hero.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,11 +22,12 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.adapter.pager.GuidePagerAdapter;
-import com.badr.infodota.base.api.guide.custom.Guide;
-import com.badr.infodota.base.task.GuidesLoadRequest;
+import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.hero.adapter.pager.GuidePagerAdapter;
 import com.badr.infodota.hero.api.Hero;
+import com.badr.infodota.hero.api.guide.custom.Guide;
 import com.badr.infodota.hero.service.HeroService;
+import com.badr.infodota.hero.task.GuidesLoadRequest;
 import com.badr.infodota.util.FileUtils;
 import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.badr.infodota.view.SlidingTabLayout;
