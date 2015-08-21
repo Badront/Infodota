@@ -1,4 +1,4 @@
-package com.badr.infodota.base.adapter;
+package com.badr.infodota.player.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,9 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.adapter.holder.CommonStatHolder;
-import com.badr.infodota.base.api.CommonStat;
-import com.badr.infodota.util.Utils;
+import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
+import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.player.adapter.holder.PlayerCommonStatHolder;
+import com.badr.infodota.player.api.PlayerCommonStat;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -19,23 +20,23 @@ import java.util.List;
  * 20.03.2015
  * 18:06
  */
-public class CommonStatsAdapter extends BaseRecyclerAdapter<CommonStat, CommonStatHolder> {
+public class PlayerCommonStatsAdapter extends BaseRecyclerAdapter<PlayerCommonStat, PlayerCommonStatHolder> {
     private String[] localizedWinLose;
 
-    public CommonStatsAdapter(Context context, List<CommonStat> data) {
+    public PlayerCommonStatsAdapter(Context context, List<PlayerCommonStat> data) {
         super(data);
         localizedWinLose = new String[]{context.getString(R.string.win), context.getString(R.string.lost)};
     }
 
     @Override
-    public CommonStatHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlayerCommonStatHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_common_stats_row, parent, false);
-        return new CommonStatHolder(view, mOnItemClickListener);
+        return new PlayerCommonStatHolder(view, mOnItemClickListener);
     }
 
     @Override
-    public void onBindViewHolder(CommonStatHolder holder, int position) {
-        CommonStat entity = getItem(position);
+    public void onBindViewHolder(PlayerCommonStatHolder holder, int position) {
+        PlayerCommonStat entity = getItem(position);
         holder.header.setText(entity.getHeader());
         Context context = holder.header.getContext();
         Glide
