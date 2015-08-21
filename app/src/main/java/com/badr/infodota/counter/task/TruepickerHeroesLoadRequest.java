@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.counter.api.TruepickerHero;
-import com.badr.infodota.hero.service.HeroService;
+import com.badr.infodota.counter.service.CounterService;
 import com.badr.infodota.util.retrofit.TaskRequest;
 
 /**
@@ -24,7 +24,7 @@ public class TruepickerHeroesLoadRequest extends TaskRequest<TruepickerHero.List
 
     @Override
     public TruepickerHero.List loadData() throws Exception {
-        HeroService heroService = BeanContainer.getInstance().getHeroService();
-        return heroService.getTruepickerHeroes(mContext, mFilter);
+        CounterService counterService = BeanContainer.getInstance().getCounterService();
+        return counterService.getTruepickerHeroes(mContext, mFilter);
     }
 }

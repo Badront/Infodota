@@ -3,7 +3,6 @@ package com.badr.infodota.hero.service;
 import android.content.Context;
 
 import com.badr.infodota.InitializingBean;
-import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.hero.api.CarouselHero;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.abilities.Ability;
@@ -29,13 +28,7 @@ public interface HeroService extends InitializingBean {
 
     CarouselHero.List getCarouselHeroes(Context context, String filter, String name);
 
-    TruepickerHero.List getTruepickerHeroes(Context context, String filter);
-
     Hero getHeroById(Context context, long id);
-
-    TruepickerHero getTruepickerHero(Context context, long tpId);
-
-    TruepickerHero getTruepickerHeroById(Context context, long id);
 
     Hero getHeroWithStatsById(Context context, long id);
 

@@ -20,6 +20,7 @@ import com.badr.infodota.base.service.team.TeamServiceImpl;
 import com.badr.infodota.base.service.ti4.TI4ServiceImpl;
 import com.badr.infodota.base.service.update.UpdateService;
 import com.badr.infodota.base.service.update.UpdateServiceImpl;
+import com.badr.infodota.counter.dao.TruepickerHeroDao;
 import com.badr.infodota.counter.remote.CounterRemoteEntityServiceImpl;
 import com.badr.infodota.counter.service.CounterServiceImpl;
 import com.badr.infodota.hero.dao.AbilityDao;
@@ -94,6 +95,7 @@ public class BeanContainer implements InitializingBean {
     private HeroServiceImpl heroService;
     private HeroDao heroDao;
     private HeroStatsDao heroStatsDao;
+    private TruepickerHeroDao truepickerHeroDao;
     private AbilityDao abilityDao;
 
     private ItemServiceImpl itemService;
@@ -112,6 +114,7 @@ public class BeanContainer implements InitializingBean {
 
         heroDao = new HeroDao();
         heroStatsDao = new HeroStatsDao();
+        truepickerHeroDao = new TruepickerHeroDao(heroDao);
         abilityDao = new AbilityDao();
         itemDao = new ItemDao();
         accountDao = new AccountDao();
@@ -120,6 +123,7 @@ public class BeanContainer implements InitializingBean {
 
         allDaos.add(heroDao);
         allDaos.add(heroStatsDao);
+        allDaos.add(truepickerHeroDao);
         allDaos.add(itemDao);
         allDaos.add(accountDao);
         allDaos.add(abilityDao);
@@ -200,6 +204,10 @@ public class BeanContainer implements InitializingBean {
 
     public CounterRemoteEntityServiceImpl getCounterRemoteEntityService() {
         return counterRemoteEntityService;
+    }
+
+    public TruepickerHeroDao getTruepickerHeroDao() {
+        return truepickerHeroDao;
     }
 
     public CounterServiceImpl getCounterService() {

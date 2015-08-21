@@ -17,4 +17,10 @@ public interface CounterService {
             List<Integer> allies,
             List<Integer> enemies,
             int roleCodes);
+
+    TruepickerHero.List getTruepickerHeroes(Context context, String filter);
+
+    TruepickerHero getTruepickerHeroByTpId(Context context, long tpId);
+
+    TruepickerHero getTruepickerHeroById(Context context, long id);
 }
