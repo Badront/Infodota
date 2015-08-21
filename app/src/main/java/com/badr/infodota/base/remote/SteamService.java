@@ -1,14 +1,14 @@
 package com.badr.infodota.base.remote;
 
-import com.badr.infodota.base.api.cosmetics.icon.ItemIconHolderResult;
-import com.badr.infodota.base.api.cosmetics.player.PlayerCosmeticItem;
-import com.badr.infodota.base.api.cosmetics.price.PricesResult;
-import com.badr.infodota.base.api.cosmetics.store.StoreResult;
-import com.badr.infodota.base.api.matchdetails.MatchDetails;
-import com.badr.infodota.base.api.matchhistory.MatchHistoryResultResponse;
-import com.badr.infodota.base.api.news.AppNewsHolder;
-import com.badr.infodota.base.api.team.LogoDataHolder;
 import com.badr.infodota.base.api.ti4.PrizePoolHolder;
+import com.badr.infodota.cosmetic.api.icon.ItemIconHolder;
+import com.badr.infodota.cosmetic.api.player.PlayerCosmeticItem;
+import com.badr.infodota.cosmetic.api.price.ItemsPricesHolder;
+import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
+import com.badr.infodota.match.api.detailed.DetailedMatchHolder;
+import com.badr.infodota.match.api.history.MatchResultHolder;
+import com.badr.infodota.match.api.team.LogoUrlHolder;
+import com.badr.infodota.news.api.AppNewsHolder;
 import com.badr.infodota.player.api.PlayersResult;
 import com.badr.infodota.player.api.friends.FriendsResult;
 
@@ -31,7 +31,7 @@ public interface SteamService {
     FriendsResult getFriends(@Query("steamid") String steamId);
 
     @GET("/ISteamRemoteStorage/GetUGCFileDetails/v1/?appid=570")
-    LogoDataHolder getTeamLogo(@Query("ugcid") long logoId);
+    LogoUrlHolder getTeamLogo(@Query("ugcid") long logoId);
 
     @GET("/IEconDOTA2_570/GetTournamentPrizePool/v1")
 //ti4 = 600
@@ -41,24 +41,24 @@ public interface SteamService {
     AppNewsHolder getNews(@Query("enddate") Long enddate);
 
     @GET("/IDOTA2Match_570/GetMatchDetails/V001/")
-    MatchDetails getMatchDetails(@Query("match_id") String matchId);
+    DetailedMatchHolder getMatchDetails(@Query("match_id") String matchId);
 
     @GET("/IDOTA2Match_570/GetMatchHistory/V001/")
-    MatchHistoryResultResponse getMatchHistory(
+    MatchResultHolder getMatchHistory(
             @Query("account_id") Long accountId,
             @Query("start_at_match_id") Long startMatchId,
             @Query("hero_id") Long heroId
     );
 
     @GET("/IEconItems_570/GetSchemaURL/v1/")
-    StoreResult getCosmeticItems(@Query("language") String language);
+    StoreItemsHolder getCosmeticItems(@Query("language") String language);
 
     @GET("/ISteamEconomy/GetAssetPrices/v0001?language=en&appid=570")
-    PricesResult getCosmeticItemsPrices();
+    ItemsPricesHolder getCosmeticItemsPrices();
 
     @GET("/IEconItems_570/GetPlayerItems/v0001/")
     List<PlayerCosmeticItem> getPlayerCosmeticItems(@Query("steamId") long steamId);
 
     @GET("/IEconDOTA2_570/GetItemIconPath/v1/?format=json")
-    ItemIconHolderResult getItemIconPath(@Query("iconname") String iconname);
+    ItemIconHolder getItemIconPath(@Query("iconname") String iconname);
 }

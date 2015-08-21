@@ -9,9 +9,9 @@ import android.widget.Filterable;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.item.adapter.holder.ItemHolder;
 import com.badr.infodota.item.api.Item;
-import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

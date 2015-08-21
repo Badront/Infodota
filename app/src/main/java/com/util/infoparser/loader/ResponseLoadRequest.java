@@ -5,14 +5,14 @@ import android.os.Environment;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.api.Constants;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.responses.HeroResponse;
 import com.badr.infodota.hero.api.responses.HeroResponsesSection;
 import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.service.ItemService;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

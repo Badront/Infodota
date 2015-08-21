@@ -3,9 +3,9 @@ package com.badr.infodota.counter.task;
 import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.counter.service.CounterService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 
 /**
  * Created by ABadretdinov

@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.stream.StreamUtils;
 import com.badr.infodota.stream.adapter.TwitchStreamsAdapter;
 import com.badr.infodota.stream.adapter.holder.StreamHolder;
@@ -24,8 +26,6 @@ import com.badr.infodota.stream.fragment.TwitchGamesAdapter;
 import com.badr.infodota.trackdota.api.core.CoreResult;
 import com.badr.infodota.trackdota.api.live.LiveGame;
 import com.badr.infodota.trackdota.task.TrackdotaStreamsLoadRequest;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

@@ -5,12 +5,12 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.api.cosmetics.icon.ItemIconHolderResult;
-import com.badr.infodota.base.api.cosmetics.store.StoreResult;
 import com.badr.infodota.base.remote.SteamService;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.VDFtoJsonParser;
-import com.badr.infodota.util.retrofit.TaskRequest;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.VDFtoJsonParser;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.cosmetic.api.icon.ItemIconHolder;
+import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
 import com.google.gson.Gson;
 import com.util.infoparser.api.CosmeticItem;
 import com.util.infoparser.api.CosmeticItemAutograph;
@@ -36,9 +36,9 @@ public class CosmeticItemsLoadRequest extends TaskRequest<String> {
     public String loadData() throws Exception {
         BeanContainer beanContainer=BeanContainer.getInstance();
         SteamService steamService=beanContainer.getSteamService();
-        StoreResult storeResult=steamService.getCosmeticItems("ru");
-        if(storeResult!=null&&storeResult.getResult()!=null){
-            String path=storeResult.getResult().getItems_game_url();
+        StoreItemsHolder storeItemsHolder = steamService.getCosmeticItems("ru");
+        if (storeItemsHolder != null && storeItemsHolder.getStoreItems() != null) {
+            String path = storeItemsHolder.getStoreItems().getItemsGameUrl();
             URLRemoteService urlRemoteService=new URLRemoteService();
             String items=urlRemoteService.loadResult(mContext,path);
             FileUtils.saveStringFile("cosmetic_items.txt", items);
@@ -62,9 +62,9 @@ public class CosmeticItemsLoadRequest extends TaskRequest<String> {
                     String[] parts=cosmeticItem.getImageInventory().split("/");
                     String iconPath=parts[parts.length-1];
                     try {
-                        ItemIconHolderResult iconResult=steamService.getItemIconPath(iconPath.toLowerCase());
-                        if(iconResult!=null&&iconResult.getResult()!=null) {
-                            cosmeticItem.setImageUrl(iconResult.getResult().getPath());
+                        ItemIconHolder iconResult = steamService.getItemIconPath(iconPath.toLowerCase());
+                        if (iconResult != null && iconResult.getItemIcon() != null) {
+                            cosmeticItem.setImageUrl(iconResult.getItemIcon().getPath());
                             cosmeticItem.setImageInventory(null);
                             System.out.println("LOADING COMPLETE:   "+i+"/"+size);
                         }
@@ -85,9 +85,9 @@ public class CosmeticItemsLoadRequest extends TaskRequest<String> {
                     String[] parts=autograph.getIconPath().split("/");
                     String iconPath=parts[parts.length-1];
                     try {
-                        ItemIconHolderResult iconResult=steamService.getItemIconPath(iconPath.toLowerCase());
-                        if(iconResult!=null&&iconResult.getResult()!=null){
-                            autograph.setImageUrl(iconResult.getResult().getPath());
+                        ItemIconHolder iconResult = steamService.getItemIconPath(iconPath.toLowerCase());
+                        if (iconResult != null && iconResult.getItemIcon() != null) {
+                            autograph.setImageUrl(iconResult.getItemIcon().getPath());
                             autograph.setIconPath(null);
                         }
                     }

@@ -11,12 +11,12 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.fragment.RecyclerFragment;
-import com.badr.infodota.base.task.LeagueLoadRequest;
 import com.badr.infodota.trackdota.activity.TrackdotaLeagueInfoActivity;
 import com.badr.infodota.trackdota.adapter.TrackdotaLeagueAdapter;
 import com.badr.infodota.trackdota.adapter.holder.TrackdotaLeagueHolder;
 import com.badr.infodota.trackdota.api.LeaguesHolder;
 import com.badr.infodota.trackdota.api.game.League;
+import com.badr.infodota.trackdota.task.LeagueLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

@@ -21,8 +21,8 @@ import android.widget.ImageView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
-import com.badr.infodota.base.task.TwitchQualitiesLoadRequest;
-import com.badr.infodota.view.TappableSurfaceView;
+import com.badr.infodota.base.view.TappableSurfaceView;
+import com.badr.infodota.stream.task.TwitchQualitiesLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

@@ -17,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.trackdota.OnLivePlayerClickListener;
 import com.badr.infodota.trackdota.TrackdotaUtils;
@@ -26,9 +29,6 @@ import com.badr.infodota.trackdota.api.core.Player;
 import com.badr.infodota.trackdota.api.live.LiveGame;
 import com.badr.infodota.trackdota.api.live.LivePlayer;
 import com.badr.infodota.trackdota.api.live.LiveTeam;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
-import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 
 import java.io.Serializable;

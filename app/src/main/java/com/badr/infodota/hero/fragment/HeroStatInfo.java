@@ -18,12 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.task.MediaPlayerForRandomHeroResponseRequest;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.ResourceUtils;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.HeroStats;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.ResourceUtils;
-import com.badr.infodota.util.Utils;
+import com.badr.infodota.hero.task.MediaPlayerForRandomHeroResponseRequest;
 import com.bumptech.glide.Glide;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;

@@ -27,7 +27,7 @@
             android:singleLine="true" />
     </LinearLayout>
 
-    <com.badr.infodota.view.SlidingTabLayout
+    <com.badr.infodota.base.view.SlidingTabLayout
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

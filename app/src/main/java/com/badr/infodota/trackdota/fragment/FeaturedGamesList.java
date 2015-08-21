@@ -9,11 +9,11 @@ import android.widget.ListView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.fragment.ListFragment;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.trackdota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.trackdota.adapter.FeaturedGamesAdapter;
 import com.badr.infodota.trackdota.api.game.Game;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
 
 import java.util.List;
 

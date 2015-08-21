@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.util.FileUtils;
+import com.badr.infodota.base.util.FileUtils;
 
 /**
  * User: ABadretdinov

@@ -23,10 +23,10 @@ import android.widget.EditText;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.ListHolderActivity;
+import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.stream.adapter.pager.TwitchPagerAdapter;
 import com.badr.infodota.stream.api.Stream;
 import com.badr.infodota.stream.service.TwitchService;
-import com.badr.infodota.view.SlidingTabLayout;
 
 /**
  * User: ABadretdinov

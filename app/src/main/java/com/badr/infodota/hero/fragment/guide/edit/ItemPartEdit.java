@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.guide.custom.Guide;
 import com.badr.infodota.hero.api.guide.custom.ItemBuild;
@@ -25,8 +27,6 @@ import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.item.activity.ItemSelectActivity;
 import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.service.ItemService;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.view.FlowLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;

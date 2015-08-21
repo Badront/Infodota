@@ -3,9 +3,9 @@ package com.badr.infodota.hero.task;
 import android.content.Context;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.hero.api.Skill;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.retrofit.TaskRequest;
 import com.google.gson.Gson;
 
 /**

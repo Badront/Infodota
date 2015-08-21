@@ -24,17 +24,17 @@ import android.widget.Toast;
 import com.badr.infodota.R;
 import com.badr.infodota.base.api.Constants;
 import com.badr.infodota.base.fragment.SearchableFragment;
-import com.badr.infodota.base.fragment.cosmetic.CosmeticList;
-import com.badr.infodota.base.fragment.leagues.LeaguesGamesList;
-import com.badr.infodota.base.fragment.news.NewsList;
-import com.badr.infodota.base.fragment.player.groups.PlayerGroupsHolder;
-import com.badr.infodota.base.fragment.quiz.QuizTypeSelect;
+import com.badr.infodota.base.util.UpdateUtils;
+import com.badr.infodota.cosmetic.fragment.CosmeticItemsList;
 import com.badr.infodota.counter.fragment.CounterPickFilter;
 import com.badr.infodota.hero.fragment.HeroesList;
 import com.badr.infodota.item.fragment.ItemsList;
+import com.badr.infodota.joindota.fragment.LeaguesGamesList;
+import com.badr.infodota.news.fragment.NewsList;
+import com.badr.infodota.player.fragment.PlayerGroupsHolder;
+import com.badr.infodota.quiz.fragment.QuizTypeSelect;
 import com.badr.infodota.stream.fragment.TwitchHolder;
 import com.badr.infodota.trackdota.fragment.TrackdotaMain;
-import com.badr.infodota.util.UpdateUtils;
 
 /**
  * User: ABadretdinov
@@ -158,7 +158,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
                     details = new CounterPickFilter();
                     break;
                 case 4:
-                    details = new CosmeticList();
+                    details = new CosmeticItemsList();
                     break;
                 case 5:
                     details = new QuizTypeSelect();

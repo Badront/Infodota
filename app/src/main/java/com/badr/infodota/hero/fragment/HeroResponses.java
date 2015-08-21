@@ -18,13 +18,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.task.MusicLoadRequest;
+import com.badr.infodota.base.util.retrofit.LocalSpiceService;
 import com.badr.infodota.hero.adapter.HeroResponsesAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.responses.HeroResponse;
 import com.badr.infodota.hero.api.responses.HeroResponsesSection;
 import com.badr.infodota.hero.task.HeroResponseLoadRequest;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.hero.task.MusicLoadRequest;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;

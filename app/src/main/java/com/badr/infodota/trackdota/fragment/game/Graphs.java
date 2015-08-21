@@ -14,11 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
+import com.badr.infodota.base.view.GraphMarkerView;
 import com.badr.infodota.trackdota.api.core.CoreResult;
 import com.badr.infodota.trackdota.api.live.LiveGame;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
-import com.badr.infodota.view.GraphMarkerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;

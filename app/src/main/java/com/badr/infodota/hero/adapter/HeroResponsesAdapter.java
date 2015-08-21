@@ -25,11 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.view.PinnedSectionListView;
 import com.badr.infodota.hero.api.responses.HeroResponse;
 import com.badr.infodota.hero.api.responses.HeroResponsesSection;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.Utils;
-import com.badr.infodota.view.PinnedSectionListView;
 import com.bumptech.glide.Glide;
 
 import java.io.BufferedInputStream;

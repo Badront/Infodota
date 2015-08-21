@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.view.PinnedSectionListView;
 import com.badr.infodota.trackdota.TrackdotaUtils;
 import com.badr.infodota.trackdota.api.game.EnhancedGame;
 import com.badr.infodota.trackdota.api.game.EnhancedMatch;
 import com.badr.infodota.trackdota.api.game.Team;
-import com.badr.infodota.view.PinnedSectionListView;
 import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;

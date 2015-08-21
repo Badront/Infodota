@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.hero.api.abilities.Ability;
 import com.badr.infodota.hero.api.guide.custom.AbilityBuild;
 import com.badr.infodota.hero.api.guide.custom.Guide;
 import com.badr.infodota.hero.service.HeroService;
-import com.badr.infodota.util.FileUtils;
 
 import java.util.HashMap;
 import java.util.List;

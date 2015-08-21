@@ -3,11 +3,11 @@ package com.badr.infodota.hero.fragment;
 import android.app.Activity;
 import android.support.v4.app.ListFragment;
 
-import com.badr.infodota.base.adapter.SkillsAdapter;
+import com.badr.infodota.base.util.retrofit.LocalSpiceService;
+import com.badr.infodota.hero.adapter.SkillsAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.Skill;
 import com.badr.infodota.hero.task.SkillsLoadRequest;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
