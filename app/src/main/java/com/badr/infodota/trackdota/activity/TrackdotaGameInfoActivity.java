@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.trackdota.TrackdotaUtils;
 import com.badr.infodota.trackdota.adapter.pager.TrackdotaGamePagerAdapter;
 import com.badr.infodota.trackdota.api.GameManager;
@@ -17,8 +19,6 @@ import com.badr.infodota.trackdota.api.live.LiveGame;
 import com.badr.infodota.trackdota.api.live.LiveTeam;
 import com.badr.infodota.trackdota.task.CoreGameLoadRequest;
 import com.badr.infodota.trackdota.task.LiveGameLoadRequest;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

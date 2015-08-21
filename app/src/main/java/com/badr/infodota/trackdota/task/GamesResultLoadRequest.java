@@ -1,9 +1,9 @@
 package com.badr.infodota.trackdota.task;
 
 import com.badr.infodota.BeanContainer;
+import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.trackdota.api.game.GamesResult;
 import com.badr.infodota.trackdota.service.TrackdotaService;
-import com.badr.infodota.util.retrofit.TaskRequest;
 
 /**
  * Created by ABadretdinov

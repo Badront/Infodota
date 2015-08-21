@@ -8,12 +8,12 @@ import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.trackdota.api.game.GamesResult;
 import com.badr.infodota.trackdota.fragment.FeaturedGamesList;
 import com.badr.infodota.trackdota.fragment.LeaguesList;
 import com.badr.infodota.trackdota.fragment.LiveGamesList;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
 
 /**
  * Created by ABadretdinov

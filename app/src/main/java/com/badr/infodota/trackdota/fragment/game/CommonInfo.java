@@ -20,9 +20,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.MatchInfoActivity;
+import com.badr.infodota.base.util.GrayImageLoadListener;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
+import com.badr.infodota.match.activity.MatchDetailsActivity;
 import com.badr.infodota.trackdota.TrackdotaUtils;
 import com.badr.infodota.trackdota.api.GameManager;
 import com.badr.infodota.trackdota.api.core.BanPick;
@@ -30,10 +34,6 @@ import com.badr.infodota.trackdota.api.core.CoreResult;
 import com.badr.infodota.trackdota.api.game.League;
 import com.badr.infodota.trackdota.api.game.Team;
 import com.badr.infodota.trackdota.api.live.LiveGame;
-import com.badr.infodota.util.GrayImageLoadListener;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
-import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 
 import java.text.MessageFormat;
@@ -93,7 +93,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult, L
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.equals(summaryInfo)) {
-            Intent intent = new Intent(getActivity(), MatchInfoActivity.class);
+            Intent intent = new Intent(getActivity(), MatchDetailsActivity.class);
             intent.putExtra("matchId", String.valueOf(coreResult.getId()));
             startActivity(intent);
             return true;

@@ -24,6 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
+import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.Updatable;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.item.activity.ItemInfoActivity;
@@ -37,14 +40,11 @@ import com.badr.infodota.trackdota.api.game.Team;
 import com.badr.infodota.trackdota.api.live.LiveGame;
 import com.badr.infodota.trackdota.api.live.LivePlayer;
 import com.badr.infodota.trackdota.api.live.LiveTeam;
-import com.badr.infodota.util.Refresher;
-import com.badr.infodota.util.Updatable;
-import com.badr.infodota.util.Utils;
 import com.bumptech.glide.Glide;
 
-import static com.badr.infodota.util.Utils.PHONE;
-import static com.badr.infodota.util.Utils.TABLET_LANDSCAPE;
-import static com.badr.infodota.util.Utils.TABLET_PORTRAIT;
+import static com.badr.infodota.base.util.Utils.PHONE;
+import static com.badr.infodota.base.util.Utils.TABLET_LANDSCAPE;
+import static com.badr.infodota.base.util.Utils.TABLET_PORTRAIT;
 
 /**
  * Created by ABadretdinov

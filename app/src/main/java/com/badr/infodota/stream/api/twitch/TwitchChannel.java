@@ -1,6 +1,6 @@
 package com.badr.infodota.stream.api.twitch;
 
-import com.badr.infodota.util.HasId;
+import com.badr.infodota.base.util.HasId;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

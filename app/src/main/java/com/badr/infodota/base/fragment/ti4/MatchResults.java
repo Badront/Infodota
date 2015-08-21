@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.service.match.MatchService;
-import com.badr.infodota.base.service.team.TeamService;
+import com.badr.infodota.match.service.MatchService;
+import com.badr.infodota.match.service.team.TeamService;
 /*import com.handmark.pulltorefresh.library.PinnedSectionListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshPinnedSectionListView;*/
@@ -70,7 +70,7 @@ public class MatchResults extends Fragment {
                 Match match = adapter.getItem(position);
                 Intent intent = new Intent(getActivity(), MatchInfoActivity.class);
                 if (!(match instanceof Result)) {
-                    intent.putExtra("matchId", String.valueOf(match.getMatch_id()));
+                    intent.putExtra("matchId", String.valueOf(match.getId()));
                     startActivity(intent);
                 } else {
                     if (!((Result) match).isSection()) {
@@ -87,7 +87,7 @@ public class MatchResults extends Fragment {
                 long lastMatchId = 0;
                 if (adapter.getCount() > 0) {
                     Match last = adapter.getItem(adapter.getCount() - 1);
-                    lastMatchId = last.getMatch_id() - 1;
+                    lastMatchId = last.getId() - 1;
                 }
                 loadHistory(lastMatchId);
             }
@@ -102,7 +102,7 @@ public class MatchResults extends Fragment {
                         updaterTask.cancel(true);
                         updaterTask = null;
                     }
-                    intent.putExtra("matchId", String.valueOf(match.getMatch_id()));
+                    intent.putExtra("matchId", String.valueOf(match.getId()));
                     startActivityForResult(intent, MATCH_DETAILS);
                 } else {
                     if (!((Result) match).isSection()) {
@@ -139,15 +139,15 @@ public class MatchResults extends Fragment {
             new LoaderProgressTask<Pair<ResultResponse, String>>(new ProgressTask<Pair<ResultResponse, String>>() {
                 @Override
                 public Pair<ResultResponse, String> doTask(OnPublishProgressListener listener) {
-                    return matchService.getMatches(activity, fromMatchId, Constants.History.LEAGUE_ID + String.valueOf(leagueId));
+                    return matchService.getHistoryMatches(activity, fromMatchId, Constants.History.LEAGUE_ID + String.valueOf(leagueId));
                 }
 
                 @Override
                 public void doAfterTask(Pair<ResultResponse, String> resultResponse) {
                     if (resultResponse.first != null) {
-                        com.badr.infodota.base.api.matchhistory.Result result = resultResponse.first.getResult();
-                        total = result.getTotal_results();
-                        adapter.addMatches(result.getMatches());
+                        com.badr.infodota.match.api.matchhistory.Result result = resultResponse.first.getMatchResult();
+                        total = result.getTotalResults();
+                        adapter.addMatches(result.getHistoryMatches());
                         if (result.getStatus() == 15 || !TextUtils.isEmpty(result.getStatusDetail())) {
                             Toast.makeText(activity, getString(R.string.match_history_closed),
                                     Toast.LENGTH_LONG).show();
@@ -190,7 +190,7 @@ public class MatchResults extends Fragment {
             updaterTask.cancel(true);
         }
         if (adapter != null) {
-            List<Match> matches = adapter.getMatches();
+            List<Match> matches = adapter.getHistoryMatches();
             updaterTask = new MatchDetailsLoader().execute(matches.toArray(new Match[matches.size()]));
         }
     }
@@ -222,9 +222,9 @@ public class MatchResults extends Fragment {
                     }
                     if (!(match instanceof Result)) {
                         try {
-                            Pair<MatchDetails, String> matchResult = matchService.getMatchDetails(activity, String.valueOf(match.getMatch_id()));
+                            Pair<MatchDetails, String> matchResult = matchService.getMatchDetails(activity, String.valueOf(match.getId()));
                             if (matchResult.first != null) {
-                                Result result = matchResult.first.getResult();
+                                Result result = matchResult.first.getMatchResult();
                                 Team radiant = teamService.getTeamById(activity, result.getRadiant_team_id());
                                 if (radiant == null) {
                                     Pair<String, String> radiantTeamLogo = teamService.getTeamLogo(activity,

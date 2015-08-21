@@ -26,9 +26,9 @@
             android:id="@+id/hero_img"
             android:layout_width="132dp"
             android:layout_height="76dp"
-            android:src="@drawable/default_img"
             android:background="?attr/selectableItemBackground"
-            android:padding="2dp" />
+            android:padding="2dp"
+            android:src="@drawable/default_img" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,11 +66,11 @@
                     android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/alive_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="gone"
-                android:id="@+id/alive_status">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,11 +87,11 @@
                     android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ult_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="gone"
-                android:id="@+id/ult_status">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.badr.infodota.view.SlidingTabLayout
+    <com.badr.infodota.base.view.SlidingTabLayout
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

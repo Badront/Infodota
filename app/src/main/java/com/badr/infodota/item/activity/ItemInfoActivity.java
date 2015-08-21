@@ -17,11 +17,11 @@ import android.widget.TextView;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.util.FileUtils;
+import com.badr.infodota.base.util.ResourceUtils;
+import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.service.ItemService;
-import com.badr.infodota.util.FileUtils;
-import com.badr.infodota.util.ResourceUtils;
-import com.badr.infodota.view.FlowLayout;
 import com.google.gson.Gson;
 
 import java.util.List;
