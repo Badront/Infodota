@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.leagues.LeaguesGamesList;
 import com.badr.infodota.base.fragment.ti4.MatchResults;
+import com.badr.infodota.joindota.fragment.LeaguesGamesList;
 
 /**
  * User: ABadretdinov

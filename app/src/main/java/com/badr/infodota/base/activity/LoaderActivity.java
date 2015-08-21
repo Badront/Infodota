@@ -17,7 +17,7 @@ import com.badr.infodota.base.api.Constants;
 import com.badr.infodota.base.dao.Helper;
 import com.badr.infodota.base.service.LocalUpdateService;
 import com.badr.infodota.base.task.UpdateLoadRequest;
-import com.badr.infodota.util.retrofit.LocalSpiceService;
+import com.badr.infodota.base.util.retrofit.LocalSpiceService;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -251,7 +251,7 @@ public class LoaderActivity extends Activity implements RequestListener<String> 
                 heroesEntity = FileUtils.getTextFromAsset(LoaderActivity.this, "heroes.json");
                 // publishProgress("грузим список героев");
                 GetHeroes getHeroes = new Gson().fromJson(heroesEntity, GetHeroes.class);
-                List<Hero> heroes = getHeroes.getResult().getHeroes();
+                List<Hero> heroes = getHeroes.getMatchResult().getHeroes();
                 //publishProgress(getString(R.string.heroes_list),String.valueOf(size),String.valueOf(0));
 
                 // publishProgress("грузим скилы");

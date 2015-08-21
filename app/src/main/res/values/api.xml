@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="api">YOU_STEAM_API_HERE</string>
-    <string name="youtube_api">YOUR_YOUTUBE_API_HERE</string>
-    <string name="achievement_first_game__first_achievement"></string>
-    <string name="achievement_im_everywhere"></string>
-    <string name="achievement_perfect_attempt"></string>
-    <string name="achievement_loler"></string>
-    <string name="achievement_newbie"></string>
-    <string name="achievement_a_little_better"></string>
-    <string name="achievement_not_bad"></string>
-    <string name="achievement_high_five"></string>
-    <string name="achievement_pro"></string>
-    <string name="achievement_im_proud_of_you"></string>
-    <string name="achievement_cheater"></string>
-    <string name="leaderboard_best_by_items_quiz"></string>
-    <string name="leaderboard_best_by_abilities_quiz"></string>
-    <string name="leaderboard_luckers"></string>
+    <string name="api">54E61DBFB0A2D4A1B24B4C7EC5C5EFFD</string>
+    <string name="youtube_api">AIzaSyCmbahXz5a5mnugI0cKNOxLtytdpW8-W6I</string>
+    <string name="achievement_first_game__first_achievement">CgkI3Kehp-MbEAIQAQ</string>
+    <string name="achievement_im_everywhere">CgkI3Kehp-MbEAIQAg</string>
+    <string name="achievement_perfect_attempt">CgkI3Kehp-MbEAIQAw</string>
+    <string name="achievement_loler">CgkI3Kehp-MbEAIQBA</string>
+    <string name="achievement_newbie">CgkI3Kehp-MbEAIQBQ</string>
+    <string name="achievement_a_little_better">CgkI3Kehp-MbEAIQBg</string>
+    <string name="achievement_not_bad">CgkI3Kehp-MbEAIQBw</string>
+    <string name="achievement_high_five">CgkI3Kehp-MbEAIQCA</string>
+    <string name="achievement_pro">CgkI3Kehp-MbEAIQCQ</string>
+    <string name="achievement_im_proud_of_you">CgkI3Kehp-MbEAIQCg</string>
+    <string name="achievement_cheater">CgkI3Kehp-MbEAIQCw</string>
+    <string name="leaderboard_best_by_items_quiz">CgkI3Kehp-MbEAIQDA</string>
+    <string name="leaderboard_best_by_abilities_quiz">CgkI3Kehp-MbEAIQDQ</string>
+    <string name="leaderboard_luckers">CgkI3Kehp-MbEAIQDg</string>
 </resources>

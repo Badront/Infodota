@@ -1,6 +1,6 @@
 package com.badr.infodota.player.api;
 
-import com.badr.infodota.util.HasId;
+import com.badr.infodota.base.util.HasId;
 
 import java.io.Serializable;
 import java.util.ArrayList;

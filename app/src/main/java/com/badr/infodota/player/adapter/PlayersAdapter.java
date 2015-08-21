@@ -13,11 +13,11 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.adapter.pager.MatchHistoryPagerAdapter;
-import com.badr.infodota.base.service.player.PlayerService;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.player.adapter.holder.PlayerHolder;
+import com.badr.infodota.player.adapter.pager.PlayerGroupsPagerAdapter;
 import com.badr.infodota.player.api.Unit;
-import com.badr.infodota.util.Utils;
+import com.badr.infodota.player.service.PlayerService;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -94,8 +94,8 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
                         playerService.deleteAccount(context, unit);
                         addInit(holder, unit);
                         ViewPager viewPager = (ViewPager) ((BaseActivity) context).findViewById(R.id.pager);
-                        if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
-                            MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
+                        if (viewPager != null && viewPager.getAdapter() instanceof PlayerGroupsPagerAdapter) {
+                            PlayerGroupsPagerAdapter adapter = (PlayerGroupsPagerAdapter) viewPager.getAdapter();
                             adapter.update();
                         }
                         dialog.dismiss();
@@ -123,8 +123,8 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
                         playerService.saveAccount(context, unit);
                         deleteInit(holder, unit);
                         ViewPager viewPager = (ViewPager) ((BaseActivity) context).findViewById(R.id.pager);
-                        if (viewPager != null && viewPager.getAdapter() instanceof MatchHistoryPagerAdapter) {
-                            MatchHistoryPagerAdapter adapter = (MatchHistoryPagerAdapter) viewPager.getAdapter();
+                        if (viewPager != null && viewPager.getAdapter() instanceof PlayerGroupsPagerAdapter) {
+                            PlayerGroupsPagerAdapter adapter = (PlayerGroupsPagerAdapter) viewPager.getAdapter();
                             adapter.update();
                         }
                         dialog.dismiss();

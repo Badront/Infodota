@@ -12,8 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.util.LoaderProgressTask;
-import com.badr.infodota.util.ProgressTask;
+import com.badr.infodota.base.util.LoaderProgressTask;
+import com.badr.infodota.base.util.ProgressTask;
 
 /**
  * User: ABadretdinov
