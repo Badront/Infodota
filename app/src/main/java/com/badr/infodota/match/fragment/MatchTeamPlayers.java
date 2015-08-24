@@ -1,17 +1,18 @@
 package com.badr.infodota.match.fragment;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
+import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.match.activity.MatchPlayerDetailsActivity;
 import com.badr.infodota.match.adapter.MatchPlayersAdapter;
+import com.badr.infodota.match.adapter.holder.MatchPlayerHolder;
 import com.badr.infodota.match.api.Player;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * Date: 21.01.14
  * Time: 15:32
  */
-public class MatchTeamPlayers extends ListFragment {
+public class MatchTeamPlayers extends RecyclerFragment<Player, MatchPlayerHolder> {
     private List<Player> players;
     private boolean randomSkills;
 
@@ -45,13 +46,13 @@ public class MatchTeamPlayers extends ListFragment {
         this.randomSkills = randomSkills;
         Context context = getActivity();
         if (context != null) {
-            setListAdapter(new MatchPlayersAdapter(context, players));
+            setAdapter(new MatchPlayersAdapter(players, Utils.getDeviceState(context)));
         }
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Player player = (Player) getListAdapter().getItem(position);
+    public void onItemClick(View view, int position) {
+        Player player = getAdapter().getItem(position);
         Intent intent = new Intent(getActivity(), MatchPlayerDetailsActivity.class);
         intent.putExtra("player", player);
         intent.putExtra("randomSkills", randomSkills);
@@ -61,17 +62,19 @@ public class MatchTeamPlayers extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (players != null) {
-            setListAdapter(new MatchPlayersAdapter(getActivity(), players));
+        Activity activity = getActivity();
+        if (players != null && activity != null) {
+            setAdapter(new MatchPlayersAdapter(players, Utils.getDeviceState(activity)));
         }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        ListAdapter adapter = getListAdapter();
-        if (adapter != null) {
-            ((MatchPlayersAdapter) adapter).notifyDataSetChanged();
+        MatchPlayersAdapter adapter = (MatchPlayersAdapter) getAdapter();
+        Activity activity = getActivity();
+        if (adapter != null && activity != null) {
+            adapter.notifyStateChanged(Utils.getDeviceState(activity));
         }
     }
 
