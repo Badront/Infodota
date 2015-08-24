@@ -34,7 +34,6 @@ public abstract class UpdatableListFragment extends Fragment {
     protected View mProgressBar;
     protected SwipeRefreshLayout mListContainer;
     protected int layoutId = R.layout.updatable_list_content;
-    int INTERNAL_EMPTY_ID = 0x00ff0001;
     private ListAdapter mAdapter;
     private ListView mList;
 
@@ -97,7 +96,6 @@ public abstract class UpdatableListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(layoutId, container, false);
-        (root.findViewById(R.id.internalEmpty)).setId(INTERNAL_EMPTY_ID);
         mList = (ListView) root.findViewById(android.R.id.list);
 
         mList.setOnItemClickListener(mOnClickListener);
