@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.fragment.ListFragment;
+import com.badr.infodota.base.fragment.UpdatableListFragment;
 import com.badr.infodota.base.util.EndlessScrollListener;
 import com.badr.infodota.base.util.retrofit.LocalSpiceService;
 import com.badr.infodota.joindota.activity.LeagueGameActivity;
@@ -30,7 +30,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 22.04.14
  * Time: 18:30
  */
-public class LeaguesGamesList extends ListFragment implements RequestListener<MatchItem.List> {
+public class LeaguesGamesList extends UpdatableListFragment implements RequestListener<MatchItem.List> {
     private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
     private String mExtraParams;
 

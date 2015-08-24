@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.trackdota.activity.TrackdotaLeagueInfoActivity;
 import com.badr.infodota.trackdota.adapter.TrackdotaLeagueAdapter;
 import com.badr.infodota.trackdota.adapter.holder.TrackdotaLeagueHolder;
@@ -27,7 +27,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * 08.06.2015
  * 12:13
  */
-public class LeaguesList extends RecyclerFragment<League, TrackdotaLeagueHolder> implements RequestListener<LeaguesHolder> {
+public class LeaguesList extends UpdatableRecyclerFragment<League, TrackdotaLeagueHolder> implements RequestListener<LeaguesHolder> {
 
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 

@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.match.activity.MatchDetailsActivity;
 import com.badr.infodota.player.adapter.PlayerCommonStatsAdapter;
 import com.badr.infodota.player.adapter.holder.PlayerCommonStatHolder;
@@ -31,7 +31,7 @@ import java.text.MessageFormat;
  * Date: 27.03.14
  * Time: 18:27
  */
-public class PlayerCommonStats extends RecyclerFragment<PlayerCommonStat, PlayerCommonStatHolder> implements RequestListener<PlayerCommonStats.CommonInfo> {
+public class PlayerCommonStats extends UpdatableRecyclerFragment<PlayerCommonStat, PlayerCommonStatHolder> implements RequestListener<PlayerCommonStats.CommonInfo> {
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private String metric;
     private Unit account;

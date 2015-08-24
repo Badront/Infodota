@@ -20,11 +20,15 @@ public class PlayerHolder extends BaseViewHolder {
 
     public PlayerHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
+
+    }
+
+    @Override
+    protected void initView(View itemView) {
         icon = (ImageView) itemView.findViewById(R.id.player_image);
         name = (TextView) itemView.findViewById(R.id.player_name);
         add = (ImageView) itemView.findViewById(R.id.add_btn);
         delete = (ImageView) itemView.findViewById(R.id.delete_btn);
         group = (TextView) itemView.findViewById(R.id.group_id);
-
     }
 }

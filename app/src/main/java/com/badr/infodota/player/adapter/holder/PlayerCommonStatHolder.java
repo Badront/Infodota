@@ -24,6 +24,10 @@ public class PlayerCommonStatHolder extends BaseViewHolder {
 
     public PlayerCommonStatHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
+    }
+
+    @Override
+    protected void initView(View itemView) {
         header = (TextView) itemView.findViewById(R.id.header);
         heroImg = (ImageView) itemView.findViewById(R.id.hero_img);
         heroName = (TextView) itemView.findViewById(R.id.hero_name);

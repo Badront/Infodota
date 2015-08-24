@@ -22,11 +22,10 @@ public class TrackdotaLeagueHolder extends BaseViewHolder {
 
     public TrackdotaLeagueHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
-        initItems(itemView);
-
     }
 
-    private void initItems(View itemView) {
+    @Override
+    protected void initView(View itemView) {
         image = (ImageView) itemView.findViewById(R.id.league_logo);
         title = (TextView) itemView.findViewById(R.id.title);
         description = (TextView) itemView.findViewById(R.id.description);

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.player.activity.PlayerInfoActivity;
 import com.badr.infodota.player.adapter.PlayersAdapter;
 import com.badr.infodota.player.adapter.holder.PlayerHolder;
@@ -29,7 +29,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 21.04.14
  * Time: 17:05
  */
-public class FriendsList extends RecyclerFragment<Unit, PlayerHolder> implements RequestListener<Unit.List> {
+public class FriendsList extends UpdatableRecyclerFragment<Unit, PlayerHolder> implements RequestListener<Unit.List> {
     private Unit account;
     private PlayerService playerService = BeanContainer.getInstance().getPlayerService();
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);

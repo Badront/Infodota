@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.ListFragment;
+import com.badr.infodota.base.fragment.UpdatableListFragment;
 import com.badr.infodota.base.util.Refresher;
 import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.trackdota.adapter.LogsAdapter;
@@ -19,7 +19,7 @@ import com.badr.infodota.trackdota.api.live.LiveGame;
  * 17.04.2015
  * 14:21
  */
-public class LogList extends ListFragment implements Updatable<Pair<CoreResult, LiveGame>> {
+public class LogList extends UpdatableListFragment implements Updatable<Pair<CoreResult, LiveGame>> {
     private Refresher refresher;
     private LiveGame liveGame;
     private CoreResult coreResult;

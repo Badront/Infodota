@@ -22,6 +22,10 @@ public class StreamHolder extends BaseViewHolder {
 
     public StreamHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
+    }
+
+    @Override
+    protected void initView(View itemView) {
         img = (ImageView) itemView.findViewById(R.id.img);
         channel = (TextView) itemView.findViewById(R.id.channel);
         status = (TextView) itemView.findViewById(R.id.status);

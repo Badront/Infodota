@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.base.util.Refresher;
 import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.stream.StreamUtils;
@@ -34,7 +34,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
 /**
  * Created by Badr on 18.04.2015.
  */
-public class StreamList extends RecyclerFragment<Stream, StreamHolder> implements RequestListener<Stream.List>, TwitchGamesAdapter, Updatable<Pair<CoreResult, LiveGame>> {
+public class StreamList extends UpdatableRecyclerFragment<Stream, StreamHolder> implements RequestListener<Stream.List>, TwitchGamesAdapter, Updatable<Pair<CoreResult, LiveGame>> {
     public static final int PLAYER_TYPE = 1403;
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
     private CoreResult coreResult;

@@ -3,6 +3,7 @@ package com.badr.infodota.base.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,19 +17,18 @@ import com.badr.infodota.base.adapter.OnItemClickListener;
 import com.badr.infodota.base.adapter.holder.BaseViewHolder;
 
 /**
- * Created by ABadretdinov
- * 24.08.2015
- * 11:37
+ * Created by Badr on 21.12.2014.
  */
-public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> extends Fragment implements OnItemClickListener {
+public abstract class UpdatableRecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> extends Fragment implements OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+    protected SwipeRefreshLayout mListContainer;
     protected RecyclerView mRecyclerView;
+    protected View mProgressBar;
+    protected View mEmptyView;
+    protected int layoutId = R.layout.updatable_recycler_content;
     protected BaseRecyclerAdapter<T, VIEW_HOLDER> mAdapter;
-    private View mProgressBar;
-    private View mEmptyView;
-    private int mLayoutId = R.layout.recycler_content;
 
     public void setLayoutId(int layoutId) {
-        this.mLayoutId = layoutId;
+        this.layoutId = layoutId;
     }
 
     public RecyclerView getRecyclerView() {
@@ -58,6 +58,11 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
         mRecyclerView.setVerticalScrollBarEnabled(true);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         mRecyclerView.setItemAnimator(itemAnimator);
+        mListContainer = (SwipeRefreshLayout) root.findViewById(R.id.listContainer);
+        if (mListContainer != null) {
+            mListContainer.setColorSchemeResources(R.color.primary);
+            mListContainer.setOnRefreshListener(this);
+        }
         mEmptyView = root.findViewById(R.id.internalEmpty);
         mProgressBar = root.findViewById(R.id.progressBar);
         if (mAdapter != null) {
@@ -89,12 +94,12 @@ public abstract class RecyclerFragment<T, VIEW_HOLDER extends BaseViewHolder> ex
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(mLayoutId, container, false);
+        View view = inflater.inflate(layoutId, container, false);
         ensureList(view);
         return view;
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
+    public void setRefreshing(boolean refreshing) {
+        mListContainer.setRefreshing(refreshing);
     }
 }

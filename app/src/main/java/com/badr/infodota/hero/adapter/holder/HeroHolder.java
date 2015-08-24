@@ -19,6 +19,10 @@ public class HeroHolder extends BaseViewHolder {
 
     public HeroHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
+    }
+
+    @Override
+    protected void initView(View itemView) {
         name = (TextView) itemView.findViewById(R.id.name);
         image = (ImageView) itemView.findViewById(R.id.img);
     }

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.player.activity.PlayerInfoActivity;
 import com.badr.infodota.player.adapter.PlayersAdapter;
 import com.badr.infodota.player.adapter.holder.PlayerHolder;
@@ -34,7 +34,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * User: Histler
  * Date: 04.02.14
  */
-public class GroupPlayersList extends RecyclerFragment<Unit, PlayerHolder> implements TextWatcher, RequestListener<Unit.List> {
+public class GroupPlayersList extends UpdatableRecyclerFragment<Unit, PlayerHolder> implements TextWatcher, RequestListener<Unit.List> {
 
     private EditText search;
     private String query = null;

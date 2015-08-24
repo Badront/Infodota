@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.fragment.ListFragment;
+import com.badr.infodota.base.fragment.UpdatableListFragment;
 import com.badr.infodota.base.util.EndlessScrollListener;
 import com.badr.infodota.news.activity.NewsItemActivity;
 import com.badr.infodota.news.adapter.NewsAdapter;
@@ -29,7 +29,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 21.04.14
  * Time: 18:29
  */
-public class NewsList extends ListFragment implements SwipeRefreshLayout.OnRefreshListener, RequestListener<AppNews> {
+public class NewsList extends UpdatableListFragment implements SwipeRefreshLayout.OnRefreshListener, RequestListener<AppNews> {
 
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 

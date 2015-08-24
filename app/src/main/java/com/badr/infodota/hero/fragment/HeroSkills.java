@@ -1,10 +1,12 @@
 package com.badr.infodota.hero.fragment;
 
 import android.app.Activity;
-import android.support.v4.app.ListFragment;
 
+import com.badr.infodota.base.fragment.RecyclerFragment;
 import com.badr.infodota.base.util.retrofit.LocalSpiceService;
-import com.badr.infodota.hero.adapter.SkillsAdapter;
+import com.badr.infodota.hero.adapter.HeroSkillsAdapter;
+import com.badr.infodota.hero.adapter.SkillHttpImageGetter;
+import com.badr.infodota.hero.adapter.holder.HeroSkillHolder;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.Skill;
 import com.badr.infodota.hero.task.SkillsLoadRequest;
@@ -17,14 +19,14 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 16.01.14
  * Time: 15:57
  */
-public class HeroSkills extends ListFragment implements RequestListener<Skill.List> {
+public class HeroSkills extends RecyclerFragment<Skill, HeroSkillHolder> implements RequestListener<Skill.List> {
     private SpiceManager mSpiceManager = new SpiceManager(LocalSpiceService.class);
 
-    private Hero hero;
+    private Hero mHero;
 
     public static HeroSkills newInstance(Hero hero) {
         HeroSkills fragment = new HeroSkills();
-        fragment.hero = hero;
+        fragment.mHero = hero;
         return fragment;
     }
 
@@ -34,7 +36,7 @@ public class HeroSkills extends ListFragment implements RequestListener<Skill.Li
             Activity activity = getActivity();
             if (activity != null) {
                 mSpiceManager.start(activity);
-                mSpiceManager.execute(new SkillsLoadRequest(activity.getApplicationContext(), hero.getDotaId()), this);
+                mSpiceManager.execute(new SkillsLoadRequest(activity.getApplicationContext(), mHero.getDotaId()), this);
             }
         }
         super.onStart();
@@ -54,7 +56,6 @@ public class HeroSkills extends ListFragment implements RequestListener<Skill.Li
 
     @Override
     public void onRequestSuccess(Skill.List skills) {
-        setListAdapter(new SkillsAdapter(getActivity(), skills));
-
+        setAdapter(new HeroSkillsAdapter(skills, new SkillHttpImageGetter(getActivity())));
     }
 }

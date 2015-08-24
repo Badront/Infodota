@@ -19,6 +19,10 @@ public class HistoryMatchHolder extends BaseViewHolder {
 
     public HistoryMatchHolder(View itemView, OnItemClickListener listener) {
         super(itemView, listener);
+    }
+
+    @Override
+    protected void initView(View itemView) {
         heroImg = (ImageView) itemView.findViewById(R.id.hero_img);
         heroName = (TextView) itemView.findViewById(R.id.hero_name);
         gameStartTime = (TextView) itemView.findViewById(R.id.game_start_time);

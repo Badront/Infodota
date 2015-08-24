@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.ListFragment;
+import com.badr.infodota.base.fragment.UpdatableListFragment;
 import com.badr.infodota.base.util.Refresher;
 import com.badr.infodota.base.util.Updatable;
 import com.badr.infodota.trackdota.activity.TrackdotaGameInfoActivity;
@@ -23,7 +23,7 @@ import java.util.List;
  * 13.04.2015
  * 18:40
  */
-public class LiveGamesList extends ListFragment implements Updatable<List<EnhancedMatch>> {
+public class LiveGamesList extends UpdatableListFragment implements Updatable<List<EnhancedMatch>> {
     private Refresher refresher;
 
     public static LiveGamesList newInstance(Refresher refresher) {

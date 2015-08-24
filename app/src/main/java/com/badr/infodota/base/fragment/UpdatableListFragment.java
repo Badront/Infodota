@@ -17,7 +17,7 @@ import com.badr.infodota.R;
  * 29.12.2014
  * 16:04
  */
-public abstract class ListFragment extends Fragment {
+public abstract class UpdatableListFragment extends Fragment {
 
     final private AdapterView.OnItemClickListener mOnClickListener
             = new AdapterView.OnItemClickListener() {
@@ -28,12 +28,12 @@ public abstract class ListFragment extends Fragment {
     final private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            ListFragment.this.onRefresh();
+            UpdatableListFragment.this.onRefresh();
         }
     };
     protected View mProgressBar;
     protected SwipeRefreshLayout mListContainer;
-    protected int layoutId = R.layout.list_content;
+    protected int layoutId = R.layout.updatable_list_content;
     int INTERNAL_EMPTY_ID = 0x00ff0001;
     private ListAdapter mAdapter;
     private ListView mList;

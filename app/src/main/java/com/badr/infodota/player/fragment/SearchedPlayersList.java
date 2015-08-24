@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.player.activity.PlayerInfoActivity;
 import com.badr.infodota.player.adapter.PlayersAdapter;
 import com.badr.infodota.player.adapter.holder.PlayerHolder;
@@ -36,7 +36,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 20.01.14
  * Time: 18:14
  */
-public class SearchedPlayersList extends RecyclerFragment<Unit, PlayerHolder> implements TextView.OnEditorActionListener, RequestListener<Unit.List> {
+public class SearchedPlayersList extends UpdatableRecyclerFragment<Unit, PlayerHolder> implements TextView.OnEditorActionListener, RequestListener<Unit.List> {
     private TextView searchRequest;
     private View listHeader;
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);

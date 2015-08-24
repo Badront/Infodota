@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.fragment.RecyclerFragment;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.base.util.EndlessRecycleScrollListener;
 import com.badr.infodota.hero.adapter.HeroesAutoCompleteAdapter;
 import com.badr.infodota.hero.api.Hero;
@@ -41,7 +41,7 @@ import java.util.List;
  * Date: 18.02.14
  * Time: 16:46
  */
-public class MatchHistory extends RecyclerFragment<PlayerMatch, HistoryMatchHolder> implements RequestListener<PlayerMatchResult> {
+public class MatchHistory extends UpdatableRecyclerFragment<PlayerMatch, HistoryMatchHolder> implements RequestListener<PlayerMatchResult> {
     HeroService heroService = BeanContainer.getInstance().getHeroService();
     private Unit mAccount;
     private long mTotal = 1;
