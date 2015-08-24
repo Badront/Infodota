@@ -7,8 +7,8 @@ Contact: histlerbar@gmail.com<br />
         Used data from<br />
 <a href="http://dota2.com/">dota2.com</a><br />
 <a href="http://dota2.gamepedia.com/">dota2.gamepedia.com</a><br />
-<a href="http://dotabuff.com/">Dotabuff</a><br /><br />
-<a href="http://www.twitch.tv/">TWITCH</a><br /><br />
+<a href="http://dotabuff.com/">Dotabuff</a><br />
+<a href="http://www.twitch.tv/">TWITCH</a><br />
 <a href="http://www.joindota.com/">joinDOTA</a><br />
 <a href="http://trackdota.com">TrackDota</a><br />
 <a href="http://truepicker.com">TruePicker</a><br /><br />
