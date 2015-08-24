@@ -8,6 +8,7 @@ import com.badr.infodota.R;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.Utils;
 
 /**
@@ -25,11 +26,11 @@ public class GraphMarkerView extends MarkerView {
         tvContent = (TextView) findViewById(R.id.tvContent);
     }
 
+
     // callbacks everytime the MarkerView is redrawn, can be used to update the
     // content (user-interface)
     @Override
-    public void refreshContent(Entry e, int dataSetIndex) {
-
+    public void refreshContent(Entry e, Highlight highlight) {
         if (e instanceof CandleEntry) {
 
             CandleEntry ce = (CandleEntry) e;

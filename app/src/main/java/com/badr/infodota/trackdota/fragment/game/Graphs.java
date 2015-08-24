@@ -156,7 +156,7 @@ public class Graphs extends Fragment implements Updatable<Pair<CoreResult, LiveG
 
         GraphMarkerView markerView = new GraphMarkerView(mChart.getContext(), R.layout.trackdota_graph_marker);
         mChart.setMarkerView(markerView);
-        mChart.setHighlightIndicatorEnabled(false);
+        mChart.setHighlightEnabled(false);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.removeAllLimitLines();
