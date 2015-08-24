@@ -14,11 +14,15 @@ import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
 import com.google.gson.Gson;
 import com.util.infoparser.api.CosmeticItem;
 import com.util.infoparser.api.CosmeticItemAutograph;
+import com.util.infoparser.api.CosmeticItemSet;
 import com.util.infoparser.api.CosmeticsResult;
 import com.util.infoparser.api.GameCosmetics;
 import com.util.infoparser.remote.URLRemoteService;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by ABadretdinov
@@ -74,6 +78,34 @@ public class CosmeticItemsLoadRequest extends TaskRequest<String> {
                     }
                     i++;
                 }
+            }
+            Map<String, CosmeticItemSet> sets = cosmetics.getSets();
+            cosmetics.setSets(new HashMap<String, CosmeticItemSet>());
+            iterator = sets.keySet().iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                CosmeticItemSet set = sets.get(key);
+                String name = set.getBundleItemName();
+                set.setBundleItemName(key);
+                Map<String, String> itemsMap = set.getItems();
+                set.setItems(new HashMap<String, String>());
+                Set<String> itemsKeySet = itemsMap.keySet();
+                for (String itemKey : itemsKeySet) {
+                    String count = itemsMap.get(itemKey);
+                    boolean found = false;
+                    Map<String, CosmeticItem> ciMap = cosmetics.getItems();
+                    Iterator<String> ciIterator = ciMap.keySet().iterator();
+                    while (!found && ciIterator.hasNext()) {
+                        String ciItemKey = ciIterator.next();
+                        CosmeticItem itemToCheck = ciMap.get(ciItemKey);
+                        if (itemToCheck.getName().equals(itemKey)) {
+                            found = true;
+                            set.getItems().put(ciItemKey, count);
+                        }
+                    }
+                }
+                cosmetics.getSets().put(name, set);
+                iterator.remove();
             }
             iterator=cosmetics.getAutographs().keySet().iterator();
             while (iterator.hasNext()){

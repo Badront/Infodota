@@ -335,7 +335,7 @@ public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionLi
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 filteredHeroResponses = (List<Object>) results.values;
                 if (filteredHeroResponses == null) {
-                    filteredHeroResponses = new ArrayList<Object>();
+                    filteredHeroResponses = new ArrayList<>();
                 }
                 if (results.count >= 0) {
                     notifyDataSetChanged();
