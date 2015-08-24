@@ -15,7 +15,6 @@ Contact: histlerbar@gmail.com<br />
 Also used<br />
 <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart</a> by Philipp Jahoda<br />
 <a href="https://github.com/bumptech/glide">Glide</a> by Sam Judd<br />
-<a href="https://github.com/google/gson">Gson</a> by Google<br />
 <a href="http://jsoup.org/">Jsoup</a> by Jonathan Hedley<br />
 <a href="https://github.com/koral--/android-gif-drawable">android-gif-drawable</a> by Karol Wrótniak<br />
 <a href="https://github.com/pnikosis/materialish-progress">materialish-progress</a> by pnikosis<br />
@@ -23,7 +22,7 @@ Also used<br />
 <a href="https://github.com/square/retrofit">Retrofit</a> by Square, Inc.<br />
 <a href="https://github.com/stephanenicolas/robospice">RoboSpice</a> by Octo Technology<br />
 <a href="https://github.com/ApmeM/android-flowlayout">FlowLayout</a> by Artem Votincev<br />
-appcompat and gson by google<br /><br />
+appcompat and <a href="https://github.com/google/gson">Gson</a> by Google<br /><br />
 Also thanks to <a href="http://www.psdgraphics.com/">PSDgraphics</a> for app icon template (I've purchased license for 1 item)<br />
 
 License
