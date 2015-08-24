@@ -2,20 +2,19 @@ package com.badr.infodota.news.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.ActionMenuView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.fragment.UpdatableListFragment;
-import com.badr.infodota.base.util.EndlessScrollListener;
+import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
+import com.badr.infodota.base.util.EndlessRecycleScrollListener;
 import com.badr.infodota.news.activity.NewsItemActivity;
 import com.badr.infodota.news.adapter.NewsAdapter;
+import com.badr.infodota.news.adapter.NewsItemViewHolder;
 import com.badr.infodota.news.api.AppNews;
 import com.badr.infodota.news.api.NewsItem;
 import com.badr.infodota.news.task.NewsLoadRequest;
@@ -29,10 +28,10 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 21.04.14
  * Time: 18:29
  */
-public class NewsList extends UpdatableListFragment implements SwipeRefreshLayout.OnRefreshListener, RequestListener<AppNews> {
+public class NewsList extends UpdatableRecyclerFragment<NewsItem, NewsItemViewHolder> implements RequestListener<AppNews> {
 
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
-
+    private boolean mReloading = false;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -51,32 +50,22 @@ public class NewsList extends UpdatableListFragment implements SwipeRefreshLayou
         if (root == null) {
             return;
         }
-        getListView().setOnScrollListener(new EndlessScrollListener() {
+        getRecyclerView().addOnScrollListener(new EndlessRecycleScrollListener() {
             @Override
-            public void onLoadMore(int page, int totalItemsCount) {
-                loadNews(page, totalItemsCount);
+            public void onLoadMore() {
+                mReloading = false;
+                loadNews();
             }
         });
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        NewsItem item = ((NewsAdapter) getListAdapter()).getItem(position);
-        Intent intent = new Intent(getActivity(), NewsItemActivity.class);
-        intent.putExtra("newsItem", item);
-        startActivity(intent);
-    }
-
-    private void loadNews(final int page, final int totalItemsCount) {
+    private void loadNews() {
         final BaseActivity activity = (BaseActivity) getActivity();
         if (activity != null) {
             setRefreshing(true);
-            if (getListAdapter() == null) {
-                setListAdapter(new NewsAdapter(activity, null));
-            }
             Long fromDate = null;
-            if (page != 0 && totalItemsCount > 0) {
-                NewsItem lastItem = ((NewsAdapter) getListAdapter()).getItem(totalItemsCount - 1);
+            if (!mReloading) {
+                NewsItem lastItem = getAdapter().getItem(getAdapter().getItemCount() - 1);
                 fromDate = lastItem.getDate();
             }
             mSpiceManager.execute(new NewsLoadRequest(activity.getApplicationContext(), fromDate), this);
@@ -85,14 +74,15 @@ public class NewsList extends UpdatableListFragment implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
-        loadNews(0, getListAdapter().getCount());
+        mReloading = true;
+        loadNews();
     }
 
     @Override
     public void onStart() {
         if (!mSpiceManager.isStarted()) {
             mSpiceManager.start(getActivity());
-            loadNews(0, 0);
+            onRefresh();
         }
         super.onStart();
     }
@@ -113,8 +103,19 @@ public class NewsList extends UpdatableListFragment implements SwipeRefreshLayou
 
     @Override
     public void onRequestSuccess(AppNews newsItems) {
-        ((NewsAdapter) getListAdapter()).addNewsItems(newsItems.getNewsItems());
+        if (!mReloading && getAdapter() != null) {
+            ((NewsAdapter) getAdapter()).addData(newsItems.getNewsItems());
+        } else {
+            setAdapter(new NewsAdapter(newsItems.getNewsItems()));
+        }
         setRefreshing(false);
+    }
 
+    @Override
+    public void onItemClick(View view, int position) {
+        NewsItem item = getAdapter().getItem(position);
+        Intent intent = new Intent(getActivity(), NewsItemActivity.class);
+        intent.putExtra("newsItem", item);
+        startActivity(intent);
     }
 }
