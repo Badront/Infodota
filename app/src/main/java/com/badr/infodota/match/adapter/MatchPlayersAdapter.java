@@ -31,6 +31,12 @@ import static com.badr.infodota.base.util.Utils.TABLET_PORTRAIT;
  */
 public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayerHolder> {
     private int mState;
+    private View.OnClickListener mEmptyOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
 
     public MatchPlayersAdapter(List<Player> players, int state) {
         super(players);
@@ -132,12 +138,14 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             holder.item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem0()));
         } else {
             holder.item0.setImageResource(R.drawable.emptyitembg);
+            holder.item0.setOnClickListener(mEmptyOnClickListener);
         }
         if (player.getItem1dotaId() != null) {
             Glide.with(context).load(Utils.getItemImage(player.getItem1dotaId())).into(holder.item1);
             holder.item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem1()));
         } else {
             holder.item1.setImageResource(R.drawable.emptyitembg);
+            holder.item1.setOnClickListener(mEmptyOnClickListener);
         }
 
         if (player.getItem2dotaId() != null) {
@@ -145,6 +153,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             holder.item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem2()));
         } else {
             holder.item2.setImageResource(R.drawable.emptyitembg);
+            holder.item2.setOnClickListener(mEmptyOnClickListener);
         }
 
         if (player.getItem3dotaId() != null) {
@@ -152,6 +161,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             holder.item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem3()));
         } else {
             holder.item3.setImageResource(R.drawable.emptyitembg);
+            holder.item3.setOnClickListener(mEmptyOnClickListener);
         }
 
         if (player.getItem4dotaId() != null) {
@@ -159,6 +169,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             holder.item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem4()));
         } else {
             holder.item4.setImageResource(R.drawable.emptyitembg);
+            holder.item4.setOnClickListener(mEmptyOnClickListener);
         }
 
         if (player.getItem5dotaId() != null) {
@@ -166,6 +177,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             holder.item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem5()));
         } else {
             holder.item5.setImageResource(R.drawable.emptyitembg);
+            holder.item5.setOnClickListener(mEmptyOnClickListener);
         }
         if (player.getAdditionalUnits() != null && player.getAdditionalUnits().size() > 0) {
             AdditionalUnit unit = player.getAdditionalUnits().get(0);
@@ -176,6 +188,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
                 holder.additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem0()));
             } else {
                 holder.additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
+                holder.additionalUnitItem0.setOnClickListener(mEmptyOnClickListener);
             }
 
             if (unit.getItem1dotaId() != null) {
@@ -183,6 +196,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
                 holder.additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem1()));
             } else {
                 holder.additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
+                holder.additionalUnitItem1.setOnClickListener(mEmptyOnClickListener);
             }
 
             if (unit.getItem2dotaId() != null) {
@@ -190,6 +204,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
                 holder.additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem2()));
             } else {
                 holder.additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
+                holder.additionalUnitItem2.setOnClickListener(mEmptyOnClickListener);
             }
 
             if (unit.getItem3dotaId() != null) {
@@ -197,6 +212,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
                 holder.additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem3()));
             } else {
                 holder.additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
+                holder.additionalUnitItem3.setOnClickListener(mEmptyOnClickListener);
             }
 
             if (unit.getItem4dotaId() != null) {
@@ -204,6 +220,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
                 holder.additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem4()));
             } else {
                 holder.additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
+                holder.additionalUnitItem4.setOnClickListener(mEmptyOnClickListener);
             }
 
             if (unit.getItem5dotaId() != null) {
@@ -211,6 +228,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
                 holder.additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem5()));
             } else {
                 holder.additionalUnitItem5.setImageResource(R.drawable.emptyitembg);
+                holder.additionalUnitItem5.setOnClickListener(mEmptyOnClickListener);
             }
         } else {
             holder.additionalUnitHolder.setVisibility(View.GONE);
