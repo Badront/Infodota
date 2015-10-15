@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -23,7 +24,6 @@ import android.widget.EditText;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.stream.adapter.pager.TwitchPagerAdapter;
 import com.badr.infodota.stream.api.Stream;
 import com.badr.infodota.stream.service.TwitchService;
@@ -164,7 +164,8 @@ public class TwitchHolder extends Fragment { //pullToRefresh + FloatingActionBut
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(1);
 
-        SlidingTabLayout indicator = (SlidingTabLayout) getView().findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+
+        TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 }

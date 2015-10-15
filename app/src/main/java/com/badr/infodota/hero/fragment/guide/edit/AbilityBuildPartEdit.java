@@ -67,7 +67,7 @@ public class AbilityBuildPartEdit extends Fragment implements GuideHolder, OnAft
         super.onActivityCreated(savedInstanceState);
         HeroService heroService = BeanContainer.getInstance().getHeroService();
         hero = heroService.getHeroById(getActivity(), getArguments().getLong("id"));
-        grayColor = getResources().getColor(R.color.dota_gray);
+        grayColor = getResources().getColor(R.color.grey);
         textColor = getResources().getColor(R.color.primary);
         inflater = getActivity().getLayoutInflater();
         initAbilitiesHolder();

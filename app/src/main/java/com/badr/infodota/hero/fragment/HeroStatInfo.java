@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.base.util.ResourceUtils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.HeroStats;
@@ -134,7 +135,7 @@ public class HeroStatInfo extends Fragment implements RequestListener<MediaPlaye
                 }
             } else {
                 ((ImageView) root.findViewById(R.id.imgPortraitOverlay)).setImageResource(R.drawable.heroprimaryportrait_overlay);
-                Glide.with(context).load(Utils.getHeroPortraitImage(mHero.getDotaId())).into(mImageView);
+                Glide.with(context).load(SteamUtils.getHeroPortraitImage(mHero.getDotaId())).into(mImageView);
             }
         }
     }

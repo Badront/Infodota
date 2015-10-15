@@ -2,6 +2,7 @@ package com.badr.infodota.match.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -14,7 +15,6 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.util.LongPair;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.match.adapter.pager.DetailedMatchPagerAdapter;
 import com.badr.infodota.match.api.detailed.DetailedMatch;
 import com.badr.infodota.match.api.detailed.Team;
@@ -104,8 +104,8 @@ public class MatchDetailsActivity extends BaseActivity implements RequestListene
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(3);
-        SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     @Override

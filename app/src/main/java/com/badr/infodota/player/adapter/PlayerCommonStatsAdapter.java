@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.player.adapter.holder.PlayerCommonStatHolder;
 import com.badr.infodota.player.api.PlayerCommonStat;
 import com.bumptech.glide.Glide;
@@ -41,7 +41,7 @@ public class PlayerCommonStatsAdapter extends BaseRecyclerAdapter<PlayerCommonSt
         Context context = holder.header.getContext();
         Glide
                 .with(context)
-                .load(Utils.getHeroFullImage(entity.getHero().getDotaId()))
+                .load(SteamUtils.getHeroFullImage(entity.getHero().getDotaId()))
                 .into(holder.heroImg);
         holder.heroName.setText(entity.getHero().getLocalizedName());
 

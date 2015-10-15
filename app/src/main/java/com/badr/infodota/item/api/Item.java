@@ -1,6 +1,6 @@
 package com.badr.infodota.item.api;
 
-import com.badr.infodota.base.util.HasId;
+import com.badr.infodota.base.entity.HasId;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

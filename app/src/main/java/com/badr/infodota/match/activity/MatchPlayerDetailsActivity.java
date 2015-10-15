@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -21,8 +22,8 @@ import android.widget.TextView;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
-import com.badr.infodota.base.util.Utils;
-import com.badr.infodota.base.view.SlidingTabLayout;
+import com.badr.infodota.base.util.BitmapUtils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;
@@ -63,7 +64,7 @@ public class MatchPlayerDetailsActivity extends BaseActivity {
                 startActivity(intent);
                 return true;
             case R.id.add_btn:
-                Utils.addPlayerToListDialog(this, new DialogInterface.OnClickListener() {
+                SteamUtils.addPlayerToListDialog(this, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {
@@ -80,7 +81,7 @@ public class MatchPlayerDetailsActivity extends BaseActivity {
                 });
                 return true;
             case R.id.delete_btn:
-                Utils.deletePlayerFromListDialog(this, account, new DialogInterface.OnClickListener() {
+                SteamUtils.deletePlayerFromListDialog(this, account, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         playerService.deleteAccount(MatchPlayerDetailsActivity.this, account);
@@ -146,7 +147,7 @@ public class MatchPlayerDetailsActivity extends BaseActivity {
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
                         int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
                         styledAttributes.recycle();
-                        Bitmap icon = Utils.getBitmap(resource);
+                        Bitmap icon = BitmapUtils.getBitmap(resource);
                         if (icon != null) {
                             icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
                             Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
@@ -252,7 +253,7 @@ public class MatchPlayerDetailsActivity extends BaseActivity {
             ImageView heroImg = (ImageView) findViewById(R.id.hero_img);
             TextView heroName = (TextView) findViewById(R.id.hero_name);
             if (hero != null) {
-                Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(heroImg).onLoadStarted(getDrawable(R.drawable.default_img));
+                Glide.with(this).load(SteamUtils.getHeroFullImage(hero.getDotaId())).into(heroImg).onLoadStarted(getDrawable(R.drawable.default_img));
                 heroImg.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 heroName.setText(hero.getLocalizedName());
             } else {
@@ -271,7 +272,7 @@ public class MatchPlayerDetailsActivity extends BaseActivity {
         pager.setOffscreenPageLimit(1);
 
 
-        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.indicator);
-        slidingTabLayout.setViewPager(pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 }

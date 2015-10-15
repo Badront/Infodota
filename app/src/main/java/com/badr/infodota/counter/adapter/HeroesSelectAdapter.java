@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.counter.activity.CounterPickerHeroesSelectActivity;
 import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.hero.api.Hero;
@@ -134,7 +134,7 @@ public class HeroesSelectAdapter extends BaseAdapter implements Filterable {
             vi.setBackgroundResource(0);
         }
         Context context = parent.getContext();
-        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
+        Glide.with(context).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
         return vi;
     }
 

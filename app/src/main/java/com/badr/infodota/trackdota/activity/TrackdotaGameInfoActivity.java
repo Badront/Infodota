@@ -2,6 +2,7 @@ package com.badr.infodota.trackdota.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
@@ -9,7 +10,6 @@ import android.widget.Toast;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.util.Refresher;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.trackdota.TrackdotaUtils;
 import com.badr.infodota.trackdota.adapter.pager.TrackdotaGamePagerAdapter;
 import com.badr.infodota.trackdota.api.GameManager;
@@ -82,8 +82,9 @@ public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher
             final ViewPager pager = (ViewPager) findViewById(R.id.pager);
             pager.setAdapter(adapter);
             pager.setOffscreenPageLimit(2);
-            SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-            indicator.setViewPager(pager);
+
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+            tabLayout.setupWithViewPager(pager);
         }
     }
 

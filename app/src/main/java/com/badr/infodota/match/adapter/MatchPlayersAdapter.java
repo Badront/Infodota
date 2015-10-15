@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.item.activity.ItemInfoActivity;
 import com.badr.infodota.match.adapter.holder.MatchPlayerHolder;
@@ -127,21 +127,21 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
         }
         final Hero hero = player.getHero();
         if (hero != null) {
-            Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.heroImg);
+            Glide.with(context).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.heroImg);
             holder.heroName.setText(hero.getLocalizedName());
         } else {
             holder.heroImg.setImageResource(R.drawable.default_img);
             holder.heroName.setText("");
         }
         if (player.getItem0dotaId() != null) {
-            Glide.with(context).load(Utils.getItemImage(player.getItem0dotaId())).into(holder.item0);
+            Glide.with(context).load(SteamUtils.getItemImage(player.getItem0dotaId())).into(holder.item0);
             holder.item0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem0()));
         } else {
             holder.item0.setImageResource(R.drawable.emptyitembg);
             holder.item0.setOnClickListener(mEmptyOnClickListener);
         }
         if (player.getItem1dotaId() != null) {
-            Glide.with(context).load(Utils.getItemImage(player.getItem1dotaId())).into(holder.item1);
+            Glide.with(context).load(SteamUtils.getItemImage(player.getItem1dotaId())).into(holder.item1);
             holder.item1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem1()));
         } else {
             holder.item1.setImageResource(R.drawable.emptyitembg);
@@ -149,7 +149,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
         }
 
         if (player.getItem2dotaId() != null) {
-            Glide.with(context).load(Utils.getItemImage(player.getItem2dotaId())).into(holder.item2);
+            Glide.with(context).load(SteamUtils.getItemImage(player.getItem2dotaId())).into(holder.item2);
             holder.item2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem2()));
         } else {
             holder.item2.setImageResource(R.drawable.emptyitembg);
@@ -157,7 +157,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
         }
 
         if (player.getItem3dotaId() != null) {
-            Glide.with(context).load(Utils.getItemImage(player.getItem3dotaId())).into(holder.item3);
+            Glide.with(context).load(SteamUtils.getItemImage(player.getItem3dotaId())).into(holder.item3);
             holder.item3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem3()));
         } else {
             holder.item3.setImageResource(R.drawable.emptyitembg);
@@ -165,7 +165,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
         }
 
         if (player.getItem4dotaId() != null) {
-            Glide.with(context).load(Utils.getItemImage(player.getItem4dotaId())).into(holder.item4);
+            Glide.with(context).load(SteamUtils.getItemImage(player.getItem4dotaId())).into(holder.item4);
             holder.item4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem4()));
         } else {
             holder.item4.setImageResource(R.drawable.emptyitembg);
@@ -173,7 +173,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
         }
 
         if (player.getItem5dotaId() != null) {
-            Glide.with(context).load(Utils.getItemImage(player.getItem5dotaId())).into(holder.item5);
+            Glide.with(context).load(SteamUtils.getItemImage(player.getItem5dotaId())).into(holder.item5);
             holder.item5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(player.getItem5()));
         } else {
             holder.item5.setImageResource(R.drawable.emptyitembg);
@@ -184,7 +184,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             holder.additionalUnitHolder.setVisibility(View.VISIBLE);
 
             if (unit.getItem0dotaId() != null) {
-                Glide.with(context).load(Utils.getItemImage(unit.getItem0dotaId())).into(holder.additionalUnitItem0);
+                Glide.with(context).load(SteamUtils.getItemImage(unit.getItem0dotaId())).into(holder.additionalUnitItem0);
                 holder.additionalUnitItem0.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem0()));
             } else {
                 holder.additionalUnitItem0.setImageResource(R.drawable.emptyitembg);
@@ -192,7 +192,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             }
 
             if (unit.getItem1dotaId() != null) {
-                Glide.with(context).load(Utils.getItemImage(unit.getItem1dotaId())).into(holder.additionalUnitItem1);
+                Glide.with(context).load(SteamUtils.getItemImage(unit.getItem1dotaId())).into(holder.additionalUnitItem1);
                 holder.additionalUnitItem1.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem1()));
             } else {
                 holder.additionalUnitItem1.setImageResource(R.drawable.emptyitembg);
@@ -200,7 +200,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             }
 
             if (unit.getItem2dotaId() != null) {
-                Glide.with(context).load(Utils.getItemImage(unit.getItem2dotaId())).into(holder.additionalUnitItem2);
+                Glide.with(context).load(SteamUtils.getItemImage(unit.getItem2dotaId())).into(holder.additionalUnitItem2);
                 holder.additionalUnitItem2.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem2()));
             } else {
                 holder.additionalUnitItem2.setImageResource(R.drawable.emptyitembg);
@@ -208,7 +208,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             }
 
             if (unit.getItem3dotaId() != null) {
-                Glide.with(context).load(Utils.getItemImage(unit.getItem3dotaId())).into(holder.additionalUnitItem3);
+                Glide.with(context).load(SteamUtils.getItemImage(unit.getItem3dotaId())).into(holder.additionalUnitItem3);
                 holder.additionalUnitItem3.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem3()));
             } else {
                 holder.additionalUnitItem3.setImageResource(R.drawable.emptyitembg);
@@ -216,7 +216,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             }
 
             if (unit.getItem4dotaId() != null) {
-                Glide.with(context).load(Utils.getItemImage(unit.getItem4dotaId())).into(holder.additionalUnitItem4);
+                Glide.with(context).load(SteamUtils.getItemImage(unit.getItem4dotaId())).into(holder.additionalUnitItem4);
                 holder.additionalUnitItem4.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem4()));
             } else {
                 holder.additionalUnitItem4.setImageResource(R.drawable.emptyitembg);
@@ -224,7 +224,7 @@ public class MatchPlayersAdapter extends BaseRecyclerAdapter<Player, MatchPlayer
             }
 
             if (unit.getItem5dotaId() != null) {
-                Glide.with(context).load(Utils.getItemImage(unit.getItem5dotaId())).into(holder.additionalUnitItem5);
+                Glide.with(context).load(SteamUtils.getItemImage(unit.getItem5dotaId())).into(holder.additionalUnitItem5);
                 holder.additionalUnitItem5.setOnClickListener(new ItemInfoActivity.OnDotaItemClickListener(unit.getItem5()));
             } else {
                 holder.additionalUnitItem5.setImageResource(R.drawable.emptyitembg);

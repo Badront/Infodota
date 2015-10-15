@@ -1,6 +1,6 @@
 package com.badr.infodota.match.api.detailed;
 
-import com.badr.infodota.base.util.HasId;
+import com.badr.infodota.base.entity.HasId;
 
 import java.io.Serializable;
 

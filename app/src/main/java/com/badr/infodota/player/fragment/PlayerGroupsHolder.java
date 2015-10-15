@@ -1,6 +1,7 @@
 package com.badr.infodota.player.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.player.adapter.pager.PlayerGroupsPagerAdapter;
 
 /**
@@ -51,7 +51,7 @@ public class PlayerGroupsHolder extends Fragment {
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(3);
 
-        SlidingTabLayout indicator = (SlidingTabLayout) getView().findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+        TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 }

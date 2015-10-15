@@ -20,8 +20,8 @@ import java.net.URLConnection;
  * Date: 21.04.14
  */
 public class URLImageParser implements Html.ImageGetter {
-    Context context;
-    TextView container;
+    private Context mContext;
+    private TextView mContainer;
 
     /**
      * Construct the URLImageParser which will execute AsyncTask and refresh the container
@@ -30,8 +30,8 @@ public class URLImageParser implements Html.ImageGetter {
      * @param context
      */
     public URLImageParser(TextView holder, Context context) {
-        this.context = context;
-        this.container = holder;
+        this.mContext = context;
+        this.mContainer = holder;
     }
 
     public Drawable getDrawable(String source) {
@@ -42,6 +42,7 @@ public class URLImageParser implements Html.ImageGetter {
                 new ImageGetterAsyncTask(urlDrawable);
 
         asyncTask.execute(source);
+        //Glide.with(mContext).load(source).into()
 
         // return reference to URLDrawable where I will change with actual image from
         // the src tag
@@ -71,14 +72,14 @@ public class URLImageParser implements Html.ImageGetter {
             urlDrawable.drawable = result;
 
             // redraw the image by invalidating the container
-            URLImageParser.this.container.invalidate();
+            URLImageParser.this.mContainer.invalidate();
 
             // For ICS
-            URLImageParser.this.container.setHeight((URLImageParser.this.container.getHeight()
+            URLImageParser.this.mContainer.setHeight((mContainer.getHeight()
                     + result.getBounds().bottom));
 
             // Pre ICS
-            URLImageParser.this.container.setEllipsize(null);
+            URLImageParser.this.mContainer.setEllipsize(null);
         }
 
         /**
@@ -93,7 +94,7 @@ public class URLImageParser implements Html.ImageGetter {
                 InputStream is = fetch(urlString);
                 Drawable drawable = Drawable.createFromStream(is, "src");
 
-                WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+                WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
                 Display display = wm.getDefaultDisplay();
                 int width;
                 int height;

@@ -1,6 +1,6 @@
 package com.badr.infodota.player.api;
 
-import com.badr.infodota.base.util.HasId;
+import com.badr.infodota.base.entity.HasId;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -142,6 +142,10 @@ public class Unit implements Serializable, HasId {
 
         public List(Collection<? extends Unit> collection) {
             super(collection);
+        }
+
+        public List(int capacity) {
+            super(capacity);
         }
     }
 }

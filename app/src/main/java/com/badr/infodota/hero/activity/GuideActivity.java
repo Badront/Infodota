@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -23,9 +24,8 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.base.util.FileUtils;
-import com.badr.infodota.base.util.retrofit.LocalSpiceService;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.hero.adapter.pager.GuidePagerAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.guide.custom.Guide;
@@ -227,8 +227,8 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
         pager.setOffscreenPageLimit(2);
-        SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     @Override
@@ -247,7 +247,7 @@ public class GuideActivity extends BaseActivity implements RequestListener<List>
 
     @Override
     public void onRequestSuccess(List list) {
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(GuideActivity.this, android.R.layout.simple_spinner_item, list);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         final SharedPreferences prefs = getSharedPreferences("last_watched_guide", MODE_PRIVATE);

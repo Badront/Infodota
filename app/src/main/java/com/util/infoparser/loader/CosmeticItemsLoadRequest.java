@@ -6,9 +6,9 @@ import android.text.TextUtils;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.remote.SteamService;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.base.util.VDFtoJsonParser;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.cosmetic.api.icon.ItemIconHolder;
 import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
 import com.google.gson.Gson;

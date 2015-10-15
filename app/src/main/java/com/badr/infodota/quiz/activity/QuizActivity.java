@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
-import com.badr.infodota.base.util.market.IncreasingCountDownTimer;
+import com.badr.infodota.base.util.IncreasingCountDownTimer;
 import com.badr.infodota.base.util.prefs.AchievementPreferences;
 import com.badr.infodota.quiz.fragment.HeroSkillsQuiz;
 import com.badr.infodota.quiz.fragment.ItemsQuiz;

@@ -15,5 +15,5 @@ public interface UpdateService extends InitializingBean {
     * */
     Pair<Boolean, String> checkUpdate(Context context);
 
-    void loadNewVersion(Context context);
+    long loadNewVersion(Context context);
 }

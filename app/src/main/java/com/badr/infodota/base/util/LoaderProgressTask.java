@@ -11,6 +11,7 @@ import android.util.Log;
  * Time: 13:52
  */
 public class LoaderProgressTask<R> extends AsyncTask<Object, String, R> implements ProgressTask.OnPublishProgressListener {
+    public static final String USER_CANCELED = "user.canceled";
     private final ProgressTask<R> task;
     private OnProgressUpdateListener listener;
     private String error = null;
@@ -50,7 +51,7 @@ public class LoaderProgressTask<R> extends AsyncTask<Object, String, R> implemen
     @Override
     protected void onCancelled() {
         super.onCancelled();
-        task.handleError(ErrorCodes.USER_CANCELED);
+        task.handleError(USER_CANCELED);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class LoaderProgressTask<R> extends AsyncTask<Object, String, R> implemen
                 listener.onFinish();
             }
         } else {
-            task.handleError(ErrorCodes.USER_CANCELED);
+            task.handleError(USER_CANCELED);
         }
     }
 

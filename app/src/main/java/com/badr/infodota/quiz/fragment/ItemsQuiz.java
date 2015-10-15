@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.item.activity.ItemInfoActivity;
 import com.badr.infodota.item.api.Item;
@@ -88,7 +88,7 @@ public class ItemsQuiz extends QuizFragment {
     }
 
     private void initCoreItem(View root) {
-        Glide.with(root.getContext()).load(Utils.getItemImage(item.getDotaId())).into((ImageView) root.findViewById(R.id.request_item));
+        Glide.with(root.getContext()).load(SteamUtils.getItemImage(item.getDotaId())).into((ImageView) root.findViewById(R.id.request_item));
 
     }
 
@@ -109,7 +109,7 @@ public class ItemsQuiz extends QuizFragment {
             view.setTag(i);
             view.setLayoutParams(layoutParams);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
-            Glide.with(context).load(Utils.getItemImage(fakeItem.getDotaId())).into(imageView);
+            Glide.with(context).load(SteamUtils.getItemImage(fakeItem.getDotaId())).into(imageView);
             view.setEnabled(true);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,7 +117,7 @@ public class ItemsQuiz extends QuizFragment {
                     if (notChoosed.size() > 0) {
                         View view1 = notChoosed.get(0);
                         notChoosed.remove(0);
-                        Glide.with(v.getContext()).load(Utils.getItemImage(fakeItem.getDotaId())).into((ImageView) view1.findViewById(R.id.img));
+                        Glide.with(v.getContext()).load(SteamUtils.getItemImage(fakeItem.getDotaId())).into((ImageView) view1.findViewById(R.id.img));
                         view1.setTag(v.getTag());
                         view1.setEnabled(true);
                         v.setEnabled(false);

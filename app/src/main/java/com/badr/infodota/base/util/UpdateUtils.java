@@ -1,7 +1,13 @@
 package com.badr.infodota.base.util;
 
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.net.Uri;
 import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
@@ -35,10 +41,33 @@ public class UpdateUtils {
                                     context.getString(R.string.download),
                                     context.getString(android.R.string.cancel),
                                     new DialogInterface.OnClickListener() {
+                                        private long enqueueId;
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     UpdateService updateService=BeanContainer.getInstance().getUpdateService();
-                                    updateService.loadNewVersion(context);
+                                    BroadcastReceiver receiver = new BroadcastReceiver() {
+                                        @Override
+                                        public void onReceive(Context context, Intent intent) {
+                                            String action = intent.getAction();
+                                            if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)) {
+                                                long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0);
+                                                DownloadManager.Query query = new DownloadManager.Query();
+                                                query.setFilterById(enqueueId);
+                                                Cursor cursor = ((DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE)).query(query);
+                                                if (cursor.moveToFirst()) {
+                                                    if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))) {
+                                                        String uriStr = cursor.getString(cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                                                        Intent promptInstall = new Intent(Intent.ACTION_VIEW)
+                                                                .setDataAndType(Uri.parse(uriStr),
+                                                                        "application/vnd.android.package-archive");
+                                                        context.startActivity(promptInstall);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    };
+                                    context.registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+                                    enqueueId = updateService.loadNewVersion(context);
                                     dialog.dismiss();
                                 }
                             },new DialogInterface.OnClickListener() {

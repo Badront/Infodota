@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.match.adapter.holder.HistoryMatchHolder;
 import com.badr.infodota.match.api.history.PlayerMatch;
@@ -57,7 +57,7 @@ public class HistoryMatchesAdapter extends BaseRecyclerAdapter<PlayerMatch, Hist
             holder.gameType.setText(context.getResources().getStringArray(R.array.lobby_types)[gameType]);
         }
         Hero hero = entity.getPlayer().getHero();
-        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.heroImg);
+        Glide.with(context).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.heroImg);
         holder.heroName.setText(hero.getLocalizedName());
     }
 }

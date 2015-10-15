@@ -34,11 +34,11 @@ import com.badr.infodota.base.activity.AboutActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
 import com.badr.infodota.base.adapter.OnItemClickListener;
 import com.badr.infodota.base.fragment.SearchableFragment;
+import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.base.util.CarouselPageTransformer;
 import com.badr.infodota.base.util.ResourceUtils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.util.UpdateUtils;
-import com.badr.infodota.base.util.Utils;
-import com.badr.infodota.base.util.retrofit.LocalSpiceService;
 import com.badr.infodota.base.view.PagerContainer;
 import com.badr.infodota.base.view.TransformableViewPager;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
@@ -65,6 +65,7 @@ import pl.droidsonroids.gif.GifImageView;
  * User: ABadretdinov
  * Date: 15.01.14
  * Time: 14:14
+ * https://github.com/florent37/MaterialLeanBack
  */
 public class HeroesList extends Fragment implements SearchableFragment, RequestListener {
     RecyclerView gridView;
@@ -387,7 +388,7 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
                     //ignored
                 }
             } else {
-                Glide.with(context).load(Utils.getHeroPortraitImage(hero.getDotaId())).into(imageView);
+                Glide.with(context).load(SteamUtils.getHeroPortraitImage(hero.getDotaId())).into(imageView);
             }
 
 
@@ -398,7 +399,7 @@ public class HeroesList extends Fragment implements SearchableFragment, RequestL
                 for (String skill : skills) {
                     ViewGroup skillView = (ViewGroup) layoutInflater.inflate(R.layout.skill_carousel_holder, skillsHolder, false);
                     skillView.setLayoutParams(layoutParams);
-                    Glide.with(context).load(Utils.getSkillImage(skill)).into((ImageView) skillView.findViewById(R.id.skill_img));
+                    Glide.with(context).load(SteamUtils.getSkillImage(skill)).into((ImageView) skillView.findViewById(R.id.skill_img));
                     skillsHolder.addView(skillView);
                 }
             }

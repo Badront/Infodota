@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -16,8 +17,8 @@ import android.view.MenuItem;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
-import com.badr.infodota.base.util.Utils;
-import com.badr.infodota.base.view.SlidingTabLayout;
+import com.badr.infodota.base.util.BitmapUtils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.player.adapter.pager.PlayerGroupsPagerAdapter;
 import com.badr.infodota.player.adapter.pager.PlayerInfoPagerAdapter;
 import com.badr.infodota.player.api.Unit;
@@ -65,7 +66,7 @@ public class PlayerInfoActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_btn:
-                Utils.addPlayerToListDialog(this, new DialogInterface.OnClickListener() {
+                SteamUtils.addPlayerToListDialog(this, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {
@@ -86,7 +87,7 @@ public class PlayerInfoActivity extends BaseActivity {
                 });
                 return true;
             case R.id.delete_btn:
-                Utils.deletePlayerFromListDialog(this, account, new DialogInterface.OnClickListener() {
+                SteamUtils.deletePlayerFromListDialog(this, account, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         playerService.deleteAccount(PlayerInfoActivity.this, account);
@@ -124,7 +125,7 @@ public class PlayerInfoActivity extends BaseActivity {
                                 .obtainStyledAttributes(new int[]{R.attr.actionBarSize});
                         int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
                         styledAttributes.recycle();
-                        Bitmap icon = Utils.getBitmap(resource);
+                        Bitmap icon = BitmapUtils.getBitmap(resource);
                         if (icon != null) {
                             icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
                             Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
@@ -139,8 +140,8 @@ public class PlayerInfoActivity extends BaseActivity {
             final ViewPager pager = (ViewPager) findViewById(R.id.pager);
             pager.setAdapter(adapter);
             pager.setOffscreenPageLimit(3);
-            SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-            indicator.setViewPager(pager);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+            tabLayout.setupWithViewPager(pager);
             pager.setCurrentItem(2);
         }
 

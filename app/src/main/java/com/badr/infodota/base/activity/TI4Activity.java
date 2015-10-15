@@ -2,6 +2,7 @@ package com.badr.infodota.base.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -10,9 +11,8 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.pager.TI4PagerAdapter;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.base.service.ti4.TI4Service;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -59,8 +59,8 @@ public class TI4Activity extends BaseActivity implements RequestListener<Long> {
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(4);
-        SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
     }
 
     @Override

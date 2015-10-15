@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
 import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
-import com.badr.infodota.base.util.EndlessRecycleScrollListener;
+import com.badr.infodota.base.view.EndlessRecycleScrollListener;
 import com.badr.infodota.news.activity.NewsItemActivity;
 import com.badr.infodota.news.adapter.NewsAdapter;
 import com.badr.infodota.news.adapter.NewsItemViewHolder;

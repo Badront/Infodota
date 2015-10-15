@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.util.GrayImageLoadListener;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
@@ -145,9 +146,9 @@ public class MatchSummary extends Fragment {
                         Hero hero = heroService.getHeroById(activity, pickBan.getHeroId());
                         if (hero != null) {
                             if (pickBan.isPick()) {
-                                Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into(currentImage);
+                                Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).into(currentImage);
                             } else {
-                                Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into(new GrayImageLoadListener(currentImage));
+                                Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).into(new GrayImageLoadListener(currentImage));
                             }
                             currentImage.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                         }

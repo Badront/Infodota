@@ -11,7 +11,8 @@
         android:id="@+id/player_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/player" />
 
     <TextView
         android:id="@+id/player_name"
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/view_padding"
+        android:layout_marginStart="@dimen/view_padding"
         android:layout_weight="1" />
 
     <ImageView
@@ -26,6 +28,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
+        android:contentDescription="@string/add"
         android:src="@drawable/ic_menu_add" />
 
     <TextView
@@ -33,8 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="ПРО"
-        android:textColor="@color/primary"
+        android:textColor="?attr/colorPrimary"
         android:visibility="gone" />
 
     <ImageView
@@ -42,6 +44,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
+        android:contentDescription="@string/delete"
         android:src="@drawable/ic_menu_delete"
         android:visibility="gone" />
 </LinearLayout>

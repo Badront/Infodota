@@ -1,6 +1,6 @@
 package com.badr.infodota.hero.api.abilities;
 
-import com.badr.infodota.base.util.HasId;
+import com.badr.infodota.base.entity.HasId;
 
 /**
  * User: Histler

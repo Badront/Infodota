@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.OnYoutubeClickListener;
 import com.badr.infodota.hero.adapter.holder.HeroSkillHolder;
 import com.badr.infodota.hero.api.Skill;
@@ -45,7 +45,7 @@ public class HeroSkillsAdapter extends BaseRecyclerAdapter<Skill, HeroSkillHolde
         holder.name.setText(Html.fromHtml(skill.getDotaName()));
         holder.affects.setText(Html.fromHtml(skill.getAffects()));
         Glide.with(context)
-                .load(Utils.getSkillImage(skill.getName()))
+                .load(SteamUtils.getSkillImage(skill.getName()))
                 .into(holder.image);
         holder.loreHolder.removeAllViews();
         holder.paramsHolder.removeAllViews();

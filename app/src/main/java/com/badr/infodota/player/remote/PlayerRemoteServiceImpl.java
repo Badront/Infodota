@@ -2,7 +2,7 @@ package com.badr.infodota.player.remote;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.api.Constants;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.player.api.Player;
 import com.badr.infodota.player.api.PlayersHolder;
 import com.badr.infodota.player.api.PlayersResult;
@@ -35,7 +35,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
             if (i != 0) {
                 steamIds.append(",");
             }
-            Long steam64id = Utils.steam32to64(ids.get(i));
+            Long steam64id = SteamUtils.steam32to64(ids.get(i));
             steamIds.append(String.valueOf(steam64id));
         }
         PlayersResult result = BeanContainer.getInstance().getSteamService().getPlayers(steamIds.toString());
@@ -48,7 +48,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
                     Unit unit = new Unit();
                     unit.setName(player.getPersonaName());
                     Long steam64id = Long.valueOf(player.getSteamId());
-                    unit.setAccountId(Utils.steam64to32(steam64id));
+                    unit.setAccountId(SteamUtils.steam64to32(steam64id));
                     unit.setIcon(player.getAvatarFull());
                     units.add(unit);
                 }
@@ -88,7 +88,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
 
     @Override
     public Unit.List getSteamFriends(long id) throws Exception {
-        long steam64id = Utils.steam32to64(id);
+        long steam64id = SteamUtils.steam32to64(id);
         FriendsResult result = BeanContainer.getInstance().getSteamService().getFriends(String.valueOf(steam64id));
         if (result != null && result.getFriendsHolder() != null) {
             FriendsHolder response = result.getFriendsHolder();
@@ -96,7 +96,7 @@ public class PlayerRemoteServiceImpl implements PlayerRemoteService {
             if (friends != null && friends.size() > 0) {
                 List<Long> ids = new ArrayList<Long>();
                 for (Friend friend : friends) {
-                    ids.add(Utils.steam64to32(Long.valueOf(friend.getSteamid())));
+                    ids.add(SteamUtils.steam64to32(Long.valueOf(friend.getSteamid())));
                 }
                 return getAccounts(ids);
             }

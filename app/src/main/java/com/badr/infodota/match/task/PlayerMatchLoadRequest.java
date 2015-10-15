@@ -3,7 +3,7 @@ package com.badr.infodota.match.task;
 import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.match.api.history.PlayerMatchResult;
 import com.badr.infodota.match.service.MatchService;
 

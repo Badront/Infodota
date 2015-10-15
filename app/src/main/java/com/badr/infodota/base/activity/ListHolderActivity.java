@@ -67,7 +67,7 @@ public class ListHolderActivity extends BaseActivity implements SearchView.OnQue
         navSpinner.setSelection(Math.min(selected, adapter.getCount() - 1));
 
         UpdateUtils.checkNewVersion(this, false);
-        //не нужен AppRater.app_launched(this);
+        //не нужен AppRater.onAppLaunched(this);
     }
 
     @Override

@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.base.util.ResourceUtils;
-import com.badr.infodota.base.util.retrofit.LocalSpiceService;
 import com.badr.infodota.counter.adapter.HeroesSelectAdapter;
 import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.counter.task.TruepickerHeroesLoadRequest;

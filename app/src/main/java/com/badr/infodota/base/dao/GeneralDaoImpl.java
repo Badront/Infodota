@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.badr.infodota.base.util.HasId;
+import com.badr.infodota.base.entity.HasId;
 
 import java.util.ArrayList;
 import java.util.List;

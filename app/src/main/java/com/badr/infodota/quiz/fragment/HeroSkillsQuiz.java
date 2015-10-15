@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.abilities.Ability;
@@ -89,7 +89,7 @@ public class HeroSkillsQuiz extends QuizFragment {
             View view = inflater.inflate(R.layout.item_quiz_holder, null, false);
             view.setLayoutParams(layoutParams);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
-            Glide.with(context).load(Utils.getSkillImage(ability.getName())).into(imageView);
+            Glide.with(context).load(SteamUtils.getSkillImage(ability.getName())).into(imageView);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,7 +109,7 @@ public class HeroSkillsQuiz extends QuizFragment {
     }
 
     private void initCoreHero(View root) {
-        Glide.with(root.getContext()).load(Utils.getHeroPortraitImage(hero.getDotaId())).into((ImageView) root.findViewById(R.id.hero_img));
+        Glide.with(root.getContext()).load(SteamUtils.getHeroPortraitImage(hero.getDotaId())).into((ImageView) root.findViewById(R.id.hero_img));
     }
 
     @Override

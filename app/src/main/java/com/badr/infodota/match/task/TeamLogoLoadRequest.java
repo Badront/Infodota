@@ -3,8 +3,8 @@ package com.badr.infodota.match.task;
 import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.base.util.LongPair;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.match.service.team.TeamService;
 
 /**

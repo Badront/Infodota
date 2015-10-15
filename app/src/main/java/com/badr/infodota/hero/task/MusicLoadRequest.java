@@ -3,7 +3,7 @@ package com.badr.infodota.hero.task;
 import android.media.MediaPlayer;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.hero.api.responses.HeroResponse;
 
 import java.io.File;

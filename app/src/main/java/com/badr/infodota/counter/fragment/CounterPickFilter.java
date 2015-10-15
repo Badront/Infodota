@@ -26,7 +26,7 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.counter.activity.CounterPickerHeroesSelectActivity;
 import com.badr.infodota.counter.api.TruepickerHero;
@@ -221,13 +221,13 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             {
                 if (allies.size() > i) {
                     TruepickerHero hero = counterService.getTruepickerHeroByTpId(activity, allies.get(i));
-                    Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(allyViews[i]);
+                    Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(allyViews[i]);
                 } else {
                     Glide.with(activity).load(Uri.parse("file:///android_asset/default_img.png")).into(allyViews[i]);
                 }
                 if (enemies.size() > i) {
                     TruepickerHero hero = counterService.getTruepickerHeroByTpId(activity, enemies.get(i));
-                    Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(enemyViews[i]);
+                    Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(enemyViews[i]);
                 } else {
                     Glide.with(activity).load(Uri.parse("file:///android_asset/default_img.png")).into(enemyViews[i]);
                 }
@@ -235,7 +235,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
             if (enemies.size() == 5)//та же поправка
             {
                 TruepickerHero hero = counterService.getTruepickerHeroByTpId(activity, enemies.get(4));
-                Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(enemyViews[4]);
+                Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(enemyViews[4]);
             } else {
                 Glide.with(activity).load(Uri.parse("file:///android_asset/default_img.png")).into(enemyViews[4]);
             }
@@ -277,7 +277,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
                 for (TruepickerHero hero : truepickerHeroes) {
                     View view = inflater.inflate(R.layout.hero_row, recommendationsView, false);
                     ((TextView) view.findViewById(R.id.name)).setText(hero.getLocalizedName());
-                    Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId())).into((ImageView) view.findViewById(R.id.img));
+                    Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).into((ImageView) view.findViewById(R.id.img));
                     view.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                     recommendationsView.addView(view);
                 }

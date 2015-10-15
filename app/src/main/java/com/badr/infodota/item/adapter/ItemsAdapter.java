@@ -9,7 +9,7 @@ import android.widget.Filterable;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.item.adapter.holder.ItemHolder;
 import com.badr.infodota.item.api.Item;
 import com.bumptech.glide.Glide;
@@ -85,7 +85,7 @@ public class ItemsAdapter extends BaseRecyclerAdapter<Item, ItemHolder> implemen
         holder.name.setText(item.getDotaName());
 
         Context context = holder.name.getContext();
-        Glide.with(context).load(Utils.getItemImage(item.getDotaId())).into(holder.image);
+        Glide.with(context).load(SteamUtils.getItemImage(item.getDotaId())).into(holder.image);
     }
 
     @Override

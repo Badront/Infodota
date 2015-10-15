@@ -4,9 +4,9 @@ package com.parser;
  * Contains information about playlist element.
  */
 public interface PlaylistInfo {
-    public int getProgramId();
+    int getProgramId();
 
-    public int getBandWitdh();
+    int getBandWidth();
 
-    public String getCodecs();
+    String getCodecs();
 }

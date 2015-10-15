@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
-import com.badr.infodota.base.util.EndlessRecycleScrollListener;
+import com.badr.infodota.base.view.EndlessRecycleScrollListener;
 import com.badr.infodota.hero.adapter.HeroesAutoCompleteAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;

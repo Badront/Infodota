@@ -30,7 +30,8 @@ import java.util.List;
 public class StreamUtils {
     public final static String TWITCH_PACKAGE = "tv.twitch.android.viewer";
     public final static String DOUYU_PACKAGE = "air.tv.douyu.android";
-    public static void openActivity(Context context,Stream stream){
+
+    public static void openActivity(Context context, Stream stream) {
         Intent intent;
         intent = new Intent(context, TwitchPlayActivity.class);
         intent.putExtra("channelName", stream.getChannel());
@@ -38,33 +39,32 @@ public class StreamUtils {
         context.startActivity(intent);
 
     }
-    public static void openInSpecialApp(Context context,Stream stream){
+
+    public static void openInSpecialApp(Context context, Stream stream) {
         Intent intent;
         String url;
-        if("twitch".equals(stream.getProvider())) {
+        if ("twitch".equals(stream.getProvider())) {
             if (Utils.IsPackageInstalled(context, StreamUtils.TWITCH_PACKAGE)) {
                 url = "twitch://stream/" + stream.getChannel();
             } else {
                 url = "http://www.twitch.tv/" + stream.getChannel();
             }
-        }
-        else if("douyu".equals(stream.getProvider())){
+        } else if ("douyu".equals(stream.getProvider())) {
             /*if(Utils.IsPackageInstalled(context, StreamUtils.DOUYU_PACKAGE)){
                 url="douyu://stream/"+stream.getChannel();
             } else {*/
-                url="http://www.douyutv.com/"+stream.getChannel();
+            url = "http://www.douyutv.com/" + stream.getChannel();
             /*}*/
-        }
-        else {
+        } else {
             return;
         }
         intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         context.startActivity(intent);
     }
 
-    public static void openInVideoStreamApp(final Activity activity,Stream stream){
+    public static void openInVideoStreamApp(final Activity activity, Stream stream) {
         final String channelName = stream.getChannel();
-        if("twitch".equals(stream.getProvider())) {
+        if ("twitch".equals(stream.getProvider())) {
             DialogUtils.showLoaderDialog(((BaseActivity) activity).getSupportFragmentManager(), new ProgressTask<String>() {
                 BeanContainer container = BeanContainer.getInstance();
                 TwitchService service = container.getTwitchService();
@@ -102,16 +102,14 @@ public class StreamUtils {
                     return null;
                 }
             });
-        }
-        else {
-            if(stream.getQualities()!=null&&stream.getQualities().size()>0) {
-                Intent intent=new Intent(Intent.ACTION_VIEW);
+        } else {
+            if (stream.getQualities() != null && stream.getQualities().size() > 0) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 StreamQuality quality = stream.getQualities().get(0);
                 intent.setDataAndType(Uri.parse(quality.getUrl()), "application/x-mpegURL");
                 activity.startActivity(intent);
-            }
-            else {
-                openInSpecialApp(activity,stream);
+            } else {
+                openInSpecialApp(activity, stream);
             }
         }
     }

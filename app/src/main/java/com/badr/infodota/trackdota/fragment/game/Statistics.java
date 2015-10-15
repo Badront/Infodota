@@ -18,8 +18,8 @@ import android.widget.TextView;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.util.Updatable;
-import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.trackdota.OnLivePlayerClickListener;
 import com.badr.infodota.trackdota.TrackdotaUtils;
@@ -151,7 +151,7 @@ public class Statistics extends Fragment implements Updatable<Pair<CoreResult, L
             int direColor = getResources().getColor(R.color.dire_dark);
             for (StatEntry entry : statEntries) {
                 View row = inflater.inflate(R.layout.trackdota_game_stat_row, mStatHolder, false);
-                Glide.with(row.getContext()).load(Utils.getHeroMiniImage(entry.getHeroDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.hero_icon));
+                Glide.with(row.getContext()).load(SteamUtils.getHeroMiniImage(entry.getHeroDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.hero_icon));
                 ((TextView) row.findViewById(R.id.player_name)).setText(entry.getPlayerName());
                 if (entry.getTeam() == TrackdotaUtils.RADIANT) {
                     row.setBackgroundColor(radiantColor);

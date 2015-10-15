@@ -1,7 +1,7 @@
 package com.badr.infodota.stream.task;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.stream.api.Stream;
 import com.badr.infodota.stream.service.TwitchService;
 

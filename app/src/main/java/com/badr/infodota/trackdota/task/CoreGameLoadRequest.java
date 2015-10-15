@@ -3,7 +3,7 @@ package com.badr.infodota.trackdota.task;
 import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.trackdota.api.core.CoreResult;
 import com.badr.infodota.trackdota.service.TrackdotaService;
 

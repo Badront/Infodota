@@ -1,7 +1,7 @@
 package com.badr.infodota.joindota.task;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.joindota.api.MatchItem;
 import com.badr.infodota.joindota.service.JoinDotaService;
 

@@ -94,7 +94,6 @@
     <string name="tooltips_for_skills">По скилам:</string>
     <string name="tooltips_for_items">По предметам:</string>
     <string name="filter">ФИЛЬТР</string>
-    <string name="about">О приложении</string>
     <string name="add_player_title">Добавить игрока в список</string>
     <string name="delete_player_title">Удалить игрока из списка</string>
     <string name="delete_player_msg">Вы уверены, что хотите удалить {0} из списков?</string>
@@ -266,12 +265,6 @@
     <string name="view_original">Показать оригинал</string>
     <string name="author">Автор:</string>
     <string name="date">Дата:</string>
-    <string name="rate_app">Оценить приложение</string>
-    <string name="rate_app_name">Оцените {0}</string>
-    <string name="rate_message">Если Вам нравится приложение {0}, пожалуйста, оцените его.\n
-        Спасибо за Вашу поддержку!</string>
-    <string name="rate">Оценить</string>
-    <string name="no_thanks">Нет, спасибо</string>
     <string name="no_more_games">Больше игр нет</string>
     <string name="bans">Баны:</string>
     <string name="picks">Пики:</string>
@@ -337,4 +330,7 @@
     <string name="search">Искать</string>
     <string name="could_not_load_match">Не удалось загрузить матч</string>
     <string name="trackdota_match">Открыть через Trackdota</string>
+    <string name="not_now">Пропустить</string>
+    <string name="find_me_on_dotabuff">Найти меня на Dotabuff</string>
+    <string name="login_with_steam">Войти через Steam</string>
 </resources>

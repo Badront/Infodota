@@ -96,10 +96,9 @@
     <string name="tooltips_for_skills">For skills:</string>
     <string name="tooltips_for_items">For items:</string>
     <string name="filter">FILTER</string>
-    <string name="about">About</string>
     <string name="add_player_title">Add player to list</string>
     <string name="delete_player_title">Delete player from list</string>
-    <string name="delete_player_msg">Are You sure You wanna delete {0} from Your lists?</string>
+    <string name="delete_player_msg">Are You sure You want to delete {0} from Your lists?</string>
     <string name="delete">Delete</string>
     <string name="responses">RESPONSES</string>
     <string name="response_search">Search by response</string>
@@ -269,12 +268,6 @@
     <string name="view_original">View original</string>
     <string name="author">Author:</string>
     <string name="date">Date:</string>
-    <string name="rate_app">Rate App</string>
-    <string name="rate_app_name">Rate {0}</string>
-    <string name="rate_message">If you enjoy using {0}, please take a moment to rate it.\n
-        Thanks for your support!</string>
-    <string name="rate">Rate</string>
-    <string name="no_thanks">No, thanks</string>
     <string name="no_more_games">No more games</string>
     <string name="bans">Bans:</string>
     <string name="picks">Picks:</string>
@@ -340,4 +333,7 @@
     <string name="search">Search</string>
     <string name="could_not_load_match">Could not load match</string>
     <string name="trackdota_match">Open Trackdota match</string>
+    <string name="not_now">Not now</string>
+    <string name="find_me_on_dotabuff">Find me on Dotabuff</string>
+    <string name="login_with_steam">Login with Steam</string>
 </resources>

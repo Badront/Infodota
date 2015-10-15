@@ -10,7 +10,7 @@
     <item
         android:id="@+id/about"
         android:orderInCategory="9"
-        android:title="@string/about"
+        android:title="@string/base_about"
         app:showAsAction="never" />
     <item
         android:id="@+id/locale"

@@ -26,7 +26,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.util.DateUtils;
 import com.badr.infodota.base.util.GrayImageLoadListener;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
@@ -168,7 +168,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
                     team1bans.addView(imageLayout);
                     Glide
                             .with(this)
-                            .load(Utils.getHeroFullImage(hero.getDotaId()))
+                            .load(SteamUtils.getHeroFullImage(hero.getDotaId()))
                             .placeholder(R.drawable.default_img)
                             .into(new GrayImageLoadListener((ImageView) imageLayout.findViewById(R.id.img)));
                 }
@@ -184,7 +184,7 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
                     ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img);
                     Glide
                             .with(this)
-                            .load(Utils.getHeroFullImage(hero.getDotaId()))
+                            .load(SteamUtils.getHeroFullImage(hero.getDotaId()))
                             .placeholder(R.drawable.default_img)
                             .into(new GrayImageLoadListener(imageView));
                 }
@@ -201,14 +201,14 @@ public class LeagueGameActivity extends BaseActivity implements RequestListener,
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team1HeroHolder.findViewById(R.id.img);
-                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
+                    Glide.with(this).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 heroes = submatchItem.getTeam2picks().size() > i ? heroService.getHeroesByName(this, submatchItem.getTeam2picks().get(i)) : null;
                 if (heroes != null && heroes.size() > 0) {
                     Hero hero = heroes.get(0);
                     ImageView imageView = (ImageView) team2HeroHolder.findViewById(R.id.img);
-                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
+                    Glide.with(this).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(imageView);
                     imageView.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));
                 }
                 team1.addView(team1HeroHolder);

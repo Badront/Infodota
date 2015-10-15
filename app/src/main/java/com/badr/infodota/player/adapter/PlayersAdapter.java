@@ -13,7 +13,7 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.player.adapter.holder.PlayerHolder;
 import com.badr.infodota.player.adapter.pager.PlayerGroupsPagerAdapter;
 import com.badr.infodota.player.api.Unit;
@@ -22,6 +22,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * User: Histler
@@ -66,9 +68,8 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
         final Unit unit = getItem(position);
         holder.name.setText(unit.getName());
         Context context = holder.name.getContext();
-        Glide.with(context).load(unit.getIcon()).placeholder(R.drawable.steam_default).into(holder.icon);
+        Glide.with(context).load(unit.getIcon()).placeholder(R.drawable.steam_default).bitmapTransform(new CropCircleTransformation(context)).into(holder.icon);
         if (unit.getGroup() == Unit.Groups.NONE) {
-
             addInit(holder, unit);
         } else {
             deleteInit(holder, unit);
@@ -88,7 +89,7 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
             @Override
             public void onClick(View v) {
                 final Context context = v.getContext();
-                Utils.deletePlayerFromListDialog(context, unit, new DialogInterface.OnClickListener() {
+                SteamUtils.deletePlayerFromListDialog(context, unit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         playerService.deleteAccount(context, unit);
@@ -112,7 +113,7 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
             @Override
             public void onClick(View v) {
                 final Context context = v.getContext();
-                Utils.addPlayerToListDialog(context, new DialogInterface.OnClickListener() {
+                SteamUtils.addPlayerToListDialog(context, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {

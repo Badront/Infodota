@@ -6,8 +6,8 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.base.util.FileUtils;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.responses.HeroResponse;
 import com.badr.infodota.hero.api.responses.HeroResponsesSection;

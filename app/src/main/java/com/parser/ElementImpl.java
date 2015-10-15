@@ -101,7 +101,7 @@ final class ElementImpl implements Element {
             return programId;
         }
 
-        public int getBandWitdh() {
+        public int getBandWidth() {
             return bandWidth;
         }
 

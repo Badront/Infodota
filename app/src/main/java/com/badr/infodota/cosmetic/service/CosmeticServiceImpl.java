@@ -7,7 +7,7 @@ import android.util.Pair;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.util.FileUtils;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.cosmetic.api.player.PlayerCosmeticItem;
 import com.badr.infodota.cosmetic.api.price.ItemsPricesHolder;
 import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
@@ -107,7 +107,7 @@ public class CosmeticServiceImpl implements CosmeticService {
     @Override
     public Pair<List<PlayerCosmeticItem>, String> getPlayersCosmeticItems(Context context, long steam32Id) {
         try {
-            List<PlayerCosmeticItem> result = BeanContainer.getInstance().getSteamService().getPlayerCosmeticItems(Utils.steam32to64(steam32Id));
+            List<PlayerCosmeticItem> result = BeanContainer.getInstance().getSteamService().getPlayerCosmeticItems(SteamUtils.steam32to64(steam32Id));
             String message = null;
             if (result == null) {
                 message = "Failed to get cosmetic items for player";

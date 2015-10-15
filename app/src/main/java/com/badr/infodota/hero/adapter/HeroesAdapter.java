@@ -9,7 +9,7 @@ import android.widget.Filterable;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.adapter.holder.HeroHolder;
 import com.badr.infodota.hero.api.Hero;
 import com.bumptech.glide.Glide;
@@ -51,7 +51,7 @@ public class HeroesAdapter extends BaseRecyclerAdapter<Hero, HeroHolder> impleme
         Hero hero = getItem(position);
         holder.name.setText(hero.getLocalizedName());
         Context context = holder.name.getContext();
-        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
+        Glide.with(context).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
     }
 
     @Override

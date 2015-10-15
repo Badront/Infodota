@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".base.activity.LoaderActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/loading_screen" />
-
-    <TextView
-        android:id="@+id/info"
+    <LinearLayout
+        android:id="@+id/buttons_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/toast_frame"
-        android:paddingLeft="@dimen/view_padding"
-        android:paddingRight="@dimen/view_padding"
-        android:text="@string/loading"
-        android:textColor="@android:color/white"
-        android:textSize="16sp" />
-</RelativeLayout>
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/steam_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="loginWithSteam"
+            android:text="@string/login_with_steam" />
+
+        <Button
+            android:id="@+id/dotabuff_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="findOnDotabuff"
+            android:text="@string/find_me_on_dotabuff" />
+
+        <Button
+            android:id="@+id/later"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onNotNow"
+            android:text="@string/not_now" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/loading" />
+
+</FrameLayout>

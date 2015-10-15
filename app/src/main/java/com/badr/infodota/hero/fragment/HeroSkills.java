@@ -3,7 +3,7 @@ package com.badr.infodota.hero.fragment;
 import android.app.Activity;
 
 import com.badr.infodota.base.fragment.RecyclerFragment;
-import com.badr.infodota.base.util.retrofit.LocalSpiceService;
+import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.hero.adapter.HeroSkillsAdapter;
 import com.badr.infodota.hero.adapter.SkillHttpImageGetter;
 import com.badr.infodota.hero.adapter.holder.HeroSkillHolder;

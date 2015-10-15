@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.api.Hero;
 import com.bumptech.glide.Glide;
 
@@ -62,7 +62,7 @@ public class HeroesAutoCompleteAdapter extends BaseAdapter implements Filterable
         holder.name.setText(hero.getLocalizedName());
 
         Context context = parent.getContext();
-        Glide.with(context).load(Utils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
+        Glide.with(context).load(SteamUtils.getHeroFullImage(hero.getDotaId())).placeholder(R.drawable.default_img).into(holder.image);
         return vi;
     }
 

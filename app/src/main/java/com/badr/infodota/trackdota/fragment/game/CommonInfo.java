@@ -22,8 +22,8 @@ import android.widget.TextView;
 import com.badr.infodota.R;
 import com.badr.infodota.base.util.GrayImageLoadListener;
 import com.badr.infodota.base.util.Refresher;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.util.Updatable;
-import com.badr.infodota.base.util.Utils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.match.activity.MatchDetailsActivity;
@@ -218,7 +218,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult, L
                     ((TextView) row.findViewById(R.id.number)).setText(String.valueOf(i + 1));
                     Hero hero = gameManager.getHero(pick.getHeroId());
                     if (hero != null) {
-                        Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.image));
+                        Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId())).into((ImageView) row.findViewById(R.id.image));
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(pick.getHeroId()));
                     }
                     radiantPicks.addView(row);
@@ -235,7 +235,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult, L
                     ((TextView) row.findViewById(R.id.number)).setText(String.valueOf(i + 1));
                     Hero hero = gameManager.getHero(ban.getHeroId());
                     if (hero != null) {
-                        Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into(new GrayImageLoadListener((ImageView) row.findViewById(R.id.image)));
+                        Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into(new GrayImageLoadListener((ImageView) row.findViewById(R.id.image)));
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(ban.getHeroId()));
                     }
                     radiantBans.addView(row);
@@ -253,7 +253,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult, L
                     ((TextView) row.findViewById(R.id.number)).setText(String.valueOf(i + 1));
                     Hero hero = gameManager.getHero(pick.getHeroId());
                     if (hero != null) {
-                        Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.image));
+                        Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into((ImageView) row.findViewById(R.id.image));
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(pick.getHeroId()));
                     }
                     direPicks.addView(row);
@@ -270,7 +270,7 @@ public class CommonInfo extends Fragment implements Updatable<Pair<CoreResult, L
                     ((TextView) row.findViewById(R.id.number)).setText(String.valueOf(i + 1));
                     Hero hero = gameManager.getHero(ban.getHeroId());
                     if (hero != null) {
-                        Glide.with(activity).load(Utils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into(new GrayImageLoadListener((ImageView) row.findViewById(R.id.image)));
+                        Glide.with(activity).load(SteamUtils.getHeroFullImage(hero.getDotaId()))/*.placeholder(R.drawable.empty_item)*/.into(new GrayImageLoadListener((ImageView) row.findViewById(R.id.image)));
                         row.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(ban.getHeroId()));
                     }
                     direBans.addView(row);

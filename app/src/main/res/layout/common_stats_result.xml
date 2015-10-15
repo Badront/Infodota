@@ -13,8 +13,8 @@
         support:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         support:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <com.badr.infodota.base.view.SlidingTabLayout
-        android:id="@+id/indicator"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary" />

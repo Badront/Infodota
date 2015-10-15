@@ -15,8 +15,9 @@ import android.widget.Toast;
 
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.util.BitmapUtils;
 import com.badr.infodota.base.util.ResourceUtils;
-import com.badr.infodota.base.util.Utils;
+import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.view.HorizontalScrollViewListener;
 import com.badr.infodota.base.view.ObservableHorizontalScrollView;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
@@ -116,7 +117,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                     final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{R.attr.actionBarSize});
                     int mActionBarSize = (int) styledAttributes.getDimension(0, 40) / 2;
                     styledAttributes.recycle();
-                    Bitmap icon = Utils.getBitmap(resource);
+                    Bitmap icon = BitmapUtils.getBitmap(resource);
                     if (icon != null) {
                         icon = Bitmap.createScaledBitmap(icon, mActionBarSize, mActionBarSize, false);
                         Drawable iconDrawable = new BitmapDrawable(getResources(), icon);
@@ -174,7 +175,7 @@ public class PlayerByHeroStatsActivity extends BaseActivity implements Horizonta
                 for (Hero hero : heroes) {
                     List<String> results = playerHeroesStats.heroResults.get(hero);
                     View verticalHeaderRow = inflater.inflate(R.layout.player_by_hero_stats_vertical, verticalHeader, false);
-                    Glide.with(this).load(Utils.getHeroFullImage(hero.getDotaId())).into(
+                    Glide.with(this).load(SteamUtils.getHeroFullImage(hero.getDotaId())).into(
                             (ImageView) verticalHeaderRow.findViewById(R.id.image));
                     verticalHeader.addView(verticalHeaderRow);
                     verticalHeaderRow.setOnClickListener(new HeroInfoActivity.OnDotaHeroClickListener(hero.getId()));

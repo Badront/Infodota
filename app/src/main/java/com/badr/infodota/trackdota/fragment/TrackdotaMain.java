@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -23,7 +24,6 @@ import android.widget.Toast;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.ListHolderActivity;
 import com.badr.infodota.base.util.Refresher;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.trackdota.activity.TrackdotaGameInfoActivity;
 import com.badr.infodota.trackdota.adapter.pager.TrackdotaPagerAdapter;
 import com.badr.infodota.trackdota.api.game.GamesResult;
@@ -148,8 +148,8 @@ public class TrackdotaMain extends Fragment implements RequestListener<GamesResu
             pager.setAdapter(adapter);
             pager.setOffscreenPageLimit(3);
 
-            SlidingTabLayout indicator = (SlidingTabLayout) root.findViewById(R.id.indicator);
-            indicator.setViewPager(pager);
+            TabLayout tabLayout = (TabLayout) root.findViewById(R.id.tabs);
+            tabLayout.setupWithViewPager(pager);
         }
     }
 

@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.util.retrofit.LocalSpiceService;
+import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.hero.adapter.HeroResponsesAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.api.responses.HeroResponse;

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -18,7 +19,6 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.util.FileUtils;
-import com.badr.infodota.base.view.SlidingTabLayout;
 import com.badr.infodota.hero.adapter.pager.HeroPagerAdapter;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;
@@ -79,8 +79,8 @@ public class HeroInfoActivity extends BaseActivity {
             final ViewPager pager = (ViewPager) findViewById(R.id.pager);
             pager.setAdapter(adapter);
             pager.setOffscreenPageLimit(1);
-            SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-            indicator.setViewPager(pager);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+            tabLayout.setupWithViewPager(pager);
         }
     }
 

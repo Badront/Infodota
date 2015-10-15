@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.util.retrofit.TaskRequest;
+import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.player.activity.PlayerByHeroStatsActivity;

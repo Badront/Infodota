@@ -35,7 +35,7 @@ public class GraphMarkerView extends MarkerView {
 
             CandleEntry ce = (CandleEntry) e;
 
-            tvContent.setText("" + Utils.formatNumber(ce.getHigh(), 0, true));
+            tvContent.setText(Utils.formatNumber(ce.getHigh(), 0, true));
         } else {
 
             tvContent.setText(String.valueOf((int)e.getVal()));
