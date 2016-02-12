@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.base.dao.GeneralDao;
 import com.badr.infodota.stream.api.Stream;
 
 /**
@@ -13,7 +13,7 @@ import com.badr.infodota.stream.api.Stream;
  * 26.12.2014
  * 16:55
  */
-public class StreamDao extends GeneralDaoImpl<Stream> {
+public class StreamDao extends GeneralDao<Stream> {
     public static final String TABLE_NAME = "streams";
 
     public static final String COLUMN_CHANNEL = "channel";

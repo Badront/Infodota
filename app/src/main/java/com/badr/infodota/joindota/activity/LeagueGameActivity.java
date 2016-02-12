@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.DateUtils;
 import com.badr.infodota.base.util.GrayImageLoadListener;
 import com.badr.infodota.base.util.SteamUtils;
@@ -50,7 +50,7 @@ import java.util.List;
  * Date: 22.04.14
  * Time: 18:58
  */
-public class LeagueGameActivity extends BaseActivity implements RequestListener, SwipeRefreshLayout.OnRefreshListener {
+public class LeagueGameActivity extends OldBaseActivity implements RequestListener, SwipeRefreshLayout.OnRefreshListener {
     public static final int ADD_CALENDAR_EVENT_ID = 4321;
     SwipeRefreshLayout mSwipeRefreshView;
     View progressBar;

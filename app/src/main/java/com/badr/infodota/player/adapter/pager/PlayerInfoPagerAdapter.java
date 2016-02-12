@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.badr.infodota.R;
 import com.badr.infodota.match.fragment.MatchHistory;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.fragment.FriendsList;
 import com.badr.infodota.player.fragment.PlayerByHeroStatsFilter;
 import com.badr.infodota.player.fragment.PlayerCommonStatsFilter;
 import com.badr.infodota.player.fragment.PlayerCosmeticItemsList;
+import com.badr.steam.entity.Unit;
 
 /**
  * User: ABadretdinov

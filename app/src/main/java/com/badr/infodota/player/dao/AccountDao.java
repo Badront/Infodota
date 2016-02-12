@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
-import com.badr.infodota.player.api.Unit;
+import com.badr.infodota.base.dao.GeneralDao;
+import com.badr.steam.entity.Unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  * 26.12.2014
  * 17:43
  */
-public class AccountDao extends GeneralDaoImpl<Unit> {
+public class AccountDao extends GeneralDao<Unit> {
     public static final String TABLE_NAME = "accounts";
 
     public static final String COLUMN_NAME = "name";

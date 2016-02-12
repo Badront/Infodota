@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.LongPair;
 import com.badr.infodota.match.adapter.pager.DetailedMatchPagerAdapter;
 import com.badr.infodota.match.api.detailed.DetailedMatch;
@@ -32,7 +32,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * Date: 21.01.14
  * Time: 13:41
  */
-public class MatchDetailsActivity extends BaseActivity implements RequestListener {
+public class MatchDetailsActivity extends OldBaseActivity implements RequestListener {
     public static final int TRACKDOTA_GAME_ID = 322;
     BeanContainer container = BeanContainer.getInstance();
     TeamService teamService = container.getTeamService();

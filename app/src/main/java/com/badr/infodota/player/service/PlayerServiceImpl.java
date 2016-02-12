@@ -6,9 +6,9 @@ import android.util.Log;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.dao.DatabaseManager;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.dao.AccountDao;
 import com.badr.infodota.player.remote.PlayerRemoteService;
+import com.badr.steam.entity.Unit;
 
 import java.util.List;
 

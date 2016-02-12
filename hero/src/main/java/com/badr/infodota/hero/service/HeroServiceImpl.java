@@ -4,19 +4,15 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.dao.DatabaseManager;
-import com.badr.infodota.hero.api.CarouselHero;
-import com.badr.infodota.hero.api.Hero;
-import com.badr.infodota.hero.api.HeroStats;
-import com.badr.infodota.hero.api.abilities.Ability;
-import com.badr.infodota.hero.dao.AbilityDao;
+import com.badr.infodota.hero.HeroBeanContainer;
 import com.badr.infodota.hero.dao.HeroDao;
-import com.badr.infodota.hero.dao.HeroStatsDao;
+import com.badr.infodota.hero.entity.Ability;
+import com.badr.infodota.hero.entity.Hero;
+import com.badr.infodota.hero.entity.HeroStats;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,24 +22,12 @@ import java.util.List;
  * 14:35
  */
 public class HeroServiceImpl implements HeroService {
-    private HeroDao heroDao;
-    private HeroStatsDao heroStatsDao;
-    private AbilityDao abilityDao;
-
-    @Override
-    public void initialize() {
-        BeanContainer beanContainer = BeanContainer.getInstance();
-        heroDao = beanContainer.getHeroDao();
-        heroStatsDao = beanContainer.getHeroStatsDao();
-        abilityDao = beanContainer.getAbilityDao();
-    }
-
     @Override
     public List<Hero> getAllHeroes(Context context) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return heroDao.getAllEntities(database);
+            return HeroBeanContainer.getInstance().getHeroDao().getAllEntities(database);
         } finally {
             manager.closeDatabase();
         }
@@ -53,13 +37,15 @@ public class HeroServiceImpl implements HeroService {
     public Hero.List getFilteredHeroes(Context context, String filter) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
+        HeroBeanContainer hbc = HeroBeanContainer.getInstance();
+        HeroDao heroDao = hbc.getHeroDao();
         try {
             List<Hero> heroes = heroDao.getAllEntities(database);
             Iterator<Hero> iterator = heroes.iterator();
             if (!StringUtils.isEmpty(filter)) {
                 while (iterator.hasNext()) {
                     Hero hero = iterator.next();
-                    HeroStats heroStats = heroStatsDao.getShortHeroStats(database, hero.getId());
+                    HeroStats heroStats = hbc.getHeroStatsDao().getShortHeroStats(database, hero.getId());
                     if (heroStats.getRoles() != null) {
                         boolean found = false;
                         for (int i = 0, size = heroStats.getRoles().length; !found && i < size; i++) {
@@ -87,7 +73,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return heroDao.getEntities(database, name);
+            return HeroBeanContainer.getInstance().getHeroDao().getEntities(database, name);
         } finally {
             manager.closeDatabase();
         }
@@ -98,7 +84,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return heroDao.getExactEntity(database, name);
+            return HeroBeanContainer.getInstance().getHeroDao().getExactEntity(database, name);
         } finally {
             manager.closeDatabase();
         }
@@ -108,12 +94,13 @@ public class HeroServiceImpl implements HeroService {
     public List<CarouselHero> getCarouselHeroes(Context context, String filter) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
+        HeroBeanContainer hbc = HeroBeanContainer.getInstance();
         try {
             List<CarouselHero> carouselHeroes = new ArrayList<CarouselHero>();
-            List<Hero> heroes = heroDao.getAllEntities(database);
+            List<Hero> heroes = hbc.getHeroDao().getAllEntities(database);
             for (Hero hero : heroes) {
                 CarouselHero carouselHero = new CarouselHero(hero);
-                HeroStats heroStats = heroStatsDao.getShortHeroStats(database, hero.getId());
+                HeroStats heroStats = hbc.getHeroStatsDao().getShortHeroStats(database, hero.getId());
                 if (heroStats != null) {
                     carouselHero.setPrimaryStat(heroStats.getPrimaryStat());
                     if (TextUtils.isEmpty(filter)) {
@@ -206,7 +193,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return abilityDao.getStringAbilities(database, heroId);
+            return HeroBeanContainer.getInstance().getAbilityDao().getStringAbilities(database, heroId);
         } finally {
             manager.closeDatabase();
         }
@@ -217,7 +204,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return heroDao.getById(database, id);
+            return HeroBeanContainer.getInstance().getHeroDao().getById(database, id);
         } finally {
             manager.closeDatabase();
         }
@@ -227,10 +214,11 @@ public class HeroServiceImpl implements HeroService {
     public Hero getHeroWithStatsById(Context context, long id) {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
+        HeroBeanContainer hbc = HeroBeanContainer.getInstance();
         try {
-            Hero hero = heroDao.getById(database, id);
+            Hero hero = hbc.getHeroDao().getById(database, id);
             if (hero != null) {
-                hero.setStats(heroStatsDao.getById(database, id));
+                hero.setStats(hbc.getHeroStatsDao().getById(database, id));
             }
             return hero;
         } finally {
@@ -243,7 +231,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            heroDao.saveOrUpdate(database, hero);
+            HeroBeanContainer.getInstance().getHeroDao().saveOrUpdate(database, hero);
         } finally {
             manager.closeDatabase();
         }
@@ -254,7 +242,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            List<Ability> abilities = abilityDao.getEntities(database, heroId);
+            List<Ability> abilities = HeroBeanContainer.getInstance().getAbilityDao().getEntities(database, heroId);
 
             Ability ability = new Ability();
             ability.setId(5002);
@@ -271,7 +259,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            return abilityDao.getNotThisHeroEntities(database, heroId);
+            return HeroBeanContainer.getInstance().getAbilityDao().getNotThisHeroEntities(database, heroId);
         } finally {
             manager.closeDatabase();
         }
@@ -282,7 +270,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            List<Ability> abilities = abilityDao.getEntitiesByList(database, inGameList);
+            List<Ability> abilities = HeroBeanContainer.getInstance().getAbilityDao().getEntitiesByList(database, inGameList);
 
             Ability ability = new Ability();
             ability.setId(5002);
@@ -301,7 +289,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            Ability ability = abilityDao.getById(database, id);
+            Ability ability = HeroBeanContainer.getInstance().getAbilityDao().getById(database, id);
             if (ability != null) {
                 return "skills/" + ability.getName() + ".png";
             }
@@ -316,7 +304,7 @@ public class HeroServiceImpl implements HeroService {
         DatabaseManager manager = DatabaseManager.getInstance(context);
         SQLiteDatabase database = manager.openDatabase();
         try {
-            abilityDao.saveOrUpdate(database, ability);
+            HeroBeanContainer.getInstance().getAbilityDao().saveOrUpdate(database, ability);
         } finally {
             manager.closeDatabase();
         }

@@ -16,9 +16,9 @@ import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.hero.api.Hero;
-import com.badr.infodota.hero.api.abilities.Ability;
 import com.badr.infodota.hero.api.guide.custom.AbilityBuild;
 import com.badr.infodota.hero.api.guide.custom.Guide;
+import com.badr.infodota.hero.entity.Ability;
 import com.badr.infodota.hero.fragment.guide.GuideHolder;
 import com.badr.infodota.hero.service.HeroService;
 

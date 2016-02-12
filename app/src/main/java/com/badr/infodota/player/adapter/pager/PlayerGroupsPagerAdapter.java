@@ -8,9 +8,9 @@ import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import com.badr.infodota.R;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.fragment.GroupPlayersList;
 import com.badr.infodota.player.fragment.SearchedPlayersList;
+import com.badr.steam.entity.Unit;
 
 /**
  * User: ABadretdinov

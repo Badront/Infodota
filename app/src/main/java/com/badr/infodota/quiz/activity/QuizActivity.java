@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.IncreasingCountDownTimer;
 import com.badr.infodota.base.util.prefs.AchievementPreferences;
 import com.badr.infodota.quiz.fragment.HeroSkillsQuiz;
@@ -27,7 +27,7 @@ import java.util.Random;
  * User: Histler
  * Date: 09.02.14
  */
-public class QuizActivity extends BaseActivity {
+public class QuizActivity extends OldBaseActivity {
     public static final int MAX_ATTEMPTS = 3;
     public static final int MODE_NONE = 0;
     public static final int MODE_ITEMS = 1;

@@ -12,7 +12,7 @@ import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.remote.BaseRemoteServiceImpl;
 import com.badr.infodota.base.service.update.UpdateService;
 
@@ -105,10 +105,10 @@ public class UpdateUtils {
                 }
             };
             if(userInitiative){
-                DialogUtils.showLoaderDialog(((BaseActivity)context).getSupportFragmentManager(),task);
+                DialogUtils.showLoaderDialog(((OldBaseActivity) context).getSupportFragmentManager(), task);
             }
             else {
-                new LoaderProgressTask<Pair<Boolean,String>>(task,null).execute();
+                new LoaderProgressTask<>(task, null).execute();
             }
         }
     }

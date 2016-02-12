@@ -11,13 +11,13 @@ import android.widget.Filterable;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
 import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.player.adapter.holder.PlayerHolder;
 import com.badr.infodota.player.adapter.pager.PlayerGroupsPagerAdapter;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.service.PlayerService;
+import com.badr.steam.entity.Unit;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -94,7 +94,7 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
                     public void onClick(DialogInterface dialog, int which) {
                         playerService.deleteAccount(context, unit);
                         addInit(holder, unit);
-                        ViewPager viewPager = (ViewPager) ((BaseActivity) context).findViewById(R.id.pager);
+                        ViewPager viewPager = (ViewPager) ((OldBaseActivity) context).findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof PlayerGroupsPagerAdapter) {
                             PlayerGroupsPagerAdapter adapter = (PlayerGroupsPagerAdapter) viewPager.getAdapter();
                             adapter.update();
@@ -123,7 +123,7 @@ public class PlayersAdapter extends BaseRecyclerAdapter<Unit, PlayerHolder> impl
                         }
                         playerService.saveAccount(context, unit);
                         deleteInit(holder, unit);
-                        ViewPager viewPager = (ViewPager) ((BaseActivity) context).findViewById(R.id.pager);
+                        ViewPager viewPager = (ViewPager) ((OldBaseActivity) context).findViewById(R.id.pager);
                         if (viewPager != null && viewPager.getAdapter() instanceof PlayerGroupsPagerAdapter) {
                             PlayerGroupsPagerAdapter adapter = (PlayerGroupsPagerAdapter) viewPager.getAdapter();
                             adapter.update();

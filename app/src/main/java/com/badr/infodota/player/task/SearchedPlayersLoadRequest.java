@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.service.TaskRequest;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.service.PlayerService;
+import com.badr.steam.entity.Unit;
 
 import org.apache.commons.lang3.StringUtils;
 

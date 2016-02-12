@@ -24,8 +24,8 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.counter.activity.CounterPickerHeroesSelectActivity;
@@ -214,7 +214,7 @@ public class CounterPickFilter extends Fragment implements RequestListener<Truep
     }
 
     private void loadImages() {
-        final BaseActivity activity = (BaseActivity) getActivity();
+        final OldBaseActivity activity = (OldBaseActivity) getActivity();
         if (activity != null) {
             CounterService counterService = BeanContainer.getInstance().getCounterService();
             for (int i = 0; i < 4; i++) //поправка, т.к. союзников не может быть 5, ведь как же мы?

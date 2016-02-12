@@ -12,8 +12,8 @@ import com.badr.infodota.match.api.detailed.AdditionalUnit;
 import com.badr.infodota.match.api.detailed.DetailedMatch;
 import com.badr.infodota.match.api.detailed.DetailedMatchHolder;
 import com.badr.infodota.match.service.MatchService;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.service.PlayerService;
+import com.badr.steam.entity.Unit;
 
 import java.util.ArrayList;
 import java.util.List;

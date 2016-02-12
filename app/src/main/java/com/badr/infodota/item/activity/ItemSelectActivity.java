@@ -15,7 +15,7 @@ import android.widget.Filter;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.adapter.OnItemClickListener;
 import com.badr.infodota.base.util.ResourceUtils;
 import com.badr.infodota.item.adapter.ItemsAdapter;
@@ -30,7 +30,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * User: Histler
  * Date: 17.02.14
  */
-public class ItemSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener, OnItemClickListener, RequestListener<Item.List> {
+public class ItemSelectActivity extends OldBaseActivity implements SearchView.OnQueryTextListener, OnItemClickListener, RequestListener<Item.List> {
     private RecyclerView gridView;
     private ItemsAdapter mAdapter;
     private String search = null;

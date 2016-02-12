@@ -41,7 +41,7 @@ import com.badr.infodota.trackdota.fragment.TrackdotaMain;
  * Date: 15.01.14
  * Time: 14:27
  */
-public class ListHolderActivity extends BaseActivity implements SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener {
+public class ListHolderActivity extends OldBaseActivity implements SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener {
     int lastSelected = -1;
     private boolean doubleBackToExitPressedOnce = false;
 

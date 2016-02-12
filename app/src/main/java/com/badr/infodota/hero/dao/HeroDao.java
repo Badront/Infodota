@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.base.dao.GeneralDao;
 import com.badr.infodota.hero.api.Hero;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.List;
  * 25.12.2014
  * 11:30
  */
-public class HeroDao extends GeneralDaoImpl<Hero> {
+public class HeroDao extends GeneralDao<Hero> {
 
     public static final String TABLE_NAME = "hero";
 

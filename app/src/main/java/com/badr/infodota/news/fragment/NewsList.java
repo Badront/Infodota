@@ -8,8 +8,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.fragment.UpdatableRecyclerFragment;
 import com.badr.infodota.base.view.EndlessRecycleScrollListener;
 import com.badr.infodota.news.activity.NewsItemActivity;
@@ -60,7 +60,7 @@ public class NewsList extends UpdatableRecyclerFragment<NewsItem, NewsItemViewHo
     }
 
     private void loadNews() {
-        final BaseActivity activity = (BaseActivity) getActivity();
+        final OldBaseActivity activity = (OldBaseActivity) getActivity();
         if (activity != null) {
             setRefreshing(true);
             Long fromDate = null;

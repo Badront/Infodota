@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.hero.adapter.pager.GuidePagerAdapter;
@@ -47,7 +47,7 @@ import java.util.Set;
  * Date: 28.01.14
  * Time: 12:31
  */
-public class GuideActivity extends BaseActivity implements RequestListener<List> {
+public class GuideActivity extends OldBaseActivity implements RequestListener<List> {
     public static final int ADD = 1001;
     public static final int EDIT = 1002;
     public static final int REMOVE = 1003;

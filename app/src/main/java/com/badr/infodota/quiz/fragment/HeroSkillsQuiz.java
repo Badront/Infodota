@@ -15,7 +15,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
 import com.badr.infodota.hero.api.Hero;
-import com.badr.infodota.hero.api.abilities.Ability;
+import com.badr.infodota.hero.entity.Ability;
 import com.badr.infodota.hero.service.HeroService;
 import com.bumptech.glide.Glide;
 

@@ -3,7 +3,7 @@ package com.badr.infodota.player.service;
 import android.content.Context;
 
 import com.badr.infodota.InitializingBean;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 
 import java.util.List;
 

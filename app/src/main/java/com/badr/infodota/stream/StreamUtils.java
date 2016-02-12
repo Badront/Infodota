@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.DialogUtils;
 import com.badr.infodota.base.util.ProgressTask;
 import com.badr.infodota.base.util.Utils;
@@ -65,7 +65,7 @@ public class StreamUtils {
     public static void openInVideoStreamApp(final Activity activity, Stream stream) {
         final String channelName = stream.getChannel();
         if ("twitch".equals(stream.getProvider())) {
-            DialogUtils.showLoaderDialog(((BaseActivity) activity).getSupportFragmentManager(), new ProgressTask<String>() {
+            DialogUtils.showLoaderDialog(((OldBaseActivity) activity).getSupportFragmentManager(), new ProgressTask<String>() {
                 BeanContainer container = BeanContainer.getInstance();
                 TwitchService service = container.getTwitchService();
 

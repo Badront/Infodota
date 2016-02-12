@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.base.dao.GeneralDao;
 import com.badr.infodota.match.api.detailed.Team;
 
 /**
@@ -12,7 +12,7 @@ import com.badr.infodota.match.api.detailed.Team;
  * 26.12.2014
  * 18:24
  */
-public class TeamDao extends GeneralDaoImpl<Team> {
+public class TeamDao extends GeneralDao<Team> {
     public static final String TABLE_NAME = "team";
 
     public static final String COLUMN_LOGO_ID = "logo_id";

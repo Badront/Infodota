@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.Refresher;
 import com.badr.infodota.trackdota.TrackdotaUtils;
 import com.badr.infodota.trackdota.adapter.pager.TrackdotaGamePagerAdapter;
@@ -31,7 +31,7 @@ import java.text.MessageFormat;
  * 14.04.2015
  * 14:11
  */
-public class TrackdotaGameInfoActivity extends BaseActivity implements Refresher, RequestListener {
+public class TrackdotaGameInfoActivity extends OldBaseActivity implements Refresher, RequestListener {
 
     private static final long DELAY_20_SEC = 20000;
     private CoreResult coreResult;

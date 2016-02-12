@@ -11,28 +11,28 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 11:27
  */
 public class DatabaseManager {
-    private static DatabaseManager instance;
-    private static Helper mHelper;
+    private static DatabaseManager sInstance;
+    private static DatabaseHelper sDatabaseHelper;
     private AtomicInteger mOpenCounter = new AtomicInteger();
     private SQLiteDatabase mDatabase;
 
     public static synchronized void initializeInstance(Context context) {
-        if (instance == null) {
-            instance = new DatabaseManager();
-            mHelper = new Helper(context);
+        if (sInstance == null) {
+            sInstance = new DatabaseManager();
+            sDatabaseHelper = new DatabaseHelper(context.getApplicationContext());
         }
     }
 
     public static synchronized DatabaseManager getInstance(Context context) {
-        if (instance == null) {
+        if (sInstance == null) {
             initializeInstance(context);
         }
-        return instance;
+        return sInstance;
     }
 
     public synchronized SQLiteDatabase openDatabase() {
         if (mOpenCounter.incrementAndGet() == 1) {
-            mDatabase = mHelper.getWritableDatabase();
+            mDatabase = sDatabaseHelper.getWritableDatabase();
         }
         return mDatabase;
     }

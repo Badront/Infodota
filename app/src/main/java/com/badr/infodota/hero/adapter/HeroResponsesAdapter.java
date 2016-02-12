@@ -48,6 +48,7 @@ import java.util.List;
  */
 /*todo перевести на recyclerview, иначе обовлять отдельно строки нет возможности, приходится notifyDataSetChanged делать, а он затратный*/
 public class HeroResponsesAdapter extends BaseAdapter implements PinnedSectionListView.PinnedSectionListAdapter, Filterable {
+    //todo https://github.com/iammert/ProgressLayout
     TableRow.LayoutParams otherLayoutParams;
     private Context context;
     private List<HeroResponsesSection> mHeroSectionsResponses;

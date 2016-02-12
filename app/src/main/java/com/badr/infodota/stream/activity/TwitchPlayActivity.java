@@ -20,7 +20,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.view.TappableSurfaceView;
 import com.badr.infodota.stream.task.TwitchQualitiesLoadRequest;
 import com.octo.android.robospice.SpiceManager;
@@ -33,7 +33,7 @@ import com.parser.Element;
  * User: Histler
  * Date: 25.02.14
  */
-public class TwitchPlayActivity extends BaseActivity implements SurfaceHolder.Callback, RequestListener<Element.List> {//}  implements MediaPlayer.OnInfoListener, MediaPlayer.OnBufferingUpdateListener {
+public class TwitchPlayActivity extends OldBaseActivity implements SurfaceHolder.Callback, RequestListener<Element.List> {//}  implements MediaPlayer.OnInfoListener, MediaPlayer.OnBufferingUpdateListener {
     TappableSurfaceView videoView;
     MediaPlayer mediaPlayer;
     SurfaceHolder surfaceHolder;

@@ -6,7 +6,7 @@
     android:background="@drawable/heropicker"
     android:gravity="center_vertical"
     android:orientation="vertical">
-
+    <!--todo https://github.com/krimin-killr21/MaterialScrollBar-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gridView"
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.base.dao.GeneralDao;
 import com.badr.infodota.hero.api.HeroStats;
 
 /**
@@ -13,7 +13,7 @@ import com.badr.infodota.hero.api.HeroStats;
  * 25.12.2014
  * 17:05
  */
-public class HeroStatsDao extends GeneralDaoImpl<HeroStats> {
+public class HeroStatsDao extends GeneralDao<HeroStats> {
     public static final String TABLE_NAME = "hero_stats";
 
     public static final String COLUMN_PATCH = "patch";

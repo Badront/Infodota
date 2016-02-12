@@ -4,11 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.badr.infodota.BeanContainer;
-import com.badr.infodota.hero.dao.AbilityDao;
-import com.badr.infodota.hero.dao.HeroDao;
-import com.badr.infodota.hero.dao.HeroStatsDao;
-import com.badr.infodota.item.dao.ItemDao;
+import com.badr.infodota.base.BaseBeanContainer;
 
 import java.util.List;
 
@@ -17,20 +13,20 @@ import java.util.List;
  * Date: 29.08.13
  * Time: 11:07
  */
-public class Helper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "dota2.db";
     public static final int DATABASE_VERSION = 51;
 
     /*public static final String CREATE_ITEMS_FROM="create table if not exists "+
             " items_from ( _id integer PRIMARY KEY AUTOINCREMENT, item_id integer not null, need_id integer not null);";*/
 
-    public Helper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        List<CreateTableDao> allDaos = BeanContainer.getInstance().getAllDaos();
+        List<CreateTableDao> allDaos = BaseBeanContainer.getInstance().getAllDaos();
         for (CreateTableDao dao : allDaos) {
             dao.onCreate(db);
         }
@@ -40,21 +36,9 @@ public class Helper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 46) {
-            reinitHeroesAndItems(db);
-        }
-        List<CreateTableDao> allDaos = BeanContainer.getInstance().getAllDaos();
+        List<CreateTableDao> allDaos = BaseBeanContainer.getInstance().getAllDaos();
         for (CreateTableDao dao : allDaos) {
             dao.onUpgrade(db, oldVersion, newVersion);
         }
-    }
-
-    private void reinitHeroesAndItems(SQLiteDatabase db) {
-        db.execSQL("drop table " + ItemDao.TABLE_NAME);
-        db.execSQL("drop table " + ItemDao.ITEMS_FROM_MAPPER_TABLE_NAME);
-        db.execSQL("drop table " + HeroDao.TABLE_NAME);
-        db.execSQL("drop table " + HeroStatsDao.TABLE_NAME);
-        db.execSQL("drop table " + AbilityDao.TABLE_NAME);
-        db.execSQL("update updated_version set version=0;");
     }
 }

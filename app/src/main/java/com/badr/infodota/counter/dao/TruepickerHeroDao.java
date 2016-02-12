@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.base.dao.GeneralDao;
 import com.badr.infodota.counter.api.TruepickerHero;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.dao.HeroDao;
@@ -16,7 +16,7 @@ import java.util.List;
  * 21.08.2015
  * 11:57
  */
-public class TruepickerHeroDao extends GeneralDaoImpl<TruepickerHero> {
+public class TruepickerHeroDao extends GeneralDao<TruepickerHero> {
     public static final String TABLE_NAME = "truepicker";
     public static final String COLUMN_TRUEPICKER_ID = "tpId";
     private static final String CREATE_TABLE_QUERY = " (" +

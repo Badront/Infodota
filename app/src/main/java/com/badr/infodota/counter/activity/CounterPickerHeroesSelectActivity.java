@@ -17,7 +17,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.base.util.ResourceUtils;
 import com.badr.infodota.counter.adapter.HeroesSelectAdapter;
@@ -35,7 +35,7 @@ import java.util.ArrayList;
  * Date: 21.02.14
  * Time: 18:17
  */
-public class CounterPickerHeroesSelectActivity extends BaseActivity implements SearchView.OnQueryTextListener, RequestListener<TruepickerHero.List> {
+public class CounterPickerHeroesSelectActivity extends OldBaseActivity implements SearchView.OnQueryTextListener, RequestListener<TruepickerHero.List> {
     public static final int ENEMY = 0;
     public static final int ALLY = 1;
     HeroesSelectAdapter adapter;

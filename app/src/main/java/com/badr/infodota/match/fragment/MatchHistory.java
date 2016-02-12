@@ -28,7 +28,7 @@ import com.badr.infodota.match.adapter.holder.HistoryMatchHolder;
 import com.badr.infodota.match.api.history.PlayerMatch;
 import com.badr.infodota.match.api.history.PlayerMatchResult;
 import com.badr.infodota.match.task.PlayerMatchLoadRequest;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.UncachedSpiceService;
 import com.octo.android.robospice.persistence.exception.SpiceException;

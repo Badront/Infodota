@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.ResourceUtils;
 import com.badr.infodota.base.view.FlowLayout;
 import com.badr.infodota.cosmetic.api.store.CosmeticItem;
@@ -28,7 +28,7 @@ import java.util.Set;
  * Date: 01.04.14
  * Time: 14:21
  */
-public class CosmeticItemDetailsActivity extends BaseActivity {
+public class CosmeticItemDetailsActivity extends OldBaseActivity {
 
     private CosmeticItem item;
     private CosmeticItem set;

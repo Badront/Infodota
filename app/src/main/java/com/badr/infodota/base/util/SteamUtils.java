@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.widget.ArrayAdapter;
 
 import com.badr.infodota.R;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 
 import java.text.MessageFormat;
 import java.util.Arrays;

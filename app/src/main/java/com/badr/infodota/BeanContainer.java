@@ -1,7 +1,6 @@
 package com.badr.infodota;
 
 import com.badr.infodota.base.dao.CreateTableDao;
-import com.badr.infodota.base.remote.SteamService;
 import com.badr.infodota.base.remote.update.UpdateRemoteService;
 import com.badr.infodota.base.remote.update.UpdateRemoteServiceImpl;
 import com.badr.infodota.base.service.LocalUpdateService;
@@ -13,6 +12,7 @@ import com.badr.infodota.cosmetic.service.CosmeticServiceImpl;
 import com.badr.infodota.counter.dao.TruepickerHeroDao;
 import com.badr.infodota.counter.remote.CounterRemoteEntityServiceImpl;
 import com.badr.infodota.counter.service.CounterServiceImpl;
+import com.badr.infodota.hero.HeroBeanContainer;
 import com.badr.infodota.hero.dao.AbilityDao;
 import com.badr.infodota.hero.dao.HeroDao;
 import com.badr.infodota.hero.dao.HeroStatsDao;
@@ -37,6 +37,7 @@ import com.badr.infodota.stream.service.DouyuServiceImpl;
 import com.badr.infodota.stream.service.TwitchServiceImpl;
 import com.badr.infodota.trackdota.remote.TrackdotaRestService;
 import com.badr.infodota.trackdota.service.TrackdotaServiceImpl;
+import com.badr.steam.service.SteamService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,11 +93,7 @@ public class BeanContainer implements InitializingBean {
     private DouyuServiceImpl douyuService;
     private StreamDao streamDao;
 
-    private HeroServiceImpl heroService;
-    private HeroDao heroDao;
-    private HeroStatsDao heroStatsDao;
     private TruepickerHeroDao truepickerHeroDao;
-    private AbilityDao abilityDao;
 
     private ItemServiceImpl itemService;
     private ItemDao itemDao;
@@ -112,21 +109,15 @@ public class BeanContainer implements InitializingBean {
 
         allDaos = new ArrayList<>();
 
-        heroDao = new HeroDao();
-        heroStatsDao = new HeroStatsDao();
-        truepickerHeroDao = new TruepickerHeroDao(heroDao);
-        abilityDao = new AbilityDao();
+        truepickerHeroDao = new TruepickerHeroDao(HeroBeanContainer.getInstance().getHeroDao());
         itemDao = new ItemDao();
         accountDao = new AccountDao();
         streamDao = new StreamDao();
         teamDao = new TeamDao();
 
-        allDaos.add(heroDao);
-        allDaos.add(heroStatsDao);
         allDaos.add(truepickerHeroDao);
         allDaos.add(itemDao);
         allDaos.add(accountDao);
-        allDaos.add(abilityDao);
         allDaos.add(streamDao);
         //todo updated_version
         allDaos.add(teamDao);
@@ -156,8 +147,6 @@ public class BeanContainer implements InitializingBean {
         twitchService = new TwitchServiceImpl();
 
         douyuService = new DouyuServiceImpl();
-
-        heroService = new HeroServiceImpl();
 
         itemService = new ItemServiceImpl();
 

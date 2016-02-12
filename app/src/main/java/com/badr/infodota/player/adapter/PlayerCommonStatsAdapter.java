@@ -10,7 +10,7 @@ import com.badr.infodota.R;
 import com.badr.infodota.base.adapter.BaseRecyclerAdapter;
 import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.player.adapter.holder.PlayerCommonStatHolder;
-import com.badr.infodota.player.api.PlayerCommonStat;
+import com.badr.steam.entity.PlayerCommonStat;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

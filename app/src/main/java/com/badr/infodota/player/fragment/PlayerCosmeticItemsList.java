@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.fragment.SearchableFragment;
 import com.badr.infodota.base.util.DialogUtils;
 import com.badr.infodota.base.util.ProgressTask;
@@ -36,7 +36,7 @@ import com.badr.infodota.cosmetic.api.store.ItemSet;
 import com.badr.infodota.cosmetic.api.store.StoreItems;
 import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
 import com.badr.infodota.cosmetic.service.CosmeticService;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -177,7 +177,7 @@ public class PlayerCosmeticItemsList extends Fragment implements SearchableFragm
         }
     }
 
-    private void setItemsToAdapter(List<CosmeticItem> items, BaseActivity activity) {
+    private void setItemsToAdapter(List<CosmeticItem> items, OldBaseActivity activity) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         long lastUpdatedTime = prefs.getLong("last_store_update_time", 0);
         if (lastUpdatedTime != 0) {
@@ -194,7 +194,7 @@ public class PlayerCosmeticItemsList extends Fragment implements SearchableFragm
     }
 
     private void loadAllCosmeticItems() {
-        final BaseActivity activity = (BaseActivity) getActivity();
+        final OldBaseActivity activity = (OldBaseActivity) getActivity();
         DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<List<CosmeticItem>>() {
             @Override
             public List<CosmeticItem> doTask(OnPublishProgressListener listener) throws Exception {

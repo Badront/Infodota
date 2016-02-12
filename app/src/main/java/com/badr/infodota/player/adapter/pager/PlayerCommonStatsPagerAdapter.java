@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.badr.infodota.R;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.fragment.PlayerCommonStats;
+import com.badr.steam.entity.Unit;
 
 /**
  * User: ABadretdinov

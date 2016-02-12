@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.trackdota.adapter.TrackdotaLeagueGamesAdapter;
 import com.badr.infodota.trackdota.api.game.League;
 import com.badr.infodota.trackdota.api.league.LeagueGame;
@@ -27,7 +27,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
  * 08.06.2015
  * 15:45
  */
-public class TrackdotaLeagueInfoActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, RequestListener<LeagueGamesHolder>, AdapterView.OnItemClickListener {
+public class TrackdotaLeagueInfoActivity extends OldBaseActivity implements SwipeRefreshLayout.OnRefreshListener, RequestListener<LeagueGamesHolder>, AdapterView.OnItemClickListener {
     protected SwipeRefreshLayout mListContainer;
     protected ListView mListView;
     protected View mProgressBar;

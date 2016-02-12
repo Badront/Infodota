@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.badr.infodota.base.dao.DatabaseHelper;
 import com.badr.infodota.base.dao.DatabaseManager;
-import com.badr.infodota.base.dao.Helper;
 
 /**
  * Created by Badr on 27.12.2014.
@@ -31,7 +31,7 @@ public class LocalUpdateService {
         SQLiteDatabase database = manager.openDatabase();
         try {
             ContentValues values = new ContentValues();
-            values.put("version", Helper.DATABASE_VERSION);
+            values.put("version", DatabaseHelper.DATABASE_VERSION);
             database.update("updated_version", values, null, null);
         } finally {
             manager.closeDatabase();

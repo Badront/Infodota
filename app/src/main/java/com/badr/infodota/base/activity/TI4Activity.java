@@ -26,7 +26,7 @@ import java.text.MessageFormat;
  * Time: 20:17
  */
 @Deprecated
-public class TI4Activity extends BaseActivity implements RequestListener<Long> {
+public class TI4Activity extends OldBaseActivity implements RequestListener<Long> {
     private SpiceManager mSpiceManager = new SpiceManager(UncachedSpiceService.class);
 
     @Override

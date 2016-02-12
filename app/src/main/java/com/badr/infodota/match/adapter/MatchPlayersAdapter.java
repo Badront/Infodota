@@ -15,7 +15,7 @@ import com.badr.infodota.item.activity.ItemInfoActivity;
 import com.badr.infodota.match.adapter.holder.MatchPlayerHolder;
 import com.badr.infodota.match.api.Player;
 import com.badr.infodota.match.api.detailed.AdditionalUnit;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

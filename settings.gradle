@@ -1,4 +1,4 @@
-include ':app', ':appbase'
+include ':app', ':appbase', ':steam', ':hero'
 
 
 

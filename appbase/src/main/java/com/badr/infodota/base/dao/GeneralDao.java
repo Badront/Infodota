@@ -14,22 +14,25 @@ import java.util.List;
  * 25.12.2014
  * 11:35
  */
-public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
+public abstract class GeneralDao<E extends HasId> implements CreateTableDao {
     public static final String COLUMN_ID = "_id";
 
-    @Override
+    public abstract String getTableName();
+
+    public abstract String[] getAllColumns();
+
+    public abstract E cursorToEntity(Cursor cursor, int index);
+
     public long save(SQLiteDatabase database, E entity) {
         ContentValues values = entityToContentValues(entity);
         return database.insert(getTableName(), null, values);
     }
 
-    @Override
     public int update(SQLiteDatabase database, E entity) {
         ContentValues values = entityToContentValues(entity);
         return database.update(getTableName(), values, COLUMN_ID + " = ?", new String[]{String.valueOf(entity.getId())});
     }
 
-    @Override
     public void saveOrUpdate(SQLiteDatabase database, E entity) {
         E entityFromDB = getById(database, entity.getId());
         if (entityFromDB == null) {
@@ -39,7 +42,6 @@ public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
         }
     }
 
-    @Override
     public E getById(SQLiteDatabase database, long id) {
         Cursor cursor = database.query(
                 getTableName()
@@ -56,14 +58,12 @@ public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
         }
     }
 
-    @Override
     public void delete(SQLiteDatabase database, E entity) {
         database.delete(getTableName(), COLUMN_ID + " =? ", new String[]{String.valueOf(entity.getId())});
     }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-
         database.execSQL(
                 "create table if not exists " +
                         getTableName() +
@@ -88,7 +88,6 @@ public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
     protected abstract String getNoTableNameDataBaseCreateQuery();
 
 
-    @Override
     public List<E> getAllEntities(SQLiteDatabase database) {
         Cursor cursor = database.query(getTableName(), getAllColumns(), null, null, null, null, getDefaultOrderColumns());
         try {
@@ -105,7 +104,6 @@ public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
         }
     }
 
-    @Override
     public boolean hasEntities(SQLiteDatabase database) {
         Cursor cursor = database.query(getTableName(), new String[]{COLUMN_ID}, null, null, null, null, null);
         boolean has = false;
@@ -117,7 +115,6 @@ public abstract class GeneralDaoImpl<E extends HasId> implements GeneralDao<E> {
         return has;
     }
 
-    @Override
     public String getDefaultOrderColumns() {
         return COLUMN_ID;
     }

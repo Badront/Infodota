@@ -8,9 +8,9 @@ import com.badr.infodota.match.activity.MatchPlayerDetailsActivity;
 import com.badr.infodota.match.api.AbilityUpgrade;
 import com.badr.infodota.match.api.Player;
 import com.badr.infodota.match.api.detailed.AdditionalUnit;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.trackdota.api.live.Ability;
 import com.badr.infodota.trackdota.api.live.LivePlayer;
+import com.badr.steam.entity.Unit;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,7 +1,7 @@
 package com.badr.infodota.match.api;
 
 import com.badr.infodota.hero.api.Hero;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

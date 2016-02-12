@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
-import com.badr.infodota.hero.api.abilities.Ability;
+import com.badr.infodota.base.dao.GeneralDao;
+import com.badr.infodota.hero.entity.Ability;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  * 25.12.2014
  * 18:37
  */
-public class AbilityDao extends GeneralDaoImpl<Ability> {
+public class AbilityDao extends GeneralDao<Ability> {
     public static final String TABLE_NAME = "abilities";
 
     public static final String COLUMN_IDLIST = "idlist";

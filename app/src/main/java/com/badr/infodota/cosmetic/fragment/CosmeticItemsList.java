@@ -27,8 +27,8 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
 import com.badr.infodota.base.activity.ListHolderActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.fragment.SearchableFragment;
 import com.badr.infodota.base.util.DialogUtils;
 import com.badr.infodota.base.util.ProgressTask;
@@ -195,7 +195,7 @@ public class CosmeticItemsList extends Fragment implements SearchableFragment {
     }
 
     private void loadSavedItems() {
-        final BaseActivity activity = (BaseActivity) getActivity();
+        final OldBaseActivity activity = (OldBaseActivity) getActivity();
         DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<List<CosmeticItem>>() {
             @Override
             public List<CosmeticItem> doTask(OnPublishProgressListener listener) throws Exception {
@@ -265,7 +265,7 @@ public class CosmeticItemsList extends Fragment implements SearchableFragment {
     }
 
     private void loadCosmeticItemsFromWeb() {
-        final BaseActivity activity = (BaseActivity) getActivity();
+        final OldBaseActivity activity = (OldBaseActivity) getActivity();
         if (activity != null) {
             DialogUtils.showLoaderDialog(getFragmentManager(), new ProgressTask<List<CosmeticItem>>() {
                 @Override
@@ -282,8 +282,8 @@ public class CosmeticItemsList extends Fragment implements SearchableFragment {
                         items = stStoreItems.getItems();
                         sets = stStoreItems.getItemSets();
                     } else {
-                        items = new ArrayList<CosmeticItem>();
-                        sets = new ArrayList<ItemSet>();
+                        items = new ArrayList<>();
+                        sets = new ArrayList<>();
                     }
 
                     Pair<ItemsPricesHolder, String> pricesResultsPair = service.getUpdatedCosmeticItemsPrices(activity);
@@ -294,7 +294,7 @@ public class CosmeticItemsList extends Fragment implements SearchableFragment {
                     if (itemsPricesHolder != null && itemsPricesHolder.getItemsPrices() != null) {
                         itemPrices = itemsPricesHolder.getItemsPrices().getItemPrices();
                     } else {
-                        itemPrices = new ArrayList<ItemPrice>();
+                        itemPrices = new ArrayList<>();
                     }
                     return getItemsToShow(items, itemPrices);
                 }

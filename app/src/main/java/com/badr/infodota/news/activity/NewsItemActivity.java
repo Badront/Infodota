@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.web.URLImageParser;
 import com.badr.infodota.news.api.NewsItem;
 
@@ -23,7 +23,7 @@ import java.util.TimeZone;
  * User: Histler
  * Date: 21.04.14
  */
-public class NewsItemActivity extends BaseActivity {
+public class NewsItemActivity extends OldBaseActivity {
     NewsItem newsItem;
 
     @Override

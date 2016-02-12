@@ -3,13 +3,13 @@ package com.badr.infodota.player.remote;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.api.Constants;
 import com.badr.infodota.base.util.SteamUtils;
-import com.badr.infodota.player.api.Player;
-import com.badr.infodota.player.api.PlayersHolder;
-import com.badr.infodota.player.api.PlayersResult;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.api.friends.Friend;
 import com.badr.infodota.player.api.friends.FriendsHolder;
 import com.badr.infodota.player.api.friends.FriendsResult;
+import com.badr.steam.entity.Player;
+import com.badr.steam.entity.Unit;
+import com.badr.steam.util.json.PlayersHolder;
+import com.badr.steam.util.json.PlayersResult;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

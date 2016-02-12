@@ -5,12 +5,12 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.badr.infodota.BeanContainer;
-import com.badr.infodota.base.remote.SteamService;
 import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.base.util.VDFtoJsonParser;
 import com.badr.infodota.cosmetic.api.icon.ItemIconHolder;
 import com.badr.infodota.cosmetic.api.store.StoreItemsHolder;
+import com.badr.steam.service.SteamService;
 import com.google.gson.Gson;
 import com.util.infoparser.api.CosmeticItem;
 import com.util.infoparser.api.CosmeticItemAutograph;

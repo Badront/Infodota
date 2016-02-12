@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import com.badr.infodota.base.dao.GeneralDaoImpl;
+import com.badr.infodota.base.dao.GeneralDao;
 import com.badr.infodota.item.api.Item;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.List;
  * 25.12.2014
  * 12:49
  */
-public class ItemDao extends GeneralDaoImpl<Item> {
+public class ItemDao extends GeneralDao<Item> {
 
     public static final String TABLE_NAME = "items";
 

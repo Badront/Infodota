@@ -17,7 +17,7 @@
         android:theme="@style/Infodota">
 
         <activity
-            android:name=".base.activity.SteamLoginActivity"
+            android:name="com.badr.steam.activity.SteamLoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Infodota.Dark" />
 

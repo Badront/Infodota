@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.base.util.ResourceUtils;
 import com.badr.infodota.base.view.FlowLayout;
@@ -30,7 +30,7 @@ import java.util.List;
  * User: Histler
  * Date: 18.01.14
  */
-public class ItemInfoActivity extends BaseActivity {
+public class ItemInfoActivity extends OldBaseActivity {
     public static final int UP_REQUEST = 1;
     private Item item;
 

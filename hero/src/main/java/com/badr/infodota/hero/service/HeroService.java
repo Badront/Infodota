@@ -2,10 +2,8 @@ package com.badr.infodota.hero.service;
 
 import android.content.Context;
 
-import com.badr.infodota.InitializingBean;
-import com.badr.infodota.hero.api.CarouselHero;
-import com.badr.infodota.hero.api.Hero;
-import com.badr.infodota.hero.api.abilities.Ability;
+import com.badr.infodota.hero.entity.Ability;
+import com.badr.infodota.hero.entity.Hero;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ import java.util.List;
  * 25.12.2014
  * 14:35
  */
-public interface HeroService extends InitializingBean {
+public interface HeroService {
 
     List<Hero> getAllHeroes(Context context);
 

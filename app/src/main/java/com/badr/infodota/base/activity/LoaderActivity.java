@@ -15,11 +15,12 @@ import android.widget.Toast;
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
 import com.badr.infodota.base.api.Constants;
-import com.badr.infodota.base.dao.Helper;
+import com.badr.infodota.base.dao.DatabaseHelper;
 import com.badr.infodota.base.service.LocalSpiceService;
 import com.badr.infodota.base.service.LocalUpdateService;
 import com.badr.infodota.base.task.UpdateLoadRequest;
 import com.badr.infodota.base.util.UiUtils;
+import com.badr.steam.activity.SteamLoginActivity;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -44,7 +45,7 @@ public class LoaderActivity extends Activity implements RequestListener<String> 
         if (!mSpiceManager.isStarted()) {
             mSpiceManager.start(getApplicationContext());
             final int currentVersion = localUpdateService.getVersion(this);
-            if (currentVersion != Helper.DATABASE_VERSION) {
+            if (currentVersion != DatabaseHelper.DATABASE_VERSION) {
                 mSpiceManager.execute(new UpdateLoadRequest(getApplicationContext()), this);
             } else {
                 postAnimate();
@@ -89,8 +90,8 @@ public class LoaderActivity extends Activity implements RequestListener<String> 
             @Override
             @SuppressWarnings("deprecation")
             public void onGlobalLayout() {
-                animate();
                 mButtonsHolder.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                animate();
             }
         });
     }

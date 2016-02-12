@@ -2,8 +2,8 @@ package com.badr.infodota.player.task;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.service.TaskRequest;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.service.PlayerService;
+import com.badr.steam.entity.Unit;
 
 /**
  * Created by ABadretdinov

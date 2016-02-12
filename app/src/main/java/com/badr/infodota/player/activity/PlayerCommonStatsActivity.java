@@ -11,10 +11,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.BitmapUtils;
 import com.badr.infodota.player.adapter.pager.PlayerCommonStatsPagerAdapter;
-import com.badr.infodota.player.api.Unit;
+import com.badr.steam.entity.Unit;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -25,7 +25,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
  * Date: 27.03.14
  * Time: 18:05
  */
-public class PlayerCommonStatsActivity extends BaseActivity {
+public class PlayerCommonStatsActivity extends OldBaseActivity {
     FragmentPagerAdapter adapter;
     private Unit account;
 

@@ -8,8 +8,8 @@ import com.badr.infodota.base.service.TaskRequest;
 import com.badr.infodota.base.util.ResourceUtils;
 import com.badr.infodota.hero.api.Hero;
 import com.badr.infodota.hero.service.HeroService;
-import com.badr.infodota.player.api.PlayerCommonStat;
 import com.badr.infodota.player.fragment.PlayerCommonStats;
+import com.badr.steam.entity.PlayerCommonStat;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

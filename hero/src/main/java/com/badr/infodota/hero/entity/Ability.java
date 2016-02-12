@@ -1,4 +1,4 @@
-package com.badr.infodota.hero.api.abilities;
+package com.badr.infodota.hero.entity;
 
 import com.badr.infodota.base.entity.HasId;
 

@@ -1,4 +1,6 @@
-package com.badr.infodota.hero.api.abilities;
+package com.badr.infodota.hero.util.json;
+
+import com.badr.infodota.hero.entity.Ability;
 
 import java.util.List;
 

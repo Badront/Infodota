@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.FileUtils;
 import com.badr.infodota.hero.adapter.pager.GuideCreatorPagerAdapter;
 import com.badr.infodota.hero.api.Hero;
@@ -37,7 +37,7 @@ import java.io.UnsupportedEncodingException;
  * User: Histler
  * Date: 14.02.14
  */
-public class GuideCreatorActivity extends BaseActivity {
+public class GuideCreatorActivity extends OldBaseActivity {
     public static final int SAVE_ID = 1001;
     GuideCreatorPagerAdapter pagerAdapter;
     private Hero hero;

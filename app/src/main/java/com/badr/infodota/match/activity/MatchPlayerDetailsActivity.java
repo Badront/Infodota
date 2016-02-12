@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.R;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.OldBaseActivity;
 import com.badr.infodota.base.util.BitmapUtils;
 import com.badr.infodota.base.util.SteamUtils;
 import com.badr.infodota.hero.activity.HeroInfoActivity;
@@ -30,8 +30,8 @@ import com.badr.infodota.hero.service.HeroService;
 import com.badr.infodota.match.adapter.pager.MatchPlayerPagerAdapter;
 import com.badr.infodota.match.api.Player;
 import com.badr.infodota.player.activity.PlayerInfoActivity;
-import com.badr.infodota.player.api.Unit;
 import com.badr.infodota.player.service.PlayerService;
+import com.badr.steam.entity.Unit;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -44,7 +44,7 @@ import java.text.MessageFormat;
  * Date: 22.01.14
  * Time: 17:03
  */
-public class MatchPlayerDetailsActivity extends BaseActivity {
+public class MatchPlayerDetailsActivity extends OldBaseActivity {
     private boolean randomSkills;
 
     private Player player;
