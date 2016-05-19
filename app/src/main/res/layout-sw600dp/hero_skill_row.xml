@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:background="?attr/selectableItemBackground"
-        android:drawableLeft="@drawable/youtube_icon"
+        android:drawableLeft="@drawable/youtube"
         android:drawablePadding="@dimen/half_view_padding"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/half_view_padding"

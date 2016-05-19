@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hero_ability_view_image">80dp</dimen>
+    <dimen name="hero_ability_name_textSize">16sp</dimen>
+    <dimen name="hero_ability_affects_textSize">12sp</dimen>
+</resources>

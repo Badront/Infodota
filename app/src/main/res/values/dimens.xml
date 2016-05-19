@@ -29,12 +29,6 @@
     <dimen name="hero_row_textSize">10sp</dimen>
     <dimen name="hero_row_text_width">90dp</dimen>
 
-    <dimen name="item_row_image_size">60dp</dimen>
-
-    <dimen name="hero_skill_row_image_size">80dp</dimen>
-    <dimen name="hero_skill_affects_textSize">12sp</dimen>
-    <dimen name="hero_skill_name_textSize">16sp</dimen>
-
     <dimen name="item_receipt_textSize">10sp</dimen>
 
     <dimen name="match_player_summary_width">52dp</dimen>
@@ -44,7 +38,4 @@
 
     <dimen name="hero_row_width">128dp</dimen>
     <dimen name="hero_row_height">62dp</dimen>
-
-    <dimen name="view_padding">8dp</dimen>
-    <dimen name="half_view_padding">4dp</dimen>
 </resources>

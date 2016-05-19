@@ -24,7 +24,6 @@
     <dimen name="skill_role_size">68dp</dimen>
     <dimen name="hero_row_textSize">14sp</dimen>
     <dimen name="hero_row_text_width">128dp</dimen>
-    <dimen name="item_row_image_size">90dp</dimen>
     <dimen name="hero_skill_row_image_size">100dp</dimen>
     <dimen name="hero_skill_affects_textSize">16sp</dimen>
     <dimen name="hero_skill_name_textSize">20sp</dimen>

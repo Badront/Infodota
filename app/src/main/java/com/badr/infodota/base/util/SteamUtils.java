@@ -59,20 +59,4 @@ public class SteamUtils {
     public static String getItemImage(String itemDotaId) {
         return "file:///android_asset/items/" + itemDotaId + ".png";
     }
-
-    public static String getHeroFullImage(String heroDotaId) {
-        return "file:///android_asset/heroes/" + heroDotaId + "/full.png";
-    }
-
-    public static String getHeroPortraitImage(String heroDotaId) {
-        return "file:///android_asset/heroes/" + heroDotaId + "/vert.jpg";
-    }
-
-    public static String getHeroMiniImage(String heroDotaId) {
-        return "file:///android_asset/heroes/" + heroDotaId + "/mini.png";
-    }
-
-    public static String getSkillImage(String skillName) {
-        return "file:///android_asset/skills/" + skillName + ".png";
-    }
 }

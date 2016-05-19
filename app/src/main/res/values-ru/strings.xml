@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="language">russian</string>
-
     <string name="heroes_list">Загружаем список героев</string>
     <string name="loading_data_for">Загружаем данные для: {0}</string>
     <string name="loading">Загрузка…</string>
@@ -27,8 +25,6 @@
     <string name="instant">Мгновенная</string>
     <string name="exit_msg">Уверены,что хотите выйти?</string>
     <string name="back_toast">Нажмите снова для выхода</string>
-    <string name="makes_from">Собирается из:</string>
-    <string name="makes_to">Собирается в:</string>
     <string name="cd">Кулдаун:</string>
     <string name="mc">Расход маны:</string>
     <string name="recipe">Рецепт</string>
@@ -259,7 +255,6 @@
     <string name="part_of_set">Часть комплекта:</string>
     <string name="press_refresh_button">Нажмите кнопку \'Обновить\'</string>
     <string name="network_unavailable">Отсутствует подключение к интернету</string>
-    <string name="watch_on_youtube">Смотреть на YouTube</string>
     <string name="counters_not_found">Рекомендаций не найдено</string>
     <string name="no_more_news">Больше новостей нет</string>
     <string name="view_original">Показать оригинал</string>

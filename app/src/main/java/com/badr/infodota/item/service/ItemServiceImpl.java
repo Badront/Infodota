@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.badr.infodota.BeanContainer;
 import com.badr.infodota.base.dao.DatabaseManager;
-import com.badr.infodota.item.api.Item;
 import com.badr.infodota.item.dao.ItemDao;
 
 import java.util.List;

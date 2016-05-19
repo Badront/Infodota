@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="language">russian</string>
+
     <string name="base_about">О приложении</string>
 
 

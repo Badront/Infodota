@@ -205,8 +205,6 @@ public class ItemInfoActivity extends OldBaseActivity {
             this(itemId);
             forResult = true;
             requestCode = REQUEST_CODE;
-
-
         }
 
         @Override

@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.badr.infodota.base.BaseBeanContainer;
-import com.badr.infodota.base.activity.BaseActivity;
+import com.badr.infodota.base.activity.BaseFragmentActivity;
 import com.badr.infodota.base.service.NavigationService;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public final class Navigate {
         }
         intent.putExtra(PARAM_ARGS, bundle);
         if (!reOpen && (context.getClass().equals(mainActivity))) {
-            ((BaseActivity) context).initFragment(intent);
+            ((BaseFragmentActivity) context).initFragment(intent);
         } else {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);
